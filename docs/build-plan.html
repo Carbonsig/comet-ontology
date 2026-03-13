@@ -1,0 +1,2021 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>COMET — Master Build Plan</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500;600&family=Cormorant+Garamond:wght@400;600;700&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap');
+
+:root {
+  --ink:       #0c0c0e;
+  --ink-2:     #2d2d35;
+  --ink-3:     #6b6b78;
+  --bg:        #f7f6f2;
+  --bg-2:      #ffffff;
+  --rule:      #dddbd3;
+  --rule-lite: #eceae4;
+  --red:       #b83020;
+  --green:     #1a5c3a;
+  --blue:      #1c3560;
+  --gold:      #8c6b20;
+  --teal:      #1a5060;
+  --warm:      #6b3820;
+  --mono:      'IBM Plex Mono', monospace;
+  --display:   'Cormorant Garamond', serif;
+  --sans:      'IBM Plex Sans', sans-serif;
+}
+
+* { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--sans);
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+/* ── MASTHEAD ── */
+.masthead {
+  background: var(--ink);
+  padding: 56px 72px 48px;
+  border-bottom: 4px solid var(--red);
+  position: relative;
+  overflow: hidden;
+}
+.masthead::before {
+  content: 'COMET';
+  position: absolute;
+  right: -20px;
+  top: -30px;
+  font-family: var(--display);
+  font-size: 260px;
+  font-weight: 700;
+  color: rgba(255,255,255,0.025);
+  pointer-events: none;
+  line-height: 1;
+}
+.mh-eyebrow {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  color: #666;
+  text-transform: uppercase;
+  margin-bottom: 14px;
+}
+.mh-title {
+  font-family: var(--display);
+  font-size: 48px;
+  font-weight: 700;
+  color: #f7f6f2;
+  line-height: 1.05;
+  margin-bottom: 8px;
+}
+.mh-title em { color: var(--red); font-style: normal; }
+.mh-sub {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: #888;
+  letter-spacing: 0.06em;
+  margin-bottom: 20px;
+}
+.mh-bluf {
+  max-width: 660px;
+  font-size: 14px;
+  color: #bbb;
+  line-height: 1.65;
+  border-left: 2px solid #333;
+  padding-left: 16px;
+}
+.mh-stats {
+  display: flex;
+  gap: 40px;
+  margin-top: 28px;
+  padding-top: 24px;
+  border-top: 1px solid #222;
+}
+.mh-stat-val {
+  font-family: var(--display);
+  font-size: 36px;
+  font-weight: 700;
+  color: #f7f6f2;
+  line-height: 1;
+}
+.mh-stat-val em { color: var(--red); font-style: normal; }
+.mh-stat-label {
+  font-family: var(--mono);
+  font-size: 9px;
+  color: #666;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  margin-top: 3px;
+}
+
+/* ── NAV ── */
+.sticky-nav {
+  background: var(--ink-2);
+  padding: 0 72px;
+  display: flex;
+  gap: 0;
+  border-bottom: 1px solid #333;
+  position: sticky;
+  top: 0;
+  z-index: 200;
+  overflow-x: auto;
+}
+.nav-item {
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #666;
+  text-decoration: none;
+  padding: 13px 16px;
+  border-right: 1px solid #333;
+  white-space: nowrap;
+  transition: color 0.15s, background 0.15s;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.nav-item:hover { color: #f7f6f2; background: rgba(255,255,255,0.04); }
+.nav-dot {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+/* ── PAGE ── */
+.page { max-width: 1440px; margin: 0 auto; padding: 0 72px; }
+
+/* ── SECTION BLOCKS ── */
+.section {
+  padding: 52px 0 36px;
+  border-bottom: 1px solid var(--rule);
+}
+.section-eyebrow {
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--red);
+  margin-bottom: 6px;
+}
+.section-h {
+  font-family: var(--display);
+  font-size: 30px;
+  font-weight: 700;
+  line-height: 1.1;
+  margin-bottom: 8px;
+}
+.section-bluf {
+  font-size: 13px;
+  color: var(--ink-3);
+  max-width: 800px;
+  margin-bottom: 28px;
+  border-left: 2px solid var(--rule);
+  padding-left: 14px;
+  line-height: 1.6;
+}
+
+/* ── EXPERT PANEL HEADER ── */
+.expert-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  padding: 14px 18px;
+  margin-bottom: 2px;
+}
+.expert-num {
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 600;
+  min-width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  flex-shrink: 0;
+}
+.expert-title {
+  font-family: var(--sans);
+  font-weight: 600;
+  font-size: 13px;
+  color: var(--ink);
+}
+.expert-role {
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 0.1em;
+  color: var(--ink-3);
+  text-transform: uppercase;
+  margin-top: 2px;
+}
+
+/* ── STEP LIST ── */
+.steps-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1px;
+  background: var(--rule);
+  border: 1px solid var(--rule);
+  margin-bottom: 2px;
+}
+.step-cell {
+  background: var(--bg-2);
+  padding: 12px 14px;
+  position: relative;
+  transition: background 0.12s;
+}
+.step-cell:hover { background: #fafaf7; }
+.step-num {
+  font-family: var(--mono);
+  font-size: 9px;
+  color: var(--ink-3);
+  margin-bottom: 4px;
+  letter-spacing: 0.08em;
+}
+.step-title {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--ink);
+  line-height: 1.35;
+  margin-bottom: 4px;
+}
+.step-desc {
+  font-size: 10px;
+  color: var(--ink-3);
+  line-height: 1.5;
+}
+.step-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 3px;
+  margin-top: 6px;
+}
+.tag {
+  font-family: var(--mono);
+  font-size: 8px;
+  padding: 1px 5px;
+  border: 1px solid var(--rule);
+  color: var(--ink-3);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+.tag.win  { border-color: var(--green);  color: var(--green); background: rgba(26,92,58,0.05); }
+.tag.dep  { border-color: var(--gold);   color: var(--gold);  background: rgba(140,107,32,0.05); }
+.tag.reg  { border-color: var(--red);    color: var(--red);   background: rgba(184,48,32,0.05); }
+.tag.tech { border-color: var(--blue);   color: var(--blue);  background: rgba(28,53,96,0.05); }
+.tag.gov  { border-color: var(--teal);   color: var(--teal);  background: rgba(26,80,96,0.05); }
+
+/* ── MASTER BUILD PLAN ── */
+.phase-label {
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  padding: 8px 14px;
+  color: #fff;
+  display: inline-block;
+  margin-bottom: 0;
+}
+.master-row {
+  display: grid;
+  grid-template-columns: 60px 240px 1fr 120px 100px 80px;
+  gap: 0;
+  border-bottom: 1px solid var(--rule-lite);
+  transition: background 0.1s;
+}
+.master-row:hover { background: #fafaf8; }
+.master-row.header {
+  background: var(--ink);
+  color: #f7f6f2;
+  position: sticky;
+  top: 38px;
+  z-index: 100;
+}
+.master-cell {
+  padding: 10px 14px;
+  border-right: 1px solid var(--rule-lite);
+  font-size: 11px;
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  justify-content: center;
+}
+.master-cell.header-cell {
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #aaa;
+  padding: 10px 14px;
+  border-right: 1px solid #333;
+  flex-direction: row;
+  align-items: center;
+}
+.task-id {
+  font-family: var(--mono);
+  font-size: 10px;
+  font-weight: 600;
+}
+.task-name { font-weight: 600; font-size: 11px; margin-bottom: 2px; }
+.task-detail { font-size: 10px; color: var(--ink-3); line-height: 1.4; }
+.effort-bar {
+  height: 4px;
+  background: var(--rule);
+  width: 100%;
+  margin-top: 4px;
+}
+.effort-fill { height: 100%; }
+
+.win-badge {
+  font-family: var(--mono);
+  font-size: 8px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 2px 6px;
+  border: 1px solid var(--green);
+  color: var(--green);
+  background: rgba(26,92,58,0.06);
+  width: fit-content;
+}
+.phase-divider {
+  display: grid;
+  grid-template-columns: 60px 1fr;
+  border-bottom: 2px solid var(--ink);
+}
+
+/* ── PRIORITY MATRIX ── */
+.matrix-grid {
+  display: grid;
+  grid-template-columns: 80px 1fr 1fr 1fr;
+  gap: 1px;
+  background: var(--rule);
+  border: 1px solid var(--rule);
+}
+.matrix-cell {
+  background: var(--bg-2);
+  padding: 14px 16px;
+  font-size: 11px;
+}
+.matrix-header {
+  background: var(--ink);
+  color: #f7f6f2;
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 10px 14px;
+}
+.matrix-row-label {
+  background: #f5f4f0;
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  padding: 14px 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+}
+
+/* ── DEPENDENCY GANTT ── */
+.gantt-wrap { overflow-x: auto; }
+.gantt-row {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  border-bottom: 1px solid var(--rule-lite);
+  height: 36px;
+}
+.gantt-label {
+  min-width: 240px;
+  padding: 0 14px;
+  font-size: 10px;
+  font-weight: 600;
+  border-right: 1px solid var(--rule);
+  height: 100%;
+  display: flex;
+  align-items: center;
+  background: var(--bg-2);
+}
+.gantt-track {
+  flex: 1;
+  position: relative;
+  height: 100%;
+  min-width: 600px;
+}
+.gantt-bar {
+  position: absolute;
+  height: 18px;
+  top: 9px;
+  display: flex;
+  align-items: center;
+  padding: 0 6px;
+  font-family: var(--mono);
+  font-size: 8px;
+  color: #fff;
+  letter-spacing: 0.06em;
+  white-space: nowrap;
+  overflow: hidden;
+}
+.gantt-header {
+  display: flex;
+  border-bottom: 2px solid var(--ink);
+}
+.gantt-header-label { min-width: 240px; border-right: 1px solid var(--rule); }
+.gantt-months {
+  flex: 1;
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  min-width: 600px;
+}
+.gantt-month {
+  font-family: var(--mono);
+  font-size: 8px;
+  letter-spacing: 0.1em;
+  color: var(--ink-3);
+  text-align: center;
+  padding: 6px 0;
+  border-right: 1px solid var(--rule-lite);
+  text-transform: uppercase;
+}
+
+/* ── GRID LAYOUTS ── */
+.g2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.g3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; }
+.g4 { display: grid; grid-template-columns: repeat(4,1fr); gap: 10px; }
+
+.card {
+  background: var(--bg-2);
+  border: 1px solid var(--rule);
+  padding: 18px 20px;
+  position: relative;
+}
+.card-accent { position:absolute; top:0; left:0; width:3px; height:100%; }
+.card-label {
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  margin-bottom: 6px;
+}
+.card-h {
+  font-family: var(--display);
+  font-size: 17px;
+  font-weight: 700;
+  margin-bottom: 6px;
+  line-height: 1.2;
+}
+.card-body { font-size: 11px; color: var(--ink-3); line-height: 1.55; }
+
+/* ── WIN EARLY SECTION ── */
+.win-row {
+  display: grid;
+  grid-template-columns: 32px 1fr auto;
+  gap: 12px;
+  align-items: start;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--rule-lite);
+}
+.win-num {
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 600;
+  width: 32px;
+  height: 32px;
+  background: var(--green);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.win-title { font-size: 12px; font-weight: 600; margin-bottom: 3px; }
+.win-desc { font-size: 11px; color: var(--ink-3); }
+.win-time {
+  font-family: var(--mono);
+  font-size: 9px;
+  color: var(--green);
+  white-space: nowrap;
+  padding-top: 4px;
+}
+
+/* column accent strips */
+.accent-red  { border-left: 3px solid var(--red);   }
+.accent-green{ border-left: 3px solid var(--green);  }
+.accent-blue { border-left: 3px solid var(--blue);   }
+.accent-gold { border-left: 3px solid var(--gold);   }
+.accent-teal { border-left: 3px solid var(--teal);   }
+.accent-warm { border-left: 3px solid var(--warm);   }
+.accent-ink  { border-left: 3px solid var(--ink);    }
+
+footer {
+  background: var(--ink);
+  color: #555;
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 20px 72px;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 56px;
+}
+</style>
+</head>
+<body>
+
+<!-- ══ MASTHEAD ══ -->
+<header class="masthead">
+  <div class="mh-eyebrow">Carbon Ontology for Markets, Emissions &amp; Trade — Master Build Plan v0.1</div>
+  <h1 class="mh-title">200 Expert Steps.<br>One <em>Shared</em> Vocabulary.</h1>
+  <div class="mh-sub">10 MECE Expert Panels · 20 Steps Each · Sequenced for Early Adoption Wins</div>
+  <p class="mh-bluf">Ten domain experts — each representing a critical stakeholder perspective — independently generated their 20 build steps for COMET. This document synthesizes those 200 steps into a sequenced, dependency-aware master plan. It starts with quick wins that create immediate value for early adopters, then layers in infrastructure, governance, and market-layer capabilities.</p>
+  <div class="mh-stats">
+    <div><div class="mh-stat-val">200</div><div class="mh-stat-label">Total steps across 10 panels</div></div>
+    <div><div class="mh-stat-val"><em>14</em></div><div class="mh-stat-label">Early wins (Days 1–90)</div></div>
+    <div><div class="mh-stat-val">4</div><div class="mh-stat-label">Build phases</div></div>
+    <div><div class="mh-stat-val">~36</div><div class="mh-stat-label">Months to v1.0 stable</div></div>
+  </div>
+</header>
+
+<!-- ══ NAV ══ -->
+<nav class="sticky-nav">
+  <a class="nav-item" href="#experts"><span class="nav-dot" style="background:#b83020;"></span>10 Expert Panels</a>
+  <a class="nav-item" href="#earlywins"><span class="nav-dot" style="background:#1a5c3a;"></span>Early Wins</a>
+  <a class="nav-item" href="#masterplan"><span class="nav-dot" style="background:#1c3560;"></span>Master Plan</a>
+  <a class="nav-item" href="#gantt"><span class="nav-dot" style="background:#8c6b20;"></span>Timeline</a>
+  <a class="nav-item" href="#dependencies"><span class="nav-dot" style="background:#1a5060;"></span>Dependencies</a>
+  <a class="nav-item" href="#adoption"><span class="nav-dot" style="background:#6b3820;"></span>Adoption Strategy</a>
+</nav>
+
+<div class="page">
+
+<!-- ══════════════════════════════════════════════
+  SECTION 1 — THE 10 EXPERT PANELS × 20 STEPS EACH
+══════════════════════════════════════════════ -->
+<section class="section" id="experts">
+  <div class="section-eyebrow">Section 01 — Expert Panels</div>
+  <div class="section-h">10 MECE Panels — 20 Steps Each</div>
+  <div class="section-bluf">Each panel represents a distinct, non-overlapping stakeholder perspective. Their steps are sequenced from foundations to advanced capabilities. Shared tags identify cross-panel dependencies and early-win opportunities.</div>
+
+<!-- ── PANEL 01: OWL ONTOLOGY ENGINEER ── -->
+<div style="margin-bottom:28px;">
+  <div class="expert-header" style="background:#1c3560;">
+    <div class="expert-num" style="background:rgba(255,255,255,0.15);">01</div>
+    <div>
+      <div class="expert-title" style="color:#f7f6f2;">OWL / Ontology Engineer</div>
+      <div class="expert-role" style="color:#aac;">Semantic architecture · namespace governance · OWL 2 DL · SHACL · JSON-LD</div>
+    </div>
+  </div>
+  <div class="steps-grid">
+    <div class="step-cell accent-blue">
+      <div class="step-num">01.01</div>
+      <div class="step-title">Publish comet-core.owl on GitHub with CI</div>
+      <div class="step-desc">Org, Site, Process, Material, UOM, TimePeriod. 12 classes. HermiT consistency check in Actions.</div>
+      <div class="step-tags"><span class="tag win">Early Win</span><span class="tag tech">Infra</span></div>
+    </div>
+    <div class="step-cell accent-blue">
+      <div class="step-num">01.02</div>
+      <div class="step-title">Define URI / namespace policy document</div>
+      <div class="step-desc">Stability contract, deprecation rules, versioning scheme (semver). Published as GOVERNANCE.md.</div>
+      <div class="step-tags"><span class="tag gov">Governance</span></div>
+    </div>
+    <div class="step-cell accent-blue">
+      <div class="step-num">01.03</div>
+      <div class="step-title">Content negotiation server for comet.carbon</div>
+      <div class="step-desc">Serve OWL Turtle on Accept:text/turtle, JSON-LD on application/ld+json, HTML by default. Every URI dereferenceable.</div>
+      <div class="step-tags"><span class="tag tech">Infra</span></div>
+    </div>
+    <div class="step-cell accent-blue">
+      <div class="step-num">01.04</div>
+      <div class="step-title">QUDT unit binding for all measurement properties</div>
+      <div class="step-desc">Every quantitative property links to a QUDT unit class. Prevents unit ambiguity in PCF exchange.</div>
+      <div class="step-tags"><span class="tag tech">Standards</span></div>
+    </div>
+    <div class="step-cell accent-blue">
+      <div class="step-num">01.05</div>
+      <div class="step-title">Publish comet-emfactor.owl module</div>
+      <div class="step-desc">EmissionFactor, LCIDataset, GWP100Value, DataProvenance. PROV-O provenance binding.</div>
+      <div class="step-tags"><span class="tag win">Early Win</span></div>
+    </div>
+    <div class="step-cell accent-blue">
+      <div class="step-num">01.06</div>
+      <div class="step-title">SHACL shapes for all core classes</div>
+      <div class="step-desc">Required property constraints, cardinality, value type validation. Runnable against any COMET-conformant instance.</div>
+      <div class="step-tags"><span class="tag tech">Quality</span></div>
+    </div>
+    <div class="step-cell accent-blue">
+      <div class="step-num">01.07</div>
+      <div class="step-title">Publish comet-pcf.owl with ISO 14067 alignment</div>
+      <div class="step-desc">ProductCarbonFootprint, FunctionalUnit, SystemBoundary, AllocationMethod, LCIAResult. 18 classes with owl:equivalentClass to PACT v3.</div>
+      <div class="step-tags"><span class="tag win">Early Win</span><span class="tag tech">Standards</span></div>
+    </div>
+    <div class="step-cell accent-blue">
+      <div class="step-num">01.08</div>
+      <div class="step-title">PACT v3 → COMET alignment mapping module</div>
+      <div class="step-desc">Systematic owl:equivalentClass and owl:equivalentProperty triples for every PACT field.</div>
+      <div class="step-tags"><span class="tag dep">PACT-dep</span></div>
+    </div>
+    <div class="step-cell accent-blue">
+      <div class="step-num">01.09</div>
+      <div class="step-title">JSON-LD @context file published and versioned</div>
+      <div class="step-desc">Single-file context that transforms PACT JSON payloads into semantic RDF. CDN-hosted.</div>
+      <div class="step-tags"><span class="tag win">Early Win</span></div>
+    </div>
+    <div class="step-cell accent-blue">
+      <div class="step-num">01.10</div>
+      <div class="step-title">OWL reasoner test suite (100 test cases)</div>
+      <div class="step-desc">HermiT + Pellet cross-check. Tests: consistency, satisfiability, classification, SHACL validation. CI gated.</div>
+      <div class="step-tags"><span class="tag tech">Quality</span></div>
+    </div>
+    <div class="step-cell accent-blue">
+      <div class="step-num">01.11</div>
+      <div class="step-title">Publish comet-supplychain.owl module</div>
+      <div class="step-desc">SupplyChainLink, ActivityDataRecord, DataQualityIndicator, TransportEvent. 14 classes.</div>
+      <div class="step-tags"><span class="tag dep">PCF-dep</span></div>
+    </div>
+    <div class="step-cell accent-blue">
+      <div class="step-num">01.12</div>
+      <div class="step-title">Publish comet-eac.owl module</div>
+      <div class="step-desc">EAC class hierarchy: EnergyAttrCert, CarbonRemovalCert, MaterialStewardCert, RetirementEvent.</div>
+      <div class="step-tags"></div>
+    </div>
+    <div class="step-cell accent-blue">
+      <div class="step-num">01.13</div>
+      <div class="step-title">Publish comet-verification.owl module</div>
+      <div class="step-desc">VerificationClaim, AssuranceLevel, AuditTrail, CADTrustAttestation, QualifiedVerifier.</div>
+      <div class="step-tags"><span class="tag dep">EAC-dep</span></div>
+    </div>
+    <div class="step-cell accent-blue">
+      <div class="step-num">01.14</div>
+      <div class="step-title">Publish comet-market.owl module</div>
+      <div class="step-desc">CarbonPremium, CBMADiscount, EACSpotPrice, MarketBenchmark, PricingSignal. 10 classes.</div>
+      <div class="step-tags"><span class="tag dep">VER-dep</span></div>
+    </div>
+    <div class="step-cell accent-blue">
+      <div class="step-num">01.15</div>
+      <div class="step-title">SPARQL endpoint with comet.carbon/sparql</div>
+      <div class="step-desc">Queryable triple store loaded with all modules + example instances. Enables live exploration.</div>
+      <div class="step-tags"><span class="tag tech">Infra</span></div>
+    </div>
+    <div class="step-cell accent-blue">
+      <div class="step-num">01.16</div>
+      <div class="step-title">NPM package: @comet/ontology-js</div>
+      <div class="step-desc">TypeScript constants for all class and property URIs. Auto-generated from OWL. Weekly release cadence.</div>
+      <div class="step-tags"><span class="tag win">Dev Win</span></div>
+    </div>
+    <div class="step-cell accent-blue">
+      <div class="step-num">01.17</div>
+      <div class="step-title">PyPI package: comet-ontology</div>
+      <div class="step-desc">Python bindings (rdflib-based) for all COMET classes. Enables LCA tool integration.</div>
+      <div class="step-tags"><span class="tag win">Dev Win</span></div>
+    </div>
+    <div class="step-cell accent-blue">
+      <div class="step-num">01.18</div>
+      <div class="step-title">Automated changelog + diff tool</div>
+      <div class="step-desc">Between any two COMET versions: what classes added, deprecated, modified. Machine-readable diff in JSON.</div>
+      <div class="step-tags"><span class="tag tech">DX</span></div>
+    </div>
+    <div class="step-cell accent-blue">
+      <div class="step-num">01.19</div>
+      <div class="step-title">Modular import documentation (mix-and-match guide)</div>
+      <div class="step-desc">Decision tree: which modules to import for which use case. PCF-only vs. full stack vs. EAC-only.</div>
+      <div class="step-tags"><span class="tag win">Onboarding Win</span></div>
+    </div>
+    <div class="step-cell accent-blue">
+      <div class="step-num">01.20</div>
+      <div class="step-title">Formal OWL profile declaration (OWL 2 DL)</div>
+      <div class="step-desc">Ensures reasoning decidability. Profile test in CI. Documents which reasoners are certified.</div>
+      <div class="step-tags"><span class="tag tech">Standards</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- ── PANEL 02: LCA PRACTITIONER ── -->
+<div style="margin-bottom:28px;">
+  <div class="expert-header" style="background:#1a5c3a;">
+    <div class="expert-num" style="background:rgba(255,255,255,0.15);">02</div>
+    <div>
+      <div class="expert-title" style="color:#f7f6f2;">LCA Practitioner</div>
+      <div class="expert-role" style="color:#aca;">ISO 14067 · EN 15804 · GHG Protocol Product · LCIA methods · PCR development</div>
+    </div>
+  </div>
+  <div class="steps-grid">
+    <div class="step-cell accent-green">
+      <div class="step-num">02.01</div>
+      <div class="step-title">Map every ISO 14067 §7 required element to a COMET class</div>
+      <div class="step-desc">Authoritative crosswalk document. Becomes the compliance test suite for PCF claims.</div>
+      <div class="step-tags"><span class="tag win">Foundation Win</span></div>
+    </div>
+    <div class="step-cell accent-green">
+      <div class="step-num">02.02</div>
+      <div class="step-title">Functional Unit class with QUDT binding</div>
+      <div class="step-desc">Declared unit (kg, m², kWh, tonne-km) with reference flow quantity. Prevents apple-to-orange PCF comparison.</div>
+      <div class="step-tags"><span class="tag tech">Standards</span></div>
+    </div>
+    <div class="step-cell accent-green">
+      <div class="step-num">02.03</div>
+      <div class="step-title">System boundary enumeration (SKOS ConceptScheme)</div>
+      <div class="step-desc">Cradle-to-gate, gate-to-gate, cradle-to-grave, cradle-to-cradle. Each boundary type has exact definition.</div>
+      <div class="step-tags"><span class="tag win">Early Win</span></div>
+    </div>
+    <div class="step-cell accent-green">
+      <div class="step-num">02.04</div>
+      <div class="step-title">Allocation method taxonomy (5 methods)</div>
+      <div class="step-desc">Mass, economic value, energy content, physical causality, PCR-mandated. Each with decision rules.</div>
+      <div class="step-tags"></div>
+    </div>
+    <div class="step-cell accent-green">
+      <div class="step-num">02.05</div>
+      <div class="step-title">GWP100 characterization factor class (AR5 + AR6)</div>
+      <div class="step-desc">Typed property for GWP100 with IPCC AR version and gas species. Enables future AR7 migration.</div>
+      <div class="step-tags"><span class="tag tech">Standards</span></div>
+    </div>
+    <div class="step-cell accent-green">
+      <div class="step-num">02.06</div>
+      <div class="step-title">Biogenic carbon accounting classes</div>
+      <div class="step-desc">BiogenicCO2Uptake, BiogenicCO2Release, LandUseChange. Separate from fossil GWP as ISO 14067 §7.3.5 requires.</div>
+      <div class="step-tags"></div>
+    </div>
+    <div class="step-cell accent-green">
+      <div class="step-num">02.07</div>
+      <div class="step-title">LCI exchange format (ecospold2 + SimaPro CSV) adapter</div>
+      <div class="step-desc">XSLT/Python transforms existing LCI datasets into COMET comet-ef: instances.</div>
+      <div class="step-tags"><span class="tag win">Tool Win</span></div>
+    </div>
+    <div class="step-cell accent-green">
+      <div class="step-num">02.08</div>
+      <div class="step-title">PCR reference class linking to standard</div>
+      <div class="step-desc">ProductCategoryRule class with URI pointer to the PCR document, issuing body, version, and validity period.</div>
+      <div class="step-tags"></div>
+    </div>
+    <div class="step-cell accent-green">
+      <div class="step-num">02.09</div>
+      <div class="step-title">Cutoff criteria encoding</div>
+      <div class="step-desc">Mass and energy cutoff thresholds as typed properties (default 1% each; custom PCR overrides).</div>
+      <div class="step-tags"></div>
+    </div>
+    <div class="step-cell accent-green">
+      <div class="step-num">02.10</div>
+      <div class="step-title">Uncertainty &amp; sensitivity result classes</div>
+      <div class="step-desc">Monte Carlo result distribution, sensitivity coefficient per input parameter. Enables PACT v3 uncertainty disclosure.</div>
+      <div class="step-tags"></div>
+    </div>
+    <div class="step-cell accent-green">
+      <div class="step-num">02.11</div>
+      <div class="step-title">EN 15804 multi-impact module (A1–D)</div>
+      <div class="step-desc">7 impact categories beyond GWP: AP, EP-fresh, EP-marine, ODP, POCP, ADP-elements, ADP-fossil.</div>
+      <div class="step-tags"><span class="tag dep">Construction-dep</span></div>
+    </div>
+    <div class="step-cell accent-green">
+      <div class="step-num">02.12</div>
+      <div class="step-title">Example PCF instances: steel, chemicals, hydrogen</div>
+      <div class="step-desc">Three fully worked example instances in JSON-LD and Turtle. Test cases for validators.</div>
+      <div class="step-tags"><span class="tag win">Adoption Win</span></div>
+    </div>
+    <div class="step-cell accent-green">
+      <div class="step-num">02.13</div>
+      <div class="step-title">Primary data share calculation method</div>
+      <div class="step-desc">Weighted share of primary vs. secondary data in a PCF result (PACT v3 field). SHACL range 0–100.</div>
+      <div class="step-tags"></div>
+    </div>
+    <div class="step-cell accent-green">
+      <div class="step-num">02.14</div>
+      <div class="step-title">Technology representativeness scoring (TRL-like)</div>
+      <div class="step-desc">How well the EF matches the actual technology used. Part of DQI dimension 4.</div>
+      <div class="step-tags"></div>
+    </div>
+    <div class="step-cell accent-green">
+      <div class="step-num">02.15</div>
+      <div class="step-title">Temporal scope class (reporting year, reference period)</div>
+      <div class="step-desc">ISO 8601 interval binding. Flags when EFs are &gt;3 years old (DQI temporality dimension).</div>
+      <div class="step-tags"></div>
+    </div>
+    <div class="step-cell accent-green">
+      <div class="step-num">02.16</div>
+      <div class="step-title">LCA software integration guide (SimaPro, openLCA, GaBi)</div>
+      <div class="step-desc">Export plugin specification: map each tool's result object to COMET PCF classes.</div>
+      <div class="step-tags"><span class="tag win">Tool Win</span></div>
+    </div>
+    <div class="step-cell accent-green">
+      <div class="step-num">02.17</div>
+      <div class="step-title">Waste and end-of-life module classes</div>
+      <div class="step-desc">Waste fraction, end-of-life scenario (landfill, incineration, recycling loop). Module D recycling credits.</div>
+      <div class="step-tags"></div>
+    </div>
+    <div class="step-cell accent-green">
+      <div class="step-num">02.18</div>
+      <div class="step-title">Scope 3 category mapping to COMET supply chain</div>
+      <div class="step-desc">GHG Protocol Categories 1–15 mapped to COMET SupplyChainLink subtypes. Enables CSRD Scope 3 reporting.</div>
+      <div class="step-tags"><span class="tag reg">CSRD</span></div>
+    </div>
+    <div class="step-cell accent-green">
+      <div class="step-num">02.19</div>
+      <div class="step-title">Comparative assertion rules (ISO 14044)</div>
+      <div class="step-desc">SHACL rules enforcing functional unit equivalence before two PCFs can be compared. Prevents greenwashing claims.</div>
+      <div class="step-tags"></div>
+    </div>
+    <div class="step-cell accent-green">
+      <div class="step-num">02.20</div>
+      <div class="step-title">LCA practitioner certification alignment</div>
+      <div class="step-desc">Map COMET-conformant PCF to requirements for ISO 14025 EPD program operators. Eases EPD route.</div>
+      <div class="step-tags"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ── PANEL 03: PACT TRANSPORT EXPERT ── -->
+<div style="margin-bottom:28px;">
+  <div class="expert-header" style="background:#8c6b20;">
+    <div class="expert-num" style="background:rgba(255,255,255,0.15);">03</div>
+    <div>
+      <div class="expert-title" style="color:#f7f6f2;">PACT v3 / API Transport Expert</div>
+      <div class="expert-role" style="color:#ddc;">WBCSD Pathfinder · REST/JSON-LD · API certification · supply chain data exchange</div>
+    </div>
+  </div>
+  <div class="steps-grid">
+    <div class="step-cell accent-gold">
+      <div class="step-num">03.01</div>
+      <div class="step-title">Field-by-field PACT v3 → COMET mapping table</div>
+      <div class="step-desc">Every PACT v3 JSON field gets an owl:equivalentProperty triple in a dedicated alignment module.</div>
+      <div class="step-tags"><span class="tag win">Early Win</span></div>
+    </div>
+    <div class="step-cell accent-gold">
+      <div class="step-num">03.02</div>
+      <div class="step-title">COMET JSON-LD @context for PACT payloads</div>
+      <div class="step-desc">Drop-in context file. Any PACT-compliant platform injects this to upgrade payloads to semantic RDF.</div>
+      <div class="step-tags"><span class="tag win">Early Win</span></div>
+    </div>
+    <div class="step-cell accent-gold">
+      <div class="step-num">03.03</div>
+      <div class="step-title">Reference implementation: PACT sender with COMET context</div>
+      <div class="step-desc">Node.js/Python reference client that sends PACT-compliant but COMET-enriched footprints.</div>
+      <div class="step-tags"><span class="tag win">Dev Win</span></div>
+    </div>
+    <div class="step-cell accent-gold">
+      <div class="step-num">03.04</div>
+      <div class="step-title">PACT endpoint registry in COMET vocab</div>
+      <div class="step-desc">PACTEndpoint class: org, API URL, version supported, authentication scheme. Enables network discovery.</div>
+      <div class="step-tags"></div>
+    </div>
+    <div class="step-cell accent-gold">
+      <div class="step-num">03.05</div>
+      <div class="step-title">TransportEvent class for freight emissions</div>
+      <div class="step-desc">Carrier, distance, mode (road/rail/sea/air), emission factor, GLEC framework binding.</div>
+      <div class="step-tags"><span class="tag dep">Logistics-dep</span></div>
+    </div>
+    <div class="step-cell accent-gold">
+      <div class="step-num">03.06</div>
+      <div class="step-title">DataModelExtension hook in COMET</div>
+      <div class="step-desc">PACT v3 allows extensions. COMET registers as the canonical extension namespace for semantic enrichment.</div>
+      <div class="step-tags"></div>
+    </div>
+    <div class="step-cell accent-gold">
+      <div class="step-num">03.07</div>
+      <div class="step-title">Conformance test suite for COMET-PACT compliance</div>
+      <div class="step-desc">50 test payloads. Pass/fail suite that platform vendors run to claim "COMET-aligned" badge.</div>
+      <div class="step-tags"><span class="tag gov">Quality Gate</span></div>
+    </div>
+    <div class="step-cell accent-gold">
+      <div class="step-num">03.08</div>
+      <div class="step-title">OpenAPI spec for comet-annotated PACT endpoints</div>
+      <div class="step-desc">Extends Pathfinder OpenAPI with COMET class URI annotations on every response field.</div>
+      <div class="step-tags"></div>
+    </div>
+    <div class="step-cell accent-gold">
+      <div class="step-num">03.09</div>
+      <div class="step-title">Multi-hop supply chain tracing model</div>
+      <div class="step-desc">Chain of SupplyChainLink instances from Tier-N to declaring organization. PROV-O wasGeneratedBy chain.</div>
+      <div class="step-tags"></div>
+    </div>
+    <div class="step-cell accent-gold">
+      <div class="step-num">03.10</div>
+      <div class="step-title">Spend-to-primary data upgrade path class</div>
+      <div class="step-desc">SpendProxyUpgrade event: records when a supplier moves from spend-based to primary data. Audit-trailed.</div>
+      <div class="step-tags"></div>
+    </div>
+    <div class="step-cell accent-gold">
+      <div class="step-num">03.11</div>
+      <div class="step-title">PCF validity period enforcement (SHACL)</div>
+      <div class="step-desc">SHACL rule: PCF older than 3 years triggers comet-sc:staleDataWarning. Keeps data fresh.</div>
+      <div class="step-tags"></div>
+    </div>
+    <div class="step-cell accent-gold">
+      <div class="step-num">03.12</div>
+      <div class="step-title">Webhook event model for PCF updates</div>
+      <div class="step-desc">When a supplier updates their PCF, downstream receivers get a typed event notification. COMET event vocab.</div>
+      <div class="step-tags"></div>
+    </div>
+    <div class="step-cell accent-gold">
+      <div class="step-num">03.13</div>
+      <div class="step-title">CaRMA bilateral supplier portal schema</div>
+      <div class="step-desc">Map CaRMA data fields to COMET supply chain classes. Enables any CaRMA data to become PACT-exportable.</div>
+      <div class="step-tags"><span class="tag win">CarbonSig Win</span></div>
+    </div>
+    <div class="step-cell accent-gold">
+      <div class="step-num">03.14</div>
+      <div class="step-title">Supplier onboarding tier model</div>
+      <div class="step-desc">Three tiers: CSV upload, API push, real-time streaming. Each tier maps to COMET ActivityDataRecord subtype.</div>
+      <div class="step-tags"><span class="tag win">Adoption Win</span></div>
+    </div>
+    <div class="step-cell accent-gold">
+      <div class="step-num">03.15</div>
+      <div class="step-title">Federated query spec (cross-platform PCF lookup)</div>
+      <div class="step-desc">SPARQL federation across multiple COMET-compliant endpoints. Find a product's PCF without centralized db.</div>
+      <div class="step-tags"></div>
+    </div>
+    <div class="step-cell accent-gold">
+      <div class="step-num">03.16</div>
+      <div class="step-title">PACT v3.x forward-compatibility layer</div>
+      <div class="step-desc">Versioned COMET alignment modules track PACT spec evolution. Old payloads remain queryable.</div>
+      <div class="step-tags"></div>
+    </div>
+    <div class="step-cell accent-gold">
+      <div class="step-num">03.17</div>
+      <div class="step-title">Rate-limiting and authentication vocab</div>
+      <div class="step-desc">COMET-standard OAuth2 scope definitions for PCF read/write permissions. Cross-platform auth normalization.</div>
+      <div class="step-tags"></div>
+    </div>
+    <div class="step-cell accent-gold">
+      <div class="step-num">03.18</div>
+      <div class="step-title">Batch PCF transfer spec (&gt;1000 products)</div>
+      <div class="step-desc">Asynchronous bulk exchange via signed S3-compatible manifests. COMET manifest class.</div>
+      <div class="step-tags"></div>
+    </div>
+    <div class="step-cell accent-gold">
+      <div class="step-num">03.19</div>
+      <div class="step-title">PACT network topology visualization (live)</div>
+      <div class="step-desc">Dashboard showing all registered PACT endpoints using COMET endpoint registry. Network health map.</div>
+      <div class="step-tags"><span class="tag win">Community Win</span></div>
+    </div>
+    <div class="step-cell accent-gold">
+      <div class="step-num">03.20</div>
+      <div class="step-title">PACT v3 certification validator (online tool)</div>
+      <div class="step-desc">Paste a PACT payload → get COMET conformance score. Free public tool for platform developers.</div>
+      <div class="step-tags"><span class="tag win">Community Win</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- ── PANEL 04: EAC REGISTRY SPECIALIST ── -->
+<div style="margin-bottom:28px;">
+  <div class="expert-header" style="background:#6b3820;">
+    <div class="expert-num" style="background:rgba(255,255,255,0.15);">04</div>
+    <div>
+      <div class="expert-title" style="color:#f7f6f2;">EAC Registry Specialist</div>
+      <div class="expert-role" style="color:#ddc;">I-REC · Verra VCS · Gold Standard · Book &amp; Claim · DAC credits · ASI · ResponsibleSteel</div>
+    </div>
+  </div>
+  <div class="steps-grid">
+    <div class="step-cell accent-warm">
+      <div class="step-num">04.01</div>
+      <div class="step-title">EAC base class with universal properties</div>
+      <div class="step-desc">serialNumber, issuingRegistry, issueDate, expiryDate, faceValue, retirementEvent. All subtypes inherit.</div>
+      <div class="step-tags"><span class="tag win">Foundation Win</span></div>
+    </div>
+    <div class="step-cell accent-warm">
+      <div class="step-num">04.02</div>
+      <div class="step-title">I-REC certificate class with registry API mapping</div>
+      <div class="step-desc">EnergyAttributeCertificate subtype. I-REC Standard Foundation's data model → COMET properties.</div>
+      <div class="step-tags"></div>
+    </div>
+    <div class="step-cell accent-warm">
+      <div class="step-num">04.03</div>
+      <div class="step-title">EU Guarantee of Origin (GO) class</div>
+      <div class="step-desc">AIB EECS protocol mapping. GO serial number structure, issuing body, production technology code.</div>
+      <div class="step-tags"><span class="tag reg">EU-mandate</span></div>
+    </div>
+    <div class="step-cell accent-warm">
+      <div class="step-num">04.04</div>
+      <div class="step-title">RetirementEvent class with beneficiary</div>
+      <div class="step-desc">When, by whom, for which product claim, against which PCF result. Prevents double-counting.</div>
+      <div class="step-tags"><span class="tag tech">Anti-fraud</span></div>
+    </div>
+    <div class="step-cell accent-warm">
+      <div class="step-num">04.05</div>
+      <div class="step-title">Book-and-Claim chain-of-custody model</div>
+      <div class="step-desc">Attribute transfer without physical product link. COMET class: BookAndClaimTransfer with attribute qty and date.</div>
+      <div class="step-tags"></div>
+    </div>
+    <div class="step-cell accent-warm">
+      <div class="step-num">04.06</div>
+      <div class="step-title">DAC (Direct Air Capture) credit class</div>
+      <div class="step-desc">Permanent removal, tonne CO₂, permanence period, monitoring protocol, 1PointFive reference.</div>
+      <div class="step-tags"><span class="tag win">1PF Win</span></div>
+    </div>
+    <div class="step-cell accent-warm">
+      <div class="step-num">04.07</div>
+      <div class="step-title">Verra VCS and Gold Standard mapping</div>
+      <div class="step-desc">COMET CarbonRemovalCert subtype for VCS + GS credits. Registry API fetch to verify serial.</div>
+      <div class="step-tags"></div>
+    </div>
+    <div class="step-cell accent-warm">
+      <div class="step-num">04.08</div>
+      <div class="step-title">ResponsibleSteel certificate class</div>
+      <div class="step-desc">SiteCertification subtype. Certification tier, scope, expiry, linked PCF result, CarbonIntensityBenchmark.</div>
+      <div class="step-tags"></div>
+    </div>
+    <div class="step-cell accent-warm">
+      <div class="step-num">04.09</div>
+      <div class="step-title">ASI aluminium certificate class</div>
+      <div class="step-desc">ASI Performance Standard + Chain of Custody. Smelter-level certification linked to material lot.</div>
+      <div class="step-tags"></div>
+    </div>
+    <div class="step-cell accent-warm">
+      <div class="step-num">04.10</div>
+      <div class="step-title">CAP / CarbonSig EAC class (comet-ext:carbonsig)</div>
+      <div class="step-desc">CarbonSig-issued environmental attribute certificate in the ext: namespace. First live adopter example.</div>
+      <div class="step-tags"><span class="tag win">CarbonSig Win</span></div>
+    </div>
+    <div class="step-cell accent-warm">
+      <div class="step-num">04.11</div>
+      <div class="step-title">EAC double-counting prevention SHACL rules</div>
+      <div class="step-desc">One retired EAC cannot claim against more than one PCF. Cross-registry duplicate detection logic.</div>
+      <div class="step-tags"><span class="tag tech">Anti-fraud</span></div>
+    </div>
+    <div class="step-cell accent-warm">
+      <div class="step-num">04.12</div>
+      <div class="step-title">Temporal matching class (hourly, monthly, annual)</div>
+      <div class="step-desc">IRA 45V requires hourly matching for clean electricity. COMET TemporalMatchPolicy enum class.</div>
+      <div class="step-tags"><span class="tag reg">45V</span></div>
+    </div>
+    <div class="step-cell accent-warm">
+      <div class="step-num">04.13</div>
+      <div class="step-title">EAC spot price and market class</div>
+      <div class="step-desc">EACSpotPrice with source, date, currency, unit. Links to comet-market:. Enables carbon-price signals.</div>
+      <div class="step-tags"></div>
+    </div>
+    <div class="step-cell accent-warm">
+      <div class="step-num">04.14</div>
+      <div class="step-title">EAC → PCF netting calculation</div>
+      <div class="step-desc">Formal property: PCFResultAfterEAC = PCFResult – retiredEACQty. SHACL calculation rule.</div>
+      <div class="step-tags"><span class="tag win">Market Win</span></div>
+    </div>
+    <div class="step-cell accent-warm">
+      <div class="step-num">04.15</div>
+      <div class="step-title">Additionality declaration class</div>
+      <div class="step-desc">EAC additionality claim: construction date, grid average, marginal emission rate. Required for IRA 45V.</div>
+      <div class="step-tags"><span class="tag reg">45V</span></div>
+    </div>
+    <div class="step-cell accent-warm">
+      <div class="step-num">04.16</div>
+      <div class="step-title">Registry API wrappers for live verification</div>
+      <div class="step-desc">Fetch from I-REC, Verra API, AIB to confirm EAC validity at time of claim. COMET VerifiedLive flag.</div>
+      <div class="step-tags"></div>
+    </div>
+    <div class="step-cell accent-warm">
+      <div class="step-num">04.17</div>
+      <div class="step-title">EAC portfolio aggregation class</div>
+      <div class="step-desc">Basket of EACs retired for a given product or facility. Supports portfolio-level carbon claim reporting.</div>
+      <div class="step-tags"></div>
+    </div>
+    <div class="step-cell accent-warm">
+      <div class="step-num">04.18</div>
+      <div class="step-title">Circular claim prevention rules</div>
+      <div class="step-desc">EAC retired in year N cannot offset PCF calculated for year N–1 unless re-statement is declared.</div>
+      <div class="step-tags"></div>
+    </div>
+    <div class="step-cell accent-warm">
+      <div class="step-num">04.19</div>
+      <div class="step-title">EAC explorer: public lookup tool</div>
+      <div class="step-desc">Type a serial number → see COMET-enriched certificate details. First public consumer tool on comet.carbon.</div>
+      <div class="step-tags"><span class="tag win">Public Win</span></div>
+    </div>
+    <div class="step-cell accent-warm">
+      <div class="step-num">04.20</div>
+      <div class="step-title">EAC classification taxonomy (SKOS)</div>
+      <div class="step-desc">Hierarchical scheme: Energy → Renewable; Carbon → Removal vs. Avoidance; Material → Stewardship. Browsable.</div>
+      <div class="step-tags"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ── PANEL 05: CARBON VERIFIER ── -->
+<div style="margin-bottom:28px;">
+  <div class="expert-header" style="background:#1a5060;">
+    <div class="expert-num" style="background:rgba(255,255,255,0.15);">05</div>
+    <div>
+      <div class="expert-title" style="color:#f7f6f2;">Carbon Verifier (3rd Party Auditor)</div>
+      <div class="expert-role" style="color:#cce;">Bureau Veritas · SGS · limited vs. reasonable assurance · ISO 14064-3 · CADTrust</div>
+    </div>
+  </div>
+  <div class="steps-grid">
+    <div class="step-cell accent-teal">
+      <div class="step-num">05.01</div>
+      <div class="step-title">AssuranceLevel enumeration class</div>
+      <div class="step-desc">LimitedAssurance (ISO 14064-3 §6) and ReasonableAssurance (§7) as SKOS named individuals.</div>
+      <div class="step-tags"><span class="tag win">Foundation Win</span></div>
+    </div>
+    <div class="step-cell accent-teal">
+      <div class="step-num">05.02</div>
+      <div class="step-title">VerificationClaim class with verifier URI</div>
+      <div class="step-desc">Who verified, when, to which standard, scope, materiality threshold, conclusion (positive/qualified/adverse).</div>
+      <div class="step-tags"></div>
+    </div>
+    <div class="step-cell accent-teal">
+      <div class="step-num">05.03</div>
+      <div class="step-title">QualifiedVerifier class (accreditation registry)</div>
+      <div class="step-desc">Verifier org, accreditation body, scope of accreditation, expiry. Enables automated eligibility check.</div>
+      <div class="step-tags"></div>
+    </div>
+    <div class="step-cell accent-teal">
+      <div class="step-num">05.04</div>
+      <div class="step-title">CADTrust carbon data model alignment</div>
+      <div class="step-desc">Map CADTrust disclosure record fields to COMET comet-ver: classes. Signed hash linkage.</div>
+      <div class="step-tags"><span class="tag win">CADTrust Win</span></div>
+    </div>
+    <div class="step-cell accent-teal">
+      <div class="step-num">05.05</div>
+      <div class="step-title">AuditTrail class (PROV-O based)</div>
+      <div class="step-desc">prov:wasGeneratedBy chain from raw data through calculation to PCF result to verification claim.</div>
+      <div class="step-tags"></div>
+    </div>
+    <div class="step-cell accent-teal">
+      <div class="step-num">05.06</div>
+      <div class="step-title">Verification scope boundary class</div>
+      <div class="step-desc">What was and was not verified. Helps downstream users understand claim strength.</div>
+      <div class="step-tags"></div>
+    </div>
+    <div class="step-cell accent-teal">
+      <div class="step-num">05.07</div>
+      <div class="step-title">Materiality threshold encoding</div>
+      <div class="step-desc">Numerical threshold (e.g., 5% of total PCF) below which discrepancies are immaterial. SHACL check.</div>
+      <div class="step-tags"></div>
+    </div>
+    <div class="step-cell accent-teal">
+      <div class="step-num">05.08</div>
+      <div class="step-title">Verification workflow event sequence</div>
+      <div class="step-desc">Ordered event chain: DataRequest → SiteVisit → DocumentReview → Finding → Resolution → Sign-off.</div>
+      <div class="step-tags"><span class="tag win">Process Win</span></div>
+    </div>
+    <div class="step-cell accent-teal">
+      <div class="step-num">05.09</div>
+      <div class="step-title">Finding class (corrective action record)</div>
+      <div class="step-desc">Finding severity (minor/major), category (data/method/boundary), status (open/resolved/accepted).</div>
+      <div class="step-tags"></div>
+    </div>
+    <div class="step-cell accent-teal">
+      <div class="step-num">05.10</div>
+      <div class="step-title">Digital signature linkage (JWS / W3C VC)</div>
+      <div class="step-desc">Verification claim signed with verifier's DID or X.509 cert. Tamper-evident assertion in COMET.</div>
+      <div class="step-tags"><span class="tag tech">Security</span></div>
+    </div>
+    <div class="step-cell accent-teal">
+      <div class="step-num">05.11</div>
+      <div class="step-title">Verification report template (JSON-LD)</div>
+      <div class="step-desc">Standard verification report as a COMET instance. Verifiers fill fields; output is machine-readable.</div>
+      <div class="step-tags"><span class="tag win">Adoption Win</span></div>
+    </div>
+    <div class="step-cell accent-teal">
+      <div class="step-num">05.12</div>
+      <div class="step-title">Bureau Veritas connector specification</div>
+      <div class="step-desc">BV internal verification workflow → COMET VerificationClaim export. First named verifier integration.</div>
+      <div class="step-tags"><span class="tag win">BV Win</span></div>
+    </div>
+    <div class="step-cell accent-teal">
+      <div class="step-num">05.13</div>
+      <div class="step-title">Verification expiry and re-verification trigger</div>
+      <div class="step-desc">Verified claim expires after N years (configurable per standard). Auto-flag stale claims.</div>
+      <div class="step-tags"></div>
+    </div>
+    <div class="step-cell accent-teal">
+      <div class="step-num">05.14</div>
+      <div class="step-title">Round-based review cycle class</div>
+      <div class="step-desc">ReviewRound with participants, date, version of PCF reviewed, comments. Maps to CarbonSig pre-verification flow.</div>
+      <div class="step-tags"></div>
+    </div>
+    <div class="step-cell accent-teal">
+      <div class="step-num">05.15</div>
+      <div class="step-title">ISO tagging for verification findings</div>
+      <div class="step-desc">Each finding links to the ISO 14067 clause it relates to. Structured for regulatory export.</div>
+      <div class="step-tags"><span class="tag reg">ISO-link</span></div>
+    </div>
+    <div class="step-cell accent-teal">
+      <div class="step-num">05.16</div>
+      <div class="step-title">CBAM verification requirement classes</div>
+      <div class="step-desc">CBAM requires competent authority designation and independent verification. COMET maps both requirements.</div>
+      <div class="step-tags"><span class="tag reg">CBAM</span></div>
+    </div>
+    <div class="step-cell accent-teal">
+      <div class="step-num">05.17</div>
+      <div class="step-title">Verification marketplace registry</div>
+      <div class="step-desc">Public list of COMET-verified verifiers with scope, geography, and standard coverage. comet.carbon/verifiers.</div>
+      <div class="step-tags"><span class="tag win">Community Win</span></div>
+    </div>
+    <div class="step-cell accent-teal">
+      <div class="step-num">05.18</div>
+      <div class="step-title">Automated pre-verification checklist export</div>
+      <div class="step-desc">From a PCF instance → generate verifier checklist. 628-variable registry mapped to verification items.</div>
+      <div class="step-tags"><span class="tag win">CarbonSig Win</span></div>
+    </div>
+    <div class="step-cell accent-teal">
+      <div class="step-num">05.19</div>
+      <div class="step-title">Verification claim confidence score</div>
+      <div class="step-desc">Composite score: assurance level × DQI × verifier accreditation status → 0–100 trust index.</div>
+      <div class="step-tags"></div>
+    </div>
+    <div class="step-cell accent-teal">
+      <div class="step-num">05.20</div>
+      <div class="step-title">Public verification ledger (read-only)</div>
+      <div class="step-desc">Browsable list of verified PCFs on comet.carbon. Companies opt-in. Market transparency signal.</div>
+      <div class="step-tags"><span class="tag win">Market Win</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- ── PANELS 06–10: COMPACT SUMMARY ── -->
+<div class="g2" style="margin-bottom:28px;gap:12px;">
+
+  <!-- Panel 06: Regulatory Lawyer -->
+  <div>
+    <div class="expert-header" style="background:#b83020;margin-bottom:1px;">
+      <div class="expert-num" style="background:rgba(255,255,255,0.15);">06</div>
+      <div>
+        <div class="expert-title" style="color:#f7f6f2;">Regulatory Counsel</div>
+        <div class="expert-role" style="color:#fcc;">CBAM · CSRD · IRA 45V · EU ETS · national carbon schemes</div>
+      </div>
+    </div>
+    <div style="background:var(--bg-2);border:1px solid var(--rule);padding:16px;">
+      <div style="display:flex;flex-direction:column;gap:8px;">
+        <div style="display:grid;grid-template-columns:28px 1fr;gap:8px;align-items:start;padding-bottom:8px;border-bottom:1px solid var(--rule-lite);">
+          <div style="background:#b83020;color:#fff;font-family:var(--mono);font-size:9px;display:flex;align-items:center;justify-content:center;height:20px;flex-shrink:0;">06.01</div>
+          <div><div style="font-size:11px;font-weight:600;">CBAM DeclarationClass — required fields, importerURI, embeddedEmissions</div><div class="step-tags" style="margin-top:3px;"><span class="tag win">Reg Win</span><span class="tag reg">CBAM</span></div></div>
+        </div>
+        <div style="display:grid;grid-template-columns:28px 1fr;gap:8px;align-items:start;padding-bottom:8px;border-bottom:1px solid var(--rule-lite);">
+          <div style="background:#b83020;color:#fff;font-family:var(--mono);font-size:9px;display:flex;align-items:center;justify-content:center;height:20px;flex-shrink:0;">06.02</div>
+          <div><div style="font-size:11px;font-weight:600;">IRA 45V hydrogen carbon intensity class — GREET pathway binding</div><div class="step-tags" style="margin-top:3px;"><span class="tag reg">45V</span></div></div>
+        </div>
+        <div style="display:grid;grid-template-columns:28px 1fr;gap:8px;align-items:start;padding-bottom:8px;border-bottom:1px solid var(--rule-lite);">
+          <div style="background:#b83020;color:#fff;font-family:var(--mono);font-size:9px;display:flex;align-items:center;justify-content:center;height:20px;flex-shrink:0;">06.03</div>
+          <div><div style="font-size:11px;font-weight:600;">CSRD/ESRS E1 Scope 3 mapping to COMET supply chain module</div><div class="step-tags" style="margin-top:3px;"><span class="tag reg">CSRD</span><span class="tag win">Win</span></div></div>
+        </div>
+        <div style="display:grid;grid-template-columns:28px 1fr;gap:8px;align-items:start;padding-bottom:8px;border-bottom:1px solid var(--rule-lite);">
+          <div style="background:#b83020;color:#fff;font-family:var(--mono);font-size:9px;display:flex;align-items:center;justify-content:center;height:20px;flex-shrink:0;">06.04</div>
+          <div><div style="font-size:11px;font-weight:600;">EU ETS allowance vs. PCF netting rules (boundary class)</div><div class="step-tags" style="margin-top:3px;"><span class="tag reg">ETS</span></div></div>
+        </div>
+        <div style="display:grid;grid-template-columns:28px 1fr;gap:8px;align-items:start;padding-bottom:8px;border-bottom:1px solid var(--rule-lite);">
+          <div style="background:#b83020;color:#fff;font-family:var(--mono);font-size:9px;display:flex;align-items:center;justify-content:center;height:20px;flex-shrink:0;">06.05</div>
+          <div><div style="font-size:11px;font-weight:600;">Regulatory compliance gap-check SHACL rules (auto-report)</div><div class="step-tags" style="margin-top:3px;"><span class="tag win">Tool Win</span></div></div>
+        </div>
+        <div style="font-family:var(--mono);font-size:9px;color:var(--ink-3);padding-top:4px;">+ 15 more steps: PPWR plastics · FuelEU maritime · SEC climate · UK TCFD · national ETS schemes · greenwashing safe harbor criteria · liability allocation · force majeure · IP licensing · open data terms</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Panel 07: Open Source Governance Architect -->
+  <div>
+    <div class="expert-header" style="background:#2d2d35;margin-bottom:1px;">
+      <div class="expert-num" style="background:rgba(255,255,255,0.15);">07</div>
+      <div>
+        <div class="expert-title" style="color:#f7f6f2;">Open Source Governance Architect</div>
+        <div class="expert-role" style="color:#ccc;">GitHub governance · TSC/SC design · RFC process · contributor experience · Linux Foundation</div>
+      </div>
+    </div>
+    <div style="background:var(--bg-2);border:1px solid var(--rule);padding:16px;">
+      <div style="display:flex;flex-direction:column;gap:8px;">
+        <div style="display:grid;grid-template-columns:28px 1fr;gap:8px;align-items:start;padding-bottom:8px;border-bottom:1px solid var(--rule-lite);">
+          <div style="background:#2d2d35;color:#fff;font-family:var(--mono);font-size:9px;display:flex;align-items:center;justify-content:center;height:20px;flex-shrink:0;">07.01</div>
+          <div><div style="font-size:11px;font-weight:600;">GitHub org + initial repo with CONTRIBUTING.md and CODE_OF_CONDUCT</div><div class="step-tags" style="margin-top:3px;"><span class="tag win">Day-1 Win</span></div></div>
+        </div>
+        <div style="display:grid;grid-template-columns:28px 1fr;gap:8px;align-items:start;padding-bottom:8px;border-bottom:1px solid var(--rule-lite);">
+          <div style="background:#2d2d35;color:#fff;font-family:var(--mono);font-size:9px;display:flex;align-items:center;justify-content:center;height:20px;flex-shrink:0;">07.02</div>
+          <div><div style="font-size:11px;font-weight:600;">PR label taxonomy and automated routing to DWGs</div><div class="step-tags" style="margin-top:3px;"><span class="tag gov">Governance</span></div></div>
+        </div>
+        <div style="display:grid;grid-template-columns:28px 1fr;gap:8px;align-items:start;padding-bottom:8px;border-bottom:1px solid var(--rule-lite);">
+          <div style="background:#2d2d35;color:#fff;font-family:var(--mono);font-size:9px;display:flex;align-items:center;justify-content:center;height:20px;flex-shrink:0;">07.03</div>
+          <div><div style="font-size:11px;font-weight:600;">RFC template and 14-day minimum comment period tooling</div><div class="step-tags" style="margin-top:3px;"><span class="tag gov">Process</span><span class="tag win">Community Win</span></div></div>
+        </div>
+        <div style="display:grid;grid-template-columns:28px 1fr;gap:8px;align-items:start;padding-bottom:8px;border-bottom:1px solid var(--rule-lite);">
+          <div style="background:#2d2d35;color:#fff;font-family:var(--mono);font-size:9px;display:flex;align-items:center;justify-content:center;height:20px;flex-shrink:0;">07.04</div>
+          <div><div style="font-size:11px;font-weight:600;">TSC election process + Charter v1.0 published</div><div class="step-tags" style="margin-top:3px;"><span class="tag gov">Governance</span></div></div>
+        </div>
+        <div style="display:grid;grid-template-columns:28px 1fr;gap:8px;align-items:start;padding-bottom:8px;border-bottom:1px solid var(--rule-lite);">
+          <div style="background:#2d2d35;color:#fff;font-family:var(--mono);font-size:9px;display:flex;align-items:center;justify-content:center;height:20px;flex-shrink:0;">07.05</div>
+          <div><div style="font-size:11px;font-weight:600;">Founding member onboarding kit (5 companies, Day 1–30)</div><div class="step-tags" style="margin-top:3px;"><span class="tag win">Founding Win</span></div></div>
+        </div>
+        <div style="font-family:var(--mono);font-size:9px;color:var(--ink-3);padding-top:4px;">+ 15 more: Linux Foundation liaison · dual license CC BY 4.0 + Apache 2.0 · contributor ladder · CLA management · security disclosure policy · branch protection rules · automated release notes · diversity targets · escalation paths · SC seat rotation · meeting cadence · Discord community · monthly newsletter · annual contributor summit · trademark policy</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Panel 08: Industrial Sector Expert (Steel Focus) -->
+  <div>
+    <div class="expert-header" style="background:#3a2a1a;margin-bottom:1px;">
+      <div class="expert-num" style="background:rgba(255,255,255,0.15);">08</div>
+      <div>
+        <div class="expert-title" style="color:#f7f6f2;">Industrial Sector Expert</div>
+        <div class="expert-role" style="color:#ddc;">Steel · chemicals · hydrogen · aluminium · cement — hard-to-abate sector specifics</div>
+      </div>
+    </div>
+    <div style="background:var(--bg-2);border:1px solid var(--rule);padding:16px;">
+      <div style="display:flex;flex-direction:column;gap:8px;">
+        <div style="display:grid;grid-template-columns:28px 1fr;gap:8px;align-items:start;padding-bottom:8px;border-bottom:1px solid var(--rule-lite);">
+          <div style="background:#3a2a1a;color:#fff;font-family:var(--mono);font-size:9px;display:flex;align-items:center;justify-content:center;height:20px;flex-shrink:0;">08.01</div>
+          <div><div style="font-size:11px;font-weight:600;">Steel: BF-BOF and EAF process route subclasses with benchmark EFs</div><div class="step-tags" style="margin-top:3px;"><span class="tag win">Steel Win</span></div></div>
+        </div>
+        <div style="display:grid;grid-template-columns:28px 1fr;gap:8px;align-items:start;padding-bottom:8px;border-bottom:1px solid var(--rule-lite);">
+          <div style="background:#3a2a1a;color:#fff;font-family:var(--mono);font-size:9px;display:flex;align-items:center;justify-content:center;height:20px;flex-shrink:0;">08.02</div>
+          <div><div style="font-size:11px;font-weight:600;">WorldSteel LCI dataset binding to comet-ef: instances</div><div class="step-tags" style="margin-top:3px;"><span class="tag dep">WS-data</span></div></div>
+        </div>
+        <div style="display:grid;grid-template-columns:28px 1fr;gap:8px;align-items:start;padding-bottom:8px;border-bottom:1px solid var(--rule-lite);">
+          <div style="background:#3a2a1a;color:#fff;font-family:var(--mono);font-size:9px;display:flex;align-items:center;justify-content:center;height:20px;flex-shrink:0;">08.03</div>
+          <div><div style="font-size:11px;font-weight:600;">OxyChem: 20-facility site model as reference implementation</div><div class="step-tags" style="margin-top:3px;"><span class="tag win">Ref Win</span></div></div>
+        </div>
+        <div style="display:grid;grid-template-columns:28px 1fr;gap:8px;align-items:start;padding-bottom:8px;border-bottom:1px solid var(--rule-lite);">
+          <div style="background:#3a2a1a;color:#fff;font-family:var(--mono);font-size:9px;display:flex;align-items:center;justify-content:center;height:20px;flex-shrink:0;">08.04</div>
+          <div><div style="font-size:11px;font-weight:600;">Hydrogen: production pathway taxonomy (SMR, ATR, electrolysis, pyrolysis)</div><div class="step-tags" style="margin-top:3px;"><span class="tag reg">45V</span></div></div>
+        </div>
+        <div style="display:grid;grid-template-columns:28px 1fr;gap:8px;align-items:start;padding-bottom:8px;border-bottom:1px solid var(--rule-lite);">
+          <div style="background:#3a2a1a;color:#fff;font-family:var(--mono);font-size:9px;display:flex;align-items:center;justify-content:center;height:20px;flex-shrink:0;">08.05</div>
+          <div><div style="font-size:11px;font-weight:600;">Cement: clinker-to-cement ratio and calcination CO₂ class</div><div class="step-tags" style="margin-top:3px;"><span class="tag dep">Cement-WG</span></div></div>
+        </div>
+        <div style="font-family:var(--mono);font-size:9px;color:var(--ink-3);padding-top:4px;">+ 15 more: aluminium smelter intensity class · PVC production route · ammonia Haber-Bosch pathway · co-product allocation in chemicals · Ecoinvent sector dataset binding · Idemat 2026 integration · BAFU:2025 binding · hot-metal allocation · scrap credit model · carbon capture integration · industrial symbiosis exchanges · energy recovery credit · process integration examples · sector benchmark publication · carbon intensity benchmark table</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Panel 09: Platform / Product Architect -->
+  <div>
+    <div class="expert-header" style="background:#1c3560;margin-bottom:1px;">
+      <div class="expert-num" style="background:rgba(255,255,255,0.15);">09</div>
+      <div>
+        <div class="expert-title" style="color:#f7f6f2;">Carbon Platform / SaaS Architect</div>
+        <div class="expert-role" style="color:#aac;">CarbonSig stack · AWS Bedrock · Claude API · PostgreSQL PGVector · React · Node.js · LangChain</div>
+      </div>
+    </div>
+    <div style="background:var(--bg-2);border:1px solid var(--rule);padding:16px;">
+      <div style="display:flex;flex-direction:column;gap:8px;">
+        <div style="display:grid;grid-template-columns:28px 1fr;gap:8px;align-items:start;padding-bottom:8px;border-bottom:1px solid var(--rule-lite);">
+          <div style="background:#1c3560;color:#fff;font-family:var(--mono);font-size:9px;display:flex;align-items:center;justify-content:center;height:20px;flex-shrink:0;">09.01</div>
+          <div><div style="font-size:11px;font-weight:600;">COMET schema → PostgreSQL DDL generator (auto from OWL)</div><div class="step-tags" style="margin-top:3px;"><span class="tag win">Dev Win</span></div></div>
+        </div>
+        <div style="display:grid;grid-template-columns:28px 1fr;gap:8px;align-items:start;padding-bottom:8px;border-bottom:1px solid var(--rule-lite);">
+          <div style="background:#1c3560;color:#fff;font-family:var(--mono);font-size:9px;display:flex;align-items:center;justify-content:center;height:20px;flex-shrink:0;">09.02</div>
+          <div><div style="font-size:11px;font-weight:600;">PGVector embeddings of COMET class descriptions for semantic search</div><div class="step-tags" style="margin-top:3px;"><span class="tag tech">AI</span></div></div>
+        </div>
+        <div style="display:grid;grid-template-columns:28px 1fr;gap:8px;align-items:start;padding-bottom:8px;border-bottom:1px solid var(--rule-lite);">
+          <div style="background:#1c3560;color:#fff;font-family:var(--mono);font-size:9px;display:flex;align-items:center;justify-content:center;height:20px;flex-shrink:0;">09.03</div>
+          <div><div style="font-size:11px;font-weight:600;">Agentic COMET mapper: LLM classifies raw data fields → COMET URIs</div><div class="step-tags" style="margin-top:3px;"><span class="tag win">AI Win</span></div></div>
+        </div>
+        <div style="display:grid;grid-template-columns:28px 1fr;gap:8px;align-items:start;padding-bottom:8px;border-bottom:1px solid var(--rule-lite);">
+          <div style="background:#1c3560;color:#fff;font-family:var(--mono);font-size:9px;display:flex;align-items:center;justify-content:center;height:20px;flex-shrink:0;">09.04</div>
+          <div><div style="font-size:11px;font-weight:600;">React component library: COMET class explorer / browser UI</div><div class="step-tags" style="margin-top:3px;"><span class="tag win">UX Win</span></div></div>
+        </div>
+        <div style="display:grid;grid-template-columns:28px 1fr;gap:8px;align-items:start;padding-bottom:8px;border-bottom:1px solid var(--rule-lite);">
+          <div style="background:#1c3560;color:#fff;font-family:var(--mono);font-size:9px;display:flex;align-items:center;justify-content:center;height:20px;flex-shrink:0;">09.05</div>
+          <div><div style="font-size:11px;font-weight:600;">COMET instance validator: paste JSON-LD → get conformance report</div><div class="step-tags" style="margin-top:3px;"><span class="tag win">Tool Win</span></div></div>
+        </div>
+        <div style="font-family:var(--mono);font-size:9px;color:var(--ink-3);padding-top:4px;">+ 15 more: TypeScript type generator from OWL · Redis cache for hot class lookups · OpenAPI spec for REST COMET API · LangChain COMET tool · CarbonSig canvas node → COMET class mapping · GitHub App for PR auto-validation · VS Code extension for class autocomplete · Postman collection · Docker compose dev environment · GraphQL schema · webhook registry · rate-limiting middleware · multi-tenant namespace isolation · audit log to PGVector · Bedrock fine-tune on COMET corpus</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Panel 10: Market / Finance Economist -->
+  <div style="grid-column: 1 / -1;">
+    <div class="expert-header" style="background:#8c6b20;margin-bottom:1px;">
+      <div class="expert-num" style="background:rgba(255,255,255,0.15);">10</div>
+      <div>
+        <div class="expert-title" style="color:#f7f6f2;">Carbon Market Economist</div>
+        <div class="expert-role" style="color:#ddc;">Carbon pricing · EAC markets · CBAM shadow price · procurement carbon signals · SBTi · CDP</div>
+      </div>
+    </div>
+    <div class="steps-grid">
+      <div class="step-cell accent-gold">
+        <div class="step-num">10.01</div>
+        <div class="step-title">CarbonPremium class: variance from benchmark</div>
+        <div class="step-desc">Typed property: product CI vs. industry avg CI → price delta in $/t CO₂e. Machine-readable carbon value signal.</div>
+        <div class="step-tags"><span class="tag win">Market Win</span></div>
+      </div>
+      <div class="step-cell accent-gold">
+        <div class="step-num">10.02</div>
+        <div class="step-title">MarketBenchmark class: sector-level CI norms</div>
+        <div class="step-desc">Steel global avg, EAF avg, BF-BOF avg etc. Sourced from WorldSteel, IEEFA, BloombergNEF. Versioned annually.</div>
+        <div class="step-tags"><span class="tag win">Reference Win</span></div>
+      </div>
+      <div class="step-cell accent-gold">
+        <div class="step-num">10.03</div>
+        <div class="step-title">CBAM shadow tariff calculation class</div>
+        <div class="step-desc">CBMADiscount: (product CI – EU benchmark) × EU ETS price → tariff liability in EUR/tonne imported.</div>
+        <div class="step-tags"><span class="tag reg">CBAM</span><span class="tag win">Win</span></div>
+      </div>
+      <div class="step-cell accent-gold">
+        <div class="step-num">10.04</div>
+        <div class="step-title">IRA 45V credit value class</div>
+        <div class="step-desc">Credit tier (≤0.45, ≤1.5, ≤2.5, ≤4 kg CO₂e/kg H₂) → credit value ($0.60–$3.00/kg). Typed COMET property.</div>
+        <div class="step-tags"><span class="tag reg">45V</span></div>
+      </div>
+      <div class="step-cell accent-gold">
+        <div class="step-num">10.05</div>
+        <div class="step-title">Procurement RFQ carbon-adjusted price field</div>
+        <div class="step-desc">ProcurementSignal class: base price + carbon premium/discount = carbon-adjusted total cost. Enabling carbon-aware RFQs.</div>
+        <div class="step-tags"><span class="tag win">Procurement Win</span></div>
+      </div>
+      <div class="step-cell accent-gold">
+        <div class="step-num">10.06</div>
+        <div class="step-title">SBTi target trajectory class</div>
+        <div class="step-desc">Target year, base year, CI reduction rate, sector pathway. Links to product-level PCF progress tracking.</div>
+        <div class="step-tags"></div>
+      </div>
+      <div class="step-cell accent-gold">
+        <div class="step-num">10.07</div>
+        <div class="step-title">Carbon credit forward contract class</div>
+        <div class="step-desc">Forward price, delivery date, credit type, registry, counterparty URI. Foundation for carbon derivatives.</div>
+        <div class="step-tags"></div>
+      </div>
+      <div class="step-cell accent-gold">
+        <div class="step-num">10.08</div>
+        <div class="step-title">ESG fund carbon-risk scoring output class</div>
+        <div class="step-desc">PortfolioCArbonRisk: weighted avg CI across holdings, transition risk score, TCFD alignment flag.</div>
+        <div class="step-tags"></div>
+      </div>
+      <div class="step-cell accent-gold">
+        <div class="step-num">10.09</div>
+        <div class="step-title">Carbon price scenario class (2030–2050)</div>
+        <div class="step-desc">Three pathways (IEA NZE, NGFS, current policies). Enables NPV calculation on decarbonization investments.</div>
+        <div class="step-tags"></div>
+      </div>
+      <div class="step-cell accent-gold">
+        <div class="step-num">10.10</div>
+        <div class="step-title">CDP disclosure mapping to COMET market classes</div>
+        <div class="step-desc">CDP Scope 3 Category 1 reported fields → COMET PCF classes. Enables automated CDP questionnaire pre-fill.</div>
+        <div class="step-tags"><span class="tag win">CDP Win</span></div>
+      </div>
+      <div class="step-cell accent-gold">
+        <div class="step-num">10.11</div>
+        <div class="step-title">Carbon cost of capital adjustment class</div>
+        <div class="step-desc">CoC adjustment based on stranded asset risk, transition timeline, carbon liability exposure. ESG lender use.</div>
+        <div class="step-tags"></div>
+      </div>
+      <div class="step-cell accent-gold">
+        <div class="step-num">10.12</div>
+        <div class="step-title">Green premium / brown discount market index</div>
+        <div class="step-desc">Sector-level tracked spread between low and high carbon products. Quarterly published. First COMET market data product.</div>
+        <div class="step-tags"><span class="tag win">Market Win</span></div>
+      </div>
+      <div class="step-cell accent-gold">
+        <div class="step-num">10.13</div>
+        <div class="step-title">Embodied carbon financial risk calculator (open tool)</div>
+        <div class="step-desc">Input: product CI, volume, forward carbon price → output: P&amp;L impact under 3 scenarios. Free on comet.carbon.</div>
+        <div class="step-tags"><span class="tag win">Public Win</span></div>
+      </div>
+      <div class="step-cell accent-gold">
+        <div class="step-num">10.14</div>
+        <div class="step-title">Insurance premium adjustment for carbon risk</div>
+        <div class="step-desc">Physical risk + transition risk factors → insurance loading model. Links to COMET site and PCF classes.</div>
+        <div class="step-tags"></div>
+      </div>
+      <div class="step-cell accent-gold">
+        <div class="step-num">10.15</div>
+        <div class="step-title">Internal carbon price declaration class</div>
+        <div class="step-desc">Company's internal carbon price ($/t CO₂e), scope, effective date. Enables transfer pricing for internal accounting.</div>
+        <div class="step-tags"></div>
+      </div>
+      <div class="step-cell accent-gold">
+        <div class="step-num">10.16</div>
+        <div class="step-title">Carbon-adjusted EBITDA field</div>
+        <div class="step-desc">Standard financial field: EBITDA minus carbon liability (EU ETS, CBAM) + carbon premium revenue.</div>
+        <div class="step-tags"></div>
+      </div>
+      <div class="step-cell accent-gold">
+        <div class="step-num">10.17</div>
+        <div class="step-title">Transition finance taxonomy alignment</div>
+        <div class="step-desc">EU Taxonomy alignment flag on PCF: is this activity "substantially contributing" to climate mitigation?</div>
+        <div class="step-tags"><span class="tag reg">EU-Taxonomy</span></div>
+      </div>
+      <div class="step-cell accent-gold">
+        <div class="step-num">10.18</div>
+        <div class="step-title">Carbon hedge ratio class</div>
+        <div class="step-desc">For a given product CI and volume, recommended EUA/EAC hedge to neutralize price risk. Treasury tool.</div>
+        <div class="step-tags"></div>
+      </div>
+      <div class="step-cell accent-gold">
+        <div class="step-num">10.19</div>
+        <div class="step-title">Green bond eligible project linkage</div>
+        <div class="step-desc">Link a capital project (e.g., EAF installation) to expected PCF reduction via COMET delta class. GBP eligible flag.</div>
+        <div class="step-tags"></div>
+      </div>
+      <div class="step-cell accent-gold">
+        <div class="step-num">10.20</div>
+        <div class="step-title">Annual COMET market report (public)</div>
+        <div class="step-desc">State of carbon-as-currency: sector premiums, CBAM impact, EAC price trends. Auto-generated from COMET data.</div>
+        <div class="step-tags"><span class="tag win">Community Win</span></div>
+      </div>
+    </div>
+  </div>
+
+</div>
+</section>
+
+<!-- ══════════════════════════════════════════════
+  SECTION 2 — EARLY WINS (FIRST 90 DAYS)
+══════════════════════════════════════════════ -->
+<section class="section" id="earlywins">
+  <div class="section-eyebrow">Section 02 — Quick Wins</div>
+  <div class="section-h">14 Early Wins — Days 1–90</div>
+  <div class="section-bluf">These steps generate immediate, tangible value for specific user groups. They create the first adopters, first public tools, and first proof points that build momentum before the heavy infrastructure work completes. Sequence matters: each win opens a door for the next.</div>
+
+  <div class="g2">
+    <div>
+      <div style="font-family:var(--mono);font-size:9px;letter-spacing:0.16em;color:var(--red);text-transform:uppercase;margin-bottom:12px;">Week 1–2: Existence Wins</div>
+      <div class="win-row">
+        <div class="win-num">1</div>
+        <div>
+          <div class="win-title">GitHub org + repo live with README and CC BY 4.0 license</div>
+          <div class="win-desc">The project exists. Anyone can find it, fork it, and reference it. Plant the flag. Attract the first GitHub stars and watchers.</div>
+        </div>
+        <div class="win-time">Day 1</div>
+      </div>
+      <div class="win-row">
+        <div class="win-num">2</div>
+        <div>
+          <div class="win-title">comet-core.owl published (12 classes, OWL 2 DL)</div>
+          <div class="win-desc">The ontology has a foundation. LCA tool developers can immediately extend it. First unit tests pass in CI.</div>
+        </div>
+        <div class="win-time">Day 3</div>
+      </div>
+      <div class="win-row">
+        <div class="win-num">3</div>
+        <div>
+          <div class="win-title">PACT v3 → COMET mapping table (Google Doc + GitHub)</div>
+          <div class="win-desc">Every PACT platform developer sees immediately how COMET enriches their payloads. First major use-case narrative.</div>
+        </div>
+        <div class="win-time">Day 5</div>
+      </div>
+      <div class="win-row">
+        <div class="win-num">4</div>
+        <div>
+          <div class="win-title">comet-pcf.owl with ISO 14067 alignment (18 classes)</div>
+          <div class="win-desc">Carbon practitioners can validate their PCF methodology against the ontology. Opens the door to LCA software alignment.</div>
+        </div>
+        <div class="win-time">Day 10</div>
+      </div>
+      <div style="margin-top:20px;font-family:var(--mono);font-size:9px;letter-spacing:0.16em;color:var(--red);text-transform:uppercase;margin-bottom:12px;">Week 3–4: Tool Wins</div>
+      <div class="win-row">
+        <div class="win-num">5</div>
+        <div>
+          <div class="win-title">JSON-LD @context file: paste into any PACT payload</div>
+          <div class="win-desc">Instantly upgrade any PACT v3 JSON to semantic RDF. Zero-friction first integration for developers.</div>
+        </div>
+        <div class="win-time">Day 14</div>
+      </div>
+      <div class="win-row">
+        <div class="win-num">6</div>
+        <div>
+          <div class="win-title">Online COMET validator: paste JSON-LD → conformance score</div>
+          <div class="win-desc">First public web tool at comet.carbon/validate. Shareable link. Drives organic discovery from platform developers.</div>
+        </div>
+        <div class="win-time">Day 21</div>
+      </div>
+      <div class="win-row">
+        <div class="win-num">7</div>
+        <div>
+          <div class="win-title">@comet/ontology-js NPM package v0.1 published</div>
+          <div class="win-desc">TypeScript URI constants for all classes. npm install @comet/ontology. Developers adopt without reading the OWL.</div>
+        </div>
+        <div class="win-time">Day 28</div>
+      </div>
+    </div>
+
+    <div>
+      <div style="font-family:var(--mono);font-size:9px;letter-spacing:0.16em;color:var(--red);text-transform:uppercase;margin-bottom:12px;">Month 2: Use-Case Wins</div>
+      <div class="win-row">
+        <div class="win-num">8</div>
+        <div>
+          <div class="win-title">Three worked example PCF instances (steel, H₂, chemicals)</div>
+          <div class="win-desc">Fully worked JSON-LD and Turtle examples showing real sector data in COMET. Copy-paste starting points for practitioners.</div>
+        </div>
+        <div class="win-time">Day 35</div>
+      </div>
+      <div class="win-row">
+        <div class="win-num">9</div>
+        <div>
+          <div class="win-title">CarbonSig CAP/EAC class in comet-ext:carbonsig</div>
+          <div class="win-desc">First live implementer example shows community how to contribute a real-world extension. Sets the template.</div>
+        </div>
+        <div class="win-time">Day 40</div>
+      </div>
+      <div class="win-row">
+        <div class="win-num">10</div>
+        <div>
+          <div class="win-title">CBAM declaration class with auto-calculation SHACL</div>
+          <div class="win-desc">Importers facing Jan 2026 CBAM deadline get a free, open-source data structure. Drives immediate adoption need.</div>
+        </div>
+        <div class="win-time">Day 45</div>
+      </div>
+      <div class="win-row">
+        <div class="win-num">11</div>
+        <div>
+          <div class="win-title">EAC base class + I-REC mapping published</div>
+          <div class="win-desc">First EAC use case: companies managing renewable energy certificates now have a typed vocabulary.</div>
+        </div>
+        <div class="win-time">Day 50</div>
+      </div>
+      <div style="margin-top:20px;font-family:var(--mono);font-size:9px;letter-spacing:0.16em;color:var(--red);text-transform:uppercase;margin-bottom:12px;">Month 3: Community Wins</div>
+      <div class="win-row">
+        <div class="win-num">12</div>
+        <div>
+          <div class="win-title">Public PACT conformance validator (online tool)</div>
+          <div class="win-desc">Paste a PACT v3 payload → COMET conformance score. Free. Drives COMET brand into every PACT-aligned platform discussion.</div>
+        </div>
+        <div class="win-time">Day 60</div>
+      </div>
+      <div class="win-row">
+        <div class="win-num">13</div>
+        <div>
+          <div class="win-title">Embodied carbon financial risk calculator (open)</div>
+          <div class="win-desc">Input product CI + CBAM price → P&amp;L impact. Demonstrates "carbon as currency" to CFOs. First market-layer use case.</div>
+        </div>
+        <div class="win-time">Day 75</div>
+      </div>
+      <div class="win-row" style="border:none;padding-bottom:0;">
+        <div class="win-num">14</div>
+        <div>
+          <div class="win-title">Founding members announced (5 organizations)</div>
+          <div class="win-desc">CarbonSig + 4 others (verifier, LCI provider, industrial buyer, standards body). Press release. Community momentum.</div>
+        </div>
+        <div class="win-time">Day 90</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════
+  SECTION 3 — MASTER BUILD PLAN (PHASED TABLE)
+══════════════════════════════════════════════ -->
+<section class="section" id="masterplan">
+  <div class="section-eyebrow">Section 03 — Master Build Plan</div>
+  <div class="section-h">200 Steps → 4 Phases → Sequenced Build</div>
+  <div class="section-bluf">Synthesized from all 10 expert panels. Steps are ordered by dependency and impact. Phase 1 = foundations + early wins. Phase 2 = supply chain + verification. Phase 3 = market layer + sector modules. Phase 4 = advanced infrastructure + global scale.</div>
+
+  <!-- PHASE 1 -->
+  <div style="background:var(--ink);padding:10px 16px;margin-bottom:1px;display:flex;align-items:center;gap:16px;">
+    <div style="font-family:var(--mono);font-size:10px;letter-spacing:0.16em;color:var(--red);text-transform:uppercase;">Phase 1</div>
+    <div style="font-family:var(--display);font-size:20px;font-weight:700;color:#f7f6f2;">Foundations &amp; First Adopters</div>
+    <div style="font-family:var(--mono);font-size:9px;color:#666;margin-left:auto;">Months 1–6 · ~40 tasks</div>
+  </div>
+  <div style="border:1px solid var(--rule);margin-bottom:24px;">
+    <div class="master-row header">
+      <div class="master-cell header-cell">#</div>
+      <div class="master-cell header-cell">Task</div>
+      <div class="master-cell header-cell">Description &amp; Deliverable</div>
+      <div class="master-cell header-cell">Owner</div>
+      <div class="master-cell header-cell">Effort</div>
+      <div class="master-cell header-cell">Type</div>
+    </div>
+    <!-- Tasks P1 -->
+    <div class="master-row"><div class="master-cell"><span class="task-id" style="color:var(--red);">P1.01</span></div><div class="master-cell"><div class="task-name">GitHub org + repo scaffold</div><div class="task-detail">README, LICENSE, CONTRIBUTING, CODE_OF_CONDUCT, CI skeleton</div></div><div class="master-cell"><div class="task-detail">Live GitHub repo at comet-ontology. Actions CI runs OWL lint on PR. Branch protection enabled. First external contributor can fork Day 1.</div></div><div class="master-cell"><div class="task-detail">Governance + Ontology</div></div><div class="master-cell"><div class="task-detail">1 day</div><div class="effort-bar"><div class="effort-fill" style="width:5%;background:var(--green);"></div></div></div><div class="master-cell"><div class="win-badge">Day-1 Win</div></div></div>
+
+    <div class="master-row"><div class="master-cell"><span class="task-id" style="color:var(--red);">P1.02</span></div><div class="master-cell"><div class="task-name">comet-core.owl</div><div class="task-detail">12 base classes, OWL 2 DL, CI-tested</div></div><div class="master-cell"><div class="task-detail">Organization, Site, Process, Material, UnitOfMeasure, TimePeriod + 6 properties. HermiT consistency check passes. Foundation for all modules.</div></div><div class="master-cell"><div class="task-detail">Ontology Eng.</div></div><div class="master-cell"><div class="task-detail">3 days</div><div class="effort-bar"><div class="effort-fill" style="width:8%;background:var(--green);"></div></div></div><div class="master-cell"><div class="win-badge">Foundation</div></div></div>
+
+    <div class="master-row"><div class="master-cell"><span class="task-id" style="color:var(--red);">P1.03</span></div><div class="master-cell"><div class="task-name">PACT v3 mapping table</div><div class="task-detail">Every field → COMET URI</div></div><div class="master-cell"><div class="task-detail">Published as PACT-COMET-ALIGNMENT.md + OWL alignment module. Platform vendors immediately understand integration path.</div></div><div class="master-cell"><div class="task-detail">PACT Expert + LCA</div></div><div class="master-cell"><div class="task-detail">2 days</div><div class="effort-bar"><div class="effort-fill" style="width:6%;background:var(--green);"></div></div></div><div class="master-cell"><div class="win-badge">Early Win</div></div></div>
+
+    <div class="master-row"><div class="master-cell"><span class="task-id" style="color:var(--red);">P1.04</span></div><div class="master-cell"><div class="task-name">comet-pcf.owl module</div><div class="task-detail">18 classes, ISO 14067 aligned</div></div><div class="master-cell"><div class="task-detail">Full ISO 14067 §7 required elements as OWL classes. SHACL shapes for required fields. Core use case for every PCF platform.</div></div><div class="master-cell"><div class="task-detail">LCA Practitioner</div></div><div class="master-cell"><div class="task-detail">5 days</div><div class="effort-bar"><div class="effort-fill" style="width:15%;background:var(--green);"></div></div></div><div class="master-cell"><div class="win-badge">Early Win</div></div></div>
+
+    <div class="master-row"><div class="master-cell"><span class="task-id" style="color:var(--red);">P1.05</span></div><div class="master-cell"><div class="task-name">JSON-LD @context file</div><div class="task-detail">CDN-hosted, version-pinned</div></div><div class="master-cell"><div class="task-detail">Single-file context. Developers inject into PACT payload to instantly upgrade to semantic RDF. Zero-friction adoption path.</div></div><div class="master-cell"><div class="task-detail">Ontology Eng.</div></div><div class="master-cell"><div class="task-detail">2 days</div><div class="effort-bar"><div class="effort-fill" style="width:6%;background:var(--green);"></div></div></div><div class="master-cell"><div class="win-badge">Dev Win</div></div></div>
+
+    <div class="master-row"><div class="master-cell"><span class="task-id" style="color:var(--red);">P1.06</span></div><div class="master-cell"><div class="task-name">SHACL validation shapes</div><div class="task-detail">All core classes</div></div><div class="master-cell"><div class="task-detail">100+ constraint shapes. Runnable online via COMET validator tool. Enables automated conformance checking by any implementer.</div></div><div class="master-cell"><div class="task-detail">Ontology Eng.</div></div><div class="master-cell"><div class="task-detail">4 days</div><div class="effort-bar"><div class="effort-fill" style="width:12%;background:var(--blue);"></div></div></div><div class="master-cell"><div class="task-detail"><span class="tag tech">Quality</span></div></div></div>
+
+    <div class="master-row"><div class="master-cell"><span class="task-id" style="color:var(--red);">P1.07</span></div><div class="master-cell"><div class="task-name">Online COMET validator</div><div class="task-detail">comet.carbon/validate</div></div><div class="master-cell"><div class="task-detail">Paste JSON-LD → conformance report with class-level pass/fail. First public tool. Drives organic discovery. Shareable report URL.</div></div><div class="master-cell"><div class="task-detail">Platform Arch.</div></div><div class="master-cell"><div class="task-detail">5 days</div><div class="effort-bar"><div class="effort-fill" style="width:15%;background:var(--green);"></div></div></div><div class="master-cell"><div class="win-badge">Tool Win</div></div></div>
+
+    <div class="master-row"><div class="master-cell"><span class="task-id" style="color:var(--red);">P1.08</span></div><div class="master-cell"><div class="task-name">NPM + PyPI packages</div><div class="task-detail">@comet/ontology-js + comet-ontology</div></div><div class="master-cell"><div class="task-detail">Auto-generated from OWL. TypeScript URI constants. Python rdflib bindings. npm install @comet/ontology. Lowers integration barrier.</div></div><div class="master-cell"><div class="task-detail">Platform Arch.</div></div><div class="master-cell"><div class="task-detail">3 days</div><div class="effort-bar"><div class="effort-fill" style="width:9%;background:var(--green);"></div></div></div><div class="master-cell"><div class="win-badge">Dev Win</div></div></div>
+
+    <div class="master-row"><div class="master-cell"><span class="task-id" style="color:var(--red);">P1.09</span></div><div class="master-cell"><div class="task-name">3 worked PCF examples</div><div class="task-detail">Steel, H₂, Chemicals in JSON-LD</div></div><div class="master-cell"><div class="task-detail">Fully annotated real-sector examples. Copy-paste templates for practitioners. Validate against SHACL. Drive adoption through practical demonstration.</div></div><div class="master-cell"><div class="task-detail">LCA + Sector</div></div><div class="master-cell"><div class="task-detail">4 days</div><div class="effort-bar"><div class="effort-fill" style="width:12%;background:var(--green);"></div></div></div><div class="master-cell"><div class="win-badge">Adoption Win</div></div></div>
+
+    <div class="master-row"><div class="master-cell"><span class="task-id" style="color:var(--red);">P1.10</span></div><div class="master-cell"><div class="task-name">CBAM declaration class</div><div class="task-detail">v0.1 with required fields</div></div><div class="master-cell"><div class="task-detail">CBMADeclaration with all fields mandated by Implementing Reg. 2023/956 Annex I. CBAM enforcement in Jan 2026 creates urgent demand.</div></div><div class="master-cell"><div class="task-detail">Regulatory + LCA</div></div><div class="master-cell"><div class="task-detail">3 days</div><div class="effort-bar"><div class="effort-fill" style="width:9%;background:var(--red);"></div></div></div><div class="master-cell"><div class="win-badge">Reg Win</div></div></div>
+
+    <div class="master-row"><div class="master-cell"><span class="task-id" style="color:var(--red);">P1.11</span></div><div class="master-cell"><div class="task-name">EAC base class + I-REC</div><div class="task-detail">comet-eac module v0.1</div></div><div class="master-cell"><div class="task-detail">Universal EAC properties + I-REC Standard mapping. First EAC users: corporates managing renewable energy claims and book-and-claim.</div></div><div class="master-cell"><div class="task-detail">EAC Specialist</div></div><div class="master-cell"><div class="task-detail">4 days</div><div class="effort-bar"><div class="effort-fill" style="width:12%;background:var(--gold);"></div></div></div><div class="master-cell"><div class="win-badge">EAC Win</div></div></div>
+
+    <div class="master-row"><div class="master-cell"><span class="task-id" style="color:var(--red);">P1.12</span></div><div class="master-cell"><div class="task-name">comet-ext:carbonsig namespace</div><div class="task-detail">CarbonSig CAP/EAC classes live</div></div><div class="master-cell"><div class="task-detail">First real-world extension example. CarbonSig's proprietary CAP certificate expressed in COMET ext: namespace. Template for others.</div></div><div class="master-cell"><div class="task-detail">CarbonSig + EAC</div></div><div class="master-cell"><div class="task-detail">2 days</div><div class="effort-bar"><div class="effort-fill" style="width:6%;background:var(--green);"></div></div></div><div class="master-cell"><div class="win-badge">CS Win</div></div></div>
+
+    <div class="master-row"><div class="master-cell"><span class="task-id" style="color:var(--red);">P1.13</span></div><div class="master-cell"><div class="task-name">Founding members (5 orgs)</div><div class="task-detail">Announced Day 90</div></div><div class="master-cell"><div class="task-detail">CarbonSig + verifier + LCI provider + industrial buyer + standards body observer. Public announcement. Community signal that project has traction.</div></div><div class="master-cell"><div class="task-detail">Governance</div></div><div class="master-cell"><div class="task-detail">60 days</div><div class="effort-bar"><div class="effort-fill" style="width:50%;background:var(--teal);"></div></div></div><div class="master-cell"><div class="win-badge">Community Win</div></div></div>
+
+    <div class="master-row" style="background:#fafaf8;"><div class="master-cell"><span class="task-id">P1.14–40</span></div><div class="master-cell"><div class="task-name">27 remaining Phase 1 tasks</div></div><div class="master-cell"><div class="task-detail">Content negotiation server · URI policy doc · QUDT binding · comet-emfactor module · governance charter v1 · PR label taxonomy · RFC template tooling · ISO 14067 crosswalk · system boundary SKOS · GWP100 AR5/AR6 classes · ecospold adapter · PACT reference implementation · DQI 5-dimension class · AssuranceLevel enumeration · VerificationClaim class · CarbonPremium class · MarketBenchmark class · sector benchmark data · OWL reasoner test suite · SPARQL endpoint · COMET browser UI · LCA software integration guide · TSC formation · Charter v1 · contributor onboarding kit · LCI ecoinvent binding · PACT endpoint registry</div></div><div class="master-cell"><div class="task-detail">All 10 panels</div></div><div class="master-cell"><div class="task-detail">Months 2–6</div></div><div class="master-cell"><div class="task-detail"><span class="tag tech">Infra</span></div></div></div>
+  </div>
+
+  <!-- PHASE 2 -->
+  <div style="background:var(--ink);padding:10px 16px;margin-bottom:1px;display:flex;align-items:center;gap:16px;">
+    <div style="font-family:var(--mono);font-size:10px;letter-spacing:0.16em;color:#1a6b3c;text-transform:uppercase;">Phase 2</div>
+    <div style="font-family:var(--display);font-size:20px;font-weight:700;color:#f7f6f2;">Supply Chain, Verification &amp; EAC Completeness</div>
+    <div style="font-family:var(--mono);font-size:9px;color:#666;margin-left:auto;">Months 7–14 · ~60 tasks</div>
+  </div>
+  <div style="background:var(--bg-2);border:1px solid var(--rule);padding:16px 20px;margin-bottom:24px;">
+    <div class="g3" style="gap:12px;">
+      <div>
+        <div style="font-family:var(--mono);font-size:9px;letter-spacing:0.14em;color:var(--green);text-transform:uppercase;margin-bottom:8px;">Supply Chain Track</div>
+        <div style="font-size:11px;color:var(--ink-3);line-height:1.7;">
+          comet-supplychain.owl full module → SupplyChainLink multi-hop model → CaRMA data schema mapped → PACT transport adapter → spend-to-primary upgrade path → DataQualityIndicator 5 dimensions → batch PCF transfer spec → TransportEvent / GLEC framework → federated SPARQL query spec → multi-tier supplier onboarding model
+        </div>
+      </div>
+      <div>
+        <div style="font-family:var(--mono);font-size:9px;letter-spacing:0.14em;color:var(--teal);text-transform:uppercase;margin-bottom:8px;">Verification Track</div>
+        <div style="font-size:11px;color:var(--ink-3);line-height:1.7;">
+          comet-verification.owl full module → CADTrust alignment → Bureau Veritas connector → QualifiedVerifier registry → digital signature (W3C VC) → AuditTrail PROV-O chain → verification workflow event sequence → Finding class → round-based review → auto pre-verification checklist export → verification marketplace → CBAM verification requirement classes → public verification ledger
+        </div>
+      </div>
+      <div>
+        <div style="font-family:var(--mono);font-size:9px;letter-spacing:0.14em;color:var(--gold);text-transform:uppercase;margin-bottom:8px;">EAC Completeness Track</div>
+        <div style="font-size:11px;color:var(--ink-3);line-height:1.7;">
+          EU Guarantee of Origin class → RetirementEvent anti-double-counting → Book-and-Claim chain → DAC credit (1PointFive) → Verra VCS + Gold Standard → ResponsibleSteel cert → ASI cert → temporal matching (IRA 45V) → EAC portfolio aggregation → EAC → PCF netting calculation → EAC explorer public tool → EAC spot price class → registry API live verification wrappers
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PHASE 3 -->
+  <div style="background:var(--ink);padding:10px 16px;margin-bottom:1px;display:flex;align-items:center;gap:16px;">
+    <div style="font-family:var(--mono);font-size:10px;letter-spacing:0.16em;color:var(--gold);text-transform:uppercase;">Phase 3</div>
+    <div style="font-family:var(--display);font-size:20px;font-weight:700;color:#f7f6f2;">Market Layer, Sector Modules &amp; Regulatory Compliance</div>
+    <div style="font-family:var(--mono);font-size:9px;color:#666;margin-left:auto;">Months 15–24 · ~60 tasks</div>
+  </div>
+  <div style="background:var(--bg-2);border:1px solid var(--rule);padding:16px 20px;margin-bottom:24px;">
+    <div class="g3" style="gap:12px;">
+      <div>
+        <div style="font-family:var(--mono);font-size:9px;letter-spacing:0.14em;color:var(--red);text-transform:uppercase;margin-bottom:8px;">Market Layer Track</div>
+        <div style="font-size:11px;color:var(--ink-3);line-height:1.7;">
+          comet-market.owl → CBAM tariff calculation (live EU ETS price) → IRA 45V credit value class → procurement RFQ carbon-adjusted price field → green premium/brown discount index → embodied carbon financial risk calculator → carbon cost of capital class → SBTi target trajectory → CDP disclosure mapping → internal carbon price declaration → carbon-adjusted EBITDA field → EU Taxonomy alignment flag → annual COMET market report (auto-gen)
+        </div>
+      </div>
+      <div>
+        <div style="font-family:var(--mono);font-size:9px;letter-spacing:0.14em;color:var(--warm);text-transform:uppercase;margin-bottom:8px;">Sector Module Track</div>
+        <div style="font-size:11px;color:var(--ink-3);line-height:1.7;">
+          Steel-WG: BF-BOF + EAF subclasses + WorldSteel LCI binding → Hydrogen-WG: production pathway taxonomy + 45V class → Chemicals-WG: OxyChem 20-facility reference impl → Aluminium-WG: ASI + smelter intensity → Cement-WG: clinker ratio + calcination CO₂ → Construction module: EN 15804 full A1–D → Plastics: PPWR alignment → Transport: GLEC + FuelEU
+        </div>
+      </div>
+      <div>
+        <div style="font-family:var(--mono);font-size:9px;letter-spacing:0.14em;color:var(--blue);text-transform:uppercase;margin-bottom:8px;">Regulatory &amp; AI Track</div>
+        <div style="font-size:11px;color:var(--ink-3);line-height:1.7;">
+          CSRD ESRS E1 Scope 3 full mapping → EU ETS netting rules → SEC climate disclosure mapping → PACT v3.1 forward-compat layer → COMET schema → Postgres DDL generator → PGVector embeddings for semantic search → agentic COMET mapper (LLM classifies raw fields → URIs) → VS Code extension + GitHub App → ISO 14067 revision monitoring track → v1.0 stable release
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PHASE 4 -->
+  <div style="background:var(--ink);padding:10px 16px;margin-bottom:1px;display:flex;align-items:center;gap:16px;">
+    <div style="font-family:var(--mono);font-size:10px;letter-spacing:0.16em;color:#aaa;text-transform:uppercase;">Phase 4</div>
+    <div style="font-family:var(--display);font-size:20px;font-weight:700;color:#f7f6f2;">Global Scale, Streaming &amp; Nature-Based Accounting</div>
+    <div style="font-family:var(--mono);font-size:9px;color:#666;margin-left:auto;">Months 25–36 · ~40 tasks</div>
+  </div>
+  <div style="background:var(--bg-2);border:1px solid var(--rule);padding:16px 20px;margin-bottom:0;">
+    <div style="font-size:11px;color:var(--ink-3);line-height:1.9;max-width:1000px;">
+      Real-time IoT PCF streaming class · Continuous digital audit trail · TNFD biodiversity metric alignment · Tokenized EAC on-chain retirement (EVM) · NLP natural-language COMET query interface · ISO TC207 formal liaison · v2.0 release (nature + tokenized) · PACT v3.x certified connector program · COMET-native LCA software certification · Global regulatory compliance hub (20+ jurisdictions) · Carbon hedge ratio and derivatives class · Green bond eligible project linkage · Annual contributor summit proceedings · 100-org member milestone · ISO 14067 revision contribution · v3.0 vision: AI-agent semantic layer over full global PCF graph
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════
+  SECTION 4 — GANTT / TIMELINE
+══════════════════════════════════════════════ -->
+<section class="section" id="gantt">
+  <div class="section-eyebrow">Section 04 — Timeline</div>
+  <div class="section-h">12-Month Build Timeline — Phase 1 &amp; 2</div>
+  <div class="section-bluf">The first 12 months establish foundations and first adopters. Bars show approximate start and duration. Dependencies flow left-to-right.</div>
+
+  <div class="gantt-wrap">
+    <div class="gantt-header">
+      <div class="gantt-header-label" style="padding:8px 14px;font-family:var(--mono);font-size:9px;color:var(--ink-3);letter-spacing:0.1em;text-transform:uppercase;">Track / Milestone</div>
+      <div class="gantt-months">
+        <div class="gantt-month">M1</div><div class="gantt-month">M2</div><div class="gantt-month">M3</div>
+        <div class="gantt-month">M4</div><div class="gantt-month">M5</div><div class="gantt-month">M6</div>
+        <div class="gantt-month">M7</div><div class="gantt-month">M8</div><div class="gantt-month">M9</div>
+        <div class="gantt-month">M10</div><div class="gantt-month">M11</div><div class="gantt-month">M12</div>
+      </div>
+    </div>
+
+    <div class="gantt-row">
+      <div class="gantt-label" style="background:#f0f4fa;border-left:3px solid var(--blue);">Ontology core modules</div>
+      <div class="gantt-track">
+        <div class="gantt-bar" style="left:0%;width:25%;background:var(--blue);">core + pcf + ef</div>
+        <div class="gantt-bar" style="left:25%;width:25%;background:#2a4a80;">supplychain + eac</div>
+        <div class="gantt-bar" style="left:50%;width:25%;background:#3a5a90;">verification + market</div>
+      </div>
+    </div>
+
+    <div class="gantt-row">
+      <div class="gantt-label" style="background:#f0f7f3;border-left:3px solid var(--green);">PACT v3 alignment</div>
+      <div class="gantt-track">
+        <div class="gantt-bar" style="left:0%;width:16%;background:var(--green);">mapping table</div>
+        <div class="gantt-bar" style="left:16%;width:16%;background:#1a7a4a;">@context file</div>
+        <div class="gantt-bar" style="left:33%;width:25%;background:#2a8a5a;">reference impl</div>
+        <div class="gantt-bar" style="left:58%;width:25%;background:#3a9a6a;">PACT v3 validator tool</div>
+      </div>
+    </div>
+
+    <div class="gantt-row">
+      <div class="gantt-label" style="background:#fff5f3;border-left:3px solid var(--red);">Regulatory classes</div>
+      <div class="gantt-track">
+        <div class="gantt-bar" style="left:8%;width:16%;background:var(--red);">CBAM class</div>
+        <div class="gantt-bar" style="left:33%;width:16%;background:#c84030;">CSRD mapping</div>
+        <div class="gantt-bar" style="left:58%;width:25%;background:#d85040;">45V Hydrogen</div>
+      </div>
+    </div>
+
+    <div class="gantt-row">
+      <div class="gantt-label" style="background:#fdf9f0;border-left:3px solid var(--gold);">EAC modules</div>
+      <div class="gantt-track">
+        <div class="gantt-bar" style="left:16%;width:16%;background:var(--gold);">base + I-REC</div>
+        <div class="gantt-bar" style="left:33%;width:16%;background:#9c7b30;">GO + Book&amp;Claim</div>
+        <div class="gantt-bar" style="left:50%;width:25%;background:#ac8b40;">DAC + RS + ASI</div>
+        <div class="gantt-bar" style="left:75%;width:16%;background:#bc9b50;">EAC explorer</div>
+      </div>
+    </div>
+
+    <div class="gantt-row">
+      <div class="gantt-label" style="background:#f0f7f5;border-left:3px solid var(--teal);">Verification layer</div>
+      <div class="gantt-track">
+        <div class="gantt-bar" style="left:33%;width:16%;background:var(--teal);">comet-ver v0.1</div>
+        <div class="gantt-bar" style="left:50%;width:16%;background:#1a6070;">CADTrust align</div>
+        <div class="gantt-bar" style="left:66%;width:25%;background:#2a7080;">BV connector + ledger</div>
+      </div>
+    </div>
+
+    <div class="gantt-row">
+      <div class="gantt-label" style="background:#f9f8f5;border-left:3px solid var(--ink-3);">Tooling &amp; DX</div>
+      <div class="gantt-track">
+        <div class="gantt-bar" style="left:8%;width:8%;background:#555;">validator</div>
+        <div class="gantt-bar" style="left:16%;width:8%;background:#666;">NPM+PyPI</div>
+        <div class="gantt-bar" style="left:25%;width:16%;background:#777;">SPARQL endpoint</div>
+        <div class="gantt-bar" style="left:50%;width:16%;background:#888;">React UI browser</div>
+        <div class="gantt-bar" style="left:66%;width:25%;background:#999;">LLM mapper + VS Code ext</div>
+      </div>
+    </div>
+
+    <div class="gantt-row">
+      <div class="gantt-label" style="background:#f0f4fa;border-left:3px solid var(--blue);">Governance</div>
+      <div class="gantt-track">
+        <div class="gantt-bar" style="left:0%;width:8%;background:var(--blue);">GitHub org</div>
+        <div class="gantt-bar" style="left:16%;width:25%;background:#1c4570;">founding members</div>
+        <div class="gantt-bar" style="left:41%;width:16%;background:#2c5580;">Charter v1</div>
+        <div class="gantt-bar" style="left:58%;width:25%;background:#3c6590;">TSC election</div>
+      </div>
+    </div>
+
+    <div class="gantt-row">
+      <div class="gantt-label" style="background:#f7f5f0;border-left:3px solid var(--warm);">Sector modules</div>
+      <div class="gantt-track">
+        <div class="gantt-bar" style="left:25%;width:16%;background:var(--warm);">Steel-WG</div>
+        <div class="gantt-bar" style="left:41%;width:16%;background:#7b4830;">H₂-WG</div>
+        <div class="gantt-bar" style="left:58%;width:16%;background:#8b5840;">Chem-WG</div>
+        <div class="gantt-bar" style="left:75%;width:16%;background:#9b6850;">Al-WG</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════
+  SECTION 5 — DEPENDENCY MAP
+══════════════════════════════════════════════ -->
+<section class="section" id="dependencies">
+  <div class="section-eyebrow">Section 05 — Dependencies</div>
+  <div class="section-h">Critical Path &amp; Dependency Graph</div>
+  <div class="section-bluf">Eight dependency chains where one task gates the next. Understanding these unlocks parallel work and prevents bottlenecks.</div>
+
+  <div class="g2">
+    <div style="background:var(--bg-2);border:1px solid var(--rule);padding:20px;">
+      <div style="font-family:var(--mono);font-size:9px;letter-spacing:0.14em;color:var(--red);text-transform:uppercase;margin-bottom:14px;">Critical Path 1: Ontology → Tooling → Adoption</div>
+      <div style="display:flex;flex-direction:column;gap:2px;">
+        <div style="background:#1c3560;color:#fff;padding:8px 12px;font-size:11px;font-weight:600;">comet-core.owl <span style="font-family:var(--mono);font-size:9px;font-weight:300;margin-left:6px;opacity:0.7;">Day 3</span></div>
+        <div style="text-align:center;color:var(--rule);font-size:16px;">↓</div>
+        <div style="background:#2a4a80;color:#fff;padding:8px 12px;font-size:11px;font-weight:600;">comet-pcf.owl <span style="font-family:var(--mono);font-size:9px;font-weight:300;margin-left:6px;opacity:0.7;">Day 10</span></div>
+        <div style="text-align:center;color:var(--rule);font-size:16px;">↓</div>
+        <div style="background:#3a5a90;color:#fff;padding:8px 12px;font-size:11px;font-weight:600;">SHACL shapes <span style="font-family:var(--mono);font-size:9px;font-weight:300;margin-left:6px;opacity:0.7;">Day 14</span></div>
+        <div style="text-align:center;color:var(--rule);font-size:16px;">↓</div>
+        <div style="background:#4a6aa0;color:#fff;padding:8px 12px;font-size:11px;font-weight:600;">Online validator <span style="font-family:var(--mono);font-size:9px;font-weight:300;margin-left:6px;opacity:0.7;">Day 21</span></div>
+        <div style="text-align:center;color:var(--rule);font-size:16px;">↓</div>
+        <div style="background:var(--green);color:#fff;padding:8px 12px;font-size:11px;font-weight:600;">First adopter validates their PCF <span style="font-family:var(--mono);font-size:9px;font-weight:300;margin-left:6px;opacity:0.7;">Day 30+</span></div>
+      </div>
+    </div>
+
+    <div style="background:var(--bg-2);border:1px solid var(--rule);padding:20px;">
+      <div style="font-family:var(--mono);font-size:9px;letter-spacing:0.14em;color:var(--gold);text-transform:uppercase;margin-bottom:14px;">Critical Path 2: EAC → Verification → Market Signal</div>
+      <div style="display:flex;flex-direction:column;gap:2px;">
+        <div style="background:var(--gold);color:#fff;padding:8px 12px;font-size:11px;font-weight:600;">comet-eac.owl <span style="font-family:var(--mono);font-size:9px;font-weight:300;margin-left:6px;opacity:0.7;">Month 2</span></div>
+        <div style="text-align:center;color:var(--rule);font-size:16px;">↓</div>
+        <div style="background:#9c7b30;color:#fff;padding:8px 12px;font-size:11px;font-weight:600;">RetirementEvent + anti-double-counting <span style="font-family:var(--mono);font-size:9px;font-weight:300;margin-left:6px;opacity:0.7;">Month 3</span></div>
+        <div style="text-align:center;color:var(--rule);font-size:16px;">↓</div>
+        <div style="background:var(--teal);color:#fff;padding:8px 12px;font-size:11px;font-weight:600;">comet-verification.owl + CADTrust <span style="font-family:var(--mono);font-size:9px;font-weight:300;margin-left:6px;opacity:0.7;">Month 5</span></div>
+        <div style="text-align:center;color:var(--rule);font-size:16px;">↓</div>
+        <div style="background:#1a6070;color:#fff;padding:8px 12px;font-size:11px;font-weight:600;">EAC → PCF netting calculation <span style="font-family:var(--mono);font-size:9px;font-weight:300;margin-left:6px;opacity:0.7;">Month 7</span></div>
+        <div style="text-align:center;color:var(--rule);font-size:16px;">↓</div>
+        <div style="background:var(--red);color:#fff;padding:8px 12px;font-size:11px;font-weight:600;">CarbonPremium / CBMADiscount market signal <span style="font-family:var(--mono);font-size:9px;font-weight:300;margin-left:6px;opacity:0.7;">Month 10</span></div>
+      </div>
+    </div>
+
+    <div style="background:var(--bg-2);border:1px solid var(--rule);padding:20px;">
+      <div style="font-family:var(--mono);font-size:9px;letter-spacing:0.14em;color:var(--green);text-transform:uppercase;margin-bottom:14px;">Critical Path 3: Supply Chain → PACT → Sector Adoption</div>
+      <div style="display:flex;flex-direction:column;gap:2px;">
+        <div style="background:#1a5c3a;color:#fff;padding:8px 12px;font-size:11px;font-weight:600;">PACT v3 mapping table <span style="font-family:var(--mono);font-size:9px;font-weight:300;margin-left:6px;opacity:0.7;">Day 5</span></div>
+        <div style="text-align:center;color:var(--rule);font-size:16px;">↓</div>
+        <div style="background:#2a6c4a;color:#fff;padding:8px 12px;font-size:11px;font-weight:600;">JSON-LD @context file <span style="font-family:var(--mono);font-size:9px;font-weight:300;margin-left:6px;opacity:0.7;">Day 14</span></div>
+        <div style="text-align:center;color:var(--rule);font-size:16px;">↓</div>
+        <div style="background:#3a7c5a;color:#fff;padding:8px 12px;font-size:11px;font-weight:600;">comet-supplychain.owl + CaRMA schema <span style="font-family:var(--mono);font-size:9px;font-weight:300;margin-left:6px;opacity:0.7;">Month 4</span></div>
+        <div style="text-align:center;color:var(--rule);font-size:16px;">↓</div>
+        <div style="background:#4a8c6a;color:#fff;padding:8px 12px;font-size:11px;font-weight:600;">Steel-WG + WorldSteel LCI binding <span style="font-family:var(--mono);font-size:9px;font-weight:300;margin-left:6px;opacity:0.7;">Month 7</span></div>
+        <div style="text-align:center;color:var(--rule);font-size:16px;">↓</div>
+        <div style="background:var(--green);color:#fff;padding:8px 12px;font-size:11px;font-weight:600;">First verified steel PCF on COMET network <span style="font-family:var(--mono);font-size:9px;font-weight:300;margin-left:6px;opacity:0.7;">Month 9</span></div>
+      </div>
+    </div>
+
+    <div style="background:var(--bg-2);border:1px solid var(--rule);padding:20px;">
+      <div style="font-family:var(--mono);font-size:9px;letter-spacing:0.14em;color:var(--teal);text-transform:uppercase;margin-bottom:14px;">Parallel Track: Governance → Community → Sustainability</div>
+      <div style="display:flex;flex-direction:column;gap:2px;">
+        <div style="background:#1a5060;color:#fff;padding:8px 12px;font-size:11px;font-weight:600;">GitHub org + CONTRIBUTING.md <span style="font-family:var(--mono);font-size:9px;font-weight:300;margin-left:6px;opacity:0.7;">Day 1</span></div>
+        <div style="text-align:center;color:var(--rule);font-size:16px;">↓</div>
+        <div style="background:#1a6070;color:#fff;padding:8px 12px;font-size:11px;font-weight:600;">RFC template + PR label taxonomy <span style="font-family:var(--mono);font-size:9px;font-weight:300;margin-left:6px;opacity:0.7;">Week 2</span></div>
+        <div style="text-align:center;color:var(--rule);font-size:16px;">↓</div>
+        <div style="background:#1a7080;color:#fff;padding:8px 12px;font-size:11px;font-weight:600;">5 founding members + Charter v1 <span style="font-family:var(--mono);font-size:9px;font-weight:300;margin-left:6px;opacity:0.7;">Month 3</span></div>
+        <div style="text-align:center;color:var(--rule);font-size:16px;">↓</div>
+        <div style="background:#1a8090;color:#fff;padding:8px 12px;font-size:11px;font-weight:600;">TSC elected + DWGs formed <span style="font-family:var(--mono);font-size:9px;font-weight:300;margin-left:6px;opacity:0.7;">Month 6</span></div>
+        <div style="text-align:center;color:var(--rule);font-size:16px;">↓</div>
+        <div style="background:var(--teal);color:#fff;padding:8px 12px;font-size:11px;font-weight:600;">Self-sustaining contributor community <span style="font-family:var(--mono);font-size:9px;font-weight:300;margin-left:6px;opacity:0.7;">Month 12</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════
+  SECTION 6 — ADOPTION STRATEGY
+══════════════════════════════════════════════ -->
+<section class="section" id="adoption">
+  <div class="section-eyebrow">Section 06 — Adoption Strategy</div>
+  <div class="section-h">How Users &amp; Use Cases Enter the Ecosystem</div>
+  <div class="section-bluf">COMET's adoption follows a compulsory virality pattern — regulatory forcing functions (CBAM, CSRD, 45V) pull industrial actors in. Each enterprise adopter cascades to their suppliers. The ontology is the shared language this network requires.</div>
+
+  <div class="g3">
+    <div class="card">
+      <div class="card-accent" style="background:var(--red);"></div>
+      <div class="card-label">Entry 01 — Regulatory Pressure</div>
+      <div class="card-h">CBAM Importers, Jan 2026</div>
+      <div class="card-body">EU importers of steel, cement, aluminium need to file CBAM declarations with embedded emissions data. COMET's CBMADeclaration class is a free, open-source data structure. Entry point: download CBAM class, generate XML, submit. First value in hours. Cascades to suppliers who must provide PCF data in structured form.</div>
+      <div style="margin-top:10px;font-family:var(--mono);font-size:9px;color:var(--red);">~4,000 EU importers facing Jan 2026 deadline</div>
+    </div>
+
+    <div class="card">
+      <div class="card-accent" style="background:var(--blue);"></div>
+      <div class="card-label">Entry 02 — Platform Developers</div>
+      <div class="card-h">Carbon SaaS Platforms</div>
+      <div class="card-body">Platform developers building PCF tools need a shared vocabulary to interoperate. The NPM package, JSON-LD context, and PACT conformance validator give immediate, tangible value. Entry point: npm install @comet/ontology. Platform adopts vocabulary. Users across all their customers now produce COMET-aligned data without knowing it.</div>
+      <div style="margin-top:10px;font-family:var(--mono);font-size:9px;color:var(--blue);">Platforms = multiplier: 1 integration → N customers</div>
+    </div>
+
+    <div class="card">
+      <div class="card-accent" style="background:var(--green);"></div>
+      <div class="card-label">Entry 03 — LCA Practitioners</div>
+      <div class="card-h">ISO 14067 Consultants</div>
+      <div class="card-body">LCA practitioners need to export their SimaPro/openLCA results into formats clients can use. COMET LCA adapter and PCF example templates let them export COMET-aligned JSON-LD from existing tools. Entry point: use ecospold adapter or copy the worked examples. Client gets machine-readable PCF. Practitioner differentiates on COMET expertise.</div>
+      <div style="margin-top:10px;font-family:var(--mono);font-size:9px;color:var(--green);">~8,000 certified LCA practitioners globally</div>
+    </div>
+
+    <div class="card">
+      <div class="card-accent" style="background:var(--teal);"></div>
+      <div class="card-label">Entry 04 — Carbon Verifiers</div>
+      <div class="card-h">Bureau Veritas, SGS, Intertek</div>
+      <div class="card-body">Verifiers need to issue machine-readable verification claims. COMET's VerificationClaim class lets them produce structured assertions that link directly to the PCF being verified. Entry point: BV connector spec → generate signed VerificationClaim JSON-LD. Downstream: procurement systems auto-validate claims rather than reviewing PDF reports.</div>
+      <div style="margin-top:10px;font-family:var(--mono);font-size:9px;color:var(--teal);">Verifiers become network infrastructure providers</div>
+    </div>
+
+    <div class="card">
+      <div class="card-accent" style="background:var(--gold);"></div>
+      <div class="card-label">Entry 05 — Industrial Buyers</div>
+      <div class="card-h">Procurement Teams, Scope 3 Cat. 1</div>
+      <div class="card-body">Large industrials (automakers, construction, energy) need Scope 3 Category 1 data. COMET lets them send a structured PCF data request to suppliers using PACT endpoints. Entry point: use COMET ProcurementSignal class in RFQ. Suppliers who can't respond in COMET format are visible — creating a pull for supplier adoption without mandating it.</div>
+      <div style="margin-top:10px;font-family:var(--mono);font-size:9px;color:var(--gold);">Supply chain cascade: 1 buyer → 100+ suppliers</div>
+    </div>
+
+    <div class="card">
+      <div class="card-accent" style="background:var(--warm);"></div>
+      <div class="card-label">Entry 06 — Financial Markets</div>
+      <div class="card-h">ESG Funds, Carbon Desks, Banks</div>
+      <div class="card-body">Financial actors need product-level carbon intensity data to price risk and premium. COMET's market layer (CarbonPremium, CBMADiscount, EACSpotPrice) gives them typed, queryable signals. Entry point: consume COMET SPARQL endpoint for portfolio carbon risk scoring. Drives demand for COMET-aligned PCFs from their portfolio companies.</div>
+      <div style="margin-top:10px;font-family:var(--mono);font-size:9px;color:var(--warm);">Financial demand pulls industrial supply of verified PCFs</div>
+    </div>
+  </div>
+
+  <div style="background:var(--ink);padding:20px 24px;margin-top:16px;">
+    <div style="font-family:var(--display);font-size:20px;font-weight:700;color:#f7f6f2;margin-bottom:8px;">The Compulsory Virality Engine</div>
+    <div style="font-size:12px;color:#aaa;max-width:900px;line-height:1.7;">
+      COMET doesn't need to convince users to adopt voluntarily. Regulatory mandates (CBAM Jan 2026, CSRD FY 2025, IRA 45V already active) create demand for the exact data structures COMET provides. One CBAM importer requires its steel supplier to provide embedded emissions data → that supplier needs COMET-aligned tooling → that supplier's sub-suppliers need to provide primary data → each link in the chain is a new COMET user. <strong style="color:#f7f6f2;">The regulator does the selling. COMET is the shared language the regulation implicitly requires.</strong>
+    </div>
+  </div>
+</section>
+
+</div><!-- /page -->
+
+<footer>
+  <div>COMET Build Plan v0.1 · 200 Steps · 10 Expert Panels · CC BY 4.0</div>
+  <div>github.com/comet-ontology/comet · comet.carbon</div>
+</footer>
+
+</body>
+</html>

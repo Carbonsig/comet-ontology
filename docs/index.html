@@ -1,0 +1,891 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>COMET — Carbon Ontology for Markets, Emissions &amp; Trade</title>
+  <meta name="description" content="A shared, versioned, community-governed vocabulary that makes product-level carbon data comparable, verifiable, and tradeable — across every industry, platform, and border.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --bg: #f5f4f0;
+      --bg-dark: #1a1a18;
+      --bg-mid: #252520;
+      --text: #1c1c1a;
+      --text-secondary: #4a4a45;
+      --text-muted: #7a7a74;
+      --accent: #c8360a;
+      --accent-light: #e8470f;
+      --border: #d8d7d0;
+      --border-dark: #3a3a35;
+      --card-bg: #ffffff;
+      --rule: #c8c7c0;
+    }
+
+    html {
+      font-size: 16px;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    /* ─── MASTHEAD ─────────────────────────────────────────────── */
+
+    .masthead {
+      background-color: var(--bg-dark);
+      color: #e8e6e0;
+      padding: 3.5rem 2rem 3rem;
+    }
+
+    .masthead-inner {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .eyebrow {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.65rem;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: #9a9890;
+      margin-bottom: 1.6rem;
+    }
+
+    .masthead-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(4rem, 10vw, 7rem);
+      font-weight: 700;
+      line-height: 0.92;
+      letter-spacing: -0.02em;
+      color: #f0ede6;
+      margin-bottom: 1rem;
+    }
+
+    .masthead-title .period {
+      color: var(--accent);
+    }
+
+    .masthead-subtitle {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1rem, 2.5vw, 1.25rem);
+      font-weight: 400;
+      font-style: italic;
+      color: #b8b6b0;
+      margin-bottom: 1.75rem;
+      letter-spacing: 0.01em;
+    }
+
+    .masthead-rule {
+      border: none;
+      border-top: 1px solid var(--border-dark);
+      margin-bottom: 1.75rem;
+    }
+
+    .masthead-description {
+      font-size: clamp(1rem, 2vw, 1.125rem);
+      font-weight: 300;
+      color: #d0cec8;
+      line-height: 1.65;
+      max-width: 700px;
+      margin-bottom: 2.25rem;
+    }
+
+    .meta-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem 2rem;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.68rem;
+      color: #7a7870;
+      letter-spacing: 0.06em;
+    }
+
+    .meta-bar span {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .meta-label {
+      color: #5a5855;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+
+    .meta-value {
+      color: #9a9890;
+    }
+
+    /* ─── SHARED SECTION STYLES ────────────────────────────────── */
+
+    section {
+      padding: 4rem 2rem;
+    }
+
+    section:nth-child(even) {
+      background-color: #efede8;
+    }
+
+    .section-inner {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .section-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.62rem;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.75rem;
+    }
+
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.6rem, 4vw, 2.4rem);
+      font-weight: 600;
+      line-height: 1.15;
+      color: var(--text);
+      margin-bottom: 1.5rem;
+    }
+
+    .section-rule {
+      border: none;
+      border-top: 1px solid var(--rule);
+      margin-bottom: 2rem;
+    }
+
+    .body-text {
+      font-size: 1.0625rem;
+      font-weight: 400;
+      line-height: 1.7;
+      color: var(--text-secondary);
+      max-width: 660px;
+    }
+
+    .body-text strong {
+      color: var(--text);
+      font-weight: 600;
+    }
+
+    /* ─── THE PROBLEM ───────────────────────────────────────────── */
+
+    .problem-quote {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.15rem, 2.5vw, 1.5rem);
+      font-style: italic;
+      font-weight: 400;
+      line-height: 1.55;
+      color: var(--text);
+      border-left: 3px solid var(--accent);
+      padding-left: 1.5rem;
+      margin-bottom: 1.75rem;
+      max-width: 640px;
+    }
+
+    /* ─── WHAT COMET DOES — 3-CARD GRID ────────────────────────── */
+
+    .cards-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.25rem;
+      margin-top: 2rem;
+    }
+
+    @media (max-width: 720px) {
+      .cards-3 {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (min-width: 721px) and (max-width: 900px) {
+      .cards-3 {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    .feature-card {
+      background-color: var(--card-bg);
+      border: 1px solid var(--border);
+      padding: 1.75rem 1.5rem;
+    }
+
+    .feature-card-number {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.65rem;
+      color: var(--accent);
+      letter-spacing: 0.12em;
+      margin-bottom: 0.9rem;
+      display: block;
+    }
+
+    .feature-card-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.125rem;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 0.75rem;
+      line-height: 1.25;
+    }
+
+    .feature-card-body {
+      font-size: 0.9375rem;
+      line-height: 1.65;
+      color: var(--text-secondary);
+    }
+
+    /* ─── WHO BENEFITS — 6-ITEM GRID ───────────────────────────── */
+
+    .benefits-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0;
+      margin-top: 2rem;
+      border-top: 1px solid var(--border);
+      border-left: 1px solid var(--border);
+    }
+
+    @media (max-width: 640px) {
+      .benefits-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (min-width: 641px) and (max-width: 860px) {
+      .benefits-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    .benefit-item {
+      padding: 1.5rem 1.5rem 1.75rem;
+      border-right: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .benefit-role {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.65rem;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.5rem;
+    }
+
+    .benefit-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.0625rem;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 0.6rem;
+      line-height: 1.25;
+    }
+
+    .benefit-body {
+      font-size: 0.875rem;
+      line-height: 1.6;
+      color: var(--text-secondary);
+    }
+
+    /* ─── FORCING FUNCTION ──────────────────────────────────────── */
+
+    .forcing-function {
+      background-color: var(--bg-dark);
+      color: #e0ddd8;
+    }
+
+    .forcing-function .section-title {
+      color: #f0ede6;
+    }
+
+    .forcing-function .section-label {
+      color: #c8360a;
+    }
+
+    .forcing-function .section-rule {
+      border-color: var(--border-dark);
+    }
+
+    .stat-row {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 2rem 3rem;
+      align-items: start;
+      margin-top: 2rem;
+    }
+
+    @media (max-width: 600px) {
+      .stat-row {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .stat-number {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.5rem, 6vw, 4rem);
+      font-weight: 700;
+      line-height: 1;
+      color: var(--accent);
+      white-space: nowrap;
+    }
+
+    .stat-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.12em;
+      color: #6a6a64;
+      text-transform: uppercase;
+      margin-top: 0.4rem;
+    }
+
+    .stat-description {
+      font-size: 1.0625rem;
+      line-height: 1.7;
+      color: #b8b6b0;
+      padding-top: 0.4rem;
+    }
+
+    /* ─── DOCUMENTATION LINKS ───────────────────────────────────── */
+
+    .doc-cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.25rem;
+      margin-top: 2rem;
+    }
+
+    @media (max-width: 720px) {
+      .doc-cards {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .doc-card {
+      display: block;
+      text-decoration: none;
+      background-color: var(--card-bg);
+      border: 1.5px solid var(--border);
+      padding: 1.75rem 1.5rem 2rem;
+      position: relative;
+      overflow: hidden;
+      transition: border-color 0.18s ease, transform 0.18s ease, box-shadow 0.18s ease;
+    }
+
+    .doc-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 3px;
+      height: 100%;
+      background-color: var(--border);
+      transition: background-color 0.18s ease, width 0.18s ease;
+    }
+
+    .doc-card:hover {
+      border-color: var(--accent);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 24px rgba(0, 0, 0, 0.09);
+    }
+
+    .doc-card:hover::before {
+      background-color: var(--accent);
+      width: 4px;
+    }
+
+    .doc-card-type {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.62rem;
+      font-weight: 500;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 0.85rem;
+    }
+
+    .doc-card-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1875rem;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 0.75rem;
+      line-height: 1.25;
+      transition: color 0.18s ease;
+    }
+
+    .doc-card:hover .doc-card-title {
+      color: var(--accent);
+    }
+
+    .doc-card-body {
+      font-size: 0.875rem;
+      line-height: 1.65;
+      color: var(--text-secondary);
+      margin-bottom: 1.25rem;
+    }
+
+    .doc-card-action {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.68rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .doc-card-action::after {
+      content: '\2192';
+      font-size: 0.85rem;
+    }
+
+    /* ─── ROADMAP ───────────────────────────────────────────────── */
+
+    .roadmap-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0;
+      margin-top: 2rem;
+      border-top: 2px solid var(--text);
+    }
+
+    @media (max-width: 760px) {
+      .roadmap-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 460px) {
+      .roadmap-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .roadmap-phase {
+      padding: 1.5rem 1.25rem 1.5rem 0;
+      border-right: 1px solid var(--border);
+      position: relative;
+    }
+
+    .roadmap-phase:last-child {
+      border-right: none;
+      padding-right: 0;
+    }
+
+    .roadmap-phase::before {
+      content: '';
+      position: absolute;
+      top: -2px;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background-color: transparent;
+    }
+
+    .roadmap-phase:first-child::before {
+      background-color: var(--accent);
+    }
+
+    .phase-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.6rem;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.3rem;
+    }
+
+    .phase-period {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.65rem;
+      color: var(--text-muted);
+      margin-bottom: 0.9rem;
+      letter-spacing: 0.04em;
+    }
+
+    .phase-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--text);
+      line-height: 1.25;
+      margin-bottom: 0.75rem;
+    }
+
+    .phase-items {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
+    }
+
+    .phase-items li {
+      font-size: 0.8125rem;
+      line-height: 1.45;
+      color: var(--text-secondary);
+      padding-left: 0.9rem;
+      position: relative;
+    }
+
+    .phase-items li::before {
+      content: '\2014';
+      position: absolute;
+      left: 0;
+      color: var(--rule);
+      font-size: 0.7rem;
+    }
+
+    /* ─── FOOTER ────────────────────────────────────────────────── */
+
+    footer {
+      background-color: var(--bg-dark);
+      color: #6a6a64;
+      padding: 3rem 2rem;
+    }
+
+    .footer-inner {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .footer-brand {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.125rem;
+      font-weight: 600;
+      color: #d0cec8;
+      margin-bottom: 0.5rem;
+    }
+
+    .footer-tagline {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #5a5855;
+      margin-bottom: 2rem;
+    }
+
+    .footer-rule {
+      border: none;
+      border-top: 1px solid #2e2e2a;
+      margin-bottom: 1.75rem;
+    }
+
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem 2rem;
+      margin-bottom: 1.75rem;
+    }
+
+    .footer-links a {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.7rem;
+      color: #7a7870;
+      text-decoration: none;
+      letter-spacing: 0.06em;
+      transition: color 0.15s ease;
+    }
+
+    .footer-links a:hover {
+      color: #c8360a;
+    }
+
+    .footer-attribution {
+      font-size: 0.8125rem;
+      color: #4a4a45;
+    }
+
+    /* ─── UTILITY ───────────────────────────────────────────────── */
+
+    .visually-hidden {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      border: 0;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- MASTHEAD -->
+  <header class="masthead" role="banner">
+    <div class="masthead-inner">
+      <p class="eyebrow">Open Public Standard &middot; Carbon Intelligence Infrastructure</p>
+      <h1 class="masthead-title">COMET<span class="period">.</span></h1>
+      <p class="masthead-subtitle">Carbon Ontology for Markets, Emissions &amp; Trade</p>
+      <hr class="masthead-rule" aria-hidden="true">
+      <p class="masthead-description">A shared, versioned, community-governed vocabulary that makes product-level carbon data comparable, verifiable, and tradeable &mdash; across every industry, platform, and border.</p>
+      <div class="meta-bar" role="contentinfo" aria-label="Document metadata">
+        <span><span class="meta-label">License:</span> <span class="meta-value">CC BY 4.0 + Apache 2.0</span></span>
+        <span><span class="meta-label">Status:</span> <span class="meta-value">Public Draft v0.1</span></span>
+        <span><span class="meta-label">Initiated:</span> <span class="meta-value">2025-Q1</span></span>
+      </div>
+    </div>
+  </header>
+
+  <!-- THE PROBLEM -->
+  <section id="problem">
+    <div class="section-inner">
+      <p class="section-label">The Problem</p>
+      <h2 class="section-title">Carbon data is everywhere.<br>None of it speaks the same language.</h2>
+      <hr class="section-rule" aria-hidden="true">
+      <blockquote class="problem-quote">
+        &ldquo;Platforms use different units, methods, scopes, and emission factor vintages. Without a shared vocabulary, you cannot compare, verify, or trade carbon data.&rdquo;
+      </blockquote>
+      <p class="body-text">
+        Every company measures carbon differently. Every platform stores it differently. Every regulator asks for it differently. The result is a fragmented landscape where carbon data cannot be trusted, compared, or acted upon at scale. <strong>COMET resolves this by providing the shared vocabulary the market is missing.</strong>
+      </p>
+    </div>
+  </section>
+
+  <!-- WHAT COMET DOES -->
+  <section id="what-comet-does">
+    <div class="section-inner">
+      <p class="section-label">What COMET Does</p>
+      <h2 class="section-title">One ontology. Every standard. Every sector.</h2>
+      <hr class="section-rule" aria-hidden="true">
+      <div class="cards-3" role="list">
+        <div class="feature-card" role="listitem">
+          <span class="feature-card-number">01</span>
+          <h3 class="feature-card-title">Shared Vocabulary</h3>
+          <p class="feature-card-body">One ontology maps ISO&nbsp;14067, PACT&nbsp;v3, GHG Protocol, CBAM, and EAC standards into interoperable classes that any platform can consume.</p>
+        </div>
+        <div class="feature-card" role="listitem">
+          <span class="feature-card-number">02</span>
+          <h3 class="feature-card-title">Seven-Layer Stack</h3>
+          <p class="feature-card-body">From core identity primitives (L1) to market pricing signals (L7), each layer is independently versionable and composable with the rest.</p>
+        </div>
+        <div class="feature-card" role="listitem">
+          <span class="feature-card-number">03</span>
+          <h3 class="feature-card-title">Community Governed</h3>
+          <p class="feature-card-body">Steering Committee, Technical Committee, and open Working Groups. All decisions made via public GitHub with full audit trails.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHO BENEFITS -->
+  <section id="who-benefits">
+    <div class="section-inner">
+      <p class="section-label">Who Benefits</p>
+      <h2 class="section-title">Built for everyone who touches carbon data.</h2>
+      <hr class="section-rule" aria-hidden="true">
+      <div class="benefits-grid" role="list">
+        <div class="benefit-item" role="listitem">
+          <p class="benefit-role">Industrial Buyers</p>
+          <h3 class="benefit-title">Equal-footing supplier comparison</h3>
+          <p class="benefit-body">Compare supplier PCFs on equal footing. Auto-generate CBAM declarations from structured, verified data.</p>
+        </div>
+        <div class="benefit-item" role="listitem">
+          <p class="benefit-role">Carbon Verifiers</p>
+          <h3 class="benefit-title">Machine-readable claims</h3>
+          <p class="benefit-body">Issue machine-readable verification claims. Replace static PDFs with trusted, queryable data objects.</p>
+        </div>
+        <div class="benefit-item" role="listitem">
+          <p class="benefit-role">Platform Vendors</p>
+          <h3 class="benefit-title">Instant interoperability</h3>
+          <p class="benefit-body"><code style="font-family:'DM Mono',monospace;font-size:0.8em;background:#f0ede8;padding:0.1em 0.35em;">npm install @comet/ontology</code> &mdash; instant interoperability with any COMET-compliant platform.</p>
+        </div>
+        <div class="benefit-item" role="listitem">
+          <p class="benefit-role">Regulators</p>
+          <h3 class="benefit-title">Proven open standard</h3>
+          <p class="benefit-body">Reference a proven open standard for CBAM, CSRD, and IRA&nbsp;45V compliance frameworks.</p>
+        </div>
+        <div class="benefit-item" role="listitem">
+          <p class="benefit-role">LCA Practitioners</p>
+          <h3 class="benefit-title">Universal export format</h3>
+          <p class="benefit-body">Export SimaPro and openLCA results in a universal format any downstream system can read without translation.</p>
+        </div>
+        <div class="benefit-item" role="listitem">
+          <p class="benefit-role">Financial Markets</p>
+          <h3 class="benefit-title">Product-level carbon risk</h3>
+          <p class="benefit-body">Price carbon risk using verified, product-level data rather than sector averages and disclosure estimates.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- THE FORCING FUNCTION -->
+  <section id="forcing-function" class="forcing-function">
+    <div class="section-inner">
+      <p class="section-label">The Forcing Function</p>
+      <h2 class="section-title">CBAM goes live. The cascade begins.</h2>
+      <hr class="section-rule" aria-hidden="true">
+      <div class="stat-row">
+        <div>
+          <p class="stat-number">Jan&nbsp;2026</p>
+          <p class="stat-label">CBAM Full Enforcement</p>
+        </div>
+        <p class="stat-description">
+          Approximately 4,000 EU importers will require structured carbon data from roughly 40,000 direct suppliers &mdash; and hundreds of thousands of sub-suppliers cascading further up each value chain. This is not a reporting exercise. It is a data infrastructure problem. <strong style="color:#d0cec8;">COMET is the shared language this cascade requires.</strong>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- RELATED RESEARCH — CARBON AT RISK -->
+  <section id="carbon-at-risk">
+    <div class="section-inner">
+      <p class="section-label">Related Research</p>
+      <h2 class="section-title">Carbon at Risk (CaR)</h2>
+      <hr class="section-rule" aria-hidden="true">
+      <p class="body-text" style="margin-bottom:1.5rem;">
+        COMET builds on the <strong>Carbon at Risk</strong> framework, originated by Nick Gogerty at Carbon Finance Labs. CaR applies Value-at-Risk methodology from financial markets to carbon removal &mdash; quantifying the expected performance losses of carbon removal approaches across delivery risk and storage risk dimensions.
+      </p>
+      <p class="body-text" style="margin-bottom:2rem;">
+        Where CaR provides the <strong>risk measurement language</strong> for carbon removal quality, COMET provides the <strong>ontological infrastructure</strong> to make that measurement interoperable across platforms, registries, and regulators. Together they form the analytical backbone for treating carbon as a financially tradeable, risk-adjusted asset class.
+      </p>
+      <div class="doc-cards" style="grid-template-columns:1fr 1fr;">
+        <a href="https://www.carbonatrisk.org/" class="doc-card" target="_blank" rel="noopener noreferrer" aria-label="Carbon at Risk website">
+          <p class="doc-card-type">Framework</p>
+          <h3 class="doc-card-title">Carbon at Risk (CaR)</h3>
+          <p class="doc-card-body">A standardized framework for assessing performance risks of carbon removal approaches. Quantifies delivery risk and storage risk using financial risk methodology. Developed with University of Exeter and LSE Grantham Institute.</p>
+          <span class="doc-card-action" aria-hidden="true">Visit carbonatrisk.org</span>
+        </a>
+        <a href="https://www.carbonatrisk.org/" class="doc-card" target="_blank" rel="noopener noreferrer" aria-label="CaR Calculator">
+          <p class="doc-card-type">Tool</p>
+          <h3 class="doc-card-title">CaR Calculator</h3>
+          <p class="doc-card-body">Interactive assessment tool for comparing risk profiles across carbon removal methods &mdash; from reforestation to direct air capture. Portfolio-based approach enables diversified removal strategies.</p>
+          <span class="doc-card-action" aria-hidden="true">Try the calculator</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- DOCUMENTATION -->
+  <section id="documentation">
+    <div class="section-inner">
+      <p class="section-label">Documentation</p>
+      <h2 class="section-title">Everything you need to build with COMET.</h2>
+      <hr class="section-rule" aria-hidden="true">
+      <div class="doc-cards">
+
+        <a href="ontology.html" class="doc-card" aria-label="Ontology Specification document">
+          <p class="doc-card-type">Reference Specification</p>
+          <h3 class="doc-card-title">Ontology Specification</h3>
+          <p class="doc-card-body">The complete COMET ontology: 7-layer architecture and 20 visualization sections covering stakeholders, maturity model, namespace architecture, standards alignment, governance, and more.</p>
+          <span class="doc-card-action" aria-hidden="true">Read the specification</span>
+        </a>
+
+        <a href="build-plan.html" class="doc-card" aria-label="Master Build Plan document">
+          <p class="doc-card-type">Implementation Roadmap</p>
+          <h3 class="doc-card-title">Master Build Plan</h3>
+          <p class="doc-card-body">200 expert steps across 10 MECE panels, sequenced into a 36-month roadmap from foundations to v1.0 stable. Assigned owners, dependencies, and success criteria for every step.</p>
+          <span class="doc-card-action" aria-hidden="true">View the build plan</span>
+        </a>
+
+        <a href="COMET_Stakeholder_Deck.pptx" class="doc-card" aria-label="Stakeholder Deck presentation download">
+          <p class="doc-card-type">Presentation &mdash; Download PPTX</p>
+          <h3 class="doc-card-title">Stakeholder Deck</h3>
+          <p class="doc-card-body">30-slide presentation covering the problem, architecture, stakeholder benefits, governance model, and roadmap. Ready for board, investor, and regulatory audiences.</p>
+          <span class="doc-card-action" aria-hidden="true">Download PPTX</span>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ROADMAP -->
+  <section id="roadmap">
+    <div class="section-inner">
+      <p class="section-label">Roadmap</p>
+      <h2 class="section-title">From foundations to global infrastructure.</h2>
+      <hr class="section-rule" aria-hidden="true">
+      <div class="roadmap-grid" role="list">
+
+        <div class="roadmap-phase" role="listitem">
+          <p class="phase-label">Phase 1</p>
+          <p class="phase-period">Months 1&ndash;6</p>
+          <h3 class="phase-title">Foundations &amp; First Adopters</h3>
+          <ul class="phase-items" aria-label="Phase 1 milestones">
+            <li>Core ontology release</li>
+            <li>PACT v3 alignment</li>
+            <li>SHACL validation</li>
+            <li>CBAM class</li>
+            <li>5 founding members</li>
+          </ul>
+        </div>
+
+        <div class="roadmap-phase" role="listitem">
+          <p class="phase-label">Phase 2</p>
+          <p class="phase-period">Months 7&ndash;14</p>
+          <h3 class="phase-title">Supply Chain &amp; Verification</h3>
+          <ul class="phase-items" aria-label="Phase 2 milestones">
+            <li>Full supply chain module</li>
+            <li>CADTrust verification</li>
+            <li>EAC hierarchy</li>
+            <li>Bureau Veritas connector</li>
+          </ul>
+        </div>
+
+        <div class="roadmap-phase" role="listitem">
+          <p class="phase-label">Phase 3</p>
+          <p class="phase-period">Months 15&ndash;24</p>
+          <h3 class="phase-title">Market Layer &amp; Sectors</h3>
+          <ul class="phase-items" aria-label="Phase 3 milestones">
+            <li>Pricing signals layer</li>
+            <li>Steel / H2 / Chemicals / Aluminium WGs</li>
+            <li>CSRD mapping</li>
+            <li>v1.0 stable</li>
+          </ul>
+        </div>
+
+        <div class="roadmap-phase" role="listitem">
+          <p class="phase-label">Phase 4</p>
+          <p class="phase-period">Months 25&ndash;36</p>
+          <h3 class="phase-title">Global Scale &amp; Nature</h3>
+          <ul class="phase-items" aria-label="Phase 4 milestones">
+            <li>Real-time IoT streaming</li>
+            <li>TNFD biodiversity layer</li>
+            <li>Tokenized EAC</li>
+            <li>AI query interface</li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer role="contentinfo">
+    <div class="footer-inner">
+      <p class="footer-brand">COMET &mdash; Carbon Ontology for Markets, Emissions &amp; Trade</p>
+      <p class="footer-tagline">Free &middot; Open &middot; Community-governed &middot; CC BY 4.0 + Apache 2.0</p>
+      <hr class="footer-rule" aria-hidden="true">
+      <nav class="footer-links" aria-label="External links">
+        <a href="https://github.com/nickgogerty/comet-ontology" target="_blank" rel="noopener noreferrer">github.com/nickgogerty/comet-ontology</a>
+        <a href="https://carbonfinancelab.com" target="_blank" rel="noopener noreferrer">carbonfinancelab.com</a>
+        <a href="https://www.carbonatrisk.org/" target="_blank" rel="noopener noreferrer">carbonatrisk.org</a>
+      </nav>
+      <p class="footer-attribution">A Carbon Finance Lab research initiative.</p>
+    </div>
+  </footer>
+
+</body>
+</html>
