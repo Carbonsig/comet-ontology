@@ -749,31 +749,36 @@
     </div>
   </section>
 
-  <!-- RELATED RESEARCH — CARBON AT RISK -->
-  <section id="carbon-at-risk">
+  <!-- STANDARDS INTEGRATION -->
+  <section id="standards-integration">
     <div class="section-inner">
-      <p class="section-label">Related Research</p>
-      <h2 class="section-title">Carbon at Risk (CaR)</h2>
+      <p class="section-label">Standards Integration</p>
+      <h2 class="section-title">One vocabulary. Every carbon data standard.</h2>
       <hr class="section-rule" aria-hidden="true">
-      <p class="body-text" style="margin-bottom:1.5rem;">
-        COMET builds on the <strong>Carbon at Risk</strong> framework, originated by Nick Gogerty at Carbon Finance Labs. CaR applies Value-at-Risk methodology from financial markets to carbon removal &mdash; quantifying the expected performance losses of carbon removal approaches across delivery risk and storage risk dimensions.
-      </p>
       <p class="body-text" style="margin-bottom:2rem;">
-        Where CaR provides the <strong>risk measurement language</strong> for carbon removal quality, COMET provides the <strong>ontological infrastructure</strong> to make that measurement interoperable across platforms, registries, and regulators. Together they form the analytical backbone for treating carbon as a financially tradeable, risk-adjusted asset class.
+        COMET provides the semantic middleware between data producers and consumers. Supply chain platforms, LCA tools, and registries produce data in proprietary formats. COMET&rsquo;s JSON-LD context injection maps any payload into a shared ontology &mdash; so buyers, verifiers, regulators, and carbon markets can consume standardized, machine-readable data without translation.
       </p>
-      <div class="doc-cards" style="grid-template-columns:1fr 1fr;">
-        <a href="https://www.carbonatrisk.org/" class="doc-card" target="_blank" rel="noopener noreferrer" aria-label="Carbon at Risk website">
-          <p class="doc-card-type">Framework</p>
-          <h3 class="doc-card-title">Carbon at Risk (CaR)</h3>
-          <p class="doc-card-body">A standardized framework for assessing performance risks of carbon removal approaches. Quantifies delivery risk and storage risk using financial risk methodology. Developed with University of Exeter and LSE Grantham Institute.</p>
-          <span class="doc-card-action" aria-hidden="true">Visit carbonatrisk.org</span>
-        </a>
-        <a href="https://www.carbonatrisk.org/" class="doc-card" target="_blank" rel="noopener noreferrer" aria-label="CaR Calculator">
-          <p class="doc-card-type">Tool</p>
-          <h3 class="doc-card-title">CaR Calculator</h3>
-          <p class="doc-card-body">Interactive assessment tool for comparing risk profiles across carbon removal methods &mdash; from reforestation to direct air capture. Portfolio-based approach enables diversified removal strategies.</p>
-          <span class="doc-card-action" aria-hidden="true">Try the calculator</span>
-        </a>
+      <div class="benefits-grid" role="list" style="grid-template-columns: repeat(2, 1fr);">
+        <div class="benefit-item" role="listitem">
+          <p class="benefit-role">WBCSD PACT v3</p>
+          <h3 class="benefit-title">Complete field-by-field mapping</h3>
+          <p class="benefit-body">Every PACT v3 ProductFootprint and CarbonFootprint field maps to a COMET class via owl:equivalentClass and owl:equivalentProperty triples. Drop-in JSON-LD @context upgrades any PACT payload to semantic RDF.</p>
+        </div>
+        <div class="benefit-item" role="listitem">
+          <p class="benefit-role">EU CBAM</p>
+          <h3 class="benefit-title">Declaration structure in XML &amp; JSON</h3>
+          <p class="benefit-body">CBAM embedded emissions declarations (Reg. 2023/956) mapped to COMET classes with working XML, XSD schema fragments, and CN code coverage for steel, aluminium, cement, hydrogen, and chemicals.</p>
+        </div>
+        <div class="benefit-item" role="listitem">
+          <p class="benefit-role">CAD Trust v2.0.2</p>
+          <h3 class="benefit-title">Full registry interoperability</h3>
+          <p class="benefit-body">All 13 CAD Trust tables (project, unit, verification, issuance, label, co-benefit, Article 6 ITMO) mapped into COMET namespaces. 100+ variables aligned for carbon credit registry data exchange.</p>
+        </div>
+        <div class="benefit-item" role="listitem">
+          <p class="benefit-role">GHG Protocol &amp; ISO 14067</p>
+          <h3 class="benefit-title">Scope 3 and product-level coverage</h3>
+          <p class="benefit-body">GHG Protocol Scope 3 Categories 1&ndash;15 mapped to COMET supply chain and PCF classes. ISO 14067 Section 7 required elements fully covered in L4 PCF layer.</p>
+        </div>
       </div>
     </div>
   </section>
@@ -784,6 +789,37 @@
       <p class="section-label">Documentation</p>
       <h2 class="section-title">Everything you need to build with COMET.</h2>
       <hr class="section-rule" aria-hidden="true">
+
+      <!-- Row 0: Hero — Visual Guide -->
+      <div class="doc-cards" style="grid-template-columns: 1fr; margin-bottom: 1.25rem;">
+        <a href="visual-guide.html" class="doc-card" aria-label="Visual Guide with 20 data visualizations" style="border-color: var(--accent); border-width: 2px;">
+          <p class="doc-card-type">Visual Reference &mdash; 20 Data Visualizations</p>
+          <h3 class="doc-card-title">Visual Guide: Architecture, Standards, Data Flow &amp; Governance</h3>
+          <p class="doc-card-body">20 MECE visualizations covering the seven-layer stack, standards-to-layer heatmap, PACT/CBAM/CAD&nbsp;Trust mappings, data quality scoring, contribution workflow, regulatory timeline, and market signals. Interactive dictionary search and regime-mapping matrix included.</p>
+          <span class="doc-card-action" aria-hidden="true">Explore the visual guide</span>
+        </a>
+      </div>
+
+      <!-- Row 1: Technical specs -->
+      <div class="doc-cards" style="grid-template-columns: repeat(2, 1fr); margin-bottom: 1.25rem;">
+
+        <a href="data-exchange.html" class="doc-card" aria-label="Data Exchange and Transport Layer document">
+          <p class="doc-card-type">Technical Specification</p>
+          <h3 class="doc-card-title">Data Exchange &amp; Transport Layer</h3>
+          <p class="doc-card-body">Field-by-field mappings for PACT v3, EU CBAM, and CAD Trust with working code examples in JSON-LD, XML, XSD, JSON Schema, and OWL Turtle. The technical heart of COMET integration.</p>
+          <span class="doc-card-action" aria-hidden="true">View mappings &amp; examples</span>
+        </a>
+
+        <a href="glossary.html" class="doc-card" aria-label="COMET Glossary and Data Dictionary with interactive search">
+          <p class="doc-card-type">Reference Dictionary &mdash; Interactive Search</p>
+          <h3 class="doc-card-title">Glossary &amp; Data Dictionary</h3>
+          <p class="doc-card-body">Complete class, property, and variable reference for all 7 COMET layers plus CAD Trust v2.0.2. Interactive search with layer filters, A&ndash;Z jump bar, and real-time highlighting across 100+ entries.</p>
+          <span class="doc-card-action" aria-hidden="true">Search the glossary</span>
+        </a>
+
+      </div>
+
+      <!-- Row 2: Original docs -->
       <div class="doc-cards">
 
         <a href="ontology.html" class="doc-card" aria-label="Ontology Specification document">

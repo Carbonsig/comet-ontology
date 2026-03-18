@@ -1,0 +1,1227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>COMET Data Exchange &amp; Transport Layer &mdash; Technical Specification</title>
+  <meta name="description" content="How COMET maps onto PACT, CBAM, CAD Trust, and carbon data exchange standards. Concrete field-by-field mappings and working code examples for every major carbon data exchange protocol.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --bg: #f5f4f0;
+      --bg-dark: #1a1a18;
+      --bg-mid: #252520;
+      --bg-alt: #efede8;
+      --bg-row-alt: #f9f8f5;
+      --text: #1c1c1a;
+      --text-secondary: #4a4a45;
+      --text-muted: #7a7a74;
+      --accent: #c8360a;
+      --accent-light: #e8470f;
+      --border: #d8d7d0;
+      --border-dark: #3a3a35;
+      --card-bg: #ffffff;
+      --rule: #c8c7c0;
+      --mono: 'DM Mono', monospace;
+      --display: 'Playfair Display', serif;
+      --body: 'DM Sans', sans-serif;
+      --code-bg: #1c1c1a;
+      --code-text: #d4d4d4;
+    }
+
+    html {
+      font-size: 15px;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: var(--body);
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    /* ─── MASTHEAD ────────────────────────────────────────────── */
+
+    .masthead {
+      background-color: var(--bg-dark);
+      color: #e8e6e0;
+      padding: 3.5rem 2rem 3rem;
+      border-bottom: 3px solid var(--accent);
+    }
+
+    .masthead-inner {
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .eyebrow {
+      font-family: var(--mono);
+      font-size: 0.62rem;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: #9a9890;
+      margin-bottom: 1.4rem;
+    }
+
+    .masthead-title {
+      font-family: var(--display);
+      font-size: clamp(2rem, 5.5vw, 3.5rem);
+      font-weight: 700;
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+      color: #f0ede6;
+      margin-bottom: 0.75rem;
+    }
+
+    .masthead-subtitle {
+      font-family: var(--display);
+      font-size: clamp(0.95rem, 2vw, 1.15rem);
+      font-weight: 400;
+      font-style: italic;
+      color: #b8b6b0;
+      margin-bottom: 1.5rem;
+      letter-spacing: 0.01em;
+    }
+
+    .masthead-rule {
+      border: none;
+      border-top: 1px solid var(--border-dark);
+      margin-bottom: 1.5rem;
+    }
+
+    .masthead-description {
+      font-size: clamp(0.9rem, 1.8vw, 1.05rem);
+      font-weight: 300;
+      color: #d0cec8;
+      line-height: 1.65;
+      max-width: 760px;
+      margin-bottom: 2rem;
+    }
+
+    /* ─── STICKY NAV ──────────────────────────────────────────── */
+
+    .sticky-nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background-color: var(--bg-dark);
+      border-bottom: 1px solid #2e2e2a;
+      padding: 0 2rem;
+    }
+
+    .sticky-nav-inner {
+      max-width: 1000px;
+      margin: 0 auto;
+      display: flex;
+      flex-wrap: nowrap;
+      gap: 0;
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+
+    .sticky-nav-inner::-webkit-scrollbar {
+      display: none;
+    }
+
+    .sticky-nav a {
+      font-family: var(--mono);
+      font-size: 0.6rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #7a7870;
+      text-decoration: none;
+      padding: 0.7rem 0.85rem;
+      white-space: nowrap;
+      border-bottom: 2px solid transparent;
+      transition: color 0.15s ease, border-color 0.15s ease;
+    }
+
+    .sticky-nav a:hover {
+      color: #f0ede6;
+      border-bottom-color: var(--accent);
+    }
+
+    /* ─── PAGE CONTENT ────────────────────────────────────────── */
+
+    .page-content {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 0 2rem 5rem;
+    }
+
+    /* ─── SECTION HEADERS ─────────────────────────────────────── */
+
+    .doc-section {
+      padding-top: 3.5rem;
+      padding-bottom: 2.5rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .doc-section:last-child {
+      border-bottom: none;
+    }
+
+    .section-header {
+      border-left: 4px solid var(--accent);
+      padding-left: 1rem;
+      margin-bottom: 1.75rem;
+    }
+
+    .section-label {
+      font-family: var(--mono);
+      font-size: 0.6rem;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.35rem;
+    }
+
+    .section-title {
+      font-family: var(--display);
+      font-size: clamp(1.35rem, 3vw, 1.9rem);
+      font-weight: 600;
+      line-height: 1.15;
+      color: var(--text);
+      margin-bottom: 0.4rem;
+    }
+
+    .subsection-title {
+      font-family: var(--display);
+      font-size: clamp(1.05rem, 2.5vw, 1.35rem);
+      font-weight: 600;
+      line-height: 1.2;
+      color: var(--text);
+      margin: 2.25rem 0 1rem;
+    }
+
+    .body-text {
+      font-size: 0.9375rem;
+      color: var(--text-secondary);
+      line-height: 1.7;
+      max-width: 760px;
+      margin-bottom: 1.25rem;
+    }
+
+    .body-text strong {
+      color: var(--text);
+      font-weight: 600;
+    }
+
+    /* ─── FLOW DIAGRAM ────────────────────────────────────────── */
+
+    .flow-diagram {
+      display: flex;
+      align-items: stretch;
+      gap: 0;
+      margin: 2rem 0;
+    }
+
+    @media (max-width: 640px) {
+      .flow-diagram {
+        flex-direction: column;
+      }
+      .flow-arrow {
+        align-self: center;
+        transform: rotate(90deg);
+        flex: 0 0 auto;
+        height: 2rem;
+        width: 2.5rem;
+        margin: 0.25rem 0;
+      }
+    }
+
+    .flow-box {
+      flex: 1 1 0;
+      background-color: var(--card-bg);
+      border: 1.5px solid var(--border);
+      padding: 1.5rem 1.25rem;
+      min-width: 0;
+    }
+
+    .flow-box.flow-center {
+      background-color: #1f1f1d;
+      border: 2px solid var(--accent);
+    }
+
+    .flow-box-label {
+      font-family: var(--mono);
+      font-size: 0.58rem;
+      font-weight: 500;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 0.6rem;
+    }
+
+    .flow-box.flow-center .flow-box-label {
+      color: var(--accent);
+    }
+
+    .flow-box-title {
+      font-family: var(--display);
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 0.6rem;
+      line-height: 1.2;
+    }
+
+    .flow-box.flow-center .flow-box-title {
+      color: #f0ede6;
+    }
+
+    .flow-box-body {
+      font-size: 0.8125rem;
+      line-height: 1.6;
+      color: var(--text-secondary);
+    }
+
+    .flow-box.flow-center .flow-box-body {
+      color: #9a9890;
+    }
+
+    .flow-arrow {
+      flex: 0 0 2.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .flow-arrow svg {
+      display: block;
+    }
+
+    /* ─── TABLES ──────────────────────────────────────────────── */
+
+    .table-wrap {
+      overflow-x: auto;
+      margin-bottom: 2rem;
+      border: 1px solid var(--border);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.8125rem;
+      line-height: 1.5;
+    }
+
+    thead {
+      position: sticky;
+      top: 2.65rem;
+      z-index: 10;
+      background-color: #1a1a18;
+    }
+
+    thead th {
+      font-family: var(--mono);
+      font-size: 0.58rem;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: #9a9890;
+      padding: 0.65rem 0.85rem;
+      text-align: left;
+      border-bottom: 2px solid var(--accent);
+      white-space: nowrap;
+    }
+
+    tbody tr:nth-child(even) {
+      background-color: var(--bg-row-alt);
+    }
+
+    tbody tr:nth-child(odd) {
+      background-color: var(--card-bg);
+    }
+
+    tbody tr:hover {
+      background-color: #f0ede6;
+    }
+
+    tbody td {
+      padding: 0.6rem 0.85rem;
+      vertical-align: top;
+      border-bottom: 1px solid #eceae4;
+      color: var(--text-secondary);
+    }
+
+    tbody td:first-child {
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      color: var(--text);
+      font-weight: 500;
+      white-space: nowrap;
+      border-left: 3px solid transparent;
+    }
+
+    tbody tr:hover td:first-child {
+      border-left-color: var(--accent);
+    }
+
+    .td-mono {
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      color: var(--text);
+      white-space: nowrap;
+    }
+
+    .td-type {
+      font-family: var(--mono);
+      font-size: 0.68rem;
+      color: var(--accent);
+      white-space: nowrap;
+    }
+
+    .td-class {
+      font-family: var(--mono);
+      font-size: 0.68rem;
+      color: #4EC9B0;
+      white-space: nowrap;
+    }
+
+    .td-prop {
+      font-family: var(--mono);
+      font-size: 0.68rem;
+      color: #9CDCFE;
+      white-space: nowrap;
+    }
+
+    .td-note {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+    }
+
+    /* ─── CODE BLOCKS ─────────────────────────────────────────── */
+
+    .code-block-wrap {
+      margin: 1.5rem 0 2rem;
+    }
+
+    .code-label {
+      font-family: var(--mono);
+      font-size: 0.58rem;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 0.5rem;
+    }
+
+    pre {
+      background-color: var(--code-bg);
+      color: #d4d4d4;
+      font-family: var(--mono);
+      font-size: 0.775rem;
+      line-height: 1.65;
+      padding: 1.5rem;
+      overflow-x: auto;
+      border-left: 3px solid var(--accent);
+      tab-size: 2;
+    }
+
+    /* Syntax token spans */
+    .t-str  { color: #6A9955; }
+    .t-key  { color: #9CDCFE; }
+    .t-num  { color: #B5CEA8; }
+    .t-type { color: #4EC9B0; }
+    .t-cmt  { color: #6a9955; font-style: italic; }
+    .t-kw   { color: #569cd6; }
+    .t-tag  { color: #569cd6; }
+    .t-attr { color: #9CDCFE; }
+    .t-val  { color: #ce9178; }
+    .t-pfx  { color: #c586c0; }
+    .t-uri  { color: #6A9955; }
+    .t-lit  { color: #ce9178; }
+    .t-punct { color: #808080; }
+
+    /* ─── REST API BADGES ─────────────────────────────────────── */
+
+    .method-badge {
+      display: inline-block;
+      font-family: var(--mono);
+      font-size: 0.62rem;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      padding: 0.15em 0.5em;
+      border-radius: 2px;
+    }
+
+    .method-get  { background-color: #1e3a2e; color: #6A9955; }
+    .method-post { background-color: #1e2a3a; color: #9CDCFE; }
+
+    /* ─── BACK LINK ───────────────────────────────────────────── */
+
+    .back-link {
+      display: inline-block;
+      font-family: var(--mono);
+      font-size: 0.62rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #7a7870;
+      text-decoration: none;
+      padding: 0.6rem 0;
+      margin-top: 1rem;
+      transition: color 0.15s ease;
+    }
+
+    .back-link:hover {
+      color: var(--accent);
+    }
+
+    .back-link::before {
+      content: '\2190\0020';
+    }
+
+    /* ─── FOOTER ──────────────────────────────────────────────── */
+
+    footer {
+      background-color: var(--bg-dark);
+      color: #6a6a64;
+      padding: 3rem 2rem;
+    }
+
+    .footer-inner {
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .footer-brand {
+      font-family: var(--display);
+      font-size: 1.125rem;
+      font-weight: 600;
+      color: #d0cec8;
+      margin-bottom: 0.5rem;
+    }
+
+    .footer-tagline {
+      font-family: var(--mono);
+      font-size: 0.65rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #5a5855;
+      margin-bottom: 2rem;
+    }
+
+    .footer-rule {
+      border: none;
+      border-top: 1px solid #2e2e2a;
+      margin-bottom: 1.75rem;
+    }
+
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem 2rem;
+      margin-bottom: 1.75rem;
+    }
+
+    .footer-links a {
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      color: #7a7870;
+      text-decoration: none;
+      letter-spacing: 0.06em;
+      transition: color 0.15s ease;
+    }
+
+    .footer-links a:hover {
+      color: var(--accent);
+    }
+
+    .footer-attribution {
+      font-size: 0.8125rem;
+      color: #4a4a45;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- MASTHEAD -->
+  <header class="masthead" role="banner">
+    <div class="masthead-inner">
+      <p class="eyebrow">Technical Specification</p>
+      <h1 class="masthead-title">Data Exchange &amp; Transport Layer</h1>
+      <p class="masthead-subtitle">How COMET maps onto PACT, CBAM, CAD Trust, and carbon data exchange standards</p>
+      <hr class="masthead-rule" aria-hidden="true">
+      <p class="masthead-description">Concrete field-by-field mappings and working code examples for every major carbon data exchange protocol.</p>
+    </div>
+  </header>
+
+  <!-- STICKY NAV -->
+  <nav class="sticky-nav" aria-label="Section navigation">
+    <div class="sticky-nav-inner">
+      <a href="#semantic-middleware">PACT v3</a>
+      <a href="#cbam">CBAM</a>
+      <a href="#cad-trust">CAD Trust</a>
+      <a href="#ghg-protocol">GHG Protocol</a>
+      <a href="#json-schema">JSON Schema</a>
+      <a href="#owl-turtle">OWL Turtle</a>
+    </div>
+  </nav>
+
+  <main class="page-content" id="main-content">
+
+    <!-- SECTION 1: COMET AS SEMANTIC MIDDLEWARE -->
+    <article class="doc-section" id="semantic-middleware">
+      <div class="section-header">
+        <p class="section-label">Section 1</p>
+        <h2 class="section-title">COMET as Semantic Middleware</h2>
+      </div>
+
+      <p class="body-text">
+        Carbon data today is produced in dozens of proprietary formats across LCA tools, ERP systems, registries, and supplier platforms. Each destination&mdash;CBAM declarations, PCF exchanges, carbon credit registries&mdash;demands a different schema. COMET resolves this by acting as a semantic middleware layer: a shared namespace that any producer can annotate into and any consumer can query from, without bilateral integration agreements.
+      </p>
+      <p class="body-text">
+        The mechanism is JSON-LD <code style="font-family:var(--mono);font-size:0.85em;background:#eeece6;padding:0.1em 0.35em;color:var(--text);">@context</code> injection. Any existing payload gains interoperability by referencing the COMET context document. OWL class equivalences allow reasoners to infer alignment across standards automatically.
+      </p>
+
+      <div class="flow-diagram" role="img" aria-label="COMET data flow from producers through vocabulary layer to consumers">
+        <div class="flow-box">
+          <p class="flow-box-label">Data Producers</p>
+          <p class="flow-box-title">Supplier Platforms &amp; Tools</p>
+          <p class="flow-box-body">Supplier platforms, LCA tools (SimaPro, openLCA), ERP systems, carbon registries. Proprietary formats.</p>
+        </div>
+        <div class="flow-arrow" aria-hidden="true">
+          <svg width="28" height="20" viewBox="0 0 28 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <line x1="0" y1="10" x2="20" y2="10" stroke="#c8360a" stroke-width="1.5"/>
+            <polygon points="18,5 28,10 18,15" fill="#c8360a"/>
+          </svg>
+        </div>
+        <div class="flow-box flow-center">
+          <p class="flow-box-label">COMET Vocabulary Layer</p>
+          <p class="flow-box-title">Shared Namespace</p>
+          <p class="flow-box-body">JSON-LD @context injection. Shared namespace. OWL class alignment. SHACL validation.</p>
+        </div>
+        <div class="flow-arrow" aria-hidden="true">
+          <svg width="28" height="20" viewBox="0 0 28 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <line x1="0" y1="10" x2="20" y2="10" stroke="#c8360a" stroke-width="1.5"/>
+            <polygon points="18,5 28,10 18,15" fill="#c8360a"/>
+          </svg>
+        </div>
+        <div class="flow-box">
+          <p class="flow-box-label">Data Consumers</p>
+          <p class="flow-box-title">Buyers, Regulators &amp; Markets</p>
+          <p class="flow-box-body">Industrial buyers, CBAM declarants, carbon verifiers, ESG funds, regulators, carbon markets.</p>
+        </div>
+      </div>
+    </article>
+
+    <!-- SECTION 2: WBCSD PACT v3 -->
+    <article class="doc-section" id="pact-v3">
+      <div class="section-header">
+        <p class="section-label">Section 2</p>
+        <h2 class="section-title">WBCSD PACT v3 Integration</h2>
+      </div>
+
+      <p class="body-text">
+        WBCSD PACT v3 (Partnership for Carbon Transparency) is the leading interoperability framework for product-level carbon footprints. COMET provides a complete semantic overlay for every PACT v3 field, enabling PACT payloads to be annotated with COMET context and consumed by any COMET-aware system without data transformation.
+      </p>
+
+      <h3 class="subsection-title">2a. Field Mapping: ProductFootprint &amp; CarbonFootprint</h3>
+
+      <div class="table-wrap">
+        <table aria-label="PACT v3 to COMET field mapping">
+          <thead>
+            <tr>
+              <th>PACT v3 Field</th>
+              <th>Type</th>
+              <th>COMET Class</th>
+              <th>COMET Property</th>
+              <th>Notes</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>id</td><td class="td-type">UUID</td><td class="td-class">comet-pcf:ProductCarbonFootprint</td><td class="td-prop">pcfId</td><td class="td-note">Primary identifier</td></tr>
+            <tr><td>specVersion</td><td class="td-type">String</td><td class="td-class">&mdash;</td><td class="td-prop">&mdash;</td><td class="td-note">Protocol version</td></tr>
+            <tr><td>version</td><td class="td-type">Integer</td><td class="td-class">&mdash;</td><td class="td-prop">dcterms:version</td><td class="td-note">Payload version</td></tr>
+            <tr><td>created</td><td class="td-type">DateTime</td><td class="td-class">&mdash;</td><td class="td-prop">dcterms:created</td><td class="td-note"></td></tr>
+            <tr><td>updated</td><td class="td-type">DateTime</td><td class="td-class">&mdash;</td><td class="td-prop">dcterms:modified</td><td class="td-note"></td></tr>
+            <tr><td>status</td><td class="td-type">Enum</td><td class="td-class">&mdash;</td><td class="td-prop">&mdash;</td><td class="td-note">Active/Deprecated</td></tr>
+            <tr><td>validityPeriodStart</td><td class="td-type">DateTime</td><td class="td-class">comet:TimePeriod</td><td class="td-prop">startDate</td><td class="td-note"></td></tr>
+            <tr><td>validityPeriodEnd</td><td class="td-type">DateTime</td><td class="td-class">comet:TimePeriod</td><td class="td-prop">endDate</td><td class="td-note"></td></tr>
+            <tr><td>companyName</td><td class="td-type">String</td><td class="td-class">comet:Organization</td><td class="td-prop">orgName</td><td class="td-note"></td></tr>
+            <tr><td>companyIds</td><td class="td-type">URN[]</td><td class="td-class">comet:Organization</td><td class="td-prop">orgId</td><td class="td-note">LEI, DUNS</td></tr>
+            <tr><td>productDescription</td><td class="td-type">String</td><td class="td-class">comet:Material</td><td class="td-prop">materialName</td><td class="td-note"></td></tr>
+            <tr><td>productIds</td><td class="td-type">URN[]</td><td class="td-class">comet:Material</td><td class="td-prop">materialId</td><td class="td-note">GTIN</td></tr>
+            <tr><td>productCategoryCpc</td><td class="td-type">String</td><td class="td-class">comet:Material</td><td class="td-prop">cpcCode</td><td class="td-note">UN CPC</td></tr>
+            <tr><td>productNameCompany</td><td class="td-type">String</td><td class="td-class">comet:Material</td><td class="td-prop">tradeName</td><td class="td-note"></td></tr>
+            <tr><td>pcf.declaredUnit</td><td class="td-type">Enum</td><td class="td-class">comet-pcf:FunctionalUnit</td><td class="td-prop">qudtUnit</td><td class="td-note">QUDT binding</td></tr>
+            <tr><td>pcf.unitaryProductAmount</td><td class="td-type">Decimal</td><td class="td-class">comet-pcf:FunctionalUnit</td><td class="td-prop">qudtValue</td><td class="td-note"></td></tr>
+            <tr><td>pcf.pCfExcludingBiogenic</td><td class="td-type">Decimal</td><td class="td-class">comet-pcf:PCF</td><td class="td-prop">fossilGWP</td><td class="td-note">kgCO2e/unit</td></tr>
+            <tr><td>pcf.pCfIncludingBiogenic</td><td class="td-type">Decimal</td><td class="td-class">comet-pcf:PCF</td><td class="td-prop">totalGWP</td><td class="td-note"></td></tr>
+            <tr><td>pcf.fossilGhgEmissions</td><td class="td-type">Decimal</td><td class="td-class">comet-pcf:PCF</td><td class="td-prop">fossilEmissions</td><td class="td-note"></td></tr>
+            <tr><td>pcf.biogenicCarbonContent</td><td class="td-type">Decimal</td><td class="td-class">comet-pcf:BiogenicCarbon</td><td class="td-prop">biogenicCarbonContent</td><td class="td-note"></td></tr>
+            <tr><td>pcf.dLucGhgEmissions</td><td class="td-type">Decimal</td><td class="td-class">comet-pcf:BiogenicCarbon</td><td class="td-prop">landUseChange</td><td class="td-note"></td></tr>
+            <tr><td>pcf.biogenicCarbonWithdrawal</td><td class="td-type">Decimal</td><td class="td-class">comet-pcf:BiogenicCarbon</td><td class="td-prop">biogenicUptake</td><td class="td-note"></td></tr>
+            <tr><td>pcf.aircraftGhgEmissions</td><td class="td-type">Decimal</td><td class="td-class">comet-sc:TransportEvent</td><td class="td-prop">aircraftEmissions</td><td class="td-note"></td></tr>
+            <tr><td>pcf.characterizationFactors</td><td class="td-type">Enum</td><td class="td-class">comet-ef:GWP100Value</td><td class="td-prop">ipccAR</td><td class="td-note">AR5/AR6</td></tr>
+            <tr><td>pcf.crossSectoralStandardsUsed</td><td class="td-type">Enum[]</td><td class="td-class">comet-pcf:StandardRef</td><td class="td-prop">standardName</td><td class="td-note"></td></tr>
+            <tr><td>pcf.productOrSectorSpecificRules</td><td class="td-type">Object[]</td><td class="td-class">comet-pcf:PCRReference</td><td class="td-prop">pcrName</td><td class="td-note"></td></tr>
+            <tr><td>pcf.boundaryProcessesDescription</td><td class="td-type">String</td><td class="td-class">comet-pcf:SystemBoundary</td><td class="td-prop">description</td><td class="td-note"></td></tr>
+            <tr><td>pcf.referencePeriodStart</td><td class="td-type">DateTime</td><td class="td-class">comet:TimePeriod</td><td class="td-prop">startDate</td><td class="td-note"></td></tr>
+            <tr><td>pcf.referencePeriodEnd</td><td class="td-type">DateTime</td><td class="td-class">comet:TimePeriod</td><td class="td-prop">endDate</td><td class="td-note"></td></tr>
+            <tr><td>pcf.geographyCountry</td><td class="td-type">ISO3166</td><td class="td-class">comet:Site</td><td class="td-prop">siteCountry</td><td class="td-note"></td></tr>
+            <tr><td>pcf.geographyRegionOrSubregion</td><td class="td-type">Enum</td><td class="td-class">comet-ef:GeographyScope</td><td class="td-prop">region</td><td class="td-note"></td></tr>
+            <tr><td>pcf.exemptedEmissionsPercent</td><td class="td-type">Decimal</td><td class="td-class">comet-pcf:PCF</td><td class="td-prop">exemptedPercent</td><td class="td-note"></td></tr>
+            <tr><td>pcf.primaryDataShare</td><td class="td-type">Decimal</td><td class="td-class">comet-sc:PrimaryDataShare</td><td class="td-prop">sharePercent</td><td class="td-note">0&ndash;100</td></tr>
+            <tr><td>pcf.dqi.coveragePercent</td><td class="td-type">Decimal</td><td class="td-class">comet-sc:DQI</td><td class="td-prop">coverageDQI</td><td class="td-note"></td></tr>
+            <tr><td>pcf.dqi.technologicalDQR</td><td class="td-type">Decimal</td><td class="td-class">comet-sc:DQI</td><td class="td-prop">technologyDQI</td><td class="td-note">1&ndash;3</td></tr>
+            <tr><td>pcf.dqi.temporalDQR</td><td class="td-type">Decimal</td><td class="td-class">comet-sc:DQI</td><td class="td-prop">temporalityDQI</td><td class="td-note">1&ndash;3</td></tr>
+            <tr><td>pcf.dqi.geographicalDQR</td><td class="td-type">Decimal</td><td class="td-class">comet-sc:DQI</td><td class="td-prop">geographyDQI</td><td class="td-note">1&ndash;3</td></tr>
+            <tr><td>pcf.dqi.completenessDQR</td><td class="td-type">Decimal</td><td class="td-class">comet-sc:DQI</td><td class="td-prop">reliabilityDQI</td><td class="td-note">1&ndash;3</td></tr>
+            <tr><td>pcf.assurance.assurance</td><td class="td-type">Boolean</td><td class="td-class">comet-ver:AssuranceLevel</td><td class="td-prop">hasAssurance</td><td class="td-note"></td></tr>
+            <tr><td>pcf.assurance.level</td><td class="td-type">Enum</td><td class="td-class">comet-ver:AssuranceLevel</td><td class="td-prop">levelType</td><td class="td-note">limited/reasonable</td></tr>
+            <tr><td>pcf.assurance.providerName</td><td class="td-type">String</td><td class="td-class">comet-ver:QualifiedVerifier</td><td class="td-prop">verifierName</td><td class="td-note"></td></tr>
+            <tr><td>pcf.assurance.completedAt</td><td class="td-type">DateTime</td><td class="td-class">comet-ver:VerificationClaim</td><td class="td-prop">verificationDate</td><td class="td-note"></td></tr>
+            <tr><td>pcf.assurance.standardName</td><td class="td-type">String</td><td class="td-class">comet-ver:VerificationClaim</td><td class="td-prop">standardRef</td><td class="td-note"></td></tr>
+            <tr><td>pcf.allocationRulesDescription</td><td class="td-type">String</td><td class="td-class">comet-pcf:AllocationMethod</td><td class="td-prop">description</td><td class="td-note"></td></tr>
+            <tr><td>pcf.packagingGhgEmissions</td><td class="td-type">Decimal</td><td class="td-class">comet-pcf:PCF</td><td class="td-prop">packagingEmissions</td><td class="td-note"></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3 class="subsection-title">2b. Complete PACT v3 Payload with COMET Context</h3>
+
+      <div class="code-block-wrap">
+        <p class="code-label">JSON-LD &mdash; PACT v3 Product Carbon Footprint with COMET Context Injection</p>
+        <pre aria-label="PACT v3 JSON-LD payload with COMET context injection">{
+  <span class="t-key">"@context"</span>: [
+    <span class="t-str">"https://wbcsd.github.io/pact/v3/context.json"</span>,
+    <span class="t-str">"https://comet.carbon/v1/jsonld/context.json"</span>
+  ],
+  <span class="t-key">"@type"</span>: <span class="t-str">"comet-pcf:ProductCarbonFootprint"</span>,
+  <span class="t-key">"id"</span>: <span class="t-str">"urn:uuid:b1c4a89e-3c2d-4f5a-b6e7-d8f9a0b1c2d3"</span>,
+  <span class="t-key">"specVersion"</span>: <span class="t-str">"3.0.0"</span>,
+  <span class="t-key">"version"</span>: <span class="t-num">1</span>,
+  <span class="t-key">"created"</span>: <span class="t-str">"2025-03-15T10:30:00Z"</span>,
+  <span class="t-key">"status"</span>: <span class="t-str">"Active"</span>,
+  <span class="t-key">"companyName"</span>: <span class="t-str">"Stahl AG"</span>,
+  <span class="t-key">"companyIds"</span>: [<span class="t-str">"urn:lei:5299000J2N45DDNE4Y28"</span>],
+  <span class="t-key">"productDescription"</span>: <span class="t-str">"Hot-rolled steel coil, basic oxygen furnace route"</span>,
+  <span class="t-key">"productIds"</span>: [<span class="t-str">"urn:gtin:04012345678901"</span>],
+  <span class="t-key">"productCategoryCpc"</span>: <span class="t-str">"4121"</span>,
+  <span class="t-key">"pcf"</span>: {
+    <span class="t-key">"declaredUnit"</span>: <span class="t-str">"kilogram"</span>,
+    <span class="t-key">"unitaryProductAmount"</span>: <span class="t-num">1</span>,
+    <span class="t-key">"pCfExcludingBiogenic"</span>: <span class="t-num">1.85</span>,
+    <span class="t-key">"fossilGhgEmissions"</span>: <span class="t-num">1.85</span>,
+    <span class="t-key">"biogenicCarbonContent"</span>: <span class="t-num">0</span>,
+    <span class="t-key">"characterizationFactors"</span>: <span class="t-str">"AR6"</span>,
+    <span class="t-key">"crossSectoralStandardsUsed"</span>: [<span class="t-str">"ISO14067"</span>],
+    <span class="t-key">"boundaryProcessesDescription"</span>: <span class="t-str">"Cradle-to-gate: iron ore extraction through hot rolling"</span>,
+    <span class="t-key">"referencePeriodStart"</span>: <span class="t-str">"2024-01-01T00:00:00Z"</span>,
+    <span class="t-key">"referencePeriodEnd"</span>: <span class="t-str">"2024-12-31T23:59:59Z"</span>,
+    <span class="t-key">"geographyCountry"</span>: <span class="t-str">"DE"</span>,
+    <span class="t-key">"primaryDataShare"</span>: <span class="t-num">78.5</span>,
+    <span class="t-key">"dqi"</span>: {
+      <span class="t-key">"coveragePercent"</span>: <span class="t-num">85.0</span>,
+      <span class="t-key">"technologicalDQR"</span>: <span class="t-num">1.5</span>,
+      <span class="t-key">"temporalDQR"</span>: <span class="t-num">1.0</span>,
+      <span class="t-key">"geographicalDQR"</span>: <span class="t-num">1.0</span>,
+      <span class="t-key">"completenessDQR"</span>: <span class="t-num">2.0</span>
+    },
+    <span class="t-key">"assurance"</span>: {
+      <span class="t-key">"assurance"</span>: <span class="t-num">true</span>,
+      <span class="t-key">"coverage"</span>: <span class="t-str">"PCF system"</span>,
+      <span class="t-key">"level"</span>: <span class="t-str">"limited"</span>,
+      <span class="t-key">"providerName"</span>: <span class="t-str">"Bureau Veritas"</span>,
+      <span class="t-key">"completedAt"</span>: <span class="t-str">"2025-02-28T00:00:00Z"</span>,
+      <span class="t-key">"standardName"</span>: <span class="t-str">"ISO 14064-3"</span>
+    }
+  }
+}</pre>
+      </div>
+
+      <h3 class="subsection-title">2c. PACT REST API Endpoints</h3>
+
+      <div class="table-wrap">
+        <table aria-label="PACT REST API endpoint reference">
+          <thead>
+            <tr>
+              <th>Method</th>
+              <th>Endpoint</th>
+              <th>Description</th>
+              <th>COMET Context</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><span class="method-badge method-post">POST</span></td>
+              <td class="td-mono">/auth/token</td>
+              <td>OAuth2 client credentials</td>
+              <td class="td-note">Authentication</td>
+            </tr>
+            <tr>
+              <td><span class="method-badge method-get">GET</span></td>
+              <td class="td-mono">/2/footprints</td>
+              <td>List all footprints</td>
+              <td class="td-class">Array of comet-pcf:ProductCarbonFootprint</td>
+            </tr>
+            <tr>
+              <td><span class="method-badge method-get">GET</span></td>
+              <td class="td-mono">/2/footprints/{id}</td>
+              <td>Get single footprint</td>
+              <td class="td-class">Single comet-pcf:ProductCarbonFootprint</td>
+            </tr>
+            <tr>
+              <td><span class="method-badge method-post">POST</span></td>
+              <td class="td-mono">/2/events</td>
+              <td>Publish events</td>
+              <td class="td-note">PF update notifications</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </article>
+
+    <!-- SECTION 3: EU CBAM -->
+    <article class="doc-section" id="cbam">
+      <div class="section-header">
+        <p class="section-label">Section 3</p>
+        <h2 class="section-title">EU CBAM Declaration Mapping</h2>
+      </div>
+
+      <p class="body-text">
+        The EU Carbon Border Adjustment Mechanism (Regulation 2023/956) requires importers to declare embedded emissions for iron, steel, aluminium, cement, fertilisers, electricity, and hydrogen. COMET provides a dedicated <code style="font-family:var(--mono);font-size:0.85em;background:#eeece6;padding:0.1em 0.35em;color:var(--text);">comet-pcf:CBAMDeclaration</code> class that maps directly to the CBAM XML schema issued by DG TAXUD, enabling automated declaration generation from structured COMET data.
+      </p>
+
+      <h3 class="subsection-title">3a. CBAM Field Mapping</h3>
+
+      <div class="table-wrap">
+        <table aria-label="CBAM to COMET field mapping">
+          <thead>
+            <tr>
+              <th>CBAM Field</th>
+              <th>Regulation Ref</th>
+              <th>COMET Class</th>
+              <th>COMET Property</th>
+              <th>Type</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>Authorised declarant</td><td class="td-note">Art. 5</td><td class="td-class">comet:Organization</td><td class="td-prop">orgId (EORI)</td><td class="td-type">String</td></tr>
+            <tr><td>CN code</td><td class="td-note">Annex I</td><td class="td-class">comet-pcf:CBAMDeclaration</td><td class="td-prop">cnCode</td><td class="td-type">8-digit</td></tr>
+            <tr><td>Country of origin</td><td class="td-note">Art. 35</td><td class="td-class">comet:Site</td><td class="td-prop">siteCountry</td><td class="td-type">ISO 3166</td></tr>
+            <tr><td>Installation ID</td><td class="td-note">Art. 10</td><td class="td-class">comet:Site</td><td class="td-prop">siteId</td><td class="td-type">String</td></tr>
+            <tr><td>Specific embedded emissions</td><td class="td-note">Art. 7</td><td class="td-class">comet-pcf:EmbeddedEmissions</td><td class="td-prop">specificEmbeddedEmissions</td><td class="td-type">tCO2e/t</td></tr>
+            <tr><td>Direct emissions</td><td class="td-note">Art. 7(2)(a)</td><td class="td-class">comet-pcf:EmbeddedEmissions</td><td class="td-prop">directEmissions</td><td class="td-type">tCO2e/t</td></tr>
+            <tr><td>Indirect emissions</td><td class="td-note">Art. 7(2)(b)</td><td class="td-class">comet-pcf:EmbeddedEmissions</td><td class="td-prop">indirectEmissions</td><td class="td-type">tCO2e/t</td></tr>
+            <tr><td>Production route</td><td class="td-note">Annex IV</td><td class="td-class">comet-pcf:EmbeddedEmissions</td><td class="td-prop">productionRoute</td><td class="td-type">String</td></tr>
+            <tr><td>Carbon price paid</td><td class="td-note">Art. 9</td><td class="td-class">comet-mkt:CBAMShadowTariff</td><td class="td-prop">thirdCountryCarbonPrice</td><td class="td-type">EUR</td></tr>
+            <tr><td>EU ETS benchmark</td><td class="td-note">Art. 31</td><td class="td-class">comet-mkt:MarketBenchmark</td><td class="td-prop">benchmarkValue</td><td class="td-type">tCO2e/t</td></tr>
+            <tr><td>Quantity imported</td><td class="td-note">Art. 35</td><td class="td-class">comet-pcf:FunctionalUnit</td><td class="td-prop">qudtValue</td><td class="td-type">tonnes</td></tr>
+            <tr><td>Reporting period</td><td class="td-note">Art. 35</td><td class="td-class">comet:TimePeriod</td><td class="td-prop">startDate/endDate</td><td class="td-type">ISO 8601</td></tr>
+            <tr><td>Verification</td><td class="td-note">Art. 8, 18</td><td class="td-class">comet-ver:VerificationClaim</td><td class="td-prop">&mdash;</td><td class="td-type">Object</td></tr>
+            <tr><td>Precursor emissions</td><td class="td-note">Annex IV</td><td class="td-class">comet-sc:SupplyChainLink</td><td class="td-prop">&mdash;</td><td class="td-type">Object</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3 class="subsection-title">3b. CBAM XML with COMET Namespace Annotations</h3>
+
+      <div class="code-block-wrap">
+        <p class="code-label">XML &mdash; CBAM Declaration with COMET Namespace Annotations</p>
+        <pre aria-label="CBAM XML declaration with COMET namespace annotations">&lt;<span class="t-tag">?xml</span> <span class="t-attr">version</span>=<span class="t-val">"1.0"</span> <span class="t-attr">encoding</span>=<span class="t-val">"UTF-8"</span>?&gt;
+&lt;<span class="t-tag">cbam:CBAMDeclaration</span>
+  <span class="t-attr">xmlns:cbam</span>=<span class="t-val">"urn:ec:taxud:cbam:v1"</span>
+  <span class="t-attr">xmlns:comet</span>=<span class="t-val">"https://comet.carbon/v1/core#"</span>
+  <span class="t-attr">xmlns:comet-pcf</span>=<span class="t-val">"https://comet.carbon/v1/pcf#"</span>
+  <span class="t-attr">xmlns:comet-mkt</span>=<span class="t-val">"https://comet.carbon/v1/market#"</span>
+  <span class="t-attr">xmlns:comet-ver</span>=<span class="t-val">"https://comet.carbon/v1/ver#"</span>&gt;
+
+  &lt;<span class="t-tag">cbam:declarant</span>&gt;
+    &lt;<span class="t-tag">comet:Organization</span>&gt;
+      &lt;<span class="t-tag">comet:orgId</span> <span class="t-attr">type</span>=<span class="t-val">"EORI"</span>&gt;DE123456789012345&lt;/<span class="t-tag">comet:orgId</span>&gt;
+      &lt;<span class="t-tag">comet:orgName</span>&gt;Stahl Import GmbH&lt;/<span class="t-tag">comet:orgName</span>&gt;
+    &lt;/<span class="t-tag">comet:Organization</span>&gt;
+  &lt;/<span class="t-tag">cbam:declarant</span>&gt;
+
+  &lt;<span class="t-tag">cbam:reportingPeriod</span>&gt;
+    &lt;<span class="t-tag">comet:TimePeriod</span>&gt;
+      &lt;<span class="t-tag">comet:startDate</span>&gt;2026-01-01&lt;/<span class="t-tag">comet:startDate</span>&gt;
+      &lt;<span class="t-tag">comet:endDate</span>&gt;2026-03-31&lt;/<span class="t-tag">comet:endDate</span>&gt;
+    &lt;/<span class="t-tag">comet:TimePeriod</span>&gt;
+  &lt;/<span class="t-tag">cbam:reportingPeriod</span>&gt;
+
+  &lt;<span class="t-tag">cbam:goods</span>&gt;
+    &lt;<span class="t-tag">cbam:goodsItem</span>&gt;
+      &lt;<span class="t-tag">comet-pcf:CBAMDeclaration</span>&gt;
+        &lt;<span class="t-tag">comet-pcf:cnCode</span>&gt;72081000&lt;/<span class="t-tag">comet-pcf:cnCode</span>&gt;
+        &lt;<span class="t-tag">comet-pcf:embeddedEmissions</span>&gt;
+          &lt;<span class="t-tag">comet-pcf:specificEmbeddedEmissions</span> <span class="t-attr">unit</span>=<span class="t-val">"tCO2e/t"</span>&gt;1.85&lt;/<span class="t-tag">comet-pcf:specificEmbeddedEmissions</span>&gt;
+          &lt;<span class="t-tag">comet-pcf:directEmissions</span> <span class="t-attr">unit</span>=<span class="t-val">"tCO2e/t"</span>&gt;1.62&lt;/<span class="t-tag">comet-pcf:directEmissions</span>&gt;
+          &lt;<span class="t-tag">comet-pcf:indirectEmissions</span> <span class="t-attr">unit</span>=<span class="t-val">"tCO2e/t"</span>&gt;0.23&lt;/<span class="t-tag">comet-pcf:indirectEmissions</span>&gt;
+          &lt;<span class="t-tag">comet-pcf:productionRoute</span>&gt;Basic Oxygen Furnace (BOF)&lt;/<span class="t-tag">comet-pcf:productionRoute</span>&gt;
+        &lt;/<span class="t-tag">comet-pcf:embeddedEmissions</span>&gt;
+        &lt;<span class="t-tag">comet:Site</span>&gt;
+          &lt;<span class="t-tag">comet:siteCountry</span>&gt;TR&lt;/<span class="t-tag">comet:siteCountry</span>&gt;
+          &lt;<span class="t-tag">comet:siteId</span>&gt;TR-INSTALL-2024-0847&lt;/<span class="t-tag">comet:siteId</span>&gt;
+        &lt;/<span class="t-tag">comet:Site</span>&gt;
+        &lt;<span class="t-tag">comet-mkt:CBAMShadowTariff</span>&gt;
+          &lt;<span class="t-tag">comet-mkt:euETSPrice</span> <span class="t-attr">currency</span>=<span class="t-val">"EUR"</span>&gt;68.50&lt;/<span class="t-tag">comet-mkt:euETSPrice</span>&gt;
+          &lt;<span class="t-tag">comet-mkt:thirdCountryCarbonPrice</span> <span class="t-attr">currency</span>=<span class="t-val">"EUR"</span>&gt;12.00&lt;/<span class="t-tag">comet-mkt:thirdCountryCarbonPrice</span>&gt;
+        &lt;/<span class="t-tag">comet-mkt:CBAMShadowTariff</span>&gt;
+        &lt;<span class="t-tag">comet-pcf:FunctionalUnit</span>&gt;
+          &lt;<span class="t-tag">comet-pcf:qudtValue</span>&gt;500&lt;/<span class="t-tag">comet-pcf:qudtValue</span>&gt;
+          &lt;<span class="t-tag">comet-pcf:qudtUnit</span>&gt;tonne&lt;/<span class="t-tag">comet-pcf:qudtUnit</span>&gt;
+        &lt;/<span class="t-tag">comet-pcf:FunctionalUnit</span>&gt;
+      &lt;/<span class="t-tag">comet-pcf:CBAMDeclaration</span>&gt;
+    &lt;/<span class="t-tag">cbam:goodsItem</span>&gt;
+  &lt;/<span class="t-tag">cbam:goods</span>&gt;
+
+  &lt;<span class="t-tag">cbam:verification</span>&gt;
+    &lt;<span class="t-tag">comet-ver:VerificationClaim</span>&gt;
+      &lt;<span class="t-tag">comet-ver:verifierName</span>&gt;Bureau Veritas&lt;/<span class="t-tag">comet-ver:verifierName</span>&gt;
+      &lt;<span class="t-tag">comet-ver:assuranceLevel</span>&gt;limited&lt;/<span class="t-tag">comet-ver:assuranceLevel</span>&gt;
+      &lt;<span class="t-tag">comet-ver:standardRef</span>&gt;ISO 14064-3:2019&lt;/<span class="t-tag">comet-ver:standardRef</span>&gt;
+    &lt;/<span class="t-tag">comet-ver:VerificationClaim</span>&gt;
+  &lt;/<span class="t-tag">cbam:verification</span>&gt;
+&lt;/<span class="t-tag">cbam:CBAMDeclaration</span>&gt;</pre>
+      </div>
+
+      <h3 class="subsection-title">3c. XSD Schema Fragment</h3>
+
+      <div class="code-block-wrap">
+        <p class="code-label">XSD &mdash; COMET CBAMDeclarationType Schema Fragment</p>
+        <pre aria-label="XSD schema fragment for COMET CBAMDeclarationType">&lt;<span class="t-tag">?xml</span> <span class="t-attr">version</span>=<span class="t-val">"1.0"</span> <span class="t-attr">encoding</span>=<span class="t-val">"UTF-8"</span>?&gt;
+&lt;<span class="t-tag">xs:schema</span>
+  <span class="t-attr">xmlns:xs</span>=<span class="t-val">"http://www.w3.org/2001/XMLSchema"</span>
+  <span class="t-attr">xmlns:comet-pcf</span>=<span class="t-val">"https://comet.carbon/v1/pcf#"</span>
+  <span class="t-attr">targetNamespace</span>=<span class="t-val">"https://comet.carbon/v1/pcf#"</span>&gt;
+
+  &lt;<span class="t-tag">xs:complexType</span> <span class="t-attr">name</span>=<span class="t-val">"CBAMDeclarationType"</span>&gt;
+    &lt;<span class="t-tag">xs:sequence</span>&gt;
+      &lt;<span class="t-tag">xs:element</span> <span class="t-attr">name</span>=<span class="t-val">"cnCode"</span> <span class="t-attr">type</span>=<span class="t-val">"xs:string"</span>/&gt;
+      &lt;<span class="t-tag">xs:element</span> <span class="t-attr">name</span>=<span class="t-val">"embeddedEmissions"</span> <span class="t-attr">type</span>=<span class="t-val">"comet-pcf:EmbeddedEmissionsType"</span>/&gt;
+      &lt;<span class="t-tag">xs:element</span> <span class="t-attr">name</span>=<span class="t-val">"countryOfOrigin"</span> <span class="t-attr">type</span>=<span class="t-val">"xs:string"</span>/&gt;
+      &lt;<span class="t-tag">xs:element</span> <span class="t-attr">name</span>=<span class="t-val">"applicableCarbonPrice"</span> <span class="t-attr">type</span>=<span class="t-val">"xs:decimal"</span> <span class="t-attr">minOccurs</span>=<span class="t-val">"0"</span>/&gt;
+    &lt;/<span class="t-tag">xs:sequence</span>&gt;
+  &lt;/<span class="t-tag">xs:complexType</span>&gt;
+
+  &lt;<span class="t-tag">xs:complexType</span> <span class="t-attr">name</span>=<span class="t-val">"EmbeddedEmissionsType"</span>&gt;
+    &lt;<span class="t-tag">xs:sequence</span>&gt;
+      &lt;<span class="t-tag">xs:element</span> <span class="t-attr">name</span>=<span class="t-val">"specificEmbeddedEmissions"</span> <span class="t-attr">type</span>=<span class="t-val">"xs:decimal"</span>/&gt;
+      &lt;<span class="t-tag">xs:element</span> <span class="t-attr">name</span>=<span class="t-val">"directEmissions"</span> <span class="t-attr">type</span>=<span class="t-val">"xs:decimal"</span>/&gt;
+      &lt;<span class="t-tag">xs:element</span> <span class="t-attr">name</span>=<span class="t-val">"indirectEmissions"</span> <span class="t-attr">type</span>=<span class="t-val">"xs:decimal"</span>/&gt;
+      &lt;<span class="t-tag">xs:element</span> <span class="t-attr">name</span>=<span class="t-val">"productionRoute"</span> <span class="t-attr">type</span>=<span class="t-val">"xs:string"</span>/&gt;
+    &lt;/<span class="t-tag">xs:sequence</span>&gt;
+  &lt;/<span class="t-tag">xs:complexType</span>&gt;
+
+&lt;/<span class="t-tag">xs:schema</span>&gt;</pre>
+      </div>
+    </article>
+
+    <!-- SECTION 4: CAD TRUST -->
+    <article class="doc-section" id="cad-trust">
+      <div class="section-header">
+        <p class="section-label">Section 4</p>
+        <h2 class="section-title">CAD Trust Integration</h2>
+      </div>
+
+      <p class="body-text">
+        CAD Trust (Climate Action Data Trust) is the interoperability backbone for carbon credit registries, aggregating data from Verra VCS, Gold Standard, ACR, CAR, and others through a unified API. COMET maps all CAD Trust v2.0.2 entities, enabling carbon credit data to flow into COMET-aware procurement, financing, and compliance systems without bilateral registry integrations.
+      </p>
+
+      <h3 class="subsection-title">4a. Entity Mapping: CAD Trust v2.0.2</h3>
+
+      <div class="table-wrap">
+        <table aria-label="CAD Trust to COMET entity mapping">
+          <thead>
+            <tr>
+              <th>CAD Trust Table</th>
+              <th>Key API Field</th>
+              <th>COMET Class</th>
+              <th>COMET Property</th>
+              <th>Notes</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>project</td><td class="td-mono">cadTrustProjectId</td><td class="td-class">comet-ver:CADTrustAttestation</td><td class="td-prop">cadTrustProjectId</td><td class="td-note">Primary linkage</td></tr>
+            <tr><td>project</td><td class="td-mono">projectRegistryName</td><td class="td-class">comet-eac:CertificateRegistry</td><td class="td-prop">registryName</td><td class="td-note"></td></tr>
+            <tr><td>project</td><td class="td-mono">projectSector</td><td class="td-class">comet:Process</td><td class="td-prop">processType</td><td class="td-note">CDM sectors</td></tr>
+            <tr><td>unit</td><td class="td-mono">unitSerialId</td><td class="td-class">comet-eac:EAC</td><td class="td-prop">serialNumber</td><td class="td-note">Credit ID</td></tr>
+            <tr><td>unit</td><td class="td-mono">unitType</td><td class="td-class">comet-eac:EAC</td><td class="td-prop">unitType</td><td class="td-note">Avoidance/Reduction/Removal</td></tr>
+            <tr><td>unit</td><td class="td-mono">unitVintageYear</td><td class="td-class">comet-eac:EAC</td><td class="td-prop">vintageYear</td><td class="td-note"></td></tr>
+            <tr><td>unit</td><td class="td-mono">unitStatus</td><td class="td-class">comet-eac:EAC</td><td class="td-prop">unitStatus</td><td class="td-note">Issued/Held/Retired/Cancelled</td></tr>
+            <tr><td>unit</td><td class="td-mono">unitCount</td><td class="td-class">comet-eac:EAC</td><td class="td-prop">unitCount</td><td class="td-note"></td></tr>
+            <tr><td>unit</td><td class="td-mono">unitRetirementBeneficiary</td><td class="td-class">comet-eac:RetirementEvent</td><td class="td-prop">retirementBeneficiary</td><td class="td-note"></td></tr>
+            <tr><td>verification</td><td class="td-mono">verificationBody</td><td class="td-class">comet-ver:QualifiedVerifier</td><td class="td-prop">verifierName</td><td class="td-note">VVB</td></tr>
+            <tr><td>validation</td><td class="td-mono">validationType</td><td class="td-class">comet-ver:ValidationRecord</td><td class="td-prop">validationType</td><td class="td-note"></td></tr>
+            <tr><td>label</td><td class="td-mono">labelType</td><td class="td-class">comet-eac:EAC</td><td class="td-prop">labelType</td><td class="td-note">Cert/Art.6 types</td></tr>
+            <tr><td>co_benefit</td><td class="td-mono">cobenefit</td><td class="td-class">comet-eac:CoBenefit</td><td class="td-prop">sdgGoal</td><td class="td-note">SDG 1&ndash;17</td></tr>
+            <tr><td>rating</td><td class="td-mono">ratingType</td><td class="td-class">comet-ver:Rating</td><td class="td-prop">ratingProvider</td><td class="td-note">CDP/CCQI</td></tr>
+            <tr><td>program</td><td class="td-mono">programName</td><td class="td-class">comet-eac:CertificateRegistry</td><td class="td-prop">programName</td><td class="td-note"></td></tr>
+            <tr><td>estimation</td><td class="td-mono">estimationUnitCount</td><td class="td-class">comet-sc:ActivityDataRecord</td><td class="td-prop">estimatedQuantity</td><td class="td-note"></td></tr>
+            <tr><td>aef_t2</td><td class="td-mono">authorization fields</td><td class="td-class">comet-eac:Article6Authorization</td><td class="td-prop">&mdash;</td><td class="td-note">Paris Art. 6</td></tr>
+            <tr><td>aef_t3</td><td class="td-mono">transfer fields</td><td class="td-class">comet-eac:Article6Transfer</td><td class="td-prop">&mdash;</td><td class="td-note">ITMO transfers</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3 class="subsection-title">4b. Carbon Credit JSON-LD with CAD Trust Attestation</h3>
+
+      <div class="code-block-wrap">
+        <p class="code-label">JSON-LD &mdash; COMET Carbon Removal Certificate with CAD Trust Attestation</p>
+        <pre aria-label="JSON-LD carbon removal certificate with CAD Trust attestation">{
+  <span class="t-key">"@context"</span>: [
+    <span class="t-str">"https://comet.carbon/v1/jsonld/context.json"</span>,
+    <span class="t-str">"https://climateactiondata.org/api/v2/context.json"</span>
+  ],
+  <span class="t-key">"@type"</span>: <span class="t-str">"comet-eac:CarbonRemovalCert"</span>,
+  <span class="t-key">"comet-eac:serialNumber"</span>: <span class="t-str">"VCS-2847-2024-001-to-500"</span>,
+  <span class="t-key">"comet-eac:vintageYear"</span>: <span class="t-num">2024</span>,
+  <span class="t-key">"comet-eac:unitCount"</span>: <span class="t-num">500</span>,
+  <span class="t-key">"comet-eac:unitType"</span>: <span class="t-str">"Removal - technical"</span>,
+  <span class="t-key">"comet-eac:registry"</span>: {
+    <span class="t-key">"@type"</span>: <span class="t-str">"comet-eac:CertificateRegistry"</span>,
+    <span class="t-key">"comet-eac:registryName"</span>: <span class="t-str">"Verra VCS"</span>,
+    <span class="t-key">"comet-eac:registryURI"</span>: <span class="t-str">"https://registry.verra.org/"</span>
+  },
+  <span class="t-key">"comet-ver:CADTrustAttestation"</span>: {
+    <span class="t-key">"cadTrustProjectId"</span>: <span class="t-str">"a1b2c3d4-e5f6-7890-abcd-ef1234567890"</span>,
+    <span class="t-key">"cadTrustUnitId"</span>: <span class="t-str">"f0e1d2c3-b4a5-6789-0fed-cba987654321"</span>
+  },
+  <span class="t-key">"comet:Site"</span>: {
+    <span class="t-key">"comet:siteCountry"</span>: <span class="t-str">"KE"</span>,
+    <span class="t-key">"comet:siteRegion"</span>: <span class="t-str">"Rift Valley"</span>
+  },
+  <span class="t-key">"comet-ver:VerificationClaim"</span>: {
+    <span class="t-key">"comet-ver:verifierName"</span>: <span class="t-str">"DNV"</span>,
+    <span class="t-key">"comet-ver:assuranceLevel"</span>: <span class="t-str">"reasonable"</span>
+  },
+  <span class="t-key">"comet-eac:CoBenefit"</span>: [
+    { <span class="t-key">"sdgGoal"</span>: <span class="t-str">"SDG 13 - Climate action"</span> },
+    { <span class="t-key">"sdgGoal"</span>: <span class="t-str">"SDG 15 - Life on land"</span> }
+  ],
+  <span class="t-key">"comet-eac:RetirementEvent"</span>: {
+    <span class="t-key">"retirementBeneficiary"</span>: <span class="t-str">"Stahl AG"</span>,
+    <span class="t-key">"retirementDate"</span>: <span class="t-str">"2025-06-15"</span>
+  }
+}</pre>
+      </div>
+    </article>
+
+    <!-- SECTION 5: GHG PROTOCOL -->
+    <article class="doc-section" id="ghg-protocol">
+      <div class="section-header">
+        <p class="section-label">Section 5</p>
+        <h2 class="section-title">GHG Protocol Scope 3 Mapping</h2>
+      </div>
+
+      <p class="body-text">
+        The GHG Protocol Corporate Value Chain (Scope 3) Standard defines 15 categories of indirect emissions. COMET classes cover 11 of the 15 categories directly, with the remaining four handled through composition. This table shows the primary COMET class responsible for each category and its expected use case in a corporate carbon accounting workflow.
+      </p>
+
+      <div class="table-wrap">
+        <table aria-label="GHG Protocol Scope 3 categories mapped to COMET classes">
+          <thead>
+            <tr>
+              <th>Cat</th>
+              <th>Description</th>
+              <th>COMET Class</th>
+              <th>Use Case</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>1</td><td>Purchased goods &amp; services</td><td class="td-class">comet-sc:SupplyChainLink + comet-pcf:PCF</td><td class="td-note">Supplier PCF ingestion</td></tr>
+            <tr><td>2</td><td>Capital goods</td><td class="td-class">comet-sc:SupplyChainLink</td><td class="td-note">Asset embodied carbon</td></tr>
+            <tr><td>3</td><td>Fuel &amp; energy activities</td><td class="td-class">comet-ef:EmissionFactor</td><td class="td-note">Well-to-tank factors</td></tr>
+            <tr><td>4</td><td>Upstream transport</td><td class="td-class">comet-sc:TransportEvent</td><td class="td-note">Logistics emissions</td></tr>
+            <tr><td>5</td><td>Waste in operations</td><td class="td-class">comet-pcf:SystemBoundary</td><td class="td-note">End-of-life module</td></tr>
+            <tr><td>6</td><td>Business travel</td><td class="td-class">comet-sc:TransportEvent</td><td class="td-note">Travel emissions</td></tr>
+            <tr><td>7</td><td>Employee commuting</td><td class="td-class">comet-sc:TransportEvent</td><td class="td-note">Commute estimates</td></tr>
+            <tr><td>9</td><td>Downstream transport</td><td class="td-class">comet-sc:TransportEvent</td><td class="td-note">Distribution</td></tr>
+            <tr><td>11</td><td>Use of sold products</td><td class="td-class">comet-pcf:SystemBoundary</td><td class="td-note">Use-phase</td></tr>
+            <tr><td>12</td><td>End-of-life treatment</td><td class="td-class">comet-pcf:SystemBoundary</td><td class="td-note">Disposal/recycling</td></tr>
+            <tr><td>15</td><td>Investments</td><td class="td-class">comet-mkt:CarbonPremium</td><td class="td-note">Financed emissions</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </article>
+
+    <!-- SECTION 6: JSON SCHEMA -->
+    <article class="doc-section" id="json-schema">
+      <div class="section-header">
+        <p class="section-label">Section 6</p>
+        <h2 class="section-title">JSON Schema for COMET PCF</h2>
+      </div>
+
+      <p class="body-text">
+        This JSON Schema draft-07 document provides machine-readable validation for COMET ProductCarbonFootprint instances. It can be used directly in API validation pipelines, data quality gates, and SHACL-to-JSON toolchains. The schema enforces required fields, numeric constraints, and controlled vocabulary enumerations aligned with ISO 14067 and PACT v3.
+      </p>
+
+      <div class="code-block-wrap">
+        <p class="code-label">JSON Schema &mdash; COMET ProductCarbonFootprint (draft-07)</p>
+        <pre aria-label="JSON Schema draft-07 for COMET ProductCarbonFootprint">{
+  <span class="t-key">"$schema"</span>: <span class="t-str">"http://json-schema.org/draft-07/schema#"</span>,
+  <span class="t-key">"$id"</span>: <span class="t-str">"https://comet.carbon/v1/schema/pcf.json"</span>,
+  <span class="t-key">"title"</span>: <span class="t-str">"COMET ProductCarbonFootprint"</span>,
+  <span class="t-key">"type"</span>: <span class="t-str">"object"</span>,
+  <span class="t-key">"required"</span>: [<span class="t-str">"pcfId"</span>, <span class="t-str">"declaredUnit"</span>, <span class="t-str">"fossilGWP"</span>, <span class="t-str">"reportingPeriod"</span>, <span class="t-str">"organization"</span>],
+  <span class="t-key">"properties"</span>: {
+    <span class="t-key">"pcfId"</span>: { <span class="t-key">"type"</span>: <span class="t-str">"string"</span>, <span class="t-key">"format"</span>: <span class="t-str">"uuid"</span> },
+    <span class="t-key">"declaredUnit"</span>: {
+      <span class="t-key">"type"</span>: <span class="t-str">"string"</span>,
+      <span class="t-key">"enum"</span>: [
+        <span class="t-str">"kilogram"</span>, <span class="t-str">"liter"</span>, <span class="t-str">"cubic meter"</span>,
+        <span class="t-str">"kilowatt hour"</span>, <span class="t-str">"megajoule"</span>,
+        <span class="t-str">"tonne kilometre"</span>, <span class="t-str">"square meter"</span>
+      ]
+    },
+    <span class="t-key">"unitaryProductAmount"</span>: { <span class="t-key">"type"</span>: <span class="t-str">"number"</span>, <span class="t-key">"minimum"</span>: <span class="t-num">0</span> },
+    <span class="t-key">"fossilGWP"</span>: {
+      <span class="t-key">"type"</span>: <span class="t-str">"number"</span>,
+      <span class="t-key">"minimum"</span>: <span class="t-num">0</span>,
+      <span class="t-key">"description"</span>: <span class="t-str">"kg CO2e per declared unit"</span>
+    },
+    <span class="t-key">"totalGWP"</span>: { <span class="t-key">"type"</span>: <span class="t-str">"number"</span> },
+    <span class="t-key">"biogenicCarbon"</span>: {
+      <span class="t-key">"type"</span>: <span class="t-str">"object"</span>,
+      <span class="t-key">"properties"</span>: {
+        <span class="t-key">"biogenicCarbonContent"</span>: { <span class="t-key">"type"</span>: <span class="t-str">"number"</span> },
+        <span class="t-key">"biogenicUptake"</span>: { <span class="t-key">"type"</span>: <span class="t-str">"number"</span> },
+        <span class="t-key">"landUseChange"</span>: { <span class="t-key">"type"</span>: <span class="t-str">"number"</span> },
+        <span class="t-key">"indirectLUC"</span>: { <span class="t-key">"type"</span>: <span class="t-str">"number"</span> }
+      }
+    },
+    <span class="t-key">"characterizationFactors"</span>: { <span class="t-key">"type"</span>: <span class="t-str">"string"</span>, <span class="t-key">"enum"</span>: [<span class="t-str">"AR5"</span>, <span class="t-str">"AR6"</span>] },
+    <span class="t-key">"systemBoundary"</span>: {
+      <span class="t-key">"type"</span>: <span class="t-str">"string"</span>,
+      <span class="t-key">"enum"</span>: [
+        <span class="t-str">"cradle-to-gate"</span>, <span class="t-str">"gate-to-gate"</span>,
+        <span class="t-str">"cradle-to-grave"</span>, <span class="t-str">"cradle-to-cradle"</span>
+      ]
+    },
+    <span class="t-key">"allocationMethod"</span>: {
+      <span class="t-key">"type"</span>: <span class="t-str">"string"</span>,
+      <span class="t-key">"enum"</span>: [
+        <span class="t-str">"mass"</span>, <span class="t-str">"economic"</span>, <span class="t-str">"energy"</span>,
+        <span class="t-str">"physical-causality"</span>, <span class="t-str">"pcr-mandated"</span>
+      ]
+    },
+    <span class="t-key">"primaryDataShare"</span>: { <span class="t-key">"type"</span>: <span class="t-str">"number"</span>, <span class="t-key">"minimum"</span>: <span class="t-num">0</span>, <span class="t-key">"maximum"</span>: <span class="t-num">100</span> },
+    <span class="t-key">"reportingPeriod"</span>: {
+      <span class="t-key">"type"</span>: <span class="t-str">"object"</span>,
+      <span class="t-key">"required"</span>: [<span class="t-str">"startDate"</span>, <span class="t-str">"endDate"</span>],
+      <span class="t-key">"properties"</span>: {
+        <span class="t-key">"startDate"</span>: { <span class="t-key">"type"</span>: <span class="t-str">"string"</span>, <span class="t-key">"format"</span>: <span class="t-str">"date"</span> },
+        <span class="t-key">"endDate"</span>: { <span class="t-key">"type"</span>: <span class="t-str">"string"</span>, <span class="t-key">"format"</span>: <span class="t-str">"date"</span> }
+      }
+    },
+    <span class="t-key">"organization"</span>: {
+      <span class="t-key">"type"</span>: <span class="t-str">"object"</span>,
+      <span class="t-key">"required"</span>: [<span class="t-str">"orgName"</span>],
+      <span class="t-key">"properties"</span>: {
+        <span class="t-key">"orgName"</span>: { <span class="t-key">"type"</span>: <span class="t-str">"string"</span> },
+        <span class="t-key">"orgId"</span>: { <span class="t-key">"type"</span>: <span class="t-str">"string"</span> },
+        <span class="t-key">"siteCountry"</span>: { <span class="t-key">"type"</span>: <span class="t-str">"string"</span>, <span class="t-key">"pattern"</span>: <span class="t-str">"^[A-Z]{2}$"</span> }
+      }
+    },
+    <span class="t-key">"dataQuality"</span>: {
+      <span class="t-key">"type"</span>: <span class="t-str">"object"</span>,
+      <span class="t-key">"properties"</span>: {
+        <span class="t-key">"coveragePercent"</span>: { <span class="t-key">"type"</span>: <span class="t-str">"number"</span>, <span class="t-key">"minimum"</span>: <span class="t-num">0</span>, <span class="t-key">"maximum"</span>: <span class="t-num">100</span> },
+        <span class="t-key">"technologicalDQR"</span>: { <span class="t-key">"type"</span>: <span class="t-str">"number"</span>, <span class="t-key">"minimum"</span>: <span class="t-num">1</span>, <span class="t-key">"maximum"</span>: <span class="t-num">3</span> },
+        <span class="t-key">"temporalDQR"</span>: { <span class="t-key">"type"</span>: <span class="t-str">"number"</span>, <span class="t-key">"minimum"</span>: <span class="t-num">1</span>, <span class="t-key">"maximum"</span>: <span class="t-num">3</span> },
+        <span class="t-key">"geographicalDQR"</span>: { <span class="t-key">"type"</span>: <span class="t-str">"number"</span>, <span class="t-key">"minimum"</span>: <span class="t-num">1</span>, <span class="t-key">"maximum"</span>: <span class="t-num">3</span> },
+        <span class="t-key">"completenessDQR"</span>: { <span class="t-key">"type"</span>: <span class="t-str">"number"</span>, <span class="t-key">"minimum"</span>: <span class="t-num">1</span>, <span class="t-key">"maximum"</span>: <span class="t-num">3</span> }
+      }
+    },
+    <span class="t-key">"verification"</span>: {
+      <span class="t-key">"type"</span>: <span class="t-str">"object"</span>,
+      <span class="t-key">"properties"</span>: {
+        <span class="t-key">"hasAssurance"</span>: { <span class="t-key">"type"</span>: <span class="t-str">"boolean"</span> },
+        <span class="t-key">"level"</span>: { <span class="t-key">"type"</span>: <span class="t-str">"string"</span>, <span class="t-key">"enum"</span>: [<span class="t-str">"limited"</span>, <span class="t-str">"reasonable"</span>] },
+        <span class="t-key">"verifierName"</span>: { <span class="t-key">"type"</span>: <span class="t-str">"string"</span> },
+        <span class="t-key">"standardRef"</span>: { <span class="t-key">"type"</span>: <span class="t-str">"string"</span> }
+      }
+    }
+  }
+}</pre>
+      </div>
+    </article>
+
+    <!-- SECTION 7: OWL TURTLE -->
+    <article class="doc-section" id="owl-turtle">
+      <div class="section-header">
+        <p class="section-label">Section 7</p>
+        <h2 class="section-title">OWL Turtle Formal Definition</h2>
+      </div>
+
+      <p class="body-text">
+        The OWL Turtle representation provides the formal semantic grounding for COMET classes. OWL equivalence axioms link COMET terms to external ontologies (PACT, QUDT), enabling automated reasoning and cross-ontology alignment. SHACL shapes validate instance data against these class definitions at runtime.
+      </p>
+
+      <div class="code-block-wrap">
+        <p class="code-label">OWL Turtle &mdash; COMET Class Definitions</p>
+        <pre aria-label="OWL Turtle formal class definitions for COMET PCF and CBAM classes"><span class="t-pfx">@prefix</span> <span class="t-type">comet-pcf:</span> <span class="t-uri">&lt;https://comet.carbon/v1/pcf#&gt;</span> <span class="t-punct">.</span>
+<span class="t-pfx">@prefix</span> <span class="t-type">owl:</span>       <span class="t-uri">&lt;http://www.w3.org/2002/07/owl#&gt;</span> <span class="t-punct">.</span>
+<span class="t-pfx">@prefix</span> <span class="t-type">rdfs:</span>      <span class="t-uri">&lt;http://www.w3.org/2000/01/rdf-schema#&gt;</span> <span class="t-punct">.</span>
+<span class="t-pfx">@prefix</span> <span class="t-type">xsd:</span>       <span class="t-uri">&lt;http://www.w3.org/2001/XMLSchema#&gt;</span> <span class="t-punct">.</span>
+<span class="t-pfx">@prefix</span> <span class="t-type">pact:</span>      <span class="t-uri">&lt;https://wbcsd.github.io/pact/v3/ont#&gt;</span> <span class="t-punct">.</span>
+<span class="t-pfx">@prefix</span> <span class="t-type">qudt:</span>      <span class="t-uri">&lt;http://qudt.org/schema/qudt/&gt;</span> <span class="t-punct">.</span>
+
+<span class="t-type">comet-pcf:ProductCarbonFootprint</span> <span class="t-kw">a</span> <span class="t-type">owl:Class</span> <span class="t-punct">;</span>
+    <span class="t-type">rdfs:label</span> <span class="t-lit">"Product Carbon Footprint"</span><span class="t-attr">@en</span> <span class="t-punct">;</span>
+    <span class="t-type">rdfs:comment</span> <span class="t-lit">"ISO 14067 product-level carbon footprint result"</span><span class="t-attr">@en</span> <span class="t-punct">;</span>
+    <span class="t-type">owl:equivalentClass</span> <span class="t-type">pact:CarbonFootprint</span> <span class="t-punct">;</span>
+    <span class="t-type">rdfs:subClassOf</span> [
+        <span class="t-kw">a</span> <span class="t-type">owl:Restriction</span> <span class="t-punct">;</span>
+        <span class="t-type">owl:onProperty</span> <span class="t-type">comet-pcf:declaredUnit</span> <span class="t-punct">;</span>
+        <span class="t-type">owl:cardinality</span> <span class="t-num">1</span>
+    ] <span class="t-punct">.</span>
+
+<span class="t-type">comet-pcf:fossilGWP</span> <span class="t-kw">a</span> <span class="t-type">owl:DatatypeProperty</span> <span class="t-punct">;</span>
+    <span class="t-type">rdfs:label</span> <span class="t-lit">"Fossil GHG emissions"</span><span class="t-attr">@en</span> <span class="t-punct">;</span>
+    <span class="t-type">rdfs:domain</span> <span class="t-type">comet-pcf:ProductCarbonFootprint</span> <span class="t-punct">;</span>
+    <span class="t-type">rdfs:range</span> <span class="t-type">xsd:decimal</span> <span class="t-punct">;</span>
+    <span class="t-type">owl:equivalentProperty</span> <span class="t-type">pact:pCfExcludingBiogenic</span> <span class="t-punct">;</span>
+    <span class="t-type">qudt:unit</span> <span class="t-type">qudt:KiloGM-CO2e</span> <span class="t-punct">.</span>
+
+<span class="t-type">comet-pcf:CBAMDeclaration</span> <span class="t-kw">a</span> <span class="t-type">owl:Class</span> <span class="t-punct">;</span>
+    <span class="t-type">rdfs:label</span> <span class="t-lit">"CBAM Declaration"</span><span class="t-attr">@en</span> <span class="t-punct">;</span>
+    <span class="t-type">rdfs:comment</span> <span class="t-lit">"EU CBAM embedded emissions declaration per Reg. 2023/956"</span><span class="t-attr">@en</span> <span class="t-punct">;</span>
+    <span class="t-type">rdfs:subClassOf</span> <span class="t-type">comet-pcf:ProductCarbonFootprint</span> <span class="t-punct">.</span>
+
+<span class="t-type">comet-pcf:cnCode</span> <span class="t-kw">a</span> <span class="t-type">owl:DatatypeProperty</span> <span class="t-punct">;</span>
+    <span class="t-type">rdfs:label</span> <span class="t-lit">"Combined Nomenclature code"</span><span class="t-attr">@en</span> <span class="t-punct">;</span>
+    <span class="t-type">rdfs:domain</span> <span class="t-type">comet-pcf:CBAMDeclaration</span> <span class="t-punct">;</span>
+    <span class="t-type">rdfs:range</span> <span class="t-type">xsd:string</span> <span class="t-punct">.</span></pre>
+      </div>
+
+      <a href="index.html" class="back-link">Back to COMET home</a>
+    </article>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer role="contentinfo">
+    <div class="footer-inner">
+      <p class="footer-brand">COMET &mdash; Carbon Ontology for Markets, Emissions &amp; Trade</p>
+      <p class="footer-tagline">Data Exchange &amp; Transport Layer &middot; Technical Specification</p>
+      <hr class="footer-rule" aria-hidden="true">
+      <nav class="footer-links" aria-label="External links">
+        <a href="https://github.com/nickgogerty/comet-ontology" target="_blank" rel="noopener noreferrer">github.com/nickgogerty/comet-ontology</a>
+        <a href="https://carbonfinancelab.com" target="_blank" rel="noopener noreferrer">carbonfinancelab.com</a>
+        <a href="https://climateactiondata.org/resources/" target="_blank" rel="noopener noreferrer">climateactiondata.org/resources</a>
+      </nav>
+      <p class="footer-attribution">A Carbon Finance Lab research initiative.</p>
+    </div>
+  </footer>
+
+</body>
+</html>

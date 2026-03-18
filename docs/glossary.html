@@ -1,0 +1,2880 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>COMET Glossary &mdash; Class, Property &amp; Variable Reference</title>
+  <meta name="description" content="Complete class, property, and variable reference for the Carbon Ontology for Markets, Emissions and Trade, including CAD Trust v2.0.2 data dictionary mappings.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --bg: #f5f4f0;
+      --bg-dark: #1a1a18;
+      --bg-nav: #2d2d28;
+      --bg-mid: #252520;
+      --bg-alt: #efede8;
+      --bg-row-alt: #f9f8f5;
+      --text: #1c1c1a;
+      --text-secondary: #4a4a45;
+      --text-muted: #7a7a74;
+      --accent: #c8360a;
+      --accent-light: #e8470f;
+      --border: #d8d7d0;
+      --border-dark: #3a3a35;
+      --card-bg: #ffffff;
+      --rule: #c8c7c0;
+      --mono: 'DM Mono', monospace;
+      --display: 'Playfair Display', serif;
+      --body-font: 'DM Sans', sans-serif;
+    }
+
+    html {
+      font-size: 15px;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: var(--body-font);
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    /* ─── MASTHEAD ────────────────────────────────────────────── */
+
+    .masthead {
+      background-color: var(--bg-dark);
+      color: #e8e6e0;
+      padding: 3.5rem 2rem 3rem;
+      border-bottom: 3px solid var(--accent);
+    }
+
+    .masthead-inner {
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .eyebrow {
+      font-family: var(--mono);
+      font-size: 0.65rem;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: #9a9890;
+      margin-bottom: 1.2rem;
+    }
+
+    .masthead-title {
+      font-family: var(--display);
+      font-size: clamp(2.4rem, 7vw, 4rem);
+      font-weight: 700;
+      line-height: 1.0;
+      letter-spacing: -0.02em;
+      color: #f0ede6;
+      margin-bottom: 0.75rem;
+    }
+
+    .masthead-subtitle {
+      font-family: var(--display);
+      font-size: clamp(0.95rem, 2vw, 1.125rem);
+      font-weight: 400;
+      font-style: italic;
+      color: #b8b6b0;
+      margin-bottom: 1.5rem;
+      letter-spacing: 0.01em;
+    }
+
+    .masthead-rule {
+      border: none;
+      border-top: 1px solid var(--border-dark);
+      margin-bottom: 1.5rem;
+    }
+
+    .masthead-description {
+      font-size: 0.9375rem;
+      font-weight: 300;
+      color: #d0cec8;
+      line-height: 1.65;
+      max-width: 800px;
+    }
+
+    /* ─── STICKY NAV ─────────────────────────────────────────── */
+
+    .glossary-nav {
+      background-color: var(--bg-nav);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      border-bottom: 1px solid var(--border-dark);
+    }
+
+    .glossary-nav-inner {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 0 2rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0;
+    }
+
+    .glossary-nav a {
+      font-family: var(--mono);
+      font-size: 0.62rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #9a9890;
+      text-decoration: none;
+      padding: 0.85rem 1rem;
+      display: block;
+      border-right: 1px solid var(--border-dark);
+      transition: color 0.15s ease, background-color 0.15s ease;
+      white-space: nowrap;
+    }
+
+    .glossary-nav a:first-child {
+      border-left: 1px solid var(--border-dark);
+    }
+
+    .glossary-nav a:hover {
+      color: #f0ede6;
+      background-color: rgba(200, 54, 10, 0.12);
+    }
+
+    /* ─── MAIN CONTENT ───────────────────────────────────────── */
+
+    main {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 0 2rem 4rem;
+    }
+
+    /* ─── GLOSSARY SECTIONS ──────────────────────────────────── */
+
+    .glossary-section {
+      padding: 3rem 0 2rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .glossary-section:last-of-type {
+      border-bottom: none;
+    }
+
+    .section-label {
+      font-family: var(--mono);
+      font-size: 0.62rem;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.6rem;
+    }
+
+    .section-title {
+      font-family: var(--display);
+      font-size: clamp(1.4rem, 3vw, 2rem);
+      font-weight: 600;
+      line-height: 1.15;
+      color: var(--text);
+      margin-bottom: 0.6rem;
+    }
+
+    .namespace-tag {
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      background-color: var(--bg-row-alt);
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--accent);
+      padding: 0.4rem 0.85rem;
+      display: inline-block;
+      margin-bottom: 1.5rem;
+      letter-spacing: 0.03em;
+    }
+
+    .section-rule {
+      border: none;
+      border-top: 1px solid var(--rule);
+      margin-bottom: 1.5rem;
+    }
+
+    /* ─── TABLES ─────────────────────────────────────────────── */
+
+    .table-wrap {
+      overflow-x: auto;
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--accent);
+      border-radius: 0;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.8125rem;
+      background-color: var(--card-bg);
+    }
+
+    thead {
+      position: sticky;
+      top: 10.5rem;
+      z-index: 10;
+    }
+
+    thead tr {
+      background-color: var(--bg-dark);
+    }
+
+    thead th {
+      font-family: var(--mono);
+      font-size: 0.6rem;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: #9a9890;
+      padding: 0.75rem 1rem;
+      text-align: left;
+      border-bottom: 2px solid var(--accent);
+      white-space: nowrap;
+    }
+
+    tbody tr {
+      background-color: var(--card-bg);
+      border-bottom: 1px solid var(--border);
+      transition: background-color 0.1s ease;
+    }
+
+    tbody tr:nth-child(even) {
+      background-color: var(--bg-row-alt);
+    }
+
+    tbody tr:hover {
+      background-color: #f0ede8;
+    }
+
+    tbody td {
+      padding: 0.65rem 1rem;
+      vertical-align: top;
+      line-height: 1.5;
+      color: var(--text-secondary);
+    }
+
+    tbody td:first-child {
+      font-family: var(--mono);
+      font-size: 0.76rem;
+      color: var(--text);
+      white-space: nowrap;
+    }
+
+    .td-type {
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      color: #888880;
+      white-space: nowrap;
+    }
+
+    .td-class {
+      color: var(--accent);
+      font-weight: 500;
+    }
+
+    .td-align {
+      font-size: 0.76rem;
+      color: var(--text-muted);
+    }
+
+    .td-datatype {
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      color: #666660;
+    }
+
+    .em-dash {
+      color: var(--rule);
+    }
+
+    /* ─── CAD TRUST SECTION ──────────────────────────────────── */
+
+    .cad-section {
+      padding: 3rem 0 2rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .cad-table-group {
+      margin-bottom: 2.5rem;
+    }
+
+    .cad-table-title {
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--text);
+      background-color: var(--bg-alt);
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--accent);
+      padding: 0.55rem 1rem;
+      margin-bottom: 0;
+    }
+
+    .cad-table-wrap {
+      overflow-x: auto;
+      border: 1px solid var(--border);
+      border-top: none;
+      border-left: 3px solid var(--accent);
+    }
+
+    .cad-table-wrap table thead tr {
+      background-color: #252520;
+    }
+
+    .cad-req-yes {
+      font-family: var(--mono);
+      font-size: 0.68rem;
+      color: #3a7a3a;
+      font-weight: 500;
+    }
+
+    .cad-req-no {
+      font-family: var(--mono);
+      font-size: 0.68rem;
+      color: var(--text-muted);
+    }
+
+    /* ─── FOOTER ─────────────────────────────────────────────── */
+
+    footer {
+      background-color: var(--bg-dark);
+      color: #6a6a64;
+      padding: 3rem 2rem;
+    }
+
+    .footer-inner {
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .footer-brand {
+      font-family: var(--display);
+      font-size: 1.0625rem;
+      font-weight: 600;
+      color: #d0cec8;
+      margin-bottom: 0.4rem;
+    }
+
+    .footer-tagline {
+      font-family: var(--mono);
+      font-size: 0.65rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #5a5855;
+      margin-bottom: 1.75rem;
+    }
+
+    .footer-rule {
+      border: none;
+      border-top: 1px solid #2e2e2a;
+      margin-bottom: 1.5rem;
+    }
+
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem 2rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .footer-links a {
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      color: #7a7870;
+      text-decoration: none;
+      letter-spacing: 0.06em;
+      transition: color 0.15s ease;
+    }
+
+    .footer-links a:hover {
+      color: var(--accent);
+    }
+
+    .footer-attribution {
+      font-size: 0.8rem;
+      color: #4a4a45;
+      line-height: 1.7;
+    }
+
+    /* ─── RESPONSIVE ─────────────────────────────────────────── */
+
+    @media (max-width: 680px) {
+      .glossary-nav-inner {
+        padding: 0 1rem;
+      }
+      .glossary-nav a {
+        padding: 0.7rem 0.65rem;
+        font-size: 0.58rem;
+      }
+      main {
+        padding: 0 1rem 3rem;
+      }
+      thead {
+        top: 9.5rem;
+      }
+    }
+
+    /* ─── SEARCH BAR ─────────────────────────────────────────── */
+
+    .search-bar-wrap {
+      background-color: var(--bg-alt);
+      border-bottom: 1px solid var(--border);
+      padding: 0.875rem 2rem;
+      position: sticky;
+      top: 2.6rem;
+      z-index: 90;
+    }
+
+    .search-bar-inner {
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .search-input-row {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-bottom: 0.625rem;
+    }
+
+    .search-input-wrapper {
+      position: relative;
+      flex: 1;
+    }
+
+    #glossary-search {
+      font-family: var(--mono);
+      font-size: 1rem;
+      width: 100%;
+      height: 44px;
+      padding: 0 2.5rem 0 0.875rem;
+      background-color: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: 0;
+      color: var(--text);
+      outline: none;
+      transition: border-color 0.15s ease, box-shadow 0.15s ease;
+      -webkit-appearance: none;
+    }
+
+    #glossary-search::placeholder {
+      color: var(--text-muted);
+      font-size: 0.8125rem;
+    }
+
+    #glossary-search:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(200, 54, 10, 0.12);
+    }
+
+    .search-clear-btn {
+      position: absolute;
+      right: 0.5rem;
+      top: 50%;
+      transform: translateY(-50%);
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-size: 1rem;
+      color: var(--text-muted);
+      padding: 0.25rem;
+      line-height: 1;
+      display: none;
+      transition: color 0.15s ease;
+    }
+
+    .search-clear-btn:hover {
+      color: var(--accent);
+    }
+
+    .search-clear-btn.visible {
+      display: block;
+    }
+
+    .search-count {
+      font-family: var(--mono);
+      font-size: 0.68rem;
+      letter-spacing: 0.08em;
+      color: var(--text-muted);
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .search-count.has-results {
+      color: var(--accent);
+    }
+
+    /* ─── FILTER PILLS ───────────────────────────────────────── */
+
+    .filter-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.375rem;
+      align-items: center;
+      margin-bottom: 0;
+    }
+
+    .filter-pill {
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.3rem 0.7rem;
+      border: 1px solid var(--border);
+      background-color: transparent;
+      color: var(--text);
+      cursor: pointer;
+      transition: border-color 0.15s ease, background-color 0.15s ease, color 0.15s ease;
+      line-height: 1;
+    }
+
+    .filter-pill:hover {
+      border-color: var(--accent);
+    }
+
+    .filter-pill.active {
+      background-color: var(--accent);
+      border-color: var(--accent);
+      color: #ffffff;
+    }
+
+    /* ─── ALPHABET BAR ───────────────────────────────────────── */
+
+    .alpha-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.125rem;
+      margin-bottom: 0;
+    }
+
+    .alpha-btn {
+      font-family: var(--mono);
+      font-size: 0.65rem;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      padding: 0.25rem 0.45rem;
+      border: 1px solid var(--border);
+      background-color: transparent;
+      color: var(--text-secondary);
+      cursor: pointer;
+      transition: border-color 0.15s ease, background-color 0.15s ease, color 0.15s ease;
+      line-height: 1;
+    }
+
+    .alpha-btn:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    .alpha-btn.active {
+      background-color: var(--accent);
+      border-color: var(--accent);
+      color: #ffffff;
+    }
+
+    .alpha-btn:disabled {
+      opacity: 0.3;
+      cursor: default;
+      pointer-events: none;
+    }
+
+    .search-rows-divider {
+      width: 1px;
+      height: 16px;
+      background-color: var(--border);
+      flex-shrink: 0;
+      align-self: center;
+    }
+
+    /* ─── SEARCH HIGHLIGHTS ──────────────────────────────────── */
+
+    mark.search-highlight {
+      background-color: #fff3cd;
+      color: inherit;
+      padding: 0 2px;
+      border-radius: 2px;
+    }
+
+    /* ─── BACK TO TOP ────────────────────────────────────────── */
+
+    .back-to-top {
+      position: fixed;
+      bottom: 1.5rem;
+      right: 1.5rem;
+      z-index: 200;
+      font-family: var(--mono);
+      font-size: 0.65rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.55rem 0.85rem;
+      background-color: var(--bg-dark);
+      color: #d0cec8;
+      border: 1px solid var(--border-dark);
+      cursor: pointer;
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(6px);
+      transition: opacity 0.2s ease, transform 0.2s ease;
+    }
+
+    .back-to-top.visible {
+      opacity: 1;
+      pointer-events: auto;
+      transform: translateY(0);
+    }
+
+    .back-to-top:hover {
+      background-color: var(--accent);
+      border-color: var(--accent);
+      color: #ffffff;
+    }
+
+    /* ─── NO RESULTS ─────────────────────────────────────────── */
+
+    .no-results-msg {
+      display: none;
+      padding: 3rem 0;
+      text-align: center;
+      font-family: var(--mono);
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      letter-spacing: 0.05em;
+    }
+
+    .no-results-msg.visible {
+      display: block;
+    }
+
+    @media (max-width: 680px) {
+      .search-bar-wrap {
+        padding: 0.75rem 1rem;
+        top: 2.4rem;
+      }
+      #glossary-search {
+        font-size: 0.875rem;
+        height: 40px;
+      }
+      .search-count {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- MASTHEAD -->
+  <header class="masthead" role="banner">
+    <div class="masthead-inner">
+      <p class="eyebrow">Reference Documentation</p>
+      <h1 class="masthead-title">COMET Glossary</h1>
+      <p class="masthead-subtitle">Complete class, property, and variable reference</p>
+      <hr class="masthead-rule" aria-hidden="true">
+      <p class="masthead-description">Every class and property in the COMET ontology, mapped to WBCSD PACT v3, ISO&nbsp;14067, EU CBAM, CAD Trust v2.0.2, and GHG Protocol.</p>
+    </div>
+  </header>
+
+  <!-- STICKY NAV -->
+  <nav class="glossary-nav" aria-label="Glossary layer navigation">
+    <div class="glossary-nav-inner">
+      <a href="#l1-core">L1 Core</a>
+      <a href="#l2-emfactor">L2 Emission Factors</a>
+      <a href="#l3-supplychain">L3 Supply Chain</a>
+      <a href="#l4-pcf">L4 PCF</a>
+      <a href="#l5-eac">L5 EAC</a>
+      <a href="#l6-verification">L6 Verification</a>
+      <a href="#l7-market">L7 Market</a>
+      <a href="#cad-trust">CAD Trust</a>
+    </div>
+  </nav>
+
+  <!-- SEARCH BAR -->
+  <div class="search-bar-wrap" id="search-bar" role="search">
+    <div class="search-bar-inner">
+      <div class="search-input-row">
+        <div class="search-input-wrapper">
+          <input
+            type="search"
+            id="glossary-search"
+            autocomplete="off"
+            spellcheck="false"
+            placeholder="Search COMET classes, properties, standards, CAD Trust variables&hellip;"
+            aria-label="Search glossary entries"
+          >
+          <button class="search-clear-btn" id="search-clear" aria-label="Clear search" title="Clear">&times;</button>
+        </div>
+        <span class="search-count" id="search-count" aria-live="polite" aria-atomic="true"></span>
+      </div>
+      <div class="filter-pills" role="group" aria-label="Filter by section">
+        <button class="filter-pill active" data-filter="all">All</button>
+        <button class="filter-pill" data-filter="l1-core">L1 Core</button>
+        <button class="filter-pill" data-filter="l2-emfactor">L2 Emission Factors</button>
+        <button class="filter-pill" data-filter="l3-supplychain">L3 Supply Chain</button>
+        <button class="filter-pill" data-filter="l4-pcf">L4 PCF</button>
+        <button class="filter-pill" data-filter="l5-eac">L5 EAC</button>
+        <button class="filter-pill" data-filter="l6-verification">L6 Verification</button>
+        <button class="filter-pill" data-filter="l7-market">L7 Market</button>
+        <button class="filter-pill" data-filter="cad-trust">CAD Trust</button>
+        <span class="search-rows-divider" aria-hidden="true"></span>
+        <div class="alpha-bar" id="alpha-bar" aria-label="Jump to letter"></div>
+      </div>
+    </div>
+  </div>
+
+  <main>
+
+    <!-- ═══════════════════════════════════════════════════════════
+         L1 — CORE IDENTITY
+    ════════════════════════════════════════════════════════════ -->
+    <section class="glossary-section" id="l1-core" aria-labelledby="l1-title">
+      <p class="section-label">Layer 1</p>
+      <h2 class="section-title" id="l1-title">Core Identity</h2>
+      <code class="namespace-tag">comet: = https://comet.carbon/v1/core#</code>
+      <hr class="section-rule" aria-hidden="true">
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th scope="col">Class / Property</th>
+              <th scope="col">Type</th>
+              <th scope="col">Description</th>
+              <th scope="col">Standards Alignment</th>
+              <th scope="col">Data Type</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="td-class">comet:Organization</td>
+              <td class="td-type">Class</td>
+              <td>Legal entity (company, registry, verifier)</td>
+              <td class="td-align">schema:Organization</td>
+              <td class="td-datatype em-dash">&mdash;</td>
+            </tr>
+            <tr>
+              <td>comet:Organization.orgId</td>
+              <td class="td-type">Property</td>
+              <td>Unique identifier (LEI, DUNS, EORI)</td>
+              <td class="td-align">CAD Trust: orgUid</td>
+              <td class="td-datatype">GUID / String</td>
+            </tr>
+            <tr>
+              <td>comet:Organization.orgName</td>
+              <td class="td-type">Property</td>
+              <td>Legal name</td>
+              <td class="td-align">CAD Trust: stakeholderName</td>
+              <td class="td-datatype">String</td>
+            </tr>
+            <tr>
+              <td>comet:Organization.orgLink</td>
+              <td class="td-type">Property</td>
+              <td>Website URL</td>
+              <td class="td-align">CAD Trust: stakeholderLink</td>
+              <td class="td-datatype">URL</td>
+            </tr>
+            <tr>
+              <td class="td-class">comet:Site</td>
+              <td class="td-type">Class</td>
+              <td>Physical facility or production location</td>
+              <td class="td-align em-dash">&mdash;</td>
+              <td class="td-datatype em-dash">&mdash;</td>
+            </tr>
+            <tr>
+              <td>comet:Site.siteId</td>
+              <td class="td-type">Property</td>
+              <td>Installation identifier</td>
+              <td class="td-align">CBAM: Installation ID</td>
+              <td class="td-datatype">String</td>
+            </tr>
+            <tr>
+              <td>comet:Site.siteName</td>
+              <td class="td-type">Property</td>
+              <td>Facility name</td>
+              <td class="td-align em-dash">&mdash;</td>
+              <td class="td-datatype">String</td>
+            </tr>
+            <tr>
+              <td>comet:Site.siteCountry</td>
+              <td class="td-type">Property</td>
+              <td>Country code</td>
+              <td class="td-align">ISO 3166; PACT: geographyCountry; CAD Trust: locationCountry</td>
+              <td class="td-datatype">ISO 3166 alpha-2</td>
+            </tr>
+            <tr>
+              <td>comet:Site.siteRegion</td>
+              <td class="td-type">Property</td>
+              <td>Sub-national region</td>
+              <td class="td-align">PACT: geographyCountrySubdivision; CAD Trust: locationRegion</td>
+              <td class="td-datatype">String</td>
+            </tr>
+            <tr>
+              <td>comet:Site.siteGIS</td>
+              <td class="td-type">Property</td>
+              <td>Geolocation coordinates</td>
+              <td class="td-align">CAD Trust: locationGis</td>
+              <td class="td-datatype">lat/lon String</td>
+            </tr>
+            <tr>
+              <td class="td-class">comet:Process</td>
+              <td class="td-type">Class</td>
+              <td>Manufacturing or transformation step</td>
+              <td class="td-align em-dash">&mdash;</td>
+              <td class="td-datatype em-dash">&mdash;</td>
+            </tr>
+            <tr>
+              <td>comet:Process.processType</td>
+              <td class="td-type">Property</td>
+              <td>Process category</td>
+              <td class="td-align">CAD Trust: projectType, projectSector</td>
+              <td class="td-datatype">String / Picklist</td>
+            </tr>
+            <tr>
+              <td class="td-class">comet:Material</td>
+              <td class="td-type">Class</td>
+              <td>Input/output substance</td>
+              <td class="td-align">PACT: productDescription</td>
+              <td class="td-datatype em-dash">&mdash;</td>
+            </tr>
+            <tr>
+              <td>comet:Material.materialId</td>
+              <td class="td-type">Property</td>
+              <td>Product identifier (GTIN, CAS)</td>
+              <td class="td-align">PACT: productIds</td>
+              <td class="td-datatype">URN</td>
+            </tr>
+            <tr>
+              <td>comet:Material.cpcCode</td>
+              <td class="td-type">Property</td>
+              <td>UN CPC product category</td>
+              <td class="td-align">PACT: productCategoryCpc</td>
+              <td class="td-datatype">String</td>
+            </tr>
+            <tr>
+              <td class="td-class">comet:UnitOfMeasure</td>
+              <td class="td-type">Class</td>
+              <td>Quantity unit bound to W3C QUDT</td>
+              <td class="td-align">qudt:Unit</td>
+              <td class="td-datatype em-dash">&mdash;</td>
+            </tr>
+            <tr>
+              <td class="td-class">comet:TimePeriod</td>
+              <td class="td-type">Class</td>
+              <td>ISO 8601 time interval</td>
+              <td class="td-align">PACT: validityPeriod, referencePeriod</td>
+              <td class="td-datatype em-dash">&mdash;</td>
+            </tr>
+            <tr>
+              <td>comet:TimePeriod.startDate</td>
+              <td class="td-type">Property</td>
+              <td>Period start</td>
+              <td class="td-align">PACT: referencePeriodStart</td>
+              <td class="td-datatype">DateTime</td>
+            </tr>
+            <tr>
+              <td>comet:TimePeriod.endDate</td>
+              <td class="td-type">Property</td>
+              <td>Period end</td>
+              <td class="td-align">PACT: referencePeriodEnd</td>
+              <td class="td-datatype">DateTime</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════
+         L2 — EMISSION FACTOR & LCI REFERENCE
+    ════════════════════════════════════════════════════════════ -->
+    <section class="glossary-section" id="l2-emfactor" aria-labelledby="l2-title">
+      <p class="section-label">Layer 2</p>
+      <h2 class="section-title" id="l2-title">Emission Factor &amp; LCI Reference</h2>
+      <code class="namespace-tag">comet-ef: = https://comet.carbon/v1/emfactor#</code>
+      <hr class="section-rule" aria-hidden="true">
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th scope="col">Class / Property</th>
+              <th scope="col">Type</th>
+              <th scope="col">Description</th>
+              <th scope="col">Standards Alignment</th>
+              <th scope="col">Data Type</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="td-class">comet-ef:EmissionFactor</td>
+              <td class="td-type">Class</td>
+              <td>Emission factor with provenance</td>
+              <td class="td-align">GHG Protocol</td>
+              <td class="td-datatype em-dash">&mdash;</td>
+            </tr>
+            <tr>
+              <td>comet-ef:EmissionFactor.efValue</td>
+              <td class="td-type">Property</td>
+              <td>Factor value</td>
+              <td class="td-align em-dash">&mdash;</td>
+              <td class="td-datatype">Decimal</td>
+            </tr>
+            <tr>
+              <td>comet-ef:EmissionFactor.efUnit</td>
+              <td class="td-type">Property</td>
+              <td>Unit (kgCO2e/kWh, etc.)</td>
+              <td class="td-align">QUDT</td>
+              <td class="td-datatype">String</td>
+            </tr>
+            <tr>
+              <td>comet-ef:EmissionFactor.efSource</td>
+              <td class="td-type">Property</td>
+              <td>Database source</td>
+              <td class="td-align">Ecoinvent, WorldSteel, BAFU</td>
+              <td class="td-datatype">String</td>
+            </tr>
+            <tr>
+              <td>comet-ef:EmissionFactor.efGeography</td>
+              <td class="td-type">Property</td>
+              <td>Geographic scope</td>
+              <td class="td-align em-dash">&mdash;</td>
+              <td class="td-datatype">ISO 3166</td>
+            </tr>
+            <tr>
+              <td class="td-class">comet-ef:LCIDataset</td>
+              <td class="td-type">Class</td>
+              <td>Life Cycle Inventory dataset</td>
+              <td class="td-align em-dash">&mdash;</td>
+              <td class="td-datatype em-dash">&mdash;</td>
+            </tr>
+            <tr>
+              <td class="td-class">comet-ef:GWP100Value</td>
+              <td class="td-type">Class</td>
+              <td>Global Warming Potential value</td>
+              <td class="td-align">IPCC AR5 / AR6</td>
+              <td class="td-datatype em-dash">&mdash;</td>
+            </tr>
+            <tr>
+              <td>comet-ef:GWP100Value.gwpValue</td>
+              <td class="td-type">Property</td>
+              <td>GWP100 factor</td>
+              <td class="td-align em-dash">&mdash;</td>
+              <td class="td-datatype">Decimal</td>
+            </tr>
+            <tr>
+              <td>comet-ef:GWP100Value.ipccAR</td>
+              <td class="td-type">Property</td>
+              <td>IPCC Assessment Report version</td>
+              <td class="td-align">PACT: characterizationFactors</td>
+              <td class="td-datatype">Enum (AR5 / AR6)</td>
+            </tr>
+            <tr>
+              <td>comet-ef:GWP100Value.gasSpecies</td>
+              <td class="td-type">Property</td>
+              <td>Greenhouse gas</td>
+              <td class="td-align em-dash">&mdash;</td>
+              <td class="td-datatype">String (CO2 / CH4 / N2O)</td>
+            </tr>
+            <tr>
+              <td class="td-class">comet-ef:DataProvenance</td>
+              <td class="td-type">Class</td>
+              <td>Source tracking</td>
+              <td class="td-align">prov:Entity</td>
+              <td class="td-datatype em-dash">&mdash;</td>
+            </tr>
+            <tr>
+              <td class="td-class">comet-ef:GeographyScope</td>
+              <td class="td-type">Class</td>
+              <td>Geographic representativeness</td>
+              <td class="td-align">PACT: geographyRegionOrSubregion</td>
+              <td class="td-datatype em-dash">&mdash;</td>
+            </tr>
+            <tr>
+              <td class="td-class">comet-ef:TechRepLevel</td>
+              <td class="td-type">Class</td>
+              <td>Technology representativeness score</td>
+              <td class="td-align em-dash">&mdash;</td>
+              <td class="td-datatype em-dash">&mdash;</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════
+         L3 — SUPPLY CHAIN & ACTIVITY DATA
+    ════════════════════════════════════════════════════════════ -->
+    <section class="glossary-section" id="l3-supplychain" aria-labelledby="l3-title">
+      <p class="section-label">Layer 3</p>
+      <h2 class="section-title" id="l3-title">Supply Chain &amp; Activity Data</h2>
+      <code class="namespace-tag">comet-sc: = https://comet.carbon/v1/supplychain#</code>
+      <hr class="section-rule" aria-hidden="true">
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th scope="col">Class / Property</th>
+              <th scope="col">Type</th>
+              <th scope="col">Description</th>
+              <th scope="col">Standards Alignment</th>
+              <th scope="col">Data Type</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="td-class">comet-sc:SupplyChainLink</td>
+              <td class="td-type">Class</td>
+              <td>Supplier-buyer relationship</td>
+              <td class="td-align">PACT: companyIds</td>
+              <td class="td-datatype em-dash">&mdash;</td>
+            </tr>
+            <tr>
+              <td class="td-class">comet-sc:ActivityDataRecord</td>
+              <td class="td-type">Class</td>
+              <td>Primary activity measurement</td>
+              <td class="td-align">CAD Trust: estimation table</td>
+              <td class="td-datatype em-dash">&mdash;</td>
+            </tr>
+            <tr>
+              <td class="td-class">comet-sc:SpendProxy</td>
+              <td class="td-type">Class</td>
+              <td>EEIO spend-based estimate (lowest maturity)</td>
+              <td class="td-align em-dash">&mdash;</td>
+              <td class="td-datatype em-dash">&mdash;</td>
+            </tr>
+            <tr>
+              <td class="td-class">comet-sc:PrimaryData</td>
+              <td class="td-type">Class</td>
+              <td>Direct measurement data</td>
+              <td class="td-align em-dash">&mdash;</td>
+              <td class="td-datatype em-dash">&mdash;</td>
+            </tr>
+            <tr>
+              <td class="td-class">comet-sc:PrimaryDataShare</td>
+              <td class="td-type">Class</td>
+              <td>Percentage primary vs. secondary data (0&ndash;100)</td>
+              <td class="td-align">PACT: primaryDataShare</td>
+              <td class="td-datatype">Decimal</td>
+            </tr>
+            <tr>
+              <td class="td-class">comet-sc:TransportEvent</td>
+              <td class="td-type">Class</td>
+              <td>Logistics movement record</td>
+              <td class="td-align em-dash">&mdash;</td>
+              <td class="td-datatype em-dash">&mdash;</td>
+            </tr>
+            <tr>
+              <td class="td-class">comet-sc:DataQualityIndicator</td>
+              <td class="td-type">Class</td>
+              <td>Five-dimension DQI score</td>
+              <td class="td-align">PACT: dqi object</td>
+              <td class="td-datatype em-dash">&mdash;</td>
+            </tr>
+            <tr>
+              <td>comet-sc:DataQualityIndicator.coverageDQI</td>
+              <td class="td-type">Property</td>
+              <td>Primary data coverage</td>
+              <td class="td-align">PACT: dqi.coveragePercent</td>
+              <td class="td-datatype">Decimal (0&ndash;100)</td>
+            </tr>
+            <tr>
+              <td>comet-sc:DataQualityIndicator.technologyDQI</td>
+              <td class="td-type">Property</td>
+              <td>Technology match score</td>
+              <td class="td-align">PACT: dqi.technologicalDQR</td>
+              <td class="td-datatype">Decimal (1&ndash;3)</td>
+            </tr>
+            <tr>
+              <td>comet-sc:DataQualityIndicator.temporalityDQI</td>
+              <td class="td-type">Property</td>
+              <td>Data recency score</td>
+              <td class="td-align">PACT: dqi.temporalDQR</td>
+              <td class="td-datatype">Decimal (1&ndash;3)</td>
+            </tr>
+            <tr>
+              <td>comet-sc:DataQualityIndicator.geographyDQI</td>
+              <td class="td-type">Property</td>
+              <td>Geographic match score</td>
+              <td class="td-align">PACT: dqi.geographicalDQR</td>
+              <td class="td-datatype">Decimal (1&ndash;3)</td>
+            </tr>
+            <tr>
+              <td>comet-sc:DataQualityIndicator.reliabilityDQI</td>
+              <td class="td-type">Property</td>
+              <td>Source reliability score</td>
+              <td class="td-align">PACT: dqi.completenessDQR</td>
+              <td class="td-datatype">Decimal (1&ndash;3)</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════
+         L4 — PRODUCT CARBON FOOTPRINT
+    ════════════════════════════════════════════════════════════ -->
+    <section class="glossary-section" id="l4-pcf" aria-labelledby="l4-title">
+      <p class="section-label">Layer 4</p>
+      <h2 class="section-title" id="l4-title">Product Carbon Footprint</h2>
+      <code class="namespace-tag">comet-pcf: = https://comet.carbon/v1/pcf#</code>
+      <hr class="section-rule" aria-hidden="true">
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th scope="col">Class / Property</th>
+              <th scope="col">Type</th>
+              <th scope="col">Description</th>
+              <th scope="col">Standards Alignment</th>
+              <th scope="col">Data Type</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="td-class">comet-pcf:ProductCarbonFootprint</td>
+              <td class="td-type">Class</td>
+              <td>Central PCF result per ISO 14067</td>
+              <td class="td-align">owl:equivalentClass pact:CarbonFootprint</td>
+              <td class="td-datatype em-dash">&mdash;</td>
+            </tr>
+            <tr>
+              <td>comet-pcf:ProductCarbonFootprint.pcfId</td>
+              <td class="td-type">Property</td>
+              <td>Unique PCF identifier</td>
+              <td class="td-align">PACT: id</td>
+              <td class="td-datatype">UUID</td>
+            </tr>
+            <tr>
+              <td>comet-pcf:ProductCarbonFootprint.fossilGWP</td>
+              <td class="td-type">Property</td>
+              <td>Fossil GHG emissions (kgCO2e/unit)</td>
+              <td class="td-align">PACT: pCfExcludingBiogenic</td>
+              <td class="td-datatype">Decimal</td>
+            </tr>
+            <tr>
+              <td>comet-pcf:ProductCarbonFootprint.totalGWP</td>
+              <td class="td-type">Property</td>
+              <td>Total incl. biogenic</td>
+              <td class="td-align">PACT: pCfIncludingBiogenic</td>
+              <td class="td-datatype">Decimal</td>
+            </tr>
+            <tr>
+              <td>comet-pcf:ProductCarbonFootprint.exemptedPercent</td>
+              <td class="td-type">Property</td>
+              <td>Cutoff exclusion (0&ndash;5%)</td>
+              <td class="td-align">PACT: exemptedEmissionsPercent</td>
+              <td class="td-datatype">Decimal</td>
+            </tr>
+            <tr>
+              <td class="td-class">comet-pcf:FunctionalUnit</td>
+              <td class="td-type">Class</td>
+              <td>Declared unit of analysis with QUDT</td>
+              <td class="td-align">PACT: declaredUnit + unitaryProductAmount</td>
+              <td class="td-datatype em-dash">&mdash;</td>
+            </tr>
+            <tr>
+              <td class="td-class">comet-pcf:SystemBoundary</td>
+              <td class="td-type">Class</td>
+              <td>Scope: cradle-to-gate, gate-to-gate, etc.</td>
+              <td class="td-align">PACT: boundaryProcessesDescription</td>
+              <td class="td-datatype">SKOS Enum</td>
+            </tr>
+            <tr>
+              <td class="td-class">comet-pcf:AllocationMethod</td>
+              <td class="td-type">Class</td>
+              <td>Mass, economic, energy, physical-causality, PCR</td>
+              <td class="td-align">ISO 14067 Sec 7; PACT: allocationRulesDescription</td>
+              <td class="td-datatype">Enum</td>
+            </tr>
+            <tr>
+              <td class="td-class">comet-pcf:LCIAResult</td>
+              <td class="td-type">Class</td>
+              <td>Impact assessment result</td>
+              <td class="td-align em-dash">&mdash;</td>
+              <td class="td-datatype em-dash">&mdash;</td>
+            </tr>
+            <tr>
+              <td class="td-class">comet-pcf:PCRReference</td>
+              <td class="td-type">Class</td>
+              <td>Product Category Rule reference</td>
+              <td class="td-align">PACT: productOrSectorSpecificRules; CAD Trust: methodology</td>
+              <td class="td-datatype em-dash">&mdash;</td>
+            </tr>
+            <tr>
+              <td class="td-class">comet-pcf:StandardRef</td>
+              <td class="td-type">Class</td>
+              <td>Cross-sectoral standard</td>
+              <td class="td-align">PACT: crossSectoralStandardsUsed</td>
+              <td class="td-datatype">Enum</td>
+            </tr>
+            <tr>
+              <td class="td-class">comet-pcf:BiogenicCarbon</td>
+              <td class="td-type">Class</td>
+              <td>Biogenic CO2 per ISO 14067 Sec 7.3.5</td>
+              <td class="td-align">PACT: biogenic fields</td>
+              <td class="td-datatype em-dash">&mdash;</td>
+            </tr>
+            <tr>
+              <td>comet-pcf:BiogenicCarbon.biogenicCarbonContent</td>
+              <td class="td-type">Property</td>
+              <td>Biogenic carbon content</td>
+              <td class="td-align">PACT: biogenicCarbonContent</td>
+              <td class="td-datatype">Decimal</td>
+            </tr>
+            <tr>
+              <td>comet-pcf:BiogenicCarbon.landUseChange</td>
+              <td class="td-type">Property</td>
+              <td>Direct land use change</td>
+              <td class="td-align">PACT: dLucGhgEmissions</td>
+              <td class="td-datatype">Decimal</td>
+            </tr>
+            <tr>
+              <td>comet-pcf:BiogenicCarbon.biogenicUptake</td>
+              <td class="td-type">Property</td>
+              <td>Biogenic carbon withdrawal</td>
+              <td class="td-align">PACT: biogenicCarbonWithdrawal</td>
+              <td class="td-datatype">Decimal</td>
+            </tr>
+            <tr>
+              <td class="td-class">comet-pcf:CBAMDeclaration</td>
+              <td class="td-type">Class</td>
+              <td>EU CBAM embedded emissions declaration</td>
+              <td class="td-align">Reg. 2023/956 Art. 7</td>
+              <td class="td-datatype em-dash">&mdash;</td>
+            </tr>
+            <tr>
+              <td>comet-pcf:CBAMDeclaration.cnCode</td>
+              <td class="td-type">Property</td>
+              <td>8-digit Combined Nomenclature code</td>
+              <td class="td-align">CBAM Annex I</td>
+              <td class="td-datatype">String</td>
+            </tr>
+            <tr>
+              <td class="td-class">comet-pcf:EmbeddedEmissions</td>
+              <td class="td-type">Class</td>
+              <td>Per-tonne carbon intensity for CBAM</td>
+              <td class="td-align">CBAM Art. 7</td>
+              <td class="td-datatype em-dash">&mdash;</td>
+            </tr>
+            <tr>
+              <td>comet-pcf:EmbeddedEmissions.specificEmbeddedEmissions</td>
+              <td class="td-type">Property</td>
+              <td>Total embedded emissions</td>
+              <td class="td-align em-dash">&mdash;</td>
+              <td class="td-datatype">tCO2e/t</td>
+            </tr>
+            <tr>
+              <td>comet-pcf:EmbeddedEmissions.directEmissions</td>
+              <td class="td-type">Property</td>
+              <td>Scope 1 at installation</td>
+              <td class="td-align">CBAM Art. 7(2)(a)</td>
+              <td class="td-datatype">tCO2e/t</td>
+            </tr>
+            <tr>
+              <td>comet-pcf:EmbeddedEmissions.indirectEmissions</td>
+              <td class="td-type">Property</td>
+              <td>Electricity emissions</td>
+              <td class="td-align">CBAM Art. 7(2)(b)</td>
+              <td class="td-datatype">tCO2e/t</td>
+            </tr>
+            <tr>
+              <td>comet-pcf:EmbeddedEmissions.productionRoute</td>
+              <td class="td-type">Property</td>
+              <td>Manufacturing route (BOF / EAF / etc.)</td>
+              <td class="td-align">CBAM Annex IV</td>
+              <td class="td-datatype">String</td>
+            </tr>
+            <tr>
+              <td class="td-class">comet-pcf:EPDDeclaration</td>
+              <td class="td-type">Class</td>
+              <td>EN 15804 Environmental Product Declaration</td>
+              <td class="td-align">EN 15804+A2; EPD programs</td>
+              <td class="td-datatype em-dash">&mdash;</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════
+         L5 — ENVIRONMENTAL ATTRIBUTE CERTIFICATES
+    ════════════════════════════════════════════════════════════ -->
+    <section class="glossary-section" id="l5-eac" aria-labelledby="l5-title">
+      <p class="section-label">Layer 5</p>
+      <h2 class="section-title" id="l5-title">Environmental Attribute Certificates</h2>
+      <code class="namespace-tag">comet-eac: = https://comet.carbon/v1/eac#</code>
+      <hr class="section-rule" aria-hidden="true">
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th scope="col">Class / Property</th>
+              <th scope="col">Type</th>
+              <th scope="col">Description</th>
+              <th scope="col">Standards Alignment</th>
+              <th scope="col">Data Type</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="td-class">comet-eac:EAC</td>
+              <td class="td-type">Class</td>
+              <td>Base certificate class</td>
+              <td class="td-align">CAD Trust: unit table</td>
+              <td class="td-datatype em-dash">&mdash;</td>
+            </tr>
+            <tr>
+              <td>comet-eac:EAC.serialNumber</td>
+              <td class="td-type">Property</td>
+              <td>Unique certificate serial</td>
+              <td class="td-align">CAD Trust: unitSerialId</td>
+              <td class="td-datatype">String</td>
+            </tr>
+            <tr>
+              <td>comet-eac:EAC.registry</td>
+              <td class="td-type">Property</td>
+              <td>Issuing registry</td>
+              <td class="td-align">CAD Trust: projectRegistryName</td>
+              <td class="td-datatype">String</td>
+            </tr>
+            <tr>
+              <td>comet-eac:EAC.issueDate</td>
+              <td class="td-type">Property</td>
+              <td>Date of issuance</td>
+              <td class="td-align">CAD Trust: issuanceDate</td>
+              <td class="td-datatype">Date</td>
+            </tr>
+            <tr>
+              <td>comet-eac:EAC.vintageYear</td>
+              <td class="td-type">Property</td>
+              <td>Year of emission reduction</td>
+              <td class="td-align">CAD Trust: unitVintageYear</td>
+              <td class="td-datatype">Year</td>
+            </tr>
+            <tr>
+              <td>comet-eac:EAC.unitCount</td>
+              <td class="td-type">Property</td>
+              <td>Quantity of credits</td>
+              <td class="td-align">CAD Trust: unitCount</td>
+              <td class="td-datatype">Decimal</td>
+            </tr>
+            <tr>
+              <td>comet-eac:EAC.unitType</td>
+              <td class="td-type">Property</td>
+              <td>Avoidance / Reduction / Removal + nature / tech</td>
+              <td class="td-align">CAD Trust: unitType picklist</td>
+              <td class="td-datatype">Enum</td>
+            </tr>
+            <tr>
+              <td>comet-eac:EAC.unitStatus</td>
+              <td class="td-type">Property</td>
+              <td>Lifecycle status</td>
+              <td class="td-align">CAD Trust: unitStatus (Issued / Held / Retired / Cancelled / Buffer)</td>
+              <td class="td-datatype">Enum</td>
+            </tr>
+            <tr>
+              <td>comet-eac:EAC.chainOfCustody</td>
+              <td class="td-type">Property</td>
+              <td>Chain of custody model</td>
+              <td class="td-align em-dash">&mdash;</td>
+              <td class="td-datatype">String</td>
+            </tr>
+            <tr>
+              <td class="td-class">comet-eac:EnergyAttributeCert</td>
+              <td class="td-type">Class</td>
+              <td>subClassOf EAC: I-REC, GO, REC</td>
+              <td class="td-align">I-REC Standard</td>
+              <td class="td-datatype em-dash">&mdash;</td>
+            </tr>
+            <tr>
+              <td class="td-class">comet-eac:CarbonRemovalCert</td>
+              <td class="td-type">Class</td>
+              <td>subClassOf EAC: DAC, Biochar, BECCS</td>
+              <td class="td-align">Verra VCS; Gold Standard</td>
+              <td class="td-datatype em-dash">&mdash;</td>
+            </tr>
+            <tr>
+              <td class="td-class">comet-eac:MaterialStewardCert</td>
+              <td class="td-type">Class</td>
+              <td>subClassOf EAC: ResponsibleSteel, ASI</td>
+              <td class="td-align em-dash">&mdash;</td>
+              <td class="td-datatype em-dash">&mdash;</td>
+            </tr>
+            <tr>
+              <td class="td-class">comet-eac:CertificateRegistry</td>
+              <td class="td-type">Class</td>
+              <td>Registry operator</td>
+              <td class="td-align">CAD Trust: program table</td>
+              <td class="td-datatype em-dash">&mdash;</td>
+            </tr>
+            <tr>
+              <td>comet-eac:CertificateRegistry.registryName</td>
+              <td class="td-type">Property</td>
+              <td>Registry name</td>
+              <td class="td-align">CAD Trust: programRegistry</td>
+              <td class="td-datatype">String</td>
+            </tr>
+            <tr>
+              <td>comet-eac:CertificateRegistry.programName</td>
+              <td class="td-type">Property</td>
+              <td>Crediting program name</td>
+              <td class="td-align">CAD Trust: programName</td>
+              <td class="td-datatype">String</td>
+            </tr>
+            <tr>
+              <td class="td-class">comet-eac:RetirementEvent</td>
+              <td class="td-type">Class</td>
+              <td>Retirement / cancellation record</td>
+              <td class="td-align">CAD Trust: unitStatus = Retired</td>
+              <td class="td-datatype em-dash">&mdash;</td>
+            </tr>
+            <tr>
+              <td>comet-eac:RetirementEvent.retirementBeneficiary</td>
+              <td class="td-type">Property</td>
+              <td>Beneficiary org</td>
+              <td class="td-align">CAD Trust: unitRetirementBeneficiary</td>
+              <td class="td-datatype">String</td>
+            </tr>
+            <tr>
+              <td>comet-eac:RetirementEvent.retirementDate</td>
+              <td class="td-type">Property</td>
+              <td>Date of retirement</td>
+              <td class="td-align">CAD Trust: unitStatusDate</td>
+              <td class="td-datatype">Date</td>
+            </tr>
+            <tr>
+              <td class="td-class">comet-eac:BookAndClaim</td>
+              <td class="td-type">Class</td>
+              <td>Book-and-claim custody model</td>
+              <td class="td-align em-dash">&mdash;</td>
+              <td class="td-datatype em-dash">&mdash;</td>
+            </tr>
+            <tr>
+              <td class="td-class">comet-eac:CoBenefit</td>
+              <td class="td-type">Class</td>
+              <td>SDG co-benefit</td>
+              <td class="td-align">CAD Trust: co_benefit table (SDG 1&ndash;17)</td>
+              <td class="td-datatype em-dash">&mdash;</td>
+            </tr>
+            <tr>
+              <td class="td-class">comet-eac:Article6Authorization</td>
+              <td class="td-type">Class</td>
+              <td>Paris Agreement Art. 6 ITMO authorization</td>
+              <td class="td-align">CAD Trust: aef_t2_authorizations table</td>
+              <td class="td-datatype em-dash">&mdash;</td>
+            </tr>
+            <tr>
+              <td class="td-class">comet-eac:Article6Transfer</td>
+              <td class="td-type">Class</td>
+              <td>ITMO transfer record</td>
+              <td class="td-align">CAD Trust: aef_t3_actions table</td>
+              <td class="td-datatype em-dash">&mdash;</td>
+            </tr>
+            <tr>
+              <td class="td-class">comet-eac:Article6Holdings</td>
+              <td class="td-type">Class</td>
+              <td>ITMO holdings position</td>
+              <td class="td-align">CAD Trust: aef_t4_holdings table</td>
+              <td class="td-datatype em-dash">&mdash;</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════
+         L6 — VERIFICATION & ASSURANCE
+    ════════════════════════════════════════════════════════════ -->
+    <section class="glossary-section" id="l6-verification" aria-labelledby="l6-title">
+      <p class="section-label">Layer 6</p>
+      <h2 class="section-title" id="l6-title">Verification &amp; Assurance</h2>
+      <code class="namespace-tag">comet-ver: = https://comet.carbon/v1/ver#</code>
+      <hr class="section-rule" aria-hidden="true">
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th scope="col">Class / Property</th>
+              <th scope="col">Type</th>
+              <th scope="col">Description</th>
+              <th scope="col">Standards Alignment</th>
+              <th scope="col">Data Type</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="td-class">comet-ver:VerificationClaim</td>
+              <td class="td-type">Class</td>
+              <td>Machine-readable verification statement</td>
+              <td class="td-align">PACT: assurance object; CAD Trust: verification table</td>
+              <td class="td-datatype em-dash">&mdash;</td>
+            </tr>
+            <tr>
+              <td>comet-ver:VerificationClaim.verificationDate</td>
+              <td class="td-type">Property</td>
+              <td>Date completed</td>
+              <td class="td-align">PACT: assurance.completedAt</td>
+              <td class="td-datatype">DateTime</td>
+            </tr>
+            <tr>
+              <td>comet-ver:VerificationClaim.standardRef</td>
+              <td class="td-type">Property</td>
+              <td>Verification standard</td>
+              <td class="td-align">PACT: assurance.standardName (ISO 14064-3)</td>
+              <td class="td-datatype">String</td>
+            </tr>
+            <tr>
+              <td class="td-class">comet-ver:AssuranceLevel</td>
+              <td class="td-type">Class</td>
+              <td>Limited or reasonable assurance</td>
+              <td class="td-align">PACT: assurance.level</td>
+              <td class="td-datatype">Enum</td>
+            </tr>
+            <tr>
+              <td class="td-class">comet-ver:AuditTrail</td>
+              <td class="td-type">Class</td>
+              <td>Immutable audit log</td>
+              <td class="td-align em-dash">&mdash;</td>
+              <td class="td-datatype em-dash">&mdash;</td>
+            </tr>
+            <tr>
+              <td class="td-class">comet-ver:CADTrustAttestation</td>
+              <td class="td-type">Class</td>
+              <td>CAD Trust project attestation record</td>
+              <td class="td-align">CAD Trust: project table</td>
+              <td class="td-datatype em-dash">&mdash;</td>
+            </tr>
+            <tr>
+              <td>comet-ver:CADTrustAttestation.cadTrustProjectId</td>
+              <td class="td-type">Property</td>
+              <td>CAD Trust project GUID</td>
+              <td class="td-align">CAD Trust: cadTrustProjectId</td>
+              <td class="td-datatype">GUID</td>
+            </tr>
+            <tr>
+              <td class="td-class">comet-ver:QualifiedVerifier</td>
+              <td class="td-type">Class</td>
+              <td>Accredited VVB</td>
+              <td class="td-align">PACT: assurance.providerName; CAD Trust: validationBody / verificationBody</td>
+              <td class="td-datatype em-dash">&mdash;</td>
+            </tr>
+            <tr>
+              <td>comet-ver:QualifiedVerifier.verifierName</td>
+              <td class="td-type">Property</td>
+              <td>Organization name</td>
+              <td class="td-align em-dash">&mdash;</td>
+              <td class="td-datatype">String</td>
+            </tr>
+            <tr>
+              <td class="td-class">comet-ver:VerificationScope</td>
+              <td class="td-type">Class</td>
+              <td>Scope and boundary of verification</td>
+              <td class="td-align">PACT: assurance.coverage, assurance.boundary</td>
+              <td class="td-datatype em-dash">&mdash;</td>
+            </tr>
+            <tr>
+              <td class="td-class">comet-ver:ValidationRecord</td>
+              <td class="td-type">Class</td>
+              <td>Project design validation</td>
+              <td class="td-align">CAD Trust: validation table</td>
+              <td class="td-datatype em-dash">&mdash;</td>
+            </tr>
+            <tr>
+              <td>comet-ver:ValidationRecord.validationType</td>
+              <td class="td-type">Property</td>
+              <td>Validation type</td>
+              <td class="td-align">CAD Trust: validationType picklist</td>
+              <td class="td-datatype">Enum</td>
+            </tr>
+            <tr>
+              <td class="td-class">comet-ver:Rating</td>
+              <td class="td-type">Class</td>
+              <td>Independent quality rating</td>
+              <td class="td-align">CAD Trust: rating table</td>
+              <td class="td-datatype em-dash">&mdash;</td>
+            </tr>
+            <tr>
+              <td>comet-ver:Rating.ratingType</td>
+              <td class="td-type">Property</td>
+              <td>Rating provider type</td>
+              <td class="td-align">CAD Trust: ratingType (CDP, CCQI)</td>
+              <td class="td-datatype">Enum</td>
+            </tr>
+            <tr>
+              <td>comet-ver:Rating.ratingValue</td>
+              <td class="td-type">Property</td>
+              <td>Rating score or grade</td>
+              <td class="td-align">CAD Trust: ratingValue</td>
+              <td class="td-datatype">String</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════
+         L7 — MARKET SIGNALS
+    ════════════════════════════════════════════════════════════ -->
+    <section class="glossary-section" id="l7-market" aria-labelledby="l7-title">
+      <p class="section-label">Layer 7</p>
+      <h2 class="section-title" id="l7-title">Market Signals</h2>
+      <code class="namespace-tag">comet-mkt: = https://comet.carbon/v1/market#</code>
+      <hr class="section-rule" aria-hidden="true">
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th scope="col">Class / Property</th>
+              <th scope="col">Type</th>
+              <th scope="col">Description</th>
+              <th scope="col">Standards Alignment</th>
+              <th scope="col">Data Type</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="td-class">comet-mkt:CarbonPremium</td>
+              <td class="td-type">Class</td>
+              <td>Price premium for low-carbon product</td>
+              <td class="td-align em-dash">&mdash;</td>
+              <td class="td-datatype em-dash">&mdash;</td>
+            </tr>
+            <tr>
+              <td>comet-mkt:CarbonPremium.premiumValue</td>
+              <td class="td-type">Property</td>
+              <td>Premium amount</td>
+              <td class="td-align em-dash">&mdash;</td>
+              <td class="td-datatype">Decimal</td>
+            </tr>
+            <tr>
+              <td class="td-class">comet-mkt:CBAMShadowTariff</td>
+              <td class="td-type">Class</td>
+              <td>Estimated CBAM tariff exposure</td>
+              <td class="td-align">Reg. 2023/956</td>
+              <td class="td-datatype em-dash">&mdash;</td>
+            </tr>
+            <tr>
+              <td>comet-mkt:CBAMShadowTariff.euETSPrice</td>
+              <td class="td-type">Property</td>
+              <td>EU ETS allowance price</td>
+              <td class="td-align em-dash">&mdash;</td>
+              <td class="td-datatype">EUR/tCO2e</td>
+            </tr>
+            <tr>
+              <td>comet-mkt:CBAMShadowTariff.thirdCountryCarbonPrice</td>
+              <td class="td-type">Property</td>
+              <td>Carbon price paid in origin country</td>
+              <td class="td-align">CBAM Art. 9</td>
+              <td class="td-datatype">EUR/tCO2e</td>
+            </tr>
+            <tr>
+              <td class="td-class">comet-mkt:EACSpotPrice</td>
+              <td class="td-type">Class</td>
+              <td>Market price for environmental certificates</td>
+              <td class="td-align em-dash">&mdash;</td>
+              <td class="td-datatype em-dash">&mdash;</td>
+            </tr>
+            <tr>
+              <td class="td-class">comet-mkt:PricingSignal</td>
+              <td class="td-type">Class</td>
+              <td>Generic carbon price signal</td>
+              <td class="td-align em-dash">&mdash;</td>
+              <td class="td-datatype em-dash">&mdash;</td>
+            </tr>
+            <tr>
+              <td class="td-class">comet-mkt:MarketBenchmark</td>
+              <td class="td-type">Class</td>
+              <td>Reference benchmark for comparison</td>
+              <td class="td-align">CBAM Art. 31</td>
+              <td class="td-datatype em-dash">&mdash;</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════
+         CAD TRUST v2.0.2 DATA DICTIONARY MAPPING
+    ════════════════════════════════════════════════════════════ -->
+    <section class="cad-section" id="cad-trust" aria-labelledby="cad-title">
+      <p class="section-label">CAD Trust v2.0.2</p>
+      <h2 class="section-title" id="cad-title">CAD Trust Data Dictionary Mapping</h2>
+      <hr class="section-rule" aria-hidden="true">
+      <p style="font-size:0.875rem;color:var(--text-secondary);line-height:1.65;margin-bottom:2rem;max-width:760px;">
+        Complete variable mapping from CAD Trust v2.0.2 (Climate Action Data Trust) into COMET namespaces.
+        Source: <span style="font-family:var(--mono);font-size:0.8rem;">climateactiondata.org/resources/</span>
+      </p>
+
+      <!-- project table -->
+      <div class="cad-table-group">
+        <div class="cad-table-title">project</div>
+        <div class="cad-table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th scope="col">CAD Trust Column</th>
+                <th scope="col">API Field Name</th>
+                <th scope="col">Data Type</th>
+                <th scope="col">Required</th>
+                <th scope="col">COMET Mapping</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>cadTrustProjectId</td>
+                <td class="td-type">cadTrustProjectId</td>
+                <td class="td-datatype">GUID (PK)</td>
+                <td><span class="cad-req-yes">Required</span></td>
+                <td class="td-align">comet-ver:CADTrustAttestation.cadTrustProjectId</td>
+              </tr>
+              <tr>
+                <td>orgUid</td>
+                <td class="td-type">orgUid</td>
+                <td class="td-datatype">GUID (FK)</td>
+                <td><span class="cad-req-yes">Required</span></td>
+                <td class="td-align">comet:Organization.orgId</td>
+              </tr>
+              <tr>
+                <td>projectRegistryName</td>
+                <td class="td-type">projectRegistryName</td>
+                <td class="td-datatype">String</td>
+                <td><span class="cad-req-yes">Required</span></td>
+                <td class="td-align">comet-eac:CertificateRegistry.registryName</td>
+              </tr>
+              <tr>
+                <td>projectId</td>
+                <td class="td-type">projectId</td>
+                <td class="td-datatype">String</td>
+                <td><span class="cad-req-yes">Required</span></td>
+                <td class="td-align">comet-ver:CADTrustAttestation.projectId</td>
+              </tr>
+              <tr>
+                <td>projectCreditingProgram</td>
+                <td class="td-type">projectCreditingProgram</td>
+                <td class="td-datatype">String</td>
+                <td><span class="cad-req-no">Optional</span></td>
+                <td class="td-align">comet-eac:CertificateRegistry.programName</td>
+              </tr>
+              <tr>
+                <td>projectName</td>
+                <td class="td-type">projectName</td>
+                <td class="td-datatype">String</td>
+                <td><span class="cad-req-yes">Required</span></td>
+                <td class="td-align">comet-ver:CADTrustAttestation.projectName</td>
+              </tr>
+              <tr>
+                <td>projectLink</td>
+                <td class="td-type">projectLink</td>
+                <td class="td-datatype">URL</td>
+                <td><span class="cad-req-yes">Required</span></td>
+                <td class="td-align">comet-ver:CADTrustAttestation.projectLink</td>
+              </tr>
+              <tr>
+                <td>projectDescription</td>
+                <td class="td-type">projectDescription</td>
+                <td class="td-datatype">Text</td>
+                <td><span class="cad-req-no">Optional</span></td>
+                <td class="td-align">rdfs:comment</td>
+              </tr>
+              <tr>
+                <td>projectSector</td>
+                <td class="td-type">projectSector</td>
+                <td class="td-datatype">Picklist Multi</td>
+                <td><span class="cad-req-yes">Required</span></td>
+                <td class="td-align">comet:Process.processType</td>
+              </tr>
+              <tr>
+                <td>projectType</td>
+                <td class="td-type">projectType</td>
+                <td class="td-datatype">Picklist Multi</td>
+                <td><span class="cad-req-yes">Required</span></td>
+                <td class="td-align">comet:Process.processType</td>
+              </tr>
+              <tr>
+                <td>projectSubtype</td>
+                <td class="td-type">projectSubtype</td>
+                <td class="td-datatype">Text</td>
+                <td><span class="cad-req-no">Optional</span></td>
+                <td class="td-align">comet:Process.processSubtype</td>
+              </tr>
+              <tr>
+                <td>projectStatus</td>
+                <td class="td-type">projectStatus</td>
+                <td class="td-datatype">Picklist</td>
+                <td><span class="cad-req-yes">Required</span></td>
+                <td class="td-align">&mdash; (lifecycle state)</td>
+              </tr>
+              <tr>
+                <td>projectStatusDate</td>
+                <td class="td-type">projectStatusDate</td>
+                <td class="td-datatype">Date</td>
+                <td><span class="cad-req-yes">Required</span></td>
+                <td class="td-align">dcterms:modified</td>
+              </tr>
+              <tr>
+                <td>projectUnitMetric</td>
+                <td class="td-type">projectUnitMetric</td>
+                <td class="td-datatype">Picklist</td>
+                <td><span class="cad-req-yes">Required</span></td>
+                <td class="td-align">comet:UnitOfMeasure</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- methodology table -->
+      <div class="cad-table-group">
+        <div class="cad-table-title">methodology</div>
+        <div class="cad-table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th scope="col">CAD Trust Column</th>
+                <th scope="col">API Field Name</th>
+                <th scope="col">Data Type</th>
+                <th scope="col">Required</th>
+                <th scope="col">COMET Mapping</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>cadTrustMethodologyId</td>
+                <td class="td-type">cadTrustMethodologyId</td>
+                <td class="td-datatype">GUID</td>
+                <td><span class="cad-req-yes">Required</span></td>
+                <td class="td-align">comet-pcf:PCRReference.pcrId</td>
+              </tr>
+              <tr>
+                <td>methodologyCode</td>
+                <td class="td-type">methodologyCode</td>
+                <td class="td-datatype">String</td>
+                <td><span class="cad-req-yes">Required</span></td>
+                <td class="td-align">comet-pcf:PCRReference.pcrName</td>
+              </tr>
+              <tr>
+                <td>methodologyName</td>
+                <td class="td-type">methodologyName</td>
+                <td class="td-datatype">String</td>
+                <td><span class="cad-req-yes">Required</span></td>
+                <td class="td-align">comet-pcf:PCRReference.pcrName</td>
+              </tr>
+              <tr>
+                <td>methodologyType</td>
+                <td class="td-type">methodologyType</td>
+                <td class="td-datatype">Picklist</td>
+                <td><span class="cad-req-no">Optional</span></td>
+                <td class="td-align">comet-pcf:PCRReference.pcrType</td>
+              </tr>
+              <tr>
+                <td>methodologyVersion</td>
+                <td class="td-type">methodologyVersion</td>
+                <td class="td-datatype">String</td>
+                <td><span class="cad-req-no">Optional</span></td>
+                <td class="td-align">comet-pcf:PCRReference.pcrVersion</td>
+              </tr>
+              <tr>
+                <td>methodologyDate</td>
+                <td class="td-type">methodologyDate</td>
+                <td class="td-datatype">Date</td>
+                <td><span class="cad-req-no">Optional</span></td>
+                <td class="td-align">comet-pcf:PCRReference.pcrValidityPeriod</td>
+              </tr>
+              <tr>
+                <td>methodologyLink</td>
+                <td class="td-type">methodologyLink</td>
+                <td class="td-datatype">URL</td>
+                <td><span class="cad-req-no">Optional</span></td>
+                <td class="td-align">comet-pcf:PCRReference.pcrURI</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- location table -->
+      <div class="cad-table-group">
+        <div class="cad-table-title">location</div>
+        <div class="cad-table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th scope="col">CAD Trust Column</th>
+                <th scope="col">API Field Name</th>
+                <th scope="col">Data Type</th>
+                <th scope="col">Required</th>
+                <th scope="col">COMET Mapping</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>cadTrustLocationId</td>
+                <td class="td-type">cadTrustLocationId</td>
+                <td class="td-datatype">GUID</td>
+                <td><span class="cad-req-yes">Required</span></td>
+                <td class="td-align">comet:Site.siteId</td>
+              </tr>
+              <tr>
+                <td>locationCountry</td>
+                <td class="td-type">locationCountry</td>
+                <td class="td-datatype">Picklist</td>
+                <td><span class="cad-req-yes">Required</span></td>
+                <td class="td-align">comet:Site.siteCountry</td>
+              </tr>
+              <tr>
+                <td>locationRegion</td>
+                <td class="td-type">locationRegion</td>
+                <td class="td-datatype">Text</td>
+                <td><span class="cad-req-no">Optional</span></td>
+                <td class="td-align">comet:Site.siteRegion</td>
+              </tr>
+              <tr>
+                <td>locationGis</td>
+                <td class="td-type">locationGis</td>
+                <td class="td-datatype">String</td>
+                <td><span class="cad-req-no">Optional</span></td>
+                <td class="td-align">comet:Site.siteGIS</td>
+              </tr>
+              <tr>
+                <td>locationMapType</td>
+                <td class="td-type">locationMapType</td>
+                <td class="td-datatype">Picklist</td>
+                <td><span class="cad-req-no">Optional</span></td>
+                <td class="td-align">&mdash; (Shapefiles / GeoJSON / KML / etc.)</td>
+              </tr>
+              <tr>
+                <td>locationMapFileLink</td>
+                <td class="td-type">locationMapFileLink</td>
+                <td class="td-datatype">URL</td>
+                <td><span class="cad-req-no">Optional</span></td>
+                <td class="td-align">comet:Site.siteMapLink</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- validation table -->
+      <div class="cad-table-group">
+        <div class="cad-table-title">validation</div>
+        <div class="cad-table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th scope="col">CAD Trust Column</th>
+                <th scope="col">API Field Name</th>
+                <th scope="col">Data Type</th>
+                <th scope="col">Required</th>
+                <th scope="col">COMET Mapping</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>cadTrustValidationId</td>
+                <td class="td-type">cadTrustValidationId</td>
+                <td class="td-datatype">GUID</td>
+                <td><span class="cad-req-yes">Required</span></td>
+                <td class="td-align">comet-ver:ValidationRecord.validationId</td>
+              </tr>
+              <tr>
+                <td>validationId</td>
+                <td class="td-type">validationId</td>
+                <td class="td-datatype">String</td>
+                <td><span class="cad-req-yes">Required</span></td>
+                <td class="td-align">comet-ver:ValidationRecord.externalId</td>
+              </tr>
+              <tr>
+                <td>validationType</td>
+                <td class="td-type">validationType</td>
+                <td class="td-datatype">Picklist</td>
+                <td><span class="cad-req-yes">Required</span></td>
+                <td class="td-align">comet-ver:ValidationRecord.validationType</td>
+              </tr>
+              <tr>
+                <td>validationBody</td>
+                <td class="td-type">validationBody</td>
+                <td class="td-datatype">VVB Picklist</td>
+                <td><span class="cad-req-yes">Required</span></td>
+                <td class="td-align">comet-ver:QualifiedVerifier.verifierName</td>
+              </tr>
+              <tr>
+                <td>validationDate</td>
+                <td class="td-type">validationDate</td>
+                <td class="td-datatype">Date</td>
+                <td><span class="cad-req-no">Optional</span></td>
+                <td class="td-align">comet-ver:ValidationRecord.validationDate</td>
+              </tr>
+              <tr>
+                <td>validationCreditPeriodStartDate</td>
+                <td class="td-type">validationCreditPeriodStartDate</td>
+                <td class="td-datatype">Date</td>
+                <td><span class="cad-req-no">Optional</span></td>
+                <td class="td-align">comet:TimePeriod.startDate</td>
+              </tr>
+              <tr>
+                <td>validationCreditPeriodEndDate</td>
+                <td class="td-type">validationCreditPeriodEndDate</td>
+                <td class="td-datatype">Date</td>
+                <td><span class="cad-req-no">Optional</span></td>
+                <td class="td-align">comet:TimePeriod.endDate</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- verification table -->
+      <div class="cad-table-group">
+        <div class="cad-table-title">verification</div>
+        <div class="cad-table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th scope="col">CAD Trust Column</th>
+                <th scope="col">API Field Name</th>
+                <th scope="col">Data Type</th>
+                <th scope="col">Required</th>
+                <th scope="col">COMET Mapping</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>cadTrustVerificationId</td>
+                <td class="td-type">cadTrustVerificationId</td>
+                <td class="td-datatype">GUID</td>
+                <td><span class="cad-req-yes">Required</span></td>
+                <td class="td-align">comet-ver:VerificationClaim.verificationId</td>
+              </tr>
+              <tr>
+                <td>verificationId</td>
+                <td class="td-type">verificationId</td>
+                <td class="td-datatype">String</td>
+                <td><span class="cad-req-yes">Required</span></td>
+                <td class="td-align">comet-ver:VerificationClaim.externalId</td>
+              </tr>
+              <tr>
+                <td>verificationStartDate</td>
+                <td class="td-type">verificationStartDate</td>
+                <td class="td-datatype">Date</td>
+                <td><span class="cad-req-no">Optional</span></td>
+                <td class="td-align">comet:TimePeriod.startDate</td>
+              </tr>
+              <tr>
+                <td>verificationEndDate</td>
+                <td class="td-type">verificationEndDate</td>
+                <td class="td-datatype">Date</td>
+                <td><span class="cad-req-no">Optional</span></td>
+                <td class="td-align">comet:TimePeriod.endDate</td>
+              </tr>
+              <tr>
+                <td>verificationBody</td>
+                <td class="td-type">verificationBody</td>
+                <td class="td-datatype">VVB Picklist</td>
+                <td><span class="cad-req-yes">Required</span></td>
+                <td class="td-align">comet-ver:QualifiedVerifier.verifierName</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- issuance table -->
+      <div class="cad-table-group">
+        <div class="cad-table-title">issuance</div>
+        <div class="cad-table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th scope="col">CAD Trust Column</th>
+                <th scope="col">API Field Name</th>
+                <th scope="col">Data Type</th>
+                <th scope="col">Required</th>
+                <th scope="col">COMET Mapping</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>cadTrustIssuanceId</td>
+                <td class="td-type">cadTrustIssuanceId</td>
+                <td class="td-datatype">GUID</td>
+                <td><span class="cad-req-yes">Required</span></td>
+                <td class="td-align">comet-eac:EAC.issuanceId</td>
+              </tr>
+              <tr>
+                <td>issuanceId</td>
+                <td class="td-type">issuanceId</td>
+                <td class="td-datatype">String</td>
+                <td><span class="cad-req-yes">Required</span></td>
+                <td class="td-align">comet-eac:EAC.externalIssuanceId</td>
+              </tr>
+              <tr>
+                <td>issuanceDate</td>
+                <td class="td-type">issuanceDate</td>
+                <td class="td-datatype">Date</td>
+                <td><span class="cad-req-no">Optional</span></td>
+                <td class="td-align">comet-eac:EAC.issueDate</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- unit table -->
+      <div class="cad-table-group">
+        <div class="cad-table-title">unit</div>
+        <div class="cad-table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th scope="col">CAD Trust Column</th>
+                <th scope="col">API Field Name</th>
+                <th scope="col">Data Type</th>
+                <th scope="col">Required</th>
+                <th scope="col">COMET Mapping</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>cadTrustUnitId</td>
+                <td class="td-type">cadTrustUnitId</td>
+                <td class="td-datatype">GUID</td>
+                <td><span class="cad-req-yes">Required</span></td>
+                <td class="td-align">comet-eac:EAC.eacId</td>
+              </tr>
+              <tr>
+                <td>orgUid</td>
+                <td class="td-type">orgUid</td>
+                <td class="td-datatype">GUID (FK)</td>
+                <td><span class="cad-req-yes">Required</span></td>
+                <td class="td-align">comet:Organization.orgId</td>
+              </tr>
+              <tr>
+                <td>unitSerialId</td>
+                <td class="td-type">unitSerialId</td>
+                <td class="td-datatype">String</td>
+                <td><span class="cad-req-yes">Required</span></td>
+                <td class="td-align">comet-eac:EAC.serialNumber</td>
+              </tr>
+              <tr>
+                <td>unitStartBlock</td>
+                <td class="td-type">unitStartBlock</td>
+                <td class="td-datatype">String</td>
+                <td><span class="cad-req-yes">Required</span></td>
+                <td class="td-align">comet-eac:EAC.blockStart</td>
+              </tr>
+              <tr>
+                <td>unitEndBlock</td>
+                <td class="td-type">unitEndBlock</td>
+                <td class="td-datatype">String</td>
+                <td><span class="cad-req-yes">Required</span></td>
+                <td class="td-align">comet-eac:EAC.blockEnd</td>
+              </tr>
+              <tr>
+                <td>unitCount</td>
+                <td class="td-type">unitCount</td>
+                <td class="td-datatype">Decimal</td>
+                <td><span class="cad-req-yes">Required</span></td>
+                <td class="td-align">comet-eac:EAC.unitCount</td>
+              </tr>
+              <tr>
+                <td>unitType</td>
+                <td class="td-type">unitType</td>
+                <td class="td-datatype">Picklist</td>
+                <td><span class="cad-req-yes">Required</span></td>
+                <td class="td-align">comet-eac:EAC.unitType</td>
+              </tr>
+              <tr>
+                <td>unitVintageYear</td>
+                <td class="td-type">unitVintageYear</td>
+                <td class="td-datatype">Year</td>
+                <td><span class="cad-req-yes">Required</span></td>
+                <td class="td-align">comet-eac:EAC.vintageYear</td>
+              </tr>
+              <tr>
+                <td>unitStatus</td>
+                <td class="td-type">unitStatus</td>
+                <td class="td-datatype">Picklist</td>
+                <td><span class="cad-req-yes">Required</span></td>
+                <td class="td-align">comet-eac:EAC.unitStatus</td>
+              </tr>
+              <tr>
+                <td>unitStatusReason</td>
+                <td class="td-type">unitStatusReason</td>
+                <td class="td-datatype">Text</td>
+                <td><span class="cad-req-yes">Required</span></td>
+                <td class="td-align">comet-eac:EAC.statusReason</td>
+              </tr>
+              <tr>
+                <td>unitStatusDate</td>
+                <td class="td-type">unitStatusDate</td>
+                <td class="td-datatype">Date</td>
+                <td><span class="cad-req-yes">Required</span></td>
+                <td class="td-align">comet-eac:EAC.statusDate</td>
+              </tr>
+              <tr>
+                <td>unitRetirementDetail</td>
+                <td class="td-type">unitRetirementDetail</td>
+                <td class="td-datatype">Text</td>
+                <td><span class="cad-req-no">Optional</span></td>
+                <td class="td-align">comet-eac:RetirementEvent.detail</td>
+              </tr>
+              <tr>
+                <td>unitRetirementBeneficiary</td>
+                <td class="td-type">unitRetirementBeneficiary</td>
+                <td class="td-datatype">String</td>
+                <td><span class="cad-req-no">Optional</span></td>
+                <td class="td-align">comet-eac:RetirementEvent.retirementBeneficiary</td>
+              </tr>
+              <tr>
+                <td>unitRetirementBeneficiaryId</td>
+                <td class="td-type">unitRetirementBeneficiaryId</td>
+                <td class="td-datatype">String</td>
+                <td><span class="cad-req-no">Optional</span></td>
+                <td class="td-align">comet-eac:RetirementEvent.beneficiaryId</td>
+              </tr>
+              <tr>
+                <td>unitLink</td>
+                <td class="td-type">unitLink</td>
+                <td class="td-datatype">URL</td>
+                <td><span class="cad-req-no">Optional</span></td>
+                <td class="td-align">comet-eac:EAC.unitLink</td>
+              </tr>
+              <tr>
+                <td>unitMetric</td>
+                <td class="td-type">unitMetric</td>
+                <td class="td-datatype">Picklist</td>
+                <td><span class="cad-req-yes">Required</span></td>
+                <td class="td-align">comet:UnitOfMeasure</td>
+              </tr>
+              <tr>
+                <td>unitCurrentOwner</td>
+                <td class="td-type">unitCurrentOwner</td>
+                <td class="td-datatype">String</td>
+                <td><span class="cad-req-no">Optional</span></td>
+                <td class="td-align">comet-eac:EAC.currentOwner</td>
+              </tr>
+              <tr>
+                <td>unitItmosReferenceId</td>
+                <td class="td-type">unitItmosReferenceId</td>
+                <td class="td-datatype">String</td>
+                <td><span class="cad-req-no">Optional</span></td>
+                <td class="td-align">comet-eac:Article6Authorization.itmosRefId</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- stakeholder table -->
+      <div class="cad-table-group">
+        <div class="cad-table-title">stakeholder</div>
+        <div class="cad-table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th scope="col">CAD Trust Column</th>
+                <th scope="col">API Field Name</th>
+                <th scope="col">Data Type</th>
+                <th scope="col">Required</th>
+                <th scope="col">COMET Mapping</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>cadTrustStakeholderId</td>
+                <td class="td-type">cadTrustStakeholderId</td>
+                <td class="td-datatype">GUID</td>
+                <td><span class="cad-req-yes">Required</span></td>
+                <td class="td-align">comet:Organization.orgId</td>
+              </tr>
+              <tr>
+                <td>stakeholderName</td>
+                <td class="td-type">stakeholderName</td>
+                <td class="td-datatype">String</td>
+                <td><span class="cad-req-yes">Required</span></td>
+                <td class="td-align">comet:Organization.orgName</td>
+              </tr>
+              <tr>
+                <td>stakeholderType</td>
+                <td class="td-type">stakeholderType</td>
+                <td class="td-datatype">Picklist</td>
+                <td><span class="cad-req-yes">Required</span></td>
+                <td class="td-align">comet:Organization.orgRole (Owner / Developer / Consultant)</td>
+              </tr>
+              <tr>
+                <td>stakeholderLink</td>
+                <td class="td-type">stakeholderLink</td>
+                <td class="td-datatype">URL</td>
+                <td><span class="cad-req-no">Optional</span></td>
+                <td class="td-align">comet:Organization.orgLink</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- label table -->
+      <div class="cad-table-group">
+        <div class="cad-table-title">label</div>
+        <div class="cad-table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th scope="col">CAD Trust Column</th>
+                <th scope="col">API Field Name</th>
+                <th scope="col">Data Type</th>
+                <th scope="col">Required</th>
+                <th scope="col">COMET Mapping</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>cadTrustLabelId</td>
+                <td class="td-type">cadTrustLabelId</td>
+                <td class="td-datatype">GUID</td>
+                <td><span class="cad-req-yes">Required</span></td>
+                <td class="td-align">comet-eac:EAC.labelId</td>
+              </tr>
+              <tr>
+                <td>labelName</td>
+                <td class="td-type">labelName</td>
+                <td class="td-datatype">Picklist</td>
+                <td><span class="cad-req-yes">Required</span></td>
+                <td class="td-align">comet-eac:EAC.labelName</td>
+              </tr>
+              <tr>
+                <td>labelType</td>
+                <td class="td-type">labelType</td>
+                <td class="td-datatype">Picklist</td>
+                <td><span class="cad-req-yes">Required</span></td>
+                <td class="td-align">comet-eac:EAC.labelType (Certification / Art. 6 types)</td>
+              </tr>
+              <tr>
+                <td>labelLink</td>
+                <td class="td-type">labelLink</td>
+                <td class="td-datatype">URL</td>
+                <td><span class="cad-req-no">Optional</span></td>
+                <td class="td-align">comet-eac:EAC.labelLink</td>
+              </tr>
+              <tr>
+                <td>labelDate</td>
+                <td class="td-type">labelDate</td>
+                <td class="td-datatype">Date</td>
+                <td><span class="cad-req-no">Optional</span></td>
+                <td class="td-align">comet-eac:EAC.labelDate</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- co_benefit table -->
+      <div class="cad-table-group">
+        <div class="cad-table-title">co_benefit</div>
+        <div class="cad-table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th scope="col">CAD Trust Column</th>
+                <th scope="col">API Field Name</th>
+                <th scope="col">Data Type</th>
+                <th scope="col">Required</th>
+                <th scope="col">COMET Mapping</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>cadTrustCobenefitId</td>
+                <td class="td-type">cadTrustCobenefitId</td>
+                <td class="td-datatype">GUID</td>
+                <td><span class="cad-req-yes">Required</span></td>
+                <td class="td-align">comet-eac:CoBenefit.cobenefitId</td>
+              </tr>
+              <tr>
+                <td>cobenefit</td>
+                <td class="td-type">cobenefit</td>
+                <td class="td-datatype">Picklist</td>
+                <td><span class="cad-req-yes">Required</span></td>
+                <td class="td-align">comet-eac:CoBenefit.sdgGoal (SDG 1&ndash;17)</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- estimation table -->
+      <div class="cad-table-group">
+        <div class="cad-table-title">estimation</div>
+        <div class="cad-table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th scope="col">CAD Trust Column</th>
+                <th scope="col">API Field Name</th>
+                <th scope="col">Data Type</th>
+                <th scope="col">Required</th>
+                <th scope="col">COMET Mapping</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>cadTrustEstimationId</td>
+                <td class="td-type">cadTrustEstimationId</td>
+                <td class="td-datatype">GUID</td>
+                <td><span class="cad-req-yes">Required</span></td>
+                <td class="td-align">comet-sc:ActivityDataRecord.estimationId</td>
+              </tr>
+              <tr>
+                <td>estimationStartDate</td>
+                <td class="td-type">estimationStartDate</td>
+                <td class="td-datatype">Date</td>
+                <td><span class="cad-req-yes">Required</span></td>
+                <td class="td-align">comet:TimePeriod.startDate</td>
+              </tr>
+              <tr>
+                <td>estimationEndDate</td>
+                <td class="td-type">estimationEndDate</td>
+                <td class="td-datatype">Date</td>
+                <td><span class="cad-req-yes">Required</span></td>
+                <td class="td-align">comet:TimePeriod.endDate</td>
+              </tr>
+              <tr>
+                <td>estimationUnitCount</td>
+                <td class="td-type">estimationUnitCount</td>
+                <td class="td-datatype">Decimal</td>
+                <td><span class="cad-req-yes">Required</span></td>
+                <td class="td-align">comet-sc:ActivityDataRecord.estimatedQuantity</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- rating table -->
+      <div class="cad-table-group">
+        <div class="cad-table-title">rating</div>
+        <div class="cad-table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th scope="col">CAD Trust Column</th>
+                <th scope="col">API Field Name</th>
+                <th scope="col">Data Type</th>
+                <th scope="col">Required</th>
+                <th scope="col">COMET Mapping</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>cadTrustRatingId</td>
+                <td class="td-type">cadTrustRatingId</td>
+                <td class="td-datatype">GUID</td>
+                <td><span class="cad-req-yes">Required</span></td>
+                <td class="td-align">comet-ver:Rating.ratingId</td>
+              </tr>
+              <tr>
+                <td>ratingType</td>
+                <td class="td-type">ratingType</td>
+                <td class="td-datatype">Picklist</td>
+                <td><span class="cad-req-yes">Required</span></td>
+                <td class="td-align">comet-ver:Rating.ratingType (CDP / CCQI)</td>
+              </tr>
+              <tr>
+                <td>ratingName</td>
+                <td class="td-type">ratingName</td>
+                <td class="td-datatype">String</td>
+                <td><span class="cad-req-yes">Required</span></td>
+                <td class="td-align">comet-ver:Rating.ratingName</td>
+              </tr>
+              <tr>
+                <td>ratingValue</td>
+                <td class="td-type">ratingValue</td>
+                <td class="td-datatype">String</td>
+                <td><span class="cad-req-yes">Required</span></td>
+                <td class="td-align">comet-ver:Rating.ratingValue</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- program table -->
+      <div class="cad-table-group">
+        <div class="cad-table-title">program</div>
+        <div class="cad-table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th scope="col">CAD Trust Column</th>
+                <th scope="col">API Field Name</th>
+                <th scope="col">Data Type</th>
+                <th scope="col">Required</th>
+                <th scope="col">COMET Mapping</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>cadTrustProgramId</td>
+                <td class="td-type">cadTrustProgramId</td>
+                <td class="td-datatype">GUID</td>
+                <td><span class="cad-req-yes">Required</span></td>
+                <td class="td-align">comet-eac:CertificateRegistry.registryId</td>
+              </tr>
+              <tr>
+                <td>programName</td>
+                <td class="td-type">programName</td>
+                <td class="td-datatype">String</td>
+                <td><span class="cad-req-yes">Required</span></td>
+                <td class="td-align">comet-eac:CertificateRegistry.programName</td>
+              </tr>
+              <tr>
+                <td>programRegistry</td>
+                <td class="td-type">programRegistry</td>
+                <td class="td-datatype">String</td>
+                <td><span class="cad-req-yes">Required</span></td>
+                <td class="td-align">comet-eac:CertificateRegistry.registryName</td>
+              </tr>
+              <tr>
+                <td>programRegistryId</td>
+                <td class="td-type">programRegistryId</td>
+                <td class="td-datatype">String</td>
+                <td><span class="cad-req-yes">Required</span></td>
+                <td class="td-align">comet-eac:CertificateRegistry.registryExternalId</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </section>
+    <!-- end CAD Trust section -->
+
+    <p class="no-results-msg" id="no-results-msg" aria-live="polite">No entries match your search.</p>
+
+  </main>
+
+  <!-- BACK TO TOP -->
+  <button class="back-to-top" id="back-to-top" aria-label="Back to top">&#8593; Top</button>
+
+  <!-- FOOTER -->
+  <footer role="contentinfo">
+    <div class="footer-inner">
+      <p class="footer-brand">COMET &mdash; Carbon Ontology for Markets, Emissions &amp; Trade</p>
+      <p class="footer-tagline">Reference Documentation &middot; CC BY 4.0 + Apache 2.0</p>
+      <hr class="footer-rule" aria-hidden="true">
+      <nav class="footer-links" aria-label="External links">
+        <a href="https://github.com/nickgogerty/comet-ontology" target="_blank" rel="noopener noreferrer">github.com/nickgogerty/comet-ontology</a>
+        <a href="https://carbonfinancelab.com" target="_blank" rel="noopener noreferrer">carbonfinancelab.com</a>
+        <a href="https://climateactiondata.org/resources/" target="_blank" rel="noopener noreferrer">climateactiondata.org/resources/</a>
+      </nav>
+      <p class="footer-attribution">
+        CAD Trust Data Dictionary v2.0.2 source: Climate Action Data Trust.<br>
+        A Carbon Finance Lab research initiative.
+      </p>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      'use strict';
+
+      // ── Section metadata ──────────────────────────────────────────
+      const SECTIONS = [
+        { id: 'l1-core',        filter: 'l1-core' },
+        { id: 'l2-emfactor',    filter: 'l2-emfactor' },
+        { id: 'l3-supplychain', filter: 'l3-supplychain' },
+        { id: 'l4-pcf',         filter: 'l4-pcf' },
+        { id: 'l5-eac',         filter: 'l5-eac' },
+        { id: 'l6-verification',filter: 'l6-verification' },
+        { id: 'l7-market',      filter: 'l7-market' },
+        { id: 'cad-trust',      filter: 'cad-trust' },
+      ];
+
+      // ── DOM references ────────────────────────────────────────────
+      const searchInput  = document.getElementById('glossary-search');
+      const searchClear  = document.getElementById('search-clear');
+      const searchCount  = document.getElementById('search-count');
+      const noResultsMsg = document.getElementById('no-results-msg');
+      const backToTop    = document.getElementById('back-to-top');
+      const alphaBar     = document.getElementById('alpha-bar');
+
+      // ── State ─────────────────────────────────────────────────────
+      let activeFilter  = 'all';
+      let activeAlpha   = null;
+      let debounceTimer = null;
+
+      // ── Collect all tbody rows once ───────────────────────────────
+      // Each row gets a reference to its parent section id for filtering
+      const allRows = [];
+      SECTIONS.forEach(sec => {
+        const sectionEl = document.getElementById(sec.id);
+        if (!sectionEl) return;
+        sectionEl.querySelectorAll('tbody tr').forEach(row => {
+          allRows.push({ row, sectionId: sec.id, filter: sec.filter });
+        });
+      });
+
+      // ── Build text index for each row (for fast search) ──────────
+      // Store original HTML of cells so we can restore them after highlighting
+      allRows.forEach(entry => {
+        const cells = entry.row.querySelectorAll('td');
+        entry.cellTexts = Array.from(cells).map(td => td.textContent);
+        entry.cells = Array.from(cells);
+        // Store original innerHTML to restore after highlight removal
+        entry.originalHTML = Array.from(cells).map(td => td.innerHTML);
+        // First cell text determines the "letter" for alpha-jump
+        entry.letter = (entry.cellTexts[0] || '').trim()[0];
+        if (entry.letter) entry.letter = entry.letter.toUpperCase();
+      });
+
+      // ── Build alphabet bar ────────────────────────────────────────
+      const LETTERS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
+      LETTERS.forEach(letter => {
+        const btn = document.createElement('button');
+        btn.className = 'alpha-btn';
+        btn.textContent = letter;
+        btn.dataset.letter = letter;
+        btn.setAttribute('aria-label', 'Jump to entries starting with ' + letter);
+        btn.addEventListener('click', () => toggleAlpha(letter, btn));
+        alphaBar.appendChild(btn);
+      });
+
+      function updateAlphaAvailability() {
+        const visibleLetters = new Set();
+        allRows.forEach(entry => {
+          if (!entry.row.hidden && entry.letter) {
+            visibleLetters.add(entry.letter);
+          }
+        });
+        alphaBar.querySelectorAll('.alpha-btn').forEach(btn => {
+          btn.disabled = !visibleLetters.has(btn.dataset.letter);
+          if (!visibleLetters.has(btn.dataset.letter) && activeAlpha === btn.dataset.letter) {
+            // Reset alpha if active letter becomes unavailable
+            activeAlpha = null;
+            btn.classList.remove('active');
+          }
+        });
+      }
+
+      function toggleAlpha(letter, btn) {
+        if (activeAlpha === letter) {
+          activeAlpha = null;
+          btn.classList.remove('active');
+        } else {
+          alphaBar.querySelectorAll('.alpha-btn').forEach(b => b.classList.remove('active'));
+          activeAlpha = letter;
+          btn.classList.add('active');
+          // Scroll to first visible row with this letter
+          const target = allRows.find(e => !e.row.hidden && e.letter === letter);
+          if (target) {
+            target.row.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          }
+        }
+        runFilter();
+      }
+
+      // ── Filter pills ──────────────────────────────────────────────
+      document.querySelectorAll('.filter-pill').forEach(pill => {
+        pill.addEventListener('click', () => {
+          document.querySelectorAll('.filter-pill').forEach(p => p.classList.remove('active'));
+          pill.classList.add('active');
+          activeFilter = pill.dataset.filter;
+          activeAlpha = null;
+          alphaBar.querySelectorAll('.alpha-btn').forEach(b => b.classList.remove('active'));
+          runFilter();
+        });
+      });
+
+      // ── Search input ──────────────────────────────────────────────
+      searchInput.addEventListener('input', () => {
+        clearTimeout(debounceTimer);
+        debounceTimer = setTimeout(runFilter, 150);
+        searchClear.classList.toggle('visible', searchInput.value.length > 0);
+      });
+
+      searchClear.addEventListener('click', () => {
+        searchInput.value = '';
+        searchClear.classList.remove('visible');
+        activeAlpha = null;
+        alphaBar.querySelectorAll('.alpha-btn').forEach(b => b.classList.remove('active'));
+        runFilter();
+        searchInput.focus();
+      });
+
+      // ── Core filter function ──────────────────────────────────────
+      function runFilter() {
+        const query = searchInput.value.trim().toLowerCase();
+        const hasQuery = query.length > 0;
+        const hasAlpha = activeAlpha !== null;
+
+        // Remove existing highlights
+        restoreOriginalHTML();
+
+        let visibleCount = 0;
+        let totalCount   = 0;
+
+        allRows.forEach(entry => {
+          // 1. Section filter
+          if (activeFilter !== 'all' && entry.filter !== activeFilter) {
+            entry.row.hidden = true;
+            return;
+          }
+
+          // 2. Alpha filter
+          if (hasAlpha && entry.letter !== activeAlpha) {
+            entry.row.hidden = true;
+            return;
+          }
+
+          // 3. Text search
+          if (hasQuery) {
+            const matches = entry.cellTexts.some(text =>
+              text.toLowerCase().includes(query)
+            );
+            if (!matches) {
+              entry.row.hidden = true;
+              return;
+            }
+          }
+
+          // Row is visible
+          entry.row.hidden = false;
+          visibleCount++;
+          totalCount++;
+
+          // Highlight matching text
+          if (hasQuery) {
+            highlightRow(entry, query);
+          }
+        });
+
+        // Show/hide sections based on whether they have visible rows
+        SECTIONS.forEach(sec => {
+          const sectionEl = document.getElementById(sec.id);
+          if (!sectionEl) return;
+
+          // Skip if filtered out by pill
+          if (activeFilter !== 'all' && sec.filter !== activeFilter) {
+            sectionEl.hidden = true;
+            return;
+          }
+
+          const visibleRows = sectionEl.querySelectorAll('tbody tr:not([hidden])');
+          sectionEl.hidden = visibleRows.length === 0;
+        });
+
+        // Count total visible for the count display
+        const shownTotal = allRows.filter(e => !e.row.hidden).length;
+        const grandTotal = allRows.length;
+
+        updateSearchCount(shownTotal, grandTotal, hasQuery || activeFilter !== 'all' || hasAlpha);
+        updateAlphaAvailability();
+
+        // No results message
+        noResultsMsg.classList.toggle('visible', shownTotal === 0);
+      }
+
+      // ── Highlight matching text in a row ──────────────────────────
+      function highlightRow(entry, query) {
+        const escapedQuery = query.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+        const regex = new RegExp('(' + escapedQuery + ')', 'gi');
+
+        entry.cells.forEach((td, i) => {
+          const original = entry.originalHTML[i];
+          // Only highlight text nodes, avoid breaking HTML tags
+          td.innerHTML = highlightHTML(original, regex);
+        });
+      }
+
+      function highlightHTML(html, regex) {
+        // Parse into a temporary element and walk text nodes
+        const tmp = document.createElement('div');
+        tmp.innerHTML = html;
+        walkTextNodes(tmp, regex);
+        return tmp.innerHTML;
+      }
+
+      function walkTextNodes(node, regex) {
+        if (node.nodeType === Node.TEXT_NODE) {
+          const text = node.textContent;
+          if (regex.test(text)) {
+            regex.lastIndex = 0;
+            const highlighted = text.replace(regex, '<mark class="search-highlight">$1</mark>');
+            const span = document.createElement('span');
+            span.innerHTML = highlighted;
+            node.parentNode.replaceChild(span, node);
+          }
+          regex.lastIndex = 0;
+        } else if (node.nodeType === Node.ELEMENT_NODE && node.tagName !== 'MARK') {
+          Array.from(node.childNodes).forEach(child => walkTextNodes(child, regex));
+        }
+      }
+
+      function restoreOriginalHTML() {
+        allRows.forEach(entry => {
+          entry.cells.forEach((td, i) => {
+            if (td.innerHTML !== entry.originalHTML[i]) {
+              td.innerHTML = entry.originalHTML[i];
+            }
+          });
+        });
+      }
+
+      // ── Count display ─────────────────────────────────────────────
+      function updateSearchCount(shown, total, isFiltered) {
+        if (!isFiltered) {
+          searchCount.textContent = '';
+          searchCount.classList.remove('has-results');
+          return;
+        }
+        searchCount.textContent = shown + ' of ' + total;
+        searchCount.classList.toggle('has-results', shown < total);
+      }
+
+      // ── Back to top ───────────────────────────────────────────────
+      window.addEventListener('scroll', () => {
+        backToTop.classList.toggle('visible', window.scrollY > 500);
+      }, { passive: true });
+
+      backToTop.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+
+      // ── URL hash query param ──────────────────────────────────────
+      function initFromURL() {
+        const params = new URLSearchParams(window.location.search);
+        const q = params.get('q');
+        if (q) {
+          searchInput.value = q;
+          searchClear.classList.add('visible');
+          runFilter();
+          // Scroll to first visible result
+          const first = allRows.find(e => !e.row.hidden);
+          if (first) {
+            setTimeout(() => first.row.scrollIntoView({ behavior: 'smooth', block: 'center' }), 300);
+          }
+        }
+      }
+
+      // ── Initialise ────────────────────────────────────────────────
+      updateAlphaAvailability();
+      initFromURL();
+
+    })();
+  </script>
+
+</body>
+</html>
