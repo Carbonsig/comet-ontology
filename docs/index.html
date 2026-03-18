@@ -481,6 +481,18 @@
       }
     }
 
+    /* ─── PARTNER CTA GRID ────────────────────────────────────── */
+    @media (max-width: 760px) {
+      #partner [style*="grid-template-columns: repeat(4"] {
+        grid-template-columns: repeat(2, 1fr) !important;
+      }
+    }
+    @media (max-width: 460px) {
+      #partner [style*="grid-template-columns: repeat(4"] {
+        grid-template-columns: 1fr !important;
+      }
+    }
+
     .roadmap-phase {
       padding: 1.5rem 1.25rem 1.5rem 0;
       border-right: 1px solid var(--border);
@@ -643,8 +655,9 @@
       <p class="masthead-description">A shared, versioned, community-governed vocabulary that makes product-level carbon data comparable, verifiable, and tradeable &mdash; across every industry, platform, and border.</p>
       <div class="meta-bar" role="contentinfo" aria-label="Document metadata">
         <span><span class="meta-label">License:</span> <span class="meta-value">CC BY 4.0 + Apache 2.0</span></span>
-        <span><span class="meta-label">Status:</span> <span class="meta-value">Public Draft v0.1</span></span>
-        <span><span class="meta-label">Initiated:</span> <span class="meta-value">2025-Q1</span></span>
+        <span><span class="meta-label">Status:</span> <span class="meta-value">Public Draft v0.2 &middot; March 2026</span></span>
+        <span><span class="meta-label">Initiated:</span> <span class="meta-value">Q1 2025</span></span>
+        <span><span class="meta-label">Contact:</span> <span class="meta-value"><a href="mailto:ng@carbonsig.com" style="color:#9a9890;text-decoration:underline;">ng@carbonsig.com</a></span></span>
       </div>
     </div>
   </header>
@@ -735,15 +748,15 @@
   <section id="forcing-function" class="forcing-function">
     <div class="section-inner">
       <p class="section-label">The Forcing Function</p>
-      <h2 class="section-title">CBAM goes live. The cascade begins.</h2>
+      <h2 class="section-title">CBAM is live. The cascade is underway.</h2>
       <hr class="section-rule" aria-hidden="true">
       <div class="stat-row">
         <div>
-          <p class="stat-number">Jan&nbsp;2026</p>
-          <p class="stat-label">CBAM Full Enforcement</p>
+          <p class="stat-number">Now</p>
+          <p class="stat-label">CBAM Full Enforcement &middot; Jan 2026</p>
         </div>
         <p class="stat-description">
-          Approximately 4,000 EU importers will require structured carbon data from roughly 40,000 direct suppliers &mdash; and hundreds of thousands of sub-suppliers cascading further up each value chain. This is not a reporting exercise. It is a data infrastructure problem. <strong style="color:#d0cec8;">COMET is the shared language this cascade requires.</strong>
+          Approximately 4,000 EU importers now require structured carbon data from roughly 40,000 direct suppliers &mdash; and hundreds of thousands of sub-suppliers cascading further up each value chain. This is not a reporting exercise. It is a data infrastructure problem that is happening right now. <strong style="color:#d0cec8;">COMET is the shared language this cascade requires.</strong>
         </p>
       </div>
     </div>
@@ -778,6 +791,50 @@
           <p class="benefit-role">GHG Protocol &amp; ISO 14067</p>
           <h3 class="benefit-title">Scope 3 and product-level coverage</h3>
           <p class="benefit-body">GHG Protocol Scope 3 Categories 1&ndash;15 mapped to COMET supply chain and PCF classes. ISO 14067 Section 7 required elements fully covered in L4 PCF layer.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DATA TOOLS -->
+  <section id="data-tools">
+    <div class="section-inner">
+      <p class="section-label">Data Tools</p>
+      <h2 class="section-title">Convert, validate, and export &mdash; today.</h2>
+      <hr class="section-rule" aria-hidden="true">
+      <p class="body-text" style="margin-bottom:2rem;">
+        COMET ships with a complete, open-source data toolchain so you can start working with COMET-compliant data immediately. Every tool runs locally (Python CLI) or in your browser (Playground) &mdash; no accounts, no API keys, no vendor lock-in.
+      </p>
+      <div class="cards-3" role="list">
+        <div class="feature-card" role="listitem">
+          <span class="feature-card-number">Ingest</span>
+          <h3 class="feature-card-title">4 Format Converters</h3>
+          <p class="feature-card-body">Convert <strong>CSV spreadsheets</strong>, <strong>PACT&nbsp;v3 JSON</strong>, <strong>CBAM XML declarations</strong>, and <strong>CAD Trust registry data</strong> into COMET JSON-LD with a single command. Field-level mappings cover 44 PACT fields, all CBAM CN codes, and 13 CAD Trust tables.</p>
+        </div>
+        <div class="feature-card" role="listitem">
+          <span class="feature-card-number">Validate</span>
+          <h3 class="feature-card-title">JSON Schemas + CLI</h3>
+          <p class="feature-card-body">Three JSON Schemas (PCF, EAC, Core) validate any COMET document against the ontology. The <code style="font-family:'DM Mono',monospace;font-size:0.8em;background:#f0ede8;padding:0.1em 0.35em;">comet validate</code> CLI gives structured errors with fix suggestions. Batch mode validates entire directories.</p>
+        </div>
+        <div class="feature-card" role="listitem">
+          <span class="feature-card-number">Export</span>
+          <h3 class="feature-card-title">3 Egress Formats</h3>
+          <p class="feature-card-body">Export COMET data back to <strong>PACT&nbsp;v3</strong> for WBCSD exchange, <strong>CBAM XML</strong> for EU regulatory filing, or <strong>flat CSV</strong> for spreadsheet workflows. Round-trip fidelity ensures nothing is lost in translation.</p>
+        </div>
+      </div>
+      <div style="margin-top:2rem;display:grid;grid-template-columns:repeat(2,1fr);gap:1.25rem;">
+        <div class="feature-card" style="border-color:var(--accent);border-width:2px;">
+          <span class="feature-card-number" style="color:var(--accent);">Browser</span>
+          <h3 class="feature-card-title"><a href="playground.html" style="color:inherit;text-decoration:none;">Data Playground &rarr;</a></h3>
+          <p class="feature-card-body">Paste or upload data in any supported format and instantly convert, validate, and download COMET JSON-LD &mdash; entirely in your browser. No install required. Try it with the built-in steel, aluminium, and DAC credit examples.</p>
+        </div>
+        <div class="feature-card">
+          <span class="feature-card-number">CLI + Python</span>
+          <h3 class="feature-card-title">Command-Line Toolkit</h3>
+          <p class="feature-card-body">
+            <code style="font-family:'DM Mono',monospace;font-size:0.8em;background:#f0ede8;padding:0.1em 0.35em;display:block;margin-bottom:0.5rem;">pip install jsonschema<br>python comet_cli.py validate my-pcf.json<br>python comet_cli.py convert data.csv --from csv --to comet</code>
+            CSV templates, 6 worked examples (steel, aluminium, DAC credits, PACT, CBAM, CAD Trust), and full documentation included.
+          </p>
         </div>
       </div>
     </div>
@@ -868,56 +925,93 @@
       <hr class="section-rule" aria-hidden="true">
       <div class="roadmap-grid" role="list">
 
-        <div class="roadmap-phase" role="listitem">
-          <p class="phase-label">Phase 1</p>
-          <p class="phase-period">Months 1&ndash;6</p>
+        <div class="roadmap-phase" role="listitem" style="opacity:0.7;">
+          <p class="phase-label" style="color:var(--text-muted);">Phase 1 &middot; Complete</p>
+          <p class="phase-period">Q1&ndash;Q2 2025</p>
           <h3 class="phase-title">Foundations &amp; First Adopters</h3>
           <ul class="phase-items" aria-label="Phase 1 milestones">
-            <li>Core ontology release</li>
-            <li>PACT v3 alignment</li>
-            <li>SHACL validation</li>
-            <li>CBAM class</li>
-            <li>5 founding members</li>
+            <li>Core ontology &amp; 7-layer stack</li>
+            <li>PACT v3 full alignment (44 fields)</li>
+            <li>JSON Schema validation</li>
+            <li>CBAM declaration class</li>
+            <li>Data toolchain (CLI, converters, playground)</li>
           </ul>
         </div>
 
         <div class="roadmap-phase" role="listitem">
-          <p class="phase-label">Phase 2</p>
-          <p class="phase-period">Months 7&ndash;14</p>
+          <p class="phase-label">Phase 2 &middot; Current</p>
+          <p class="phase-period">Q3 2025 &ndash; Q1 2026</p>
           <h3 class="phase-title">Supply Chain &amp; Verification</h3>
           <ul class="phase-items" aria-label="Phase 2 milestones">
             <li>Full supply chain module</li>
-            <li>CADTrust verification</li>
-            <li>EAC hierarchy</li>
-            <li>Bureau Veritas connector</li>
+            <li>CAD Trust verification layer</li>
+            <li>EAC hierarchy &amp; registry interop</li>
+            <li>Verification connector pilots</li>
           </ul>
         </div>
 
         <div class="roadmap-phase" role="listitem">
           <p class="phase-label">Phase 3</p>
-          <p class="phase-period">Months 15&ndash;24</p>
+          <p class="phase-period">Q2 2026 &ndash; Q4 2026</p>
           <h3 class="phase-title">Market Layer &amp; Sectors</h3>
           <ul class="phase-items" aria-label="Phase 3 milestones">
-            <li>Pricing signals layer</li>
-            <li>Steel / H2 / Chemicals / Aluminium WGs</li>
+            <li>Pricing signals layer (L7)</li>
+            <li>Steel / H<sub>2</sub> / Chemicals / Aluminium WGs</li>
             <li>CSRD mapping</li>
-            <li>v1.0 stable</li>
+            <li>v1.0 stable release</li>
           </ul>
         </div>
 
         <div class="roadmap-phase" role="listitem">
           <p class="phase-label">Phase 4</p>
-          <p class="phase-period">Months 25&ndash;36</p>
+          <p class="phase-period">Q1 2027 &ndash; Q4 2027</p>
           <h3 class="phase-title">Global Scale &amp; Nature</h3>
           <ul class="phase-items" aria-label="Phase 4 milestones">
             <li>Real-time IoT streaming</li>
             <li>TNFD biodiversity layer</li>
-            <li>Tokenized EAC</li>
+            <li>Tokenized EAC rails</li>
             <li>AI query interface</li>
           </ul>
         </div>
 
       </div>
+    </div>
+  </section>
+
+  <!-- PARTNER CTA -->
+  <section id="partner" class="forcing-function">
+    <div class="section-inner" style="text-align:center;">
+      <p class="section-label" style="color:var(--accent);">Partner With Us</p>
+      <h2 class="section-title" style="color:#f0ede6;max-width:700px;margin:0 auto 1.5rem;">Build the carbon data infrastructure the world needs.</h2>
+      <hr class="section-rule" aria-hidden="true" style="max-width:120px;margin:0 auto 2rem;">
+      <p style="font-size:1.0625rem;color:#b8b6b0;max-width:620px;margin:0 auto 2.5rem;line-height:1.7;">
+        COMET is an open standard &mdash; but adoption requires collaboration. We are seeking <strong style="color:#d0cec8;">founding partners</strong> from industry, platforms, verifiers, and regulators to shape the ontology, pilot integrations, and join the governance structure.
+      </p>
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:1.25rem;margin-bottom:3rem;text-align:left;">
+        <div style="border-left:2px solid var(--accent);padding-left:1rem;">
+          <p style="font-family:'DM Mono',monospace;font-size:0.62rem;letter-spacing:0.16em;text-transform:uppercase;color:var(--accent);margin-bottom:0.4rem;">Industry</p>
+          <p style="font-size:0.875rem;color:#b8b6b0;line-height:1.55;">Steel, aluminium, chemicals, and cement producers piloting COMET for CBAM compliance and supply chain data exchange.</p>
+        </div>
+        <div style="border-left:2px solid var(--accent);padding-left:1rem;">
+          <p style="font-family:'DM Mono',monospace;font-size:0.62rem;letter-spacing:0.16em;text-transform:uppercase;color:var(--accent);margin-bottom:0.4rem;">Platforms</p>
+          <p style="font-size:0.875rem;color:#b8b6b0;line-height:1.55;">Carbon accounting, LCA software, and supply chain platforms integrating COMET as a data exchange layer.</p>
+        </div>
+        <div style="border-left:2px solid var(--accent);padding-left:1rem;">
+          <p style="font-family:'DM Mono',monospace;font-size:0.62rem;letter-spacing:0.16em;text-transform:uppercase;color:var(--accent);margin-bottom:0.4rem;">Verifiers</p>
+          <p style="font-size:0.875rem;color:#b8b6b0;line-height:1.55;">Assurance firms issuing machine-readable verification claims that flow through the COMET network.</p>
+        </div>
+        <div style="border-left:2px solid var(--accent);padding-left:1rem;">
+          <p style="font-family:'DM Mono',monospace;font-size:0.62rem;letter-spacing:0.16em;text-transform:uppercase;color:var(--accent);margin-bottom:0.4rem;">Regulators</p>
+          <p style="font-size:0.875rem;color:#b8b6b0;line-height:1.55;">Policy bodies referencing COMET for CBAM, CSRD, IRA&nbsp;45V, and voluntary carbon market compliance frameworks.</p>
+        </div>
+      </div>
+      <div style="margin-bottom:1rem;">
+        <a href="mailto:ng@carbonsig.com" style="display:inline-block;font-family:'DM Mono',monospace;font-size:0.8rem;font-weight:500;letter-spacing:0.08em;text-transform:uppercase;color:#f0ede6;background:var(--accent);padding:0.9rem 2.5rem;text-decoration:none;transition:background 0.18s ease;">Get in touch &rarr;</a>
+      </div>
+      <p style="font-family:'DM Mono',monospace;font-size:0.7rem;color:#7a7870;letter-spacing:0.04em;">
+        <a href="mailto:ng@carbonsig.com" style="color:#9a9890;text-decoration:underline;">ng@carbonsig.com</a>
+        &nbsp;&middot;&nbsp; Nick Gogerty &nbsp;&middot;&nbsp; Carbon Finance Lab
+      </p>
     </div>
   </section>
 
@@ -931,8 +1025,9 @@
         <a href="https://github.com/nickgogerty/comet-ontology" target="_blank" rel="noopener noreferrer">github.com/nickgogerty/comet-ontology</a>
         <a href="https://carbonfinancelab.com" target="_blank" rel="noopener noreferrer">carbonfinancelab.com</a>
         <a href="https://www.carbonatrisk.org/" target="_blank" rel="noopener noreferrer">carbonatrisk.org</a>
+        <a href="mailto:ng@carbonsig.com">ng@carbonsig.com</a>
       </nav>
-      <p class="footer-attribution">A Carbon Finance Lab research initiative.</p>
+      <p class="footer-attribution">A <a href="https://carbonfinancelab.com" target="_blank" rel="noopener noreferrer" style="color:inherit;text-decoration:underline;">Carbon Finance Lab</a> research initiative. &middot; Partner enquiries: <a href="mailto:ng@carbonsig.com" style="color:#9a9890;text-decoration:underline;">ng@carbonsig.com</a></p>
     </div>
   </footer>
 
