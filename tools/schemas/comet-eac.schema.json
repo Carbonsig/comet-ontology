@@ -1,0 +1,402 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://comet.carbon/v1/schemas/comet-eac.schema.json",
+  "title": "COMET Environmental Attribute Certificate",
+  "description": "JSON Schema for a COMET Environmental Attribute Certificate (EAC). Covers energy attribute certificates, carbon removal certificates, material stewardship certificates, and carbon avoidance credits. Aligned with CAD Trust v2.0.2, Verra VCS, Gold Standard, and Article 6 frameworks.",
+  "type": "object",
+  "properties": {
+    "@context": {
+      "description": "JSON-LD context(s). Must include the COMET context URI; may include CAD Trust context for interoperability.",
+      "oneOf": [
+        {
+          "type": "string",
+          "format": "uri"
+        },
+        {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "format": "uri"
+          },
+          "minItems": 1
+        }
+      ]
+    },
+    "@type": {
+      "type": "string",
+      "description": "JSON-LD type for the EAC document.",
+      "enum": [
+        "comet-eac:EnergyAttributeCertificate",
+        "comet-eac:CarbonRemovalCertificate",
+        "comet-eac:MaterialStewardshipCertificate",
+        "comet-eac:CarbonAvoidanceCredit",
+        "comet-eac:CarbonRemovalCert",
+        "comet-eac:EAC"
+      ]
+    },
+    "eacId": {
+      "type": "string",
+      "description": "Unique identifier for this EAC.",
+      "format": "uuid"
+    },
+    "eacType": {
+      "type": "string",
+      "description": "Primary classification of the environmental attribute certificate.",
+      "enum": [
+        "EnergyAttributeCertificate",
+        "CarbonRemovalCertificate",
+        "MaterialStewardshipCertificate",
+        "CarbonAvoidanceCredit"
+      ]
+    },
+    "subType": {
+      "type": "string",
+      "description": "Specific sub-classification within the eacType. Valid values depend on the eacType selected.",
+      "enum": [
+        "IREC",
+        "GuaranteeOfOrigin",
+        "REC",
+        "TIGR",
+        "DACCredit",
+        "BiocharCredit",
+        "EnhancedWeathering",
+        "BioCCS",
+        "OceanAlkalinity",
+        "SoilCarbon",
+        "VCU",
+        "GoldStandardVER",
+        "CDMCER",
+        "ACR",
+        "CAR",
+        "ResponsibleSteelSCC",
+        "ASICertification",
+        "FSCCredit",
+        "CopperMark"
+      ]
+    },
+    "serialNumber": {
+      "type": "string",
+      "description": "Registry-assigned serial number or range (e.g., VCS-2847-2024-001-to-500)."
+    },
+    "unitType": {
+      "type": "string",
+      "description": "Classification of the emission impact type.",
+      "enum": [
+        "Avoidance",
+        "Reduction",
+        "Removal",
+        "Removal - technical",
+        "Removal - nature"
+      ]
+    },
+    "registry": {
+      "type": "object",
+      "description": "The registry where this certificate is tracked.",
+      "properties": {
+        "registryName": {
+          "type": "string",
+          "description": "Name of the registry (e.g., Verra VCS, Gold Standard, I-REC).",
+          "minLength": 1
+        },
+        "registryId": {
+          "type": "string",
+          "description": "Unique identifier within the registry."
+        },
+        "registryURI": {
+          "type": "string",
+          "description": "URI of the registry.",
+          "format": "uri"
+        },
+        "programName": {
+          "type": "string",
+          "description": "Name of the certification program (e.g., VCS, GS, CDM)."
+        },
+        "@type": {
+          "type": "string"
+        }
+      },
+      "required": ["registryName"],
+      "additionalProperties": false
+    },
+    "project": {
+      "type": "object",
+      "description": "The project that generated this certificate.",
+      "properties": {
+        "projectName": {
+          "type": "string",
+          "description": "Name of the project.",
+          "minLength": 1
+        },
+        "projectId": {
+          "type": "string",
+          "description": "Registry-assigned project identifier."
+        },
+        "projectType": {
+          "type": "string",
+          "description": "Type or sector of the project (e.g., reforestation, renewable energy, DAC)."
+        },
+        "country": {
+          "type": "string",
+          "description": "ISO 3166-1 alpha-2 country code where the project is located.",
+          "pattern": "^[A-Z]{2}$"
+        },
+        "methodology": {
+          "type": "string",
+          "description": "Methodology applied (e.g., VM0044, ACM0002, AMS-III.D)."
+        },
+        "standard": {
+          "type": "string",
+          "description": "Standard under which the project is certified."
+        },
+        "status": {
+          "type": "string",
+          "description": "Current project status.",
+          "enum": [
+            "registered",
+            "validated",
+            "active",
+            "completed",
+            "withdrawn"
+          ]
+        },
+        "@type": {
+          "type": "string"
+        }
+      },
+      "required": ["projectName"],
+      "additionalProperties": false
+    },
+    "vintage": {
+      "type": "object",
+      "description": "The vintage period during which emissions reductions or removals occurred.",
+      "properties": {
+        "startDate": {
+          "type": "string",
+          "description": "Start of the vintage period.",
+          "format": "date"
+        },
+        "endDate": {
+          "type": "string",
+          "description": "End of the vintage period.",
+          "format": "date"
+        },
+        "vintageYear": {
+          "type": "integer",
+          "description": "The vintage year (shorthand when start/end span a full calendar year).",
+          "minimum": 1990,
+          "maximum": 2100
+        },
+        "@type": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "quantity": {
+      "type": "number",
+      "description": "Number of units (credits, certificates) represented.",
+      "minimum": 0
+    },
+    "unit": {
+      "type": "string",
+      "description": "Unit of measurement for the quantity.",
+      "enum": ["tCO2e", "MWh", "kg"]
+    },
+    "status": {
+      "type": "string",
+      "description": "Current lifecycle status of the certificate.",
+      "enum": ["issued", "active", "retired", "cancelled", "held"]
+    },
+    "retirementInfo": {
+      "type": ["object", "null"],
+      "description": "Details of the retirement event, if the certificate has been retired.",
+      "properties": {
+        "retiredDate": {
+          "type": "string",
+          "description": "Date and time of retirement.",
+          "format": "date-time"
+        },
+        "retiredBy": {
+          "type": "string",
+          "description": "Entity that retired the certificate."
+        },
+        "beneficiary": {
+          "type": "string",
+          "description": "Entity on whose behalf the certificate was retired."
+        },
+        "purpose": {
+          "type": "string",
+          "description": "Stated purpose of retirement (e.g., compliance, voluntary offset, Scope 2 matching)."
+        },
+        "@type": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "verification": {
+      "description": "Third-party verification information for this EAC.",
+      "$ref": "comet-core.schema.json#/$defs/Verification"
+    },
+    "site": {
+      "description": "Geographic location of the project or generation site.",
+      "$ref": "comet-core.schema.json#/$defs/Site"
+    },
+    "cadTrust": {
+      "type": ["object", "null"],
+      "description": "CAD Trust v2.0.2 cross-reference identifiers for credits tracked in the Climate Action Data Trust.",
+      "properties": {
+        "cadTrustProjectId": {
+          "type": "string",
+          "description": "CAD Trust project UUID."
+        },
+        "cadTrustUnitId": {
+          "type": "string",
+          "description": "CAD Trust unit UUID."
+        },
+        "cadTrustIssuanceId": {
+          "type": "string",
+          "description": "CAD Trust issuance UUID."
+        },
+        "@type": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "labels": {
+      "type": "array",
+      "description": "Certification labels applied to this EAC.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "labelName": {
+            "type": "string",
+            "description": "Name of the label or certification."
+          },
+          "labelVersion": {
+            "type": "string",
+            "description": "Version of the label standard."
+          },
+          "labelType": {
+            "type": "string",
+            "description": "Category of label."
+          },
+          "criteria": {
+            "type": "string",
+            "description": "Description of the criteria met."
+          },
+          "@type": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "coBenefits": {
+      "type": "array",
+      "description": "UN Sustainable Development Goal co-benefits associated with this EAC.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "sdgGoal": {
+            "type": "string",
+            "description": "SDG goal reference (e.g., 'SDG 13 - Climate action')."
+          },
+          "benefitType": {
+            "type": "string",
+            "description": "Type of co-benefit."
+          },
+          "description": {
+            "type": "string",
+            "description": "Description of the co-benefit contribution."
+          },
+          "@type": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "article6": {
+      "type": ["object", "null"],
+      "description": "Paris Agreement Article 6 authorization and ITMO transfer data.",
+      "properties": {
+        "authorizingCountry": {
+          "type": "string",
+          "description": "ISO 3166-1 alpha-2 code of the authorizing host country.",
+          "pattern": "^[A-Z]{2}$"
+        },
+        "eligible": {
+          "type": "boolean",
+          "description": "Whether the credit is eligible for Article 6 transfer."
+        },
+        "correspondingAdjustment": {
+          "type": ["boolean", "string"],
+          "description": "Whether a corresponding adjustment has been applied, or status string (e.g., 'pending', 'applied')."
+        },
+        "notes": {
+          "type": "string",
+          "description": "Additional notes about Article 6 authorization status."
+        },
+        "@type": {
+          "type": "string"
+        },
+        "itmo": {
+          "type": "object",
+          "description": "Internationally Transferred Mitigation Outcome details.",
+          "properties": {
+            "transferringCountry": {
+              "type": "string",
+              "description": "Country transferring the ITMO.",
+              "pattern": "^[A-Z]{2}$"
+            },
+            "acquiringCountry": {
+              "type": "string",
+              "description": "Country acquiring the ITMO.",
+              "pattern": "^[A-Z]{2}$"
+            },
+            "amount": {
+              "type": "number",
+              "description": "Amount of ITMOs transferred (tCO2e).",
+              "minimum": 0
+            },
+            "@type": {
+              "type": "string"
+            }
+          },
+          "additionalProperties": false
+        },
+        "adjustment": {
+          "type": "object",
+          "description": "Corresponding adjustment details.",
+          "properties": {
+            "adjustmentType": {
+              "type": "string",
+              "description": "Type of adjustment applied.",
+              "enum": ["first-transfer", "authorization", "other"]
+            },
+            "reportingPeriod": {
+              "type": "string",
+              "description": "NDC reporting period for the adjustment."
+            },
+            "@type": {
+              "type": "string"
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "required": [
+    "@context",
+    "@type",
+    "eacId",
+    "eacType",
+    "quantity",
+    "unit"
+  ],
+  "additionalProperties": true
+}

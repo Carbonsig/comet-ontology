@@ -1,0 +1,251 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://comet.carbon/v1/schemas/comet-core.schema.json",
+  "title": "COMET Core Shared Entities",
+  "description": "Reusable entity definitions shared across COMET PCF and EAC schemas. Includes Organization, Site, Material, TimePeriod, UnitOfMeasure, and EmissionFactor.",
+  "$defs": {
+    "Organization": {
+      "type": "object",
+      "description": "An entity (company, operator, declarant) that produces, verifies, or owns a footprint or certificate.",
+      "properties": {
+        "orgName": {
+          "type": "string",
+          "description": "Legal name of the organization.",
+          "minLength": 1
+        },
+        "orgId": {
+          "type": "array",
+          "description": "Array of organization identifiers (LEI, DUNS, URNs).",
+          "items": {
+            "type": "string"
+          }
+        },
+        "orgType": {
+          "type": "string",
+          "description": "Type of organization.",
+          "enum": [
+            "producer",
+            "importer",
+            "operator",
+            "trader",
+            "verifier",
+            "registry",
+            "other"
+          ]
+        },
+        "country": {
+          "type": "string",
+          "description": "ISO 3166-1 alpha-2 country code of the organization's headquarters.",
+          "pattern": "^[A-Z]{2}$"
+        },
+        "@type": {
+          "type": "string"
+        }
+      },
+      "required": ["orgName"],
+      "additionalProperties": false
+    },
+    "Site": {
+      "type": "object",
+      "description": "A physical location (factory, installation, plant) where production or generation occurs.",
+      "properties": {
+        "siteName": {
+          "type": "string",
+          "description": "Human-readable name of the site or installation."
+        },
+        "siteId": {
+          "type": "string",
+          "description": "Unique identifier for the site (e.g., EU ETS installation ID)."
+        },
+        "siteCountry": {
+          "type": "string",
+          "description": "ISO 3166-1 alpha-2 country code.",
+          "pattern": "^[A-Z]{2}$"
+        },
+        "region": {
+          "type": "string",
+          "description": "Sub-national region, UN geoscheme region, or ISO 3166-2 subdivision."
+        },
+        "latitude": {
+          "type": "number",
+          "description": "WGS84 latitude of the site.",
+          "minimum": -90,
+          "maximum": 90
+        },
+        "longitude": {
+          "type": "number",
+          "description": "WGS84 longitude of the site.",
+          "minimum": -180,
+          "maximum": 180
+        },
+        "@type": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "Material": {
+      "type": "object",
+      "description": "A product or material whose carbon footprint is being declared.",
+      "properties": {
+        "materialName": {
+          "type": "string",
+          "description": "Descriptive name of the material or product.",
+          "minLength": 1
+        },
+        "materialId": {
+          "type": "array",
+          "description": "Array of product identifiers (GTIN, URNs).",
+          "items": {
+            "type": "string"
+          }
+        },
+        "cpcCode": {
+          "type": "string",
+          "description": "UN Central Product Classification code."
+        },
+        "tradeName": {
+          "type": "string",
+          "description": "Commercial trade name of the product."
+        },
+        "hsCode": {
+          "type": "string",
+          "description": "Harmonized System (HS) or Combined Nomenclature (CN) code.",
+          "pattern": "^[0-9]{4,8}$"
+        },
+        "@type": {
+          "type": "string"
+        }
+      },
+      "required": ["materialName"],
+      "additionalProperties": false
+    },
+    "TimePeriod": {
+      "type": "object",
+      "description": "A bounded time interval with ISO 8601 start and end dates.",
+      "properties": {
+        "startDate": {
+          "type": "string",
+          "description": "Start of the period in ISO 8601 date-time format.",
+          "format": "date-time"
+        },
+        "endDate": {
+          "type": "string",
+          "description": "End of the period in ISO 8601 date-time format.",
+          "format": "date-time"
+        },
+        "@type": {
+          "type": "string"
+        }
+      },
+      "required": ["startDate", "endDate"],
+      "additionalProperties": false
+    },
+    "UnitOfMeasure": {
+      "type": "object",
+      "description": "A quantity unit with optional QUDT (Quantities, Units, Dimensions, and Types) URI binding.",
+      "properties": {
+        "unit": {
+          "type": "string",
+          "description": "Human-readable unit string.",
+          "enum": [
+            "kilogram",
+            "tonne",
+            "litre",
+            "cubicMetre",
+            "kilowattHour",
+            "megajoule",
+            "tonneKilometre",
+            "squareMetre",
+            "MWh",
+            "tCO2e",
+            "kgCO2e"
+          ]
+        },
+        "qudtUri": {
+          "type": "string",
+          "description": "QUDT unit URI (e.g., http://qudt.org/vocab/unit/KiloGM).",
+          "format": "uri"
+        },
+        "@type": {
+          "type": "string"
+        }
+      },
+      "required": ["unit"],
+      "additionalProperties": false
+    },
+    "EmissionFactor": {
+      "type": "object",
+      "description": "A greenhouse gas emission factor linking an activity to a GWP value.",
+      "properties": {
+        "efId": {
+          "type": "string",
+          "description": "Unique identifier for the emission factor."
+        },
+        "efValue": {
+          "type": "number",
+          "description": "Numeric value of the emission factor.",
+          "minimum": 0
+        },
+        "efUnit": {
+          "type": "string",
+          "description": "Unit of the emission factor (e.g., kgCO2e/kg, kgCO2e/kWh)."
+        },
+        "source": {
+          "type": "string",
+          "description": "Data source or database (e.g., ecoinvent 3.10, GaBi, IPCC 2006)."
+        },
+        "vintage": {
+          "type": "string",
+          "description": "Year or version of the emission factor dataset.",
+          "pattern": "^[0-9]{4}$"
+        },
+        "geography": {
+          "type": "string",
+          "description": "Geographic scope of the emission factor (ISO country code or region name)."
+        },
+        "technology": {
+          "type": "string",
+          "description": "Technology or process type the factor represents."
+        },
+        "@type": {
+          "type": "string"
+        }
+      },
+      "required": ["efValue", "efUnit", "source"],
+      "additionalProperties": false
+    },
+    "Verification": {
+      "type": "object",
+      "description": "Third-party assurance or verification claim attached to a PCF or EAC.",
+      "properties": {
+        "hasAssurance": {
+          "type": "boolean",
+          "description": "Whether third-party assurance has been obtained."
+        },
+        "levelType": {
+          "type": "string",
+          "description": "Assurance engagement level.",
+          "enum": ["limited", "reasonable"]
+        },
+        "verifierName": {
+          "type": "string",
+          "description": "Name of the verification/validation body (VVB)."
+        },
+        "verificationDate": {
+          "type": "string",
+          "description": "Date the verification was completed.",
+          "format": "date-time"
+        },
+        "standardRef": {
+          "type": "string",
+          "description": "Verification standard used (e.g., ISO 14064-3, ISAE 3410)."
+        },
+        "@type": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+}

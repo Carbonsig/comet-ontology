@@ -1,0 +1,58 @@
+{
+  "id": "b1c4a89e-3c2d-4f5a-b6e7-d8f9a0b1c2d3",
+  "specVersion": "3.0.0",
+  "version": 1,
+  "created": "2025-03-15T10:30:00Z",
+  "status": "Active",
+  "validityPeriodStart": "2024-01-01T00:00:00Z",
+  "validityPeriodEnd": "2024-12-31T23:59:59Z",
+  "companyName": "Stahl AG",
+  "companyIds": ["urn:lei:5299000J2N45DDNE4Y28"],
+  "productDescription": "Hot-rolled steel coil, basic oxygen furnace route",
+  "productIds": ["urn:gtin:04012345678901"],
+  "productCategoryCpc": "4121",
+  "productNameCompany": "StahlCoil HR S235JR",
+  "pcf": {
+    "declaredUnit": "kilogram",
+    "unitaryProductAmount": 1,
+    "pCfExcludingBiogenic": 1.85,
+    "pCfIncludingBiogenic": 1.85,
+    "fossilGhgEmissions": 1.85,
+    "biogenicCarbonContent": 0,
+    "dLucGhgEmissions": 0,
+    "biogenicCarbonWithdrawal": 0,
+    "aircraftGhgEmissions": 0,
+    "packagingGhgEmissions": 0,
+    "characterizationFactors": "AR6",
+    "crossSectoralStandardsUsed": ["ISO14067", "GHGProtocol"],
+    "productOrSectorSpecificRules": [
+      {
+        "operator": "Other",
+        "ruleNames": ["EN 15804+A2"],
+        "otherOperatorName": "CEN/TC 350"
+      }
+    ],
+    "allocationRulesDescription": "Mass-based allocation for co-products (slag)",
+    "boundaryProcessesDescription": "Cradle-to-gate: iron ore extraction through hot rolling",
+    "referencePeriodStart": "2024-01-01T00:00:00Z",
+    "referencePeriodEnd": "2024-12-31T23:59:59Z",
+    "geographyCountry": "DE",
+    "exemptedEmissionsPercent": 2.1,
+    "primaryDataShare": 78.5,
+    "dqi": {
+      "coveragePercent": 85.0,
+      "technologicalDQR": 1.5,
+      "temporalDQR": 1.0,
+      "geographicalDQR": 1.0,
+      "completenessDQR": 2.0
+    },
+    "assurance": {
+      "assurance": true,
+      "coverage": "PCF system",
+      "level": "limited",
+      "providerName": "Bureau Veritas",
+      "completedAt": "2025-02-28T00:00:00Z",
+      "standardName": "ISO 14064-3"
+    }
+  }
+}

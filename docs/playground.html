@@ -1,0 +1,1940 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>COMET Playground &mdash; Convert, Validate &amp; Explore Carbon Data</title>
+  <meta name="description" content="Browser-based tool to convert, validate, and explore carbon data. CSV to COMET JSON-LD, PACT v3 to COMET, COMET to PACT, COMET to CBAM XML — entirely client-side.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --bg: #f5f4f0;
+      --bg-dark: #1a1a18;
+      --bg-mid: #252520;
+      --bg-alt: #efede8;
+      --text: #1c1c1a;
+      --text-secondary: #4a4a45;
+      --text-muted: #7a7a74;
+      --accent: #c8360a;
+      --accent-light: #e8470f;
+      --border: #d8d7d0;
+      --border-dark: #3a3a35;
+      --card-bg: #ffffff;
+      --rule: #c8c7c0;
+      --output-bg: #1c1c1a;
+      --mono: 'DM Mono', monospace;
+      --display: 'Playfair Display', serif;
+      --body: 'DM Sans', sans-serif;
+    }
+
+    html {
+      font-size: 15px;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: var(--body);
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* ─── MASTHEAD ──────────────────────────────────────────────── */
+
+    .masthead {
+      background-color: var(--bg-dark);
+      color: #e8e6e0;
+      padding: 3rem 2rem 2.5rem;
+      border-bottom: 3px solid var(--accent);
+    }
+
+    .masthead-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .back-link {
+      display: inline-block;
+      font-family: var(--mono);
+      font-size: 0.62rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #7a7870;
+      text-decoration: none;
+      padding-bottom: 0.6rem;
+      margin-bottom: 1.25rem;
+      transition: color 0.15s ease;
+    }
+
+    .back-link::before {
+      content: '\2190\0020';
+    }
+
+    .back-link:hover {
+      color: var(--accent);
+    }
+
+    .eyebrow {
+      font-family: var(--mono);
+      font-size: 0.62rem;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: #9a9890;
+      margin-bottom: 0.9rem;
+    }
+
+    .masthead-title {
+      font-family: var(--display);
+      font-size: clamp(2.2rem, 5vw, 3.5rem);
+      font-weight: 700;
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+      color: #f0ede6;
+      margin-bottom: 0.65rem;
+    }
+
+    .masthead-title .period {
+      color: var(--accent);
+    }
+
+    .masthead-subtitle {
+      font-family: var(--display);
+      font-size: clamp(0.9rem, 2vw, 1.1rem);
+      font-weight: 400;
+      font-style: italic;
+      color: #b8b6b0;
+      letter-spacing: 0.01em;
+    }
+
+    /* ─── MAIN TOOL AREA ─────────────────────────────────────────── */
+
+    .tool-wrapper {
+      flex: 1 1 auto;
+      max-width: 1100px;
+      width: 100%;
+      margin: 0 auto;
+      padding: 2rem 2rem 3rem;
+    }
+
+    /* ─── MODE TABS ──────────────────────────────────────────────── */
+
+    .mode-tabs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0;
+      border-bottom: 2px solid var(--border);
+      margin-bottom: 1.75rem;
+    }
+
+    .mode-tab {
+      font-family: var(--mono);
+      font-size: 0.65rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      background: none;
+      border: none;
+      border-bottom: 2px solid transparent;
+      padding: 0.7rem 1.1rem 0.65rem;
+      margin-bottom: -2px;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: color 0.15s ease, border-color 0.15s ease;
+    }
+
+    .mode-tab:hover {
+      color: var(--text);
+    }
+
+    .mode-tab.active {
+      color: var(--accent);
+      border-bottom-color: var(--accent);
+    }
+
+    /* ─── EXAMPLES BAR ───────────────────────────────────────────── */
+
+    .examples-bar {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+      margin-bottom: 1.25rem;
+    }
+
+    .examples-label {
+      font-family: var(--mono);
+      font-size: 0.62rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      white-space: nowrap;
+    }
+
+    .examples-select {
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      color: var(--text);
+      background-color: var(--card-bg);
+      border: 1px solid var(--border);
+      padding: 0.4rem 0.75rem;
+      cursor: pointer;
+      appearance: none;
+      -webkit-appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%237a7a74'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 0.6rem center;
+      padding-right: 2rem;
+      min-width: 220px;
+      transition: border-color 0.15s ease;
+    }
+
+    .examples-select:focus {
+      outline: none;
+      border-color: var(--accent);
+    }
+
+    .btn-load-example {
+      font-family: var(--mono);
+      font-size: 0.65rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      background: none;
+      border: 1px solid var(--accent);
+      padding: 0.38rem 0.85rem;
+      cursor: pointer;
+      transition: background-color 0.15s ease, color 0.15s ease;
+    }
+
+    .btn-load-example:hover {
+      background-color: var(--accent);
+      color: #fff;
+    }
+
+    /* ─── TWO-PANEL LAYOUT ───────────────────────────────────────── */
+
+    .panels {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: auto auto auto;
+      gap: 0;
+      border: 1px solid var(--border);
+    }
+
+    .panel {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .panel-input {
+      border-right: 1px solid var(--border);
+    }
+
+    .panel-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.6rem 1rem;
+      border-bottom: 1px solid var(--border);
+      background-color: var(--bg-alt);
+    }
+
+    .panel-label {
+      font-family: var(--mono);
+      font-size: 0.6rem;
+      font-weight: 500;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+
+    .btn-upload {
+      font-family: var(--mono);
+      font-size: 0.6rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      background: none;
+      border: 1px solid var(--border);
+      padding: 0.25rem 0.6rem;
+      cursor: pointer;
+      transition: color 0.15s ease, border-color 0.15s ease;
+    }
+
+    .btn-upload:hover {
+      color: var(--text);
+      border-color: var(--text-muted);
+    }
+
+    #file-input-hidden {
+      display: none;
+    }
+
+    .panel-body {
+      flex: 1 1 auto;
+    }
+
+    textarea {
+      display: block;
+      width: 100%;
+      height: 420px;
+      font-family: var(--mono);
+      font-size: 0.8rem;
+      line-height: 1.6;
+      padding: 1rem;
+      border: none;
+      resize: vertical;
+      outline: none;
+    }
+
+    #input-area {
+      background-color: #ffffff;
+      color: var(--text);
+    }
+
+    #input-area::placeholder {
+      color: #b8b6b0;
+    }
+
+    .output-pre {
+      display: block;
+      width: 100%;
+      height: 420px;
+      font-family: var(--mono);
+      font-size: 0.8rem;
+      line-height: 1.6;
+      padding: 1rem;
+      background-color: var(--output-bg);
+      color: #d4d4d4;
+      overflow: auto;
+      white-space: pre;
+      resize: vertical;
+      tab-size: 2;
+    }
+
+    /* ─── ACTION BAR ──────────────────────────────────────────────── */
+
+    .action-bar {
+      grid-column: 1 / -1;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 0.85rem 1rem;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      background-color: var(--bg-alt);
+    }
+
+    .btn-convert {
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #fff;
+      background-color: var(--accent);
+      border: none;
+      padding: 0.55rem 1.4rem;
+      cursor: pointer;
+      transition: background-color 0.15s ease;
+    }
+
+    .btn-convert:hover {
+      background-color: var(--accent-light);
+    }
+
+    .btn-convert:active {
+      background-color: #a82d08;
+    }
+
+    .status-indicator {
+      font-family: var(--mono);
+      font-size: 0.65rem;
+      letter-spacing: 0.06em;
+      color: var(--text-muted);
+      flex: 1;
+    }
+
+    .status-indicator.status-ok {
+      color: #6A9955;
+    }
+
+    .status-indicator.status-error {
+      color: #f44747;
+    }
+
+    .status-indicator.status-warn {
+      color: #dcdcaa;
+    }
+
+    /* ─── OUTPUT ACTIONS ─────────────────────────────────────────── */
+
+    .output-actions {
+      grid-column: 2 / 3;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      padding: 0.6rem 1rem;
+      border-top: 1px solid var(--border);
+      background-color: #141412;
+      justify-content: flex-end;
+    }
+
+    .btn-action {
+      font-family: var(--mono);
+      font-size: 0.6rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #7a7870;
+      background: none;
+      border: 1px solid #3a3a35;
+      padding: 0.3rem 0.75rem;
+      cursor: pointer;
+      transition: color 0.15s ease, border-color 0.15s ease;
+    }
+
+    .btn-action:hover {
+      color: #d4d4d4;
+      border-color: #7a7870;
+    }
+
+    .btn-action.copied {
+      color: #6A9955;
+      border-color: #6A9955;
+    }
+
+    /* ─── VALIDATION PANEL ───────────────────────────────────────── */
+
+    .validation-results {
+      grid-column: 1 / -1;
+      display: none;
+      border-top: 1px solid var(--border);
+    }
+
+    .validation-results.visible {
+      display: block;
+    }
+
+    .validation-header {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 0.75rem 1rem;
+      background-color: var(--bg-alt);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .validation-badge {
+      font-family: var(--mono);
+      font-size: 0.65rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.2rem 0.6rem;
+    }
+
+    .badge-valid {
+      color: #6A9955;
+      background-color: #1e3a2e;
+    }
+
+    .badge-invalid {
+      color: #f44747;
+      background-color: #3a1e1e;
+    }
+
+    .validation-summary {
+      font-family: var(--mono);
+      font-size: 0.68rem;
+      color: var(--text-muted);
+    }
+
+    .validation-errors {
+      padding: 1rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+      max-height: 280px;
+      overflow-y: auto;
+    }
+
+    .validation-error-item {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 0 1rem;
+      padding: 0.75rem 1rem;
+      background-color: var(--card-bg);
+      border-left: 3px solid #f44747;
+      border: 1px solid #eceae4;
+      border-left: 3px solid #f44747;
+    }
+
+    .error-field {
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      font-weight: 500;
+      color: #f44747;
+      white-space: nowrap;
+      grid-row: span 2;
+      align-self: start;
+      padding-top: 0.1rem;
+    }
+
+    .error-message {
+      font-size: 0.8125rem;
+      color: var(--text);
+      font-weight: 500;
+    }
+
+    .error-suggestion {
+      font-size: 0.775rem;
+      color: var(--text-muted);
+      margin-top: 0.2rem;
+    }
+
+    .validation-ok {
+      padding: 1.25rem 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .ok-icon {
+      font-size: 1.1rem;
+      color: #6A9955;
+    }
+
+    .ok-text {
+      font-family: var(--mono);
+      font-size: 0.75rem;
+      color: #6A9955;
+      letter-spacing: 0.06em;
+    }
+
+    /* ─── SYNTAX HIGHLIGHT TOKENS ────────────────────────────────── */
+
+    .t-key   { color: #9CDCFE; }
+    .t-str   { color: #ce9178; }
+    .t-num   { color: #B5CEA8; }
+    .t-bool  { color: #569cd6; }
+    .t-null  { color: #569cd6; }
+    .t-punct { color: #808080; }
+    .t-ctx   { color: #4EC9B0; }
+
+    /* XML tokens */
+    .t-tag   { color: #569cd6; }
+    .t-attr  { color: #9CDCFE; }
+    .t-val   { color: #ce9178; }
+    .t-cmt   { color: #6a9955; font-style: italic; }
+    .t-decl  { color: #c586c0; }
+
+    /* ─── FOOTER ─────────────────────────────────────────────────── */
+
+    footer {
+      background-color: var(--bg-dark);
+      color: #6a6a64;
+      padding: 2rem 2rem;
+      margin-top: auto;
+    }
+
+    .footer-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .footer-brand {
+      font-family: var(--display);
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: #7a7870;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+    }
+
+    .footer-links a {
+      font-family: var(--mono);
+      font-size: 0.62rem;
+      color: #5a5855;
+      text-decoration: none;
+      letter-spacing: 0.06em;
+      transition: color 0.15s ease;
+    }
+
+    .footer-links a:hover {
+      color: var(--accent);
+    }
+
+    /* ─── RESPONSIVE ─────────────────────────────────────────────── */
+
+    @media (max-width: 768px) {
+      .panels {
+        grid-template-columns: 1fr;
+      }
+
+      .panel-input {
+        border-right: none;
+        border-bottom: 1px solid var(--border);
+      }
+
+      .action-bar {
+        grid-column: 1;
+      }
+
+      .output-actions {
+        grid-column: 1;
+      }
+
+      .validation-results {
+        grid-column: 1;
+      }
+
+      textarea,
+      .output-pre {
+        height: 280px;
+      }
+
+      .mode-tab {
+        padding: 0.6rem 0.7rem;
+        font-size: 0.58rem;
+      }
+
+      .tool-wrapper {
+        padding: 1.25rem 1rem 2rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .mode-tabs {
+        gap: 0;
+      }
+      .mode-tab {
+        font-size: 0.55rem;
+        padding: 0.55rem 0.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- MASTHEAD -->
+  <header class="masthead" role="banner">
+    <div class="masthead-inner">
+      <a href="index.html" class="back-link" aria-label="Back to COMET home">COMET Home</a>
+      <p class="eyebrow">COMET &middot; Data Tools</p>
+      <h1 class="masthead-title">Playground<span class="period">.</span></h1>
+      <p class="masthead-subtitle">Convert, validate, and explore carbon data &mdash; entirely in your browser</p>
+    </div>
+  </header>
+
+  <!-- MAIN TOOL -->
+  <main class="tool-wrapper" role="main">
+
+    <!-- MODE TABS -->
+    <nav aria-label="Conversion mode" class="mode-tabs" role="tablist">
+      <button class="mode-tab active" role="tab" aria-selected="true"  data-mode="csv-to-comet"   id="tab-csv">CSV &rarr; COMET</button>
+      <button class="mode-tab"        role="tab" aria-selected="false" data-mode="pact-to-comet"  id="tab-pact">PACT &rarr; COMET</button>
+      <button class="mode-tab"        role="tab" aria-selected="false" data-mode="comet-to-pact"  id="tab-c2p">COMET &rarr; PACT</button>
+      <button class="mode-tab"        role="tab" aria-selected="false" data-mode="comet-to-cbam"  id="tab-cbam">COMET &rarr; CBAM XML</button>
+      <button class="mode-tab"        role="tab" aria-selected="false" data-mode="validate"       id="tab-val">Validate</button>
+    </nav>
+
+    <!-- EXAMPLES BAR -->
+    <div class="examples-bar" aria-label="Load example data">
+      <span class="examples-label">Load example:</span>
+      <select class="examples-select" id="example-select" aria-label="Select an example">
+        <option value="">-- select an example --</option>
+        <option value="steel-csv">Steel PCF (CSV) &mdash; for CSV &rarr; COMET</option>
+        <option value="steel-pact">Steel PCF (PACT v3 JSON) &mdash; for PACT &rarr; COMET</option>
+        <option value="steel-comet">Steel PCF (COMET JSON-LD) &mdash; for COMET &rarr; PACT / CBAM / Validate</option>
+        <option value="aluminium-comet">Aluminium PCF (COMET JSON-LD) &mdash; for Validate</option>
+      </select>
+      <button class="btn-load-example" id="btn-load" type="button" aria-label="Load selected example">Load</button>
+    </div>
+
+    <!-- TWO-PANEL LAYOUT -->
+    <div class="panels" role="region" aria-label="Converter">
+
+      <!-- INPUT PANEL -->
+      <div class="panel panel-input" role="tabpanel">
+        <div class="panel-header">
+          <span class="panel-label" id="input-panel-label">Input</span>
+          <button class="btn-upload" id="btn-upload-trigger" type="button" aria-label="Upload file">Upload file</button>
+          <input type="file" id="file-input-hidden" accept=".csv,.json,.xml,.jsonld" aria-hidden="true">
+        </div>
+        <div class="panel-body">
+          <textarea
+            id="input-area"
+            aria-labelledby="input-panel-label"
+            spellcheck="false"
+            autocomplete="off"
+            autocorrect="off"
+            autocapitalize="off"
+            placeholder="Paste your data here, or click Load to use an example..."></textarea>
+        </div>
+      </div>
+
+      <!-- OUTPUT PANEL -->
+      <div class="panel panel-output" role="tabpanel">
+        <div class="panel-header">
+          <span class="panel-label" id="output-panel-label">Output</span>
+          <span class="panel-label" style="font-size:0.55rem; letter-spacing:0.06em; color:#aaa8a0;">read-only</span>
+        </div>
+        <div class="panel-body">
+          <pre class="output-pre" id="output-area" aria-labelledby="output-panel-label" aria-live="polite"></pre>
+        </div>
+      </div>
+
+      <!-- ACTION BAR (full width) -->
+      <div class="action-bar" role="toolbar" aria-label="Conversion controls">
+        <button class="btn-convert" id="btn-convert" type="button">Convert</button>
+        <span class="status-indicator" id="status-msg" aria-live="polite" aria-atomic="true">Ready &mdash; select a mode and paste your data.</span>
+      </div>
+
+      <!-- OUTPUT ACTIONS (output column) -->
+      <div class="output-actions" role="toolbar" aria-label="Output actions">
+        <button class="btn-action" id="btn-copy" type="button" aria-label="Copy output to clipboard">Copy</button>
+        <button class="btn-action" id="btn-download" type="button" aria-label="Download output file">Download</button>
+      </div>
+
+      <!-- VALIDATION RESULTS (shown only in Validate mode) -->
+      <div class="validation-results" id="validation-results" role="region" aria-label="Validation results" aria-live="polite">
+        <div class="validation-header">
+          <span class="validation-badge" id="validation-badge">Pending</span>
+          <span class="validation-summary" id="validation-summary"></span>
+        </div>
+        <div id="validation-body"></div>
+      </div>
+
+    </div><!-- /panels -->
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer role="contentinfo">
+    <div class="footer-inner">
+      <span class="footer-brand">COMET Playground</span>
+      <nav class="footer-links" aria-label="Footer links">
+        <a href="index.html">Home</a>
+        <a href="data-exchange.html">Data Exchange Spec</a>
+        <a href="https://github.com/nickgogerty/comet-ontology" target="_blank" rel="noopener noreferrer">GitHub</a>
+      </nav>
+    </div>
+  </footer>
+
+  <script>
+  (function () {
+    'use strict';
+
+    // ─── STATE ──────────────────────────────────────────────────────────────
+
+    let currentMode = 'csv-to-comet';
+    let lastOutput = '';
+
+    // ─── EXAMPLE DATA ───────────────────────────────────────────────────────
+
+    const EXAMPLES = {
+      'steel-csv': {
+        mode: 'csv-to-comet',
+        data: `org_name,org_id,product_name,product_id,cpc_code,declared_unit,amount,fossil_gwp,total_gwp,biogenic_carbon,land_use_change,biogenic_uptake,aircraft_emissions,packaging_emissions,exempted_percent,boundary_description,period_start,period_end,country,region,primary_data_share,dqi_coverage,dqi_technology,dqi_temporality,dqi_geography,dqi_reliability,standard_ref,has_assurance,assurance_level,verifier_name,verification_date
+Thyssenkrupp Steel,urn:thyssenkrupp:site:duisburg,Hot-Rolled Steel Coil,urn:material:hrc-bof-2024,4113,kilogram,1,1.85,1.82,-0.03,0.02,-0.01,0,0.04,2,Cradle-to-gate boundary covering iron ore mining through hot rolling. Excludes use phase and end-of-life.,2024-01-01T00:00:00Z,2024-12-31T23:59:59Z,DE,North Rhine-Westphalia,78,95,1,2,1,1,ISO14067;GHGProtocol,true,limited,Bureau Veritas,2025-01-15T00:00:00Z`
+      },
+      'steel-pact': {
+        mode: 'pact-to-comet',
+        data: JSON.stringify({
+          "id": "f4b6a8d0-1c2e-4f3a-8b9c-0d1e2f3a4b5c",
+          "specVersion": "3.0.0",
+          "version": 1,
+          "status": "Active",
+          "created": "2025-01-15T00:00:00Z",
+          "updated": "2025-01-15T00:00:00Z",
+          "companyName": "Thyssenkrupp Steel",
+          "companyIds": ["urn:thyssenkrupp:site:duisburg"],
+          "productDescription": "Hot-Rolled Steel Coil (BOF route)",
+          "productIds": ["urn:material:hrc-bof-2024"],
+          "productCategoryCpc": "4113",
+          "productNameCompany": "HRC-BOF Premium Grade",
+          "pcf": {
+            "declaredUnit": "kilogram",
+            "unitaryProductAmount": 1.0,
+            "pCfExcludingBiogenic": 1.85,
+            "pCfIncludingBiogenic": 1.82,
+            "fossilGhgEmissions": 1.83,
+            "biogenicCarbonContent": -0.03,
+            "dLucGhgEmissions": 0.02,
+            "biogenicCarbonWithdrawal": -0.01,
+            "aircraftGhgEmissions": 0.0,
+            "packagingGhgEmissions": 0.04,
+            "exemptedEmissionsPercent": 2.0,
+            "characterizationFactors": "AR6",
+            "crossSectoralStandardsUsed": ["ISO14067", "GHGProtocol"],
+            "boundaryProcessesDescription": "Cradle-to-gate: iron ore mining through hot rolling. Excludes use phase and end-of-life.",
+            "referencePeriodStart": "2024-01-01T00:00:00Z",
+            "referencePeriodEnd": "2024-12-31T23:59:59Z",
+            "geographyCountry": "DE",
+            "geographyRegionOrSubregion": "North Rhine-Westphalia",
+            "primaryDataShare": 78.0,
+            "allocationRulesDescription": "Mass allocation applied at BOF converter stage.",
+            "dqi": {
+              "coveragePercent": 95.0,
+              "technologicalDQR": 1.2,
+              "temporalDQR": 2.0,
+              "geographicalDQR": 1.1,
+              "completenessDQR": 1.5,
+              "reliabilityDQR": 1.3
+            },
+            "assurance": {
+              "assured": true,
+              "coveragePercent": 95.0,
+              "level": "limited",
+              "boundary": "Gate-to-gate",
+              "providerName": "Bureau Veritas",
+              "completedAt": "2025-01-15T00:00:00Z",
+              "standardName": "ISO 14064-3"
+            }
+          }
+        }, null, 2)
+      },
+      'steel-comet': {
+        mode: 'comet-to-pact',
+        data: JSON.stringify({
+          "@context": [
+            "https://wbcsd.github.io/pact/v3/context.json",
+            "https://comet.carbon/v1/jsonld/context.json"
+          ],
+          "@type": "comet-pcf:ProductCarbonFootprint",
+          "pcfId": "f4b6a8d0-1c2e-4f3a-8b9c-0d1e2f3a4b5c",
+          "organization": {
+            "orgName": "Thyssenkrupp Steel",
+            "orgId": ["urn:thyssenkrupp:site:duisburg"],
+            "country": "DE"
+          },
+          "material": {
+            "materialName": "Hot-Rolled Steel Coil (BOF route)",
+            "materialId": ["urn:material:hrc-bof-2024"],
+            "cpcCode": "4113"
+          },
+          "declaredUnit": "kilogram",
+          "unitaryProductAmount": 1.0,
+          "fossilGWP": 1.85,
+          "totalGWP": 1.82,
+          "fossilEmissions": 1.83,
+          "biogenicCarbonContent": -0.03,
+          "landUseChange": 0.02,
+          "biogenicUptake": -0.01,
+          "aircraftEmissions": 0.0,
+          "packagingEmissions": 0.04,
+          "exemptedPercent": 2.0,
+          "ipccAR": "AR6",
+          "standardRef": ["ISO14067", "GHGProtocol"],
+          "boundaryDescription": "Cradle-to-gate: iron ore mining through hot rolling. Excludes use phase and end-of-life.",
+          "allocationDescription": "Mass allocation applied at BOF converter stage.",
+          "referencePeriod": {
+            "startDate": "2024-01-01T00:00:00Z",
+            "endDate": "2024-12-31T23:59:59Z"
+          },
+          "site": {
+            "siteCountry": "DE",
+            "region": "North Rhine-Westphalia"
+          },
+          "primaryDataShare": 78.0,
+          "dqi": {
+            "coveragePercent": 95.0,
+            "technologyDQI": 1,
+            "temporalityDQI": 2,
+            "geographyDQI": 1,
+            "reliabilityDQI": 1
+          },
+          "verification": {
+            "hasAssurance": true,
+            "levelType": "limited",
+            "verifierName": "Bureau Veritas",
+            "verificationDate": "2025-01-15T00:00:00Z"
+          }
+        }, null, 2)
+      },
+      'aluminium-comet': {
+        mode: 'validate',
+        data: JSON.stringify({
+          "@context": [
+            "https://wbcsd.github.io/pact/v3/context.json",
+            "https://comet.carbon/v1/jsonld/context.json"
+          ],
+          "@type": "comet-pcf:ProductCarbonFootprint",
+          "pcfId": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+          "organization": {
+            "orgName": "Hydro ASA",
+            "orgId": ["urn:hydro:smelter:ardal"],
+            "country": "NO"
+          },
+          "material": {
+            "materialName": "Primary Aluminium Ingot",
+            "materialId": ["urn:material:al-primary-2024"],
+            "cpcCode": "4211"
+          },
+          "declaredUnit": "kilogram",
+          "unitaryProductAmount": 1.0,
+          "fossilGWP": 8.5,
+          "totalGWP": 8.3,
+          "biogenicCarbonContent": -0.2,
+          "landUseChange": 0.0,
+          "biogenicUptake": 0.0,
+          "aircraftEmissions": 0.0,
+          "packagingEmissions": 0.0,
+          "exemptedPercent": 1.0,
+          "ipccAR": "AR6",
+          "standardRef": ["ISO14067", "ASICertification"],
+          "boundaryDescription": "Cradle-to-gate: bauxite mining through primary smelting. Includes anode production.",
+          "referencePeriod": {
+            "startDate": "2024-01-01T00:00:00Z",
+            "endDate": "2024-12-31T23:59:59Z"
+          },
+          "site": {
+            "siteCountry": "NO",
+            "region": "Vestland"
+          },
+          "primaryDataShare": 92.0,
+          "dqi": {
+            "coveragePercent": 98.0,
+            "technologyDQI": 1,
+            "temporalityDQI": 1,
+            "geographyDQI": 1,
+            "reliabilityDQI": 1
+          },
+          "verification": {
+            "hasAssurance": true,
+            "levelType": "reasonable",
+            "verifierName": "DNV GL",
+            "verificationDate": "2025-02-10T00:00:00Z"
+          }
+        }, null, 2)
+      }
+    };
+
+    // ─── CSV PARSER ──────────────────────────────────────────────────────────
+
+    function parseCSV(text) {
+      // Remove BOM
+      if (text.charCodeAt(0) === 0xFEFF) text = text.slice(1);
+      const rows = [];
+      let i = 0;
+      const n = text.length;
+
+      while (i < n) {
+        const row = [];
+        while (i < n && text[i] !== '\n') {
+          // Skip CR
+          if (text[i] === '\r') { i++; continue; }
+          let field = '';
+          if (text[i] === '"') {
+            i++; // skip opening quote
+            while (i < n) {
+              if (text[i] === '"') {
+                if (i + 1 < n && text[i + 1] === '"') {
+                  field += '"'; i += 2;
+                } else {
+                  i++; break;
+                }
+              } else {
+                field += text[i++];
+              }
+            }
+          } else {
+            while (i < n && text[i] !== ',' && text[i] !== '\n' && text[i] !== '\r') {
+              field += text[i++];
+            }
+          }
+          row.push(field.trim());
+          if (i < n && text[i] === ',') i++;
+        }
+        if (i < n && text[i] === '\n') i++;
+        if (row.length > 0 && !(row.length === 1 && row[0] === '')) {
+          rows.push(row);
+        }
+      }
+      return rows;
+    }
+
+    // ─── CSV COLUMN MAPPING ──────────────────────────────────────────────────
+
+    const CSV_COLUMN_MAP = {
+      org_name:             ['organization', 'orgName'],
+      org_id:               ['organization', 'orgId'],
+      product_name:         ['material', 'materialName'],
+      product_id:           ['material', 'materialId'],
+      cpc_code:             ['material', 'cpcCode'],
+      declared_unit:        ['declaredUnit'],
+      amount:               ['unitaryProductAmount'],
+      fossil_gwp:           ['fossilGWP'],
+      total_gwp:            ['totalGWP'],
+      biogenic_carbon:      ['biogenicCarbonContent'],
+      land_use_change:      ['landUseChange'],
+      biogenic_uptake:      ['biogenicUptake'],
+      aircraft_emissions:   ['aircraftEmissions'],
+      packaging_emissions:  ['packagingEmissions'],
+      exempted_percent:     ['exemptedPercent'],
+      boundary_description: ['boundaryDescription'],
+      period_start:         ['referencePeriod', 'startDate'],
+      period_end:           ['referencePeriod', 'endDate'],
+      country:              ['site', 'siteCountry'],
+      region:               ['site', 'region'],
+      primary_data_share:   ['primaryDataShare'],
+      dqi_coverage:         ['dqi', 'coveragePercent'],
+      dqi_technology:       ['dqi', 'technologyDQI'],
+      dqi_temporality:      ['dqi', 'temporalityDQI'],
+      dqi_geography:        ['dqi', 'geographyDQI'],
+      dqi_reliability:      ['dqi', 'reliabilityDQI'],
+      standard_ref:         ['standardRef'],
+      has_assurance:        ['verification', 'hasAssurance'],
+      assurance_level:      ['verification', 'levelType'],
+      verifier_name:        ['verification', 'verifierName'],
+      verification_date:    ['verification', 'verificationDate'],
+      pcr_name:             ['pcrName'],
+      allocation_description: ['allocationDescription']
+    };
+
+    const NUM_FIELDS = new Set([
+      'unitaryProductAmount','fossilGWP','totalGWP','biogenicCarbonContent',
+      'landUseChange','biogenicUptake','aircraftEmissions','packagingEmissions',
+      'exemptedPercent','primaryDataShare',
+      'dqi.coveragePercent','dqi.technologyDQI','dqi.temporalityDQI',
+      'dqi.geographyDQI','dqi.reliabilityDQI'
+    ]);
+
+    function setNested(obj, path, value) {
+      const parts = path;
+      let cur = obj;
+      for (let i = 0; i < parts.length - 1; i++) {
+        if (!cur[parts[i]]) cur[parts[i]] = {};
+        cur = cur[parts[i]];
+      }
+      cur[parts[parts.length - 1]] = value;
+    }
+
+    function csvToComet(text) {
+      const rows = parseCSV(text);
+      if (rows.length < 2) throw new Error('CSV must have a header row and at least one data row.');
+
+      const headers = rows[0].map(h => h.toLowerCase().trim().replace(/\s+/g, '_'));
+      const results = [];
+
+      for (let r = 1; r < rows.length; r++) {
+        const row = rows[r];
+        if (row.every(c => c === '')) continue;
+
+        const doc = {
+          "@context": [
+            "https://wbcsd.github.io/pact/v3/context.json",
+            "https://comet.carbon/v1/jsonld/context.json"
+          ],
+          "@type": "comet-pcf:ProductCarbonFootprint",
+          "pcfId": generateUUID()
+        };
+
+        headers.forEach((header, i) => {
+          const colPath = CSV_COLUMN_MAP[header];
+          if (!colPath || !row[i] || row[i] === '') return;
+
+          let value = row[i];
+
+          // Handle special cases
+          if (header === 'org_id' || header === 'product_id') {
+            value = value.split(';').map(v => v.trim()).filter(Boolean);
+          } else if (header === 'standard_ref') {
+            value = value.split(';').map(v => v.trim()).filter(Boolean);
+          } else if (header === 'has_assurance') {
+            value = value.toLowerCase() === 'true' || value === '1';
+          } else {
+            const flatKey = colPath.join('.');
+            if (NUM_FIELDS.has(flatKey) || NUM_FIELDS.has(colPath[colPath.length - 1])) {
+              const n = parseFloat(value);
+              if (!isNaN(n)) value = n;
+            }
+          }
+
+          setNested(doc, colPath, value);
+        });
+
+        results.push(doc);
+      }
+
+      if (results.length === 0) throw new Error('No data rows found in CSV.');
+      return results.length === 1 ? results[0] : results;
+    }
+
+    // ─── PACT → COMET ────────────────────────────────────────────────────────
+
+    function pactToComet(text) {
+      let pact;
+      try { pact = JSON.parse(text); } catch (e) { throw new Error('Invalid JSON: ' + e.message); }
+
+      const inputs = Array.isArray(pact) ? pact : [pact];
+      const results = inputs.map(p => {
+        const pcf = p.pcf || {};
+        const dqi = pcf.dqi || {};
+        const assurance = pcf.assurance || {};
+
+        const doc = Object.assign({}, p, {
+          "@context": [
+            "https://wbcsd.github.io/pact/v3/context.json",
+            "https://comet.carbon/v1/jsonld/context.json"
+          ],
+          "@type": "comet-pcf:ProductCarbonFootprint"
+        });
+
+        // Core identity
+        if (p.id) doc.pcfId = p.id;
+
+        // Organization
+        doc.organization = {
+          orgName: p.companyName || '',
+          orgId: p.companyIds || [],
+          country: pcf.geographyCountry || p.geographyCountry || ''
+        };
+
+        // Material
+        doc.material = {
+          materialName: p.productDescription || '',
+          materialId: p.productIds || [],
+          cpcCode: p.productCategoryCpc || ''
+        };
+
+        // Emissions
+        if (pcf.declaredUnit !== undefined)            doc.declaredUnit = pcf.declaredUnit;
+        if (pcf.unitaryProductAmount !== undefined)    doc.unitaryProductAmount = pcf.unitaryProductAmount;
+        if (pcf.pCfExcludingBiogenic !== undefined)    doc.fossilGWP = pcf.pCfExcludingBiogenic;
+        if (pcf.pCfIncludingBiogenic !== undefined)    doc.totalGWP = pcf.pCfIncludingBiogenic;
+        if (pcf.fossilGhgEmissions !== undefined)      doc.fossilEmissions = pcf.fossilGhgEmissions;
+        if (pcf.biogenicCarbonContent !== undefined)   doc.biogenicCarbonContent = pcf.biogenicCarbonContent;
+        if (pcf.dLucGhgEmissions !== undefined)        doc.landUseChange = pcf.dLucGhgEmissions;
+        if (pcf.biogenicCarbonWithdrawal !== undefined) doc.biogenicUptake = pcf.biogenicCarbonWithdrawal;
+        if (pcf.aircraftGhgEmissions !== undefined)    doc.aircraftEmissions = pcf.aircraftGhgEmissions;
+        if (pcf.packagingGhgEmissions !== undefined)   doc.packagingEmissions = pcf.packagingGhgEmissions;
+        if (pcf.exemptedEmissionsPercent !== undefined) doc.exemptedPercent = pcf.exemptedEmissionsPercent;
+        if (pcf.characterizationFactors !== undefined)  doc.ipccAR = pcf.characterizationFactors;
+        if (pcf.crossSectoralStandardsUsed !== undefined) doc.standardRef = pcf.crossSectoralStandardsUsed;
+        if (pcf.allocationRulesDescription !== undefined) doc.allocationDescription = pcf.allocationRulesDescription;
+        if (pcf.boundaryProcessesDescription !== undefined) doc.boundaryDescription = pcf.boundaryProcessesDescription;
+        if (pcf.primaryDataShare !== undefined) doc.primaryDataShare = pcf.primaryDataShare;
+
+        // PCR name
+        if (pcf.productOrSectorSpecificRules && pcf.productOrSectorSpecificRules.length > 0) {
+          doc.pcrName = pcf.productOrSectorSpecificRules.map(r => r.name || r).join('; ');
+        }
+
+        // Reference period
+        const rStart = pcf.referencePeriodStart || p.validityPeriodStart;
+        const rEnd   = pcf.referencePeriodEnd   || p.validityPeriodEnd;
+        if (rStart || rEnd) {
+          doc.referencePeriod = { startDate: rStart || '', endDate: rEnd || '' };
+        }
+
+        // Site
+        if (pcf.geographyCountry || pcf.geographyRegionOrSubregion) {
+          doc.site = {
+            siteCountry: pcf.geographyCountry || '',
+            region: pcf.geographyRegionOrSubregion || ''
+          };
+        }
+
+        // DQI
+        if (Object.keys(dqi).length > 0) {
+          doc.dqi = {
+            coveragePercent:  dqi.coveragePercent  !== undefined ? dqi.coveragePercent  : (dqi.completenessDQR || null),
+            technologyDQI:    dqi.technologyDQI    !== undefined ? dqi.technologyDQI    : (dqi.technologicalDQR ? Math.round(dqi.technologicalDQR) : null),
+            temporalityDQI:   dqi.temporalityDQI   !== undefined ? dqi.temporalityDQI   : (dqi.temporalDQR ? Math.round(dqi.temporalDQR) : null),
+            geographyDQI:     dqi.geographyDQI     !== undefined ? dqi.geographyDQI     : (dqi.geographicalDQR ? Math.round(dqi.geographicalDQR) : null),
+            reliabilityDQI:   dqi.reliabilityDQI   !== undefined ? dqi.reliabilityDQI   : (dqi.reliabilityDQR ? Math.round(dqi.reliabilityDQR) : null)
+          };
+        }
+
+        // Verification
+        if (Object.keys(assurance).length > 0) {
+          doc.verification = {
+            hasAssurance:    assurance.assured !== undefined ? assurance.assured : (assurance.hasAssurance || false),
+            levelType:       assurance.level || assurance.levelType || '',
+            verifierName:    assurance.providerName || assurance.verifierName || '',
+            verificationDate: assurance.completedAt || assurance.verificationDate || ''
+          };
+        }
+
+        return doc;
+      });
+
+      return results.length === 1 ? results[0] : results;
+    }
+
+    // ─── COMET → PACT ────────────────────────────────────────────────────────
+
+    function cometToPact(text) {
+      let comet;
+      try { comet = JSON.parse(text); } catch (e) { throw new Error('Invalid JSON: ' + e.message); }
+
+      const inputs = Array.isArray(comet) ? comet : [comet];
+      const results = inputs.map(c => {
+        const org = c.organization || {};
+        const mat = c.material || {};
+        const refPeriod = c.referencePeriod || {};
+        const site = c.site || {};
+        const dqi = c.dqi || {};
+        const ver = c.verification || {};
+
+        const dqiPact = {};
+        if (dqi.coveragePercent  !== undefined) dqiPact.coveragePercent  = dqi.coveragePercent;
+        if (dqi.technologyDQI    !== undefined) dqiPact.technologicalDQR = dqi.technologyDQI;
+        if (dqi.temporalityDQI   !== undefined) dqiPact.temporalDQR      = dqi.temporalityDQI;
+        if (dqi.geographyDQI     !== undefined) dqiPact.geographicalDQR  = dqi.geographyDQI;
+        if (dqi.reliabilityDQI   !== undefined) dqiPact.reliabilityDQR   = dqi.reliabilityDQI;
+
+        const assurancePact = {};
+        if (ver.hasAssurance     !== undefined) assurancePact.assured       = ver.hasAssurance;
+        if (ver.levelType)                      assurancePact.level         = ver.levelType;
+        if (ver.verifierName)                   assurancePact.providerName  = ver.verifierName;
+        if (ver.verificationDate)               assurancePact.completedAt   = ver.verificationDate;
+
+        const pcf = {};
+        if (c.declaredUnit          !== undefined) pcf.declaredUnit                = c.declaredUnit;
+        if (c.unitaryProductAmount  !== undefined) pcf.unitaryProductAmount        = c.unitaryProductAmount;
+        if (c.fossilGWP             !== undefined) pcf.pCfExcludingBiogenic        = c.fossilGWP;
+        if (c.totalGWP              !== undefined) pcf.pCfIncludingBiogenic        = c.totalGWP;
+        if (c.fossilEmissions       !== undefined) pcf.fossilGhgEmissions          = c.fossilEmissions;
+        if (c.biogenicCarbonContent !== undefined) pcf.biogenicCarbonContent       = c.biogenicCarbonContent;
+        if (c.landUseChange         !== undefined) pcf.dLucGhgEmissions            = c.landUseChange;
+        if (c.biogenicUptake        !== undefined) pcf.biogenicCarbonWithdrawal    = c.biogenicUptake;
+        if (c.aircraftEmissions     !== undefined) pcf.aircraftGhgEmissions        = c.aircraftEmissions;
+        if (c.packagingEmissions    !== undefined) pcf.packagingGhgEmissions       = c.packagingEmissions;
+        if (c.exemptedPercent       !== undefined) pcf.exemptedEmissionsPercent    = c.exemptedPercent;
+        if (c.ipccAR)                              pcf.characterizationFactors     = c.ipccAR;
+        if (c.standardRef)                         pcf.crossSectoralStandardsUsed  = c.standardRef;
+        if (c.allocationDescription)               pcf.allocationRulesDescription  = c.allocationDescription;
+        if (c.boundaryDescription)                 pcf.boundaryProcessesDescription = c.boundaryDescription;
+        if (c.primaryDataShare      !== undefined) pcf.primaryDataShare            = c.primaryDataShare;
+        if (refPeriod.startDate)                   pcf.referencePeriodStart        = refPeriod.startDate;
+        if (refPeriod.endDate)                     pcf.referencePeriodEnd          = refPeriod.endDate;
+        if (site.siteCountry)                      pcf.geographyCountry            = site.siteCountry;
+        if (site.region)                           pcf.geographyRegionOrSubregion  = site.region;
+        if (Object.keys(dqiPact).length > 0)       pcf.dqi                         = dqiPact;
+        if (Object.keys(assurancePact).length > 0) pcf.assurance                   = assurancePact;
+
+        const out = {
+          id:                 c.pcfId || generateUUID(),
+          specVersion:        '3.0.0',
+          version:            1,
+          status:             'Active',
+          created:            new Date().toISOString(),
+          updated:            new Date().toISOString(),
+          companyName:        org.orgName  || '',
+          companyIds:         org.orgId    || [],
+          productDescription: mat.materialName || '',
+          productIds:         mat.materialId   || [],
+          productCategoryCpc: mat.cpcCode      || '',
+          pcf
+        };
+
+        // Clean up undefined/empty
+        Object.keys(out).forEach(k => { if (out[k] === '' || out[k] === undefined) delete out[k]; });
+
+        return out;
+      });
+
+      return results.length === 1 ? results[0] : results;
+    }
+
+    // ─── COMET → CBAM XML ───────────────────────────────────────────────────
+
+    function xmlEsc(s) {
+      if (s === null || s === undefined) return '';
+      return String(s)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&apos;');
+    }
+
+    function cometToCbamXml(text) {
+      let comet;
+      try { comet = JSON.parse(text); } catch (e) { throw new Error('Invalid JSON: ' + e.message); }
+
+      const inputs = Array.isArray(comet) ? comet : [comet];
+      const declarations = inputs.map(c => {
+        const org   = c.organization  || {};
+        const mat   = c.material      || {};
+        const site  = c.site          || {};
+        const ref   = c.referencePeriod || {};
+        const ver   = c.verification  || {};
+
+        const declRef = 'COMET-' + (c.pcfId || generateUUID()).slice(0, 8).toUpperCase();
+        const quantity = c.unitaryProductAmount || 1;
+        const specificDirect = c.fossilGWP || 0;
+        const specificIndirect = (c.totalGWP || 0) - (c.fossilGWP || 0);
+        const totalEmbedded = specificDirect * quantity;
+
+        let lines = [];
+        lines.push('<?xml version="1.0" encoding="UTF-8"?>');
+        lines.push('<cbam:CBAMDeclaration');
+        lines.push('  xmlns:cbam="urn:eu:taxud:cbam:declaration:v1"');
+        lines.push('  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"');
+        lines.push('  xsi:schemaLocation="urn:eu:taxud:cbam:declaration:v1 cbam-declaration-v1.xsd"');
+        lines.push('  declarationReference="' + xmlEsc(declRef) + '"');
+        lines.push('  declarationType="EMBEDDED_EMISSIONS"');
+        lines.push('  xmlns:comet="https://comet.carbon/v1/jsonld/context.json">');
+        lines.push('');
+        lines.push('  <!-- Generated by COMET Playground from COMET JSON-LD -->');
+        lines.push('  <!-- Source pcfId: ' + xmlEsc(c.pcfId || 'unknown') + ' -->');
+        lines.push('');
+        lines.push('  <cbam:AuthorisedDeclarant>');
+        lines.push('    <cbam:DeclarantName>' + xmlEsc(org.orgName) + '</cbam:DeclarantName>');
+        lines.push('    <cbam:DeclarantId>' + xmlEsc((org.orgId || [])[0] || '') + '</cbam:DeclarantId>');
+        lines.push('    <cbam:Country>' + xmlEsc(org.country || site.siteCountry) + '</cbam:Country>');
+        lines.push('  </cbam:AuthorisedDeclarant>');
+        lines.push('');
+        lines.push('  <cbam:ReportingPeriod>');
+        lines.push('    <cbam:StartDate>' + xmlEsc(ref.startDate) + '</cbam:StartDate>');
+        lines.push('    <cbam:EndDate>'   + xmlEsc(ref.endDate)   + '</cbam:EndDate>');
+        lines.push('  </cbam:ReportingPeriod>');
+        lines.push('');
+        lines.push('  <cbam:CoveredGoods>');
+        lines.push('    <cbam:CoveredGood sequence="1">');
+        lines.push('      <cbam:CNCode>' + xmlEsc(mat.hsCode || getCNCodeFromCPC(mat.cpcCode)) + '</cbam:CNCode>');
+        lines.push('      <cbam:ProductDescription>' + xmlEsc(mat.materialName) + '</cbam:ProductDescription>');
+        lines.push('      <cbam:CountryOfOrigin>' + xmlEsc(site.siteCountry) + '</cbam:CountryOfOrigin>');
+        lines.push('      <cbam:Quantity unit="' + xmlEsc(c.declaredUnit || 'kilogram') + '">' + xmlEsc(String(quantity)) + '</cbam:Quantity>');
+        lines.push('');
+        lines.push('      <cbam:EmbeddedEmissions unit="tCO2e">');
+        lines.push('        <cbam:TotalDirectEmbeddedEmissions>' + xmlEsc(totalEmbedded.toFixed(4)) + '</cbam:TotalDirectEmbeddedEmissions>');
+        lines.push('        <cbam:SpecificDirectEmissions>' + xmlEsc(specificDirect.toFixed(4)) + '</cbam:SpecificDirectEmissions>');
+        if (specificIndirect !== 0) {
+          lines.push('        <cbam:SpecificIndirectEmissions>' + xmlEsc(Math.max(0, specificIndirect).toFixed(4)) + '</cbam:SpecificIndirectEmissions>');
+        }
+        if (c.biogenicCarbonContent !== undefined) {
+          lines.push('        <cbam:BiogenicCarbonContent>' + xmlEsc(String(c.biogenicCarbonContent)) + '</cbam:BiogenicCarbonContent>');
+        }
+        lines.push('      </cbam:EmbeddedEmissions>');
+        lines.push('');
+        lines.push('      <cbam:ProductionMethod>');
+        lines.push('        <cbam:Methodology>' + xmlEsc((c.standardRef || []).join(', ')) + '</cbam:Methodology>');
+        lines.push('        <cbam:BoundaryDescription>' + xmlEsc(c.boundaryDescription) + '</cbam:BoundaryDescription>');
+        lines.push('      </cbam:ProductionMethod>');
+        lines.push('');
+        lines.push('      <cbam:Installation>');
+        lines.push('        <cbam:InstallationName>' + xmlEsc(org.orgName) + '</cbam:InstallationName>');
+        lines.push('        <cbam:Country>' + xmlEsc(site.siteCountry) + '</cbam:Country>');
+        if (site.region) {
+          lines.push('        <cbam:Region>' + xmlEsc(site.region) + '</cbam:Region>');
+        }
+        lines.push('      </cbam:Installation>');
+
+        if (ver.hasAssurance) {
+          lines.push('');
+          lines.push('      <cbam:Verification>');
+          lines.push('        <cbam:VerifierName>' + xmlEsc(ver.verifierName) + '</cbam:VerifierName>');
+          lines.push('        <cbam:VerificationDate>' + xmlEsc(ver.verificationDate) + '</cbam:VerificationDate>');
+          lines.push('        <cbam:AssuranceLevel>' + xmlEsc(ver.levelType) + '</cbam:AssuranceLevel>');
+          lines.push('      </cbam:Verification>');
+        }
+
+        lines.push('');
+        lines.push('      <!-- COMET Reference Data -->');
+        lines.push('      <comet:PCFReference>');
+        lines.push('        <comet:PcfId>' + xmlEsc(c.pcfId || '') + '</comet:PcfId>');
+        lines.push('        <comet:IpccAR>' + xmlEsc(c.ipccAR || 'AR6') + '</comet:IpccAR>');
+        if (c.primaryDataShare !== undefined) {
+          lines.push('        <comet:PrimaryDataShare>' + xmlEsc(String(c.primaryDataShare)) + '</comet:PrimaryDataShare>');
+        }
+        lines.push('      </comet:PCFReference>');
+        lines.push('    </cbam:CoveredGood>');
+        lines.push('  </cbam:CoveredGoods>');
+        lines.push('');
+        lines.push('</cbam:CBAMDeclaration>');
+
+        return lines.join('\n');
+      });
+
+      return declarations.join('\n\n<!-- ═══════════════════════════════════════════ -->\n\n');
+    }
+
+    function getCNCodeFromCPC(cpcCode) {
+      // Map common CPC codes to CBAM-relevant CN codes
+      const map = {
+        '4113': '7208',   // Hot-rolled steel
+        '4111': '7207',   // Semi-finished steel products
+        '4114': '7209',   // Cold-rolled steel
+        '4115': '7210',   // Steel coated
+        '4116': '7213',   // Steel wire rod
+        '4211': '7601',   // Primary aluminium
+        '4212': '7603',   // Aluminium powder
+        '3740': '2523',   // Portland cement
+        '1710': '2804',   // Hydrogen
+        '2712': '3102'    // Nitrogen fertilisers
+      };
+      return map[cpcCode] || '';
+    }
+
+    // ─── VALIDATION ──────────────────────────────────────────────────────────
+
+    const SCHEMA = {
+      required: ['declaredUnit', 'unitaryProductAmount', 'fossilGWP', 'boundaryDescription', 'referencePeriod', 'standardRef'],
+      types: {
+        declaredUnit:         'string',
+        unitaryProductAmount: 'number',
+        fossilGWP:            'number',
+        totalGWP:             'number',
+        fossilEmissions:      'number',
+        biogenicCarbonContent:'number',
+        landUseChange:        'number',
+        biogenicUptake:       'number',
+        aircraftEmissions:    'number',
+        packagingEmissions:   'number',
+        exemptedPercent:      'number',
+        primaryDataShare:     'number',
+        boundaryDescription:  'string',
+        ipccAR:               'string',
+        pcrName:              'string',
+        allocationDescription:'string'
+      },
+      enums: {
+        declaredUnit: ['kilogram','litre','cubicMetre','kilowattHour','megajoule','tonneKilometre','squareMetre'],
+        ipccAR:       ['AR5','AR6']
+      },
+      ranges: {
+        unitaryProductAmount: { min: 0, exclusive: true },
+        fossilGWP:            { min: 0 },
+        exemptedPercent:      { min: 0, max: 100 },
+        primaryDataShare:     { min: 0, max: 100 }
+      },
+      dqiRanges: {
+        technologyDQI:  { min: 1, max: 3 },
+        temporalityDQI: { min: 1, max: 3 },
+        geographyDQI:   { min: 1, max: 3 },
+        reliabilityDQI: { min: 1, max: 3 }
+      },
+      verificationLevels: ['limited','reasonable']
+    };
+
+    function validate(text) {
+      let doc;
+      try { doc = JSON.parse(text); } catch (e) {
+        return [{ field: 'root', error: 'Invalid JSON', expected: 'valid JSON object', got: 'parse error', suggestion: 'Fix JSON syntax: ' + e.message }];
+      }
+
+      const errors = [];
+
+      function err(field, error, expected, got, suggestion) {
+        errors.push({ field, error, expected, got: String(got), suggestion });
+      }
+
+      // Check @context
+      if (!doc['@context']) {
+        err('@context', 'Missing required field', 'array with COMET context URI', 'undefined', 'Add "@context": ["https://wbcsd.github.io/pact/v3/context.json", "https://comet.carbon/v1/jsonld/context.json"]');
+      }
+
+      // Check @type
+      if (!doc['@type']) {
+        err('@type', 'Missing required field', '"comet-pcf:ProductCarbonFootprint"', 'undefined', 'Add "@type": "comet-pcf:ProductCarbonFootprint"');
+      } else if (!String(doc['@type']).includes('ProductCarbonFootprint')) {
+        err('@type', 'Unexpected type value', 'comet-pcf:ProductCarbonFootprint', doc['@type'], 'Set @type to "comet-pcf:ProductCarbonFootprint"');
+      }
+
+      // Required fields
+      SCHEMA.required.forEach(field => {
+        if (doc[field] === undefined || doc[field] === null || doc[field] === '') {
+          err(field, 'Missing required field', SCHEMA.types[field] || 'value', 'undefined/null', 'Provide a value for ' + field);
+        }
+      });
+
+      // Type checks
+      Object.entries(SCHEMA.types).forEach(([field, type]) => {
+        if (doc[field] !== undefined && doc[field] !== null) {
+          if (typeof doc[field] !== type) {
+            err(field, 'Wrong type', type, typeof doc[field], 'Change ' + field + ' to a ' + type + ' value');
+          }
+        }
+      });
+
+      // Enum checks
+      Object.entries(SCHEMA.enums).forEach(([field, allowed]) => {
+        if (doc[field] !== undefined && doc[field] !== null && !allowed.includes(doc[field])) {
+          err(field, 'Invalid enum value', allowed.join(' | '), doc[field], 'Use one of: ' + allowed.join(', '));
+        }
+      });
+
+      // Range checks
+      Object.entries(SCHEMA.ranges).forEach(([field, range]) => {
+        const v = doc[field];
+        if (v !== undefined && v !== null && typeof v === 'number') {
+          if (range.exclusive && v <= range.min) {
+            err(field, 'Value out of range', '> ' + range.min, v, field + ' must be greater than ' + range.min);
+          } else if (!range.exclusive && range.min !== undefined && v < range.min) {
+            err(field, 'Value out of range', '>= ' + range.min, v, field + ' must be >= ' + range.min);
+          }
+          if (range.max !== undefined && v > range.max) {
+            err(field, 'Value out of range', '<= ' + range.max, v, field + ' must be <= ' + range.max);
+          }
+        }
+      });
+
+      // standardRef array check
+      if (doc.standardRef !== undefined) {
+        if (!Array.isArray(doc.standardRef)) {
+          err('standardRef', 'Wrong type', 'array of strings', typeof doc.standardRef, 'Change standardRef to an array, e.g. ["ISO14067"]');
+        } else if (doc.standardRef.length === 0) {
+          err('standardRef', 'Empty array', 'at least 1 item', '0 items', 'Add at least one standard reference, e.g. "ISO14067"');
+        }
+      }
+
+      // referencePeriod object check
+      if (doc.referencePeriod !== undefined) {
+        if (typeof doc.referencePeriod !== 'object' || Array.isArray(doc.referencePeriod)) {
+          err('referencePeriod', 'Wrong type', 'object with startDate and endDate', typeof doc.referencePeriod, 'Set referencePeriod to { "startDate": "...", "endDate": "..." }');
+        } else {
+          if (!doc.referencePeriod.startDate) err('referencePeriod.startDate', 'Missing required field', 'ISO 8601 date-time string', 'undefined', 'Add a startDate to referencePeriod');
+          if (!doc.referencePeriod.endDate)   err('referencePeriod.endDate',   'Missing required field', 'ISO 8601 date-time string', 'undefined', 'Add an endDate to referencePeriod');
+        }
+      }
+
+      // organization check
+      if (!doc.organization || !doc.organization.orgName) {
+        err('organization.orgName', 'Missing required field', 'string', 'undefined', 'Add organization.orgName with the company name');
+      }
+
+      // material check
+      if (!doc.material || !doc.material.materialName) {
+        err('material.materialName', 'Missing required field', 'string', 'undefined', 'Add material.materialName with the product description');
+      }
+
+      // DQI range checks
+      if (doc.dqi && typeof doc.dqi === 'object') {
+        Object.entries(SCHEMA.dqiRanges).forEach(([field, range]) => {
+          const v = doc.dqi[field];
+          if (v !== undefined && v !== null) {
+            if (typeof v !== 'number') {
+              err('dqi.' + field, 'Wrong type', 'number', typeof v, 'Set dqi.' + field + ' to a number between ' + range.min + ' and ' + range.max);
+            } else if (v < range.min || v > range.max) {
+              err('dqi.' + field, 'Value out of range', range.min + '-' + range.max, v, 'Set dqi.' + field + ' to an integer between ' + range.min + ' and ' + range.max);
+            }
+          }
+        });
+      }
+
+      // Verification level check
+      if (doc.verification && doc.verification.levelType) {
+        if (!SCHEMA.verificationLevels.includes(doc.verification.levelType)) {
+          err('verification.levelType', 'Invalid enum value', SCHEMA.verificationLevels.join(' | '), doc.verification.levelType, 'Use "limited" or "reasonable"');
+        }
+      }
+
+      return errors;
+    }
+
+    // ─── SYNTAX HIGHLIGHTING ─────────────────────────────────────────────────
+
+    function highlightJSON(json) {
+      // Tokenize and wrap spans — operates on the raw JSON string
+      const esc = s => s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+
+      return json.replace(
+        /("(?:\\u[0-9a-fA-F]{4}|\\[^u]|[^\\"])*"(?:\s*:)?|true|false|null|-?\d+(?:\.\d+)?(?:[eE][+-]?\d+)?|[{}\[\],:])/g,
+        token => {
+          if (/^"/.test(token)) {
+            if (/:$/.test(token)) {
+              // JSON key
+              const key = token.replace(/:$/, '');
+              // Special keys for context
+              if (key === '"@context"' || key === '"@type"' || key === '"@id"') {
+                return '<span class="t-ctx">' + esc(key) + '</span>:';
+              }
+              return '<span class="t-key">' + esc(key) + '</span>:';
+            }
+            return '<span class="t-str">' + esc(token) + '</span>';
+          }
+          if (token === 'true' || token === 'false') return '<span class="t-bool">' + token + '</span>';
+          if (token === 'null')  return '<span class="t-null">' + token + '</span>';
+          if (/^-?\d/.test(token)) return '<span class="t-num">' + token + '</span>';
+          return '<span class="t-punct">' + esc(token) + '</span>';
+        }
+      );
+    }
+
+    function highlightXML(xml) {
+      const esc = s => s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+
+      // Process line by line for readability
+      return xml.split('\n').map(line => {
+        // XML declaration
+        if (/^\s*<\?xml/.test(line)) {
+          return line.replace(/(<\?xml)(.*?)(\?>)/, (m, open, content, close) =>
+            '<span class="t-decl">' + esc(open) + esc(content) + esc(close) + '</span>');
+        }
+        // Comments
+        if (/^\s*<!--/.test(line)) {
+          return '<span class="t-cmt">' + esc(line) + '</span>';
+        }
+        // Closing tags
+        if (/^\s*<\//.test(line)) {
+          return line.replace(/(<\/)([\w:]+)(>)/, (m, slash, name, close) =>
+            '<span class="t-tag">' + esc(slash) + esc(name) + esc(close) + '</span>');
+        }
+        // Opening/self-closing tags with possible attributes and text content
+        return line.replace(/(<\/?)([^>\s\/"'=]+)/g, (m, slash, name) =>
+            '<span class="t-tag">' + esc(slash) + esc(name) + '</span>')
+          .replace(/\s([a-zA-Z:_][\w:.-]*)=("[^"]*"|'[^']*')/g, (m, attr, val) =>
+            ' <span class="t-attr">' + esc(attr) + '</span>=<span class="t-val">' + esc(val) + '</span>')
+          .replace(/(?<=>)([^<]+)(?=<)/g, (m, text) => {
+            if (/^\s*$/.test(text)) return text;
+            return '<span class="t-val">' + text + '</span>';
+          });
+      }).join('\n');
+    }
+
+    // ─── UUID ─────────────────────────────────────────────────────────────────
+
+    function generateUUID() {
+      if (typeof crypto !== 'undefined' && crypto.randomUUID) return crypto.randomUUID();
+      return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, c => {
+        const r = Math.random() * 16 | 0;
+        return (c === 'x' ? r : (r & 0x3 | 0x8)).toString(16);
+      });
+    }
+
+    // ─── UI HELPERS ──────────────────────────────────────────────────────────
+
+    const $input      = document.getElementById('input-area');
+    const $output     = document.getElementById('output-area');
+    const $status     = document.getElementById('status-msg');
+    const $valResults = document.getElementById('validation-results');
+    const $valBadge   = document.getElementById('validation-badge');
+    const $valSummary = document.getElementById('validation-summary');
+    const $valBody    = document.getElementById('validation-body');
+
+    function setStatus(msg, type) {
+      $status.textContent = msg;
+      $status.className = 'status-indicator' + (type ? ' status-' + type : '');
+    }
+
+    function setOutput(text, isXML) {
+      lastOutput = text;
+      if (!text) {
+        $output.innerHTML = '';
+        return;
+      }
+      if (isXML) {
+        $output.innerHTML = highlightXML(text);
+      } else {
+        try {
+          const pretty = JSON.stringify(JSON.parse(text), null, 2);
+          $output.innerHTML = highlightJSON(pretty);
+          lastOutput = pretty;
+        } catch(e) {
+          $output.innerHTML = highlightJSON(text);
+        }
+      }
+    }
+
+    function showValidation(errors) {
+      $valResults.classList.add('visible');
+      if (errors.length === 0) {
+        $valBadge.textContent = 'Valid';
+        $valBadge.className = 'validation-badge badge-valid';
+        $valSummary.textContent = 'Document conforms to COMET PCF schema.';
+        $valBody.innerHTML = '<div class="validation-ok"><span class="ok-icon">&#10003;</span><span class="ok-text">All required fields present. Types, enums, and ranges valid.</span></div>';
+      } else {
+        $valBadge.textContent = 'Invalid';
+        $valBadge.className = 'validation-badge badge-invalid';
+        $valSummary.textContent = errors.length + ' error' + (errors.length !== 1 ? 's' : '') + ' found.';
+        const html = errors.map(e =>
+          `<div class="validation-error-item">
+            <span class="error-field">${e.field}</span>
+            <div>
+              <div class="error-message">${escHtml(e.error)} &mdash; expected <em>${escHtml(e.expected)}</em>, got <em>${escHtml(e.got)}</em></div>
+              <div class="error-suggestion">Fix: ${escHtml(e.suggestion)}</div>
+            </div>
+          </div>`
+        ).join('');
+        $valBody.innerHTML = '<div class="validation-errors">' + html + '</div>';
+      }
+    }
+
+    function hideValidation() {
+      $valResults.classList.remove('visible');
+    }
+
+    function escHtml(s) {
+      return String(s)
+        .replace(/&/g,'&amp;')
+        .replace(/</g,'&lt;')
+        .replace(/>/g,'&gt;')
+        .replace(/"/g,'&quot;');
+    }
+
+    // ─── MODE SWITCH ─────────────────────────────────────────────────────────
+
+    const PLACEHOLDERS = {
+      'csv-to-comet':  'Paste CSV with COMET column headers here, or click Load to use the Steel PCF example...',
+      'pact-to-comet': 'Paste a PACT v3 JSON ProductFootprint here, or click Load...',
+      'comet-to-pact': 'Paste a COMET JSON-LD document here, or click Load...',
+      'comet-to-cbam': 'Paste a COMET JSON-LD document here to generate CBAM XML...',
+      'validate':      'Paste a COMET JSON-LD document to validate against the PCF schema...'
+    };
+
+    const CONVERT_LABELS = {
+      'csv-to-comet':  'Convert to COMET',
+      'pact-to-comet': 'Enrich with COMET',
+      'comet-to-pact': 'Convert to PACT',
+      'comet-to-cbam': 'Generate XML',
+      'validate':      'Validate'
+    };
+
+    document.querySelectorAll('.mode-tab').forEach(tab => {
+      tab.addEventListener('click', () => {
+        document.querySelectorAll('.mode-tab').forEach(t => {
+          t.classList.remove('active');
+          t.setAttribute('aria-selected', 'false');
+        });
+        tab.classList.add('active');
+        tab.setAttribute('aria-selected', 'true');
+        currentMode = tab.dataset.mode;
+        $input.placeholder = PLACEHOLDERS[currentMode];
+        document.getElementById('btn-convert').textContent = CONVERT_LABELS[currentMode];
+        $output.innerHTML = '';
+        lastOutput = '';
+        setStatus('Mode: ' + tab.textContent.trim() + ' — ready.', '');
+        hideValidation();
+      });
+    });
+
+    // ─── EXAMPLES ────────────────────────────────────────────────────────────
+
+    document.getElementById('btn-load').addEventListener('click', () => {
+      const key = document.getElementById('example-select').value;
+      if (!key || !EXAMPLES[key]) {
+        setStatus('Select an example from the dropdown first.', 'warn');
+        return;
+      }
+      const ex = EXAMPLES[key];
+
+      // Switch to the correct mode
+      const targetTab = document.querySelector('[data-mode="' + ex.mode + '"]');
+      if (targetTab) targetTab.click();
+
+      $input.value = ex.data;
+      $output.innerHTML = '';
+      lastOutput = '';
+      setStatus('Example loaded. Click Convert to run.', 'ok');
+    });
+
+    // ─── FILE UPLOAD ─────────────────────────────────────────────────────────
+
+    document.getElementById('btn-upload-trigger').addEventListener('click', () => {
+      document.getElementById('file-input-hidden').click();
+    });
+
+    document.getElementById('file-input-hidden').addEventListener('change', e => {
+      const file = e.target.files[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = ev => {
+        $input.value = ev.target.result;
+        setStatus('File loaded: ' + file.name, 'ok');
+      };
+      reader.onerror = () => setStatus('Error reading file.', 'error');
+      reader.readAsText(file, 'UTF-8');
+      e.target.value = '';
+    });
+
+    // ─── CONVERT ─────────────────────────────────────────────────────────────
+
+    document.getElementById('btn-convert').addEventListener('click', () => {
+      const text = $input.value.trim();
+      if (!text) {
+        setStatus('Input is empty. Paste data or load an example.', 'warn');
+        return;
+      }
+
+      hideValidation();
+      $output.innerHTML = '';
+      lastOutput = '';
+
+      try {
+        switch (currentMode) {
+          case 'csv-to-comet': {
+            const result = csvToComet(text);
+            const json = JSON.stringify(result, null, 2);
+            setOutput(json);
+            setStatus('Converted ' + (Array.isArray(result) ? result.length : 1) + ' row(s) to COMET JSON-LD.', 'ok');
+            break;
+          }
+          case 'pact-to-comet': {
+            const result = pactToComet(text);
+            const json = JSON.stringify(result, null, 2);
+            setOutput(json);
+            const count = Array.isArray(result) ? result.length : 1;
+            setStatus('Enriched ' + count + ' PACT record(s) with COMET @context and field mappings.', 'ok');
+            break;
+          }
+          case 'comet-to-pact': {
+            const result = cometToPact(text);
+            const json = JSON.stringify(result, null, 2);
+            setOutput(json);
+            const count = Array.isArray(result) ? result.length : 1;
+            setStatus('Converted ' + count + ' COMET record(s) to PACT v3 format.', 'ok');
+            break;
+          }
+          case 'comet-to-cbam': {
+            const xmlStr = cometToCbamXml(text);
+            setOutput(xmlStr, true);
+            setStatus('Generated CBAM XML declaration.', 'ok');
+            break;
+          }
+          case 'validate': {
+            const errors = validate(text);
+            // Show summary in output
+            const summary = errors.length === 0
+              ? '// COMET PCF Validation: PASSED\n// All required fields, types, enums, and ranges are valid.\n\n' + text
+              : '// COMET PCF Validation: FAILED (' + errors.length + ' error' + (errors.length !== 1 ? 's' : '') + ')\n// See errors below.\n\n' + text;
+            try {
+              const parsed = JSON.parse(text);
+              const pretty = JSON.stringify(parsed, null, 2);
+              $output.innerHTML = highlightJSON(summary.replace(text, pretty));
+              lastOutput = summary;
+            } catch(e) {
+              $output.textContent = summary;
+              lastOutput = summary;
+            }
+            showValidation(errors);
+            if (errors.length === 0) {
+              setStatus('Validation passed — document is a valid COMET PCF.', 'ok');
+            } else {
+              setStatus(errors.length + ' validation error' + (errors.length !== 1 ? 's' : '') + ' found. See details below.', 'error');
+            }
+            break;
+          }
+        }
+      } catch (err) {
+        setStatus('Error: ' + err.message, 'error');
+        $output.textContent = '// Error\n// ' + err.message;
+        lastOutput = '';
+      }
+    });
+
+    // ─── COPY ────────────────────────────────────────────────────────────────
+
+    document.getElementById('btn-copy').addEventListener('click', async () => {
+      if (!lastOutput) {
+        setStatus('Nothing to copy — run a conversion first.', 'warn');
+        return;
+      }
+      try {
+        await navigator.clipboard.writeText(lastOutput);
+        const btn = document.getElementById('btn-copy');
+        btn.textContent = 'Copied!';
+        btn.classList.add('copied');
+        setTimeout(() => {
+          btn.textContent = 'Copy';
+          btn.classList.remove('copied');
+        }, 1800);
+      } catch (e) {
+        // Fallback
+        const ta = document.createElement('textarea');
+        ta.value = lastOutput;
+        ta.style.position = 'fixed';
+        ta.style.opacity = '0';
+        document.body.appendChild(ta);
+        ta.select();
+        document.execCommand('copy');
+        document.body.removeChild(ta);
+        setStatus('Copied to clipboard.', 'ok');
+      }
+    });
+
+    // ─── DOWNLOAD ─────────────────────────────────────────────────────────────
+
+    document.getElementById('btn-download').addEventListener('click', () => {
+      if (!lastOutput) {
+        setStatus('Nothing to download — run a conversion first.', 'warn');
+        return;
+      }
+
+      let filename, mimeType;
+      switch (currentMode) {
+        case 'comet-to-cbam':
+          filename = 'cbam-declaration.xml';
+          mimeType = 'application/xml';
+          break;
+        case 'csv-to-comet':
+          filename = 'comet-pcf.json';
+          mimeType = 'application/ld+json';
+          break;
+        case 'pact-to-comet':
+          filename = 'comet-pcf.jsonld';
+          mimeType = 'application/ld+json';
+          break;
+        case 'comet-to-pact':
+          filename = 'pact-v3.json';
+          mimeType = 'application/json';
+          break;
+        default:
+          filename = 'comet-output.json';
+          mimeType = 'application/json';
+      }
+
+      const blob = new Blob([lastOutput], { type: mimeType + ';charset=utf-8' });
+      const url  = URL.createObjectURL(blob);
+      const a    = document.createElement('a');
+      a.href     = url;
+      a.download = filename;
+      a.style.display = 'none';
+      document.body.appendChild(a);
+      a.click();
+      setTimeout(() => {
+        URL.revokeObjectURL(url);
+        document.body.removeChild(a);
+      }, 1000);
+      setStatus('Download started: ' + filename, 'ok');
+    });
+
+    // ─── KEYBOARD SHORTCUT ───────────────────────────────────────────────────
+
+    $input.addEventListener('keydown', e => {
+      if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') {
+        e.preventDefault();
+        document.getElementById('btn-convert').click();
+      }
+    });
+
+    // ─── INIT ─────────────────────────────────────────────────────────────────
+
+    setStatus('Ready &mdash; select a mode, paste your data, and click Convert (or Ctrl+Enter).', '');
+
+  })();
+  </script>
+
+</body>
+</html>

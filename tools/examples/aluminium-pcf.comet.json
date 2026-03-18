@@ -1,0 +1,74 @@
+{
+  "@context": [
+    "https://comet.carbon/v1/jsonld/context.json",
+    "https://wbcsd.github.io/pact/v3/context.json"
+  ],
+  "@type": "comet-pcf:ProductCarbonFootprint",
+  "pcfId": "urn:uuid:e7f8a1b2-c3d4-5e6f-a7b8-c9d0e1f2a3b4",
+  "organization": {
+    "@type": "comet:Organization",
+    "orgName": "Norsk Hydro ASA",
+    "orgId": ["urn:lei:549300YJHH0OYGWRSF42"],
+    "country": "NO"
+  },
+  "material": {
+    "@type": "comet:Material",
+    "materialName": "Primary aluminium ingot, Hall-Heroult smelter route",
+    "materialId": ["urn:gtin:07038010000123"],
+    "cpcCode": "41431",
+    "tradeName": "Hydro REDUXA 4.0"
+  },
+  "declaredUnit": "kilogram",
+  "unitaryProductAmount": 1,
+  "fossilGWP": 8.5,
+  "totalGWP": 8.5,
+  "fossilEmissions": 8.5,
+  "biogenicCarbonContent": 0,
+  "landUseChange": 0,
+  "biogenicUptake": 0,
+  "aircraftEmissions": 0,
+  "packagingEmissions": 0,
+  "exemptedPercent": 1.2,
+  "ipccAR": "AR6",
+  "boundaryDescription": "Cradle-to-gate: bauxite mining, alumina refining, Hall-Heroult electrolysis, and casting",
+  "referencePeriod": {
+    "@type": "comet:TimePeriod",
+    "startDate": "2024-01-01T00:00:00Z",
+    "endDate": "2024-12-31T23:59:59Z"
+  },
+  "site": {
+    "@type": "comet:Site",
+    "siteName": "Hydro Sunndal",
+    "siteCountry": "NO",
+    "region": "Europe"
+  },
+  "primaryDataShare": 92.0,
+  "dqi": {
+    "@type": "comet-sc:DQI",
+    "coveragePercent": 95.0,
+    "technologyDQI": 1.0,
+    "temporalityDQI": 1.0,
+    "geographyDQI": 1.0,
+    "reliabilityDQI": 1.5
+  },
+  "standardRef": ["ISO14067", "GHGProtocol"],
+  "pcrName": "EN 15804+A2",
+  "allocationDescription": "Economic allocation for co-products (aluminium fluoride recovery)",
+  "verification": {
+    "@type": "comet-ver:VerificationClaim",
+    "hasAssurance": true,
+    "levelType": "reasonable",
+    "verifierName": "DNV",
+    "verificationDate": "2025-03-10T00:00:00Z",
+    "standardRef": "ISO 14064-3:2019"
+  },
+  "certifications": [
+    {
+      "@type": "comet-eac:MaterialStewardshipCertificate",
+      "certName": "Aluminium Stewardship Initiative (ASI) Performance Standard",
+      "certVersion": "V3 (2022)",
+      "certBody": "ASI",
+      "certDate": "2024-06-15"
+    }
+  ]
+}

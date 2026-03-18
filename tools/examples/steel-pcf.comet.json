@@ -1,0 +1,64 @@
+{
+  "@context": [
+    "https://comet.carbon/v1/jsonld/context.json",
+    "https://wbcsd.github.io/pact/v3/context.json"
+  ],
+  "@type": "comet-pcf:ProductCarbonFootprint",
+  "pcfId": "urn:uuid:b1c4a89e-3c2d-4f5a-b6e7-d8f9a0b1c2d3",
+  "organization": {
+    "@type": "comet:Organization",
+    "orgName": "Stahl AG",
+    "orgId": ["urn:lei:5299000J2N45DDNE4Y28"],
+    "country": "DE"
+  },
+  "material": {
+    "@type": "comet:Material",
+    "materialName": "Hot-rolled steel coil, basic oxygen furnace route",
+    "materialId": ["urn:gtin:04012345678901"],
+    "cpcCode": "4121",
+    "tradeName": "StahlCoil HR S235JR"
+  },
+  "declaredUnit": "kilogram",
+  "unitaryProductAmount": 1,
+  "fossilGWP": 1.85,
+  "totalGWP": 1.85,
+  "fossilEmissions": 1.85,
+  "biogenicCarbonContent": 0,
+  "landUseChange": 0,
+  "biogenicUptake": 0,
+  "aircraftEmissions": 0,
+  "packagingEmissions": 0,
+  "exemptedPercent": 2.1,
+  "ipccAR": "AR6",
+  "boundaryDescription": "Cradle-to-gate: iron ore extraction through hot rolling",
+  "referencePeriod": {
+    "@type": "comet:TimePeriod",
+    "startDate": "2024-01-01T00:00:00Z",
+    "endDate": "2024-12-31T23:59:59Z"
+  },
+  "site": {
+    "@type": "comet:Site",
+    "siteCountry": "DE",
+    "region": "Europe"
+  },
+  "primaryDataShare": 78.5,
+  "dqi": {
+    "@type": "comet-sc:DQI",
+    "coveragePercent": 85.0,
+    "technologyDQI": 1.5,
+    "temporalityDQI": 1.0,
+    "geographyDQI": 1.0,
+    "reliabilityDQI": 2.0
+  },
+  "standardRef": ["ISO14067", "GHGProtocol"],
+  "pcrName": "EN 15804+A2",
+  "allocationDescription": "Mass-based allocation for co-products (slag)",
+  "verification": {
+    "@type": "comet-ver:VerificationClaim",
+    "hasAssurance": true,
+    "levelType": "limited",
+    "verifierName": "Bureau Veritas",
+    "verificationDate": "2025-02-28T00:00:00Z",
+    "standardRef": "ISO 14064-3:2019"
+  }
+}

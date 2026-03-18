@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CBAMDeclaration xmlns="urn:ec:taxud:cbam:v1"
+                 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                 xsi:schemaLocation="urn:ec:taxud:cbam:v1 cbam-declaration-v1.xsd">
+
+  <DeclarationHeader>
+    <DeclarationId>CBAM-DE-2026-Q1-00284</DeclarationId>
+    <ReportingPeriod>
+      <StartDate>2026-01-01</StartDate>
+      <EndDate>2026-03-31</EndDate>
+    </ReportingPeriod>
+    <SubmissionDate>2026-04-28</SubmissionDate>
+  </DeclarationHeader>
+
+  <AuthorisedDeclarant>
+    <DeclarantName>Stahl Import GmbH</DeclarantName>
+    <EORI>DE123456789012345</EORI>
+    <Address>
+      <Street>Industriestrasse 42</Street>
+      <City>Duisburg</City>
+      <PostalCode>47053</PostalCode>
+      <Country>DE</Country>
+    </Address>
+  </AuthorisedDeclarant>
+
+  <CoveredGoods>
+    <GoodsItem sequenceNumber="1">
+      <CNCode>72081000</CNCode>
+      <GoodsDescription>Hot-rolled steel coil, width >= 600mm, not clad, not plated, not coated, with patterns in relief</GoodsDescription>
+      <CountryOfOrigin>TR</CountryOfOrigin>
+      <Quantity unit="tonne">500.000</Quantity>
+      <EmbeddedEmissions>
+        <SpecificDirectEmissions unit="tCO2e/t">1.62</SpecificDirectEmissions>
+        <SpecificIndirectEmissions unit="tCO2e/t">0.23</SpecificIndirectEmissions>
+        <TotalSpecificEmissions unit="tCO2e/t">1.85</TotalSpecificEmissions>
+        <TotalEmbeddedEmissions unit="tCO2e">925.00</TotalEmbeddedEmissions>
+        <ProductionRoute>Basic Oxygen Furnace (BOF)</ProductionRoute>
+        <ElectricitySource>Grid average</ElectricitySource>
+      </EmbeddedEmissions>
+      <Installation>
+        <InstallationId>TR-INSTALL-2024-0847</InstallationId>
+        <InstallationName>Iskenderun Iron and Steel Works</InstallationName>
+        <Country>TR</Country>
+        <Region>Hatay</Region>
+      </Installation>
+      <CarbonPricePaid>
+        <Amount currency="EUR">12.00</Amount>
+        <PriceType>Carbon tax</PriceType>
+        <PaidPerTonne>true</PaidPerTonne>
+        <TotalPaid currency="EUR">6000.00</TotalPaid>
+      </CarbonPricePaid>
+    </GoodsItem>
+
+    <GoodsItem sequenceNumber="2">
+      <CNCode>72142000</CNCode>
+      <GoodsDescription>Steel bar, hot-rolled, with indentations, ribs or deformations produced during rolling</GoodsDescription>
+      <CountryOfOrigin>TR</CountryOfOrigin>
+      <Quantity unit="tonne">200.000</Quantity>
+      <EmbeddedEmissions>
+        <SpecificDirectEmissions unit="tCO2e/t">1.78</SpecificDirectEmissions>
+        <SpecificIndirectEmissions unit="tCO2e/t">0.31</SpecificIndirectEmissions>
+        <TotalSpecificEmissions unit="tCO2e/t">2.09</TotalSpecificEmissions>
+        <TotalEmbeddedEmissions unit="tCO2e">418.00</TotalEmbeddedEmissions>
+        <ProductionRoute>Electric Arc Furnace (EAF)</ProductionRoute>
+        <ElectricitySource>Grid average</ElectricitySource>
+      </EmbeddedEmissions>
+      <Installation>
+        <InstallationId>TR-INSTALL-2024-1203</InstallationId>
+        <InstallationName>Aliaga Steel Mill</InstallationName>
+        <Country>TR</Country>
+        <Region>Izmir</Region>
+      </Installation>
+      <CarbonPricePaid>
+        <Amount currency="EUR">12.00</Amount>
+        <PriceType>Carbon tax</PriceType>
+        <PaidPerTonne>true</PaidPerTonne>
+        <TotalPaid currency="EUR">2400.00</TotalPaid>
+      </CarbonPricePaid>
+    </GoodsItem>
+  </CoveredGoods>
+
+  <TotalEmissionsSummary>
+    <TotalDirectEmissions unit="tCO2e">1166.00</TotalDirectEmissions>
+    <TotalIndirectEmissions unit="tCO2e">177.00</TotalIndirectEmissions>
+    <TotalEmbeddedEmissions unit="tCO2e">1343.00</TotalEmbeddedEmissions>
+    <TotalCarbonPricePaid currency="EUR">8400.00</TotalCarbonPricePaid>
+  </TotalEmissionsSummary>
+
+  <Verification>
+    <VerifierName>Bureau Veritas</VerifierName>
+    <VerifierAccreditationId>BV-CBAM-DE-2024-0019</VerifierAccreditationId>
+    <VerificationDate>2026-04-15</VerificationDate>
+    <VerificationStandard>ISO 14064-3:2019</VerificationStandard>
+    <AssuranceLevel>limited</AssuranceLevel>
+  </Verification>
+
+</CBAMDeclaration>

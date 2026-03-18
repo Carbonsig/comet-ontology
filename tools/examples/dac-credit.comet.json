@@ -1,0 +1,62 @@
+{
+  "@context": [
+    "https://comet.carbon/v1/jsonld/context.json",
+    "https://climateactiondata.org/api/v2/context.json"
+  ],
+  "@type": "comet-eac:EAC",
+  "eacId": "urn:uuid:a3b4c5d6-e7f8-9012-abcd-3456789abcde",
+  "eacType": "CarbonRemovalCertificate",
+  "subType": "DACCredit",
+  "registry": {
+    "@type": "comet-eac:CertificateRegistry",
+    "registryName": "Puro.earth",
+    "registryId": "PUR-2025-00847",
+    "registryURI": "https://puro.earth/"
+  },
+  "project": {
+    "@type": "comet-eac:Project",
+    "projectName": "Climeworks Orca Direct Air Capture Facility",
+    "projectId": "CLW-ORCA-IS-001",
+    "projectType": "Direct Air Capture with Carbon Storage (DACCS)",
+    "country": "IS",
+    "methodology": "Puro Standard for DACCS v2.0"
+  },
+  "vintage": {
+    "@type": "comet:TimePeriod",
+    "startDate": "2025-01-01",
+    "endDate": "2025-12-31"
+  },
+  "quantity": 1,
+  "unit": "tCO2e",
+  "status": "active",
+  "serialNumber": "PUR-DACCS-2025-000847",
+  "verification": {
+    "@type": "comet-ver:VerificationClaim",
+    "hasAssurance": true,
+    "levelType": "reasonable",
+    "verifierName": "DNV",
+    "verificationDate": "2025-04-10T00:00:00Z",
+    "standardRef": "ISO 14064-2:2019"
+  },
+  "article6": {
+    "@type": "comet-eac:Article6Authorization",
+    "eligible": true,
+    "authorizingCountry": "IS",
+    "correspondingAdjustment": "pending",
+    "notes": "Iceland has authorized Article 6.2 transfers for DACCS removals"
+  },
+  "site": {
+    "@type": "comet:Site",
+    "siteName": "Hellisheidi Geothermal Park",
+    "siteCountry": "IS",
+    "region": "Europe",
+    "latitude": 64.0388,
+    "longitude": -21.4012
+  },
+  "storageInfo": {
+    "storageType": "Geological mineral carbonation (basalt)",
+    "storagePartner": "Carbfix",
+    "permanencePeriod": "10000+ years",
+    "monitoringPlan": "Continuous tracer monitoring per Carbfix MRV protocol"
+  }
+}

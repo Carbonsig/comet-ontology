@@ -1,0 +1,202 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://comet.carbon/v1/schemas/comet-pcf.schema.json",
+  "title": "COMET Product Carbon Footprint",
+  "description": "JSON Schema for a COMET ProductCarbonFootprint (PCF). Defines the structure for declaring the greenhouse gas emissions associated with one unit of a product, aligned with ISO 14067, GHG Protocol, PACT v3, and EU CBAM requirements.",
+  "type": "object",
+  "properties": {
+    "@context": {
+      "description": "JSON-LD context(s). Must include the COMET context URI; may include PACT v3 context for interoperability.",
+      "oneOf": [
+        {
+          "type": "string",
+          "format": "uri"
+        },
+        {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "format": "uri"
+          },
+          "minItems": 1
+        }
+      ]
+    },
+    "@type": {
+      "type": "string",
+      "description": "JSON-LD type. Must be 'comet-pcf:ProductCarbonFootprint'.",
+      "const": "comet-pcf:ProductCarbonFootprint"
+    },
+    "pcfId": {
+      "type": "string",
+      "description": "Unique identifier for this PCF declaration.",
+      "format": "uuid"
+    },
+    "declaredUnit": {
+      "type": "string",
+      "description": "The functional unit in which the carbon footprint is expressed.",
+      "enum": [
+        "kilogram",
+        "litre",
+        "cubicMetre",
+        "kilowattHour",
+        "megajoule",
+        "tonneKilometre",
+        "squareMetre"
+      ]
+    },
+    "unitaryProductAmount": {
+      "type": "number",
+      "description": "The amount of product per declared unit for which the PCF is calculated.",
+      "exclusiveMinimum": 0
+    },
+    "fossilGWP": {
+      "type": "number",
+      "description": "Fossil-fuel-derived GHG emissions in kgCO2e per declared unit, excluding biogenic carbon.",
+      "minimum": 0
+    },
+    "totalGWP": {
+      "type": ["number", "null"],
+      "description": "Total GWP including biogenic carbon (kgCO2e per declared unit). Null if not calculated."
+    },
+    "fossilEmissions": {
+      "type": ["number", "null"],
+      "description": "Absolute fossil GHG emissions (kgCO2e). May differ from fossilGWP when unitaryProductAmount != 1."
+    },
+    "biogenicCarbonContent": {
+      "type": "number",
+      "description": "Biogenic carbon content of the product in kgCO2e per declared unit.",
+      "default": 0
+    },
+    "biogenicUptake": {
+      "type": "number",
+      "description": "Biogenic carbon withdrawal (uptake) in kgCO2e per declared unit.",
+      "default": 0
+    },
+    "landUseChange": {
+      "type": "number",
+      "description": "GHG emissions from direct land-use change (dLUC) in kgCO2e per declared unit.",
+      "default": 0
+    },
+    "aircraftEmissions": {
+      "type": "number",
+      "description": "GHG emissions from aircraft transport in kgCO2e per declared unit.",
+      "default": 0
+    },
+    "packagingEmissions": {
+      "type": "number",
+      "description": "GHG emissions from packaging in kgCO2e per declared unit.",
+      "default": 0
+    },
+    "exemptedPercent": {
+      "type": "number",
+      "description": "Percentage of emissions exempted from the PCF calculation (must be < 5% per ISO 14067).",
+      "minimum": 0,
+      "maximum": 100
+    },
+    "ipccAR": {
+      "type": "string",
+      "description": "IPCC Assessment Report version used for GWP characterization factors.",
+      "enum": ["AR5", "AR6"]
+    },
+    "standardRef": {
+      "type": "array",
+      "description": "Cross-sectoral standards used in the PCF calculation.",
+      "items": {
+        "type": "string"
+      },
+      "minItems": 1
+    },
+    "pcrName": {
+      "type": ["string", "null"],
+      "description": "Name of the Product Category Rule (PCR) applied, if any."
+    },
+    "allocationDescription": {
+      "type": ["string", "null"],
+      "description": "Description of the allocation rules applied to multi-output processes."
+    },
+    "boundaryDescription": {
+      "type": "string",
+      "description": "Description of the system boundary (e.g., 'cradle-to-gate', 'cradle-to-grave').",
+      "minLength": 1
+    },
+    "referencePeriod": {
+      "description": "The time period over which emissions data was collected.",
+      "$ref": "comet-core.schema.json#/$defs/TimePeriod"
+    },
+    "organization": {
+      "description": "The organization declaring this PCF.",
+      "$ref": "comet-core.schema.json#/$defs/Organization"
+    },
+    "material": {
+      "description": "The product or material to which this PCF applies.",
+      "$ref": "comet-core.schema.json#/$defs/Material"
+    },
+    "site": {
+      "description": "The production site where the product is manufactured.",
+      "$ref": "comet-core.schema.json#/$defs/Site"
+    },
+    "primaryDataShare": {
+      "type": "number",
+      "description": "Percentage of the PCF based on primary (site-specific) data, as opposed to secondary (database) data.",
+      "minimum": 0,
+      "maximum": 100
+    },
+    "dqi": {
+      "type": "object",
+      "description": "Data Quality Indicators per the PACT/Pathfinder DQI framework.",
+      "properties": {
+        "coveragePercent": {
+          "type": "number",
+          "description": "Percentage of total product output covered by this PCF.",
+          "minimum": 0,
+          "maximum": 100
+        },
+        "technologyDQI": {
+          "type": "number",
+          "description": "Technology representativeness rating (1 = best, 3 = worst).",
+          "minimum": 1,
+          "maximum": 3
+        },
+        "temporalityDQI": {
+          "type": "number",
+          "description": "Temporal representativeness rating (1 = best, 3 = worst).",
+          "minimum": 1,
+          "maximum": 3
+        },
+        "geographyDQI": {
+          "type": "number",
+          "description": "Geographic representativeness rating (1 = best, 3 = worst).",
+          "minimum": 1,
+          "maximum": 3
+        },
+        "reliabilityDQI": {
+          "type": "number",
+          "description": "Completeness/reliability rating (1 = best, 3 = worst).",
+          "minimum": 1,
+          "maximum": 3
+        },
+        "@type": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "verification": {
+      "description": "Third-party assurance information for this PCF.",
+      "$ref": "comet-core.schema.json#/$defs/Verification"
+    }
+  },
+  "required": [
+    "@context",
+    "@type",
+    "pcfId",
+    "declaredUnit",
+    "unitaryProductAmount",
+    "fossilGWP",
+    "boundaryDescription",
+    "referencePeriod",
+    "standardRef"
+  ],
+  "additionalProperties": true
+}

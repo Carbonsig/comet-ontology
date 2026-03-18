@@ -1,0 +1,84 @@
+{
+  "project": {
+    "cadTrustProjectId": "f47ac10b-58cc-4372-a567-0e02b2c3d479",
+    "projectRegistryName": "Verra VCS",
+    "projectName": "Amazon Rainforest Conservation and Reforestation Project",
+    "projectId": "VCS-2847",
+    "projectType": "Afforestation/Reforestation",
+    "projectSector": "Agriculture, Forestry and Other Land Use (AFOLU)",
+    "country": "BR",
+    "region": "Para",
+    "methodology": "VM0015",
+    "methodologyVersion": "1.1",
+    "standard": "Verified Carbon Standard (VCS)",
+    "status": "registered",
+    "startDate": "2020-01-01",
+    "creditingPeriodStart": "2020-01-01",
+    "creditingPeriodEnd": "2050-12-31"
+  },
+  "unit": {
+    "cadTrustUnitId": "c9a1e2b3-d4f5-6789-abcd-ef0123456789",
+    "unitSerialId": "VCS-2847-2024-00001-to-10000",
+    "unitType": "Removal - nature-based",
+    "unitVintageYear": 2024,
+    "unitCount": 10000,
+    "unitStatus": "Issued",
+    "unitRetirementBeneficiary": null
+  },
+  "issuance": {
+    "cadTrustIssuanceId": "d8b7a6c5-e4f3-2109-fedc-ba9876543210",
+    "issuanceDate": "2025-01-15",
+    "quantity": 10000,
+    "vintageYear": 2024,
+    "monitoringPeriodStart": "2024-01-01",
+    "monitoringPeriodEnd": "2024-12-31"
+  },
+  "verification": {
+    "verificationBody": "SCS Global Services",
+    "verificationDate": "2024-11-20",
+    "verificationStandard": "VCS Standard v4.5",
+    "verificationStatus": "completed",
+    "verificationType": "periodic"
+  },
+  "coBenefits": [
+    {
+      "sdgGoal": 13,
+      "sdgName": "Climate Action",
+      "description": "Direct carbon sequestration through reforestation of degraded pastureland"
+    },
+    {
+      "sdgGoal": 15,
+      "sdgName": "Life on Land",
+      "description": "Restoration of native species habitat in the Amazon biome, supporting biodiversity corridors"
+    },
+    {
+      "sdgGoal": 8,
+      "sdgName": "Decent Work and Economic Growth",
+      "description": "Employment of 120 local community members in nursery operations and forest monitoring"
+    }
+  ],
+  "labels": [
+    {
+      "labelType": "CCB Standard",
+      "labelName": "Climate, Community & Biodiversity Standards",
+      "labelVersion": "Third Edition",
+      "labelStatus": "Gold Level"
+    }
+  ],
+  "design": {
+    "baselineScenario": "Continued cattle ranching on degraded pastureland with progressive soil erosion",
+    "additionality": "Investment barrier — reforestation costs exceed ranching income without carbon credit revenue",
+    "leakageAssessment": "Activity-shifting leakage assessed at 10% discount; market leakage not applicable per VM0015",
+    "permanenceRiskRating": "10%",
+    "bufferPoolContribution": 1000
+  },
+  "article6Authorization": {
+    "eligible": false,
+    "notes": "Brazil has not yet authorized Article 6.2 transfers for VCS AFOLU projects"
+  },
+  "pricing": {
+    "pricePerUnit": 18.50,
+    "currency": "USD",
+    "transactionDate": "2025-02-01"
+  }
+}
