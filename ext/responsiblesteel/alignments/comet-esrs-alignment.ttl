@@ -1,0 +1,198 @@
+@prefix comet-rs: <https://ontology.materialintelligence.ai/comet/responsiblesteel/> .
+@prefix esrs: <https://data.europa.eu/api/hub/store/schema/eu.europa.ec.eupl.schema.EBA.esrs.1.0/> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix dcat: <http://www.w3.org/ns/dcat#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+
+<https://ontology.materialintelligence.ai/alignments/comet-esrs>
+    a owl:Ontology ;
+    dcterms:title "COMET RS to CSRD/ESRS Alignment"@en ;
+    dcterms:description "Semantic alignment between COMET Responsible Steel Principles and EU Corporate Sustainability Reporting Directive (CSRD) / European Sustainability Reporting Standards (ESRS) Topical Standards."@en ;
+    dcterms:issued "2026-03-30"^^<http://www.w3.org/2001/XMLSchema#date> ;
+    dcterms:modified "2026-03-30"^^<http://www.w3.org/2001/XMLSchema#date> ;
+    owl:versionInfo "1.0.0" ;
+    dcat:keyword "COMET", "ESRS", "CSRD", "sustainability reporting", "EU directive" ;
+    dcterms:source "RS Production Standard V2.1.1", "CSRD (Directive 2022/2464)", "ESRS Set 1, Set 2, Set 3 (final versions 2023)" ;
+    dcterms:conformsTo <https://data.europa.eu/api/hub/store/schema/eu.europa.ec.eupl.schema.EBA.esrs.1.0/> .
+
+# Environmental Topics Alignment
+
+# P10: Climate and GHG Emissions → ESRS E1: Climate Change
+comet-rs:P10_ClimateGHG
+    skos:closeMatch esrs:E1_ClimateChange ;
+    skos:note "Both frameworks address organisational greenhouse gas emissions and climate impact disclosure."@en ;
+    rdfs:comment "COMET P10 requires GHG emissions quantification at production facility level. ESRS E1 requires company-wide GHG disclosure (Scope 1, 2, 3) with science-based targets."@en ;
+    skos:relatedMatch esrs:E1_1_ClimateChangeMetrics ;
+    skos:relatedMatch esrs:E1_2_ClimateChangeStrategy ;
+    skos:relatedMatch esrs:E1_3_ClimateChangePhysicalRisks ;
+    skos:relatedMatch esrs:E1_4_ClimateChangeTransitionPlans .
+
+comet-rs:Scope1Emissions
+    skos:closeMatch esrs:E1_Scope1GHGEmissions ;
+    rdfs:comment "Direct emissions from facility combustion and chemical processes."@en .
+
+comet-rs:Scope2Emissions
+    skos:closeMatch esrs:E1_Scope2GHGEmissions ;
+    rdfs:comment "Indirect emissions from purchased electricity, steam, heating, cooling."@en .
+
+comet-rs:Scope3UpstreamEmissions
+    skos:closeMatch esrs:E1_Scope3UpstreamEmissions ;
+    rdfs:comment "Upstream value chain emissions from raw material sourcing and logistics."@en .
+
+comet-rs:Scope3DownstreamEmissions
+    skos:closeMatch esrs:E1_Scope3DownstreamEmissions ;
+    rdfs:comment "Downstream emissions from product use and end-of-life."@en .
+
+comet-rs:EnergyIntensity
+    skos:related esrs:E2_EnergyManagement ;
+    rdfs:comment "Energy efficiency and renewable energy adoption reduce both absolute and intensity-based emissions."@en .
+
+# P12: Water Stewardship → ESRS E3: Water and Marine Resources
+comet-rs:P12_WaterStewardship
+    skos:closeMatch esrs:E3_WaterMarineResources ;
+    skos:note "Both frameworks address water resource management, quality, and environmental impact from industrial operations."@en ;
+    rdfs:comment "COMET P12 covers water use efficiency, discharge quality, and local water stress considerations. ESRS E3 requires disclosure of water use, management practices, and exposure to water-related risks."@en ;
+    skos:relatedMatch esrs:E3_1_WaterWithdrawalAndConsumption ;
+    skos:relatedMatch esrs:E3_2_WaterDischargeQuality ;
+    skos:relatedMatch esrs:E3_3_WaterRelatedRisks .
+
+comet-rs:WaterWithdrawal
+    skos:closeMatch esrs:E3_1_WaterWithdrawalAndConsumption ;
+    rdfs:comment "Total water withdrawn from sources for cooling, processing, and auxiliary uses."@en .
+
+comet-rs:WaterDischarge
+    skos:closeMatch esrs:E3_2_WaterDischargeQuality ;
+    rdfs:comment "Water released to environment after facility use, with specified chemical parameters and quality standards."@en .
+
+comet-rs:WaterStress
+    skos:closeMatch esrs:E3_3_WaterRelatedRisks ;
+    rdfs:comment "Assessment of facility location against water scarcity and availability indices."@en .
+
+# P13: Biodiversity and Ecosystem → ESRS E4: Biodiversity and Ecosystems
+comet-rs:P13_Biodiversity
+    skos:closeMatch esrs:E4_BiodiversityEcosystems ;
+    skos:note "Both frameworks address impacts on ecosystems, biodiversity, and natural capital from industrial activities."@en ;
+    rdfs:comment "COMET P13 requires assessment of facility impact on local ecosystems, species protection, and restoration. ESRS E4 requires disclosure of biodiversity impact, species at risk, and ecosystem restoration."@en ;
+    skos:relatedMatch esrs:E4_1_SpeciesAtRisk ;
+    skos:relatedMatch esrs:E4_2_EcosystemDamage ;
+    skos:relatedMatch esrs:E4_3_SpeciesRestore .
+
+comet-rs:EcosystemImpactAssessment
+    skos:related esrs:E4_1_SpeciesAtRisk ;
+    rdfs:comment "Identification of threatened species and habitat loss risk zones in facility vicinity."@en .
+
+comet-rs:LandUseImpact
+    skos:related esrs:E4_2_EcosystemDamage ;
+    rdfs:comment "Assessment of facility footprint on natural ecosystems and biodiversity."@en .
+
+comet-rs:OffsetAndRestoration
+    skos:related esrs:E4_3_SpeciesRestore ;
+    rdfs:comment "Biodiversity offset programs and habitat restoration initiatives."@en .
+
+# Social Topics Alignment
+
+# P05: Labour Standards and P06: Health & Safety → ESRS S1: Own Workforce
+comet-rs:P05_LaborStandards
+    skos:closeMatch esrs:S1_OwnWorkforce ;
+    skos:note "Both frameworks establish expectations for fair employment terms, labour rights, and worker protections."@en ;
+    rdfs:comment "COMET P05 requires alignment with ILO Conventions on living wages, working hours, freedom of association. ESRS S1 requires disclosure of workforce composition, labour practices, and fairness metrics."@en ;
+    skos:relatedMatch esrs:S1_1_WorkforceComposition ;
+    skos:relatedMatch esrs:S1_2_LaborPractices ;
+    skos:relatedMatch esrs:S1_3_FairnessMetrics .
+
+comet-rs:P06_HealthSafety
+    skos:closeMatch esrs:S1_OwnWorkforce ;
+    skos:note "Worker health and safety is integral to social responsibility in both frameworks."@en ;
+    rdfs:comment "COMET P06 requires occupational health and safety management, incident tracking, and hazard control. ESRS S1 includes health/safety metrics and safety incident disclosure."@en ;
+    skos:relatedMatch esrs:S1_3_SafetyIncidents ;
+    skos:relatedMatch esrs:S1_4_IncidentRate .
+
+comet-rs:WorkerSafetyIncidents
+    skos:closeMatch esrs:S1_3_SafetyIncidents ;
+    rdfs:comment "Tracking and reporting of workplace accidents, near-misses, and fatalities."@en .
+
+comet-rs:LivingWageCommitment
+    skos:related esrs:S1_2_LaborPractices ;
+    rdfs:comment "Commitment to paying remuneration sufficient to meet basic needs and provide some discretionary income."@en .
+
+# P07: Value Chain Labour → ESRS S2: Workers in Value Chain
+comet-rs:P07_SupplyChainLabor
+    skos:closeMatch esrs:S2_WorkersInValueChain ;
+    skos:note "Both frameworks extend responsibility for labour rights and safety to supply chain partners."@en ;
+    rdfs:comment "COMET P07 requires auditing and monitoring of suppliers for labour compliance. ESRS S2 requires disclosure of supply chain labour risks, grievance mechanisms, and remediation."@en ;
+    skos:relatedMatch esrs:S2_1_SupplyChainLabourRisks ;
+    skos:relatedMatch esrs:S2_2_SupplyChainGreivances ;
+    skos:relatedMatch esrs:S2_3_SupplyChainRemediation .
+
+comet-rs:SupplierAudit
+    skos:related esrs:S2_1_SupplyChainLabourRisks ;
+    rdfs:comment "Assessment of supply chain partners for compliance with labour standards and safety requirements."@en .
+
+comet-rs:GrievanceMechanism
+    skos:related esrs:S2_2_SupplyChainGreivances ;
+    rdfs:comment "Formal processes for workers and communities to raise concerns about labour practices and unsafe conditions."@en .
+
+# P09: Community Impact and Local Engagement → ESRS S3: Affected Communities
+comet-rs:P09_LocalCommunities
+    skos:closeMatch esrs:S3_AffectedCommunities ;
+    skos:note "Both frameworks recognise responsibility to affected communities where facilities operate."@en ;
+    rdfs:comment "COMET P09 requires engagement with local stakeholders, impact assessment on community resources, and benefit-sharing mechanisms. ESRS S3 requires assessment of impact on communities, grievance mechanisms, and remediation efforts."@en ;
+    skos:relatedMatch esrs:S3_1_CommunityEngagement ;
+    skos:relatedMatch esrs:S3_2_CommunityImpact ;
+    skos:relatedMatch esrs:S3_3_CommunityGrievances .
+
+comet-rs:StakeholderEngagement
+    skos:closeMatch esrs:S3_1_CommunityEngagement ;
+    rdfs:comment "Structured dialogue with local communities, indigenous peoples, and civil society groups."@en .
+
+comet-rs:LocalWaterAccess
+    skos:related esrs:S3_2_CommunityImpact ;
+    rdfs:comment "Impact on community water access and quality from facility operations."@en .
+
+comet-rs:LocalEconomyBenefit
+    skos:related esrs:S3_2_CommunityImpact ;
+    rdfs:comment "Contribution to local employment, procurement, and economic development."@en .
+
+comet-rs:CommunityGrievances
+    skos:closeMatch esrs:S3_3_CommunityGrievances ;
+    rdfs:comment "Formal mechanisms and response protocols for community concerns about facility operations."@en .
+
+# Governance Topics Alignment
+
+# P01: Business Ethics and P02: Anti-Corruption → ESRS G1: Business Conduct
+comet-rs:P01_BusinessEthics
+    skos:closeMatch esrs:G1_BusinessConduct ;
+    skos:note "Both frameworks require transparent, ethical business practices and anti-corruption measures."@en ;
+    rdfs:comment "COMET P01 requires ethical procurement, conflict of interest policies, and transparency. ESRS G1 requires disclosure of business ethics policies, anti-corruption measures, and compliance mechanisms."@en ;
+    skos:relatedMatch esrs:G1_1_AntiCorruptionPolicies ;
+    skos:relatedMatch esrs:G1_2_EthicsBusinesConduct ;
+    skos:relatedMatch esrs:G1_3_LobbingDisclosure .
+
+comet-rs:AntiCorruptionPolicy
+    skos:closeMatch esrs:G1_1_AntiCorruptionPolicies ;
+    rdfs:comment "Policies and training programs to prevent bribery, conflicts of interest, and corrupt practices."@en .
+
+comet-rs:TransparencyCommitment
+    skos:related esrs:G1_2_EthicsBusinesConduct ;
+    rdfs:comment "Public disclosure of key performance data, supply chain information, and third-party certifications."@en .
+
+# Additional ESRS governance topics
+esrs:G2_ManagementOfMaterialTopics
+    rdfs:comment "COMET framework itself demonstrates structured governance of material ESG topics through defined principles and performance indicators."@en ;
+    skos:note "Implementing COMET requires board-level governance, resource allocation, and accountability mechanisms aligned with ESRS G2."@en .
+
+# Mapping Framework
+<https://ontology.materialintelligence.ai/alignments/comet-esrs-mapping>
+    a owl:Class ;
+    rdfs:comment "Represents the structured mapping between COMET RS Principles (P01-P13) and ESRS Topical Standards (E1-E4, S1-S3, G1-G2)."@en ;
+    skos:note "COMET provides facility-level implementation framework. ESRS is company-level disclosure standard. Alignment enables companies to use COMET data for CSRD compliance."@en ;
+    dcat:relation comet-rs:COMETPrinciples ;
+    dcat:relation esrs:ESRSTopicalStandards .
+
+# Data Integration Point
+<https://ontology.materialintelligence.ai/alignments/comet-esrs-data-integration>
+    a owl:Class ;
+    rdfs:comment "Integration Strategy: Facilities operating under COMET RS can accumulate data (emissions, water, labour incidents, community engagement) that directly feeds CSRD/ESRS reporting at enterprise level. The alignment shows semantic correspondence enabling automated data mapping."@en ;
+    rdfs:label "COMET to CSRD Data Integration"@en .

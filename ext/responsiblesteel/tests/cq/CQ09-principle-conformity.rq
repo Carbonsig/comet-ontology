@@ -1,0 +1,23 @@
+# CQ09: Show conformity scores per principle per site
+# Competency Question: Display all principle conformity assessments with scores grouped by site and principle
+
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX comet-rs: <https://comet.carbon/ext/responsiblesteel#>
+
+SELECT ?site ?siteLabel ?principle ?principleLabel ?conformityScore ?assessmentStatus ?remedialActionRequired
+WHERE {
+  ?audit rdf:type comet-rs:CertificationAudit ;
+         comet-rs:auditedSite ?site ;
+         comet-rs:hasConformityAssessment ?conform .
+
+  ?site rdfs:label ?siteLabel .
+
+  ?conform comet-rs:conformityFor ?principle ;
+           comet-rs:principleLabel ?principleLabel ;
+           comet-rs:conformityScore ?conformityScore ;
+           comet-rs:assessmentStatus ?assessmentStatus .
+
+  OPTIONAL { ?conform comet-rs:remedialActionRequired ?remedialActionRequired . }
+}
+ORDER BY ?siteLabel ?principle

@@ -1,0 +1,441 @@
+@prefix sh:     <http://www.w3.org/ns/shacl#> .
+@prefix rdf:    <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs:   <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:    <http://www.w3.org/2001/XMLSchema#> .
+@prefix owl:    <http://www.w3.org/2002/07/owl#> .
+@prefix comet:     <https://comet.carbon/v1/core#> .
+@prefix comet-rs:  <https://comet.carbon/ext/responsiblesteel#> .
+@prefix comet-pcf: <https://comet.carbon/v1/pcf#> .
+@prefix comet-eac: <https://comet.carbon/v1/eac#> .
+@prefix comet-ver: <https://comet.carbon/v1/ver#> .
+@prefix comet-mkt: <https://comet.carbon/v1/market#> .
+@prefix comet-sc:  <https://comet.carbon/v1/supplychain#> .
+
+# =============================================================================
+# COMET ResponsibleSteel Extension — SHACL Validation Shapes
+# =============================================================================
+# Companion to comet-ext-responsiblesteel.ttl
+# Validates instance data against the RS extension class constraints.
+# Run with: pyshacl -s this-file.ttl -d your-data.ttl
+# =============================================================================
+
+
+# ─── L1 CORE ────────────────────────────────────────────────────────────
+
+comet-rs:CertifiedSiteShape
+    a sh:NodeShape ;
+    sh:targetClass comet-rs:CertifiedSite ;
+    sh:property [
+        sh:path comet-rs:certificateId ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:pattern "^[A-Z]{2}-[0-9]{8}$" ;
+        sh:message "certificateId is required and must match pattern XX-12345678 (e.g. BE-00012345)."
+    ] ;
+    sh:property [
+        sh:path comet-rs:siteAuditBoundary ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+        sh:message "siteAuditBoundary is required — describe the physical site boundary subject to audit."
+    ] ;
+    sh:property [
+        sh:path comet-rs:annualCrudeSteelProduction ;
+        sh:datatype xsd:decimal ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:minExclusive 0 ;
+        sh:message "annualCrudeSteelProduction must be a positive decimal (tonnes)."
+    ] .
+
+comet-rs:CorporateOwnerShape
+    a sh:NodeShape ;
+    sh:targetClass comet-rs:CorporateOwner ;
+    sh:property [
+        sh:path rdfs:label ;
+        sh:minCount 1 ;
+        sh:message "CorporateOwner must have at least one rdfs:label."
+    ] .
+
+comet-rs:SteelProductionRouteShape
+    a sh:NodeShape ;
+    sh:targetClass comet-rs:SteelProductionRoute ;
+    sh:property [
+        sh:path rdfs:label ;
+        sh:minCount 1 ;
+        sh:message "SteelProductionRoute must have at least one rdfs:label."
+    ] .
+
+
+# ─── L3 SUPPLY CHAIN ────────────────────────────────────────────────────
+
+comet-rs:RSInputMaterialShape
+    a sh:NodeShape ;
+    sh:targetClass comet-rs:RSInputMaterial ;
+    sh:property [
+        sh:path comet-rs:metallicFraction ;
+        sh:datatype xsd:decimal ;
+        sh:minInclusive 0 ;
+        sh:maxInclusive 1 ;
+        sh:message "metallicFraction must be between 0 and 1 (e.g. 0.98 for scrap)."
+    ] ;
+    sh:property [
+        sh:path comet-rs:primarySecondaryClassification ;
+        sh:datatype xsd:string ;
+        sh:in ( "primary" "secondary" ) ;
+        sh:message "primarySecondaryClassification must be 'primary' or 'secondary'."
+    ] .
+
+comet-rs:ScrapCategoryShape
+    a sh:NodeShape ;
+    sh:targetClass comet-rs:ScrapCategory ;
+    sh:property [
+        sh:path rdfs:label ;
+        sh:minCount 1 ;
+        sh:message "ScrapCategory must have at least one rdfs:label."
+    ] .
+
+comet-rs:RSSupplierTierShape
+    a sh:NodeShape ;
+    sh:targetClass comet-rs:RSSupplierTier ;
+    sh:property [
+        sh:path comet-rs:materialOriginRegion ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+        sh:message "materialOriginRegion is required for RS Supplier Tier (Criterion 3.2)."
+    ] .
+
+comet-rs:SupplierESGRiskShape
+    a sh:NodeShape ;
+    sh:targetClass comet-rs:SupplierESGRisk ;
+    sh:property [
+        sh:path rdfs:label ;
+        sh:minCount 1 ;
+        sh:message "SupplierESGRisk must have at least one rdfs:label."
+    ] .
+
+comet-rs:RecognisedProgrammeShape
+    a sh:NodeShape ;
+    sh:targetClass comet-rs:RecognisedProgramme ;
+    sh:property [
+        sh:path rdfs:label ;
+        sh:minCount 1 ;
+        sh:message "RecognisedProgramme must have at least one rdfs:label."
+    ] .
+
+
+# ─── L4 PRODUCT CARBON FOOTPRINT ────────────────────────────────────────
+
+comet-rs:CrudeSteelIntensityShape
+    a sh:NodeShape ;
+    sh:targetClass comet-rs:CrudeSteelIntensity ;
+    sh:property [
+        sh:path comet-rs:ghgIntensityValue ;
+        sh:datatype xsd:decimal ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:minInclusive 0 ;
+        sh:message "ghgIntensityValue is required, must be non-negative (tCO₂e/t crude steel)."
+    ] .
+
+comet-rs:ScrapShareCalculationShape
+    a sh:NodeShape ;
+    sh:targetClass comet-rs:ScrapShareCalculation ;
+    sh:property [
+        sh:path comet-rs:scrapSharePercent ;
+        sh:datatype xsd:decimal ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:minInclusive 0 ;
+        sh:maxInclusive 100 ;
+        sh:message "scrapSharePercent is required, must be 0–100."
+    ] .
+
+comet-rs:DPLThresholdShape
+    a sh:NodeShape ;
+    sh:targetClass comet-rs:DPLThreshold ;
+    sh:property [
+        sh:path comet-rs:dplThresholdB ;
+        sh:datatype xsd:decimal ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:minExclusive 0 ;
+        sh:message "dplThresholdB (y-intercept) is required and must be positive."
+    ] ;
+    sh:property [
+        sh:path comet-rs:dplThresholdM ;
+        sh:datatype xsd:decimal ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:minExclusive 0 ;
+        sh:message "dplThresholdM (slope) is required and must be positive."
+    ] .
+
+comet-rs:ProcessGasBaselineShape
+    a sh:NodeShape ;
+    sh:targetClass comet-rs:ProcessGasBaseline ;
+    sh:property [
+        sh:path rdfs:label ;
+        sh:minCount 1 ;
+        sh:message "ProcessGasBaseline must have at least one rdfs:label."
+    ] .
+
+comet-rs:EnergyRecoveryCreditShape
+    a sh:NodeShape ;
+    sh:targetClass comet-rs:EnergyRecoveryCredit ;
+    sh:property [
+        sh:path comet-rs:processGasPowerMWh ;
+        sh:datatype xsd:decimal ;
+        sh:minInclusive 0 ;
+        sh:message "processGasPowerMWh must be non-negative."
+    ] ;
+    sh:property [
+        sh:path comet-rs:wasteEnergyPowerMWh ;
+        sh:datatype xsd:decimal ;
+        sh:minInclusive 0 ;
+        sh:message "wasteEnergyPowerMWh must be non-negative."
+    ] ;
+    sh:property [
+        sh:path comet-rs:upstreamPowerConsumptionMWh ;
+        sh:datatype xsd:decimal ;
+        sh:minInclusive 0 ;
+        sh:message "upstreamPowerConsumptionMWh must be non-negative."
+    ] .
+
+comet-rs:CCUSCreditShape
+    a sh:NodeShape ;
+    sh:targetClass comet-rs:CCUSCredit ;
+    sh:property [
+        sh:path rdfs:label ;
+        sh:minCount 1 ;
+        sh:message "CCUSCredit must have at least one rdfs:label."
+    ] .
+
+
+# ─── L5 EAC / CERTIFICATES ──────────────────────────────────────────────
+
+comet-rs:CoreSiteCertificationShape
+    a sh:NodeShape ;
+    sh:targetClass comet-rs:CoreSiteCertification ;
+    sh:property [
+        sh:path rdfs:label ;
+        sh:minCount 1 ;
+    ] .
+
+comet-rs:SteelCertificationShape
+    a sh:NodeShape ;
+    sh:targetClass comet-rs:SteelCertification ;
+    sh:property [
+        sh:path comet-rs:hasDPL ;
+        sh:class comet-rs:DecarbProgressLevel ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:message "SteelCertification must have exactly one hasDPL."
+    ] ;
+    sh:property [
+        sh:path comet-rs:hasSPL ;
+        sh:class comet-rs:SourcingProgressLevel ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:message "SteelCertification must have exactly one hasSPL."
+    ] .
+
+comet-rs:DecarbProgressLevelShape
+    a sh:NodeShape ;
+    sh:targetClass comet-rs:DecarbProgressLevel ;
+    sh:property [
+        sh:path comet-rs:dplLevel ;
+        sh:datatype xsd:integer ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:minInclusive 1 ;
+        sh:maxInclusive 4 ;
+        sh:message "dplLevel is required, must be integer 1–4."
+    ] .
+
+comet-rs:SourcingProgressLevelShape
+    a sh:NodeShape ;
+    sh:targetClass comet-rs:SourcingProgressLevel ;
+    sh:property [
+        sh:path comet-rs:splLevel ;
+        sh:datatype xsd:integer ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:minInclusive 1 ;
+        sh:maxInclusive 4 ;
+        sh:message "splLevel is required, must be integer 1–4."
+    ] .
+
+comet-rs:CertifiedSteelMarkShape
+    a sh:NodeShape ;
+    sh:targetClass comet-rs:CertifiedSteelMark ;
+    sh:property [
+        sh:path rdfs:label ;
+        sh:minCount 1 ;
+    ] .
+
+comet-rs:CoCTransferEventShape
+    a sh:NodeShape ;
+    sh:targetClass comet-rs:CoCTransferEvent ;
+    sh:property [
+        sh:path comet-rs:transfersFrom ;
+        sh:class comet:Organization ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:message "CoCTransferEvent must have exactly one transfersFrom."
+    ] ;
+    sh:property [
+        sh:path comet-rs:transfersTo ;
+        sh:class comet:Organization ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:message "CoCTransferEvent must have exactly one transfersTo."
+    ] ;
+    sh:property [
+        sh:path comet-rs:cocModel ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:in ( "mass-balance" "segregation" ) ;
+        sh:message "cocModel must be 'mass-balance' or 'segregation'."
+    ] ;
+    sh:property [
+        sh:path comet-rs:transferQuantityTonnes ;
+        sh:datatype xsd:decimal ;
+        sh:minCount 1 ;
+        sh:minExclusive 0 ;
+        sh:message "transferQuantityTonnes is required and must be positive."
+    ] .
+
+comet-rs:CoCClaimShape
+    a sh:NodeShape ;
+    sh:targetClass comet-rs:CoCClaim ;
+    sh:property [
+        sh:path comet-rs:traceableTo ;
+        sh:class comet-rs:SteelCertification ;
+        sh:minCount 1 ;
+        sh:message "CoCClaim must be traceable to at least one SteelCertification."
+    ] .
+
+
+# ─── L6 VERIFICATION ────────────────────────────────────────────────────
+
+comet-rs:CertificationAuditShape
+    a sh:NodeShape ;
+    sh:targetClass comet-rs:CertificationAudit ;
+    sh:property [
+        sh:path comet-rs:auditedSite ;
+        sh:class comet-rs:CertifiedSite ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:message "CertificationAudit must reference exactly one auditedSite."
+    ] .
+
+comet-rs:AssurancePanelReviewShape
+    a sh:NodeShape ;
+    sh:targetClass comet-rs:AssurancePanelReview ;
+    sh:property [
+        sh:path comet-rs:reviewsAudit ;
+        sh:class comet-rs:CertificationAudit ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:message "AssurancePanelReview must reference exactly one audit."
+    ] ;
+    sh:property [
+        sh:path comet-rs:panelDecision ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:in ( "approve" "conditional" "reject" ) ;
+        sh:message "panelDecision must be 'approve', 'conditional', or 'reject'."
+    ] .
+
+comet-rs:NonConformityShape
+    a sh:NodeShape ;
+    sh:targetClass comet-rs:NonConformity ;
+    sh:property [
+        sh:path comet-rs:nonConformitySeverity ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:in ( "major" "minor" ) ;
+        sh:message "nonConformitySeverity must be 'major' or 'minor'."
+    ] .
+
+comet-rs:PrincipleConformityShape
+    a sh:NodeShape ;
+    sh:targetClass comet-rs:PrincipleConformity ;
+    sh:property [
+        sh:path comet-rs:principleAssessed ;
+        sh:class comet-rs:RSPrinciple ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:message "PrincipleConformity must reference exactly one RSPrinciple."
+    ] .
+
+comet-rs:TransitionPlanReviewShape
+    a sh:NodeShape ;
+    sh:targetClass comet-rs:TransitionPlanReview ;
+    sh:property [
+        sh:path comet-rs:transitionPlanReviewDate ;
+        sh:datatype xsd:date ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:message "TransitionPlanReview must have exactly one review date."
+    ] .
+
+comet-rs:AmbitionGapAnalysisShape
+    a sh:NodeShape ;
+    sh:targetClass comet-rs:AmbitionGapAnalysis ;
+    sh:property [
+        sh:path comet-rs:ambitionGapDelta ;
+        sh:datatype xsd:decimal ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:message "AmbitionGapAnalysis must have an ambitionGapDelta value."
+    ] .
+
+
+# ─── L7 MARKET ──────────────────────────────────────────────────────────
+
+comet-rs:ProgressLevelPricingShape
+    a sh:NodeShape ;
+    sh:targetClass comet-rs:ProgressLevelPricing ;
+    sh:property [
+        sh:path comet-rs:applicableDPL ;
+        sh:class comet-rs:DecarbProgressLevel ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:message "ProgressLevelPricing must reference exactly one DPL."
+    ] .
+
+comet-rs:GreenSteelPremiumShape
+    a sh:NodeShape ;
+    sh:targetClass comet-rs:GreenSteelPremium ;
+    sh:property [
+        sh:path comet-rs:premiumPerTonne ;
+        sh:datatype xsd:decimal ;
+        sh:minCount 1 ;
+        sh:minInclusive 0 ;
+        sh:message "premiumPerTonne is required and must be non-negative."
+    ] ;
+    sh:property [
+        sh:path comet-rs:premiumCurrency ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:pattern "^[A-Z]{3}$" ;
+        sh:message "premiumCurrency must be ISO 4217 (3 uppercase letters, e.g. EUR, USD)."
+    ] .
+
+
+# ─── RS PRINCIPLE (ENUMERATION CHECK) ───────────────────────────────────
+
+comet-rs:RSPrincipleShape
+    a sh:NodeShape ;
+    sh:targetClass comet-rs:RSPrinciple ;
+    sh:property [
+        sh:path rdfs:label ;
+        sh:minCount 1 ;
+        sh:message "RSPrinciple must have at least one rdfs:label."
+    ] .

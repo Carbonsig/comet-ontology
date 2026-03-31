@@ -1,0 +1,71 @@
+@prefix rdfs:   <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos:   <http://www.w3.org/2004/02/skos/core#> .
+@prefix comet-rs: <https://comet.carbon/ext/responsiblesteel#> .
+
+# COMET ResponsibleSteel Extension — Korean Labels
+# Language: ko
+# Coverage: 44 terms (31 classes + 13 principles)
+
+# ─── L1 Core ────
+comet-rs:CertifiedSite rdfs:label "인증 제조 시설"@ko ; skos:prefLabel "제조 시설"@ko .
+comet-rs:CorporateOwner rdfs:label "기업 소유자"@ko ; skos:prefLabel "소유자"@ko .
+comet-rs:SteelProductionRoute rdfs:label "철강 생산 방식"@ko ; skos:prefLabel "생산 방식"@ko .
+comet-rs:BF_BOF rdfs:label "고로-전로 공정(BF-BOF)"@ko ; skos:prefLabel "고로-전로"@ko ; skos:altLabel "BF-BOF"@ko .
+comet-rs:EAF rdfs:label "전기로(EAF)"@ko ; skos:prefLabel "전기로"@ko ; skos:altLabel "EAF"@ko .
+comet-rs:DRI_EAF rdfs:label "직접환원철-전기로(DRI-EAF)"@ko ; skos:prefLabel "직접환원철-전기로"@ko ; skos:altLabel "DRI-EAF"@ko .
+comet-rs:SR_BOF rdfs:label "고철-전로 공정(SR-BOF)"@ko ; skos:prefLabel "고철-전로"@ko ; skos:altLabel "SR-BOF"@ko .
+
+# ─── L3 Supply Chain ────
+comet-rs:RSInputMaterial rdfs:label "책임감 있는 철강 입력 재료"@ko ; skos:prefLabel "입력 재료"@ko .
+comet-rs:ScrapCategory rdfs:label "고철 범주"@ko ; skos:prefLabel "고철 유형"@ko .
+comet-rs:InternalScrap rdfs:label "공장 내부 고철"@ko .
+comet-rs:HomeScrap rdfs:label "자가 생성 고철"@ko .
+comet-rs:ManufacturingScrap rdfs:label "제조 고철"@ko .
+comet-rs:EndOfLifeScrap rdfs:label "수명 종료 고철"@ko .
+comet-rs:RSSupplierTier rdfs:label "책임감 있는 철강 공급자 등급"@ko ; skos:prefLabel "공급자 등급"@ko .
+comet-rs:SupplierESGRisk rdfs:label "공급자 ESG 위험"@ko ; skos:prefLabel "ESG 위험"@ko .
+comet-rs:RecognisedProgramme rdfs:label "인정 프로그램"@ko ; skos:prefLabel "프로그램"@ko .
+
+# ─── L4 PCF ────
+comet-rs:CrudeSteelIntensity rdfs:label "조강 원단위"@ko ; skos:prefLabel "원단위"@ko .
+comet-rs:ScrapShareCalculation rdfs:label "고철 비율 계산"@ko ; skos:prefLabel "고철 비율"@ko .
+comet-rs:DPLThreshold rdfs:label "탈탄화 진행도 수준 임계값"@ko ; skos:prefLabel "DPL 임계값"@ko ; skos:altLabel "DPL"@ko .
+comet-rs:ProcessGasBaseline rdfs:label "공정 가스 기준선"@ko ; skos:prefLabel "공정 가스"@ko .
+comet-rs:EnergyRecoveryCredit rdfs:label "에너지 회수 크레딧"@ko ; skos:prefLabel "회수 크레딧"@ko .
+comet-rs:CCUSCredit rdfs:label "탄소 포집·활용·저장 크레딧"@ko ; skos:prefLabel "CCUS 크레딧"@ko .
+
+# ─── L5 EAC ────
+comet-rs:CoreSiteCertification rdfs:label "핵심 시설 인증"@ko ; skos:prefLabel "시설 인증"@ko .
+comet-rs:SteelCertification rdfs:label "철강 인증"@ko ; skos:prefLabel "인증"@ko .
+comet-rs:DecarbProgressLevel rdfs:label "탈탄화 진행도 수준"@ko ; skos:prefLabel "탈탄화 수준"@ko ; skos:altLabel "DPL"@ko .
+comet-rs:SourcingProgressLevel rdfs:label "구매 진행도 수준"@ko ; skos:prefLabel "구매 수준"@ko ; skos:altLabel "SPL"@ko .
+comet-rs:CertifiedSteelMark rdfs:label "인증 철강 마크"@ko ; skos:prefLabel "마크"@ko .
+comet-rs:CoCTransferEvent rdfs:label "공급망 이전 이벤트"@ko ; skos:prefLabel "CoC 이전"@ko .
+comet-rs:CoCClaim rdfs:label "공급망 청구"@ko ; skos:prefLabel "CoC 청구"@ko .
+
+# ─── L6 Verification ────
+comet-rs:CertificationAudit rdfs:label "인증 감사"@ko ; skos:prefLabel "감사"@ko .
+comet-rs:AssurancePanelReview rdfs:label "보증 위원회 검토"@ko ; skos:prefLabel "위원회 검토"@ko .
+comet-rs:NonConformity rdfs:label "부적합"@ko ; skos:prefLabel "부적합"@ko .
+comet-rs:PrincipleConformity rdfs:label "원칙 적합성"@ko ; skos:prefLabel "적합성"@ko .
+comet-rs:TransitionPlanReview rdfs:label "전환 계획 검토"@ko ; skos:prefLabel "전환 검토"@ko .
+comet-rs:AmbitionGapAnalysis rdfs:label "야심 격차 분석"@ko ; skos:prefLabel "격차 분석"@ko .
+
+# ─── L7 Market ────
+comet-rs:ProgressLevelPricing rdfs:label "진행도 수준 가격 책정"@ko ; skos:prefLabel "수준 가격"@ko .
+comet-rs:GreenSteelPremium rdfs:label "녹색 철강 프리미엄"@ko ; skos:prefLabel "프리미엄"@ko .
+
+# ─── RS Principles ────
+comet-rs:P01_CorporateLeadership rdfs:label "P1 — 기업 리더십"@ko .
+comet-rs:P02_ESGManagementSystems rdfs:label "P2 — ESG 관리 체계"@ko .
+comet-rs:P03_StakeholderEngagement rdfs:label "P3 — 이해관계자 참여"@ko .
+comet-rs:P04_EnvironmentalManagement rdfs:label "P4 — 환경 관리"@ko .
+comet-rs:P05_GHGEmissionsReduction rdfs:label "P5 — 온실가스 배출 감소"@ko .
+comet-rs:P06_ClimateChangeAdaptation rdfs:label "P6 — 기후 변화 적응"@ko .
+comet-rs:P07_WaterSecurity rdfs:label "P7 — 수자원 안보"@ko .
+comet-rs:P08_AirQuality rdfs:label "P8 — 대기 질"@ko .
+comet-rs:P09_WasteStewardship rdfs:label "P9 — 폐기물 관리"@ko .
+comet-rs:P10_HumanRights rdfs:label "P10 — 인권"@ko .
+comet-rs:P11_LaborPractices rdfs:label "P11 — 노동 관행"@ko .
+comet-rs:P12_SafetyOccupational rdfs:label "P12 — 산업 안전 보건"@ko .
+comet-rs:P13_CommunityImpact rdfs:label "P13 — 지역사회 영향"@ko .

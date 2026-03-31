@@ -1,0 +1,21 @@
+# CQ03: Trace a CoC claim back to its certification
+# Competency Question: Show the full chain from a CoC claim back to the original certified site and its certification
+
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX comet-rs: <https://comet.carbon/ext/responsiblesteel#>
+
+SELECT ?claim ?claimLabel ?claimDPL ?claimSPL ?site ?siteLabel ?cert ?certStatus ?transferCount
+WHERE {
+  ?claim rdf:type comet-rs:CoCClaim ;
+         rdfs:label ?claimLabel ;
+         comet-rs:assignedDPL ?claimDPL ;
+         comet-rs:assignedSPL ?claimSPL ;
+         comet-rs:traceableToSite ?site ;
+         comet-rs:traceableToSiteCertification ?cert ;
+         comet-rs:completionParticipants ?transferCount .
+
+  ?site rdfs:label ?siteLabel .
+  ?cert comet-rs:certificationStatus ?certStatus .
+}
+ORDER BY ?claimLabel

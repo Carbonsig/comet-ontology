@@ -1,0 +1,20 @@
+# CQ12: What energy recovery credits exist?
+# Competency Question: List all energy recovery credits with recovered energy and GHG reduction values
+
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX comet-rs: <https://comet.carbon/ext/responsiblesteel#>
+
+SELECT ?site ?siteLabel ?creditYear ?recoveredEnergyMWh ?ghgReductionTonnes ?creditIntensityReduction ?verificationStatus
+WHERE {
+  ?credit rdf:type comet-rs:EnergyRecoveryCredit ;
+          comet-rs:appliesToSite ?site ;
+          comet-rs:creditYear ?creditYear ;
+          comet-rs:recoveredEnergyMWh ?recoveredEnergyMWh ;
+          comet-rs:ghgReductionTonnes ?ghgReductionTonnes ;
+          comet-rs:creditIntensityReduction ?creditIntensityReduction ;
+          comet-rs:verificationStatus ?verificationStatus .
+
+  ?site rdfs:label ?siteLabel .
+}
+ORDER BY DESC(?creditYear) DESC(?recoveredEnergyMWh) ?siteLabel

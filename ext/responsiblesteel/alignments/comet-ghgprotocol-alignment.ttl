@@ -1,0 +1,251 @@
+@prefix comet-rs: <https://ontology.materialintelligence.ai/comet/responsiblesteel/> .
+@prefix ghgp: <https://ghgprotocol.org/scope/> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix dcat: <http://www.w3.org/ns/dcat#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+
+<https://ontology.materialintelligence.ai/alignments/comet-ghgprotocol>
+    a owl:Ontology ;
+    dcterms:title "COMET RS to GHG Protocol Alignment"@en ;
+    dcterms:description "Semantic alignment between COMET Responsible Steel ontology and GHG Protocol Scope definitions for greenhouse gas emissions quantification and reporting."@en ;
+    dcterms:issued "2026-03-30"^^<http://www.w3.org/2001/XMLSchema#date> ;
+    dcterms:modified "2026-03-30"^^<http://www.w3.org/2001/XMLSchema#date> ;
+    owl:versionInfo "1.0.0" ;
+    dcat:keyword "COMET", "GHG Protocol", "greenhouse gas", "scope", "emissions accounting" ;
+    dcterms:source "RS Production Standard V2.1.1", "GHG Protocol Corporate Standard (Revised Edition 2015)", "GHG Protocol Scope 2 Guidance (2015)", "GHG Protocol Scope 3 Standard (2011)" ;
+    dcterms:conformsTo <https://ghgprotocol.org/corporate-standard> .
+
+# GHG Protocol Scope Definitions
+ghgp:Scope1
+    a owl:Class ;
+    rdfs:label "Scope 1 - Direct Emissions"@en ;
+    rdfs:comment "Direct greenhouse gas emissions from sources that are owned or controlled by the reporting organization."@en ;
+    skos:definition "GHG emissions from combustion in owned/controlled boilers, furnaces, vehicles; fugitive emissions from owned/controlled equipment; chemical reactions in owned/controlled processes."@en .
+
+ghgp:Scope2
+    a owl:Class ;
+    rdfs:label "Scope 2 - Indirect Energy Emissions"@en ;
+    rdfs:comment "Indirect GHG emissions from consumption of purchased electricity, steam, heating, and cooling."@en ;
+    skos:definition "Emissions released during generation of purchased energy consumed by reporting organization. Calculations use location-based or market-based approach."@en .
+
+ghgp:Scope3
+    a owl:Class ;
+    rdfs:label "Scope 3 - Other Indirect Emissions"@en ;
+    rdfs:comment "All other indirect GHG emissions occurring as a consequence of the activities of the reporting organization, but from sources not owned or controlled by the organization."@en ;
+    skos:definition "Upstream scope 3 (supply chain): emissions from purchased goods, services, transportation. Downstream scope 3 (use phase): emissions from use/disposal of sold products."@en ;
+    skos:note "Scope 3 includes 15 categories covering entire value chain."@en .
+
+# Core COMET RS Mapping to GHG Protocol Scopes
+
+comet-rs:CrudeSteelIntensity
+    skos:related ghgp:Scope1 ;
+    skos:related ghgp:Scope2 ;
+    skos:related ghgp:Scope3 ;
+    rdfs:comment "Steel intensity typically encompasses all three scopes depending on calculation methodology and system boundary."@en ;
+    skos:note "COMET RS reports can include Scope 1, 2, and 3 upstream emissions. Intensity calculation methodology depends on declared system boundary."@en .
+
+comet-rs:ghgIntensityValue
+    skos:broadMatch ghgp:EmissionsQuantity ;
+    rdfs:comment "The numerical GHG emissions quantity (in CO2-equivalents) divided by steel production volume."@en ;
+    skos:note "GHG Protocol defines emissions quantification method; COMET RS specifies application to steel production."@en .
+
+# SCOPE 1 ALIGNMENT
+comet-rs:Scope1Emissions
+    skos:exactMatch ghgp:Scope1 ;
+    rdfs:comment "Direct emissions from COMET facility combustion and chemical processes."@en ;
+    skos:note "COMET Scope 1 directly aligns with GHG Protocol Scope 1 definition."@en ;
+    skos:relatedMatch ghgp:Scope1_CombustionEmissions ;
+    skos:relatedMatch ghgp:Scope1_FugitiveEmissions ;
+    skos:relatedMatch ghgp:Scope1_ProcessEmissions .
+
+comet-rs:BlastFurnaceCombustion
+    skos:related ghgp:Scope1_CombustionEmissions ;
+    rdfs:comment "CO2 and other GHG emissions from combustion of fuel in blast furnaces (coke, natural gas, oil)."@en ;
+    skos:note "Major source of Scope 1 emissions in BF-BOF route. Direct combustion in furnace is in-boundary emission."@en .
+
+comet-rs:BOFCombustion
+    skos:related ghgp:Scope1_CombustionEmissions ;
+    rdfs:comment "CO2 emissions from fuel combustion in basic oxygen furnace refining process."@en .
+
+comet-rs:EAFCombustion
+    skos:related ghgp:Scope1_CombustionEmissions ;
+    rdfs:comment "CO2 emissions from fossil fuel (natural gas, oil) combustion in EAF and auxiliary heating."@en ;
+    skos:note "Typically lower than BF-BOF depending on grid electricity carbon intensity."@en .
+
+comet-rs:ProcessEmissions
+    skos:related ghgp:Scope1_ProcessEmissions ;
+    rdfs:comment "Non-combustion chemical reactions releasing GHG: limestone calcination (CaCO3 → CO2), methane from reduction reactions."@en ;
+    skos:note "Significant source in iron/steel production. Calcination alone contributes ~40% of typical BF emissions."@en ;
+    skos:definition "Emissions generated by chemical transformation of raw materials independent of energy use."@en .
+
+comet-rs:FugitiveEmissions
+    skos:related ghgp:Scope1_FugitiveEmissions ;
+    rdfs:comment "Unintended or uncontrolled GHG releases: methane leaks from equipment, CO from incomplete combustion."@en ;
+    skos:note "Typically small source in modern facilities with leak detection and repair (LDAR) programs."@en .
+
+comet-rs:DirectFuelCombustion
+    skos:related ghgp:Scope1_CombustionEmissions ;
+    rdfs:comment "All fossil fuels combusted on-site: natural gas, coal, coke, fuel oil, biomass."@en ;
+    skos:note "GHG Protocol requires tracking fuel type and quantity for accurate emissions factor application."@en .
+
+# Scope 1 Calculation Elements
+comet-rs:Scope1EmissionsCalculation
+    rdfs:comment "Scope 1 = Fuel Consumption × Emission Factor (by fuel type and source)"@en ;
+    skos:note "GHG Protocol default factors vary by fuel, region, and technology. COMET RS may use facility-specific factors where available."@en .
+
+# SCOPE 2 ALIGNMENT
+comet-rs:Scope2Emissions
+    skos:exactMatch ghgp:Scope2 ;
+    rdfs:comment "Indirect emissions from purchased electricity, steam, heating, cooling used at COMET facility."@en ;
+    skos:note "COMET Scope 2 directly aligns with GHG Protocol Scope 2 definition."@en ;
+    skos:relatedMatch ghgp:Scope2_LocationBased ;
+    skos:relatedMatch ghgp:Scope2_MarketBased .
+
+comet-rs:PurchasedElectricity
+    skos:closeMatch ghgp:Scope2_Electricity ;
+    rdfs:comment "Electricity consumed by steel production facility (arc furnace power, motors, controls, lighting)."@en ;
+    skos:note "Scope 2 emissions depend on grid carbon intensity. Location-based uses average regional grid; market-based uses contractual source."@en .
+
+comet-rs:PurchasedSteam
+    skos:related ghgp:Scope2_SteamHeating ;
+    rdfs:comment "Purchased steam or hot water used for heating, cooling, auxiliary processes."@en ;
+    skos:note "Less common in steel than electricity but relevant for some integrated facilities with district heat."@en .
+
+comet-rs:LocationBasedApproach
+    skos:exactMatch ghgp:Scope2_LocationBased ;
+    rdfs:comment "Uses average carbon intensity of grid in location where electricity is consumed."@en ;
+    skos:note "GHG Protocol default method. Required minimum reporting level. Reflects actual impact of electricity consumption."@en ;
+    skos:definition "Scope 2 emissions = Electricity (MWh) × Grid Average Emissions Intensity (CO2/MWh)"@en .
+
+comet-rs:MarketBasedApproach
+    skos:exactMatch ghgp:Scope2_MarketBased ;
+    rdfs:comment "Uses contractually supplied electricity sources (renewable power purchase agreements, green certificates)."@en ;
+    skos:note "Allows facilities with renewable commitments to claim lower emissions. Requires documentation of contractual instruments."@en ;
+    skos:definition "Scope 2 emissions = Contracted Renewable + Non-Renewable (MWh) × Respective Emissions Intensity"@en .
+
+comet-rs:Scope2Intensity
+    rdfs:comment "Scope 2 emissions (kg CO2-eq) divided by crude steel production (tonnes)."@en ;
+    skos:note "EAF facilities with renewable electricity can achieve very low or near-zero Scope 2 intensity."@en .
+
+# SCOPE 3 ALIGNMENT
+comet-rs:Scope3Emissions
+    skos:exactMatch ghgp:Scope3 ;
+    rdfs:comment "Indirect emissions from value chain activities: upstream (materials, fuels) and downstream (transport, use, disposal)."@en ;
+    skos:note "COMET RS typically reports Scope 3 upstream. Downstream Scope 3 applies when steel is converted to other products."@en ;
+    skos:relatedMatch ghgp:Scope3_Upstream ;
+    skos:relatedMatch ghgp:Scope3_Downstream .
+
+comet-rs:Scope3UpstreamEmissions
+    skos:exactMatch ghgp:Scope3_Upstream ;
+    rdfs:comment "Emissions from production and transportation of inputs to steel facility: iron ore, coal, natural gas, scrap steel, additives."@en ;
+    skos:note "GHG Protocol Scope 3 categories 1 (purchased goods), 4 (upstream transportation), 9 (fuel and energy-related activities)."@en ;
+    skos:relatedMatch ghgp:Scope3_Cat1_PurchasedGoods ;
+    skos:relatedMatch ghgp:Scope3_Cat4_TransportationLogistics ;
+    skos:relatedMatch ghgp:Scope3_Cat9_FuelEnergy .
+
+comet-rs:IronOreMining
+    skos:related ghgp:Scope3_Cat1_PurchasedGoods ;
+    rdfs:comment "Emissions from mining, crushing, concentration of iron ore used as feedstock."@en ;
+    skos:note "Typically 5-10% of total steel carbon intensity depending on ore grade and mining technology."@en ;
+    skos:definition "GHG Protocol Scope 3 Category 1 supplier emissions for ore production."@en .
+
+comet-rs:CoalMining
+    skos:related ghgp:Scope3_Cat1_PurchasedGoods ;
+    rdfs:comment "Emissions from extraction, processing, preparation of coking coal and thermal coal."@en ;
+    skos:note "Significant for BF-BOF route using purchased coke. Includes methane from coal mines."@en .
+
+comet-rs:NaturalGasExtraction
+    skos:related ghgp:Scope3_Cat1_PurchasedGoods ;
+    rdfs:comment "Emissions from natural gas extraction, processing, and compression."@en ;
+    skos:note "Relevant for facilities using natural gas in DRI or as fuel alternative to coke."@en .
+
+comet-rs:ScrapSteelCollection
+    skos:related ghgp:Scope3_Cat1_PurchasedGoods ;
+    rdfs:comment "Emissions from collection, sorting, shredding of scrap steel used in EAF."@en ;
+    skos:note "Typically low (~1% of total intensity) but relevant for circular economy tracking."@en .
+
+comet-rs:TransportationToFacility
+    skos:exactMatch ghgp:Scope3_Cat4_TransportationLogistics ;
+    rdfs:comment "Emissions from rail, truck, ship transport of raw materials and fuels to facility gate."@en ;
+    skos:note "GHG Protocol Category 4. Distance, mode (truck vs. rail vs. ship), and fuel type determine emissions."@en ;
+    skos:definition "Typically 2-5% of total intensity. Increases with distance from source mines/ports."@en .
+
+comet-rs:Scope3DownstreamEmissions
+    skos:exactMatch ghgp:Scope3_Downstream ;
+    rdfs:comment "Emissions from use and end-of-life of crude steel products downstream in value chain."@en ;
+    skos:note "Less commonly included in COMET facility reporting. Relevant when crude steel becomes embedded in downstream products (automotive, construction, machinery)."@en ;
+    skos:relatedMatch ghgp:Scope3_Cat10_ProcessingProducts ;
+    skos:relatedMatch ghgp:Scope3_Cat11_UsePhase ;
+    skos:relatedMatch ghgp:Scope3_Cat12_EndOfLife .
+
+comet-rs:SteelProcessing
+    skos:related ghgp:Scope3_Cat10_ProcessingProducts ;
+    rdfs:comment "Emissions from downstream processing of crude steel into finished products (rolling, coating, forming)."@en ;
+    skos:note "Not typically included in crude steel producer boundary. Scope 3 downstream would be reported by steel processor."@en .
+
+comet-rs:ProductUsePhase
+    skos:related ghgp:Scope3_Cat11_UsePhase ;
+    rdfs:comment "Emissions from use of steel products in application (e.g., CO2 from vehicle using steel chassis)."@en ;
+    skos:note "Not included in crude steel producer scope but relevant for lifecycle perspective."@en .
+
+comet-rs:ProductEndOfLife
+    skos:related ghgp:Scope3_Cat12_EndOfLife ;
+    rdfs:comment "Emissions from disposal or recycling of steel products after use phase."@en ;
+    skos:note "Steel is highly recyclable with near-zero degradation. Recycling via EAF has lower emissions than primary production."@en .
+
+# Intensity Metrics and GHG Protocol
+comet-rs:kgCO2eqPerTonne
+    skos:related ghgp:EmissionsIntensity ;
+    rdfs:comment "Standard unit of measure for steel carbon intensity across GHG Protocol and COMET frameworks."@en ;
+    owl:equivalentClass <http://qudt.org/vocab/UNIT/KiloGM-PER-TON> ;
+    skos:definition "Total scope emissions (kg CO2-eq) divided by annual crude steel production (tonnes)."@en ;
+    skos:note "Enables comparison across facilities, processes, and jurisdictions."@en .
+
+# Calculation Framework
+comet-rs:COMET_Scope1Calculation
+    rdfs:comment "Scope 1 = Direct Fuel Combustion Emissions + Process Emissions + Fugitive Emissions"@en ;
+    skos:note "GHG Protocol provides emission factors for each fuel type and process. COMET RS calculation follows this structure."@en .
+
+comet-rs:COMET_Scope2Calculation
+    rdfs:comment "Scope 2 (Location-based) = Purchased Electricity (MWh) × Grid Average Emissions Intensity (kg CO2/MWh) + Steam/Heating"@en ;
+    skos:note "Facility must determine whether to use location-based or market-based approach and declare methodology."@en .
+
+comet-rs:COMET_Scope3Calculation
+    rdfs:comment "Scope 3 Upstream = Emissions from Purchased Inputs + Transportation to Facility + Fuel/Energy Upstream"@en ;
+    skos:note "COMET RS typically focuses on Scope 3 upstream. Calculation uses supplier data or GHG Protocol default factors."@en .
+
+comet-rs:TotalIntensity
+    rdfs:comment "Total Steel Intensity = (Scope 1 + Scope 2 + Scope 3 Upstream) kg CO2-eq per tonne crude steel"@en ;
+    skos:note "Full lifecycle intensity from mine/wellhead to facility gate. Typical range: 1.8-2.5 kg CO2-eq/kg for BF-BOF; 0.4-1.2 for EAF depending on grid."@en ;
+    skos:definition "Comprehensive carbon footprint metric for facility or product."@en .
+
+# Baseline and Target Setting
+comet-rs:BaselineEmissions
+    skos:related ghgp:BaselineAssessment ;
+    rdfs:comment "Historical emissions data (typically 3-5 year average) establishing reference point for reduction targets."@en ;
+    skos:note "GHG Protocol requires clear baseline definition for Science-Based Targets (SBTi) validation."@en .
+
+comet-rs:ReductionTarget
+    skos:related ghgp:TargetSetting ;
+    rdfs:comment "Quantified commitment to reduce absolute or intensity-based emissions by specific year (e.g., 2030, 2050)."@en ;
+    skos:note "GHG Protocol and COMET RS both emphasize alignment with climate science and Paris Agreement 1.5°C pathway."@en .
+
+# Verification and Quality Assurance
+comet-rs:EmissionsFactor
+    skos:related ghgp:EmissionsFactor ;
+    rdfs:comment "Conversion factor from activity data (fuel burnt, electricity used) to GHG emissions (CO2-eq)."@en ;
+    skos:note "GHG Protocol provides default factors. Facility-specific factors improve accuracy if validated."@en ;
+    skos:definition "kg CO2-eq per unit of fuel or energy consumed."@en .
+
+comet-rs:DataQuality
+    skos:related ghgp:DataQualityAssurance ;
+    rdfs:comment "Verification that emissions calculations follow GHG Protocol methodology and use credible data sources."@en ;
+    skos:note "COMET RS requires third-party audit. GHG Protocol recommends annual verification."@en .
+
+# Reconciliation and Alignment Notes
+<https://ontology.materialintelligence.ai/alignments/comet-ghgprotocol-implementation>
+    a owl:Class ;
+    rdfs:comment "The COMET RS emissions quantification methodology directly implements GHG Protocol standards. COMET adds facility-level focus, third-party verification, and alignment with steel production processes. The ontology enables automated mapping of facility data to GHG Protocol reporting structures."@en ;
+    rdfs:label "GHG Protocol Implementation in COMET RS"@en .

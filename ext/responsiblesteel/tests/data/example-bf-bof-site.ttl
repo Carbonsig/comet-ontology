@@ -1,0 +1,130 @@
+@prefix rdf:    <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs:   <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:    <http://www.w3.org/2001/XMLSchema#> .
+@prefix comet:     <https://comet.carbon/v1/core#> .
+@prefix comet-rs:  <https://comet.carbon/ext/responsiblesteel#> .
+@prefix ex:        <https://example.org/data/> .
+
+# BF-BOF Integrated Steelworks - Belgium - Achieving DPL 1
+ex:site-bf-bof-be-001
+    rdf:type comet-rs:CertifiedSite ;
+    comet-rs:certificateId "BE-00012345" ;
+    rdfs:label "Integrated Steel Works - Wallonia" ;
+    comet-rs:isOwnedBy ex:owner-ArcelorMittal ;
+    comet-rs:hasProductionRoute comet-rs:BF_BOF ;
+    comet-rs:hasCurrentCertification ex:cert-bf-bof-be-001 ;
+    comet-rs:hasCrudeSteelIntensity ex:intensity-bf-bof-be-001 ;
+    comet-rs:hasScrapShareCalculation ex:scrap-bf-bof-be-001 ;
+    comet-rs:hasDecarbProgressLevel ex:dpl-bf-bof-be-001 ;
+    comet-rs:hasSourcingProgressLevel ex:spl-bf-bof-be-001 ;
+    comet-rs:hasAudit ex:audit-bf-bof-be-2025 ;
+    comet-rs:hasSiteCluster "Wallonia-Steel-Complex" ;
+    comet-rs:locationCountry "Belgium" .
+
+ex:owner-ArcelorMittal
+    rdf:type comet-rs:CorporateOwner ;
+    rdfs:label "ArcelorMittal S.A." ;
+    comet-rs:ownerCountry "Luxembourg" ;
+    comet-rs:operatedSites ex:site-bf-bof-be-001 .
+
+ex:intensity-bf-bof-be-001
+    rdf:type comet-rs:CrudeSteelIntensity ;
+    comet-rs:value 1.82 ;
+    comet-rs:unit "tCO2e/t" ;
+    comet-rs:reportingYear 2024 ;
+    comet-rs:dataVerificationStatus "certified" .
+
+ex:scrap-bf-bof-be-001
+    rdf:type comet-rs:ScrapShareCalculation ;
+    comet-rs:sharePercentage 18.5 ;
+    comet-rs:calculationMethod "mass-weighted-average" ;
+    comet-rs:reportingYear 2024 ;
+    comet-rs:includesCollectedScrap true ;
+    comet-rs:includesTonPremium false .
+
+ex:dpl-bf-bof-be-001
+    rdf:type comet-rs:DecarbProgressLevel ;
+    comet-rs:dplValue 1 ;
+    comet-rs:assessmentYear 2024 ;
+    comet-rs:qualifiesForCertification true .
+
+ex:spl-bf-bof-be-001
+    rdf:type comet-rs:SourcingProgressLevel ;
+    comet-rs:splValue 2 ;
+    comet-rs:assessmentYear 2024 ;
+    comet-rs:priorSPL 1 ;
+    comet-rs:splProgressionReason "Improved labour practices governance" .
+
+ex:cert-bf-bof-be-001
+    rdf:type comet-rs:SteelCertification ;
+    comet-rs:hasDPL ex:dpl-bf-bof-be-001 ;
+    comet-rs:hasSPL ex:spl-bf-bof-be-001 ;
+    comet-rs:certificationStatus "valid" ;
+    comet-rs:issuanceDate "2024-03-15"^^xsd:date ;
+    comet-rs:expiryDate "2027-03-14"^^xsd:date ;
+    comet-rs:certifiedBySite ex:site-bf-bof-be-001 ;
+    comet-rs:resultOfAudit ex:audit-bf-bof-be-2025 .
+
+ex:core-cert-bf-bof-be-001
+    rdf:type comet-rs:CoreSiteCertification ;
+    comet-rs:refersToSite ex:site-bf-bof-be-001 ;
+    comet-rs:hasSteelCert ex:cert-bf-bof-be-001 ;
+    comet-rs:certMilestone "core-site-verified" ;
+    comet-rs:verificationDate "2024-03-10"^^xsd:date .
+
+ex:audit-bf-bof-be-2025
+    rdf:type comet-rs:CertificationAudit ;
+    rdfs:label "Annual Audit 2024-2025 - Wallonia BF-BOF" ;
+    comet-rs:auditedSite ex:site-bf-bof-be-001 ;
+    comet-rs:auditDate "2024-10-20"^^xsd:date ;
+    comet-rs:auditType "certification" ;
+    comet-rs:auditScope "All principles P1-P12" ;
+    comet-rs:hasReview ex:panel-review-bf-bof-2025 ;
+    comet-rs:hasConformityAssessment ex:conform-p10-bf-bof ;
+    comet-rs:hasConformityAssessment ex:conform-p05-bf-bof .
+
+ex:conform-p10-bf-bof
+    rdf:type comet-rs:PrincipleConformity ;
+    comet-rs:conformityFor "P10" ;
+    comet-rs:principleLabel "Water & Biodiversity" ;
+    comet-rs:conformityScore 82 ;
+    comet-rs:assessmentStatus "fully-compliant" ;
+    comet-rs:evidenceReference "Site audit report section 4.2" .
+
+ex:conform-p05-bf-bof
+    rdf:type comet-rs:PrincipleConformity ;
+    comet-rs:conformityFor "P05" ;
+    comet-rs:principleLabel "Waste Management" ;
+    comet-rs:conformityScore 76 ;
+    comet-rs:assessmentStatus "mostly-compliant" ;
+    comet-rs:remedialActionRequired true ;
+    comet-rs:remedialDeadline "2025-06-30"^^xsd:date .
+
+ex:panel-review-bf-bof-2025
+    rdf:type comet-rs:AssurancePanelReview ;
+    comet-rs:reviewDate "2024-12-05"^^xsd:date ;
+    comet-rs:panelDecision "approve" ;
+    comet-rs:panelComments "Site demonstrates strong commitment to decarbonization with credible pathway to DPL 2" ;
+    comet-rs:reviewerCount 3 ;
+    comet-rs:approvalQuorum "unanimous" .
+
+ex:energy-credit-bf-bof
+    rdf:type comet-rs:EnergyRecoveryCredit ;
+    comet-rs:appliesToSite ex:site-bf-bof-be-001 ;
+    comet-rs:creditYear 2024 ;
+    comet-rs:recoveredEnergyMWh 450000 ;
+    comet-rs:ghgReductionTonnes 125000 ;
+    comet-rs:creditIntensityReduction 0.18 ;
+    comet-rs:verificationStatus "externally-audited" .
+
+ex:transition-plan-bf-bof
+    rdf:type comet-rs:TransitionPlanReview ;
+    comet-rs:appliedToSite ex:site-bf-bof-be-001 ;
+    comet-rs:reviewDate "2024-09-15"^^xsd:date ;
+    comet-rs:planStatus "approved-with-conditions" ;
+    comet-rs:targetDPL 2 ;
+    comet-rs:targetYear 2027 ;
+    comet-rs:investmentRequired 850000000 ;
+    comet-rs:investmentCurrency "EUR" ;
+    comet-rs:keyInitiatives "Enhanced scrap capacity; CO2 capture pilot" ;
+    comet-rs:nextReviewDate "2025-09-15"^^xsd:date .

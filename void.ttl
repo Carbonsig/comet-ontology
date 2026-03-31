@@ -1,0 +1,319 @@
+# VoID (Vocabulary of Interlinked Datasets) Description for COMET
+# This file describes COMET as a Linked Data dataset
+
+@prefix void: <http://rdfs.org/ns/void#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix dcat: <http://www.w3.org/ns/dcat#> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix dc: <http://purl.org/dc/elements/1.1/> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix schema: <http://schema.org/> .
+
+# Core COMET Dataset
+<https://comet.carbon/ontology/>
+  a void:Dataset ;
+  dct:title "COMET: Carbon Ontology for Materials and Emissions Tracking"@en ;
+  dct:description "A comprehensive semantic ontology for carbon accounting and emissions tracking across materials supply chains. COMET provides a seven-layer stack architecture for representing emissions data, processes, products, certifications, calculations, reporting, and sustainability impact."@en ;
+  dct:issued "2026-03-15"^^xsd:date ;
+  dct:modified "2026-03-30"^^xsd:date ;
+  dct:issued "2026-03-30"^^xsd:date ;
+  owl:versionInfo "0.2.0" ;
+  
+  # Creator and Contributors
+  dct:creator [ foaf:name "Nick Gogerty" ; foaf:homepage <https://comet.carbon> ] ;
+  dct:contributor [
+    rdf:type foaf:Person ;
+    foaf:name "COMET Community Contributors" ;
+  ] ;
+  
+  # License and Rights
+  dct:license <http://creativecommons.org/licenses/by/4.0/> ;
+  dct:rights "Copyright (c) 2026 Nick Gogerty and COMET Contributors" ;
+  dcat:landingPage <https://comet.carbon/> ;
+  dcat:homepage <https://comet.carbon/docs> ;
+  
+  # Ontology Characteristics
+  void:vocabulary <http://www.w3.org/2002/07/owl#> ;
+  void:vocabulary <http://www.w3.org/2000/01/rdf-schema#> ;
+  void:vocabulary <http://www.w3.org/ns/shacl#> ;
+  void:vocabulary <http://www.w3.org/2004/02/skos/core#> ;
+  
+  # Dataset Statistics
+  void:classPartition [
+    rdf:type void:Dataset ;
+    void:class owl:Class ;
+    void:entities 250 ;
+  ] ;
+  
+  void:propertyPartition [
+    rdf:type void:Dataset ;
+    void:property owl:ObjectProperty ;
+    void:entities 85 ;
+  ] ;
+  
+  void:propertyPartition [
+    rdf:type void:Dataset ;
+    void:property owl:DatatypeProperty ;
+    void:entities 120 ;
+  ] ;
+  
+  # Total Triples (estimated)
+  void:triples 2500 ;
+  
+  # SPARQL Endpoint
+  void:sparqlEndpoint <https://sparql.comet.carbon/> ;
+  
+  # Example Resources
+  void:exampleResource <https://comet.carbon/ontology/Product> ;
+  void:exampleResource <https://comet.carbon/ontology/Process> ;
+  void:exampleResource <https://comet.carbon/ontology/Emission> ;
+  void:exampleResource <https://comet.carbon/ontology/Certification> ;
+  void:exampleResource <https://comet.carbon/ontology/responsiblesteel/SteelProduct> ;
+  
+  # Data Dumps
+  dcat:distribution [
+    rdf:type dcat:Distribution ;
+    dcat:mediaType "text/turtle" ;
+    dcat:accessURL <https://github.com/comet-ontology/comet/releases/download/v0.2.0/comet-0.2.0.ttl> ;
+    dct:title "COMET 0.2.0 RDF/Turtle"@en ;
+    dcat:byteSize 245000 ;
+  ] ;
+  
+  dcat:distribution [
+    rdf:type dcat:Distribution ;
+    dcat:mediaType "application/rdf+xml" ;
+    dcat:accessURL <https://github.com/comet-ontology/comet/releases/download/v0.2.0/comet-0.2.0.rdf> ;
+    dct:title "COMET 0.2.0 RDF/XML"@en ;
+    dcat:byteSize 380000 ;
+  ] ;
+  
+  dcat:distribution [
+    rdf:type dcat:Distribution ;
+    dcat:mediaType "application/ld+json" ;
+    dcat:accessURL <https://comet.carbon/context.jsonld> ;
+    dct:title "COMET JSON-LD Context"@en ;
+  ] ;
+  
+  # Thematic Tags
+  dcat:theme <http://publications.europa.eu/resource/authority/data-theme/ENVI> ; # Environment
+  dcat:theme <http://publications.europa.eu/resource/authority/data-theme/TECH> ; # Science and Technology
+  dcat:keyword "ontology"@en ;
+  dcat:keyword "carbon"@en ;
+  dcat:keyword "emissions"@en ;
+  dcat:keyword "supply chain"@en ;
+  dcat:keyword "sustainability"@en ;
+  dcat:keyword "semantic web"@en ;
+  dcat:keyword "RDF"@en ;
+  dcat:keyword "OWL"@en ;
+  dcat:keyword "SHACL"@en ;
+  
+  # Related Vocabularies/Ontologies
+  void:vocabulary <https://ghgprotocol.org/ontology/> ;
+  void:vocabulary <http://purl.org/weso/ontology/pact#> ;
+  void:vocabulary <http://purl.org/iso14001/ontology/> ;
+  
+  # Repository
+  dcat:repository <https://github.com/comet-ontology/comet> ;
+  
+  # Documentation
+  dcat:documentation <https://comet.carbon/docs> ;
+  dcat:documentation <https://comet.carbon/docs/getting-started> ;
+  dcat:documentation <https://comet.carbon/docs/faq> ;
+  dcat:documentation <https://comet.carbon/docs/adr/> ;
+  
+  # Citation
+  schema:citation """
+    @software{gogerty2026comet,
+      author = {Gogerty, Nick},
+      title = {COMET: Carbon Ontology for Materials and Emissions Tracking},
+      year = {2026},
+      url = {https://comet.carbon},
+      version = {0.2.0}
+    }
+  """@en ;
+  
+  # Persistent Identifier (DOI via Zenodo)
+  dct:identifier <https://doi.org/10.5281/zenodo.0000000> ;
+  dcat:identifier "zenodo-0000000" ;
+  
+  # Contact
+  dcat:contactPoint [ foaf:email <mailto:contact@comet.carbon> ] ;
+  
+  # Accessibility
+  dcat:conformsTo <https://www.w3.org/TR/owl2/> ;
+  dcat:conformsTo <https://www.w3.org/TR/shacl/> ;
+  dcat:conformsTo <https://www.w3.org/TR/rdf11-concepts/> ;
+  
+  # Temporal Coverage
+  dct:temporal [
+    rdf:type dct:PeriodOfTime ;
+    dcat:startDate "2026-03-15"^^xsd:date ;
+  ] ;
+  
+  # Frequency of Updates
+  dcat:accrualPeriodicity <http://purl.org/cld/accmeth/quarterly> ;
+  
+  # Version Info
+  owl:versionInfo "0.2.0" ;
+  dct:hasPart <https://comet.carbon/ontology/responsiblesteel/> ;
+  .
+
+# ResponsibleSteel Extension Dataset
+<https://comet.carbon/ontology/responsiblesteel/>
+  a void:Dataset ;
+  dct:title "COMET ResponsibleSteel Extension"@en ;
+  dct:description "Domain-specific extension of COMET for responsible steel supply chain tracking and emissions accounting. Includes 31 classes, 15 object properties, 22 data properties, and 13 named individuals for steel-specific concepts."@en ;
+  dct:issued "2026-03-30"^^xsd:date ;
+  owl:versionInfo "0.1.0" ;
+  
+  # Links
+  void:subset <https://comet.carbon/ontology/> ;
+  dct:isPartOf <https://comet.carbon/ontology/> ;
+  void:vocabulary <http://www.w3.org/2002/07/owl#> ;
+  
+  # Statistics
+  void:classPartition [
+    rdf:type void:Dataset ;
+    void:class owl:Class ;
+    void:entities 31 ;
+  ] ;
+  
+  void:propertyPartition [
+    rdf:type void:Dataset ;
+    void:property owl:ObjectProperty ;
+    void:entities 15 ;
+  ] ;
+  
+  void:propertyPartition [
+    rdf:type void:Dataset ;
+    void:property owl:DatatypeProperty ;
+    void:entities 22 ;
+  ] ;
+  
+  void:individuals 13 ;
+  void:triples 380 ;
+  
+  # License
+  dct:license <http://creativecommons.org/licenses/by/4.0/> ;
+  
+  # Standards Alignment
+  dct:conformsTo <http://responsiblesteel.org/standard/v2.0> ;
+  dct:conformsTo <http://www.iso.org/standard/14001> ;
+  
+  # Contact
+  dcat:contactPoint [ foaf:email <mailto:contact@comet.carbon> ] ;
+  .
+
+# Shapefile Dataset Description
+<https://comet.carbon/ontology/shapes>
+  a void:Dataset ;
+  dct:title "COMET SHACL Validation Shapes"@en ;
+  dct:description "SHACL (Shapes Constraint Language) files for validating COMET instance data. Includes node shapes, property shapes, and validation rules for all core classes."@en ;
+  dct:issued "2026-03-30"^^xsd:date ;
+  owl:versionInfo "0.2.0" ;
+  
+  void:vocabulary <http://www.w3.org/ns/shacl#> ;
+  void:triples 450 ;
+  
+  dcat:distribution [
+    rdf:type dcat:Distribution ;
+    dcat:mediaType "text/turtle" ;
+    dcat:accessURL <https://github.com/comet-ontology/comet/raw/main/comet-shapes.ttl> ;
+    dct:title "COMET SHACL Shapes"@en ;
+  ] ;
+  .
+
+# Labels Dataset Description (Multilingual)
+<https://comet.carbon/ontology/labels>
+  a void:Dataset ;
+  dct:title "COMET Multilingual Labels"@en ;
+  dct:description "RDFS labels and definitions for COMET in 10 languages: English, Spanish, German, French, Mandarin, Portuguese, Japanese, Italian, Dutch, and Swedish."@en ;
+  dct:issued "2026-03-30"^^xsd:date ;
+  owl:versionInfo "0.2.0" ;
+  
+  dct:language "en"^^xsd:language ;
+  dct:language "es"^^xsd:language ;
+  dct:language "de"^^xsd:language ;
+  dct:language "fr"^^xsd:language ;
+  dct:language "zh"^^xsd:language ;
+  dct:language "pt"^^xsd:language ;
+  dct:language "ja"^^xsd:language ;
+  dct:language "it"^^xsd:language ;
+  dct:language "nl"^^xsd:language ;
+  dct:language "sv"^^xsd:language ;
+  
+  void:vocabulary <http://www.w3.org/2000/01/rdf-schema#> ;
+  void:triples 2500 ;
+  .
+
+# Examples Dataset Description
+<https://comet.carbon/ontology/examples>
+  a void:Dataset ;
+  dct:title "COMET Example Instance Data"@en ;
+  dct:description "RDF instance data demonstrating COMET usage across different domains and scenarios. Includes examples of emissions calculations, supply chain tracking, certification assertions, and sustainability reporting."@en ;
+  dct:issued "2026-03-30"^^xsd:date ;
+  owl:versionInfo "0.2.0" ;
+  
+  dcat:distribution [
+    rdf:type dcat:Distribution ;
+    dcat:mediaType "text/turtle" ;
+    dcat:accessURL <https://github.com/comet-ontology/comet/raw/main/examples/emissions-calculation.ttl> ;
+    dct:title "Emissions Calculation Example"@en ;
+  ] ;
+  
+  dcat:distribution [
+    rdf:type dcat:Distribution ;
+    dcat:mediaType "text/turtle" ;
+    dcat:accessURL <https://github.com/comet-ontology/comet/raw/main/examples/supply-chain-tracking.ttl> ;
+    dct:title "Supply Chain Tracking Example"@en ;
+  ] ;
+  
+  void:triples 800 ;
+  .
+
+# Alignment Files Description
+<https://comet.carbon/ontology/alignments>
+  a void:Dataset ;
+  dct:title "COMET Standards Alignments"@en ;
+  dct:description "RDF alignment files mapping COMET concepts to external standards including GHG Protocol, ISO 14001, PACT, CBAM, and other carbon accounting frameworks."@en ;
+  dct:issued "2026-03-30"^^xsd:date ;
+  owl:versionInfo "0.2.0" ;
+  
+  dcat:distribution [
+    rdf:type dcat:Distribution ;
+    dcat:title "GHG Protocol Alignment"@en ;
+    dcat:accessURL <https://comet.carbon/alignments/ghg-protocol-alignment.ttl> ;
+  ] ;
+  
+  dcat:distribution [
+    rdf:type dcat:Distribution ;
+    dcat:title "PACT Alignment"@en ;
+    dcat:accessURL <https://comet.carbon/alignments/pact-alignment.ttl> ;
+  ] ;
+  
+  void:vocabulary <http://www.w3.org/2002/07/owl#> ;
+  void:triples 600 ;
+  .
+
+# Competency Questions Dataset
+<https://comet.carbon/ontology/competency-questions>
+  a void:Dataset ;
+  dct:title "COMET Competency Questions"@en ;
+  dct:description "Natural language competency questions with corresponding SPARQL query solutions demonstrating COMET's capability to answer key domain questions."@en ;
+  dct:issued "2026-03-30"^^xsd:date ;
+  owl:versionInfo "0.2.0" ;
+  
+  dcat:keyword "competency questions"@en ;
+  dcat:keyword "SPARQL"@en ;
+  dcat:keyword "queries"@en ;
+  
+  dcat:distribution [
+    rdf:type dcat:Distribution ;
+    dcat:mediaType "text/markdown" ;
+    dcat:accessURL <https://comet.carbon/docs/competency-questions> ;
+    dct:title "Competency Questions and SPARQL Queries"@en ;
+  ] ;
+  .

@@ -1,0 +1,15 @@
+# CQ14: Total transferred tonnage per CoC model type
+# Competency Question: Calculate total tonnage transferred by chain of custody model (mass-balance vs segregation)
+
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX comet-rs: <https://comet.carbon/ext/responsiblesteel#>
+
+SELECT ?transferModel (SUM(?tonnage) as ?totalTonnage) (COUNT(?transfer) as ?transferCount)
+WHERE {
+  ?transfer rdf:type comet-rs:CoCTransferEvent ;
+            comet-rs:transferModel ?transferModel ;
+            comet-rs:transferredTonnage ?tonnage .
+}
+GROUP BY ?transferModel
+ORDER BY DESC(?totalTonnage)

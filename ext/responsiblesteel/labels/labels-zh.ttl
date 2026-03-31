@@ -1,0 +1,71 @@
+@prefix rdfs:   <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos:   <http://www.w3.org/2004/02/skos/core#> .
+@prefix comet-rs: <https://comet.carbon/ext/responsiblesteel#> .
+
+# COMET ResponsibleSteel Extension — Chinese Simplified Labels
+# Language: zh-Hans
+# Coverage: 44 terms (31 classes + 13 principles)
+
+# ─── L1 Core ────
+comet-rs:CertifiedSite rdfs:label "认证场地"@zh-Hans ; skos:prefLabel "认证场地"@zh-Hans .
+comet-rs:CorporateOwner rdfs:label "企业所有者"@zh-Hans ; skos:prefLabel "企业所有者"@zh-Hans .
+comet-rs:SteelProductionRoute rdfs:label "钢铁生产路线"@zh-Hans ; skos:prefLabel "钢铁生产路线"@zh-Hans .
+comet-rs:BF_BOF rdfs:label "高炉-转炉工艺(BF-BOF)"@zh-Hans ; skos:prefLabel "高炉-转炉"@zh-Hans ; skos:altLabel "BF-BOF"@zh-Hans .
+comet-rs:EAF rdfs:label "电弧炉冶炼(EAF)"@zh-Hans ; skos:prefLabel "电弧炉"@zh-Hans ; skos:altLabel "EAF"@zh-Hans .
+comet-rs:DRI_EAF rdfs:label "直接还原铁-电弧炉(DRI-EAF)"@zh-Hans ; skos:prefLabel "直接还原铁-电弧炉"@zh-Hans ; skos:altLabel "DRI-EAF"@zh-Hans .
+comet-rs:SR_BOF rdfs:label "废钢-转炉工艺(SR-BOF)"@zh-Hans ; skos:prefLabel "废钢-转炉"@zh-Hans ; skos:altLabel "SR-BOF"@zh-Hans .
+
+# ─── L3 Supply Chain ────
+comet-rs:RSInputMaterial rdfs:label "负责任钢铁输入材料"@zh-Hans ; skos:prefLabel "输入材料"@zh-Hans .
+comet-rs:ScrapCategory rdfs:label "废料类别"@zh-Hans ; skos:prefLabel "废料类别"@zh-Hans .
+comet-rs:InternalScrap rdfs:label "工厂内部废料"@zh-Hans .
+comet-rs:HomeScrap rdfs:label "本厂废料"@zh-Hans .
+comet-rs:ManufacturingScrap rdfs:label "制造废料"@zh-Hans .
+comet-rs:EndOfLifeScrap rdfs:label "产品寿命末期废料"@zh-Hans .
+comet-rs:RSSupplierTier rdfs:label "责任钢铁供应商等级"@zh-Hans ; skos:prefLabel "供应商等级"@zh-Hans .
+comet-rs:SupplierESGRisk rdfs:label "供应商ESG风险"@zh-Hans ; skos:prefLabel "ESG风险"@zh-Hans .
+comet-rs:RecognisedProgramme rdfs:label "认可计划"@zh-Hans ; skos:prefLabel "认可计划"@zh-Hans .
+
+# ─── L4 PCF ────
+comet-rs:CrudeSteelIntensity rdfs:label "粗钢强度"@zh-Hans ; skos:prefLabel "粗钢强度"@zh-Hans .
+comet-rs:ScrapShareCalculation rdfs:label "废料比例计算"@zh-Hans ; skos:prefLabel "废料比例"@zh-Hans .
+comet-rs:DPLThreshold rdfs:label "脱碳进展水平阈值"@zh-Hans ; skos:prefLabel "DPL阈值"@zh-Hans ; skos:altLabel "DPL"@zh-Hans .
+comet-rs:ProcessGasBaseline rdfs:label "工艺气体基准"@zh-Hans ; skos:prefLabel "工艺气体基准"@zh-Hans .
+comet-rs:EnergyRecoveryCredit rdfs:label "能源回收信用"@zh-Hans ; skos:prefLabel "能源回收信用"@zh-Hans .
+comet-rs:CCUSCredit rdfs:label "碳捕获利用封存信用"@zh-Hans ; skos:prefLabel "CCUS信用"@zh-Hans .
+
+# ─── L5 EAC ────
+comet-rs:CoreSiteCertification rdfs:label "核心场地认证"@zh-Hans ; skos:prefLabel "场地认证"@zh-Hans .
+comet-rs:SteelCertification rdfs:label "钢铁产品认证"@zh-Hans ; skos:prefLabel "钢铁认证"@zh-Hans .
+comet-rs:DecarbProgressLevel rdfs:label "脱碳进展水平"@zh-Hans ; skos:prefLabel "脱碳进展水平"@zh-Hans ; skos:altLabel "DPL"@zh-Hans .
+comet-rs:SourcingProgressLevel rdfs:label "采购进展水平"@zh-Hans ; skos:prefLabel "采购进展水平"@zh-Hans ; skos:altLabel "SPL"@zh-Hans .
+comet-rs:CertifiedSteelMark rdfs:label "认证钢铁标志"@zh-Hans ; skos:prefLabel "认证标志"@zh-Hans .
+comet-rs:CoCTransferEvent rdfs:label "监管链转移事件"@zh-Hans ; skos:prefLabel "CoC转移"@zh-Hans .
+comet-rs:CoCClaim rdfs:label "监管链声明"@zh-Hans ; skos:prefLabel "CoC声明"@zh-Hans .
+
+# ─── L6 Verification ────
+comet-rs:CertificationAudit rdfs:label "认证审计"@zh-Hans ; skos:prefLabel "审计"@zh-Hans .
+comet-rs:AssurancePanelReview rdfs:label "保证小组评审"@zh-Hans ; skos:prefLabel "保证评审"@zh-Hans .
+comet-rs:NonConformity rdfs:label "不符合项"@zh-Hans ; skos:prefLabel "不符合"@zh-Hans .
+comet-rs:PrincipleConformity rdfs:label "原则符合性"@zh-Hans ; skos:prefLabel "原则符合"@zh-Hans .
+comet-rs:TransitionPlanReview rdfs:label "转型计划评审"@zh-Hans ; skos:prefLabel "转型评审"@zh-Hans .
+comet-rs:AmbitionGapAnalysis rdfs:label "雄心差距分析"@zh-Hans ; skos:prefLabel "差距分析"@zh-Hans .
+
+# ─── L7 Market ────
+comet-rs:ProgressLevelPricing rdfs:label "进展水平定价"@zh-Hans ; skos:prefLabel "进展定价"@zh-Hans .
+comet-rs:GreenSteelPremium rdfs:label "绿色钢铁溢价"@zh-Hans ; skos:prefLabel "绿钢溢价"@zh-Hans .
+
+# ─── RS Principles ────
+comet-rs:P01_CorporateLeadership rdfs:label "P1 — 企业领导力"@zh-Hans .
+comet-rs:P02_ESGManagementSystems rdfs:label "P2 — ESG管理体系"@zh-Hans .
+comet-rs:P03_StakeholderEngagement rdfs:label "P3 — 利益相关者参与"@zh-Hans .
+comet-rs:P04_EnvironmentalManagement rdfs:label "P4 — 环境管理"@zh-Hans .
+comet-rs:P05_GHGEmissionsReduction rdfs:label "P5 — 温室气体排放减少"@zh-Hans .
+comet-rs:P06_ClimateChangeAdaptation rdfs:label "P6 — 气候变化适应"@zh-Hans .
+comet-rs:P07_WaterSecurity rdfs:label "P7 — 水资源安全"@zh-Hans .
+comet-rs:P08_AirQuality rdfs:label "P8 — 空气质量"@zh-Hans .
+comet-rs:P09_WasteStewardship rdfs:label "P9 — 废物管理"@zh-Hans .
+comet-rs:P10_HumanRights rdfs:label "P10 — 人权"@zh-Hans .
+comet-rs:P11_LaborPractices rdfs:label "P11 — 劳动实践"@zh-Hans .
+comet-rs:P12_SafetyOccupational rdfs:label "P12 — 职业安全"@zh-Hans .
+comet-rs:P13_CommunityImpact rdfs:label "P13 — 社区影响"@zh-Hans .

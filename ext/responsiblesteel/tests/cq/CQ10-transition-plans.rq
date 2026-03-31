@@ -1,0 +1,25 @@
+# CQ10: List transition plan review dates per site
+# Competency Question: Show all transition plan reviews with target DPL, timeline, and investment
+
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX comet-rs: <https://comet.carbon/ext/responsiblesteel#>
+
+SELECT ?site ?siteLabel ?reviewDate ?planStatus ?targetDPL ?targetYear ?investmentRequired ?investmentCurrency ?nextReviewDate
+WHERE {
+  ?site rdf:type comet-rs:CertifiedSite ;
+        rdfs:label ?siteLabel ;
+        comet-rs:hasTransitionPlan ?plan .
+
+  OPTIONAL {
+    ?plan comet-rs:appliedToSite ?site ;
+          comet-rs:reviewDate ?reviewDate ;
+          comet-rs:planStatus ?planStatus ;
+          comet-rs:targetDPL ?targetDPL ;
+          comet-rs:targetYear ?targetYear ;
+          comet-rs:investmentRequired ?investmentRequired ;
+          comet-rs:investmentCurrency ?investmentCurrency ;
+          comet-rs:nextReviewDate ?nextReviewDate .
+  }
+}
+ORDER BY ?siteLabel DESC(?targetYear)

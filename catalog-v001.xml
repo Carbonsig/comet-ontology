@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog" prefer="public">
+
+    <!-- COMET Responsible Steel Core Ontology -->
+    <uri name="https://ontology.materialintelligence.ai/comet/responsiblesteel/"
+         uri="ext/responsiblesteel/comet-rs-core.ttl"/>
+
+    <!-- COMET RS Properties Layer -->
+    <uri name="https://ontology.materialintelligence.ai/comet/responsiblesteel/properties/"
+         uri="ext/responsiblesteel/comet-rs-properties.ttl"/>
+
+    <!-- COMET RS Individuals/Instances Layer -->
+    <uri name="https://ontology.materialintelligence.ai/comet/responsiblesteel/individuals/"
+         uri="ext/responsiblesteel/comet-rs-individuals.ttl"/>
+
+    <!-- Language-Specific Label Files -->
+    <uri name="https://ontology.materialintelligence.ai/comet/responsiblesteel/labels/en"
+         uri="ext/responsiblesteel/labels/comet-rs-labels-en.ttl"/>
+
+    <uri name="https://ontology.materialintelligence.ai/comet/responsiblesteel/labels/zh"
+         uri="ext/responsiblesteel/labels/comet-rs-labels-zh.ttl"/>
+
+    <uri name="https://ontology.materialintelligence.ai/comet/responsiblesteel/labels/ja"
+         uri="ext/responsiblesteel/labels/comet-rs-labels-ja.ttl"/>
+
+    <uri name="https://ontology.materialintelligence.ai/comet/responsiblesteel/labels/ko"
+         uri="ext/responsiblesteel/labels/comet-rs-labels-ko.ttl"/>
+
+    <uri name="https://ontology.materialintelligence.ai/comet/responsiblesteel/labels/de"
+         uri="ext/responsiblesteel/labels/comet-rs-labels-de.ttl"/>
+
+    <uri name="https://ontology.materialintelligence.ai/comet/responsiblesteel/labels/fr"
+         uri="ext/responsiblesteel/labels/comet-rs-labels-fr.ttl"/>
+
+    <uri name="https://ontology.materialintelligence.ai/comet/responsiblesteel/labels/es"
+         uri="ext/responsiblesteel/labels/comet-rs-labels-es.ttl"/>
+
+    <uri name="https://ontology.materialintelligence.ai/comet/responsiblesteel/labels/pt"
+         uri="ext/responsiblesteel/labels/comet-rs-labels-pt.ttl"/>
+
+    <uri name="https://ontology.materialintelligence.ai/comet/responsiblesteel/labels/hi"
+         uri="ext/responsiblesteel/labels/comet-rs-labels-hi.ttl"/>
+
+    <uri name="https://ontology.materialintelligence.ai/comet/responsiblesteel/labels/ar"
+         uri="ext/responsiblesteel/labels/comet-rs-labels-ar.ttl"/>
+
+    <!-- Alignment Files -->
+    <uri name="https://ontology.materialintelligence.ai/alignments/comet-pact-v3"
+         uri="ext/responsiblesteel/alignments/comet-pact-alignment.ttl"/>
+
+    <uri name="https://ontology.materialintelligence.ai/alignments/comet-cbam"
+         uri="ext/responsiblesteel/alignments/comet-cbam-alignment.ttl"/>
+
+    <uri name="https://ontology.materialintelligence.ai/alignments/comet-esrs"
+         uri="ext/responsiblesteel/alignments/comet-esrs-alignment.ttl"/>
+
+    <uri name="https://ontology.materialintelligence.ai/alignments/comet-ghgprotocol"
+         uri="ext/responsiblesteel/alignments/comet-ghgprotocol-alignment.ttl"/>
+
+    <!-- External Standard Ontologies (imported via owl:imports) -->
+    <!-- These map external ontology IRIs to local copies if available -->
+
+    <!-- SKOS (Simple Knowledge Organization System) -->
+    <uri name="http://www.w3.org/2004/02/skos/core#"
+         uri="ext/standard-ontologies/skos-core.rdf"/>
+
+    <!-- Dublin Core Terms -->
+    <uri name="http://purl.org/dc/terms/"
+         uri="ext/standard-ontologies/dcterms.rdf"/>
+
+    <!-- FOAF (Friend of a Friend) -->
+    <uri name="http://xmlns.com/foaf/0.1/"
+         uri="ext/standard-ontologies/foaf.rdf"/>
+
+    <!-- PROV (Provenance) -->
+    <uri name="http://www.w3.org/ns/prov#"
+         uri="ext/standard-ontologies/prov.owl"/>
+
+    <!-- QUDT (Quantities, Units, Dimensions and Types) -->
+    <uri name="http://qudt.org/schema/qudt/"
+         uri="ext/standard-ontologies/qudt-schema.ttl"/>
+
+    <uri name="http://qudt.org/vocab/UNIT"
+         uri="ext/standard-ontologies/qudt-units.ttl"/>
+
+    <!-- Measurement Units -->
+    <uri name="http://www.ontology.linkeddata.es/mls/unit"
+         uri="ext/standard-ontologies/mls-units.ttl"/>
+
+    <!-- DCAT (Data Catalog Vocabulary) -->
+    <uri name="http://www.w3.org/ns/dcat#"
+         uri="ext/standard-ontologies/dcat.rdf"/>
+
+    <!-- OWL / RDF / RDFS (W3C Standards - usually built-in to reasoners) -->
+    <uri name="http://www.w3.org/2002/07/owl#"
+         uri="ext/standard-ontologies/owl.rdf"/>
+
+    <uri name="http://www.w3.org/2000/01/rdf-schema#"
+         uri="ext/standard-ontologies/rdfs.rdf"/>
+
+    <uri name="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         uri="ext/standard-ontologies/rdf.rdf"/>
+
+    <!-- Domain-Specific Ontologies -->
+
+    <!-- GHG Protocol Ontology -->
+    <uri name="https://ghgprotocol.org/scope/"
+         uri="ext/domain-ontologies/ghgprotocol-scopes.ttl"/>
+
+    <!-- PACT Pathfinder Ontology -->
+    <uri name="https://wbcsd.org/spec/pact/pathfinder/v3/"
+         uri="ext/domain-ontologies/pact-pathfinder-v3.ttl"/>
+
+    <!-- EU CBAM Ontology -->
+    <uri name="https://ontology.materialintelligence.ai/cbam/"
+         uri="ext/domain-ontologies/cbam.ttl"/>
+
+    <!-- ESRS (European Sustainability Reporting Standards) -->
+    <uri name="https://data.europa.eu/api/hub/store/schema/eu.europa.ec.eupl.schema.EBA.esrs.1.0/"
+         uri="ext/domain-ontologies/esrs.ttl"/>
+
+    <!-- Steel Industry Ontologies -->
+    <uri name="http://ontology.steelexecutivesforum.org/"
+         uri="ext/domain-ontologies/steel-industry.ttl"/>
+
+    <!-- Regulatory & Sustainability Framework Namespaces -->
+    <!-- Note: These are namespace declarations, actual files may not exist -->
+    <rewriteURI uriStartString="http://ontology.cdp.net/"
+                rewritePrefix="ext/domain-ontologies/cdp/"/>
+
+    <rewriteURI uriStartString="http://ontology.sciencebasedtargets.org/"
+                rewritePrefix="ext/domain-ontologies/sbt/"/>
+
+    <!-- Testing and Validation Files -->
+    <uri name="https://ontology.materialintelligence.ai/comet/test/"
+         uri="tests/test-ontology.ttl"/>
+
+    <!-- Protégé-Specific Configuration -->
+    <!-- This catalog supports Protégé 5.x+ with full namespace resolution -->
+
+    <group prefer="public">
+        <prefer public="true"/>
+    </group>
+
+    <!-- NOTES FOR ONTOLOGY MAINTAINERS:
+
+    1. NAMESPACE RESOLUTION:
+       This catalog maps OWL owl:imports IRIs to local file paths.
+       When Protégé or other RDF tools encounter an owl:imports statement,
+       they consult this catalog to find the local file instead of fetching
+       from the network.
+
+    2. ADDING NEW IMPORTS:
+       - Add <uri> entries for new ontology imports
+       - Keep external standards in ext/standard-ontologies/
+       - Keep domain-specific ontologies in ext/domain-ontologies/
+       - Keep alignment files in ext/responsiblesteel/alignments/
+
+    3. FILE ORGANIZATION:
+       ext/
+       ├── responsiblesteel/
+       │   ├── comet-rs-core.ttl
+       │   ├── comet-rs-properties.ttl
+       │   ├── comet-rs-individuals.ttl
+       │   ├── labels/
+       │   │   ├── comet-rs-labels-en.ttl
+       │   │   ├── comet-rs-labels-zh.ttl
+       │   │   └── ... (more languages)
+       │   └── alignments/
+       │       ├── comet-pact-alignment.ttl
+       │       ├── comet-cbam-alignment.ttl
+       │       ├── comet-esrs-alignment.ttl
+       │       └── comet-ghgprotocol-alignment.ttl
+       ├── standard-ontologies/
+       │   ├── skos-core.rdf
+       │   ├── dcterms.rdf
+       │   ├── owl.rdf
+       │   ├── rdfs.rdf
+       │   └── ... (other W3C standards)
+       └── domain-ontologies/
+           ├── ghgprotocol-scopes.ttl
+           ├── pact-pathfinder-v3.ttl
+           ├── cbam.ttl
+           ├── esrs.ttl
+           └── ... (other domain ontologies)
+
+    4. PROTÉGÉ USAGE:
+       - Open this catalog in Protégé: File > Preferences > Ontology IRI Mappings
+       - Import via owl:imports in your root ontology file
+       - Use the IRI from <uri name="..."> in owl:imports statements
+       - Protégé will automatically resolve to local files
+
+    5. VALIDATION:
+       Run validation scripts from tools/scripts/:
+       - python check-i18n-coverage.py --core ext/responsiblesteel/comet-rs-core.ttl
+       - python detect-breaking-changes.py old.ttl new.ttl
+       - python validate-sources.py --files ext/responsiblesteel/*.ttl
+
+    6. UPDATING THIS CATALOG:
+       - Add entries when new files are created
+       - Keep URIs and file paths in sync
+       - Test with `rdflib.Graph().parse()` in Python
+       - Validate with Protégé's ontology validation tools
+    -->
+
+</catalog>

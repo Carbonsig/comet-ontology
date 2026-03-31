@@ -1,0 +1,159 @@
+@prefix rdf:    <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs:   <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:    <http://www.w3.org/2001/XMLSchema#> .
+@prefix comet:     <https://comet.carbon/v1/core#> .
+@prefix comet-rs:  <https://comet.carbon/ext/responsiblesteel#> .
+@prefix ex:        <https://example.org/data/> .
+
+# Example Audit with Non-Conformities
+# A facility in Turkey undergoing certification with audit findings
+
+ex:site-bf-turkey-001
+    rdf:type comet-rs:CertifiedSite ;
+    comet-rs:certificateId "TR-00034567" ;
+    rdfs:label "Integrated Steel Works - Turkey (Audit Under Review)" ;
+    comet-rs:isOwnedBy ex:owner-KaracdeğenCelik ;
+    comet-rs:hasProductionRoute comet-rs:BF_BOF ;
+    comet-rs:hasCurrentAudit ex:audit-bf-turkey-2024 ;
+    comet-rs:locationCountry "Turkey" .
+
+ex:owner-KaracdeğenCelik
+    rdf:type comet-rs:CorporateOwner ;
+    rdfs:label "Karacdeğen Çelik Fabrikası" ;
+    comet-rs:ownerCountry "Turkey" ;
+    comet-rs:operatedSites ex:site-bf-turkey-001 .
+
+# ============================================================================
+# AUDIT WITH FINDINGS
+# ============================================================================
+
+ex:audit-bf-turkey-2024
+    rdf:type comet-rs:CertificationAudit ;
+    rdfs:label "Initial Certification Audit 2024 - Turkey BF" ;
+    comet-rs:auditedSite ex:site-bf-turkey-001 ;
+    comet-rs:auditDate "2024-10-15"^^xsd:date ;
+    comet-rs:auditType "initial-certification" ;
+    comet-rs:auditScope "All principles P1-P12 (initial assessment)" ;
+    comet-rs:auditFindingCount 3 ;
+    comet-rs:auditTeamLeadName "Dr. Maria Gomez" ;
+    comet-rs:auditTeamLeadEmail "m.gomez@rsauditors.eu" ;
+    comet-rs:hasNonConformity ex:noncf-major-p06 ;
+    comet-rs:hasNonConformity ex:noncf-minor-p11 ;
+    comet-rs:hasNonConformity ex:noncf-minor-p12 ;
+    comet-rs:hasReview ex:panel-review-turkey-2024 ;
+    comet-rs:hasAmbitionGapAnalysis ex:ambition-gap-turkey-2024 ;
+    comet-rs:auditStatus "findings-under-remediation" ;
+    comet-rs:nextReviewDate "2025-02-15"^^xsd:date .
+
+# ============================================================================
+# MAJOR NON-CONFORMITY - P6 (Labour Rights)
+# ============================================================================
+
+ex:noncf-major-p06
+    rdf:type comet-rs:NonConformity ;
+    rdfs:label "Major NC: Labour Rights - Inadequate Worker Representation" ;
+    comet-rs:severity comet-rs:SEVERITY_MAJOR ;
+    comet-rs:relatedPrinciple "P06" ;
+    comet-rs:principleLabel "Labour Rights" ;
+    comet-rs:findingDescription "Worker representative mechanism not functional. Workers report lack of structured grievance mechanism for workplace concerns. No documented evidence of meaningful worker engagement in safety protocols." ;
+    comet-rs:rootCauseAnalysis "Insufficient governance structure; limited management awareness of RS requirements; historical union-management tension." ;
+    comet-rs:evidenceSource "Worker interviews (n=28); management documentation review; workplace observation" ;
+    comet-rs:findingDate "2024-10-15"^^xsd:date ;
+    comet-rs:assignedRemediationDeadline "2025-02-15"^^xsd:date ;
+    comet-rs:requiredRemediationSteps "1) Establish formal worker committee; 2) Define and communicate grievance channels; 3) Implement quarterly review meetings; 4) Train management on RS labour principles" ;
+    comet-rs:auditFindingReferenceNumber "AUDIT-2024-TR-001-MAJOR-P06" ;
+    comet-rs:remediationStatus "in-progress" ;
+    comet-rs:estimatedRemediationCost 85000 ;
+    comet-rs:estimatedCostCurrency "EUR" ;
+    comet-rs:riskIfUnresolved "Certification cannot be issued until remediated" ;
+    comet-rs:escalationLevel "panel-approval-required" .
+
+# ============================================================================
+# MINOR NON-CONFORMITY - P11 (Ecosystem Rights)
+# ============================================================================
+
+ex:noncf-minor-p11
+    rdf:type comet-rs:NonConformity ;
+    rdfs:label "Minor NC: Ecosystem Rights - Limited Biodiversity Baseline" ;
+    comet-rs:severity comet-rs:SEVERITY_MINOR ;
+    comet-rs:relatedPrinciple "P11" ;
+    comet-rs:principleLabel "Ecosystem Rights" ;
+    comet-rs:findingDescription "Baseline biodiversity assessment incomplete. Site has not conducted full ecological survey of surrounding riparian zones despite proximity to protected watershed." ;
+    comet-rs:rootCauseAnalysis "Late awareness of RS ecosystem requirements; resource constraints for comprehensive ecological study." ;
+    comet-rs:evidenceSource "Environmental permits review; site inspection; local authority consultation records" ;
+    comet-rs:findingDate "2024-10-15"^^xsd:date ;
+    comet-rs:assignedRemediationDeadline "2025-05-15"^^xsd:date ;
+    comet-rs:requiredRemediationSteps "1) Commission third-party biodiversity baseline study; 2) Identify riparian buffers; 3) Establish monitoring protocol; 4) Document findings in EMS" ;
+    comet-rs:auditFindingReferenceNumber "AUDIT-2024-TR-001-MINOR-P11" ;
+    comet-rs:remediationStatus "planned" ;
+    comet-rs:estimatedRemediationCost 35000 ;
+    comet-rs:estimatedCostCurrency "EUR" ;
+    comet-rs:riskIfUnresolved "Deferred compliance; requires evidence before next audit" ;
+    comet-rs:escalationLevel "standard-remediation" .
+
+# ============================================================================
+# MINOR NON-CONFORMITY - P12 (Indigenous & Community Rights)
+# ============================================================================
+
+ex:noncf-minor-p12
+    rdf:type comet-rs:NonConformity ;
+    rdfs:label "Minor NC: Community Rights - Documentation Gap" ;
+    comet-rs:severity comet-rs:SEVERITY_MINOR ;
+    comet-rs:relatedPrinciple "P12" ;
+    comet-rs:principleLabel "Indigenous & Community Rights" ;
+    comet-rs:findingDescription "Community stakeholder engagement records incomplete. While site conducts quarterly community meetings, formal documented baseline of community concerns and feedback loop not systematically maintained." ;
+    comet-rs:rootCauseAnalysis "Informal approach to community engagement; record-keeping not aligned with RS documentation standards." ;
+    comet-rs:evidenceSource "Community liaison interviews; meeting notes review; management records audit" ;
+    comet-rs:findingDate "2024-10-15"^^xsd:date ;
+    comet-rs:assignedRemediationDeadline "2025-04-15"^^xsd:date ;
+    comet-rs:requiredRemediationSteps "1) Formalize community engagement protocol; 2) Implement centralized feedback log system; 3) Establish baseline of community concerns; 4) Document all feedback and responses" ;
+    comet-rs:auditFindingReferenceNumber "AUDIT-2024-TR-001-MINOR-P12" ;
+    comet-rs:remediationStatus "not-started" ;
+    comet-rs:estimatedRemediationCost 12000 ;
+    comet-rs:estimatedCostCurrency "EUR" ;
+    comet-rs:riskIfUnresolved "Minor penalty in scoring; requires evidence at next audit" ;
+    comet-rs:escalationLevel "standard-remediation" .
+
+# ============================================================================
+# ASSURANCE PANEL REVIEW - CONDITIONAL DECISION
+# ============================================================================
+
+ex:panel-review-turkey-2024
+    rdf:type comet-rs:AssurancePanelReview ;
+    rdfs:label "Assurance Panel Review - Turkey Initial Cert (Conditional)" ;
+    comet-rs:reviewDate "2024-12-10"^^xsd:date ;
+    comet-rs:panelDecision "conditional" ;
+    comet-rs:panelComments "Site demonstrates foundational commitment to RS principles but requires closure of major NC on labour rights before certification can be issued. Minor NCs acceptable with documented remediation plan. Recommend conditional approval with 90-day verification audit." ;
+    comet-rs:reviewerCount 4 ;
+    comet-rs:panelComposition "2 industry experts, 1 labour rights specialist, 1 environmental auditor" ;
+    comet-rs:approvalQuorum "unanimous-conditional" ;
+    comet-rs:conditionDescription "Major NC (P06) must be fully remediated and verified before certification issuance. Minor NCs require evidence of progress at verification audit." ;
+    comet-rs:verificationAuditDate "2025-02-15"^^xsd:date ;
+    comet-rs:certificationIfConditionsMet "pending-verification" ;
+    comet-rs:panelRecommendedDPL 1 ;
+    comet-rs:panelRecommendedSPL 0 .
+
+# ============================================================================
+# AMBITION GAP ANALYSIS
+# ============================================================================
+
+ex:ambition-gap-turkey-2024
+    rdf:type comet-rs:AmbitionGapAnalysis ;
+    rdfs:label "Ambition Gap Analysis - Turkey BF Facility" ;
+    comet-rs:appliedToSite ex:site-bf-turkey-001 ;
+    comet-rs:analysisDate "2024-11-20"^^xsd:date ;
+    comet-rs:baselineYear 2024 ;
+    comet-rs:currentEstimatedIntensity 2.45 ;
+    comet-rs:currentIntensityUnit "tCO2e/t" ;
+    comet-rs:requiredDPL1Intensity 1.87 ;
+    comet-rs:requiredDPL2Intensity 1.35 ;
+    comet-rs:ambitionGapToDPL1 0.58 ;
+    comet-rs:ambitionGapToDPL2 1.10 ;
+    comet-rs:mostLikelyGapValue 0.15 ;
+    comet-rs:gapDescription "Conservative estimate: 0.15 tCO2e/t gap to DPL 1 based on planned efficiency improvements and scrap rate optimization. Achievable within 3-5 years." ;
+    comet-rs:decarbonizationPathway "Enhanced scrap processing (2025); energy efficiency retrofit (2025-26); potential green hydrogen pilot (2027)" ;
+    comet-rs:investmentRequired 250000000 ;
+    comet-rs:investmentCurrency "EUR" ;
+    comet-rs:timelineAssessment "DPL 1 achievable by 2027; DPL 2 by 2030" ;
+    comet-rs:riskFactors "Natural gas price volatility; supply chain constraints; labor availability" ;
+    comet-rs:nextGapReviewDate "2025-12-15"^^xsd:date .

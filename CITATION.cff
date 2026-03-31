@@ -1,0 +1,145 @@
+cff-version: 1.2.0
+title: COMET - Carbon Ontology for Materials and Emissions Tracking
+abstract: |
+  A comprehensive semantic ontology for carbon accounting and emissions tracking
+  across materials supply chains. COMET provides a seven-layer stack architecture
+  for representing emissions data, processes, products, certifications, calculations,
+  reporting, and sustainability impact.
+
+message: "If you use COMET in your research, please cite it as below."
+
+type: software
+license: CC-BY-4.0
+license-url: https://creativecommons.org/licenses/by/4.0/
+
+authors:
+  - family-names: Gogerty
+    given-names: Nick
+    email: nick@comet.carbon
+    orcid: "https://orcid.org/0000-0000-0000-0000"
+
+repository-code: "https://github.com/comet-ontology/comet"
+repository-artifact: "https://doi.org/10.5281/zenodo.0000000"
+repository-documentation: "https://comet.carbon/docs"
+repository-bugtracker: "https://github.com/comet-ontology/comet/issues"
+
+identifiers:
+  - type: doi
+    value: "10.5281/zenodo.0000000"
+    description: "COMET 0.2.0 Zenodo Archive"
+
+version: 0.2.0
+date-released: 2026-03-30
+
+contact:
+  - family-names: Gogerty
+    given-names: Nick
+    email: contact@comet.carbon
+
+keywords:
+  - ontology
+  - carbon
+  - emissions
+  - sustainability
+  - steel
+  - supply-chain
+  - OWL
+  - SHACL
+  - semantic-web
+  - RDF
+
+topics:
+  - carbon accounting
+  - lifecycle assessment
+  - supply chain transparency
+  - emissions tracking
+  - sustainability reporting
+  - semantic web
+  - linked data
+
+references:
+  - authors:
+      - family-names: "Hitzler"
+        given-names: "Pascal"
+      - family-names: "Krötzsch"
+        given-names: "Markus"
+      - family-names: "Rudolph"
+        given-names: "Sebastian"
+    title: "Foundations of Semantic Web Technologies"
+    year: 2010
+    publisher:
+      name: "Chapman and Hall/CRC"
+    isbn: "978-1420090277"
+    type: book
+
+  - authors:
+      - family-names: "World Resources Institute"
+    title: "The Greenhouse Gas Protocol: A Corporate Accounting and Reporting Standard"
+    year: 2015
+    url: "https://ghgprotocol.org/"
+    type: standard
+
+  - title: "OWL 2 Web Ontology Language Structural Specification and Functional-Style Syntax"
+    authors:
+      - family-names: "W3C"
+    year: 2012
+    url: "https://www.w3.org/TR/owl2-syntax/"
+    type: standard
+
+  - title: "SHACL - Shapes Constraint Language"
+    authors:
+      - family-names: "W3C"
+    year: 2017
+    url: "https://www.w3.org/TR/shacl/"
+    type: standard
+
+funding:
+  - family-names: "Project COMET Contributors"
+    entity-type: "org"
+    status: "active"
+
+url: "https://comet.carbon"
+documentation: "https://comet.carbon/docs"
+download-url: "https://github.com/comet-ontology/comet/releases/tag/v0.2.0"
+
+maintainers:
+  - family-names: Gogerty
+    given-names: Nick
+    email: nick@comet.carbon
+
+preferred-citation:
+  authors:
+    - family-names: Gogerty
+      given-names: Nick
+  title: "COMET: Carbon Ontology for Materials and Emissions Tracking"
+  type: software
+  year: 2026
+  version: 0.2.0
+  url: "https://comet.carbon"
+  date-released: 2026-03-30
+  repository-code: "https://github.com/comet-ontology/comet"
+  doi: "10.5281/zenodo.0000000"
+
+related-publications:
+  - authors:
+      - family-names: "Wohler"
+        given-names: "Charlotte"
+    title: "Carbon Dioxide Removal Technologies"
+    journal: "Nature Climate Change"
+    year: 2021
+    volume: 11
+    issue: 8
+    pages: "649-655"
+    doi: "10.1038/s41558-021-01128-0"
+
+keywords-scientific:
+  - "carbon accounting"
+  - "supply chain transparency"
+  - "emissions tracking"
+  - "lifecycle assessment"
+  - "semantic web"
+  - "ontology engineering"
+  - "knowledge graphs"
+  - "sustainability metrics"
+
+date-accessed: 2026-03-30

@@ -1,0 +1,152 @@
+@prefix rdf:    <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs:   <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:    <http://www.w3.org/2001/XMLSchema#> .
+@prefix comet:     <https://comet.carbon/v1/core#> .
+@prefix comet-rs:  <https://comet.carbon/ext/responsiblesteel#> .
+@prefix ex:        <https://example.org/data/> .
+
+# Chain of Custody Examples - Traceability from Certified Site to End User
+# Using three transfer events: Site → Distributor → Manufacturer
+
+# ============================================================================
+# TRANSFER 1: Certified Site to Distributor (Mass Balance Model)
+# ============================================================================
+
+ex:transfer-event-1
+    rdf:type comet-rs:CoCTransferEvent ;
+    rdfs:label "CoC Transfer 1: Site to Distributor (Mass Balance)" ;
+    comet-rs:fromOrganization ex:org-site-eaf-us ;
+    comet-rs:toOrganization ex:org-distributor-midwest ;
+    comet-rs:transferDate "2024-02-15"^^xsd:date ;
+    comet-rs:transferModel comet-rs:MASS_BALANCE ;
+    comet-rs:certificationClaimedFrom ex:cert-eaf-us-001 ;
+    comet-rs:transferredProductType "Hot Rolled Coil (HRC)" ;
+    comet-rs:transferredTonnage 450.0 ;
+    comet-rs:transferUnit "tonnes" ;
+    comet-rs:massBalanceStartingInventory 480.0 ;
+    comet-rs:massBalanceReleasedCertified 450.0 ;
+    comet-rs:massBalanceClosingInventory 30.0 ;
+    comet-rs:documentationReference "Invoice EAF-DIST-2024-0847" ;
+    comet-rs:auditTrail "Recorded in SAP module COMET-LOG" ;
+    comet-rs:transferDocumentURL "https://example.org/documents/coc-transfer-001.pdf" .
+
+ex:org-site-eaf-us
+    rdf:type comet-rs:Organization ;
+    rdfs:label "Nucor Corporation EAF Site" ;
+    comet-rs:organizationType "Steel Manufacturer" ;
+    comet-rs:organizationRole "certified-steel-producer" ;
+    comet-rs:registryIdentifier "US-00098765" .
+
+ex:org-distributor-midwest
+    rdf:type comet-rs:Organization ;
+    rdfs:label "Midwest Steel Distribution Inc." ;
+    comet-rs:organizationType "Distributor" ;
+    comet-rs:organizationRole "certified-distributor" ;
+    comet-rs:registryIdentifier "US-DIST-2847" ;
+    comet-rs:locationCountry "United States" .
+
+# ============================================================================
+# TRANSFER 2: Distributor to Manufacturer (Segregation Model)
+# ============================================================================
+
+ex:transfer-event-2
+    rdf:type comet-rs:CoCTransferEvent ;
+    rdfs:label "CoC Transfer 2: Distributor to OEM (Segregation)" ;
+    comet-rs:fromOrganization ex:org-distributor-midwest ;
+    comet-rs:toOrganization ex:org-manufacturer-auto ;
+    comet-rs:transferDate "2024-03-22"^^xsd:date ;
+    comet-rs:transferModel comet-rs:SEGREGATION ;
+    comet-rs:certificationClaimedFrom ex:cert-eaf-us-001 ;
+    comet-rs:transferredProductType "Hot Rolled Coil (HRC)" ;
+    comet-rs:transferredTonnage 400.0 ;
+    comet-rs:transferUnit "tonnes" ;
+    comet-rs:segregationCoilsTransferred 185 ;
+    comet-rs:segregationDocumentation "Complete lot traceability with shipper seals" ;
+    comet-rs:documentationReference "Shipment Order SO-2024-0445" ;
+    comet-rs:shippingContainerSeals "SEAL-2024-0445-A, SEAL-2024-0445-B" ;
+    comet-rs:auditTrail "Witnessed by third-party auditor; cold seal inspection" ;
+    comet-rs:transferDocumentURL "https://example.org/documents/coc-transfer-002.pdf" .
+
+ex:org-manufacturer-auto
+    rdf:type comet-rs:Organization ;
+    rdfs:label "Automotive OEM North America" ;
+    comet-rs:organizationType "Automotive Manufacturer" ;
+    comet-rs:organizationRole "end-user" ;
+    comet-rs:registryIdentifier "US-OEM-4521" ;
+    comet-rs:locationCountry "United States" .
+
+# ============================================================================
+# TRANSFER 3: Manufacturer to Consumer (Mass Balance Model)
+# ============================================================================
+
+ex:transfer-event-3
+    rdf:type comet-rs:CoCTransferEvent ;
+    rdfs:label "CoC Transfer 3: OEM to Vehicle End-Use (Mass Balance)" ;
+    comet-rs:fromOrganization ex:org-manufacturer-auto ;
+    comet-rs:toOrganization ex:org-end-consumer ;
+    comet-rs:transferDate "2024-05-10"^^xsd:date ;
+    comet-rs:transferModel comet-rs:MASS_BALANCE ;
+    comet-rs:certificationClaimedFrom ex:cert-eaf-us-001 ;
+    comet-rs:transferredProductType "Vehicle Body Component (Stamped)" ;
+    comet-rs:transferredTonnage 125.0 ;
+    comet-rs:transferUnit "tonnes" ;
+    comet-rs:massBalanceStartingInventory 400.0 ;
+    comet-rs:massBalanceReleasedCertified 125.0 ;
+    comet-rs:massBalanceClosingInventory 275.0 ;
+    comet-rs:documentationReference "Production Batch PB-2024-05-8856" ;
+    comet-rs:auditTrail "Factory production records; MES system logs" ;
+    comet-rs:transferDocumentURL "https://example.org/documents/coc-transfer-003.pdf" .
+
+ex:org-end-consumer
+    rdf:type comet-rs:Organization ;
+    rdfs:label "Electric Vehicle Buyer Association" ;
+    comet-rs:organizationType "End Consumer" ;
+    comet-rs:organizationRole "supply-chain-end-user" ;
+    comet-rs:registryIdentifier "CONSUMER-8932" ;
+    comet-rs:locationCountry "United States" .
+
+# ============================================================================
+# CHAIN OF CUSTODY CLAIM - Traceable Back to Original Certification
+# ============================================================================
+
+ex:coc-claim-final
+    rdf:type comet-rs:CoCClaim ;
+    rdfs:label "CoC Claim - Green EAF Steel in Vehicle" ;
+    comet-rs:claimType "responsible-steel-certified" ;
+    comet-rs:claimStatus "valid" ;
+    comet-rs:issuanceDate "2024-05-15"^^xsd:date ;
+    comet-rs:expiryDate "2027-05-14"^^xsd:date ;
+    comet-rs:traceableToSite ex:site-eaf-us-001 ;
+    comet-rs:traceableToSiteCertification ex:cert-eaf-us-001 ;
+    comet-rs:traceableToTransfer ex:transfer-event-1 ;
+    comet-rs:traceableToTransfer ex:transfer-event-2 ;
+    comet-rs:traceableToTransfer ex:transfer-event-3 ;
+    comet-rs:chainStartDate "2024-02-15"^^xsd:date ;
+    comet-rs:chainEndDate "2024-05-10"^^xsd:date ;
+    comet-rs:completionParticipants 3 ;
+    comet-rs:documentationCompleteness 100.0 ;
+    comet-rs:assignedDPL 3 ;
+    comet-rs:assignedSPL 3 ;
+    comet-rs:claimTonnage 125.0 ;
+    comet-rs:claimProductType "Vehicle Body Component" ;
+    comet-rs:verificationStatus "fully-audited" ;
+    comet-rs:claimURL "https://example.org/claims/coc-claim-2024-05-15.pdf" .
+
+# ============================================================================
+# SUPPORTING DOCUMENTATION AND CHAIN METADATA
+# ============================================================================
+
+ex:coc-chain-metadata
+    rdf:type comet-rs:CoCChainMetadata ;
+    rdfs:label "CoC Chain: EAF Site to Vehicle (Feb-May 2024)" ;
+    comet-rs:chainIdentifier "CHAIN-2024-EAF-CAR-001" ;
+    comet-rs:startingSite ex:site-eaf-us-001 ;
+    comet-rs:totalTransferEvents 3 ;
+    comet-rs:totalTonnageProcessed 450.0 ;
+    comet-rs:totalTonnageClaimedEnd 125.0 ;
+    comet-rs:processLossPercentage 27.8 ;
+    comet-rs:auditCoverage "all-transfers-audited" ;
+    comet-rs:riskLevel "low" ;
+    comet-rs:complianceStatus "fully-compliant" ;
+    comet-rs:nextVerificationDate "2025-05-15"^^xsd:date ;
+    comet-rs:chainIntegrityScore 98.0 .

@@ -21,7 +21,7 @@
 # Module:      comet-ext:responsiblesteel
 # Version:     0.1.0
 # Status:      RFC Open
-# Layer scope: L1 (Core) Â· L3 (Supply Chain) Â· L4 (PCF) Â· L5 (EAC) Â· L6 (Verification) Â· L7 (Market)
+# Layer scope: L1 (Core) · L3 (Supply Chain) · L4 (PCF) · L5 (EAC) · L6 (Verification) · L7 (Market)
 # Standard:    ResponsibleSteel International Production Standard V2.1.1 (Oct 2024)
 #              Fundamentals for GHG Emissions Accounting & Classification V1.0 (Jun 2025)
 #              Climate Transition Plans Interpretation (Dec 2025)
@@ -44,44 +44,82 @@
     dcterms:creator "Steel-WG / ResponsibleSteel Domain Working Group" ;
     dcterms:issued "2026-03-30"^^xsd:date ;
     dcterms:license <https://creativecommons.org/licenses/by/4.0/> ;
+    dcterms:language "en", "zh", "ja", "ko", "de", "fr", "es", "pt", "hi", "ar" ;
     rdfs:seeAlso <https://www.responsiblesteel.org/> .
 
 
 # =============================================================================
-# L1 â CORE IDENTITY EXTENSIONS
+# L1 — CORE IDENTITY EXTENSIONS
 # =============================================================================
 # 3 new classes extending comet:Site, comet:Organization, comet:Process
 
 comet-rs:CertifiedSite
     a owl:Class ;
     rdfs:subClassOf comet:Site ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty comet-rs:certificateId ;
+        owl:cardinality 1
+    ] ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty comet-rs:annualCrudeSteelProduction ;
+        owl:cardinality 1
+    ] ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty comet-rs:siteAuditBoundary ;
+        owl:minCardinality 1
+    ] ;
     rdfs:label "RS Certified Site"@en ;
     rdfs:comment "A steelmaking site that holds or is seeking ResponsibleSteel certification. Inherits all comet:Site properties and adds RS-specific audit boundary and certification status."@en ;
+    rdfs:isDefinedBy <https://comet.carbon/ext/responsiblesteel> ;
     skos:example "ArcelorMittal Gent integrated steelworks (Site ID: AB-12345678)" ;
-    dcterms:source "ResponsibleSteel Production Standard V2.1.1, Â§3 Scope of Application" .
+    dcterms:source "ResponsibleSteel Production Standard V2.1.1, §3 Scope of Application" .
 
 comet-rs:CorporateOwner
     a owl:Class ;
     rdfs:subClassOf comet:Organization ;
     rdfs:label "Corporate Owner"@en ;
     rdfs:comment "The corporate entity that owns one or more RS Certified Sites. Responsible for corporate-level commitments (Principle 1), climate transition plans (Criterion 10.1), and group-level policies."@en ;
-    dcterms:source "ResponsibleSteel Production Standard V2.1.1, Principle 1, Â§3" .
+    rdfs:isDefinedBy <https://comet.carbon/ext/responsiblesteel> ;
+    dcterms:source "ResponsibleSteel Production Standard V2.1.1, Principle 1, §3" .
 
 comet-rs:SteelProductionRoute
     a owl:Class ;
     rdfs:subClassOf comet:Process ;
     rdfs:label "Steel Production Route"@en ;
     rdfs:comment "The primary steelmaking technology pathway at a site. Determines applicable emission factors, default GHG values, and DPL threshold parameters."@en ;
+    rdfs:isDefinedBy <https://comet.carbon/ext/responsiblesteel> ;
     dcterms:source "ResponsibleSteel GHG Fundamentals V1.0, Section 1" .
 
-comet-rs:BF_BOF  a comet-rs:SteelProductionRoute ;
-    rdfs:label "Blast Furnace â Basic Oxygen Furnace (BF-BOF)"@en .
-comet-rs:EAF     a comet-rs:SteelProductionRoute ;
-    rdfs:label "Electric Arc Furnace (EAF)"@en .
-comet-rs:DRI_EAF a comet-rs:SteelProductionRoute ;
-    rdfs:label "Direct Reduced Iron â EAF (DRI-EAF)"@en .
-comet-rs:SR_BOF  a comet-rs:SteelProductionRoute ;
-    rdfs:label "Smelting Reduction â BOF (SR-BOF)"@en .
+comet-rs:BF_BOF
+    a comet-rs:SteelProductionRoute ;
+    a owl:NamedIndividual ;
+    rdfs:label "Blast Furnace – Basic Oxygen Furnace (BF-BOF)"@en ;
+    rdfs:isDefinedBy <https://comet.carbon/ext/responsiblesteel> .
+
+comet-rs:EAF
+    a comet-rs:SteelProductionRoute ;
+    a owl:NamedIndividual ;
+    rdfs:label "Electric Arc Furnace (EAF)"@en ;
+    rdfs:isDefinedBy <https://comet.carbon/ext/responsiblesteel> .
+
+comet-rs:DRI_EAF
+    a comet-rs:SteelProductionRoute ;
+    a owl:NamedIndividual ;
+    rdfs:label "Direct Reduced Iron – EAF (DRI-EAF)"@en ;
+    rdfs:isDefinedBy <https://comet.carbon/ext/responsiblesteel> .
+
+comet-rs:SR_BOF
+    a comet-rs:SteelProductionRoute ;
+    a owl:NamedIndividual ;
+    rdfs:label "Smelting Reduction – BOF (SR-BOF)"@en ;
+    rdfs:isDefinedBy <https://comet.carbon/ext/responsiblesteel> .
+
+# Disjointness for SteelProductionRoute individuals
+[] a owl:AllDifferent ;
+    owl:members (comet-rs:BF_BOF comet-rs:EAF comet-rs:DRI_EAF comet-rs:SR_BOF) .
 
 # L1 Data Properties
 
@@ -90,13 +128,15 @@ comet-rs:siteAuditBoundary
     rdfs:domain comet-rs:CertifiedSite ;
     rdfs:range xsd:string ;
     rdfs:label "site audit boundary"@en ;
-    rdfs:comment "Textual description of the physical site boundary as defined at the time of applying for certification. All facilities within this boundary are subject to audit."@en .
+    rdfs:comment "Textual description of the physical site boundary as defined at the time of applying for certification. All facilities within this boundary are subject to audit."@en ;
+    rdfs:isDefinedBy <https://comet.carbon/ext/responsiblesteel> .
 
 comet-rs:certificateId
     a owl:DatatypeProperty ;
     rdfs:domain comet-rs:CertifiedSite ;
     rdfs:range xsd:string ;
     rdfs:label "RS certificate ID"@en ;
+    rdfs:isDefinedBy <https://comet.carbon/ext/responsiblesteel> ;
     skos:example "AB-12345678" ;
     rdfs:comment "Unique alphanumeric identifier assigned to a certified site, displayed on the RS Certified Site mark."@en .
 
@@ -106,11 +146,12 @@ comet-rs:annualCrudeSteelProduction
     rdfs:range xsd:decimal ;
     rdfs:label "annual crude steel production (tonnes)"@en ;
     rdfs:comment "Total saleable crude steel production during the emissions reporting year. Denominator for GHG intensity calculation."@en ;
+    rdfs:isDefinedBy <https://comet.carbon/ext/responsiblesteel> ;
     dcterms:source "ResponsibleSteel GHG Fundamentals V1.0, Criterion 10.6.1" .
 
 
 # =============================================================================
-# L3 â SUPPLY CHAIN EXTENSIONS
+# L3 — SUPPLY CHAIN EXTENSIONS
 # =============================================================================
 # 5 new classes for responsible sourcing and scrap taxonomy
 
@@ -119,6 +160,7 @@ comet-rs:RSInputMaterial
     rdfs:subClassOf comet:Material ;
     rdfs:label "RS Input Material"@en ;
     rdfs:comment "A steelmaking input material as categorised by ResponsibleSteel Annex 1. Includes ferrous-containing materials, auxiliary materials, alloys and metallic additives, and fuels."@en ;
+    rdfs:isDefinedBy <https://comet.carbon/ext/responsiblesteel> ;
     dcterms:source "ResponsibleSteel Production Standard V2.1.1, Criterion 10.4.5.a, Annex 1" .
 
 comet-rs:ScrapCategory
@@ -126,19 +168,44 @@ comet-rs:ScrapCategory
     rdfs:subClassOf comet-rs:RSInputMaterial ;
     rdfs:label "Scrap Category"@en ;
     rdfs:comment "Classification of ferrous scrap by origin: Internal (excluded from scrap share), Home/Manufacturing (pre-consumer), or End-of-Life (post-consumer). Determines scrap share calculation per ISO 20915."@en ;
+    rdfs:isDefinedBy <https://comet.carbon/ext/responsiblesteel> ;
     dcterms:source "ResponsibleSteel GHG Fundamentals V1.0, Figure 5, Criterion 10.6.3" .
 
-comet-rs:InternalScrap  a comet-rs:ScrapCategory ; rdfs:label "Internal Scrap"@en ;
+comet-rs:InternalScrap
+    a comet-rs:ScrapCategory ;
+    a owl:NamedIndividual ;
+    rdfs:label "Internal Scrap"@en ;
+    rdfs:isDefinedBy <https://comet.carbon/ext/responsiblesteel> ;
     rdfs:comment "Scrap generated and remelted within the same process. Excluded from the scrap share calculation."@en .
-comet-rs:HomeScrap      a comet-rs:ScrapCategory ; rdfs:label "Home / Pre-consumer Scrap"@en .
-comet-rs:ManufacturingScrap a comet-rs:ScrapCategory ; rdfs:label "Manufacturing Scrap"@en .
-comet-rs:EndOfLifeScrap a comet-rs:ScrapCategory ; rdfs:label "End-of-Life / Post-consumer Scrap"@en .
+
+comet-rs:HomeScrap
+    a comet-rs:ScrapCategory ;
+    a owl:NamedIndividual ;
+    rdfs:label "Home / Pre-consumer Scrap"@en ;
+    rdfs:isDefinedBy <https://comet.carbon/ext/responsiblesteel> .
+
+comet-rs:ManufacturingScrap
+    a comet-rs:ScrapCategory ;
+    a owl:NamedIndividual ;
+    rdfs:label "Manufacturing Scrap"@en ;
+    rdfs:isDefinedBy <https://comet.carbon/ext/responsiblesteel> .
+
+comet-rs:EndOfLifeScrap
+    a comet-rs:ScrapCategory ;
+    a owl:NamedIndividual ;
+    rdfs:label "End-of-Life / Post-consumer Scrap"@en ;
+    rdfs:isDefinedBy <https://comet.carbon/ext/responsiblesteel> .
+
+# Disjointness for ScrapCategory individuals
+[] a owl:AllDisjointClasses ;
+    owl:members (comet-rs:InternalScrap comet-rs:HomeScrap comet-rs:ManufacturingScrap comet-rs:EndOfLifeScrap) .
 
 comet-rs:RSSupplierTier
     a owl:Class ;
     rdfs:subClassOf comet-sc:SupplyChainLink ;
     rdfs:label "RS Supplier Tier"@en ;
     rdfs:comment "A supplier relationship classified by RS Principle 3 requirements. Initially requires knowledge of supplier region (Progress Level 1), then supplier site (higher levels)."@en ;
+    rdfs:isDefinedBy <https://comet.carbon/ext/responsiblesteel> ;
     dcterms:source "ResponsibleSteel Production Standard V2.1.1, Criterion 3.2" .
 
 comet-rs:SupplierESGRisk
@@ -146,12 +213,14 @@ comet-rs:SupplierESGRisk
     rdfs:subClassOf comet-sc:SupplyChainLink ;
     rdfs:label "Supplier ESG Risk Assessment"@en ;
     rdfs:comment "An assessment of a supplier's ESG risks and impacts against the 13 RS Principles. Required under Criterion 3.3 for understanding supply chain ESG performance."@en ;
+    rdfs:isDefinedBy <https://comet.carbon/ext/responsiblesteel> ;
     dcterms:source "ResponsibleSteel Production Standard V2.1.1, Criterion 3.3" .
 
 comet-rs:RecognisedProgramme
     a owl:Class ;
     rdfs:label "Recognised Programme"@en ;
     rdfs:comment "A third-party supplier audit or certification programme recognised by ResponsibleSteel for demonstrating responsible sourcing. Suppliers participating in recognised programmes contribute to higher Progress Levels under Principle 3."@en ;
+    rdfs:isDefinedBy <https://comet.carbon/ext/responsiblesteel> ;
     dcterms:source "ResponsibleSteel Production Standard V2.1.1, Criterion 3.4" .
 
 # L3 Data Properties
@@ -162,6 +231,7 @@ comet-rs:metallicFraction
     rdfs:range xsd:decimal ;
     rdfs:label "metallic fraction (f_met)"@en ;
     rdfs:comment "The metallic iron content fraction of an input material. Scrap = 0.98, DRI/HBI/pig iron = 0.94. Used in the scrap share percentage calculation."@en ;
+    rdfs:isDefinedBy <https://comet.carbon/ext/responsiblesteel> ;
     dcterms:source "ResponsibleSteel GHG Fundamentals V1.0, Criterion 10.6.3.b" .
 
 comet-rs:materialOriginRegion
@@ -169,56 +239,82 @@ comet-rs:materialOriginRegion
     rdfs:domain comet-rs:RSSupplierTier ;
     rdfs:range xsd:string ;
     rdfs:label "material origin region"@en ;
-    rdfs:comment "The geographic region of origin for an input material supplier. Required at Progress Level 1 for Criterion 3.2."@en .
+    rdfs:comment "The geographic region of origin for an input material supplier. Required at Progress Level 1 for Criterion 3.2."@en ;
+    rdfs:isDefinedBy <https://comet.carbon/ext/responsiblesteel> .
 
 comet-rs:primarySecondaryClassification
     a owl:DatatypeProperty ;
     rdfs:domain comet-rs:RSInputMaterial ;
     rdfs:range xsd:string ;
     rdfs:label "primary or secondary classification"@en ;
-    rdfs:comment "Binary classification: 'primary' (pig iron, DRI, HBI, ferro-alloys) or 'secondary' (scrap). Determines position in the scrap share formula numerator vs. denominator."@en .
+    rdfs:comment "Binary classification: 'primary' (pig iron, DRI, HBI, ferro-alloys) or 'secondary' (scrap). Determines position in the scrap share formula numerator vs. denominator."@en ;
+    rdfs:isDefinedBy <https://comet.carbon/ext/responsiblesteel> .
 
 
 # =============================================================================
-# L4 â PRODUCT CARBON FOOTPRINT EXTENSIONS
+# L4 — PRODUCT CARBON FOOTPRINT EXTENSIONS
 # =============================================================================
 # 6 new classes for RS GHG methodology
 
 comet-rs:CrudeSteelIntensity
     a owl:Class ;
     rdfs:subClassOf comet-pcf:LCIAResult ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty comet-rs:ghgIntensityValue ;
+        owl:cardinality 1
+    ] ;
     rdfs:label "Crude Steel GHG Emissions Intensity"@en ;
-    rdfs:comment "The tonnes of COâ equivalents per tonne of crude steel (tCOâe/t crude steel) as determined by the ResponsibleSteel methodology. Includes Scope 1, 2, and upstream Scope 3 emissions from cradle to the point of first solidification. This is the primary input to the Decarbonisation Progress Level classification."@en ;
+    rdfs:comment "The tonnes of CO₂ equivalents per tonne of crude steel (tCO₂e/t crude steel) as determined by the ResponsibleSteel methodology. Includes Scope 1, 2, and upstream Scope 3 emissions from cradle to the point of first solidification. This is the primary input to the Decarbonisation Progress Level classification."@en ;
+    rdfs:isDefinedBy <https://comet.carbon/ext/responsiblesteel> ;
+    skos:example "2024 baseline: 1.85 tCO₂e/t for BF-BOF site with 28% scrap incorporation." ;
     dcterms:source "ResponsibleSteel GHG Fundamentals V1.0, Section 1.2, Criterion 10.6" .
 
 comet-rs:ScrapShareCalculation
     a owl:Class ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty comet-rs:scrapSharePercent ;
+        owl:cardinality 1
+    ] ;
     rdfs:label "Scrap Share Calculation"@en ;
-    rdfs:comment "The percentage of scrap in total metallics input, calculated as: Î£(f_met,s Ã Q_in,s) / [Î£(f_met,p Ã Q_in,p) + Î£(f_met,s Ã Q_in,s)] Ã 100. Where s = secondary (scrap), p = primary, f_met = metallic fraction, Q_in = input quantity in tonnes. This value, combined with GHG intensity, determines the DPL."@en ;
+    rdfs:comment "The percentage of scrap in total metallics input, calculated as: Σ(f_met,s × Q_in,s) / [Σ(f_met,p × Q_in,p) + Σ(f_met,s × Q_in,s)] × 100. Where s = secondary (scrap), p = primary, f_met = metallic fraction, Q_in = input quantity in tonnes. This value, combined with GHG intensity, determines the DPL."@en ;
+    rdfs:isDefinedBy <https://comet.carbon/ext/responsiblesteel> ;
+    skos:example "Inputs: 4.2Mt ore (f_met=0.94), 1.8Mt scrap (f_met=0.98). Scrap share = 30.9%." ;
     dcterms:source "ResponsibleSteel GHG Fundamentals V1.0, Criterion 10.6.3.b" .
 
 comet-rs:DPLThreshold
     a owl:Class ;
     rdfs:label "DPL Threshold Parameters"@en ;
-    rdfs:comment "The linear threshold parameters (b = y-intercept, m = slope) that define each Decarbonisation Progress Level boundary. The formula is: y â¤ b â m Ã x, where y = GHG intensity (tCOâe/t), x = scrap share (%). Four threshold sets define DPL 1â4."@en ;
+    rdfs:comment "The linear threshold parameters (b = y-intercept, m = slope) that define each Decarbonisation Progress Level boundary. The formula is: y ≤ b − m × x, where y = GHG intensity (tCO₂e/t), x = scrap share (%). Four threshold sets define DPL 1–4."@en ;
+    rdfs:isDefinedBy <https://comet.carbon/ext/responsiblesteel> ;
     dcterms:source "ResponsibleSteel GHG Fundamentals V1.0, Table 4, Criterion 10.6.3" .
 
 comet-rs:ProcessGasBaseline
     a owl:Class ;
     rdfs:label "Captured Process Gas Baseline"@en ;
-    rdfs:comment "The counterfactual GHG emissions (COâe) that would have occurred if captured process gases (coke oven gas, blast furnace gas, basic oxygen furnace gas) had been flared instead of captured. This baseline is the reference point for calculating energy recovery and CCUS credits."@en ;
+    rdfs:comment "The counterfactual GHG emissions (CO₂e) that would have occurred if captured process gases (coke oven gas, blast furnace gas, basic oxygen furnace gas) had been flared instead of captured. This baseline is the reference point for calculating energy recovery and CCUS credits."@en ;
+    rdfs:isDefinedBy <https://comet.carbon/ext/responsiblesteel> ;
     dcterms:source "ResponsibleSteel GHG Fundamentals V1.0, Criterion 10.4.7.b" .
 
 comet-rs:EnergyRecoveryCredit
     a owl:Class ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty comet-rs:processGasPowerMWh ;
+        owl:cardinality 1
+    ] ;
     rdfs:label "Energy Recovery Credit"@en ;
-    rdfs:comment "A GHG emissions credit for power and steam generation from captured process gases and waste energy. Calculated as (A + B â C) Ã IEA global grid intensity, where A = power from process gases (MWh), B = power from waste energy (MWh), C = power consumed upstream of crude steel (MWh). Credit is zero or positive â never negative."@en ;
+    rdfs:comment "A GHG emissions credit for power and steam generation from captured process gases and waste energy. Calculated as (A + B − C) × IEA global grid intensity, where A = power from process gases (MWh), B = power from waste energy (MWh), C = power consumed upstream of crude steel (MWh). Credit is zero or positive — never negative."@en ;
+    rdfs:isDefinedBy <https://comet.carbon/ext/responsiblesteel> ;
+    skos:example "A=320 MWh (process gas power), B=85 MWh (waste heat), C=140 MWh (upstream). Credit = (320+85-140) × 0.494 = 130.9 tCO₂e." ;
     dcterms:source "ResponsibleSteel GHG Fundamentals V1.0, Criterion 10.4.7.d" .
 
 comet-rs:CCUSCredit
     a owl:Class ;
     rdfs:label "Carbon Capture, Utilisation & Storage Credit"@en ;
     rdfs:comment "A GHG emissions credit for permanent geological storage of captured process gas constituents. The captured process gas baseline is reduced by the amount of emissions permanently captured minus any emissions associated with capture, compression, transport, and storage operations."@en ;
+    rdfs:isDefinedBy <https://comet.carbon/ext/responsiblesteel> ;
     dcterms:source "ResponsibleSteel GHG Fundamentals V1.0, Criterion 10.4.7.g" .
 
 # L4 Data Properties
@@ -227,50 +323,63 @@ comet-rs:ghgIntensityValue
     a owl:DatatypeProperty ;
     rdfs:domain comet-rs:CrudeSteelIntensity ;
     rdfs:range xsd:decimal ;
-    rdfs:label "GHG intensity value (tCOâe/t crude steel)"@en .
+    rdfs:label "GHG intensity value (tCO₂e/t crude steel)"@en ;
+    rdfs:isDefinedBy <https://comet.carbon/ext/responsiblesteel> .
 
 comet-rs:scrapSharePercent
     a owl:DatatypeProperty ;
     rdfs:domain comet-rs:ScrapShareCalculation ;
     rdfs:range xsd:decimal ;
     rdfs:label "scrap share percentage"@en ;
-    rdfs:comment "0â100 decimal. Percentage of scrap in total metallics input."@en .
+    rdfs:comment "0–100 decimal. Percentage of scrap in total metallics input."@en ;
+    rdfs:isDefinedBy <https://comet.carbon/ext/responsiblesteel> .
 
 comet-rs:dplThresholdB
     a owl:DatatypeProperty ;
     rdfs:domain comet-rs:DPLThreshold ;
     rdfs:range xsd:decimal ;
     rdfs:label "DPL threshold b (y-intercept)"@en ;
-    rdfs:comment "Y-intercept of the DPL boundary line. Values: DPL1=2.80, DPL2=1.60, DPL3=0.80, DPL4=0.40 (approx)."@en .
+    rdfs:comment "Y-intercept of the DPL boundary line. Values: DPL1=2.80, DPL2=1.60, DPL3=0.80, DPL4=0.40 (approx)."@en ;
+    rdfs:isDefinedBy <https://comet.carbon/ext/responsiblesteel> .
 
 comet-rs:dplThresholdM
     a owl:DatatypeProperty ;
     rdfs:domain comet-rs:DPLThreshold ;
     rdfs:range xsd:decimal ;
     rdfs:label "DPL threshold m (slope)"@en ;
-    rdfs:comment "Slope of the DPL boundary line. Values: DPL1=2.30, DPL2=1.25, DPL3=0.55, DPL4=0.35 (approx)."@en .
+    rdfs:comment "Slope of the DPL boundary line. Values: DPL1=2.30, DPL2=1.25, DPL3=0.55, DPL4=0.35 (approx)."@en ;
+    rdfs:isDefinedBy <https://comet.carbon/ext/responsiblesteel> .
 
 comet-rs:processGasPowerMWh
     a owl:DatatypeProperty ;
     rdfs:domain comet-rs:EnergyRecoveryCredit ;
     rdfs:range xsd:decimal ;
-    rdfs:label "power from process gases (A MWh)"@en .
+    rdfs:label "power from process gases (A MWh)"@en ;
+    rdfs:isDefinedBy <https://comet.carbon/ext/responsiblesteel> .
 
 comet-rs:wasteEnergyPowerMWh
     a owl:DatatypeProperty ;
     rdfs:domain comet-rs:EnergyRecoveryCredit ;
     rdfs:range xsd:decimal ;
-    rdfs:label "power from waste energy (B MWh)"@en .
+    rdfs:label "power from waste energy (B MWh)"@en ;
+    rdfs:isDefinedBy <https://comet.carbon/ext/responsiblesteel> .
 
 comet-rs:upstreamPowerConsumptionMWh
     a owl:DatatypeProperty ;
     rdfs:domain comet-rs:EnergyRecoveryCredit ;
     rdfs:range xsd:decimal ;
-    rdfs:label "power consumed upstream of crude steel (C MWh)"@en .
+    rdfs:label "power consumed upstream of crude steel (C MWh)"@en ;
+    rdfs:isDefinedBy <https://comet.carbon/ext/responsiblesteel> .
+
+comet-rs:includesGHGScope
+    a owl:ObjectProperty ;
+    rdfs:label "includes GHG Protocol scope"@en ;
+    rdfs:isDefinedBy <https://comet.carbon/ext/responsiblesteel> ;
+    rdfs:comment "Links a GHG intensity value to the GHG Protocol scopes included in the calculation boundary."@en .
 
 
 # =============================================================================
-# L5 â EAC / CERTIFICATE EXTENSIONS
+# L5 — EAC / CERTIFICATE EXTENSIONS
 # =============================================================================
 # 7 new classes for RS certification types, progress levels, and chain of custody
 
@@ -278,45 +387,94 @@ comet-rs:CoreSiteCertification
     a owl:Class ;
     rdfs:subClassOf comet-eac:MaterialStewardCert ;
     rdfs:label "RS Core Site Certification"@en ;
-    rdfs:comment "ResponsibleSteel Core Site Certification. Requires conformance with all Core criteria across 13 Principles (P1, P2, P4âP9, P11âP13, and Core criteria of P10). Does not include Progress criteria for responsible sourcing or decarbonisation."@en ;
-    dcterms:source "ResponsibleSteel Production Standard V2.1.1, Â§5 Certification Types" .
+    rdfs:comment "ResponsibleSteel Core Site Certification. Requires conformance with all Core criteria across 13 Principles (P1, P2, P4–P9, P11–P13, and Core criteria of P10). Does not include Progress criteria for responsible sourcing or decarbonisation."@en ;
+    rdfs:isDefinedBy <https://comet.carbon/ext/responsiblesteel> ;
+    dcterms:source "ResponsibleSteel Production Standard V2.1.1, §5 Certification Types" .
 
 comet-rs:SteelCertification
     a owl:Class ;
     rdfs:subClassOf comet-rs:CoreSiteCertification ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty comet-rs:hasDPL ;
+        owl:cardinality 1
+    ] ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty comet-rs:hasSPL ;
+        owl:cardinality 1
+    ] ;
     rdfs:label "RS Steel Certification"@en ;
     rdfs:comment "ResponsibleSteel Steel Certification. Requires all Core criteria PLUS Progress criteria (Principle 3 responsible sourcing and Principle 10 decarbonisation). Enables the site to market and sell certified steel products with the RS Certified Steel mark."@en ;
-    dcterms:source "ResponsibleSteel Production Standard V2.1.1, Â§5 Certification Types" .
+    rdfs:isDefinedBy <https://comet.carbon/ext/responsiblesteel> ;
+    dcterms:source "ResponsibleSteel Production Standard V2.1.1, §5 Certification Types" .
 
 comet-rs:DecarbProgressLevel
     a owl:Class ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty comet-rs:dplLevel ;
+        owl:cardinality 1
+    ] ;
     rdfs:label "Decarbonisation Progress Level"@en ;
-    rdfs:comment "A four-tier classification (DPL 1â4) of a steelmaking site's decarbonisation performance. Determined by the site's crude steel GHG emissions intensity and scrap share percentage against the DPL threshold formula y â¤ b â m(x). DPL 1 = entry level, DPL 4 = near-zero. Displayed on the RS Certified Site and Certified Steel marks."@en ;
+    rdfs:comment "A four-tier classification (DPL 1–4) of a steelmaking site's decarbonisation performance. Determined by the site's crude steel GHG emissions intensity and scrap share percentage against the DPL threshold formula y ≤ b − m(x). DPL 1 = entry level, DPL 4 = near-zero. Displayed on the RS Certified Site and Certified Steel marks."@en ;
+    rdfs:isDefinedBy <https://comet.carbon/ext/responsiblesteel> ;
+    skos:example "DPL 2: BF-BOF site with GHG intensity 1.45 tCO₂e/t and 22% scrap share." ;
     dcterms:source "ResponsibleSteel GHG Fundamentals V1.0, Section 2, Criterion 10.6.3" .
 
 comet-rs:SourcingProgressLevel
     a owl:Class ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty comet-rs:splLevel ;
+        owl:cardinality 1
+    ] ;
     rdfs:label "Materials Sourcing Progress Level"@en ;
-    rdfs:comment "A four-tier classification (SPL 1â4) of a site's responsible sourcing maturity under Principle 3. Measures supplier knowledge, ESG risk assessment depth, recognised programme participation, and public reporting. Displayed alongside DPL on certification marks."@en ;
+    rdfs:comment "A four-tier classification (SPL 1–4) of a site's responsible sourcing maturity under Principle 3. Measures supplier knowledge, ESG risk assessment depth, recognised programme participation, and public reporting. Displayed alongside DPL on certification marks."@en ;
+    rdfs:isDefinedBy <https://comet.carbon/ext/responsiblesteel> ;
     dcterms:source "ResponsibleSteel Production Standard V2.1.1, Principle 3" .
 
 comet-rs:CertifiedSteelMark
     a owl:Class ;
     rdfs:label "RS Certified Steel Mark"@en ;
     rdfs:comment "The product-level label applied to steel products and by-products from a site with RS Steel Certification. Displays the site's DPL and SPL levels. Only sites achieving at least DPL 1 and SPL 1 may apply this mark."@en ;
-    dcterms:source "ResponsibleSteel Production Standard V2.1.1, Â§5, Figure 3" .
+    rdfs:isDefinedBy <https://comet.carbon/ext/responsiblesteel> ;
+    dcterms:source "ResponsibleSteel Production Standard V2.1.1, §5, Figure 3" .
 
 comet-rs:CoCTransferEvent
     a owl:Class ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty comet-rs:transfersFrom ;
+        owl:cardinality 1
+    ] ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty comet-rs:transfersTo ;
+        owl:cardinality 1
+    ] ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty comet-rs:cocModel ;
+        owl:cardinality 1
+    ] ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty comet-rs:transferQuantityTonnes ;
+        owl:cardinality 1
+    ] ;
     rdfs:label "Chain of Custody Transfer Event"@en ;
     rdfs:comment "An event recording the transfer of custody of ResponsibleSteel certified steel from one supply chain actor to the next. Part of the forthcoming RS International Chain of Custody Standard. Records the transferring and receiving organisations, date, quantity, product specification, and the CoC model used (mass balance or segregation)."@en ;
-    dcterms:source "ResponsibleSteel Production Standard V2.1.1, Â§5 (Chain of Custody reference)" .
+    rdfs:isDefinedBy <https://comet.carbon/ext/responsiblesteel> ;
+    skos:example "ArcelorMittal (seller) → Volvo Cars (buyer), 2026-01-15, 2400t HRC, mass-balance, DPL 2/SPL 3." ;
+    dcterms:source "ResponsibleSteel Production Standard V2.1.1, §5 (Chain of Custody reference)" .
 
 comet-rs:CoCClaim
     a owl:Class ;
     rdfs:label "Chain of Custody Claim"@en ;
     rdfs:comment "A downstream assertion by a manufacturer or end-user about their use of ResponsibleSteel certified steel. Claims must be traceable back through a chain of CoCTransferEvents to a site with valid RS Steel Certification."@en ;
-    dcterms:source "ResponsibleSteel Production Standard V2.1.1, Â§5" .
+    rdfs:isDefinedBy <https://comet.carbon/ext/responsiblesteel> ;
+    dcterms:source "ResponsibleSteel Production Standard V2.1.1, §5" .
 
 # L5 Object Properties
 
@@ -324,31 +482,45 @@ comet-rs:hasDPL
     a owl:ObjectProperty ;
     rdfs:domain comet-rs:SteelCertification ;
     rdfs:range comet-rs:DecarbProgressLevel ;
-    rdfs:label "has Decarbonisation Progress Level"@en .
+    rdfs:label "has Decarbonisation Progress Level"@en ;
+    rdfs:isDefinedBy <https://comet.carbon/ext/responsiblesteel> .
 
 comet-rs:hasSPL
     a owl:ObjectProperty ;
     rdfs:domain comet-rs:SteelCertification ;
     rdfs:range comet-rs:SourcingProgressLevel ;
-    rdfs:label "has Sourcing Progress Level"@en .
+    rdfs:label "has Sourcing Progress Level"@en ;
+    rdfs:isDefinedBy <https://comet.carbon/ext/responsiblesteel> .
 
 comet-rs:transfersFrom
     a owl:ObjectProperty ;
     rdfs:domain comet-rs:CoCTransferEvent ;
     rdfs:range comet:Organization ;
-    rdfs:label "transfers from"@en .
+    rdfs:label "transfers from"@en ;
+    rdfs:isDefinedBy <https://comet.carbon/ext/responsiblesteel> .
 
 comet-rs:transfersTo
     a owl:ObjectProperty ;
     rdfs:domain comet-rs:CoCTransferEvent ;
     rdfs:range comet:Organization ;
-    rdfs:label "transfers to"@en .
+    rdfs:label "transfers to"@en ;
+    rdfs:isDefinedBy <https://comet.carbon/ext/responsiblesteel> .
 
 comet-rs:traceableTo
     a owl:ObjectProperty ;
     rdfs:domain comet-rs:CoCClaim ;
     rdfs:range comet-rs:SteelCertification ;
-    rdfs:label "traceable to certification"@en .
+    rdfs:label "traceable to certification"@en ;
+    rdfs:isDefinedBy <https://comet.carbon/ext/responsiblesteel> .
+
+comet-rs:claimDPLContext
+    a owl:ObjectProperty ;
+    owl:propertyChainAxiom ( comet-rs:traceableTo comet-rs:hasDPL ) ;
+    rdfs:domain comet-rs:CoCClaim ;
+    rdfs:range comet-rs:DecarbProgressLevel ;
+    rdfs:label "claim DPL context (inferred)"@en ;
+    rdfs:isDefinedBy <https://comet.carbon/ext/responsiblesteel> ;
+    rdfs:comment "Inferred property: if a CoCClaim is traceable to a SteelCertification that has a DPL, the claim inherits that DPL context."@en .
 
 # L5 Data Properties
 
@@ -356,69 +528,113 @@ comet-rs:dplLevel
     a owl:DatatypeProperty ;
     rdfs:domain comet-rs:DecarbProgressLevel ;
     rdfs:range xsd:integer ;
-    rdfs:label "DPL level (1â4)"@en ;
-    rdfs:comment "Integer 1 through 4. 1 = entry level, 4 = near-zero emissions."@en .
+    rdfs:label "DPL level (1–4)"@en ;
+    rdfs:comment "Integer 1 through 4. 1 = entry level, 4 = near-zero emissions."@en ;
+    rdfs:isDefinedBy <https://comet.carbon/ext/responsiblesteel> .
 
 comet-rs:splLevel
     a owl:DatatypeProperty ;
     rdfs:domain comet-rs:SourcingProgressLevel ;
     rdfs:range xsd:integer ;
-    rdfs:label "SPL level (1â4)"@en .
+    rdfs:label "SPL level (1–4)"@en ;
+    rdfs:isDefinedBy <https://comet.carbon/ext/responsiblesteel> .
 
 comet-rs:cocModel
     a owl:DatatypeProperty ;
     rdfs:domain comet-rs:CoCTransferEvent ;
     rdfs:range xsd:string ;
     rdfs:label "chain of custody model"@en ;
-    rdfs:comment "Either 'mass-balance' or 'segregation'. Determines how certified and non-certified material is tracked through processing."@en .
+    rdfs:comment "Either 'mass-balance' or 'segregation'. Determines how certified and non-certified material is tracked through processing."@en ;
+    rdfs:isDefinedBy <https://comet.carbon/ext/responsiblesteel> .
 
 comet-rs:transferQuantityTonnes
     a owl:DatatypeProperty ;
     rdfs:domain comet-rs:CoCTransferEvent ;
     rdfs:range xsd:decimal ;
-    rdfs:label "transfer quantity (tonnes)"@en .
+    rdfs:label "transfer quantity (tonnes)"@en ;
+    rdfs:isDefinedBy <https://comet.carbon/ext/responsiblesteel> .
 
 
 # =============================================================================
-# L6 â VERIFICATION & ASSURANCE EXTENSIONS
+# L6 — VERIFICATION & ASSURANCE EXTENSIONS
 # =============================================================================
 # 6 new classes for RS audit lifecycle and ESG conformity
 
 comet-rs:CertificationAudit
     a owl:Class ;
     rdfs:subClassOf comet-ver:AuditTrail ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty comet-rs:auditedSite ;
+        owl:cardinality 1
+    ] ;
     rdfs:label "RS Certification Audit"@en ;
     rdfs:comment "A formal audit conducted by an RS-approved certification body against the Production Standard. Produces an audit report submitted to ResponsibleSteel. Covers all 13 Principles and their criteria."@en ;
-    dcterms:source "ResponsibleSteel Production Standard V2.1.1, Â§4 Certification" .
+    rdfs:isDefinedBy <https://comet.carbon/ext/responsiblesteel> ;
+    skos:example "Initial certification audit of Gent steelworks, 5-day on-site assessment, Feb 2026." ;
+    dcterms:source "ResponsibleSteel Production Standard V2.1.1, §4 Certification" .
 
 comet-rs:AssurancePanelReview
     a owl:Class ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty comet-rs:reviewsAudit ;
+        owl:cardinality 1
+    ] ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty comet-rs:panelDecision ;
+        owl:cardinality 1
+    ] ;
     rdfs:label "Assurance Panel Review"@en ;
     rdfs:comment "An independent review of the certification body's audit report by the ResponsibleSteel Assurance Panel. The Panel reviews the audit report and recommendation before any certification decision can be made. This is an RS-specific governance layer with no direct equivalent in other certification schemes."@en ;
-    dcterms:source "ResponsibleSteel Production Standard V2.1.1, Â§4" .
+    rdfs:isDefinedBy <https://comet.carbon/ext/responsiblesteel> ;
+    skos:example "Panel reviewed Gent audit report — approved with one observation on P11 monitoring." ;
+    dcterms:source "ResponsibleSteel Production Standard V2.1.1, §4" .
 
 comet-rs:NonConformity
     a owl:Class ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty comet-rs:nonConformitySeverity ;
+        owl:cardinality 1
+    ] ;
     rdfs:label "Non-Conformity Finding"@en ;
     rdfs:comment "A finding of non-conformity identified during a certification audit. Major non-conformities preclude certification. Minor non-conformities must be corrected but do not block certification."@en ;
-    dcterms:source "ResponsibleSteel Production Standard V2.1.1, Â§4" .
+    rdfs:isDefinedBy <https://comet.carbon/ext/responsiblesteel> ;
+    skos:example "Major NC on P6 Labour Rights: overtime records incomplete for contractor workforce." ;
+    dcterms:source "ResponsibleSteel Production Standard V2.1.1, §4" .
 
 comet-rs:PrincipleConformity
     a owl:Class ;
     rdfs:label "Principle Conformity Score"@en ;
     rdfs:comment "A conformity assessment result for one of the 13 ResponsibleSteel Principles. The full set of 13 PrincipleConformity instances forms the site's ESG conformity vector. Principles: P1 Corporate Leadership, P2 ESG Management Systems, P3 Responsible Sourcing, P4 Decommissioning, P5 OHS, P6 Labour Rights, P7 Human Rights, P8 Stakeholder Engagement, P9 Local Communities, P10 Climate/GHG, P11 Noise/Emissions/Waste, P12 Water, P13 Biodiversity."@en ;
-    dcterms:source "ResponsibleSteel Production Standard V2.1.1, Â§2 The Principles" .
+    rdfs:isDefinedBy <https://comet.carbon/ext/responsiblesteel> ;
+    dcterms:source "ResponsibleSteel Production Standard V2.1.1, §2 The Principles" .
 
 comet-rs:TransitionPlanReview
     a owl:Class ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty comet-rs:transitionPlanReviewDate ;
+        owl:cardinality 1
+    ] ;
     rdfs:label "Climate Transition Plan Review"@en ;
     rdfs:comment "A periodic assessment of a site's corporate climate transition plan. Required at minimum every 12 months. Evaluates the pathway against Paris-compatible sector trajectories, medium-term quantitative targets, and site-level reduction milestones with technology, cost, and financing details."@en ;
+    rdfs:isDefinedBy <https://comet.carbon/ext/responsiblesteel> ;
     dcterms:source "ResponsibleSteel Climate Transition Plans Interpretation (Dec 2025)" .
 
 comet-rs:AmbitionGapAnalysis
     a owl:Class ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty comet-rs:ambitionGapDelta ;
+        owl:cardinality 1
+    ] ;
     rdfs:label "Ambition Gap Analysis"@en ;
     rdfs:comment "A quantitative analysis required when a site's actual GHG emissions trajectory deviates from its published decarbonisation pathway. Documents the delta between ambition and delivery, root causes, and corrective actions."@en ;
+    rdfs:isDefinedBy <https://comet.carbon/ext/responsiblesteel> ;
+    skos:example "Site pathway target: 1.60 tCO₂e/t. Actual: 1.75. Gap: +0.15 tCO₂e/t." ;
     dcterms:source "ResponsibleSteel Climate Transition Plans Interpretation (Dec 2025), Section 3" .
 
 # L6 Object Properties
@@ -427,25 +643,29 @@ comet-rs:auditedSite
     a owl:ObjectProperty ;
     rdfs:domain comet-rs:CertificationAudit ;
     rdfs:range comet-rs:CertifiedSite ;
-    rdfs:label "audited site"@en .
+    rdfs:label "audited site"@en ;
+    rdfs:isDefinedBy <https://comet.carbon/ext/responsiblesteel> .
 
 comet-rs:reviewsAudit
     a owl:ObjectProperty ;
     rdfs:domain comet-rs:AssurancePanelReview ;
     rdfs:range comet-rs:CertificationAudit ;
-    rdfs:label "reviews audit"@en .
+    rdfs:label "reviews audit"@en ;
+    rdfs:isDefinedBy <https://comet.carbon/ext/responsiblesteel> .
 
 comet-rs:principleAssessed
     a owl:ObjectProperty ;
     rdfs:domain comet-rs:PrincipleConformity ;
     rdfs:range comet-rs:RSPrinciple ;
-    rdfs:label "principle assessed"@en .
+    rdfs:label "principle assessed"@en ;
+    rdfs:isDefinedBy <https://comet.carbon/ext/responsiblesteel> .
 
 comet-rs:hasNonConformity
     a owl:ObjectProperty ;
     rdfs:domain comet-rs:CertificationAudit ;
     rdfs:range comet-rs:NonConformity ;
-    rdfs:label "has non-conformity"@en .
+    rdfs:label "has non-conformity"@en ;
+    rdfs:isDefinedBy <https://comet.carbon/ext/responsiblesteel> .
 
 # L6 Data Properties
 
@@ -454,31 +674,35 @@ comet-rs:nonConformitySeverity
     rdfs:domain comet-rs:NonConformity ;
     rdfs:range xsd:string ;
     rdfs:label "severity (major/minor)"@en ;
-    rdfs:comment "Either 'major' (blocks certification) or 'minor' (must be corrected, does not block)."@en .
+    rdfs:comment "Either 'major' (blocks certification) or 'minor' (must be corrected, does not block)."@en ;
+    rdfs:isDefinedBy <https://comet.carbon/ext/responsiblesteel> .
 
 comet-rs:panelDecision
     a owl:DatatypeProperty ;
     rdfs:domain comet-rs:AssurancePanelReview ;
     rdfs:range xsd:string ;
     rdfs:label "panel decision"@en ;
-    rdfs:comment "The Assurance Panel's decision: 'approve', 'conditional', or 'reject'."@en .
+    rdfs:comment "The Assurance Panel's decision: 'approve', 'conditional', or 'reject'."@en ;
+    rdfs:isDefinedBy <https://comet.carbon/ext/responsiblesteel> .
 
 comet-rs:transitionPlanReviewDate
     a owl:DatatypeProperty ;
     rdfs:domain comet-rs:TransitionPlanReview ;
     rdfs:range xsd:date ;
-    rdfs:label "review date"@en .
+    rdfs:label "review date"@en ;
+    rdfs:isDefinedBy <https://comet.carbon/ext/responsiblesteel> .
 
 comet-rs:ambitionGapDelta
     a owl:DatatypeProperty ;
     rdfs:domain comet-rs:AmbitionGapAnalysis ;
     rdfs:range xsd:decimal ;
-    rdfs:label "ambition-delivery gap (tCOâe/t)"@en ;
-    rdfs:comment "The quantitative difference between the published pathway target and actual GHG intensity for the reporting period."@en .
+    rdfs:label "ambition-delivery gap (tCO₂e/t)"@en ;
+    rdfs:comment "The quantitative difference between the published pathway target and actual GHG intensity for the reporting period."@en ;
+    rdfs:isDefinedBy <https://comet.carbon/ext/responsiblesteel> .
 
 
 # =============================================================================
-# L7 â MARKET SIGNAL EXTENSIONS
+# L7 — MARKET SIGNAL EXTENSIONS
 # =============================================================================
 # 2 new classes linking RS certification to market outcomes
 
@@ -487,13 +711,26 @@ comet-rs:ProgressLevelPricing
     rdfs:subClassOf comet-mkt:CarbonPremium ;
     rdfs:label "Progress Level Pricing Signal"@en ;
     rdfs:comment "The market premium or discount associated with a specific RS Decarbonisation Progress Level. Higher DPL tiers command higher green steel premiums. DPL also determines eligibility for procurement specifications (e.g., SteelZero) and regulatory compliance (e.g., CBAM). Links the certification system directly to financial outcomes."@en ;
-    dcterms:source "COMET Ontology Specification, Visualization 07 â Carbon as Currency" .
+    rdfs:isDefinedBy <https://comet.carbon/ext/responsiblesteel> ;
+    dcterms:source "COMET Ontology Specification, Visualization 07 — Carbon as Currency" .
 
 comet-rs:GreenSteelPremium
     a owl:Class ;
     rdfs:subClassOf comet-mkt:CarbonPremium ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty comet-rs:premiumPerTonne ;
+        owl:cardinality 1
+    ] ;
+    rdfs:subClassOf [
+        a owl:Restriction ;
+        owl:onProperty comet-rs:premiumCurrency ;
+        owl:cardinality 1
+    ] ;
     rdfs:label "Green Steel Premium"@en ;
-    rdfs:comment "The observed market premium for RS-certified low-carbon steel products relative to conventional steel of equivalent grade and specification. Typically expressed as $/tonne or â¬/tonne above market average."@en .
+    rdfs:comment "The observed market premium for RS-certified low-carbon steel products relative to conventional steel of equivalent grade and specification. Typically expressed as $/tonne or €/tonne above market average."@en ;
+    rdfs:isDefinedBy <https://comet.carbon/ext/responsiblesteel> ;
+    skos:example "DPL 3 EAF steel commands €45/tonne premium over conventional BF-BOF." .
 
 # L7 Data Properties
 
@@ -501,39 +738,213 @@ comet-rs:premiumPerTonne
     a owl:DatatypeProperty ;
     rdfs:domain comet-rs:GreenSteelPremium ;
     rdfs:range xsd:decimal ;
-    rdfs:label "premium per tonne"@en .
+    rdfs:label "premium per tonne"@en ;
+    rdfs:isDefinedBy <https://comet.carbon/ext/responsiblesteel> .
 
 comet-rs:premiumCurrency
     a owl:DatatypeProperty ;
     rdfs:domain comet-rs:GreenSteelPremium ;
     rdfs:range xsd:string ;
-    rdfs:label "premium currency (ISO 4217)"@en .
+    rdfs:label "premium currency (ISO 4217)"@en ;
+    rdfs:isDefinedBy <https://comet.carbon/ext/responsiblesteel> .
 
 comet-rs:applicableDPL
     a owl:ObjectProperty ;
     rdfs:domain comet-rs:ProgressLevelPricing ;
     rdfs:range comet-rs:DecarbProgressLevel ;
-    rdfs:label "applicable DPL"@en .
+    rdfs:label "applicable DPL"@en ;
+    rdfs:isDefinedBy <https://comet.carbon/ext/responsiblesteel> .
 
 
 # =============================================================================
-# ENUMERATION â RS 13 Principles (Named Individuals)
+# ENUMERATION — RS 13 Principles (Named Individuals)
 # =============================================================================
 
 comet-rs:RSPrinciple a owl:Class ;
     rdfs:label "ResponsibleSteel Principle"@en ;
-    rdfs:comment "One of the 13 Principles of the ResponsibleSteel International Production Standard."@en .
+    rdfs:comment "One of the 13 Principles of the ResponsibleSteel International Production Standard."@en ;
+    rdfs:isDefinedBy <https://comet.carbon/ext/responsiblesteel> .
 
-comet-rs:P01_CorporateLeadership        a comet-rs:RSPrinciple ; rdfs:label "P1 â Corporate Leadership"@en .
-comet-rs:P02_ESGManagementSystems       a comet-rs:RSPrinciple ; rdfs:label "P2 â ESG Management Systems"@en .
-comet-rs:P03_ResponsibleSourcing        a comet-rs:RSPrinciple ; rdfs:label "P3 â Responsible Sourcing of Input Materials"@en .
-comet-rs:P04_Decommissioning            a comet-rs:RSPrinciple ; rdfs:label "P4 â Decommissioning and Closure"@en .
-comet-rs:P05_OccupationalHealthSafety   a comet-rs:RSPrinciple ; rdfs:label "P5 â Occupational Health and Safety"@en .
-comet-rs:P06_LabourRights               a comet-rs:RSPrinciple ; rdfs:label "P6 â Labour Rights"@en .
-comet-rs:P07_HumanRights                a comet-rs:RSPrinciple ; rdfs:label "P7 â Human Rights"@en .
-comet-rs:P08_StakeholderEngagement      a comet-rs:RSPrinciple ; rdfs:label "P8 â Stakeholder Engagement and Communication"@en .
-comet-rs:P09_LocalCommunities           a comet-rs:RSPrinciple ; rdfs:label "P9 â Local Communities"@en .
-comet-rs:P10_ClimateGHG                 a comet-rs:RSPrinciple ; rdfs:label "P10 â Climate Change and GHG Emissions"@en .
-comet-rs:P11_NoiseEmissionsWaste        a comet-rs:RSPrinciple ; rdfs:label "P11 â Noise, Emissions, Effluents and Waste"@en .
-comet-rs:P12_WaterStewardship           a comet-rs:RSPrinciple ; rdfs:label "P12 â Water Stewardship"@en .
-comet-rs:P13_Biodiversity               a comet-rs:RSPrinciple ; rdfs:label "P13 â Biodiversity"@en .
+comet-rs:P01_CorporateLeadership
+    a comet-rs:RSPrinciple ;
+    a owl:NamedIndividual ;
+    rdfs:label "P1 — Corporate Leadership"@en ;
+    rdfs:isDefinedBy <https://comet.carbon/ext/responsiblesteel> ;
+    skos:relatedMatch <https://metadata.un.org/sdg/16.6> .
+
+comet-rs:P02_ESGManagementSystems
+    a comet-rs:RSPrinciple ;
+    a owl:NamedIndividual ;
+    rdfs:label "P2 — ESG Management Systems"@en ;
+    rdfs:isDefinedBy <https://comet.carbon/ext/responsiblesteel> ;
+    skos:relatedMatch <https://metadata.un.org/sdg/12.6> .
+
+comet-rs:P03_ResponsibleSourcing
+    a comet-rs:RSPrinciple ;
+    a owl:NamedIndividual ;
+    rdfs:label "P3 — Responsible Sourcing of Input Materials"@en ;
+    rdfs:isDefinedBy <https://comet.carbon/ext/responsiblesteel> ;
+    skos:relatedMatch <https://metadata.un.org/sdg/12.2> .
+
+comet-rs:P04_Decommissioning
+    a comet-rs:RSPrinciple ;
+    a owl:NamedIndividual ;
+    rdfs:label "P4 — Decommissioning and Closure"@en ;
+    rdfs:isDefinedBy <https://comet.carbon/ext/responsiblesteel> ;
+    skos:relatedMatch <https://metadata.un.org/sdg/9.4> .
+
+comet-rs:P05_OccupationalHealthSafety
+    a comet-rs:RSPrinciple ;
+    a owl:NamedIndividual ;
+    rdfs:label "P5 — Occupational Health and Safety"@en ;
+    rdfs:isDefinedBy <https://comet.carbon/ext/responsiblesteel> ;
+    skos:relatedMatch <https://metadata.un.org/sdg/8.8> .
+
+comet-rs:P06_LabourRights
+    a comet-rs:RSPrinciple ;
+    a owl:NamedIndividual ;
+    rdfs:label "P6 — Labour Rights"@en ;
+    rdfs:isDefinedBy <https://comet.carbon/ext/responsiblesteel> ;
+    skos:relatedMatch <https://metadata.un.org/sdg/8.8> .
+
+comet-rs:P07_HumanRights
+    a comet-rs:RSPrinciple ;
+    a owl:NamedIndividual ;
+    rdfs:label "P7 — Human Rights"@en ;
+    rdfs:isDefinedBy <https://comet.carbon/ext/responsiblesteel> ;
+    skos:relatedMatch <https://metadata.un.org/sdg/16.2> .
+
+comet-rs:P08_StakeholderEngagement
+    a comet-rs:RSPrinciple ;
+    a owl:NamedIndividual ;
+    rdfs:label "P8 — Stakeholder Engagement and Communication"@en ;
+    rdfs:isDefinedBy <https://comet.carbon/ext/responsiblesteel> ;
+    skos:relatedMatch <https://metadata.un.org/sdg/17.17> .
+
+comet-rs:P09_LocalCommunities
+    a comet-rs:RSPrinciple ;
+    a owl:NamedIndividual ;
+    rdfs:label "P9 — Local Communities"@en ;
+    rdfs:isDefinedBy <https://comet.carbon/ext/responsiblesteel> ;
+    skos:relatedMatch <https://metadata.un.org/sdg/11.a> .
+
+comet-rs:P10_ClimateGHG
+    a comet-rs:RSPrinciple ;
+    a owl:NamedIndividual ;
+    rdfs:label "P10 — Climate Change and GHG Emissions"@en ;
+    rdfs:isDefinedBy <https://comet.carbon/ext/responsiblesteel> ;
+    skos:relatedMatch <https://metadata.un.org/sdg/13.2> .
+
+comet-rs:P11_NoiseEmissionsWaste
+    a comet-rs:RSPrinciple ;
+    a owl:NamedIndividual ;
+    rdfs:label "P11 — Noise, Emissions, Effluents and Waste"@en ;
+    rdfs:isDefinedBy <https://comet.carbon/ext/responsiblesteel> ;
+    skos:relatedMatch <https://metadata.un.org/sdg/12.4> .
+
+comet-rs:P12_WaterStewardship
+    a comet-rs:RSPrinciple ;
+    a owl:NamedIndividual ;
+    rdfs:label "P12 — Water Stewardship"@en ;
+    rdfs:isDefinedBy <https://comet.carbon/ext/responsiblesteel> ;
+    skos:relatedMatch <https://metadata.un.org/sdg/6.3> .
+
+comet-rs:P13_Biodiversity
+    a comet-rs:RSPrinciple ;
+    a owl:NamedIndividual ;
+    rdfs:label "P13 — Biodiversity"@en ;
+    rdfs:isDefinedBy <https://comet.carbon/ext/responsiblesteel> ;
+    skos:relatedMatch <https://metadata.un.org/sdg/15.5> .
+
+
+# =============================================================================
+# SKOS CONCEPT SCHEMES FOR DPL AND SPL
+# =============================================================================
+
+comet-rs:DPLScheme
+    a skos:ConceptScheme ;
+    rdfs:isDefinedBy <https://comet.carbon/ext/responsiblesteel> ;
+    skos:prefLabel "Decarbonisation Progress Level Scheme"@en ;
+    skos:hasTopConcept comet-rs:DPL1_Concept .
+
+comet-rs:DPL1_Concept
+    a skos:Concept ;
+    rdfs:isDefinedBy <https://comet.carbon/ext/responsiblesteel> ;
+    skos:inScheme comet-rs:DPLScheme ;
+    skos:prefLabel "DPL 1 — Entry Level"@en ;
+    skos:notation "DPL1" ;
+    skos:definition "GHG intensity ≤ 2.80 − 2.30 × scrap share"@en ;
+    skos:narrower comet-rs:DPL2_Concept .
+
+comet-rs:DPL2_Concept
+    a skos:Concept ;
+    rdfs:isDefinedBy <https://comet.carbon/ext/responsiblesteel> ;
+    skos:inScheme comet-rs:DPLScheme ;
+    skos:prefLabel "DPL 2 — Progressing"@en ;
+    skos:notation "DPL2" ;
+    skos:definition "GHG intensity ≤ 1.60 − 1.25 × scrap share"@en ;
+    skos:broader comet-rs:DPL1_Concept ;
+    skos:narrower comet-rs:DPL3_Concept .
+
+comet-rs:DPL3_Concept
+    a skos:Concept ;
+    rdfs:isDefinedBy <https://comet.carbon/ext/responsiblesteel> ;
+    skos:inScheme comet-rs:DPLScheme ;
+    skos:prefLabel "DPL 3 — Advanced"@en ;
+    skos:notation "DPL3" ;
+    skos:definition "GHG intensity ≤ 0.80 − 0.55 × scrap share"@en ;
+    skos:broader comet-rs:DPL2_Concept ;
+    skos:narrower comet-rs:DPL4_Concept .
+
+comet-rs:DPL4_Concept
+    a skos:Concept ;
+    rdfs:isDefinedBy <https://comet.carbon/ext/responsiblesteel> ;
+    skos:inScheme comet-rs:DPLScheme ;
+    skos:prefLabel "DPL 4 — Near-Zero"@en ;
+    skos:notation "DPL4" ;
+    skos:definition "GHG intensity ≤ 0.40 − 0.35 × scrap share"@en ;
+    skos:broader comet-rs:DPL3_Concept .
+
+comet-rs:SPLScheme
+    a skos:ConceptScheme ;
+    rdfs:isDefinedBy <https://comet.carbon/ext/responsiblesteel> ;
+    skos:prefLabel "Sourcing Progress Level Scheme"@en ;
+    skos:hasTopConcept comet-rs:SPL1_Concept .
+
+comet-rs:SPL1_Concept
+    a skos:Concept ;
+    rdfs:isDefinedBy <https://comet.carbon/ext/responsiblesteel> ;
+    skos:inScheme comet-rs:SPLScheme ;
+    skos:prefLabel "SPL 1 — Knowledge"@en ;
+    skos:notation "SPL1" ;
+    skos:definition "Knowledge of supplier region. Basic supplier identification and risk awareness."@en ;
+    skos:narrower comet-rs:SPL2_Concept .
+
+comet-rs:SPL2_Concept
+    a skos:Concept ;
+    rdfs:isDefinedBy <https://comet.carbon/ext/responsiblesteel> ;
+    skos:inScheme comet-rs:SPLScheme ;
+    skos:prefLabel "SPL 2 — Assessment"@en ;
+    skos:notation "SPL2" ;
+    skos:definition "Knowledge of supplier site. ESG risk assessment conducted."@en ;
+    skos:broader comet-rs:SPL1_Concept ;
+    skos:narrower comet-rs:SPL3_Concept .
+
+comet-rs:SPL3_Concept
+    a skos:Concept ;
+    rdfs:isDefinedBy <https://comet.carbon/ext/responsiblesteel> ;
+    skos:inScheme comet-rs:SPLScheme ;
+    skos:prefLabel "SPL 3 — Engagement"@en ;
+    skos:notation "SPL3" ;
+    skos:definition "Participation in recognised supplier programmes. Active engagement on improvements."@en ;
+    skos:broader comet-rs:SPL2_Concept ;
+    skos:narrower comet-rs:SPL4_Concept .
+
+comet-rs:SPL4_Concept
+    a skos:Concept ;
+    rdfs:isDefinedBy <https://comet.carbon/ext/responsiblesteel> ;
+    skos:inScheme comet-rs:SPLScheme ;
+    skos:prefLabel "SPL 4 — Transparency"@en ;
+    skos:notation "SPL4" ;
+    skos:definition "Public reporting on supplier ESG performance and improvement progress."@en ;
+    skos:broader comet-rs:SPL3_Concept .

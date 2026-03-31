@@ -1,0 +1,21 @@
+# CQ08: What green steel premiums exist and for what DPL?
+# Competency Question: List all green steel premiums with their DPL level, currency, and valid dates
+
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX comet-rs: <https://comet.carbon/ext/responsiblesteel#>
+
+SELECT ?site ?siteLabel ?appliedDPL ?premiumValue ?premiumCurrency ?validFromDate ?validToDate ?customerBase
+WHERE {
+  ?site rdf:type comet-rs:CertifiedSite ;
+        rdfs:label ?siteLabel ;
+        comet-rs:hasGreenSteelPremium ?premium .
+
+  ?premium comet-rs:appliedDPL ?appliedDPL ;
+           comet-rs:premiumValue ?premiumValue ;
+           comet-rs:premiumCurrency ?premiumCurrency ;
+           comet-rs:validFromDate ?validFromDate ;
+           comet-rs:validToDate ?validToDate ;
+           comet-rs:customerBase ?customerBase .
+}
+ORDER BY DESC(?appliedDPL) DESC(?premiumValue) ?siteLabel

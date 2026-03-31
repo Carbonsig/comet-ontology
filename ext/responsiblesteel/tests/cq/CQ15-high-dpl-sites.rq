@@ -1,0 +1,22 @@
+# CQ15: Which sites achieve DPL 3 or higher?
+# Competency Question: List all certified sites with DPL 3 or above showing their DPL and SPL
+
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX comet-rs: <https://comet.carbon/ext/responsiblesteel#>
+
+SELECT ?site ?siteLabel ?dplValue ?splValue ?productionRoute ?locationCountry
+WHERE {
+  ?site rdf:type comet-rs:CertifiedSite ;
+        rdfs:label ?siteLabel ;
+        comet-rs:hasDecarbProgressLevel ?dpl ;
+        comet-rs:hasSourcingProgressLevel ?spl ;
+        comet-rs:hasProductionRoute ?productionRoute ;
+        comet-rs:locationCountry ?locationCountry .
+
+  ?dpl comet-rs:dplValue ?dplValue .
+  ?spl comet-rs:splValue ?splValue .
+
+  FILTER (?dplValue >= 3)
+}
+ORDER BY DESC(?dplValue) DESC(?splValue) ?siteLabel

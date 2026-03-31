@@ -1,0 +1,94 @@
+@prefix comet-rs: <https://ontology.materialintelligence.ai/comet/responsiblesteel/> .
+@prefix pact: <https://wbcsd.org/spec/pact/pathfinder/v3/> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix dcat: <http://www.w3.org/ns/dcat#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+
+<https://ontology.materialintelligence.ai/alignments/comet-pact-v3>
+    a owl:Ontology ;
+    dcterms:title "COMET RS to PACT Pathfinder v3 Alignment"@en ;
+    dcterms:description "Semantic alignment between COMET Responsible Steel ontology and PACT Pathfinder v3 specification for product carbon footprinting."@en ;
+    dcterms:issued "2026-03-30"^^<http://www.w3.org/2001/XMLSchema#date> ;
+    dcterms:modified "2026-03-30"^^<http://www.w3.org/2001/XMLSchema#date> ;
+    owl:versionInfo "1.0.0" ;
+    dcat:keyword "COMET", "PACT", "carbon footprint", "pathfinder", "alignment" ;
+    dcterms:source "RS Production Standard V2.1.1", "PACT Pathfinder v3 Specification" .
+
+# CrudeSteelIntensity to PACT CarbonFootprint
+comet-rs:CrudeSteelIntensity
+    skos:closeMatch pact:CarbonFootprint ;
+    skos:note "Both represent the carbon intensity or emissions quantity of products. COMET focuses specifically on crude steel while PACT provides a general framework for any product's carbon footprint."@en ;
+    skos:relatedMatch pact:ProductFootprint ;
+    rdfs:comment "CrudeSteelIntensity measures GHG emissions per unit of crude steel produced. PACT CarbonFootprint is a generic measure of product-level carbon intensity, making it a close semantic match."@en .
+
+# ghgIntensityValue to PACT pcfExclBiogenic
+comet-rs:ghgIntensityValue
+    skos:closeMatch pact:pcfExclBiogenic ;
+    skos:note "Both represent GHG emissions excluding biogenic carbon. ghgIntensityValue expresses emissions intensity (kg CO2-eq per tonne) while pcfExclBiogenic is the product carbon footprint excluding biogenic components."@en ;
+    rdfs:comment "Direct semantic correspondence. Both properties measure greenhouse gas emissions with explicit exclusion of biogenic carbon sources."@en ;
+    skos:relatedMatch pact:pcfIncBiogenic .
+
+# ghgIntensityValue to PACT Scope mappings
+comet-rs:ghgIntensityValue
+    skos:related pact:pcfUpstream ;
+    skos:related pact:pcfManufacturing ;
+    skos:related pact:pcfDownstream ;
+    rdfs:comment "PACT Pathfinder separates upstream, manufacturing, and downstream scope emissions. COMET ghgIntensityValue may aggregate across scopes or report per-scope."@en .
+
+# CertifiedSite to PACT CompanyId
+comet-rs:CertifiedSite
+    skos:relatedMatch pact:CompanyId ;
+    skos:note "CertifiedSite represents a verified production facility in the RS standard, while CompanyId identifies the organisation. The relationship is contextual: a certified site belongs to a company."@en ;
+    rdfs:comment "CertifiedSite is not directly equivalent to CompanyId (facility vs. organisation), but both serve as key identifiers in their respective data models."@en ;
+    skos:related pact:ProductionSite .
+
+# annualCrudeSteelProduction to PACT productAmount
+comet-rs:annualCrudeSteelProduction
+    skos:closeMatch pact:productAmount ;
+    skos:note "Both quantify the volume of product. annualCrudeSteelProduction is time-bound (annual) while productAmount is a generic quantity measure."@en ;
+    rdfs:comment "annualCrudeSteelProduction specifies tonnes of crude steel produced in a calendar year. pact:productAmount represents the declared quantity of product subject to PCF declaration."@en ;
+    skos:relatedMatch pact:declarationYear .
+
+# Process Routes and PACT compatibility
+comet-rs:BF_BOF
+    skos:note "Blast Furnace - Basic Oxygen Furnace route typically shows moderate to high carbon intensity depending on fuel mix and energy efficiency."@en ;
+    skos:related pact:ProcessRoute ;
+    rdfs:comment "PACT Pathfinder allows process-specific PCF calculations. BF-BOF route typically has well-established emissions factors."@en .
+
+comet-rs:EAF
+    skos:note "Electric Arc Furnace route typically shows lower carbon intensity when powered by renewable or low-carbon electricity."@en ;
+    skos:related pact:ProcessRoute ;
+    rdfs:comment "PACT Pathfinder supports EAF-specific calculations with sensitivity to grid electricity mix."@en .
+
+comet-rs:HBI_EAF
+    skos:note "Hot Briquetted Iron - Electric Arc Furnace route typically shows lower emissions when iron ore direct reduction uses natural gas or renewables."@en ;
+    skos:related pact:ProcessRoute ;
+    rdfs:comment "Emerging technology route increasingly relevant for decarbonised steel production."@en .
+
+# Emission Scope Alignment
+comet-rs:Scope1Emissions
+    skos:closeMatch pact:pcfManufacturing ;
+    rdfs:comment "Direct emissions from steel production facilities."@en .
+
+comet-rs:Scope2Emissions
+    skos:closeMatch pact:pcfManufacturing ;
+    rdfs:comment "Indirect emissions from purchased electricity and steam."@en .
+
+comet-rs:Scope3UpstreamEmissions
+    skos:closeMatch pact:pcfUpstream ;
+    rdfs:comment "Emissions from raw material extraction, mining, and logistics to facility gate."@en .
+
+comet-rs:Scope3DownstreamEmissions
+    skos:closeMatch pact:pcfDownstream ;
+    rdfs:comment "Emissions from product use phase and end-of-life disposition."@en .
+
+# Unit harmonization
+comet-rs:kgCO2eqPerTonne
+    rdfs:comment "Standard unit for steel intensity in RS standard. Equivalent to kg CO2-eq/kg product (scaled by 1000)."@en ;
+    owl:equivalentClass <http://qudt.org/vocab/UNIT/KiloGM-PER-TON> .
+
+pact:kgCO2e
+    rdfs:comment "PACT uses absolute emissions in kg CO2-eq, with intensity calculated as total / productAmount."@en ;
+    owl:equivalentClass <http://qudt.org/vocab/UNIT/KiloGM> .

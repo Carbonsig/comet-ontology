@@ -1,0 +1,19 @@
+# CQ04: List all sites and their GHG intensity values
+# Competency Question: Show each certified site with its crude steel GHG intensity and reporting year
+
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX comet-rs: <https://comet.carbon/ext/responsiblesteel#>
+
+SELECT ?site ?siteLabel ?intensity ?unit ?reportingYear ?verificationStatus
+WHERE {
+  ?site rdf:type comet-rs:CertifiedSite ;
+        rdfs:label ?siteLabel ;
+        comet-rs:hasCrudeSteelIntensity ?intensityObj .
+
+  ?intensityObj comet-rs:value ?intensity ;
+                comet-rs:unit ?unit ;
+                comet-rs:reportingYear ?reportingYear ;
+                comet-rs:dataVerificationStatus ?verificationStatus .
+}
+ORDER BY ?intensity ?siteLabel

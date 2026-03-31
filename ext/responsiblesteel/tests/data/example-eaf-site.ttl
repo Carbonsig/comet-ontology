@@ -1,0 +1,146 @@
+@prefix rdf:    <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs:   <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:    <http://www.w3.org/2001/XMLSchema#> .
+@prefix comet:     <https://comet.carbon/v1/core#> .
+@prefix comet-rs:  <https://comet.carbon/ext/responsiblesteel#> .
+@prefix ex:        <https://example.org/data/> .
+
+# EAF Mini-Mill - USA - Achieving DPL 3
+ex:site-eaf-us-001
+    rdf:type comet-rs:CertifiedSite ;
+    comet-rs:certificateId "US-00098765" ;
+    rdfs:label "Advanced EAF Mini-Mill - Texas" ;
+    comet-rs:isOwnedBy ex:owner-Nucor ;
+    comet-rs:hasProductionRoute comet-rs:EAF ;
+    comet-rs:hasCurrentCertification ex:cert-eaf-us-001 ;
+    comet-rs:hasCrudeSteelIntensity ex:intensity-eaf-us-001 ;
+    comet-rs:hasScrapShareCalculation ex:scrap-eaf-us-001 ;
+    comet-rs:hasDecarbProgressLevel ex:dpl-eaf-us-001 ;
+    comet-rs:hasSourcingProgressLevel ex:spl-eaf-us-001 ;
+    comet-rs:hasAudit ex:audit-eaf-us-2025 ;
+    comet-rs:hasGreenSteelPremium ex:premium-eaf-us-001 ;
+    comet-rs:locationCountry "United States" ;
+    comet-rs:siteCapacityTonnespYear 1200000 .
+
+ex:owner-Nucor
+    rdf:type comet-rs:CorporateOwner ;
+    rdfs:label "Nucor Corporation" ;
+    comet-rs:ownerCountry "United States" ;
+    comet-rs:operatedSites ex:site-eaf-us-001 .
+
+ex:intensity-eaf-us-001
+    rdf:type comet-rs:CrudeSteelIntensity ;
+    comet-rs:value 0.42 ;
+    comet-rs:unit "tCO2e/t" ;
+    comet-rs:reportingYear 2024 ;
+    comet-rs:dataVerificationStatus "certified" ;
+    comet-rs:methodology "Cradle-to-gate LCA with grid emissions" .
+
+ex:scrap-eaf-us-001
+    rdf:type comet-rs:ScrapShareCalculation ;
+    comet-rs:sharePercentage 92.0 ;
+    comet-rs:calculationMethod "mass-weighted-average" ;
+    comet-rs:reportingYear 2024 ;
+    comet-rs:includesCollectedScrap true ;
+    comet-rs:includesTonPremium true ;
+    comet-rs:tonPremiumQuality "automotive-grade" .
+
+ex:dpl-eaf-us-001
+    rdf:type comet-rs:DecarbProgressLevel ;
+    comet-rs:dplValue 3 ;
+    comet-rs:assessmentYear 2024 ;
+    comet-rs:qualifiesForCertification true ;
+    comet-rs:performanceAgainstBaseline "exceeds-baseline-by-68-percent" .
+
+ex:spl-eaf-us-001
+    rdf:type comet-rs:SourcingProgressLevel ;
+    comet-rs:splValue 3 ;
+    comet-rs:assessmentYear 2024 ;
+    comet-rs:priorSPL 2 ;
+    comet-rs:splProgressionReason "Comprehensive worker rights programs and supply chain audits" ;
+    comet-rs:supplierTiersCovered 5 .
+
+ex:cert-eaf-us-001
+    rdf:type comet-rs:SteelCertification ;
+    comet-rs:hasDPL ex:dpl-eaf-us-001 ;
+    comet-rs:hasSPL ex:spl-eaf-us-001 ;
+    comet-rs:certificationStatus "valid" ;
+    comet-rs:issuanceDate "2024-06-01"^^xsd:date ;
+    comet-rs:expiryDate "2027-05-31"^^xsd:date ;
+    comet-rs:certifiedBySite ex:site-eaf-us-001 ;
+    comet-rs:resultOfAudit ex:audit-eaf-us-2025 ;
+    comet-rs:certificateScope "All crude steel products" .
+
+ex:core-cert-eaf-us-001
+    rdf:type comet-rs:CoreSiteCertification ;
+    comet-rs:refersToSite ex:site-eaf-us-001 ;
+    comet-rs:hasSteelCert ex:cert-eaf-us-001 ;
+    comet-rs:certMilestone "core-site-verified" ;
+    comet-rs:verificationDate "2024-05-28"^^xsd:date .
+
+ex:audit-eaf-us-2025
+    rdf:type comet-rs:CertificationAudit ;
+    rdfs:label "Annual Audit 2024-2025 - Texas EAF" ;
+    comet-rs:auditedSite ex:site-eaf-us-001 ;
+    comet-rs:auditDate "2024-11-10"^^xsd:date ;
+    comet-rs:auditType "certification" ;
+    comet-rs:auditScope "All principles P1-P12" ;
+    comet-rs:auditFindingCount 0 ;
+    comet-rs:hasReview ex:panel-review-eaf-us-2025 ;
+    comet-rs:hasConformityAssessment ex:conform-p01-eaf-us ;
+    comet-rs:hasConformityAssessment ex:conform-p06-eaf-us ;
+    comet-rs:hasConformityAssessment ex:conform-p09-eaf-us .
+
+ex:conform-p01-eaf-us
+    rdf:type comet-rs:PrincipleConformity ;
+    comet-rs:conformityFor "P01" ;
+    comet-rs:principleLabel "Greenhouse Gas Emissions" ;
+    comet-rs:conformityScore 95 ;
+    comet-rs:assessmentStatus "fully-compliant" ;
+    comet-rs:evidenceReference "Third-party LCA certification" .
+
+ex:conform-p06-eaf-us
+    rdf:type comet-rs:PrincipleConformity ;
+    comet-rs:conformityFor "P06" ;
+    comet-rs:principleLabel "Labour Rights" ;
+    comet-rs:conformityScore 90 ;
+    comet-rs:assessmentStatus "fully-compliant" ;
+    comet-rs:evidenceReference "Union agreements and worker surveys" .
+
+ex:conform-p09-eaf-us
+    rdf:type comet-rs:PrincipleConformity ;
+    comet-rs:conformityFor "P09" ;
+    comet-rs:principleLabel "Soil & Land Use" ;
+    comet-rs:conformityScore 87 ;
+    comet-rs:assessmentStatus "fully-compliant" .
+
+ex:panel-review-eaf-us-2025
+    rdf:type comet-rs:AssurancePanelReview ;
+    comet-rs:reviewDate "2025-01-22"^^xsd:date ;
+    comet-rs:panelDecision "approve" ;
+    comet-rs:panelComments "Exemplary performance across all assessment areas. Site represents best-practice in circular steel production." ;
+    comet-rs:reviewerCount 4 ;
+    comet-rs:approvalQuorum "unanimous" .
+
+ex:premium-eaf-us-001
+    rdf:type comet-rs:GreenSteelPremium ;
+    comet-rs:appliesToSite ex:site-eaf-us-001 ;
+    comet-rs:appliedDPL 3 ;
+    comet-rs:premiumValue 45.00 ;
+    comet-rs:premiumCurrency "EUR" ;
+    comet-rs:premiumUnit "per-tonne" ;
+    comet-rs:marketPremiumRange "40.00-55.00 EUR/t" ;
+    comet-rs:validFromDate "2024-06-01"^^xsd:date ;
+    comet-rs:validToDate "2027-05-31"^^xsd:date ;
+    comet-rs:customerBase "automotive-oems" .
+
+ex:transition-plan-eaf-us
+    rdf:type comet-rs:TransitionPlanReview ;
+    comet-rs:appliedToSite ex:site-eaf-us-001 ;
+    comet-rs:reviewDate "2024-08-20"^^xsd:date ;
+    comet-rs:planStatus "approved" ;
+    comet-rs:targetDPL 3 ;
+    comet-rs:targetYear 2024 ;
+    comet-rs:investmentRequired 0 ;
+    comet-rs:keyInitiatives "Renewable electricity grid sourcing optimization" ;
+    comet-rs:nextReviewDate "2025-08-20"^^xsd:date .

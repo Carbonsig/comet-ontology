@@ -1,0 +1,22 @@
+# CQ07: What panel decisions were made for each audit?
+# Competency Question: Show all assurance panel reviews with their decisions and comments
+
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX comet-rs: <https://comet.carbon/ext/responsiblesteel#>
+
+SELECT ?audit ?auditLabel ?auditedSite ?siteLabel ?panelDecision ?reviewDate ?panelComments
+WHERE {
+  ?audit rdf:type comet-rs:CertificationAudit ;
+         rdfs:label ?auditLabel ;
+         comet-rs:auditedSite ?auditedSite ;
+         comet-rs:hasReview ?review .
+
+  ?auditedSite rdfs:label ?siteLabel .
+
+  ?review rdf:type comet-rs:AssurancePanelReview ;
+          comet-rs:panelDecision ?panelDecision ;
+          comet-rs:reviewDate ?reviewDate ;
+          comet-rs:panelComments ?panelComments .
+}
+ORDER BY DESC(?reviewDate) ?auditedSite

@@ -1,0 +1,20 @@
+# CQ11: Which sites have ambition gaps and how large?
+# Competency Question: Show sites with ambition gap analysis results and gap values to next DPL
+
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX comet-rs: <https://comet.carbon/ext/responsiblesteel#>
+
+SELECT ?site ?siteLabel ?analysisDate ?currentIntensity ?requiredDPL1 ?ambitionGapToDPL1 ?timelineAssessment
+WHERE {
+  ?gap rdf:type comet-rs:AmbitionGapAnalysis ;
+       comet-rs:appliedToSite ?site ;
+       comet-rs:analysisDate ?analysisDate ;
+       comet-rs:currentEstimatedIntensity ?currentIntensity ;
+       comet-rs:requiredDPL1Intensity ?requiredDPL1 ;
+       comet-rs:ambitionGapToDPL1 ?ambitionGapToDPL1 ;
+       comet-rs:timelineAssessment ?timelineAssessment .
+
+  ?site rdfs:label ?siteLabel .
+}
+ORDER BY DESC(?ambitionGapToDPL1) ?siteLabel

@@ -1,0 +1,156 @@
+@prefix rdf:    <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs:   <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:    <http://www.w3.org/2001/XMLSchema#> .
+@prefix comet:     <https://comet.carbon/v1/core#> .
+@prefix comet-rs:  <https://comet.carbon/ext/responsiblesteel#> .
+@prefix ex:        <https://example.org/data/> .
+
+# DRI-EAF Facility - UAE - Achieving DPL 2
+ex:site-dri-eaf-ae-001
+    rdf:type comet-rs:CertifiedSite ;
+    comet-rs:certificateId "AE-00056789" ;
+    rdfs:label "Direct Reduction & EAF Complex - Abu Dhabi" ;
+    comet-rs:isOwnedBy ex:owner-Emirates-Steel ;
+    comet-rs:hasProductionRoute comet-rs:DRI_EAF ;
+    comet-rs:hasCurrentCertification ex:cert-dri-eaf-ae-001 ;
+    comet-rs:hasCrudeSteelIntensity ex:intensity-dri-eaf-ae-001 ;
+    comet-rs:hasScrapShareCalculation ex:scrap-dri-eaf-ae-001 ;
+    comet-rs:hasDecarbProgressLevel ex:dpl-dri-eaf-ae-001 ;
+    comet-rs:hasSourcingProgressLevel ex:spl-dri-eaf-ae-001 ;
+    comet-rs:hasAudit ex:audit-dri-eaf-ae-2025 ;
+    comet-rs:hasProcessGasBaseline ex:baseline-dri-eaf-ae-001 ;
+    comet-rs:hasCCUSCredit ex:ccus-dri-eaf-ae-001 ;
+    comet-rs:locationCountry "United Arab Emirates" ;
+    comet-rs:siteCapacityTonnespYear 2800000 .
+
+ex:owner-Emirates-Steel
+    rdf:type comet-rs:CorporateOwner ;
+    rdfs:label "Emirates Steel Arkan" ;
+    comet-rs:ownerCountry "United Arab Emirates" ;
+    comet-rs:operatedSites ex:site-dri-eaf-ae-001 .
+
+ex:intensity-dri-eaf-ae-001
+    rdf:type comet-rs:CrudeSteelIntensity ;
+    comet-rs:value 1.10 ;
+    comet-rs:unit "tCO2e/t" ;
+    comet-rs:reportingYear 2024 ;
+    comet-rs:dataVerificationStatus "certified" ;
+    comet-rs:methodology "Scope 1+2 LCA with natural gas DRI" ;
+    comet-rs:reducedFromPrior 0.15 .
+
+ex:scrap-dri-eaf-ae-001
+    rdf:type comet-rs:ScrapShareCalculation ;
+    comet-rs:sharePercentage 35.0 ;
+    comet-rs:calculationMethod "mass-weighted-average" ;
+    comet-rs:reportingYear 2024 ;
+    comet-rs:includesCollectedScrap true ;
+    comet-rs:includesTonPremium false ;
+    comet-rs:dRIInputPercentage 65.0 .
+
+ex:dpl-dri-eaf-ae-001
+    rdf:type comet-rs:DecarbProgressLevel ;
+    comet-rs:dplValue 2 ;
+    comet-rs:assessmentYear 2024 ;
+    comet-rs:qualifiesForCertification true ;
+    comet-rs:performanceAgainstBaseline "exceeds-baseline-by-32-percent" ;
+    comet-rs:priorDPL 1 .
+
+ex:spl-dri-eaf-ae-001
+    rdf:type comet-rs:SourcingProgressLevel ;
+    comet-rs:splValue 1 ;
+    comet-rs:assessmentYear 2024 ;
+    comet-rs:splProgressionReason "Baseline assessment; improvement plan in development" ;
+    comet-rs:supplierTiersCovered 2 .
+
+ex:cert-dri-eaf-ae-001
+    rdf:type comet-rs:SteelCertification ;
+    comet-rs:hasDPL ex:dpl-dri-eaf-ae-001 ;
+    comet-rs:hasSPL ex:spl-dri-eaf-ae-001 ;
+    comet-rs:certificationStatus "valid" ;
+    comet-rs:issuanceDate "2024-04-10"^^xsd:date ;
+    comet-rs:expiryDate "2027-04-09"^^xsd:date ;
+    comet-rs:certifiedBySite ex:site-dri-eaf-ae-001 ;
+    comet-rs:resultOfAudit ex:audit-dri-eaf-ae-2025 ;
+    comet-rs:certificateScope "Crude steel from DRI and scrap-based EAF" .
+
+ex:core-cert-dri-eaf-ae-001
+    rdf:type comet-rs:CoreSiteCertification ;
+    comet-rs:refersToSite ex:site-dri-eaf-ae-001 ;
+    comet-rs:hasSteelCert ex:cert-dri-eaf-ae-001 ;
+    comet-rs:certMilestone "core-site-verified" ;
+    comet-rs:verificationDate "2024-04-05"^^xsd:date .
+
+ex:audit-dri-eaf-ae-2025
+    rdf:type comet-rs:CertificationAudit ;
+    rdfs:label "Annual Audit 2024-2025 - Abu Dhabi DRI-EAF" ;
+    comet-rs:auditedSite ex:site-dri-eaf-ae-001 ;
+    comet-rs:auditDate "2024-12-02"^^xsd:date ;
+    comet-rs:auditType "certification" ;
+    comet-rs:auditScope "All principles P1-P12" ;
+    comet-rs:auditFindingCount 2 ;
+    comet-rs:hasReview ex:panel-review-dri-eaf-ae-2025 ;
+    comet-rs:hasConformityAssessment ex:conform-p01-dri-eaf-ae ;
+    comet-rs:hasConformityAssessment ex:conform-p07-dri-eaf-ae .
+
+ex:conform-p01-dri-eaf-ae
+    rdf:type comet-rs:PrincipleConformity ;
+    comet-rs:conformityFor "P01" ;
+    comet-rs:principleLabel "Greenhouse Gas Emissions" ;
+    comet-rs:conformityScore 84 ;
+    comet-rs:assessmentStatus "mostly-compliant" ;
+    comet-rs:evidenceReference "DRI process baseline and gas sourcing agreements" .
+
+ex:conform-p07-dri-eaf-ae
+    rdf:type comet-rs:PrincipleConformity ;
+    comet-rs:conformityFor "P07" ;
+    comet-rs:principleLabel "Community Rights" ;
+    comet-rs:conformityScore 79 ;
+    comet-rs:assessmentStatus "mostly-compliant" ;
+    comet-rs:remedialActionRequired true ;
+    comet-rs:remedialActionDescription "Strengthen community grievance mechanism" ;
+    comet-rs:remedialDeadline "2025-12-02"^^xsd:date .
+
+ex:panel-review-dri-eaf-ae-2025
+    rdf:type comet-rs:AssurancePanelReview ;
+    comet-rs:reviewDate "2025-02-18"^^xsd:date ;
+    comet-rs:panelDecision "approve" ;
+    comet-rs:panelComments "Credible pathway to DPL 3 with hydrogen integration planned. Minor governance gaps to address." ;
+    comet-rs:reviewerCount 3 ;
+    comet-rs:approvalQuorum "majority" .
+
+ex:baseline-dri-eaf-ae-001
+    rdf:type comet-rs:ProcessGasBaseline ;
+    comet-rs:appliesToSite ex:site-dri-eaf-ae-001 ;
+    comet-rs:reportingYear 2024 ;
+    comet-rs:dRIGasType "natural-gas" ;
+    comet-rs:dRIProductionTonnes 1820000 ;
+    comet-rs:gasConsumptionMWh 9100000 ;
+    comet-rs:specificGasConsumption 5.0 ;
+    comet-rs:specificGasUnit "MWh/t-DRI" ;
+    comet-rs:baselineIntensityFactor 1.82 ;
+    comet-rs:verificationStatus "third-party-verified" .
+
+ex:ccus-dri-eaf-ae-001
+    rdf:type comet-rs:CCUSCredit ;
+    comet-rs:appliesToSite ex:site-dri-eaf-ae-001 ;
+    comet-rs:creditYear 2024 ;
+    comet-rs:ccusType "pilot-project" ;
+    comet-rs:co2CapturedTonnes 8500 ;
+    comet-rs:ghgReductionEquivalent 0.004 ;
+    comet-rs:creditIntensityReduction 0.004 ;
+    comet-rs:utilizationRoute "utilization-and-permanent-storage" ;
+    comet-rs:projectStatus "operational-trial" ;
+    comet-rs:verificationStatus "internally-monitored" ;
+    comet-rs:nextScaleupTargetYear 2026 .
+
+ex:transition-plan-dri-eaf-ae
+    rdf:type comet-rs:TransitionPlanReview ;
+    comet-rs:appliedToSite ex:site-dri-eaf-ae-001 ;
+    comet-rs:reviewDate "2024-07-10"^^xsd:date ;
+    comet-rs:planStatus "approved-with-conditions" ;
+    comet-rs:targetDPL 3 ;
+    comet-rs:targetYear 2028 ;
+    comet-rs:investmentRequired 1200000000 ;
+    comet-rs:investmentCurrency "AED" ;
+    comet-rs:keyInitiatives "Hydrogen pilot integration; CCUS scale-up; supply chain engagement" ;
+    comet-rs:nextReviewDate "2025-07-10"^^xsd:date .

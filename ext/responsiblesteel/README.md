@@ -29,15 +29,15 @@ This extension maps the **ResponsibleSteel International Production Standard V2.
 | L6 Verification | 6 | `CertificationAudit`, `AssurancePanelReview`, `NonConformity`, `PrincipleConformity`, `TransitionPlanReview`, `AmbitionGapAnalysis` |
 | L7 Market | 2 | `ProgressLevelPricing`, `GreenSteelPremium` |
 
-Plus **13 named individuals** for the RS Principles enumeration (P1âP13).
+Plus **13 named individuals** for the RS Principles enumeration (P1–P13).
 
 ## Critical Gaps Addressed
 
-1. **Certification lifecycle model** â Full pipeline from audit â Assurance Panel â certification decision â product labelling
-2. **Decarbonisation Progress Level (DPL)** â The four-tier sliding-scale classification (y â¤ b â m(x)) linking GHG intensity + scrap share to market access
-3. **Chain of Custody** â Transfer events and claims for tracking certified steel through downstream manufacturing
-4. **13-Principle ESG conformity vector** â Machine-readable representation of the full RS governance architecture beyond carbon-only
-5. **Process gas baseline & credit system** â RS-specific accounting for captured process gases and energy recovery
+1. **Certification lifecycle model** — Full pipeline from audit → Assurance Panel → certification decision → product labelling
+2. **Decarbonisation Progress Level (DPL)** — The four-tier sliding-scale classification (y ≤ b − m(x)) linking GHG intensity + scrap share to market access
+3. **Chain of Custody** — Transfer events and claims for tracking certified steel through downstream manufacturing
+4. **13-Principle ESG conformity vector** — Machine-readable representation of the full RS governance architecture beyond carbon-only
+5. **Process gas baseline & credit system** — RS-specific accounting for captured process gases and energy recovery
 
 ## Files
 
@@ -49,7 +49,7 @@ Plus **13 named individuals** for the RS Principles enumeration (P1âP13).
 ## Standards References
 
 - ResponsibleSteel International Production Standard V2.1.1 (1 October 2024)
-- ResponsibleSteel Fundamentals for GHG Emissions Accounting & Classification V1.0 â Clean (18 June 2025)
+- ResponsibleSteel Fundamentals for GHG Emissions Accounting & Classification V1.0 — Clean (18 June 2025)
 - ResponsibleSteel Interpretation: Climate Transition Plans (December 2025)
 - ResponsibleSteel Interpretation: Principle 6 Equal Pay (12 June 2025)
 - ISO 14067:2018, ISO 14064-3:2019, ISO 20915
@@ -82,7 +82,7 @@ ex:GentCert a comet-rs:SteelCertification ;
 
 This extension follows the COMET PR workflow (Ontology Specification, Visualization 10). PRs targeting this module should be tagged:
 
-- `layer:L1âL7` (as applicable)
+- `layer:L1–L7` (as applicable)
 - `type:new-class` or `type:property-extension`
 - `std:responsiblesteel`
 - `sector:steel`

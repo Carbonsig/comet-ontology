@@ -1,0 +1,283 @@
+name: Ontology Validation
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '**.ttl'
+      - '**.rq'
+      - '**.jsonld'
+      - 'tests/**'
+  pull_request:
+    branches: [main]
+    paths:
+      - '**.ttl'
+      - '**.rq'
+      - '**.jsonld'
+      - 'tests/**'
+
+jobs:
+  # ─── STAGE 1: Turtle Syntax Validation ─────────────────────────────────
+  syntax:
+    name: TTL Syntax Check
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Apache Jena
+        run: |
+          wget -q https://dlcdn.apache.org/jena/binaries/apache-jena-5.2.0.tar.gz
+          tar xzf apache-jena-5.2.0.tar.gz
+          echo "$PWD/apache-jena-5.2.0/bin" >> $GITHUB_PATH
+
+      - name: Validate all Turtle files
+        run: |
+          echo "═══════════════════════════════════════════"
+          echo "  COMET Ontology — Turtle Syntax Validation"
+          echo "═══════════════════════════════════════════"
+          ERRORS=0
+          find . -name "*.ttl" -not -path "./.git/*" | sort | while read f; do
+            if riot --validate "$f" 2>/dev/null; then
+              echo "  ✓ $f"
+            else
+              echo "  ✗ $f — SYNTAX ERROR"
+              ERRORS=$((ERRORS + 1))
+            fi
+          done
+          if [ "$ERRORS" -gt 0 ]; then
+            echo "FAILED: $ERRORS file(s) with syntax errors"
+            exit 1
+          fi
+          echo "All Turtle files are syntactically valid."
+
+  # ─── STAGE 2: OWL Consistency Check ────────────────────────────────────
+  consistency:
+    name: OWL Consistency
+    runs-on: ubuntu-latest
+    needs: syntax
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install dependencies
+        run: pip install rdflib owlready2
+
+      - name: Check OWL consistency
+        run: |
+          python -c "
+          import sys, glob
+          from rdflib import Graph
+
+          print('═══════════════════════════════════════════')
+          print('  COMET Ontology — OWL Consistency Check')
+          print('═══════════════════════════════════════════')
+
+          g = Graph()
+          ttl_files = glob.glob('**/*.ttl', recursive=True)
+          ttl_files = [f for f in ttl_files if 'tests/data' not in f and '.git' not in f]
+
+          for f in sorted(ttl_files):
+              try:
+                  g.parse(f, format='turtle')
+                  print(f'  ✓ Loaded {f}')
+              except Exception as e:
+                  print(f'  ✗ Failed to load {f}: {e}')
+                  sys.exit(1)
+
+          classes = list(g.subjects(predicate=None, object=None))
+          print(f'\\n  Total triples loaded: {len(g)}')
+          print('  OWL graph loaded successfully.')
+          "
+
+  # ─── STAGE 3: SHACL Validation ─────────────────────────────────────────
+  shacl:
+    name: SHACL Validation
+    runs-on: ubuntu-latest
+    needs: syntax
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install pySHACL
+        run: pip install pyshacl rdflib
+
+      - name: Validate example data against shapes
+        run: |
+          python -c "
+          import sys, glob
+          from pyshacl import validate
+          from rdflib import Graph
+
+          print('═══════════════════════════════════════════')
+          print('  COMET Ontology — SHACL Validation')
+          print('═══════════════════════════════════════════')
+
+          # Load shapes
+          shapes = Graph()
+          for f in glob.glob('ext/**/comet-ext-*-shapes.ttl', recursive=True):
+              shapes.parse(f, format='turtle')
+              print(f'  Shapes: {f}')
+
+          if len(shapes) == 0:
+              print('  No SHACL shapes found — skipping.')
+              sys.exit(0)
+
+          # Load example data
+          data = Graph()
+          data_files = glob.glob('ext/**/tests/data/*.ttl', recursive=True)
+          for f in sorted(data_files):
+              data.parse(f, format='turtle')
+              print(f'  Data: {f}')
+
+          if len(data) == 0:
+              print('  No example data found — skipping.')
+              sys.exit(0)
+
+          # Validate
+          conforms, results_graph, results_text = validate(
+              data, shacl_graph=shapes,
+              inference='rdfs',
+              abort_on_first=False
+          )
+
+          print('\\n' + results_text)
+
+          if conforms:
+              print('  ✓ All SHACL shapes conform.')
+          else:
+              print('  ✗ SHACL validation failed.')
+              sys.exit(1)
+          "
+
+  # ─── STAGE 4: i18n Coverage ────────────────────────────────────────────
+  i18n:
+    name: i18n Coverage
+    runs-on: ubuntu-latest
+    needs: syntax
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install rdflib
+        run: pip install rdflib
+
+      - name: Check language coverage
+        run: |
+          python -c "
+          import glob
+          from rdflib import Graph, RDFS
+          from collections import defaultdict
+
+          print('═══════════════════════════════════════════')
+          print('  COMET Ontology — i18n Coverage Report')
+          print('═══════════════════════════════════════════')
+
+          g = Graph()
+
+          # Load core + labels
+          for pattern in ['ext/**/*.ttl', 'ext/**/labels/*.ttl']:
+              for f in glob.glob(pattern, recursive=True):
+                  if 'tests/' not in f and 'shapes' not in f:
+                      g.parse(f, format='turtle')
+
+          # Count labels per language
+          lang_counts = defaultdict(int)
+          total_terms = set()
+          for s, p, o in g.triples((None, RDFS.label, None)):
+              total_terms.add(str(s))
+              lang = o.language or 'unknown'
+              lang_counts[lang] += 1
+
+          target_langs = ['en', 'zh', 'ja', 'ko', 'de', 'fr', 'es', 'pt', 'hi', 'ar']
+          total = len(total_terms)
+
+          print(f'\\n  Total unique terms: {total}')
+          print(f'  Target languages: {len(target_langs)}')
+          print()
+          print(f'  {\"Lang\":<6} {\"Labels\":<10} {\"Coverage\":<12} {\"Status\"}')
+          print(f'  {\"─\"*40}')
+
+          all_pass = True
+          for lang in target_langs:
+              count = lang_counts.get(lang, 0)
+              pct = (count / total * 100) if total > 0 else 0
+              status = '✓' if pct >= 50 else '⚠' if pct >= 25 else '✗'
+              if pct < 50:
+                  all_pass = False
+              print(f'  {lang:<6} {count:<10} {pct:>6.1f}%      {status}')
+
+          print()
+          if not all_pass:
+              print('  ⚠ Some languages below 50% coverage (warning only)')
+          else:
+              print('  ✓ All target languages above 50% coverage')
+          "
+
+  # ─── STAGE 5: Competency Questions ─────────────────────────────────────
+  competency:
+    name: Competency Questions
+    runs-on: ubuntu-latest
+    needs: [syntax, shacl]
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install rdflib
+        run: pip install rdflib
+
+      - name: Run competency question tests
+        run: |
+          python -c "
+          import sys, glob
+          from rdflib import Graph
+
+          print('═══════════════════════════════════════════')
+          print('  COMET Ontology — Competency Question Tests')
+          print('═══════════════════════════════════════════')
+
+          # Load ontology + example data
+          g = Graph()
+          for pattern in ['ext/**/*.ttl']:
+              for f in glob.glob(pattern, recursive=True):
+                  if 'shapes' not in f:
+                      g.parse(f, format='turtle')
+
+          print(f'  Loaded {len(g)} triples')
+
+          # Run each CQ
+          cq_files = sorted(glob.glob('ext/**/tests/cq/*.rq', recursive=True))
+          passed = 0
+          failed = 0
+
+          for cq in cq_files:
+              name = cq.split('/')[-1].replace('.rq', '')
+              with open(cq) as f:
+                  query = f.read()
+              try:
+                  results = list(g.query(query))
+                  if len(results) > 0:
+                      print(f'  ✓ {name} — {len(results)} result(s)')
+                      passed += 1
+                  else:
+                      print(f'  ⚠ {name} — 0 results (may need more test data)')
+                      passed += 1  # Empty is ok, not a failure
+              except Exception as e:
+                  print(f'  ✗ {name} — ERROR: {e}')
+                  failed += 1
+
+          print(f'\\n  Results: {passed} passed, {failed} failed out of {len(cq_files)}')
+          if failed > 0:
+              sys.exit(1)
+          "

@@ -1,0 +1,71 @@
+@prefix rdfs:   <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos:   <http://www.w3.org/2004/02/skos/core#> .
+@prefix comet-rs: <https://comet.carbon/ext/responsiblesteel#> .
+
+# COMET ResponsibleSteel Extension — Spanish Labels
+# Language: es
+# Coverage: 44 terms (31 classes + 13 principles)
+
+# ─── L1 Core ────
+comet-rs:CertifiedSite rdfs:label "Sitio de producción certificado"@es ; skos:prefLabel "Sitio certificado"@es .
+comet-rs:CorporateOwner rdfs:label "Propietario corporativo"@es ; skos:prefLabel "Propietario"@es .
+comet-rs:SteelProductionRoute rdfs:label "Ruta de producción de acero"@es ; skos:prefLabel "Proceso de producción"@es .
+comet-rs:BF_BOF rdfs:label "Proceso alto horno-convertidor (BF-BOF)"@es ; skos:prefLabel "Alto horno-convertidor"@es ; skos:altLabel "BF-BOF"@es .
+comet-rs:EAF rdfs:label "Horno de arco eléctrico (EAF)"@es ; skos:prefLabel "Horno de arco"@es ; skos:altLabel "EAF"@es .
+comet-rs:DRI_EAF rdfs:label "Reducción directa-horno eléctrico (DRI-EAF)"@es ; skos:prefLabel "Reducción directa-EAF"@es ; skos:altLabel "DRI-EAF"@es .
+comet-rs:SR_BOF rdfs:label "Chatarra-convertidor (SR-BOF)"@es ; skos:prefLabel "Chatarra-convertidor"@es ; skos:altLabel "SR-BOF"@es .
+
+# ─── L3 Supply Chain ────
+comet-rs:RSInputMaterial rdfs:label "Material de entrada acero responsable"@es ; skos:prefLabel "Material de entrada"@es .
+comet-rs:ScrapCategory rdfs:label "Categoría de chatarra"@es ; skos:prefLabel "Tipo de chatarra"@es .
+comet-rs:InternalScrap rdfs:label "Chatarra interna de planta"@es .
+comet-rs:HomeScrap rdfs:label "Chatarra doméstica"@es .
+comet-rs:ManufacturingScrap rdfs:label "Chatarra de manufactura"@es .
+comet-rs:EndOfLifeScrap rdfs:label "Chatarra fin de vida"@es .
+comet-rs:RSSupplierTier rdfs:label "Nivel de proveedor acero responsable"@es ; skos:prefLabel "Nivel de proveedor"@es .
+comet-rs:SupplierESGRisk rdfs:label "Riesgo ESG del proveedor"@es ; skos:prefLabel "Riesgo ESG"@es .
+comet-rs:RecognisedProgramme rdfs:label "Programa reconocido"@es ; skos:prefLabel "Programa"@es .
+
+# ─── L4 PCF ────
+comet-rs:CrudeSteelIntensity rdfs:label "Intensidad de acero bruto"@es ; skos:prefLabel "Intensidad"@es .
+comet-rs:ScrapShareCalculation rdfs:label "Cálculo de participación de chatarra"@es ; skos:prefLabel "Participación de chatarra"@es .
+comet-rs:DPLThreshold rdfs:label "Umbral nivel de progreso descarbonización"@es ; skos:prefLabel "Umbral DPL"@es ; skos:altLabel "DPL"@es .
+comet-rs:ProcessGasBaseline rdfs:label "Línea base de gas de proceso"@es ; skos:prefLabel "Gas de proceso"@es .
+comet-rs:EnergyRecoveryCredit rdfs:label "Crédito de recuperación de energía"@es ; skos:prefLabel "Recuperación de energía"@es .
+comet-rs:CCUSCredit rdfs:label "Crédito de captura-utilización-almacenamiento de carbono"@es ; skos:prefLabel "Crédito CCUS"@es .
+
+# ─── L5 EAC ────
+comet-rs:CoreSiteCertification rdfs:label "Certificación de sitio núcleo"@es ; skos:prefLabel "Certificación de sitio"@es .
+comet-rs:SteelCertification rdfs:label "Certificación de acero"@es ; skos:prefLabel "Certificación"@es .
+comet-rs:DecarbProgressLevel rdfs:label "Nivel de progreso descarbonización"@es ; skos:prefLabel "Nivel descarbonización"@es ; skos:altLabel "DPL"@es .
+comet-rs:SourcingProgressLevel rdfs:label "Nivel de progreso abastecimiento"@es ; skos:prefLabel "Nivel abastecimiento"@es ; skos:altLabel "SPL"@es .
+comet-rs:CertifiedSteelMark rdfs:label "Marca de acero certificada"@es ; skos:prefLabel "Marca"@es .
+comet-rs:CoCTransferEvent rdfs:label "Evento de transferencia de cadena de custodia"@es ; skos:prefLabel "Transferencia CoC"@es .
+comet-rs:CoCClaim rdfs:label "Reclamación de cadena de custodia"@es ; skos:prefLabel "Reclamación CoC"@es .
+
+# ─── L6 Verification ────
+comet-rs:CertificationAudit rdfs:label "Auditoría de certificación"@es ; skos:prefLabel "Auditoría"@es .
+comet-rs:AssurancePanelReview rdfs:label "Revisión del comité de aseguramiento"@es ; skos:prefLabel "Revisión de comité"@es .
+comet-rs:NonConformity rdfs:label "No conformidad"@es ; skos:prefLabel "Desviación"@es .
+comet-rs:PrincipleConformity rdfs:label "Conformidad de principios"@es ; skos:prefLabel "Conformidad"@es .
+comet-rs:TransitionPlanReview rdfs:label "Revisión de plan de transición"@es ; skos:prefLabel "Revisión de transición"@es .
+comet-rs:AmbitionGapAnalysis rdfs:label "Análisis de brecha de ambición"@es ; skos:prefLabel "Análisis de brecha"@es .
+
+# ─── L7 Market ────
+comet-rs:ProgressLevelPricing rdfs:label "Precios por nivel de progreso"@es ; skos:prefLabel "Precio por nivel"@es .
+comet-rs:GreenSteelPremium rdfs:label "Prima acero verde"@es ; skos:prefLabel "Prima"@es .
+
+# ─── RS Principles ────
+comet-rs:P01_CorporateLeadership rdfs:label "P1 — Liderazgo corporativo"@es .
+comet-rs:P02_ESGManagementSystems rdfs:label "P2 — Sistemas de gestión ESG"@es .
+comet-rs:P03_StakeholderEngagement rdfs:label "P3 — Participación de partes interesadas"@es .
+comet-rs:P04_EnvironmentalManagement rdfs:label "P4 — Gestión ambiental"@es .
+comet-rs:P05_GHGEmissionsReduction rdfs:label "P5 — Reducción de emisiones de gases de efecto invernadero"@es .
+comet-rs:P06_ClimateChangeAdaptation rdfs:label "P6 — Adaptación al cambio climático"@es .
+comet-rs:P07_WaterSecurity rdfs:label "P7 — Seguridad del agua"@es .
+comet-rs:P08_AirQuality rdfs:label "P8 — Calidad del aire"@es .
+comet-rs:P09_WasteStewardship rdfs:label "P9 — Gestión de residuos"@es .
+comet-rs:P10_HumanRights rdfs:label "P10 — Derechos humanos"@es .
+comet-rs:P11_LaborPractices rdfs:label "P11 — Prácticas laborales"@es .
+comet-rs:P12_SafetyOccupational rdfs:label "P12 — Seguridad y salud ocupacional"@es .
+comet-rs:P13_CommunityImpact rdfs:label "P13 — Impacto en la comunidad"@es .

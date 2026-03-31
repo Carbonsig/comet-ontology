@@ -1,0 +1,20 @@
+# CQ06: List all non-conformities by severity
+# Competency Question: Show all audit non-conformities grouped and sorted by severity level
+
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX comet-rs: <https://comet.carbon/ext/responsiblesteel#>
+
+SELECT ?severity ?principle ?findingDescription ?relatedSite ?remediationDeadline ?status
+WHERE {
+  ?nc rdf:type comet-rs:NonConformity ;
+      comet-rs:severity ?severity ;
+      comet-rs:relatedPrinciple ?principle ;
+      comet-rs:findingDescription ?findingDescription ;
+      comet-rs:assignedRemediationDeadline ?remediationDeadline ;
+      comet-rs:remediationStatus ?status .
+
+  ?audit comet-rs:hasNonConformity ?nc ;
+         comet-rs:auditedSite ?relatedSite .
+}
+ORDER BY ?severity ?principle ?relatedSite

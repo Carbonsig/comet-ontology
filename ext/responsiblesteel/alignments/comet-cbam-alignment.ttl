@@ -1,0 +1,129 @@
+@prefix comet-rs: <https://ontology.materialintelligence.ai/comet/responsiblesteel/> .
+@prefix cbam: <https://ontology.materialintelligence.ai/cbam/> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix dcat: <http://www.w3.org/ns/dcat#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix hs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+<https://ontology.materialintelligence.ai/alignments/comet-cbam>
+    a owl:Ontology ;
+    dcterms:title "COMET RS to EU CBAM Alignment"@en ;
+    dcterms:description "Semantic alignment between COMET Responsible Steel ontology and EU Carbon Border Adjustment Mechanism (CBAM) regulation for embedded emissions reporting."@en ;
+    dcterms:issued "2026-03-30"^^<http://www.w3.org/2001/XMLSchema#date> ;
+    dcterms:modified "2026-03-30"^^<http://www.w3.org/2001/XMLSchema#date> ;
+    owl:versionInfo "1.0.0" ;
+    dcat:keyword "COMET", "CBAM", "carbon border adjustment", "embedded emissions", "EU regulation" ;
+    dcterms:source "RS Production Standard V2.1.1", "EU CBAM Regulation (EU) 2023/956", "CBAM Delegated Regulation (EU) 2023/1773" .
+
+# Core GHG Intensity Alignment
+comet-rs:CrudeSteelIntensity
+    skos:closeMatch cbam:SpecificEmbeddedEmissions ;
+    skos:note "Both quantify greenhouse gas emissions per unit of product, central to CBAM reporting obligations."@en ;
+    rdfs:comment "CrudeSteelIntensity (kg CO2-eq/tonne crude steel) directly maps to CBAM SpecificEmbeddedEmissions (kg CO2-eq/unit iron/steel product). The primary measure for CBAM compliance."@en ;
+    skos:relatedMatch cbam:EmbeddedEmissionsIntensity ;
+    skos:definition "The carbon intensity metric required for CBAM reporting of iron and steel products."@en .
+
+comet-rs:ghgIntensityValue
+    skos:closeMatch cbam:SpecificEmbeddedEmissions ;
+    skos:note "Numerical GHG intensity value must be reported in CBAM returns."@en ;
+    rdfs:comment "The actual emissions intensity value (number + unit) that feeds into CBAM obligation calculations."@en .
+
+# Process Route to CN Code Mapping (Harmonized System)
+comet-rs:BF_BOF
+    skos:related cbam:CN7206 ;
+    rdfs:comment "Blast Furnace - Basic Oxygen Furnace process route typically produces flat/coated steel products classified under CN code 7206 (Iron in non-alloy steel form) or downstream processing codes 7208-7226 depending on final product form."@en ;
+    skos:note "BF-BOF is the most common primary route for CBAM-relevant iron/steel products. Products require CN code classification for CBAM tariff purposes."@en .
+
+comet-rs:EAF
+    skos:related cbam:CN7207 ;
+    rdfs:related cbam:CN7213 ;
+    rdfs:comment "Electric Arc Furnace process route produces alloy and stainless steel products. CN codes include 7207 (Steel in ingots or forms) and secondary processing codes depending on final product (7213+ for bars, wire, etc)."@en ;
+    skos:note "EAF products eligible for CBAM reporting. CN code assignment depends on product form and alloy content."@en .
+
+comet-rs:HBI_EAF
+    skos:related cbam:CN7207 ;
+    rdfs:related cbam:CN7208 ;
+    rdfs:comment "Hot Briquetted Iron - Electric Arc Furnace emerging route produces direct reduction steel. CN codes depend on whether HBI is directly reduced iron (CN 7208) or if further processed into ingots (CN 7207)."@en ;
+    skos:note "Growing CBAM relevance as decarbonisation technology matures and market uptake increases."@en .
+
+# CN Code Groupings for CBAM Iron and Steel Products
+cbam:IronAndSteelProducts
+    rdfs:comment "CBAM Annex I product scope includes key iron and steel product CN codes."@en ;
+    skos:member cbam:CN7206 ;
+    skos:member cbam:CN7207 ;
+    skos:member cbam:CN7208 ;
+    skos:member cbam:CN7210 ;
+    skos:member cbam:CN7211 ;
+    skos:member cbam:CN7212 ;
+    skos:member cbam:CN7213 ;
+    skos:member cbam:CN7214 ;
+    skos:member cbam:CN7215 ;
+    skos:member cbam:CN7216 ;
+    skos:member cbam:CN7217 ;
+    skos:member cbam:CN7218 ;
+    skos:member cbam:CN7219 ;
+    skos:member cbam:CN7220 ;
+    skos:member cbam:CN7221 ;
+    skos:member cbam:CN7222 ;
+    skos:member cbam:CN7223 ;
+    skos:member cbam:CN7224 ;
+    skos:member cbam:CN7225 ;
+    skos:member cbam:CN7226 .
+
+# Scope Mapping for CBAM
+comet-rs:Scope1Emissions
+    skos:related cbam:EmbeddedEmissionsScope1 ;
+    rdfs:comment "Direct emissions from production facility (combustion in furnaces, reactors)."@en ;
+    skos:note "CBAM requires Scope 1 emissions from domestic production for comparison with imported product embedded emissions."@en .
+
+comet-rs:Scope2Emissions
+    skos:related cbam:EmbeddedEmissionsScope2 ;
+    rdfs:comment "Indirect emissions from purchased electricity and steam."@en ;
+    skos:note "CBAM assigns default values for electricity-intensive steps. Actual emissions depend on grid carbon intensity."@en .
+
+comet-rs:Scope3UpstreamEmissions
+    skos:related cbam:EmbeddedEmissionsScope3Upstream ;
+    rdfs:comment "Upstream Scope 3 emissions from raw material extraction and logistics (not typically included in basic CBAM calculation but relevant for full LCA context)."@en ;
+    skos:note "CBAM transitional phase focuses on direct production emissions. Future phases may expand to include supply chain scope."@en .
+
+# Certification and Data Quality
+comet-rs:CertifiedSite
+    skos:related cbam:ApprovedReporterEntity ;
+    rdfs:comment "Certified production sites under RS standard can serve as basis for CBAM reporting by importers in EU."@en ;
+    skos:note "CBAM requires documented, verifiable data. RS certification provides third-party assurance of data quality."@en .
+
+comet-rs:IndependentAudit
+    skos:related cbam:DataQualityAssurance ;
+    rdfs:comment "Independent audits of emissions data strengthen credibility under both RS and CBAM frameworks."@en .
+
+# Reporting Obligations Alignment
+comet-rs:AnnualEmissionsReport
+    skos:related cbam:CBAMQuarterlyReturn ;
+    rdfs:comment "COMET RS annual reporting aligns with CBAM's quarterly reporting cycle for tracking embedded emissions."@en ;
+    skos:note "CBAM reporting is more frequent (quarterly) while RS is annual. Transitional CBAM phase (2023-2025) requires quarterly returns of free allocation data."@en .
+
+# Unit and Scope Declarations
+comet-rs:kgCO2eqPerTonne
+    skos:broadMatch cbam:EmissionsIntensityUnit ;
+    rdfs:comment "Standard unit for iron/steel intensity across both frameworks."@en ;
+    owl:equivalentClass <http://qudt.org/vocab/UNIT/KiloGM-PER-TON> ;
+    skos:note "Both COMET and CBAM use kg CO2-eq per tonne of product as primary intensity metric."@en .
+
+# Transitional Rules
+cbam:TransitionalPhase
+    rdfs:comment "CBAM transitional phase (01 October 2023 - 31 December 2025) requires data collection with voluntary reporting. Compliance timeline aligns with RS standard evolution."@en ;
+    skos:note "Importers reporting embedded emissions of imported goods can reference RS-certified facilities to substantiate CBAM declarations."@en .
+
+# Risk Mitigation and Carbon Leakage Prevention
+comet-rs:CarbonLeakageRisk
+    skos:related cbam:CarbonLeakageAdjustment ;
+    rdfs:comment "Both frameworks address risk that climate regulations drive production to less-regulated jurisdictions."@en ;
+    skos:note "RS standard supports competitiveness through certification; CBAM uses price mechanism (tariff) to level playing field."@en .
+
+# Methodological Alignment Notes
+<https://ontology.materialintelligence.ai/alignments/comet-cbam-methodology>
+    a owl:Class ;
+    rdfs:comment "Alignment rationale: COMET RS provides robust methodology for emissions quantification at facility level with third-party certification. CBAM relies on importer-declared embedded emissions with reference values. RS-certified data increases CBAM reporting credibility and reduces compliance risk for importers."@en ;
+    rdfs:label "Key Alignment Consideration"@en .
