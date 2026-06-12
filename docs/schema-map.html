@@ -520,6 +520,15 @@
   renderStack('', '');
   applyTable();
   applyAlign();
+
+  // Deep-link: #graph | #schema | #lookup | #align opens that tab.
+  function openHashTab() {
+    const h = (location.hash || '').replace('#', '');
+    const tab = h && $(`.tab[data-panel="${h}"]`);
+    if (tab) tab.click();
+  }
+  window.addEventListener('hashchange', openHashTab);
+  openHashTab();
 })();
 </script>
 </body>

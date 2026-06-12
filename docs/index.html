@@ -629,6 +629,60 @@
       color: #4a4a45;
     }
 
+    /* ─── EXPLORE ON-RAMP ───────────────────────────────────────── */
+
+    #explore { background: var(--bg-mid); color: #e8e6e0; }
+    #explore .section-label { color: var(--accent-light); }
+    #explore .section-title { color: #f3f1ec; }
+    #explore .section-rule { border-color: var(--border-dark); }
+    .plainspeak {
+      font-size: 1.0625rem;
+      line-height: 1.75;
+      color: #cfcdc6;
+      max-width: 60ch;
+      margin-bottom: 0.9rem;
+    }
+    .plainspeak strong { color: #fff; }
+    .plain-analogy {
+      border-left: 3px solid var(--accent);
+      padding: 0.4rem 0 0.4rem 1.1rem;
+      margin: 1.4rem 0 2rem;
+      font-size: 1rem;
+      color: #b8b6b0;
+      max-width: 60ch;
+    }
+    .num-strip {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 1px;
+      background: var(--border-dark);
+      border: 1px solid var(--border-dark);
+      margin: 2rem 0;
+    }
+    @media (max-width: 760px) { .num-strip { grid-template-columns: repeat(3, 1fr); } }
+    @media (max-width: 420px) { .num-strip { grid-template-columns: repeat(2, 1fr); } }
+    .num-cell { background: var(--bg-dark); padding: 1.1rem 1rem; }
+    .num-cell .n {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.8rem, 4vw, 2.6rem);
+      font-weight: 700; line-height: 1; color: var(--accent-light);
+    }
+    .num-cell .l {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.6rem; letter-spacing: 0.1em; text-transform: uppercase;
+      color: #8a8a84; margin-top: 0.45rem;
+    }
+    .explore-cta { display: flex; flex-wrap: wrap; gap: 0.9rem; margin-top: 1.75rem; }
+    .btn-primary, .btn-ghost {
+      font-family: 'DM Mono', monospace; font-size: 0.8rem; font-weight: 500;
+      letter-spacing: 0.06em; text-transform: uppercase; text-decoration: none;
+      padding: 0.95rem 1.6rem; display: inline-block; transition: background 0.18s, border-color 0.18s;
+    }
+    .btn-primary { background: var(--accent); color: #fff; }
+    .btn-primary:hover { background: var(--accent-light); }
+    .btn-ghost { background: transparent; color: #e8e6e0; border: 1px solid var(--border-dark); }
+    .btn-ghost:hover { border-color: var(--accent-light); color: #fff; }
+
     /* ─── UTILITY ───────────────────────────────────────────────── */
 
     .visually-hidden {
@@ -661,6 +715,39 @@
       </div>
     </div>
   </header>
+
+  <!-- EXPLORE / START HERE -->
+  <section id="explore" aria-labelledby="explore-title">
+    <div class="section-inner">
+      <p class="section-label">Start Here</p>
+      <h2 class="section-title" id="explore-title">New to COMET? Here's the whole thing, in plain language.</h2>
+      <hr class="section-rule" aria-hidden="true">
+      <p class="plainspeak">
+        An <strong>ontology</strong> is just a shared dictionary &mdash; an agreed list of terms and how they relate. COMET is that dictionary for <strong>carbon data</strong>. Right now, &ldquo;one tonne of CO&#8322;&rdquo; on one platform doesn't line up with the same words on another: different units, boundaries, methods, and emission-factor vintages. COMET defines every term <strong>once</strong>, so a footprint, a certificate, or a customs declaration means the same thing everywhere.
+      </p>
+      <p class="plain-analogy">
+        Think of it like the metric system, but for carbon: shared units and definitions everyone can build on &mdash; so data becomes comparable, verifiable, and tradeable across industries and borders.
+      </p>
+      <p class="plainspeak">
+        Below is the <strong>entire dictionary</strong> &mdash; every class, property, value, and standards mapping. Explore it as an interactive map, sort and search the full lookup, or download the whole thing as a spreadsheet.
+      </p>
+
+      <div class="num-strip" role="list" aria-label="Ontology by the numbers">
+        <div class="num-cell" role="listitem"><div class="n">904</div><div class="l">Terms</div></div>
+        <div class="num-cell" role="listitem"><div class="n">109</div><div class="l">Classes</div></div>
+        <div class="num-cell" role="listitem"><div class="n">114</div><div class="l">Properties</div></div>
+        <div class="num-cell" role="listitem"><div class="n">7</div><div class="l">Layers</div></div>
+        <div class="num-cell" role="listitem"><div class="n">242</div><div class="l">Standards Maps</div></div>
+        <div class="num-cell" role="listitem"><div class="n">649</div><div class="l">CAD Trust Fields</div></div>
+      </div>
+
+      <div class="explore-cta">
+        <a class="btn-primary" href="schema-map.html">Explore the Interactive Schema Map &rarr;</a>
+        <a class="btn-ghost" href="schema-map.html#lookup">Search &amp; sort all 904 terms</a>
+        <a class="btn-ghost" href="comet-ontology-values.xlsx" download>&#8595; Download everything (Excel&nbsp;.xlsx)</a>
+      </div>
+    </div>
+  </section>
 
   <!-- THE PROBLEM -->
   <section id="problem">
