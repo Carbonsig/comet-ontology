@@ -8,6 +8,14 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ### Added
 
+**Schema Map, Interactive Ontology & Value Lookup** (`docs/schema-map.html`)
+- New single-source-of-truth extractor `tools/scripts/build-ontology-map.py` that reads **every** place a COMET term is defined — the seven-layer core vocabulary tables in `docs/glossary.html`, the OWL/SHACL extension modules (`comet-rs`, `comet-cn`), the incorporated CAD Trust v2.0.2 Data Dictionary (`docs/CAD-Trust-Data-Dictionary-v2.0.2.xlsx`), the three JSON Schemas, `comet-context.jsonld` and the alignment crosswalks — and normalises them into one 904-term table plus a node/edge graph
+- New interactive page `docs/schema-map.html` with four views: (1) an interactive Cytoscape force-directed **ontology graph** (456 relational nodes, 267 edges incl. synthesised `partOf` property→class links) with namespace legend toggles, layout switching, search-to-isolate and per-node info cards; (2) a layered **schema map** of the COMET seven-layer stack + CAD Trust band with clickable term chips; (3) a sortable, searchable, filterable **value lookup** of all 904 terms (109 classes, 114 properties, 649 CAD Trust fields/picklist values, 32 individuals); (4) a sortable **alignments** crosswalk of 242 standards mappings (ISO 14068/14067, EU CBAM, EU ESRS, GHG Protocol, WBCSD PACT, UN SDG, CAD Trust, schema.org, QUDT, W3C PROV)
+- New generated artifacts: `docs/comet-ontology-values.xlsx` (5-sheet workbook — Summary, Terms, Namespaces, Alignments, Schema Fields, with frozen panes + autofilter for in-Excel sorting), `docs/ontology-data.json` and `docs/ontology-data.js` (consolidated graph payload; the `.js` wrapper lets the page run from `file://`)
+- The build canonicalises the two divergent `comet-rs` base IRIs so alignment edges connect to their defined term nodes, synthesises stub nodes for referenced-but-upstream COMET core terms and external standard targets, and keeps the flat 649-row CAD Trust dictionary in the table/XLSX (out of the relational graph) so the graph stays readable across the full stack
+- Index page (`docs/index.html`) links to the new Schema Map
+- `tools/requirements.txt` adds `rdflib` and `openpyxl`
+
 **ISO 14068-1:2023 Carbon Neutrality Extension** (`comet-ext:iso14068`, prefix `comet-cn:`)
 - New extension module aligning ISO 14068-1:2023 *Climate change management — Transition to net zero — Part 1: Carbon neutrality* with the COMET seven-layer stack
 - 18 `owl:equivalentClass` bridges from ISO 14068 terms to existing COMET classes (carbon footprint, direct/indirect emissions, GHG removals, sources, sinks, GWP, CO2e, organizational + system boundaries, carbon credits, crediting programmes, registries, organization, product, stakeholder, top management, value chain)
