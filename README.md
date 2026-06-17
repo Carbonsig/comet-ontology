@@ -28,6 +28,29 @@ COMET is organised as a seven-layer stack:
 | L6 | Verification & Assurance | Third-party audits, chain-of-custody proofs |
 | L7 | Market Signals | Carbon premiums, CBAM tariffs, EAC prices |
 
+## Use Cases & Wins
+
+COMET v0.3.0 makes a full carbon **verification engagement** machine-readable
+end-to-end — from raw activity data to the verifier's signed opinion — across
+the standards driving the ~$20B/yr (2025) carbon verification market. Concrete
+wins enabled by the v0.3.0 release:
+
+| # | Use case | What COMET now does | Standards exercised |
+|---|----------|---------------------|---------------------|
+| 1 | **Corporate inventory → disclosure** | Ingest a GHG Protocol / ESRS inventory (JSON or CSV) and emit Scope 1/2/3 (by category 1–15), base-year and intensity aggregates as one COMET document. `comet convert --from ghg-protocol` | GHG Protocol, CSRD/ESRS E1, ISSB S2, ISO 14064-1 |
+| 2 | **Verifier-in-the-loop** | Model the complete verification deliverable: opinion type (unqualified/qualified/adverse/disclaimer), materiality threshold, findings log, corrective-action requests with severity & lifecycle, accreditation body, site-visit record, independence declaration | ISO 14064-3, ISAE 3410, ISO 14065 |
+| 3 | **Clean-hydrogen tax credit** | Convert an IRA 45V attestation into COMET with the four statutory 26 USC 45V(b) credit tiers computed from 45VH2-GREET lifecycle carbon intensity, including USD/kg and estimated-credit value. `comet convert --from 45v` | IRA 45V |
+| 4 | **Border-carbon exposure** | Carry CBAM embedded emissions + shadow-tariff signal alongside the product footprint, so import exposure is computed from the same graph as the PCF | EU CBAM, ISO 14067 |
+| 5 | **Aviation offsetting** | Tag emission units as CORSIA-eligible with phase/vintage eligibility windows | ICAO CORSIA |
+| 6 | **Credit provenance & integrity** | Validate credit records (Verra VCS / Gold Standard) with validation + verification metadata and corrective-action history wired in | Verra VCS, Gold Standard, Article 6 |
+
+Every new term ships with **SHACL shapes** (validated with `pyshacl`) and a place
+in the JSON Schemas, so instance data can be machine-checked, and a regenerated
+[interactive Schema Map](https://nickgogerty.github.io/comet-ontology/schema-map.html)
++ [glossary](https://nickgogerty.github.io/comet-ontology/glossary.html) keep the
+141 core terms and 293 standards-alignment crosswalks browsable. See
+[CHANGELOG.md](CHANGELOG.md) for the full v0.3.0 entry.
+
 ## Documentation
 
 - [Microsite](https://nickgogerty.github.io/comet-ontology/) — Project overview and documentation hub
@@ -45,8 +68,11 @@ provides the ontological infrastructure to make it interoperable.
 
 ## Standards Alignment
 
-ISO 14067, PACT v3, EU CBAM, GHG Protocol, EN 15804, IRA 45V,
-ResponsibleSteel, ASI.
+ISO 14064-1/-3, ISO 14065, ISO 14067, ISO 14068-1, PACT v3, EU CBAM,
+CSRD/ESRS E1, ISSB S2, GHG Protocol (Scope 1/2/3), EN 15804, ISAE 3410/3000,
+IRA 45V, ICAO CORSIA, SBTi, Verra VCS, Gold Standard, Article 6, CAD Trust,
+ResponsibleSteel, ASI — 293 term-level crosswalks (see the
+[alignments view](https://nickgogerty.github.io/comet-ontology/schema-map.html)).
 
 ## License
 

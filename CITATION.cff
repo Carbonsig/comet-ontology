@@ -28,8 +28,8 @@ identifiers:
     value: "10.5281/zenodo.0000000"
     description: "COMET 0.2.0 Zenodo Archive"
 
-version: 0.2.0
-date-released: 2026-03-30
+version: 0.3.0
+date-released: 2026-06-17
 
 contact:
   - family-names: Gogerty
@@ -114,9 +114,9 @@ preferred-citation:
   title: "COMET: Carbon Ontology for Materials and Emissions Tracking"
   type: software
   year: 2026
-  version: 0.2.0
+  version: 0.3.0
   url: "https://comet.carbon"
-  date-released: 2026-03-30
+  date-released: 2026-06-17
   repository-code: "https://github.com/comet-ontology/comet"
   doi: "10.5281/zenodo.0000000"
 

@@ -16,7 +16,7 @@ window.COMET_ONTOLOGY = {
       "layer": "L4 · PCF",
       "color": "#1a6b3c",
       "graph_default": true,
-      "term_count": 23
+      "term_count": 26
     },
     {
       "prefix": "comet-eac",
@@ -24,7 +24,7 @@ window.COMET_ONTOLOGY = {
       "layer": "L5 · EAC",
       "color": "#9a7c2f",
       "graph_default": true,
-      "term_count": 23
+      "term_count": 25
     },
     {
       "prefix": "comet-ver",
@@ -32,7 +32,7 @@ window.COMET_ONTOLOGY = {
       "layer": "L6 · Verification",
       "color": "#1a5f6b",
       "graph_default": true,
-      "term_count": 15
+      "term_count": 33
     },
     {
       "prefix": "comet-mkt",
@@ -40,7 +40,7 @@ window.COMET_ONTOLOGY = {
       "layer": "L7 · Market",
       "color": "#7a2f6b",
       "graph_default": true,
-      "term_count": 8
+      "term_count": 10
     },
     {
       "prefix": "comet-sc",
@@ -48,7 +48,7 @@ window.COMET_ONTOLOGY = {
       "layer": "L3 · Supply Chain",
       "color": "#6b4a1a",
       "graph_default": true,
-      "term_count": 12
+      "term_count": 20
     },
     {
       "prefix": "comet-ef",
@@ -12744,6 +12744,25 @@ window.COMET_ONTOLOGY = {
       "languages": []
     },
     {
+      "iri": "comet-eac:CORSIAEligibleUnit",
+      "curie": "comet-eac:CORSIAEligibleUnit",
+      "prefix": "comet-eac",
+      "local": "CORSIAEligibleUnit",
+      "label": "CORSIAEligibleUnit",
+      "kind": "Class",
+      "namespace": "Environmental Attribute Certificate",
+      "layer": "L5 · EAC",
+      "datatype": "",
+      "definition": "Emission unit designated CORSIA-eligible by the ICAO Technical Advisory Body",
+      "source": "glossary+ttl",
+      "languages": [
+        "en"
+      ],
+      "subClassOf": [],
+      "domain": [],
+      "range": []
+    },
+    {
       "iri": "comet-eac:EAC",
       "curie": "comet-eac:EAC",
       "prefix": "comet-eac",
@@ -12839,6 +12858,23 @@ window.COMET_ONTOLOGY = {
       "layer": "L5 · EAC",
       "datatype": "String",
       "definition": "Registry name",
+      "source": "glossary",
+      "subClassOf": [],
+      "domain": [],
+      "range": [],
+      "languages": []
+    },
+    {
+      "iri": "comet-eac:CORSIAEligibleUnit.eligiblePeriod",
+      "curie": "comet-eac:CORSIAEligibleUnit.eligiblePeriod",
+      "prefix": "comet-eac",
+      "local": "CORSIAEligibleUnit.eligiblePeriod",
+      "label": "eligiblePeriod",
+      "kind": "Property",
+      "namespace": "Environmental Attribute Certificate",
+      "layer": "L5 · EAC",
+      "datatype": "String",
+      "definition": "CORSIA phase / vintage eligibility window for the unit",
       "source": "glossary",
       "subClassOf": [],
       "domain": [],
@@ -13271,6 +13307,25 @@ window.COMET_ONTOLOGY = {
       "languages": []
     },
     {
+      "iri": "comet-mkt:CleanHydrogenCreditTier",
+      "curie": "comet-mkt:CleanHydrogenCreditTier",
+      "prefix": "comet-mkt",
+      "local": "CleanHydrogenCreditTier",
+      "label": "CleanHydrogenCreditTier",
+      "kind": "Class",
+      "namespace": "Market",
+      "layer": "L7 · Market",
+      "datatype": "Enum",
+      "definition": "IRA 45V production tax credit tier ($0.60–$3.00/kg H2) keyed to lifecycle carbon intensity. (Local name avoids a leading digit so it remains a valid CURIE/NCName; alt-label \"45V Credit Tier\".)",
+      "source": "glossary+ttl",
+      "languages": [
+        "en"
+      ],
+      "subClassOf": [],
+      "domain": [],
+      "range": []
+    },
+    {
       "iri": "comet-mkt:EACSpotPrice",
       "curie": "comet-mkt:EACSpotPrice",
       "prefix": "comet-mkt",
@@ -13373,6 +13428,23 @@ window.COMET_ONTOLOGY = {
       "languages": []
     },
     {
+      "iri": "comet-mkt:CleanHydrogenCreditTier.creditValue",
+      "curie": "comet-mkt:CleanHydrogenCreditTier.creditValue",
+      "prefix": "comet-mkt",
+      "local": "CleanHydrogenCreditTier.creditValue",
+      "label": "creditValue",
+      "kind": "Property",
+      "namespace": "Market",
+      "layer": "L7 · Market",
+      "datatype": "USD/kgH2",
+      "definition": "Credit value in USD per kg of qualified clean hydrogen",
+      "source": "glossary",
+      "subClassOf": [],
+      "domain": [],
+      "range": [],
+      "languages": []
+    },
+    {
       "iri": "comet-pcf:AllocationMethod",
       "curie": "comet-pcf:AllocationMethod",
       "prefix": "comet-pcf",
@@ -13405,6 +13477,25 @@ window.COMET_ONTOLOGY = {
       "domain": [],
       "range": [],
       "languages": []
+    },
+    {
+      "iri": "comet-pcf:CarbonIntensity",
+      "curie": "comet-pcf:CarbonIntensity",
+      "prefix": "comet-pcf",
+      "local": "CarbonIntensity",
+      "label": "CarbonIntensity",
+      "kind": "Class",
+      "namespace": "Product Carbon Footprint",
+      "layer": "L4 · PCF",
+      "datatype": "Decimal",
+      "definition": "Product-level lifecycle carbon intensity (kgCO2e per kg or MJ of product)",
+      "source": "glossary+ttl",
+      "languages": [
+        "en"
+      ],
+      "subClassOf": [],
+      "domain": [],
+      "range": []
     },
     {
       "iri": "comet-pcf:CBAMDeclaration",
@@ -13560,6 +13651,25 @@ window.COMET_ONTOLOGY = {
       "languages": []
     },
     {
+      "iri": "comet-pcf:UncertaintyAssessment",
+      "curie": "comet-pcf:UncertaintyAssessment",
+      "prefix": "comet-pcf",
+      "local": "UncertaintyAssessment",
+      "label": "UncertaintyAssessment",
+      "kind": "Class",
+      "namespace": "Product Carbon Footprint",
+      "layer": "L4 · PCF",
+      "datatype": "",
+      "definition": "Quantified uncertainty range on the PCF or GHG result",
+      "source": "glossary+ttl",
+      "languages": [
+        "en"
+      ],
+      "subClassOf": [],
+      "domain": [],
+      "range": []
+    },
+    {
       "iri": "comet-pcf:BiogenicCarbon.biogenicCarbonContent",
       "curie": "comet-pcf:BiogenicCarbon.biogenicCarbonContent",
       "prefix": "comet-pcf",
@@ -13604,6 +13714,23 @@ window.COMET_ONTOLOGY = {
       "layer": "L4 · PCF",
       "datatype": "Decimal",
       "definition": "Direct land use change",
+      "source": "glossary",
+      "subClassOf": [],
+      "domain": [],
+      "range": [],
+      "languages": []
+    },
+    {
+      "iri": "comet-pcf:CarbonIntensity.functionalBasis",
+      "curie": "comet-pcf:CarbonIntensity.functionalBasis",
+      "prefix": "comet-pcf",
+      "local": "CarbonIntensity.functionalBasis",
+      "label": "functionalBasis",
+      "kind": "Property",
+      "namespace": "Product Carbon Footprint",
+      "layer": "L4 · PCF",
+      "datatype": "Enum",
+      "definition": "Functional basis for the intensity (per kg, per MJ, per unit product)",
       "source": "glossary",
       "subClassOf": [],
       "domain": [],
@@ -16015,6 +16142,25 @@ window.COMET_ONTOLOGY = {
       "languages": []
     },
     {
+      "iri": "comet-sc:BaseYearEmissions",
+      "curie": "comet-sc:BaseYearEmissions",
+      "prefix": "comet-sc",
+      "local": "BaseYearEmissions",
+      "label": "BaseYearEmissions",
+      "kind": "Class",
+      "namespace": "Supply Chain",
+      "layer": "L3 · Supply Chain",
+      "datatype": "Decimal",
+      "definition": "Base-year inventory used for target-setting and recalculation",
+      "source": "glossary+ttl",
+      "languages": [
+        "en"
+      ],
+      "subClassOf": [],
+      "domain": [],
+      "range": []
+    },
+    {
       "iri": "comet-sc:DataQualityIndicator",
       "curie": "comet-sc:DataQualityIndicator",
       "prefix": "comet-sc",
@@ -16030,6 +16176,25 @@ window.COMET_ONTOLOGY = {
       "domain": [],
       "range": [],
       "languages": []
+    },
+    {
+      "iri": "comet-sc:EmissionIntensity",
+      "curie": "comet-sc:EmissionIntensity",
+      "prefix": "comet-sc",
+      "local": "EmissionIntensity",
+      "label": "EmissionIntensity",
+      "kind": "Class",
+      "namespace": "Supply Chain",
+      "layer": "L3 · Supply Chain",
+      "datatype": "Decimal",
+      "definition": "Normalised emission intensity metric (tCO2e per unit output or revenue)",
+      "source": "glossary+ttl",
+      "languages": [
+        "en"
+      ],
+      "subClassOf": [],
+      "domain": [],
+      "range": []
     },
     {
       "iri": "comet-sc:PrimaryData",
@@ -16064,6 +16229,82 @@ window.COMET_ONTOLOGY = {
       "domain": [],
       "range": [],
       "languages": []
+    },
+    {
+      "iri": "comet-sc:RecalculationTrigger",
+      "curie": "comet-sc:RecalculationTrigger",
+      "prefix": "comet-sc",
+      "local": "RecalculationTrigger",
+      "label": "RecalculationTrigger",
+      "kind": "Class",
+      "namespace": "Supply Chain",
+      "layer": "L3 · Supply Chain",
+      "datatype": "",
+      "definition": "Criteria and result of a base-year recalculation event (structural change, methodology change)",
+      "source": "glossary+ttl",
+      "languages": [
+        "en"
+      ],
+      "subClassOf": [],
+      "domain": [],
+      "range": []
+    },
+    {
+      "iri": "comet-sc:Scope1Emissions",
+      "curie": "comet-sc:Scope1Emissions",
+      "prefix": "comet-sc",
+      "local": "Scope1Emissions",
+      "label": "Scope1Emissions",
+      "kind": "Class",
+      "namespace": "Supply Chain",
+      "layer": "L3 · Supply Chain",
+      "datatype": "Decimal",
+      "definition": "Aggregate Scope 1 direct emissions for the reporting entity (tCO2e)",
+      "source": "glossary+ttl",
+      "languages": [
+        "en"
+      ],
+      "subClassOf": [],
+      "domain": [],
+      "range": []
+    },
+    {
+      "iri": "comet-sc:Scope2Emissions",
+      "curie": "comet-sc:Scope2Emissions",
+      "prefix": "comet-sc",
+      "local": "Scope2Emissions",
+      "label": "Scope2Emissions",
+      "kind": "Class",
+      "namespace": "Supply Chain",
+      "layer": "L3 · Supply Chain",
+      "datatype": "Decimal",
+      "definition": "Aggregate Scope 2 indirect energy emissions, location-based and market-based (tCO2e)",
+      "source": "glossary+ttl",
+      "languages": [
+        "en"
+      ],
+      "subClassOf": [],
+      "domain": [],
+      "range": []
+    },
+    {
+      "iri": "comet-sc:Scope3Emissions",
+      "curie": "comet-sc:Scope3Emissions",
+      "prefix": "comet-sc",
+      "local": "Scope3Emissions",
+      "label": "Scope3Emissions",
+      "kind": "Class",
+      "namespace": "Supply Chain",
+      "layer": "L3 · Supply Chain",
+      "datatype": "Decimal",
+      "definition": "Aggregate Scope 3 value-chain emissions, reportable by category 1–15 (tCO2e)",
+      "source": "glossary+ttl",
+      "languages": [
+        "en"
+      ],
+      "subClassOf": [],
+      "domain": [],
+      "range": []
     },
     {
       "iri": "comet-sc:SpendProxy",
@@ -16115,6 +16356,29 @@ window.COMET_ONTOLOGY = {
       "domain": [],
       "range": [],
       "languages": []
+    },
+    {
+      "iri": "https://comet.carbon/v1/supplychain#category",
+      "curie": "comet-sc:category",
+      "prefix": "comet-sc",
+      "local": "category",
+      "kind": "DatatypeProperty",
+      "namespace": "Supply Chain",
+      "layer": "L3 · Supply Chain",
+      "source": "ttl",
+      "label": "category",
+      "definition": null,
+      "subClassOf": [],
+      "domain": [
+        "Scope3Emissions"
+      ],
+      "range": [
+        "integer"
+      ],
+      "languages": [
+        "en"
+      ],
+      "datatype": ""
     },
     {
       "iri": "comet-sc:DataQualityIndicator.coverageDQI",
@@ -16202,6 +16466,42 @@ window.COMET_ONTOLOGY = {
       "languages": []
     },
     {
+      "iri": "comet-sc:Scope3Emissions.category",
+      "curie": "comet-sc:Scope3Emissions.category",
+      "prefix": "comet-sc",
+      "local": "Scope3Emissions.category",
+      "label": "category",
+      "kind": "Property",
+      "namespace": "Supply Chain",
+      "layer": "L3 · Supply Chain",
+      "datatype": "Integer (1–15)",
+      "definition": "GHG Protocol Scope 3 category number (1–15)",
+      "source": "glossary",
+      "subClassOf": [],
+      "domain": [],
+      "range": [],
+      "languages": []
+    },
+    {
+      "iri": "comet-ver:AccreditationBody",
+      "curie": "comet-ver:AccreditationBody",
+      "prefix": "comet-ver",
+      "local": "AccreditationBody",
+      "label": "AccreditationBody",
+      "kind": "Class",
+      "namespace": "Verification",
+      "layer": "L6 · Verification",
+      "datatype": "",
+      "definition": "Accreditation body (e.g. DAkkS, UKAS, ANAB) under which the verifier is accredited",
+      "source": "glossary+ttl",
+      "languages": [
+        "en"
+      ],
+      "subClassOf": [],
+      "domain": [],
+      "range": []
+    },
+    {
       "iri": "comet-ver:AssuranceLevel",
       "curie": "comet-ver:AssuranceLevel",
       "prefix": "comet-ver",
@@ -16253,6 +16553,120 @@ window.COMET_ONTOLOGY = {
       "languages": []
     },
     {
+      "iri": "comet-ver:CorrectiveActionRequest",
+      "curie": "comet-ver:CorrectiveActionRequest",
+      "prefix": "comet-ver",
+      "local": "CorrectiveActionRequest",
+      "label": "CorrectiveActionRequest",
+      "kind": "Class",
+      "namespace": "Verification",
+      "layer": "L6 · Verification",
+      "datatype": "",
+      "definition": "Corrective Action Request raised against a finding, with severity and lifecycle status",
+      "source": "glossary+ttl",
+      "languages": [
+        "en"
+      ],
+      "subClassOf": [],
+      "domain": [],
+      "range": []
+    },
+    {
+      "iri": "comet-ver:DataSubstitutionRule",
+      "curie": "comet-ver:DataSubstitutionRule",
+      "prefix": "comet-ver",
+      "local": "DataSubstitutionRule",
+      "label": "DataSubstitutionRule",
+      "kind": "Class",
+      "namespace": "Verification",
+      "layer": "L6 · Verification",
+      "datatype": "",
+      "definition": "Default or substitute data methodology applied when primary data is unavailable",
+      "source": "glossary+ttl",
+      "languages": [
+        "en"
+      ],
+      "subClassOf": [],
+      "domain": [],
+      "range": []
+    },
+    {
+      "iri": "comet-ver:FindingsLog",
+      "curie": "comet-ver:FindingsLog",
+      "prefix": "comet-ver",
+      "local": "FindingsLog",
+      "label": "FindingsLog",
+      "kind": "Class",
+      "namespace": "Verification",
+      "layer": "L6 · Verification",
+      "datatype": "",
+      "definition": "Register of all verification findings (corrected, uncorrected, observations)",
+      "source": "glossary+ttl",
+      "languages": [
+        "en"
+      ],
+      "subClassOf": [],
+      "domain": [],
+      "range": []
+    },
+    {
+      "iri": "comet-ver:IndependenceDeclaration",
+      "curie": "comet-ver:IndependenceDeclaration",
+      "prefix": "comet-ver",
+      "local": "IndependenceDeclaration",
+      "label": "IndependenceDeclaration",
+      "kind": "Class",
+      "namespace": "Verification",
+      "layer": "L6 · Verification",
+      "datatype": "",
+      "definition": "Verifier independence and conflict-of-interest statement",
+      "source": "glossary+ttl",
+      "languages": [
+        "en"
+      ],
+      "subClassOf": [],
+      "domain": [],
+      "range": []
+    },
+    {
+      "iri": "comet-ver:MaterialityThreshold",
+      "curie": "comet-ver:MaterialityThreshold",
+      "prefix": "comet-ver",
+      "local": "MaterialityThreshold",
+      "label": "MaterialityThreshold",
+      "kind": "Class",
+      "namespace": "Verification",
+      "layer": "L6 · Verification",
+      "datatype": "Decimal",
+      "definition": "Materiality threshold (typically 5%) applied to determine whether misstatements are material",
+      "source": "glossary+ttl",
+      "languages": [
+        "en"
+      ],
+      "subClassOf": [],
+      "domain": [],
+      "range": []
+    },
+    {
+      "iri": "comet-ver:OpportunityForImprovement",
+      "curie": "comet-ver:OpportunityForImprovement",
+      "prefix": "comet-ver",
+      "local": "OpportunityForImprovement",
+      "label": "OpportunityForImprovement",
+      "kind": "Class",
+      "namespace": "Verification",
+      "layer": "L6 · Verification",
+      "datatype": "",
+      "definition": "Opportunity for improvement / observation logged during verification (non-binding)",
+      "source": "glossary+ttl",
+      "languages": [
+        "en"
+      ],
+      "subClassOf": [],
+      "domain": [],
+      "range": []
+    },
+    {
       "iri": "comet-ver:QualifiedVerifier",
       "curie": "comet-ver:QualifiedVerifier",
       "prefix": "comet-ver",
@@ -16285,6 +16699,25 @@ window.COMET_ONTOLOGY = {
       "domain": [],
       "range": [],
       "languages": []
+    },
+    {
+      "iri": "comet-ver:SiteVisitRecord",
+      "curie": "comet-ver:SiteVisitRecord",
+      "prefix": "comet-ver",
+      "local": "SiteVisitRecord",
+      "label": "SiteVisitRecord",
+      "kind": "Class",
+      "namespace": "Verification",
+      "layer": "L6 · Verification",
+      "datatype": "",
+      "definition": "Physical or virtual site-visit documentation supporting the verification",
+      "source": "glossary+ttl",
+      "languages": [
+        "en"
+      ],
+      "subClassOf": [],
+      "domain": [],
+      "range": []
     },
     {
       "iri": "comet-ver:ValidationRecord",
@@ -16321,6 +16754,44 @@ window.COMET_ONTOLOGY = {
       "languages": []
     },
     {
+      "iri": "comet-ver:VerificationMethodology",
+      "curie": "comet-ver:VerificationMethodology",
+      "prefix": "comet-ver",
+      "local": "VerificationMethodology",
+      "label": "VerificationMethodology",
+      "kind": "Class",
+      "namespace": "Verification",
+      "layer": "L6 · Verification",
+      "datatype": "",
+      "definition": "Sampling strategy, analytical procedures and evidence-gathering plan for the engagement",
+      "source": "glossary+ttl",
+      "languages": [
+        "en"
+      ],
+      "subClassOf": [],
+      "domain": [],
+      "range": []
+    },
+    {
+      "iri": "comet-ver:VerificationOpinion",
+      "curie": "comet-ver:VerificationOpinion",
+      "prefix": "comet-ver",
+      "local": "VerificationOpinion",
+      "label": "VerificationOpinion",
+      "kind": "Class",
+      "namespace": "Verification",
+      "layer": "L6 · Verification",
+      "datatype": "Enum",
+      "definition": "Formal opinion type issued in the verification statement: unqualified, qualified, adverse, or disclaimer",
+      "source": "glossary+ttl",
+      "languages": [
+        "en"
+      ],
+      "subClassOf": [],
+      "domain": [],
+      "range": []
+    },
+    {
       "iri": "comet-ver:VerificationScope",
       "curie": "comet-ver:VerificationScope",
       "prefix": "comet-ver",
@@ -16338,6 +16809,115 @@ window.COMET_ONTOLOGY = {
       "languages": []
     },
     {
+      "iri": "https://comet.carbon/v1/ver#accreditationNumber",
+      "curie": "comet-ver:accreditationNumber",
+      "prefix": "comet-ver",
+      "local": "accreditationNumber",
+      "kind": "DatatypeProperty",
+      "namespace": "Verification",
+      "layer": "L6 · Verification",
+      "source": "ttl",
+      "label": "accreditationNumber",
+      "definition": null,
+      "subClassOf": [],
+      "domain": [
+        "AccreditationBody"
+      ],
+      "range": [
+        "string"
+      ],
+      "languages": [
+        "en"
+      ],
+      "datatype": ""
+    },
+    {
+      "iri": "https://comet.carbon/v1/ver#dueDate",
+      "curie": "comet-ver:dueDate",
+      "prefix": "comet-ver",
+      "local": "dueDate",
+      "kind": "DatatypeProperty",
+      "namespace": "Verification",
+      "layer": "L6 · Verification",
+      "source": "ttl",
+      "label": "dueDate",
+      "definition": null,
+      "subClassOf": [],
+      "domain": [
+        "CorrectiveActionRequest"
+      ],
+      "range": [
+        "date"
+      ],
+      "languages": [
+        "en"
+      ],
+      "datatype": ""
+    },
+    {
+      "iri": "https://comet.carbon/v1/ver#severity",
+      "curie": "comet-ver:severity",
+      "prefix": "comet-ver",
+      "local": "severity",
+      "kind": "DatatypeProperty",
+      "namespace": "Verification",
+      "layer": "L6 · Verification",
+      "source": "ttl",
+      "label": "severity",
+      "definition": null,
+      "subClassOf": [],
+      "domain": [
+        "CorrectiveActionRequest"
+      ],
+      "range": [
+        "string"
+      ],
+      "languages": [
+        "en"
+      ],
+      "datatype": ""
+    },
+    {
+      "iri": "https://comet.carbon/v1/ver#status",
+      "curie": "comet-ver:status",
+      "prefix": "comet-ver",
+      "local": "status",
+      "kind": "DatatypeProperty",
+      "namespace": "Verification",
+      "layer": "L6 · Verification",
+      "source": "ttl",
+      "label": "status",
+      "definition": null,
+      "subClassOf": [],
+      "domain": [
+        "CorrectiveActionRequest"
+      ],
+      "range": [
+        "string"
+      ],
+      "languages": [
+        "en"
+      ],
+      "datatype": ""
+    },
+    {
+      "iri": "comet-ver:AccreditationBody.accreditationNumber",
+      "curie": "comet-ver:AccreditationBody.accreditationNumber",
+      "prefix": "comet-ver",
+      "local": "AccreditationBody.accreditationNumber",
+      "label": "accreditationNumber",
+      "kind": "Property",
+      "namespace": "Verification",
+      "layer": "L6 · Verification",
+      "datatype": "String",
+      "definition": "Accreditation registration number of the verifier",
+      "source": "glossary",
+      "subClassOf": [],
+      "domain": [],
+      "range": [],
+      "languages": []
+    },
+    {
       "iri": "comet-ver:CADTrustAttestation.cadTrustProjectId",
       "curie": "comet-ver:CADTrustAttestation.cadTrustProjectId",
       "prefix": "comet-ver",
@@ -16348,6 +16928,57 @@ window.COMET_ONTOLOGY = {
       "layer": "L6 · Verification",
       "datatype": "GUID",
       "definition": "CAD Trust project GUID",
+      "source": "glossary",
+      "subClassOf": [],
+      "domain": [],
+      "range": [],
+      "languages": []
+    },
+    {
+      "iri": "comet-ver:CorrectiveActionRequest.dueDate",
+      "curie": "comet-ver:CorrectiveActionRequest.dueDate",
+      "prefix": "comet-ver",
+      "local": "CorrectiveActionRequest.dueDate",
+      "label": "dueDate",
+      "kind": "Property",
+      "namespace": "Verification",
+      "layer": "L6 · Verification",
+      "datatype": "Date",
+      "definition": "Date by which the corrective action is due",
+      "source": "glossary",
+      "subClassOf": [],
+      "domain": [],
+      "range": [],
+      "languages": []
+    },
+    {
+      "iri": "comet-ver:CorrectiveActionRequest.severity",
+      "curie": "comet-ver:CorrectiveActionRequest.severity",
+      "prefix": "comet-ver",
+      "local": "CorrectiveActionRequest.severity",
+      "label": "severity",
+      "kind": "Property",
+      "namespace": "Verification",
+      "layer": "L6 · Verification",
+      "datatype": "Enum",
+      "definition": "Severity of the request (major / minor / observation)",
+      "source": "glossary",
+      "subClassOf": [],
+      "domain": [],
+      "range": [],
+      "languages": []
+    },
+    {
+      "iri": "comet-ver:CorrectiveActionRequest.status",
+      "curie": "comet-ver:CorrectiveActionRequest.status",
+      "prefix": "comet-ver",
+      "local": "CorrectiveActionRequest.status",
+      "label": "status",
+      "kind": "Property",
+      "namespace": "Verification",
+      "layer": "L6 · Verification",
+      "datatype": "Enum",
+      "definition": "Lifecycle status (open / responded / closed)",
       "source": "glossary",
       "subClassOf": [],
       "domain": [],
@@ -17432,6 +18063,18 @@ window.COMET_ONTOLOGY = {
         "defined": true
       },
       {
+        "id": "comet-eac:CORSIAEligibleUnit",
+        "label": "CORSIAEligibleUnit",
+        "curie": "comet-eac:CORSIAEligibleUnit",
+        "kind": "Class",
+        "prefix": "comet-eac",
+        "namespace": "Environmental Attribute Certificate",
+        "layer": "L5 · EAC",
+        "color": "#9a7c2f",
+        "definition": "Emission unit designated CORSIA-eligible by the ICAO Technical Advisory Body",
+        "defined": true
+      },
+      {
         "id": "comet-eac:EAC",
         "label": "EAC",
         "curie": "comet-eac:EAC",
@@ -17501,6 +18144,18 @@ window.COMET_ONTOLOGY = {
         "layer": "L5 · EAC",
         "color": "#9a7c2f",
         "definition": "Registry name",
+        "defined": true
+      },
+      {
+        "id": "comet-eac:CORSIAEligibleUnit.eligiblePeriod",
+        "label": "eligiblePeriod",
+        "curie": "comet-eac:CORSIAEligibleUnit.eligiblePeriod",
+        "kind": "Property",
+        "prefix": "comet-eac",
+        "namespace": "Environmental Attribute Certificate",
+        "layer": "L5 · EAC",
+        "color": "#9a7c2f",
+        "definition": "CORSIA phase / vintage eligibility window for the unit",
         "defined": true
       },
       {
@@ -17804,6 +18459,18 @@ window.COMET_ONTOLOGY = {
         "defined": true
       },
       {
+        "id": "comet-mkt:CleanHydrogenCreditTier",
+        "label": "CleanHydrogenCreditTier",
+        "curie": "comet-mkt:CleanHydrogenCreditTier",
+        "kind": "Class",
+        "prefix": "comet-mkt",
+        "namespace": "Market",
+        "layer": "L7 · Market",
+        "color": "#7a2f6b",
+        "definition": "IRA 45V production tax credit tier ($0.60–$3.00/kg H2) keyed to lifecycle carbon intensity. (Local name avoids a leading digit so it remains a valid CURIE/NCName; alt-label \"45V Credit Tier\".)",
+        "defined": true
+      },
+      {
         "id": "comet-mkt:EACSpotPrice",
         "label": "EACSpotPrice",
         "curie": "comet-mkt:EACSpotPrice",
@@ -17876,6 +18543,18 @@ window.COMET_ONTOLOGY = {
         "defined": true
       },
       {
+        "id": "comet-mkt:CleanHydrogenCreditTier.creditValue",
+        "label": "creditValue",
+        "curie": "comet-mkt:CleanHydrogenCreditTier.creditValue",
+        "kind": "Property",
+        "prefix": "comet-mkt",
+        "namespace": "Market",
+        "layer": "L7 · Market",
+        "color": "#7a2f6b",
+        "definition": "Credit value in USD per kg of qualified clean hydrogen",
+        "defined": true
+      },
+      {
         "id": "comet-pcf:AllocationMethod",
         "label": "AllocationMethod",
         "curie": "comet-pcf:AllocationMethod",
@@ -17897,6 +18576,18 @@ window.COMET_ONTOLOGY = {
         "layer": "L4 · PCF",
         "color": "#1a6b3c",
         "definition": "Biogenic CO2 per ISO 14067 Sec 7.3.5",
+        "defined": true
+      },
+      {
+        "id": "comet-pcf:CarbonIntensity",
+        "label": "CarbonIntensity",
+        "curie": "comet-pcf:CarbonIntensity",
+        "kind": "Class",
+        "prefix": "comet-pcf",
+        "namespace": "Product Carbon Footprint",
+        "layer": "L4 · PCF",
+        "color": "#1a6b3c",
+        "definition": "Product-level lifecycle carbon intensity (kgCO2e per kg or MJ of product)",
         "defined": true
       },
       {
@@ -18008,6 +18699,18 @@ window.COMET_ONTOLOGY = {
         "defined": true
       },
       {
+        "id": "comet-pcf:UncertaintyAssessment",
+        "label": "UncertaintyAssessment",
+        "curie": "comet-pcf:UncertaintyAssessment",
+        "kind": "Class",
+        "prefix": "comet-pcf",
+        "namespace": "Product Carbon Footprint",
+        "layer": "L4 · PCF",
+        "color": "#1a6b3c",
+        "definition": "Quantified uncertainty range on the PCF or GHG result",
+        "defined": true
+      },
+      {
         "id": "comet-pcf:BiogenicCarbon.biogenicCarbonContent",
         "label": "biogenicCarbonContent",
         "curie": "comet-pcf:BiogenicCarbon.biogenicCarbonContent",
@@ -18041,6 +18744,18 @@ window.COMET_ONTOLOGY = {
         "layer": "L4 · PCF",
         "color": "#1a6b3c",
         "definition": "Direct land use change",
+        "defined": true
+      },
+      {
+        "id": "comet-pcf:CarbonIntensity.functionalBasis",
+        "label": "functionalBasis",
+        "curie": "comet-pcf:CarbonIntensity.functionalBasis",
+        "kind": "Property",
+        "prefix": "comet-pcf",
+        "namespace": "Product Carbon Footprint",
+        "layer": "L4 · PCF",
+        "color": "#1a6b3c",
+        "definition": "Functional basis for the intensity (per kg, per MJ, per unit product)",
         "defined": true
       },
       {
@@ -19208,6 +19923,18 @@ window.COMET_ONTOLOGY = {
         "defined": true
       },
       {
+        "id": "comet-sc:BaseYearEmissions",
+        "label": "BaseYearEmissions",
+        "curie": "comet-sc:BaseYearEmissions",
+        "kind": "Class",
+        "prefix": "comet-sc",
+        "namespace": "Supply Chain",
+        "layer": "L3 · Supply Chain",
+        "color": "#6b4a1a",
+        "definition": "Base-year inventory used for target-setting and recalculation",
+        "defined": true
+      },
+      {
         "id": "comet-sc:DataQualityIndicator",
         "label": "DataQualityIndicator",
         "curie": "comet-sc:DataQualityIndicator",
@@ -19217,6 +19944,18 @@ window.COMET_ONTOLOGY = {
         "layer": "L3 · Supply Chain",
         "color": "#6b4a1a",
         "definition": "Five-dimension DQI score",
+        "defined": true
+      },
+      {
+        "id": "comet-sc:EmissionIntensity",
+        "label": "EmissionIntensity",
+        "curie": "comet-sc:EmissionIntensity",
+        "kind": "Class",
+        "prefix": "comet-sc",
+        "namespace": "Supply Chain",
+        "layer": "L3 · Supply Chain",
+        "color": "#6b4a1a",
+        "definition": "Normalised emission intensity metric (tCO2e per unit output or revenue)",
         "defined": true
       },
       {
@@ -19241,6 +19980,54 @@ window.COMET_ONTOLOGY = {
         "layer": "L3 · Supply Chain",
         "color": "#6b4a1a",
         "definition": "Percentage primary vs. secondary data (0–100)",
+        "defined": true
+      },
+      {
+        "id": "comet-sc:RecalculationTrigger",
+        "label": "RecalculationTrigger",
+        "curie": "comet-sc:RecalculationTrigger",
+        "kind": "Class",
+        "prefix": "comet-sc",
+        "namespace": "Supply Chain",
+        "layer": "L3 · Supply Chain",
+        "color": "#6b4a1a",
+        "definition": "Criteria and result of a base-year recalculation event (structural change, methodology change)",
+        "defined": true
+      },
+      {
+        "id": "comet-sc:Scope1Emissions",
+        "label": "Scope1Emissions",
+        "curie": "comet-sc:Scope1Emissions",
+        "kind": "Class",
+        "prefix": "comet-sc",
+        "namespace": "Supply Chain",
+        "layer": "L3 · Supply Chain",
+        "color": "#6b4a1a",
+        "definition": "Aggregate Scope 1 direct emissions for the reporting entity (tCO2e)",
+        "defined": true
+      },
+      {
+        "id": "comet-sc:Scope2Emissions",
+        "label": "Scope2Emissions",
+        "curie": "comet-sc:Scope2Emissions",
+        "kind": "Class",
+        "prefix": "comet-sc",
+        "namespace": "Supply Chain",
+        "layer": "L3 · Supply Chain",
+        "color": "#6b4a1a",
+        "definition": "Aggregate Scope 2 indirect energy emissions, location-based and market-based (tCO2e)",
+        "defined": true
+      },
+      {
+        "id": "comet-sc:Scope3Emissions",
+        "label": "Scope3Emissions",
+        "curie": "comet-sc:Scope3Emissions",
+        "kind": "Class",
+        "prefix": "comet-sc",
+        "namespace": "Supply Chain",
+        "layer": "L3 · Supply Chain",
+        "color": "#6b4a1a",
+        "definition": "Aggregate Scope 3 value-chain emissions, reportable by category 1–15 (tCO2e)",
         "defined": true
       },
       {
@@ -19277,6 +20064,18 @@ window.COMET_ONTOLOGY = {
         "layer": "L3 · Supply Chain",
         "color": "#6b4a1a",
         "definition": "Logistics movement record",
+        "defined": true
+      },
+      {
+        "id": "https://comet.carbon/v1/supplychain#category",
+        "label": "category",
+        "curie": "comet-sc:category",
+        "kind": "DatatypeProperty",
+        "prefix": "comet-sc",
+        "namespace": "Supply Chain",
+        "layer": "L3 · Supply Chain",
+        "color": "#6b4a1a",
+        "definition": "",
         "defined": true
       },
       {
@@ -19340,6 +20139,30 @@ window.COMET_ONTOLOGY = {
         "defined": true
       },
       {
+        "id": "comet-sc:Scope3Emissions.category",
+        "label": "category",
+        "curie": "comet-sc:Scope3Emissions.category",
+        "kind": "Property",
+        "prefix": "comet-sc",
+        "namespace": "Supply Chain",
+        "layer": "L3 · Supply Chain",
+        "color": "#6b4a1a",
+        "definition": "GHG Protocol Scope 3 category number (1–15)",
+        "defined": true
+      },
+      {
+        "id": "comet-ver:AccreditationBody",
+        "label": "AccreditationBody",
+        "curie": "comet-ver:AccreditationBody",
+        "kind": "Class",
+        "prefix": "comet-ver",
+        "namespace": "Verification",
+        "layer": "L6 · Verification",
+        "color": "#1a5f6b",
+        "definition": "Accreditation body (e.g. DAkkS, UKAS, ANAB) under which the verifier is accredited",
+        "defined": true
+      },
+      {
         "id": "comet-ver:AssuranceLevel",
         "label": "AssuranceLevel",
         "curie": "comet-ver:AssuranceLevel",
@@ -19376,6 +20199,78 @@ window.COMET_ONTOLOGY = {
         "defined": true
       },
       {
+        "id": "comet-ver:CorrectiveActionRequest",
+        "label": "CorrectiveActionRequest",
+        "curie": "comet-ver:CorrectiveActionRequest",
+        "kind": "Class",
+        "prefix": "comet-ver",
+        "namespace": "Verification",
+        "layer": "L6 · Verification",
+        "color": "#1a5f6b",
+        "definition": "Corrective Action Request raised against a finding, with severity and lifecycle status",
+        "defined": true
+      },
+      {
+        "id": "comet-ver:DataSubstitutionRule",
+        "label": "DataSubstitutionRule",
+        "curie": "comet-ver:DataSubstitutionRule",
+        "kind": "Class",
+        "prefix": "comet-ver",
+        "namespace": "Verification",
+        "layer": "L6 · Verification",
+        "color": "#1a5f6b",
+        "definition": "Default or substitute data methodology applied when primary data is unavailable",
+        "defined": true
+      },
+      {
+        "id": "comet-ver:FindingsLog",
+        "label": "FindingsLog",
+        "curie": "comet-ver:FindingsLog",
+        "kind": "Class",
+        "prefix": "comet-ver",
+        "namespace": "Verification",
+        "layer": "L6 · Verification",
+        "color": "#1a5f6b",
+        "definition": "Register of all verification findings (corrected, uncorrected, observations)",
+        "defined": true
+      },
+      {
+        "id": "comet-ver:IndependenceDeclaration",
+        "label": "IndependenceDeclaration",
+        "curie": "comet-ver:IndependenceDeclaration",
+        "kind": "Class",
+        "prefix": "comet-ver",
+        "namespace": "Verification",
+        "layer": "L6 · Verification",
+        "color": "#1a5f6b",
+        "definition": "Verifier independence and conflict-of-interest statement",
+        "defined": true
+      },
+      {
+        "id": "comet-ver:MaterialityThreshold",
+        "label": "MaterialityThreshold",
+        "curie": "comet-ver:MaterialityThreshold",
+        "kind": "Class",
+        "prefix": "comet-ver",
+        "namespace": "Verification",
+        "layer": "L6 · Verification",
+        "color": "#1a5f6b",
+        "definition": "Materiality threshold (typically 5%) applied to determine whether misstatements are material",
+        "defined": true
+      },
+      {
+        "id": "comet-ver:OpportunityForImprovement",
+        "label": "OpportunityForImprovement",
+        "curie": "comet-ver:OpportunityForImprovement",
+        "kind": "Class",
+        "prefix": "comet-ver",
+        "namespace": "Verification",
+        "layer": "L6 · Verification",
+        "color": "#1a5f6b",
+        "definition": "Opportunity for improvement / observation logged during verification (non-binding)",
+        "defined": true
+      },
+      {
         "id": "comet-ver:QualifiedVerifier",
         "label": "QualifiedVerifier",
         "curie": "comet-ver:QualifiedVerifier",
@@ -19397,6 +20292,18 @@ window.COMET_ONTOLOGY = {
         "layer": "L6 · Verification",
         "color": "#1a5f6b",
         "definition": "Independent quality rating",
+        "defined": true
+      },
+      {
+        "id": "comet-ver:SiteVisitRecord",
+        "label": "SiteVisitRecord",
+        "curie": "comet-ver:SiteVisitRecord",
+        "kind": "Class",
+        "prefix": "comet-ver",
+        "namespace": "Verification",
+        "layer": "L6 · Verification",
+        "color": "#1a5f6b",
+        "definition": "Physical or virtual site-visit documentation supporting the verification",
         "defined": true
       },
       {
@@ -19424,6 +20331,30 @@ window.COMET_ONTOLOGY = {
         "defined": true
       },
       {
+        "id": "comet-ver:VerificationMethodology",
+        "label": "VerificationMethodology",
+        "curie": "comet-ver:VerificationMethodology",
+        "kind": "Class",
+        "prefix": "comet-ver",
+        "namespace": "Verification",
+        "layer": "L6 · Verification",
+        "color": "#1a5f6b",
+        "definition": "Sampling strategy, analytical procedures and evidence-gathering plan for the engagement",
+        "defined": true
+      },
+      {
+        "id": "comet-ver:VerificationOpinion",
+        "label": "VerificationOpinion",
+        "curie": "comet-ver:VerificationOpinion",
+        "kind": "Class",
+        "prefix": "comet-ver",
+        "namespace": "Verification",
+        "layer": "L6 · Verification",
+        "color": "#1a5f6b",
+        "definition": "Formal opinion type issued in the verification statement: unqualified, qualified, adverse, or disclaimer",
+        "defined": true
+      },
+      {
         "id": "comet-ver:VerificationScope",
         "label": "VerificationScope",
         "curie": "comet-ver:VerificationScope",
@@ -19436,6 +20367,66 @@ window.COMET_ONTOLOGY = {
         "defined": true
       },
       {
+        "id": "https://comet.carbon/v1/ver#accreditationNumber",
+        "label": "accreditationNumber",
+        "curie": "comet-ver:accreditationNumber",
+        "kind": "DatatypeProperty",
+        "prefix": "comet-ver",
+        "namespace": "Verification",
+        "layer": "L6 · Verification",
+        "color": "#1a5f6b",
+        "definition": "",
+        "defined": true
+      },
+      {
+        "id": "https://comet.carbon/v1/ver#dueDate",
+        "label": "dueDate",
+        "curie": "comet-ver:dueDate",
+        "kind": "DatatypeProperty",
+        "prefix": "comet-ver",
+        "namespace": "Verification",
+        "layer": "L6 · Verification",
+        "color": "#1a5f6b",
+        "definition": "",
+        "defined": true
+      },
+      {
+        "id": "https://comet.carbon/v1/ver#severity",
+        "label": "severity",
+        "curie": "comet-ver:severity",
+        "kind": "DatatypeProperty",
+        "prefix": "comet-ver",
+        "namespace": "Verification",
+        "layer": "L6 · Verification",
+        "color": "#1a5f6b",
+        "definition": "",
+        "defined": true
+      },
+      {
+        "id": "https://comet.carbon/v1/ver#status",
+        "label": "status",
+        "curie": "comet-ver:status",
+        "kind": "DatatypeProperty",
+        "prefix": "comet-ver",
+        "namespace": "Verification",
+        "layer": "L6 · Verification",
+        "color": "#1a5f6b",
+        "definition": "",
+        "defined": true
+      },
+      {
+        "id": "comet-ver:AccreditationBody.accreditationNumber",
+        "label": "accreditationNumber",
+        "curie": "comet-ver:AccreditationBody.accreditationNumber",
+        "kind": "Property",
+        "prefix": "comet-ver",
+        "namespace": "Verification",
+        "layer": "L6 · Verification",
+        "color": "#1a5f6b",
+        "definition": "Accreditation registration number of the verifier",
+        "defined": true
+      },
+      {
         "id": "comet-ver:CADTrustAttestation.cadTrustProjectId",
         "label": "cadTrustProjectId",
         "curie": "comet-ver:CADTrustAttestation.cadTrustProjectId",
@@ -19445,6 +20436,42 @@ window.COMET_ONTOLOGY = {
         "layer": "L6 · Verification",
         "color": "#1a5f6b",
         "definition": "CAD Trust project GUID",
+        "defined": true
+      },
+      {
+        "id": "comet-ver:CorrectiveActionRequest.dueDate",
+        "label": "dueDate",
+        "curie": "comet-ver:CorrectiveActionRequest.dueDate",
+        "kind": "Property",
+        "prefix": "comet-ver",
+        "namespace": "Verification",
+        "layer": "L6 · Verification",
+        "color": "#1a5f6b",
+        "definition": "Date by which the corrective action is due",
+        "defined": true
+      },
+      {
+        "id": "comet-ver:CorrectiveActionRequest.severity",
+        "label": "severity",
+        "curie": "comet-ver:CorrectiveActionRequest.severity",
+        "kind": "Property",
+        "prefix": "comet-ver",
+        "namespace": "Verification",
+        "layer": "L6 · Verification",
+        "color": "#1a5f6b",
+        "definition": "Severity of the request (major / minor / observation)",
+        "defined": true
+      },
+      {
+        "id": "comet-ver:CorrectiveActionRequest.status",
+        "label": "status",
+        "curie": "comet-ver:CorrectiveActionRequest.status",
+        "kind": "Property",
+        "prefix": "comet-ver",
+        "namespace": "Verification",
+        "layer": "L6 · Verification",
+        "color": "#1a5f6b",
+        "definition": "Lifecycle status (open / responded / closed)",
         "defined": true
       },
       {
@@ -19520,14 +20547,14 @@ window.COMET_ONTOLOGY = {
         "defined": true
       },
       {
-        "id": "https://comet.carbon/v1/market#CarbonPremium",
-        "label": "CarbonPremium",
-        "curie": "comet-mkt:CarbonPremium",
+        "id": "https://comet.carbon/v1/supplychain#SupplyChainLink",
+        "label": "SupplyChainLink",
+        "curie": "comet-sc:SupplyChainLink",
         "kind": "Reference",
-        "prefix": "comet-mkt",
-        "namespace": "Market",
-        "layer": "L7 · Market",
-        "color": "#7a2f6b",
+        "prefix": "comet-sc",
+        "namespace": "Supply Chain",
+        "layer": "L3 · Supply Chain",
+        "color": "#6b4a1a",
         "definition": "",
         "defined": false
       },
@@ -19544,6 +20571,30 @@ window.COMET_ONTOLOGY = {
         "defined": false
       },
       {
+        "id": "https://comet.carbon/v1/market#CarbonPremium",
+        "label": "CarbonPremium",
+        "curie": "comet-mkt:CarbonPremium",
+        "kind": "Reference",
+        "prefix": "comet-mkt",
+        "namespace": "Market",
+        "layer": "L7 · Market",
+        "color": "#7a2f6b",
+        "definition": "",
+        "defined": false
+      },
+      {
+        "id": "https://comet.carbon/v1/core#Site",
+        "label": "Site",
+        "curie": "comet:Site",
+        "kind": "Reference",
+        "prefix": "comet",
+        "namespace": "Core",
+        "layer": "L1 · Core",
+        "color": "#1a3a6b",
+        "definition": "",
+        "defined": false
+      },
+      {
         "id": "https://comet.carbon/v1/core#Organization",
         "label": "Organization",
         "curie": "comet:Organization",
@@ -19556,14 +20607,26 @@ window.COMET_ONTOLOGY = {
         "defined": false
       },
       {
-        "id": "https://comet.carbon/v1/core#Process",
-        "label": "Process",
-        "curie": "comet:Process",
+        "id": "https://comet.carbon/v1/pcf#PCFResult",
+        "label": "PCFResult",
+        "curie": "comet-pcf:PCFResult",
         "kind": "Reference",
-        "prefix": "comet",
-        "namespace": "Core",
-        "layer": "L1 · Core",
-        "color": "#1a3a6b",
+        "prefix": "comet-pcf",
+        "namespace": "Product Carbon Footprint",
+        "layer": "L4 · PCF",
+        "color": "#1a6b3c",
+        "definition": "",
+        "defined": false
+      },
+      {
+        "id": "https://comet.carbon/v1/ver#DisclosureRecord",
+        "label": "DisclosureRecord",
+        "curie": "comet-ver:DisclosureRecord",
+        "kind": "Reference",
+        "prefix": "comet-ver",
+        "namespace": "Verification",
+        "layer": "L6 · Verification",
+        "color": "#1a5f6b",
         "definition": "",
         "defined": false
       },
@@ -19580,18 +20643,6 @@ window.COMET_ONTOLOGY = {
         "defined": false
       },
       {
-        "id": "https://comet.carbon/v1/core#Material",
-        "label": "Material",
-        "curie": "comet:Material",
-        "kind": "Reference",
-        "prefix": "comet",
-        "namespace": "Core",
-        "layer": "L1 · Core",
-        "color": "#1a3a6b",
-        "definition": "",
-        "defined": false
-      },
-      {
         "id": "https://comet.carbon/v1/eac#MaterialStewardCert",
         "label": "MaterialStewardCert",
         "curie": "comet-eac:MaterialStewardCert",
@@ -19604,9 +20655,21 @@ window.COMET_ONTOLOGY = {
         "defined": false
       },
       {
-        "id": "https://comet.carbon/v1/pcf#PCFResult",
-        "label": "PCFResult",
-        "curie": "comet-pcf:PCFResult",
+        "id": "https://comet.carbon/v1/core#Process",
+        "label": "Process",
+        "curie": "comet:Process",
+        "kind": "Reference",
+        "prefix": "comet",
+        "namespace": "Core",
+        "layer": "L1 · Core",
+        "color": "#1a3a6b",
+        "definition": "",
+        "defined": false
+      },
+      {
+        "id": "https://comet.carbon/v1/pcf#GHGEmission",
+        "label": "GHGEmission",
+        "curie": "comet-pcf:GHGEmission",
         "kind": "Reference",
         "prefix": "comet-pcf",
         "namespace": "Product Carbon Footprint",
@@ -19628,30 +20691,6 @@ window.COMET_ONTOLOGY = {
         "defined": false
       },
       {
-        "id": "https://comet.carbon/v1/pcf#GHGEmission",
-        "label": "GHGEmission",
-        "curie": "comet-pcf:GHGEmission",
-        "kind": "Reference",
-        "prefix": "comet-pcf",
-        "namespace": "Product Carbon Footprint",
-        "layer": "L4 · PCF",
-        "color": "#1a6b3c",
-        "definition": "",
-        "defined": false
-      },
-      {
-        "id": "https://comet.carbon/v1/core#Site",
-        "label": "Site",
-        "curie": "comet:Site",
-        "kind": "Reference",
-        "prefix": "comet",
-        "namespace": "Core",
-        "layer": "L1 · Core",
-        "color": "#1a3a6b",
-        "definition": "",
-        "defined": false
-      },
-      {
         "id": "https://comet.carbon/v1/ver#AuditClaim",
         "label": "AuditClaim",
         "curie": "comet-ver:AuditClaim",
@@ -19664,26 +20703,14 @@ window.COMET_ONTOLOGY = {
         "defined": false
       },
       {
-        "id": "https://comet.carbon/v1/supplychain#SupplyChainLink",
-        "label": "SupplyChainLink",
-        "curie": "comet-sc:SupplyChainLink",
+        "id": "https://comet.carbon/v1/core#Material",
+        "label": "Material",
+        "curie": "comet:Material",
         "kind": "Reference",
-        "prefix": "comet-sc",
-        "namespace": "Supply Chain",
-        "layer": "L3 · Supply Chain",
-        "color": "#6b4a1a",
-        "definition": "",
-        "defined": false
-      },
-      {
-        "id": "https://comet.carbon/v1/ver#DisclosureRecord",
-        "label": "DisclosureRecord",
-        "curie": "comet-ver:DisclosureRecord",
-        "kind": "Reference",
-        "prefix": "comet-ver",
-        "namespace": "Verification",
-        "layer": "L6 · Verification",
-        "color": "#1a5f6b",
+        "prefix": "comet",
+        "namespace": "Core",
+        "layer": "L1 · Core",
+        "color": "#1a3a6b",
         "definition": "",
         "defined": false
       },
@@ -21934,63 +22961,8 @@ window.COMET_ONTOLOGY = {
     ],
     "edges": [
       {
-        "from": "https://comet.carbon/ext/iso14068#FinancialInstitution",
-        "to": "https://comet.carbon/ext/iso14068#Entity",
-        "rel": "subClassOf"
-      },
-      {
-        "from": "https://comet.carbon/ext/responsiblesteel#SteelCertification",
-        "to": "https://comet.carbon/ext/responsiblesteel#CoreSiteCertification",
-        "rel": "subClassOf"
-      },
-      {
-        "from": "https://comet.carbon/ext/responsiblesteel#principleAssessed",
-        "to": "https://comet.carbon/ext/responsiblesteel#RSPrinciple",
-        "rel": "range"
-      },
-      {
-        "from": "https://comet.carbon/ext/responsiblesteel#ScrapCategory",
-        "to": "https://comet.carbon/ext/responsiblesteel#RSInputMaterial",
-        "rel": "subClassOf"
-      },
-      {
-        "from": "https://comet.carbon/ext/iso14068#meetsCriterion",
-        "to": "https://comet.carbon/ext/iso14068#CreditCriterion",
-        "rel": "range"
-      },
-      {
-        "from": "https://comet.carbon/ext/responsiblesteel#hasNonConformity",
-        "to": "https://comet.carbon/ext/responsiblesteel#NonConformity",
-        "rel": "range"
-      },
-      {
-        "from": "https://comet.carbon/ext/responsiblesteel#GreenSteelPremium",
-        "to": "https://comet.carbon/v1/market#CarbonPremium",
-        "rel": "subClassOf"
-      },
-      {
-        "from": "https://comet.carbon/ext/responsiblesteel#CertificationAudit",
-        "to": "https://comet.carbon/v1/ver#AuditTrail",
-        "rel": "subClassOf"
-      },
-      {
         "from": "https://comet.carbon/ext/responsiblesteel#claimDPLContext",
         "to": "https://comet.carbon/ext/responsiblesteel#DecarbProgressLevel",
-        "rel": "range"
-      },
-      {
-        "from": "https://comet.carbon/ext/iso14068#Entity",
-        "to": "https://comet.carbon/v1/core#Organization",
-        "rel": "subClassOf"
-      },
-      {
-        "from": "https://comet.carbon/ext/responsiblesteel#transfersFrom",
-        "to": "https://comet.carbon/v1/core#Organization",
-        "rel": "range"
-      },
-      {
-        "from": "https://comet.carbon/ext/responsiblesteel#transfersTo",
-        "to": "https://comet.carbon/v1/core#Organization",
         "rel": "range"
       },
       {
@@ -21999,8 +22971,33 @@ window.COMET_ONTOLOGY = {
         "rel": "range"
       },
       {
-        "from": "https://comet.carbon/ext/responsiblesteel#SteelProductionRoute",
-        "to": "https://comet.carbon/v1/core#Process",
+        "from": "https://comet.carbon/ext/iso14068#hasPathway",
+        "to": "https://comet.carbon/ext/iso14068#CarbonNeutralityPathway",
+        "rel": "range"
+      },
+      {
+        "from": "https://comet.carbon/ext/responsiblesteel#SupplierESGRisk",
+        "to": "https://comet.carbon/v1/supplychain#SupplyChainLink",
+        "rel": "subClassOf"
+      },
+      {
+        "from": "https://comet.carbon/ext/responsiblesteel#CertificationAudit",
+        "to": "https://comet.carbon/v1/ver#AuditTrail",
+        "rel": "subClassOf"
+      },
+      {
+        "from": "https://comet.carbon/ext/responsiblesteel#GreenSteelPremium",
+        "to": "https://comet.carbon/v1/market#CarbonPremium",
+        "rel": "subClassOf"
+      },
+      {
+        "from": "https://comet.carbon/ext/responsiblesteel#applicableDPL",
+        "to": "https://comet.carbon/ext/responsiblesteel#DecarbProgressLevel",
+        "rel": "range"
+      },
+      {
+        "from": "https://comet.carbon/ext/responsiblesteel#CertifiedSite",
+        "to": "https://comet.carbon/v1/core#Site",
         "rel": "subClassOf"
       },
       {
@@ -22009,48 +23006,13 @@ window.COMET_ONTOLOGY = {
         "rel": "range"
       },
       {
-        "from": "https://comet.carbon/ext/responsiblesteel#hasSPL",
-        "to": "https://comet.carbon/ext/responsiblesteel#SourcingProgressLevel",
-        "rel": "range"
-      },
-      {
-        "from": "https://comet.carbon/ext/iso14068#hasVerificationOpinion",
-        "to": "https://comet.carbon/ext/iso14068#VerificationOpinion",
-        "rel": "range"
-      },
-      {
-        "from": "https://comet.carbon/ext/iso14068#hasBaseline",
-        "to": "https://comet.carbon/ext/iso14068#Baseline",
-        "rel": "range"
-      },
-      {
-        "from": "https://comet.carbon/ext/iso14068#hasPathway",
-        "to": "https://comet.carbon/ext/iso14068#CarbonNeutralityPathway",
-        "rel": "range"
-      },
-      {
-        "from": "https://comet.carbon/ext/responsiblesteel#CrudeSteelIntensity",
-        "to": "https://comet.carbon/v1/pcf#LCIAResult",
-        "rel": "subClassOf"
-      },
-      {
         "from": "https://comet.carbon/ext/iso14068#hasSubject",
         "to": "https://comet.carbon/ext/iso14068#Subject",
         "rel": "range"
       },
       {
-        "from": "https://comet.carbon/ext/iso14068#hasReport",
-        "to": "https://comet.carbon/ext/iso14068#CarbonNeutralityReport",
-        "rel": "range"
-      },
-      {
-        "from": "https://comet.carbon/ext/responsiblesteel#RSInputMaterial",
-        "to": "https://comet.carbon/v1/core#Material",
-        "rel": "subClassOf"
-      },
-      {
-        "from": "https://comet.carbon/ext/responsiblesteel#CoreSiteCertification",
-        "to": "https://comet.carbon/v1/eac#MaterialStewardCert",
+        "from": "https://comet.carbon/ext/responsiblesteel#CorporateOwner",
+        "to": "https://comet.carbon/v1/core#Organization",
         "rel": "subClassOf"
       },
       {
@@ -22059,24 +23021,14 @@ window.COMET_ONTOLOGY = {
         "rel": "subClassOf"
       },
       {
-        "from": "https://comet.carbon/ext/responsiblesteel#CorporateOwner",
+        "from": "https://comet.carbon/ext/iso14068#hasBaseline",
+        "to": "https://comet.carbon/ext/iso14068#Baseline",
+        "rel": "range"
+      },
+      {
+        "from": "https://comet.carbon/ext/responsiblesteel#transfersTo",
         "to": "https://comet.carbon/v1/core#Organization",
-        "rel": "subClassOf"
-      },
-      {
-        "from": "https://comet.carbon/ext/iso14068#ResidualGHGEmission",
-        "to": "https://comet.carbon/ext/iso14068#UnabatedGHGEmission",
-        "rel": "subClassOf"
-      },
-      {
-        "from": "https://comet.carbon/ext/iso14068#OffsettingEvent",
-        "to": "https://comet.carbon/v1/eac#RetirementEvent",
-        "rel": "subClassOf"
-      },
-      {
-        "from": "https://comet.carbon/ext/iso14068#UnabatedGHGEmission",
-        "to": "https://comet.carbon/v1/pcf#GHGEmission",
-        "rel": "subClassOf"
+        "rel": "range"
       },
       {
         "from": "https://comet.carbon/ext/iso14068#hierarchyStep",
@@ -22084,8 +23036,33 @@ window.COMET_ONTOLOGY = {
         "rel": "range"
       },
       {
-        "from": "https://comet.carbon/ext/responsiblesteel#CertifiedSite",
-        "to": "https://comet.carbon/v1/core#Site",
+        "from": "https://comet.carbon/ext/iso14068#hasClaim",
+        "to": "https://comet.carbon/ext/iso14068#CarbonNeutralityClaim",
+        "rel": "range"
+      },
+      {
+        "from": "https://comet.carbon/ext/iso14068#Entity",
+        "to": "https://comet.carbon/v1/core#Organization",
+        "rel": "subClassOf"
+      },
+      {
+        "from": "https://comet.carbon/ext/responsiblesteel#hasDPL",
+        "to": "https://comet.carbon/ext/responsiblesteel#DecarbProgressLevel",
+        "rel": "range"
+      },
+      {
+        "from": "https://comet.carbon/ext/iso14068#CarbonNeutralityReport",
+        "to": "https://comet.carbon/v1/ver#DisclosureRecord",
+        "rel": "subClassOf"
+      },
+      {
+        "from": "https://comet.carbon/ext/responsiblesteel#hasSPL",
+        "to": "https://comet.carbon/ext/responsiblesteel#SourcingProgressLevel",
+        "rel": "range"
+      },
+      {
+        "from": "https://comet.carbon/ext/responsiblesteel#CrudeSteelIntensity",
+        "to": "https://comet.carbon/v1/pcf#LCIAResult",
         "rel": "subClassOf"
       },
       {
@@ -22099,14 +23076,14 @@ window.COMET_ONTOLOGY = {
         "rel": "subClassOf"
       },
       {
-        "from": "https://comet.carbon/ext/iso14068#VerificationOpinion",
-        "to": "https://comet.carbon/v1/ver#AuditClaim",
-        "rel": "subClassOf"
+        "from": "https://comet.carbon/ext/responsiblesteel#reviewsAudit",
+        "to": "https://comet.carbon/ext/responsiblesteel#CertificationAudit",
+        "rel": "range"
       },
       {
-        "from": "https://comet.carbon/ext/iso14068#hasClaim",
-        "to": "https://comet.carbon/ext/iso14068#CarbonNeutralityClaim",
-        "rel": "range"
+        "from": "https://comet.carbon/ext/iso14068#FinancialInstitution",
+        "to": "https://comet.carbon/ext/iso14068#Entity",
+        "rel": "subClassOf"
       },
       {
         "from": "https://comet.carbon/ext/iso14068#hasCreditType",
@@ -22114,28 +23091,23 @@ window.COMET_ONTOLOGY = {
         "rel": "range"
       },
       {
-        "from": "https://comet.carbon/ext/responsiblesteel#hasDPL",
-        "to": "https://comet.carbon/ext/responsiblesteel#DecarbProgressLevel",
-        "rel": "range"
-      },
-      {
-        "from": "https://comet.carbon/ext/responsiblesteel#applicableDPL",
-        "to": "https://comet.carbon/ext/responsiblesteel#DecarbProgressLevel",
-        "rel": "range"
-      },
-      {
-        "from": "https://comet.carbon/ext/responsiblesteel#SupplierESGRisk",
-        "to": "https://comet.carbon/v1/supplychain#SupplyChainLink",
+        "from": "https://comet.carbon/ext/responsiblesteel#CoreSiteCertification",
+        "to": "https://comet.carbon/v1/eac#MaterialStewardCert",
         "rel": "subClassOf"
       },
       {
-        "from": "https://comet.carbon/ext/responsiblesteel#RSSupplierTier",
-        "to": "https://comet.carbon/v1/supplychain#SupplyChainLink",
+        "from": "https://comet.carbon/ext/responsiblesteel#SteelProductionRoute",
+        "to": "https://comet.carbon/v1/core#Process",
         "rel": "subClassOf"
       },
       {
-        "from": "https://comet.carbon/ext/iso14068#CarbonNeutralityReport",
-        "to": "https://comet.carbon/v1/ver#DisclosureRecord",
+        "from": "https://comet.carbon/ext/responsiblesteel#transfersFrom",
+        "to": "https://comet.carbon/v1/core#Organization",
+        "rel": "range"
+      },
+      {
+        "from": "https://comet.carbon/ext/iso14068#ResidualGHGEmission",
+        "to": "https://comet.carbon/ext/iso14068#UnabatedGHGEmission",
         "rel": "subClassOf"
       },
       {
@@ -22144,8 +23116,63 @@ window.COMET_ONTOLOGY = {
         "rel": "range"
       },
       {
-        "from": "https://comet.carbon/ext/responsiblesteel#reviewsAudit",
-        "to": "https://comet.carbon/ext/responsiblesteel#CertificationAudit",
+        "from": "https://comet.carbon/ext/iso14068#hasReport",
+        "to": "https://comet.carbon/ext/iso14068#CarbonNeutralityReport",
+        "rel": "range"
+      },
+      {
+        "from": "https://comet.carbon/ext/responsiblesteel#principleAssessed",
+        "to": "https://comet.carbon/ext/responsiblesteel#RSPrinciple",
+        "rel": "range"
+      },
+      {
+        "from": "https://comet.carbon/ext/responsiblesteel#ScrapCategory",
+        "to": "https://comet.carbon/ext/responsiblesteel#RSInputMaterial",
+        "rel": "subClassOf"
+      },
+      {
+        "from": "https://comet.carbon/ext/iso14068#UnabatedGHGEmission",
+        "to": "https://comet.carbon/v1/pcf#GHGEmission",
+        "rel": "subClassOf"
+      },
+      {
+        "from": "https://comet.carbon/ext/iso14068#OffsettingEvent",
+        "to": "https://comet.carbon/v1/eac#RetirementEvent",
+        "rel": "subClassOf"
+      },
+      {
+        "from": "https://comet.carbon/ext/responsiblesteel#RSSupplierTier",
+        "to": "https://comet.carbon/v1/supplychain#SupplyChainLink",
+        "rel": "subClassOf"
+      },
+      {
+        "from": "https://comet.carbon/ext/iso14068#VerificationOpinion",
+        "to": "https://comet.carbon/v1/ver#AuditClaim",
+        "rel": "subClassOf"
+      },
+      {
+        "from": "https://comet.carbon/ext/iso14068#meetsCriterion",
+        "to": "https://comet.carbon/ext/iso14068#CreditCriterion",
+        "rel": "range"
+      },
+      {
+        "from": "https://comet.carbon/ext/iso14068#hasVerificationOpinion",
+        "to": "https://comet.carbon/ext/iso14068#VerificationOpinion",
+        "rel": "range"
+      },
+      {
+        "from": "https://comet.carbon/ext/responsiblesteel#RSInputMaterial",
+        "to": "https://comet.carbon/v1/core#Material",
+        "rel": "subClassOf"
+      },
+      {
+        "from": "https://comet.carbon/ext/responsiblesteel#SteelCertification",
+        "to": "https://comet.carbon/ext/responsiblesteel#CoreSiteCertification",
+        "rel": "subClassOf"
+      },
+      {
+        "from": "https://comet.carbon/ext/responsiblesteel#hasNonConformity",
+        "to": "https://comet.carbon/ext/responsiblesteel#NonConformity",
         "rel": "range"
       },
       {
@@ -23049,6 +24076,11 @@ window.COMET_ONTOLOGY = {
         "rel": "partOf"
       },
       {
+        "from": "comet-eac:CORSIAEligibleUnit.eligiblePeriod",
+        "to": "comet-eac:CORSIAEligibleUnit",
+        "rel": "partOf"
+      },
+      {
         "from": "comet-eac:EAC.chainOfCustody",
         "to": "comet-eac:EAC",
         "rel": "partOf"
@@ -23149,6 +24181,11 @@ window.COMET_ONTOLOGY = {
         "rel": "partOf"
       },
       {
+        "from": "comet-mkt:CleanHydrogenCreditTier.creditValue",
+        "to": "comet-mkt:CleanHydrogenCreditTier",
+        "rel": "partOf"
+      },
+      {
         "from": "comet-pcf:BiogenicCarbon.biogenicCarbonContent",
         "to": "comet-pcf:BiogenicCarbon",
         "rel": "partOf"
@@ -23161,6 +24198,11 @@ window.COMET_ONTOLOGY = {
       {
         "from": "comet-pcf:BiogenicCarbon.landUseChange",
         "to": "comet-pcf:BiogenicCarbon",
+        "rel": "partOf"
+      },
+      {
+        "from": "comet-pcf:CarbonIntensity.functionalBasis",
+        "to": "comet-pcf:CarbonIntensity",
         "rel": "partOf"
       },
       {
@@ -23234,8 +24276,33 @@ window.COMET_ONTOLOGY = {
         "rel": "partOf"
       },
       {
+        "from": "comet-sc:Scope3Emissions.category",
+        "to": "comet-sc:Scope3Emissions",
+        "rel": "partOf"
+      },
+      {
+        "from": "comet-ver:AccreditationBody.accreditationNumber",
+        "to": "comet-ver:AccreditationBody",
+        "rel": "partOf"
+      },
+      {
         "from": "comet-ver:CADTrustAttestation.cadTrustProjectId",
         "to": "comet-ver:CADTrustAttestation",
+        "rel": "partOf"
+      },
+      {
+        "from": "comet-ver:CorrectiveActionRequest.dueDate",
+        "to": "comet-ver:CorrectiveActionRequest",
+        "rel": "partOf"
+      },
+      {
+        "from": "comet-ver:CorrectiveActionRequest.severity",
+        "to": "comet-ver:CorrectiveActionRequest",
+        "rel": "partOf"
+      },
+      {
+        "from": "comet-ver:CorrectiveActionRequest.status",
+        "to": "comet-ver:CorrectiveActionRequest",
         "rel": "partOf"
       },
       {
@@ -23298,6 +24365,36 @@ window.COMET_ONTOLOGY = {
       "target_standard": "CAD Trust",
       "target_prefix": "cad trust",
       "target_term": "aef_t3_actions table",
+      "target_iri": "",
+      "note": ""
+    },
+    {
+      "comet_curie": "comet-eac:CORSIAEligibleUnit",
+      "comet_local": "CORSIAEligibleUnit",
+      "relation": "mapsTo",
+      "target_standard": "ICAO CORSIA",
+      "target_prefix": "icao corsia (euc criteria)",
+      "target_term": "",
+      "target_iri": "",
+      "note": ""
+    },
+    {
+      "comet_curie": "comet-eac:CORSIAEligibleUnit",
+      "comet_local": "CORSIAEligibleUnit",
+      "relation": "mapsTo",
+      "target_standard": "CAD Trust",
+      "target_prefix": "cad trust",
+      "target_term": "unit table",
+      "target_iri": "",
+      "note": ""
+    },
+    {
+      "comet_curie": "comet-eac:CORSIAEligibleUnit.eligiblePeriod",
+      "comet_local": "CORSIAEligibleUnit.eligiblePeriod",
+      "relation": "mapsTo",
+      "target_standard": "ICAO CORSIA",
+      "target_prefix": "icao corsia",
+      "target_term": "",
       "target_iri": "",
       "note": ""
     },
@@ -23492,6 +24589,26 @@ window.COMET_ONTOLOGY = {
       "note": ""
     },
     {
+      "comet_curie": "comet-ef:EmissionFactor",
+      "comet_local": "EmissionFactor",
+      "relation": "mapsTo",
+      "target_standard": "GHG Protocol",
+      "target_prefix": "ghg protocol",
+      "target_term": "",
+      "target_iri": "",
+      "note": ""
+    },
+    {
+      "comet_curie": "comet-ef:EmissionFactor.efUnit",
+      "comet_local": "EmissionFactor.efUnit",
+      "relation": "mapsTo",
+      "target_standard": "QUDT",
+      "target_prefix": "qudt",
+      "target_term": "",
+      "target_iri": "",
+      "note": ""
+    },
+    {
       "comet_curie": "comet-ef:GWP100Value.ipccAR",
       "comet_local": "GWP100Value.ipccAR",
       "relation": "mapsTo",
@@ -23508,6 +24625,26 @@ window.COMET_ONTOLOGY = {
       "target_standard": "WBCSD PACT",
       "target_prefix": "pact",
       "target_term": "geographyRegionOrSubregion",
+      "target_iri": "",
+      "note": ""
+    },
+    {
+      "comet_curie": "comet-mkt:CleanHydrogenCreditTier",
+      "comet_local": "CleanHydrogenCreditTier",
+      "relation": "mapsTo",
+      "target_standard": "IRA 45V",
+      "target_prefix": "45vh2-greet",
+      "target_term": "",
+      "target_iri": "",
+      "note": ""
+    },
+    {
+      "comet_curie": "comet-mkt:CleanHydrogenCreditTier.creditValue",
+      "comet_local": "CleanHydrogenCreditTier.creditValue",
+      "relation": "mapsTo",
+      "target_standard": "IRA 45V",
+      "target_prefix": "ira 45v",
+      "target_term": "",
       "target_iri": "",
       "note": ""
     },
@@ -23569,6 +24706,16 @@ window.COMET_ONTOLOGY = {
       "target_prefix": "iso14068",
       "target_term": "CarbonDioxideEquivalent",
       "target_iri": "https://www.iso.org/standard/14068-1#CarbonDioxideEquivalent",
+      "note": ""
+    },
+    {
+      "comet_curie": "comet-pcf:EPDDeclaration",
+      "comet_local": "EPDDeclaration",
+      "relation": "mapsTo",
+      "target_standard": "EN 15804+A2",
+      "target_prefix": "en 15804+a2",
+      "target_term": "",
+      "target_iri": "",
       "note": ""
     },
     {
@@ -23738,6 +24885,16 @@ window.COMET_ONTOLOGY = {
       "target_standard": "WBCSD PACT",
       "target_prefix": "pact",
       "target_term": "boundaryProcessesDescription",
+      "target_iri": "",
+      "note": ""
+    },
+    {
+      "comet_curie": "comet-pcf:UncertaintyAssessment",
+      "comet_local": "UncertaintyAssessment",
+      "relation": "mapsTo",
+      "target_standard": "EU ETS MRV",
+      "target_prefix": "eu ets mrv",
+      "target_term": "",
       "target_iri": "",
       "note": ""
     },
@@ -25192,6 +26349,26 @@ window.COMET_ONTOLOGY = {
       "note": ""
     },
     {
+      "comet_curie": "comet-sc:BaseYearEmissions",
+      "comet_local": "BaseYearEmissions",
+      "relation": "mapsTo",
+      "target_standard": "SBTi",
+      "target_prefix": "sbti",
+      "target_term": "",
+      "target_iri": "",
+      "note": ""
+    },
+    {
+      "comet_curie": "comet-sc:BaseYearEmissions",
+      "comet_local": "BaseYearEmissions",
+      "relation": "mapsTo",
+      "target_standard": "GHG Protocol",
+      "target_prefix": "ghg protocol",
+      "target_term": "",
+      "target_iri": "",
+      "note": ""
+    },
+    {
       "comet_curie": "comet-sc:DataQualityIndicator",
       "comet_local": "DataQualityIndicator",
       "relation": "mapsTo",
@@ -25252,6 +26429,26 @@ window.COMET_ONTOLOGY = {
       "note": ""
     },
     {
+      "comet_curie": "comet-sc:EmissionIntensity",
+      "comet_local": "EmissionIntensity",
+      "relation": "mapsTo",
+      "target_standard": "SBTi",
+      "target_prefix": "sbti",
+      "target_term": "",
+      "target_iri": "",
+      "note": ""
+    },
+    {
+      "comet_curie": "comet-sc:EmissionIntensity",
+      "comet_local": "EmissionIntensity",
+      "relation": "mapsTo",
+      "target_standard": "GHG Protocol",
+      "target_prefix": "ghg protocol",
+      "target_term": "",
+      "target_iri": "",
+      "note": ""
+    },
+    {
       "comet_curie": "comet-sc:GHGSink",
       "comet_local": "GHGSink",
       "relation": "equivalentClass",
@@ -25282,6 +26479,136 @@ window.COMET_ONTOLOGY = {
       "note": ""
     },
     {
+      "comet_curie": "comet-sc:RecalculationTrigger",
+      "comet_local": "RecalculationTrigger",
+      "relation": "mapsTo",
+      "target_standard": "GHG Protocol",
+      "target_prefix": "ghg protocol",
+      "target_term": "",
+      "target_iri": "",
+      "note": ""
+    },
+    {
+      "comet_curie": "comet-sc:RecalculationTrigger",
+      "comet_local": "RecalculationTrigger",
+      "relation": "mapsTo",
+      "target_standard": "SBTi",
+      "target_prefix": "sbti",
+      "target_term": "",
+      "target_iri": "",
+      "note": ""
+    },
+    {
+      "comet_curie": "comet-sc:Scope1Emissions",
+      "comet_local": "Scope1Emissions",
+      "relation": "mapsTo",
+      "target_standard": "GHG Protocol",
+      "target_prefix": "ghg protocol",
+      "target_term": "scope 1",
+      "target_iri": "",
+      "note": ""
+    },
+    {
+      "comet_curie": "comet-sc:Scope1Emissions",
+      "comet_local": "Scope1Emissions",
+      "relation": "mapsTo",
+      "target_standard": "EU ESRS",
+      "target_prefix": "esrs e1-6",
+      "target_term": "",
+      "target_iri": "",
+      "note": ""
+    },
+    {
+      "comet_curie": "comet-sc:Scope1Emissions",
+      "comet_local": "Scope1Emissions",
+      "relation": "mapsTo",
+      "target_standard": "ISSB S2",
+      "target_prefix": "issb s2",
+      "target_term": "",
+      "target_iri": "",
+      "note": ""
+    },
+    {
+      "comet_curie": "comet-sc:Scope2Emissions",
+      "comet_local": "Scope2Emissions",
+      "relation": "mapsTo",
+      "target_standard": "GHG Protocol",
+      "target_prefix": "ghg protocol",
+      "target_term": "scope 2",
+      "target_iri": "",
+      "note": ""
+    },
+    {
+      "comet_curie": "comet-sc:Scope2Emissions",
+      "comet_local": "Scope2Emissions",
+      "relation": "mapsTo",
+      "target_standard": "EU ESRS",
+      "target_prefix": "esrs e1-6",
+      "target_term": "",
+      "target_iri": "",
+      "note": ""
+    },
+    {
+      "comet_curie": "comet-sc:Scope2Emissions",
+      "comet_local": "Scope2Emissions",
+      "relation": "mapsTo",
+      "target_standard": "ISSB S2",
+      "target_prefix": "issb s2",
+      "target_term": "",
+      "target_iri": "",
+      "note": ""
+    },
+    {
+      "comet_curie": "comet-sc:Scope3Emissions",
+      "comet_local": "Scope3Emissions",
+      "relation": "mapsTo",
+      "target_standard": "GHG Protocol Scope 3",
+      "target_prefix": "ghg protocol scope 3",
+      "target_term": "",
+      "target_iri": "",
+      "note": ""
+    },
+    {
+      "comet_curie": "comet-sc:Scope3Emissions",
+      "comet_local": "Scope3Emissions",
+      "relation": "mapsTo",
+      "target_standard": "EU ESRS",
+      "target_prefix": "esrs e1-6",
+      "target_term": "",
+      "target_iri": "",
+      "note": ""
+    },
+    {
+      "comet_curie": "comet-sc:Scope3Emissions",
+      "comet_local": "Scope3Emissions",
+      "relation": "mapsTo",
+      "target_standard": "ISSB S2",
+      "target_prefix": "issb s2",
+      "target_term": "",
+      "target_iri": "",
+      "note": ""
+    },
+    {
+      "comet_curie": "comet-sc:Scope3Emissions",
+      "comet_local": "Scope3Emissions",
+      "relation": "mapsTo",
+      "target_standard": "SBTi",
+      "target_prefix": "sbti",
+      "target_term": "",
+      "target_iri": "",
+      "note": ""
+    },
+    {
+      "comet_curie": "comet-sc:Scope3Emissions.category",
+      "comet_local": "Scope3Emissions.category",
+      "relation": "mapsTo",
+      "target_standard": "GHG Protocol Scope 3",
+      "target_prefix": "ghg protocol scope 3",
+      "target_term": "",
+      "target_iri": "",
+      "note": ""
+    },
+    {
       "comet_curie": "comet-sc:SupplyChainLink",
       "comet_local": "SupplyChainLink",
       "relation": "mapsTo",
@@ -25299,6 +26626,36 @@ window.COMET_ONTOLOGY = {
       "target_prefix": "iso14068",
       "target_term": "ValueChain",
       "target_iri": "https://www.iso.org/standard/14068-1#ValueChain",
+      "note": ""
+    },
+    {
+      "comet_curie": "comet-ver:AccreditationBody",
+      "comet_local": "AccreditationBody",
+      "relation": "mapsTo",
+      "target_standard": "ISO 14065",
+      "target_prefix": "iso 14065",
+      "target_term": "",
+      "target_iri": "",
+      "note": ""
+    },
+    {
+      "comet_curie": "comet-ver:AccreditationBody",
+      "comet_local": "AccreditationBody",
+      "relation": "mapsTo",
+      "target_standard": "EU ETS MRV",
+      "target_prefix": "eu ets mrv",
+      "target_term": "",
+      "target_iri": "",
+      "note": ""
+    },
+    {
+      "comet_curie": "comet-ver:AccreditationBody.accreditationNumber",
+      "comet_local": "AccreditationBody.accreditationNumber",
+      "relation": "mapsTo",
+      "target_standard": "ISO 14065",
+      "target_prefix": "iso 14065",
+      "target_term": "",
+      "target_iri": "",
       "note": ""
     },
     {
@@ -25328,6 +26685,156 @@ window.COMET_ONTOLOGY = {
       "target_standard": "CAD Trust",
       "target_prefix": "cad trust",
       "target_term": "cadTrustProjectId",
+      "target_iri": "",
+      "note": ""
+    },
+    {
+      "comet_curie": "comet-ver:CorrectiveActionRequest",
+      "comet_local": "CorrectiveActionRequest",
+      "relation": "mapsTo",
+      "target_standard": "Verra VCS",
+      "target_prefix": "vcs",
+      "target_term": "",
+      "target_iri": "",
+      "note": ""
+    },
+    {
+      "comet_curie": "comet-ver:CorrectiveActionRequest",
+      "comet_local": "CorrectiveActionRequest",
+      "relation": "mapsTo",
+      "target_standard": "ISO 14064-3",
+      "target_prefix": "iso 14064-3",
+      "target_term": "",
+      "target_iri": "",
+      "note": ""
+    },
+    {
+      "comet_curie": "comet-ver:CorrectiveActionRequest.severity",
+      "comet_local": "CorrectiveActionRequest.severity",
+      "relation": "mapsTo",
+      "target_standard": "ISO 14064-3",
+      "target_prefix": "iso 14064-3",
+      "target_term": "",
+      "target_iri": "",
+      "note": ""
+    },
+    {
+      "comet_curie": "comet-ver:DataSubstitutionRule",
+      "comet_local": "DataSubstitutionRule",
+      "relation": "mapsTo",
+      "target_standard": "EU ETS MRV",
+      "target_prefix": "eu ets mrv",
+      "target_term": "",
+      "target_iri": "",
+      "note": ""
+    },
+    {
+      "comet_curie": "comet-ver:DataSubstitutionRule",
+      "comet_local": "DataSubstitutionRule",
+      "relation": "mapsTo",
+      "target_standard": "IRA 45V",
+      "target_prefix": "ira 45v",
+      "target_term": "",
+      "target_iri": "",
+      "note": ""
+    },
+    {
+      "comet_curie": "comet-ver:FindingsLog",
+      "comet_local": "FindingsLog",
+      "relation": "mapsTo",
+      "target_standard": "ISO 14064-3",
+      "target_prefix": "iso 14064-3",
+      "target_term": "",
+      "target_iri": "",
+      "note": ""
+    },
+    {
+      "comet_curie": "comet-ver:FindingsLog",
+      "comet_local": "FindingsLog",
+      "relation": "mapsTo",
+      "target_standard": "ISAE 3410",
+      "target_prefix": "isae 3410",
+      "target_term": "",
+      "target_iri": "",
+      "note": ""
+    },
+    {
+      "comet_curie": "comet-ver:FindingsLog",
+      "comet_local": "FindingsLog",
+      "relation": "mapsTo",
+      "target_standard": "Verra VCS",
+      "target_prefix": "vcs",
+      "target_term": "",
+      "target_iri": "",
+      "note": ""
+    },
+    {
+      "comet_curie": "comet-ver:IndependenceDeclaration",
+      "comet_local": "IndependenceDeclaration",
+      "relation": "mapsTo",
+      "target_standard": "ISAE 3410",
+      "target_prefix": "isae 3410",
+      "target_term": "",
+      "target_iri": "",
+      "note": ""
+    },
+    {
+      "comet_curie": "comet-ver:IndependenceDeclaration",
+      "comet_local": "IndependenceDeclaration",
+      "relation": "mapsTo",
+      "target_standard": "ISO 14065",
+      "target_prefix": "iso 14065",
+      "target_term": "",
+      "target_iri": "",
+      "note": ""
+    },
+    {
+      "comet_curie": "comet-ver:MaterialityThreshold",
+      "comet_local": "MaterialityThreshold",
+      "relation": "mapsTo",
+      "target_standard": "ISO 14064-3",
+      "target_prefix": "iso 14064-3",
+      "target_term": "materiality",
+      "target_iri": "",
+      "note": ""
+    },
+    {
+      "comet_curie": "comet-ver:MaterialityThreshold",
+      "comet_local": "MaterialityThreshold",
+      "relation": "mapsTo",
+      "target_standard": "ISAE 3410",
+      "target_prefix": "isae 3410",
+      "target_term": "materiality",
+      "target_iri": "",
+      "note": ""
+    },
+    {
+      "comet_curie": "comet-ver:MaterialityThreshold",
+      "comet_local": "MaterialityThreshold",
+      "relation": "mapsTo",
+      "target_standard": "EU ETS MRV",
+      "target_prefix": "eu ets mrv",
+      "target_term": "",
+      "target_iri": "",
+      "note": ""
+    },
+    {
+      "comet_curie": "comet-ver:OpportunityForImprovement",
+      "comet_local": "OpportunityForImprovement",
+      "relation": "mapsTo",
+      "target_standard": "ISO 14064-3",
+      "target_prefix": "iso 14064-3",
+      "target_term": "",
+      "target_iri": "",
+      "note": ""
+    },
+    {
+      "comet_curie": "comet-ver:OpportunityForImprovement",
+      "comet_local": "OpportunityForImprovement",
+      "relation": "mapsTo",
+      "target_standard": "ISAE 3410",
+      "target_prefix": "isae 3410",
+      "target_term": "",
       "target_iri": "",
       "note": ""
     },
@@ -25367,7 +26874,7 @@ window.COMET_ONTOLOGY = {
       "relation": "mapsTo",
       "target_standard": "CAD Trust",
       "target_prefix": "cad trust",
-      "target_term": "ratingType (CDP",
+      "target_term": "ratingType (CDP, CCQI)",
       "target_iri": "",
       "note": ""
     },
@@ -25378,6 +26885,26 @@ window.COMET_ONTOLOGY = {
       "target_standard": "CAD Trust",
       "target_prefix": "cad trust",
       "target_term": "ratingValue",
+      "target_iri": "",
+      "note": ""
+    },
+    {
+      "comet_curie": "comet-ver:SiteVisitRecord",
+      "comet_local": "SiteVisitRecord",
+      "relation": "mapsTo",
+      "target_standard": "ISO 14064-3",
+      "target_prefix": "iso 14064-3",
+      "target_term": "",
+      "target_iri": "",
+      "note": ""
+    },
+    {
+      "comet_curie": "comet-ver:SiteVisitRecord",
+      "comet_local": "SiteVisitRecord",
+      "relation": "mapsTo",
+      "target_standard": "Verra VCS",
+      "target_prefix": "vcs",
+      "target_term": "",
       "target_iri": "",
       "note": ""
     },
@@ -25442,12 +26969,62 @@ window.COMET_ONTOLOGY = {
       "note": ""
     },
     {
+      "comet_curie": "comet-ver:VerificationMethodology",
+      "comet_local": "VerificationMethodology",
+      "relation": "mapsTo",
+      "target_standard": "ISO 14064-3",
+      "target_prefix": "iso 14064-3",
+      "target_term": "",
+      "target_iri": "",
+      "note": ""
+    },
+    {
+      "comet_curie": "comet-ver:VerificationMethodology",
+      "comet_local": "VerificationMethodology",
+      "relation": "mapsTo",
+      "target_standard": "ISAE 3410",
+      "target_prefix": "isae 3410",
+      "target_term": "",
+      "target_iri": "",
+      "note": ""
+    },
+    {
+      "comet_curie": "comet-ver:VerificationOpinion",
+      "comet_local": "VerificationOpinion",
+      "relation": "mapsTo",
+      "target_standard": "ISO 14064-3",
+      "target_prefix": "iso 14064-3",
+      "target_term": "opinion",
+      "target_iri": "",
+      "note": ""
+    },
+    {
+      "comet_curie": "comet-ver:VerificationOpinion",
+      "comet_local": "VerificationOpinion",
+      "relation": "mapsTo",
+      "target_standard": "ISAE 3410",
+      "target_prefix": "isae 3410",
+      "target_term": "conclusion",
+      "target_iri": "",
+      "note": ""
+    },
+    {
+      "comet_curie": "comet-ver:VerificationOpinion",
+      "comet_local": "VerificationOpinion",
+      "relation": "mapsTo",
+      "target_standard": "ISO 14068-1",
+      "target_prefix": "iso 14068",
+      "target_term": "verification opinion",
+      "target_iri": "",
+      "note": ""
+    },
+    {
       "comet_curie": "comet-ver:VerificationScope",
       "comet_local": "VerificationScope",
       "relation": "mapsTo",
       "target_standard": "WBCSD PACT",
       "target_prefix": "pact",
-      "target_term": "assurance.coverage",
+      "target_term": "assurance.coverage, assurance.boundary",
       "target_iri": "",
       "note": ""
     },
@@ -25547,7 +27124,7 @@ window.COMET_ONTOLOGY = {
       "relation": "mapsTo",
       "target_standard": "CAD Trust",
       "target_prefix": "cad trust",
-      "target_term": "projectType",
+      "target_term": "projectType, projectSector",
       "target_iri": "",
       "note": ""
     },
@@ -25647,7 +27224,7 @@ window.COMET_ONTOLOGY = {
       "relation": "mapsTo",
       "target_standard": "WBCSD PACT",
       "target_prefix": "pact",
-      "target_term": "validityPeriod",
+      "target_term": "validityPeriod, referencePeriod",
       "target_iri": "",
       "note": ""
     },
@@ -26002,6 +27579,76 @@ window.COMET_ONTOLOGY = {
       "required": false,
       "enum": "",
       "description": "Verification standard used (e.g., ISO 14064-3, ISAE 3410)."
+    },
+    {
+      "schema": "COMET Core Shared Entities",
+      "module": "core",
+      "entity": "Verification",
+      "field": "opinionType",
+      "type": "string",
+      "required": false,
+      "enum": "unqualified, qualified, adverse, disclaimer",
+      "description": "comet-ver:VerificationOpinion — formal opinion issued in the verification statement."
+    },
+    {
+      "schema": "COMET Core Shared Entities",
+      "module": "core",
+      "entity": "Verification",
+      "field": "materialityThreshold",
+      "type": "number",
+      "required": false,
+      "enum": "",
+      "description": "comet-ver:MaterialityThreshold — materiality threshold applied (fraction, e.g. 0.05 for 5%)."
+    },
+    {
+      "schema": "COMET Core Shared Entities",
+      "module": "core",
+      "entity": "Verification",
+      "field": "accreditationBody",
+      "type": "string",
+      "required": false,
+      "enum": "",
+      "description": "comet-ver:AccreditationBody — accreditation body the verifier operates under (e.g. DAkkS, UKAS, ANAB)."
+    },
+    {
+      "schema": "COMET Core Shared Entities",
+      "module": "core",
+      "entity": "Verification",
+      "field": "accreditationNumber",
+      "type": "string",
+      "required": false,
+      "enum": "",
+      "description": "comet-ver:AccreditationBody.accreditationNumber — verifier accreditation registration number."
+    },
+    {
+      "schema": "COMET Core Shared Entities",
+      "module": "core",
+      "entity": "Verification",
+      "field": "independenceDeclared",
+      "type": "boolean",
+      "required": false,
+      "enum": "",
+      "description": "comet-ver:IndependenceDeclaration — verifier independence / conflict-of-interest declared."
+    },
+    {
+      "schema": "COMET Core Shared Entities",
+      "module": "core",
+      "entity": "Verification",
+      "field": "siteVisitPerformed",
+      "type": "boolean",
+      "required": false,
+      "enum": "",
+      "description": "comet-ver:SiteVisitRecord — whether a physical or virtual site visit was performed."
+    },
+    {
+      "schema": "COMET Core Shared Entities",
+      "module": "core",
+      "entity": "Verification",
+      "field": "findings",
+      "type": "array",
+      "required": false,
+      "enum": "",
+      "description": "comet-ver:FindingsLog — register of verification findings and corrective action requests."
     },
     {
       "schema": "COMET Environmental Attribute Certificate",
@@ -26425,14 +28072,14 @@ window.COMET_ONTOLOGY = {
     }
   ],
   "stats": {
-    "terms": 904,
-    "classes": 109,
-    "properties": 114,
+    "terms": 937,
+    "classes": 129,
+    "properties": 127,
     "fields": 649,
-    "alignments": 242,
-    "schema_fields": 73,
+    "alignments": 293,
+    "schema_fields": 80,
     "namespaces": 11,
-    "graph_nodes": 456,
-    "graph_edges": 267
+    "graph_nodes": 489,
+    "graph_edges": 275
   }
 };

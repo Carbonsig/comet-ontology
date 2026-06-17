@@ -1,0 +1,149 @@
+@prefix owl:       <http://www.w3.org/2002/07/owl#> .
+@prefix rdf:       <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs:      <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:       <http://www.w3.org/2001/XMLSchema#> .
+@prefix skos:      <http://www.w3.org/2004/02/skos/core#> .
+@prefix dcterms:   <http://purl.org/dc/terms/> .
+@prefix comet:     <https://comet.carbon/v1/core#> .
+@prefix comet-ver: <https://comet.carbon/v1/ver#> .
+@prefix comet-sc:  <https://comet.carbon/v1/supplychain#> .
+@prefix comet-pcf: <https://comet.carbon/v1/pcf#> .
+@prefix comet-eac: <https://comet.carbon/v1/eac#> .
+@prefix comet-mkt: <https://comet.carbon/v1/market#> .
+
+# =============================================================================
+# COMET v0.3.0 — Carbon Verification Market Coverage Module
+# =============================================================================
+# Adds verification-process metadata (L6), aggregate inventory totals (L3) and
+# product/market specifics (L4/L5/L7) required to represent verification
+# engagements under the standards catalogued in the Global Carbon Verification
+# Market taxonomy (EU ETS, CSRD/ESRS, ISSB S2, ISO 14064-3, ISAE 3410,
+# ISO 14067, EPD, PAS 2050, VCS, Gold Standard, SBTi, EU CBAM, CORSIA, IRA 45V,
+# Article 6, California SB 253/261).
+#
+# Canonical labels & descriptions live in docs/glossary.html (the authoritative
+# seven-layer vocabulary). This module gives those terms first-class OWL
+# identity so they appear in the RDF graph and can be SHACL-validated.
+# =============================================================================
+
+<https://comet.carbon/ext/verification>
+    a owl:Ontology ;
+    dcterms:title "COMET Carbon Verification Market Coverage Module" ;
+    owl:versionInfo "0.3.0" ;
+    rdfs:comment "Verification-process, aggregate-inventory and product/market terms added in COMET v0.3.0." .
+
+# ─── L6 VERIFICATION & ASSURANCE ─────────────────────────────────────────
+
+comet-ver:VerificationOpinion a owl:Class ;
+    rdfs:label "Verification Opinion"@en ;
+    skos:definition "Formal opinion type issued in the verification statement: unqualified, qualified, adverse, or disclaimer."@en .
+
+comet-ver:MaterialityThreshold a owl:Class ;
+    rdfs:label "Materiality Threshold"@en ;
+    skos:definition "Materiality threshold (typically 5%) applied to determine whether misstatements are material."@en .
+
+comet-ver:FindingsLog a owl:Class ;
+    rdfs:label "Findings Log"@en ;
+    skos:definition "Register of all verification findings (corrected, uncorrected, observations)."@en .
+
+comet-ver:CorrectiveActionRequest a owl:Class ;
+    rdfs:label "Corrective Action Request"@en ;
+    skos:definition "Corrective Action Request raised against a finding, with severity and lifecycle status."@en .
+
+comet-ver:OpportunityForImprovement a owl:Class ;
+    rdfs:label "Opportunity For Improvement"@en ;
+    skos:definition "Opportunity for improvement / observation logged during verification (non-binding)."@en .
+
+comet-ver:AccreditationBody a owl:Class ;
+    rdfs:label "Accreditation Body"@en ;
+    skos:definition "Accreditation body (e.g. DAkkS, UKAS, ANAB) under which the verifier is accredited."@en .
+
+comet-ver:VerificationMethodology a owl:Class ;
+    rdfs:label "Verification Methodology"@en ;
+    skos:definition "Sampling strategy, analytical procedures and evidence-gathering plan for the engagement."@en .
+
+comet-ver:SiteVisitRecord a owl:Class ;
+    rdfs:label "Site Visit Record"@en ;
+    skos:definition "Physical or virtual site-visit documentation supporting the verification."@en .
+
+comet-ver:IndependenceDeclaration a owl:Class ;
+    rdfs:label "Independence Declaration"@en ;
+    skos:definition "Verifier independence and conflict-of-interest statement."@en .
+
+comet-ver:DataSubstitutionRule a owl:Class ;
+    rdfs:label "Data Substitution Rule"@en ;
+    skos:definition "Default or substitute data methodology applied when primary data is unavailable."@en .
+
+comet-ver:severity a owl:DatatypeProperty ;
+    rdfs:label "severity"@en ;
+    rdfs:domain comet-ver:CorrectiveActionRequest ;
+    rdfs:range xsd:string .
+
+comet-ver:status a owl:DatatypeProperty ;
+    rdfs:label "status"@en ;
+    rdfs:domain comet-ver:CorrectiveActionRequest ;
+    rdfs:range xsd:string .
+
+comet-ver:dueDate a owl:DatatypeProperty ;
+    rdfs:label "dueDate"@en ;
+    rdfs:domain comet-ver:CorrectiveActionRequest ;
+    rdfs:range xsd:date .
+
+comet-ver:accreditationNumber a owl:DatatypeProperty ;
+    rdfs:label "accreditationNumber"@en ;
+    rdfs:domain comet-ver:AccreditationBody ;
+    rdfs:range xsd:string .
+
+# ─── L3 SUPPLY CHAIN — AGGREGATE INVENTORY TOTALS ────────────────────────
+
+comet-sc:Scope1Emissions a owl:Class ;
+    rdfs:label "Scope 1 Emissions"@en ;
+    skos:definition "Aggregate Scope 1 direct emissions for the reporting entity (tCO2e)."@en .
+
+comet-sc:Scope2Emissions a owl:Class ;
+    rdfs:label "Scope 2 Emissions"@en ;
+    skos:definition "Aggregate Scope 2 indirect energy emissions, location-based and market-based (tCO2e)."@en .
+
+comet-sc:Scope3Emissions a owl:Class ;
+    rdfs:label "Scope 3 Emissions"@en ;
+    skos:definition "Aggregate Scope 3 value-chain emissions, reportable by category 1-15 (tCO2e)."@en .
+
+comet-sc:BaseYearEmissions a owl:Class ;
+    rdfs:label "Base Year Emissions"@en ;
+    skos:definition "Base-year inventory used for target-setting and recalculation."@en .
+
+comet-sc:EmissionIntensity a owl:Class ;
+    rdfs:label "Emission Intensity"@en ;
+    skos:definition "Normalised emission intensity metric (tCO2e per unit output or revenue)."@en .
+
+comet-sc:RecalculationTrigger a owl:Class ;
+    rdfs:label "Recalculation Trigger"@en ;
+    skos:definition "Criteria and result of a base-year recalculation event."@en .
+
+comet-sc:category a owl:DatatypeProperty ;
+    rdfs:label "category"@en ;
+    rdfs:domain comet-sc:Scope3Emissions ;
+    rdfs:range xsd:integer .
+
+# ─── L4 PCF — INTENSITY & UNCERTAINTY ────────────────────────────────────
+
+comet-pcf:CarbonIntensity a owl:Class ;
+    rdfs:label "Carbon Intensity"@en ;
+    skos:definition "Product-level lifecycle carbon intensity (kgCO2e per kg or MJ of product)."@en .
+
+comet-pcf:UncertaintyAssessment a owl:Class ;
+    rdfs:label "Uncertainty Assessment"@en ;
+    skos:definition "Quantified uncertainty range on the PCF or GHG result."@en .
+
+# ─── L5 EAC — CORSIA ─────────────────────────────────────────────────────
+
+comet-eac:CORSIAEligibleUnit a owl:Class ;
+    rdfs:label "CORSIA Eligible Unit"@en ;
+    skos:definition "Emission unit designated CORSIA-eligible by the ICAO Technical Advisory Body."@en .
+
+# ─── L7 MARKET — IRA 45V ─────────────────────────────────────────────────
+
+comet-mkt:CleanHydrogenCreditTier a owl:Class ;
+    rdfs:label "Clean Hydrogen Credit Tier"@en ;
+    skos:altLabel "45V Credit Tier"@en ;
+    skos:definition "IRA 45V production tax credit tier (USD 0.60-3.00/kg H2) keyed to lifecycle carbon intensity."@en .

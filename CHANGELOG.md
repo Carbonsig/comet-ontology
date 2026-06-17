@@ -6,6 +6,31 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ## [Unreleased]
 
+## [0.3.0] - 2026-06-17
+
+### Added
+
+**Carbon Verification Market Coverage** (`ext/verification/`, `docs/glossary.html`)
+- 20 new core terms extending the seven-layer stack to fully represent verification engagements under the Global Carbon Verification Market taxonomy (EU ETS, CSRD/ESRS E1, ISSB S2, ISO 14064-3, ISAE 3410, ISO 14067, EPD/EN 15804, PAS 2050, VCS, Gold Standard, SBTi, EU CBAM, CORSIA, IRA 45V, Article 6, California SB 253/261):
+  - **L6 Verification** (`comet-ver:`): `VerificationOpinion`, `MaterialityThreshold`, `FindingsLog`, `CorrectiveActionRequest` (+ `severity`/`status`/`dueDate`), `OpportunityForImprovement`, `AccreditationBody` (+ `accreditationNumber`), `VerificationMethodology`, `SiteVisitRecord`, `IndependenceDeclaration`, `DataSubstitutionRule` — closing the gap where L6 was required by 100% of standards yet was the thinnest layer
+  - **L3 Supply Chain** (`comet-sc:`): aggregate inventory totals `Scope1Emissions`, `Scope2Emissions` (location- + market-based), `Scope3Emissions` (+ `category` 1-15), `BaseYearEmissions`, `EmissionIntensity`, `RecalculationTrigger`
+  - **L4 PCF** (`comet-pcf:`): `CarbonIntensity` (+ `functionalBasis`), `UncertaintyAssessment`
+  - **L5 EAC** (`comet-eac:`): `CORSIAEligibleUnit` (+ `eligiblePeriod`)
+  - **L7 Market** (`comet-mkt:`): `CleanHydrogenCreditTier` (+ `creditValue`) — IRA 45V tiers; local name avoids a leading digit to remain a valid CURIE/NCName, alt-label "45V Credit Tier"
+- New extension module `ext/verification/comet-ext-verification.ttl` giving the 20 terms first-class OWL identity, plus `comet-ext-verification-shapes.ttl` SHACL shapes validated with pyshacl (valid instance Conforms: True; invalid instance fails on enum/range/cardinality constraints) — test data under `ext/verification/tests/data/`
+- 51 new standards-alignment crosswalk rows registering ISO 14064-3, ISO 14065, ISAE 3410/3000, ISSB S2, EU ETS MRV, IRA 45V, ICAO CORSIA, SBTi, EN 15804+A2, Verra VCS and GHG Protocol Scope 3 as formally aligned standards. Crosswalks without a citable external identifier carry an empty `target_iri` (coverage registered without fabricating IRIs)
+- Extended `tools/schemas/comet-core.schema.json` `Verification` definition with `opinionType`, `materialityThreshold`, `accreditationBody`/`accreditationNumber`, `independenceDeclared`, `siteVisitPerformed` and a structured `findings` array
+
+**New converters** (`tools/converters/`)
+- `ghgprotocol_to_comet.py` (full) — GHG Protocol / ESRS E1 corporate inventory (JSON or CSV) to COMET, populating the new Scope 1/2/3, base-year and intensity aggregates; invalid Scope 3 categories are dropped with a warning
+- `h45v_to_comet.py` (full) — IRA 45V clean-hydrogen attestation to COMET, implementing the four statutory 26 USC 45V(b) credit tiers keyed to 45VH2-GREET lifecycle carbon intensity, with credit-value and estimated-credit computation
+- `epd_to_comet.py`, `corsia_to_comet.py`, `verra_to_comet.py` (scaffolds) — public API, CLI and COMET skeleton in place with a working JSON path and a marked TODO for full EN 15804 ILCD-XML / ICAO CORSIA registry / Verra-Gold Standard registry mapping
+- All five wired into `tools/comet_cli.py` (`comet convert --from ghg-protocol|esrs|45v|epd|corsia|verra|gold-standard`); round-trip test suite `tools/converters/tests/test_v030_converters.py` (23 checks, all passing)
+
+### Changed
+- `tools/scripts/build-ontology-map.py` now resolves bare standard names (not just `prefix: term` chunks) in the glossary alignment column, so coverage registers for standards without per-term external identifiers
+- Ontology term count rises from 113 to 141 core terms (904 to 937 total incl. incorporated CAD Trust); alignment crosswalks rise from 242 to 293
+
 ### Added
 
 **Schema Map, Interactive Ontology & Value Lookup** (`docs/schema-map.html`)

@@ -94,6 +94,17 @@ ALIGN_NAME_MAP: dict[str, str] = {
     "iso 14040": "ISO 14040", "iso 14044": "ISO 14044", "prov": "W3C PROV",
     "qudt": "QUDT", "geosparql": "GeoSPARQL", "iec": "IEC", "irec": "I-REC",
     "gs": "Gold Standard", "verra": "Verra", "vcs": "Verra VCS",
+    # v0.3.0 carbon-verification-market standards (friendly-name crosswalks; no
+    # invented external IRIs — target_iri stays empty until a citable scheme exists).
+    "ghg protocol scope 3": "GHG Protocol Scope 3", "ghg protocol: scope 1": "GHG Protocol",
+    "ghg protocol: scope 2": "GHG Protocol",
+    "iso 14064-3": "ISO 14064-3", "iso 14065": "ISO 14065",
+    "isae 3410": "ISAE 3410", "isae 3000": "ISAE 3000",
+    "issb s2": "ISSB S2", "ifrs s2": "ISSB S2", "esrs e1-6": "EU ESRS",
+    "eu ets mrv": "EU ETS MRV", "ira 45v": "IRA 45V", "45vh2-greet": "IRA 45V",
+    "icao corsia": "ICAO CORSIA", "icao corsia (euc criteria)": "ICAO CORSIA",
+    "sbti": "SBTi", "en 15804+a2": "EN 15804+A2", "pas 2050": "PAS 2050",
+    "ca sb 253": "California SB 253", "ca sb 261": "California SB 261",
 }
 
 # IRI bases used by *external* vocabularies that COMET aligns to.
@@ -408,18 +419,27 @@ def extract_from_glossary() -> tuple[dict[str, dict], list[dict]]:
             "datatype": datatype, "definition": desc, "source": "glossary",
         }
         # Standards-alignment column → crosswalk rows (one per target).
-        for chunk in re.split(r"\s*[;,]\s*", align_txt):
+        # Two accepted chunk forms:
+        #   "<standard>: <target term>"  → head matched against ALIGN_NAME_MAP
+        #   "<standard>"  (bare name)    → whole chunk matched; target term blank
+        # Bare names let coverage register for standards without a per-term
+        # external identifier (ISSB S2, SBTi, …) without inventing IRIs.
+        for chunk in re.split(r"\s*;\s*", align_txt):
             chunk = chunk.strip()
-            if not chunk or ":" not in chunk:
+            if not chunk:
                 continue
-            head, tail = chunk.split(":", 1)
-            std = ALIGN_NAME_MAP.get(head.strip().lower())
+            if ":" in chunk:
+                head, tail = chunk.split(":", 1)
+                head, tail = head.strip(), tail.strip()
+            else:
+                head, tail = chunk, ""
+            std = ALIGN_NAME_MAP.get(head.lower())
             if not std:
                 continue
             aligns.append({
                 "comet_curie": curie, "comet_local": local, "relation": "mapsTo",
-                "target_standard": std, "target_prefix": head.strip().lower(),
-                "target_term": tail.strip(), "target_iri": "", "note": "",
+                "target_standard": std, "target_prefix": head.lower(),
+                "target_term": tail, "target_iri": "", "note": "",
             })
     return terms, aligns
 
