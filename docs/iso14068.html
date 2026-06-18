@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>COMET — ISO 14068-1 Carbon Neutrality Extension</title>
+<meta name="description" content="How ISO 14068-1:2023 maps onto the COMET seven-layer stack — merge points, new classes, and stakeholder benefits for industrial buyers, financial institutions, verifiers, regulators, LCA practitioners, and carbon-market platforms.">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500;600&display=swap');
+
+  :root {
+    --ink: #0f0f0f;
+    --ink-2: #2a2a2a;
+    --ink-3: #555;
+    --rule: #d0cfc9;
+    --rule-light: #e8e7e3;
+    --bg: #f5f4f0;
+    --bg-card: #ffffff;
+    --accent-r: #c8360a;
+    --accent-g: #1a6b3c;
+    --accent-b: #1a3a6b;
+    --accent-gold: #9a7c2f;
+    --accent-teal: #1a5f6b;
+    --mono: 'DM Mono', monospace;
+    --display: 'Playfair Display', serif;
+    --body: 'DM Sans', sans-serif;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--bg); color: var(--ink); font-family: var(--body); font-size: 13px; line-height: 1.55; }
+  a { color: var(--accent-r); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  code { font-family: var(--mono); font-size: 11.5px; background: #f0eeea; border: 1px solid var(--rule); padding: 1px 5px; }
+
+  /* MASTHEAD */
+  .masthead { background: var(--ink); color: #f5f4f0; padding: 48px 64px 40px; border-bottom: 3px solid var(--accent-r); }
+  .masthead-eyebrow { font-family: var(--mono); font-size: 10px; letter-spacing: 0.18em; color: #999; text-transform: uppercase; margin-bottom: 16px; }
+  .masthead h1 { font-family: var(--display); font-size: 52px; font-weight: 900; letter-spacing: -0.02em; line-height: 1.0; margin-bottom: 6px; }
+  .masthead h1 span { color: var(--accent-r); }
+  .masthead-subtitle { font-family: var(--mono); font-size: 11px; color: #aaa; letter-spacing: 0.08em; margin-bottom: 24px; }
+  .masthead-desc { font-size: 14px; color: #ccc; max-width: 760px; line-height: 1.6; }
+  .masthead-meta { display: flex; gap: 32px; margin-top: 24px; padding-top: 24px; border-top: 1px solid #333; flex-wrap: wrap; }
+  .meta-item { display: flex; flex-direction: column; gap: 4px; }
+  .meta-label { font-family: var(--mono); font-size: 9px; letter-spacing: 0.15em; color: #777; text-transform: uppercase; }
+  .meta-val { font-family: var(--mono); font-size: 12px; color: #f0f0f0; }
+
+  /* NAV */
+  .toc-nav { background: var(--bg-card); border-bottom: 1px solid var(--rule); padding: 14px 64px; display: flex; gap: 22px; flex-wrap: wrap; font-family: var(--mono); font-size: 10px; letter-spacing: 0.08em; }
+  .toc-link { color: var(--ink-3); text-transform: uppercase; text-decoration: none; border-bottom: 1px solid transparent; padding-bottom: 2px; transition: color 0.15s, border-color 0.15s; }
+  .toc-link:hover { color: var(--accent-r); border-color: var(--accent-r); text-decoration: none; }
+
+  /* LAYOUT */
+  .page { max-width: 1400px; margin: 0 auto; padding: 0 64px; }
+  .section-block { padding: 56px 0 40px; border-bottom: 1px solid var(--rule); }
+  .section-label { font-family: var(--mono); font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent-r); margin-bottom: 6px; }
+  .section-title { font-family: var(--display); font-size: 30px; font-weight: 700; color: var(--ink); margin-bottom: 8px; line-height: 1.1; }
+  .section-bluf { font-size: 13.5px; color: var(--ink-3); max-width: 820px; margin-bottom: 28px; border-left: 2px solid var(--rule); padding-left: 14px; }
+
+  /* PILLARS */
+  .pillar-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
+  @media (max-width: 1000px) { .pillar-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 600px) { .pillar-grid { grid-template-columns: 1fr; } }
+  .pillar { background: var(--bg-card); border: 1px solid var(--rule); padding: 22px 24px; position: relative; }
+  .pillar::before { content: ''; position: absolute; top: 0; left: 0; width: 3px; height: 100%; }
+  .pillar.r::before { background: var(--accent-r); }
+  .pillar.g::before { background: var(--accent-g); }
+  .pillar.b::before { background: var(--accent-b); }
+  .pillar.gold::before { background: var(--accent-gold); }
+  .pillar-num { font-family: var(--mono); font-size: 9px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink-3); margin-bottom: 8px; }
+  .pillar-title { font-family: var(--display); font-size: 17px; font-weight: 700; line-height: 1.15; margin-bottom: 8px; color: var(--ink); }
+  .pillar-body { font-size: 12px; color: var(--ink-3); line-height: 1.55; }
+
+  /* TABLES */
+  .data-table { width: 100%; border-collapse: collapse; background: var(--bg-card); border: 1px solid var(--rule); font-size: 12px; }
+  .data-table thead th { background: #ebe9e3; font-family: var(--mono); font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-2); text-align: left; padding: 10px 14px; border-bottom: 1px solid var(--rule); }
+  .data-table tbody td { padding: 10px 14px; border-bottom: 1px solid var(--rule-light); vertical-align: top; }
+  .data-table tbody tr:last-child td { border-bottom: none; }
+  .data-table tbody tr:hover { background: #fafaf6; }
+  .data-table .iso-ref { font-family: var(--mono); font-size: 11px; color: var(--accent-b); white-space: nowrap; }
+  .data-table .iso-term { font-weight: 600; color: var(--ink); }
+  .data-table .comet-class { font-family: var(--mono); font-size: 11px; color: var(--accent-r); white-space: nowrap; }
+
+  /* STACK DIAGRAM */
+  .stack { display: flex; flex-direction: column; gap: 0; max-width: 1000px; margin: 0 auto; }
+  .stack-layer { display: flex; align-items: stretch; border: 1px solid var(--rule); margin-bottom: -1px; background: var(--bg-card); }
+  .stack-num { font-family: var(--mono); font-size: 10px; color: #fff; writing-mode: vertical-rl; text-orientation: mixed; transform: rotate(180deg); padding: 16px 10px; min-width: 36px; display: flex; align-items: center; justify-content: center; font-weight: 500; }
+  .stack-content { flex: 1; padding: 16px 22px; }
+  .stack-name { font-weight: 600; font-size: 13px; margin-bottom: 6px; color: var(--ink); }
+  .stack-desc { font-size: 11.5px; color: var(--ink-3); margin-bottom: 8px; }
+  .stack-nodes { display: flex; flex-wrap: wrap; gap: 6px; }
+  .stack-node { font-family: var(--mono); font-size: 10px; padding: 2px 8px; border: 1px solid; }
+
+  /* STAKEHOLDER GRID */
+  .stake-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+  @media (max-width: 900px) { .stake-grid { grid-template-columns: 1fr; } }
+  .stake-card { background: var(--bg-card); border: 1px solid var(--rule); padding: 22px 26px; }
+  .stake-role { font-family: var(--mono); font-size: 9px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--accent-r); margin-bottom: 6px; }
+  .stake-title { font-family: var(--display); font-size: 17px; font-weight: 700; margin-bottom: 10px; color: var(--ink); }
+  .stake-body { font-size: 12.5px; color: var(--ink-3); }
+  .stake-body ul { padding-left: 18px; margin-top: 6px; }
+  .stake-body li { margin-bottom: 6px; }
+
+  /* FORBIDDEN BANNER */
+  .forbidden-table { width: 100%; border-collapse: collapse; background: #fff5f3; border: 1px solid #f0c0b0; font-size: 12px; }
+  .forbidden-table thead th { background: #f8e0d8; color: var(--accent-r); font-family: var(--mono); font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; padding: 10px 14px; text-align: left; border-bottom: 1px solid #f0c0b0; }
+  .forbidden-table tbody td { padding: 10px 14px; border-bottom: 1px solid #f0d8d0; vertical-align: top; }
+  .forbidden-table tbody tr:last-child td { border-bottom: none; }
+
+  /* CHECKLIST */
+  .checklist { background: var(--bg-card); border: 1px solid var(--rule); padding: 24px 30px; }
+  .checklist ol { padding-left: 22px; }
+  .checklist li { margin-bottom: 10px; font-size: 12.5px; color: var(--ink-2); line-height: 1.55; }
+  .checklist li strong { color: var(--ink); }
+
+  /* RELATED */
+  .related-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  @media (max-width: 900px) { .related-grid { grid-template-columns: 1fr; } }
+  .related-card { background: var(--bg-card); border: 1px solid var(--rule); padding: 20px 22px; display: block; color: inherit; text-decoration: none; transition: border-color 0.15s; }
+  .related-card:hover { border-color: var(--accent-r); text-decoration: none; }
+  .related-card-label { font-family: var(--mono); font-size: 9px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink-3); margin-bottom: 8px; }
+  .related-card-title { font-family: var(--display); font-size: 17px; font-weight: 700; margin-bottom: 6px; color: var(--ink); }
+  .related-card-body { font-size: 12px; color: var(--ink-3); line-height: 1.55; }
+
+  /* COUNTS BANNER */
+  .counts-row { display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; }
+  @media (max-width: 800px) { .counts-row { grid-template-columns: repeat(2, 1fr); } }
+  .count-card { background: var(--ink); color: #f5f4f0; padding: 18px 20px; }
+  .count-num { font-family: var(--display); font-size: 36px; font-weight: 900; color: var(--accent-r); line-height: 1; margin-bottom: 6px; }
+  .count-label { font-family: var(--mono); font-size: 10px; letter-spacing: 0.1em; color: #aaa; text-transform: uppercase; }
+
+  /* FOOTER */
+  footer { background: var(--ink); color: #aaa; padding: 32px 64px; font-family: var(--mono); font-size: 10px; letter-spacing: 0.08em; line-height: 1.8; }
+  footer a { color: #ccc; }
+  footer a:hover { color: var(--accent-r); }
+</style>
+</head>
+<body>
+
+<!-- MASTHEAD -->
+<header class="masthead">
+  <div class="masthead-eyebrow">Extension Module · ISO 14068-1:2023 Carbon Neutrality</div>
+  <h1>COMET<span>.</span></h1>
+  <div class="masthead-subtitle">Carbon-Neutrality Extension — comet-ext:iso14068 v0.1.0 · RFC Open</div>
+  <p class="masthead-desc">ISO 14068-1:2023 closed the gap between informal "carbon neutral" marketing and a structured, verifiable claim. This extension threads its requirements through the COMET seven-layer stack — eighteen <code>owl:equivalentClass</code> bridges to existing COMET classes, twenty-four new classes for concepts COMET did not yet encode, and a SHACL validation surface that catches the practices ISO 14068 forbids.</p>
+  <div class="masthead-meta">
+    <div class="meta-item"><span class="meta-label">Standard</span><span class="meta-val">ISO 14068-1:2023</span></div>
+    <div class="meta-item"><span class="meta-label">Namespace</span><span class="meta-val">comet-cn:</span></div>
+    <div class="meta-item"><span class="meta-label">Layers</span><span class="meta-val">L1 · L4 · L5 · L6 · L7</span></div>
+    <div class="meta-item"><span class="meta-label">License</span><span class="meta-val">CC BY 4.0 + Apache 2.0</span></div>
+    <div class="meta-item"><span class="meta-label">Status</span><span class="meta-val">RFC Open</span></div>
+  </div>
+</header>
+
+<!-- NAV -->
+<nav class="toc-nav">
+  <a class="toc-link" href="index.html">← Home</a>
+  <a class="toc-link" href="#what">What ISO 14068 is</a>
+  <a class="toc-link" href="#counts">By the numbers</a>
+  <a class="toc-link" href="#merge">Merge map</a>
+  <a class="toc-link" href="#expand">New classes</a>
+  <a class="toc-link" href="#stack">Layer view</a>
+  <a class="toc-link" href="#stakeholders">Stakeholders</a>
+  <a class="toc-link" href="#forbidden">What it forbids</a>
+  <a class="toc-link" href="#checklist">Adoption</a>
+  <a class="toc-link" href="ontology.html">Ontology Spec →</a>
+</nav>
+
+<div class="page">
+
+<!-- 01 — WHAT ISO 14068 IS -->
+<section class="section-block" id="what">
+  <div class="section-label">Section 01 — Context</div>
+  <div class="section-title">Four pillars of ISO 14068-1:2023</div>
+  <div class="section-bluf">Before 2023, "carbon neutral" was a marketing term with no agreed meaning. ISO 14068-1 closes that gap with four mandatory pillars. Conformance to all four is the bar a claim must clear under the EU Green Claims Directive, the UK CMA Green Claims Code, and the FTC Green Guides revisions.</div>
+
+  <div class="pillar-grid">
+    <div class="pillar r">
+      <div class="pillar-num">Pillar 01 · §4.4 + §5.2</div>
+      <div class="pillar-title">Mitigation hierarchy</div>
+      <div class="pillar-body">Reduce in-boundary first. Then enhance in-boundary removals. Only THEN offset. Skipping rungs is non-conformant and the extension's <code>hierarchyStep</code> tag makes the order auditable.</div>
+    </div>
+    <div class="pillar g">
+      <div class="pillar-num">Pillar 02 · §8 + Annex C</div>
+      <div class="pillar-title">Quantification by reference</div>
+      <div class="pillar-body">Does not invent a new accounting method. Defers to <strong>ISO 14064-1</strong> for organizations and <strong>ISO 14067</strong> for products, with GHG Protocol consistency carve-outs. COMET PCFs are already compatible.</div>
+    </div>
+    <div class="pillar b">
+      <div class="pillar-num">Pillar 03 · §11</div>
+      <div class="pillar-title">Credit gatekeeping</div>
+      <div class="pillar-body">Five mandatory credit criteria — <strong>Real · Additional · Measurable · Permanent · Certified</strong> — and nine programme-level requirements covering registries, leakage, double counting, and Article 6.4 corresponding adjustments.</div>
+    </div>
+    <div class="pillar gold">
+      <div class="pillar-num">Pillar 04 · §12</div>
+      <div class="pillar-title">Mandatory public report</div>
+      <div class="pillar-body">A 24-element carbon-neutrality report — including the verification opinion — must be published for every reporting period. The extension types it as <code>comet-cn:CarbonNeutralityReport</code>, sub-class of <code>comet-ver:DisclosureRecord</code>.</div>
+    </div>
+  </div>
+</section>
+
+<!-- 02 — COUNTS -->
+<section class="section-block" id="counts">
+  <div class="section-label">Section 02 — At a glance</div>
+  <div class="section-title">What the extension contributes</div>
+  <div class="section-bluf">Most of ISO 14068's vocabulary already lives inside COMET — the work is bridging via <code>owl:equivalentClass</code> and adding the new structural concepts (Plan, Pathway, Claim, Report) that ISO 14068 demands.</div>
+
+  <div class="counts-row">
+    <div class="count-card"><div class="count-num">18</div><div class="count-label">Equivalence bridges</div></div>
+    <div class="count-card"><div class="count-num">24</div><div class="count-label">New classes</div></div>
+    <div class="count-card"><div class="count-num">11</div><div class="count-label">Principle individuals</div></div>
+    <div class="count-card"><div class="count-num">15</div><div class="count-label">Properties</div></div>
+    <div class="count-card"><div class="count-num">5</div><div class="count-label">COMET layers touched</div></div>
+  </div>
+</section>
+
+<!-- 03 — MERGE -->
+<section class="section-block" id="merge">
+  <div class="section-label">Section 03 — Merge map</div>
+  <div class="section-title">Where COMET already covers ISO 14068</div>
+  <div class="section-bluf">Eighteen ISO 14068 terms map directly onto existing COMET classes. The extension declares these alignments via <code>owl:equivalentClass</code> so reasoners flow data between vocabularies without lossy conversion. No new class is created here — only the bridge.</div>
+
+  <table class="data-table">
+    <thead>
+      <tr>
+        <th style="width: 9%;">ISO §</th>
+        <th style="width: 26%;">ISO 14068 term</th>
+        <th style="width: 32%;">Existing COMET class</th>
+        <th style="width: 33%;">Note</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td class="iso-ref">3.2.4</td><td class="iso-term">carbon footprint</td><td class="comet-class">comet-pcf:PCFResult</td><td>Identical for products via ISO 14067; orgs reuse class with organizational boundary</td></tr>
+      <tr><td class="iso-ref">3.2.5</td><td class="iso-term">direct GHG emission</td><td class="comet-class">comet-pcf:Scope1Emission</td><td>Direct = GHG Protocol Scope 1</td></tr>
+      <tr><td class="iso-ref">3.2.6</td><td class="iso-term">indirect GHG emission</td><td class="comet-class">comet-pcf:IndirectGHGEmission</td><td>Covers Scope 2 + Scope 3 — disambiguate downstream</td></tr>
+      <tr><td class="iso-ref">3.2.7</td><td class="iso-term">GHG removal</td><td class="comet-class">comet-pcf:GHGRemoval</td><td>Reforestation, soil sequestration, BECCS, DAC + storage</td></tr>
+      <tr><td class="iso-ref">3.2.9</td><td class="iso-term">GHG source</td><td class="comet-class">comet-sc:GHGSource</td><td>—</td></tr>
+      <tr><td class="iso-ref">3.2.10</td><td class="iso-term">GHG sink</td><td class="comet-class">comet-sc:GHGSink</td><td>Natural or anthropogenic</td></tr>
+      <tr><td class="iso-ref">3.2.11</td><td class="iso-term">global warming potential</td><td class="comet-class">comet-pcf:GlobalWarmingPotential</td><td>IPCC AR-aligned values</td></tr>
+      <tr><td class="iso-ref">3.2.12</td><td class="iso-term">CO₂ equivalent</td><td class="comet-class">comet-pcf:CO2Equivalent</td><td>—</td></tr>
+      <tr><td class="iso-ref">3.2.16</td><td class="iso-term">boundary &lt;organization&gt;</td><td class="comet-class">comet:OrganizationalBoundary</td><td>Per ISO 14064-1</td></tr>
+      <tr><td class="iso-ref">3.2.17</td><td class="iso-term">boundary &lt;product&gt;</td><td class="comet-class">comet-pcf:SystemBoundary</td><td>Per ISO 14067</td></tr>
+      <tr><td class="iso-ref">3.3.2</td><td class="iso-term">carbon credit</td><td class="comet-class">comet-eac:CarbonCredit</td><td>ISO 14068 criteria layered on as <code>comet-cn:CreditCriterion</code></td></tr>
+      <tr><td class="iso-ref">3.3.4</td><td class="iso-term">carbon crediting programme</td><td class="comet-class">comet-eac:CreditingProgramme</td><td>Verra, Gold Standard, ART TREES, CAR, etc.</td></tr>
+      <tr><td class="iso-ref">3.3.5</td><td class="iso-term">public registry</td><td class="comet-class">comet-eac:PublicRegistry</td><td>—</td></tr>
+      <tr><td class="iso-ref">3.4.3</td><td class="iso-term">organization</td><td class="comet-class">comet:Organization</td><td>—</td></tr>
+      <tr><td class="iso-ref">3.4.4</td><td class="iso-term">product</td><td class="comet-class">comet:Product</td><td>—</td></tr>
+      <tr><td class="iso-ref">3.4.5</td><td class="iso-term">stakeholder</td><td class="comet-class">comet:Stakeholder</td><td>—</td></tr>
+      <tr><td class="iso-ref">3.4.6</td><td class="iso-term">top management</td><td class="comet-class">comet:TopManagement</td><td>Required signatory of the commitment</td></tr>
+      <tr><td class="iso-ref">3.4.7</td><td class="iso-term">value chain</td><td class="comet-class">comet-sc:ValueChain</td><td>Includes upstream + downstream + end-of-life</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- 04 — EXPAND -->
+<section class="section-block" id="expand">
+  <div class="section-label">Section 04 — Expansion</div>
+  <div class="section-title">New classes ISO 14068 forces COMET to add</div>
+  <div class="section-bluf">Twenty-four concepts in ISO 14068 had no representation in COMET v0.2. They are introduced under the new <code>comet-cn:</code> namespace and organized by the COMET layer they extend.</div>
+
+  <table class="data-table">
+    <thead>
+      <tr>
+        <th style="width: 8%;">Layer</th>
+        <th style="width: 28%;">New class</th>
+        <th style="width: 10%;">ISO §</th>
+        <th style="width: 54%;">Why it is needed</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td><span class="iso-ref">L1 Core</span></td><td class="comet-class">comet-cn:Subject</td><td class="iso-ref">3.4.2</td><td>The unit being claimed neutral. <code>owl:unionOf (Organization Product)</code></td></tr>
+      <tr><td><span class="iso-ref">L1 Core</span></td><td class="comet-class">comet-cn:Entity</td><td class="iso-ref">3.4.1</td><td>The body MAKING the claim — distinct from Subject (parent claims for child product)</td></tr>
+      <tr><td><span class="iso-ref">L1 Core</span></td><td class="comet-class">comet-cn:FinancialInstitution</td><td class="iso-ref">3.4.3.1</td><td>Triggers the financed-emissions accounting requirement (Annex B.3)</td></tr>
+      <tr><td><span class="iso-ref">L4 PCF</span></td><td class="comet-class">comet-cn:Baseline</td><td class="iso-ref">3.2.13</td><td>Quantified base-period footprint, reductions are measured against</td></tr>
+      <tr><td><span class="iso-ref">L4 PCF</span></td><td class="comet-class">comet-cn:BasePeriod</td><td class="iso-ref">3.2.14</td><td>Historical comparison period</td></tr>
+      <tr><td><span class="iso-ref">L4 PCF</span></td><td class="comet-class">comet-cn:ReportingPeriod</td><td class="iso-ref">3.1.6</td><td>Period for which the claim is made — typically annual</td></tr>
+      <tr><td><span class="iso-ref">L4 PCF</span></td><td class="comet-class">comet-cn:UnabatedGHGEmission</td><td class="iso-ref">3.1.4</td><td>Emission left after in-boundary reductions</td></tr>
+      <tr><td><span class="iso-ref">L4 PCF</span></td><td class="comet-class">comet-cn:ResidualGHGEmission</td><td class="iso-ref">3.1.5</td><td>What remains after ALL technically + economically feasible reductions. Anchors long-term pathway target</td></tr>
+      <tr><td><span class="iso-ref">L4 PCF</span></td><td class="comet-class">comet-cn:GHGEmissionReduction</td><td class="iso-ref">3.2.3</td><td>First-class reduction artefact, baseline-relative</td></tr>
+      <tr><td><span class="iso-ref">L4 PCF</span></td><td class="comet-class">comet-cn:GHGRemovalEnhancement</td><td class="iso-ref">3.2.8</td><td>Distinct from a one-off removal; reversals re-class as emissions</td></tr>
+      <tr><td><span class="iso-ref">L4–L7</span></td><td class="comet-class">comet-cn:CarbonNeutralityCommitment</td><td class="iso-ref">6</td><td>Required precondition — top-management commitment artefact</td></tr>
+      <tr><td><span class="iso-ref">L4–L7</span></td><td class="comet-class">comet-cn:CarbonNeutralityPathway</td><td class="iso-ref">5.3</td><td>Trajectory with short, long, residual-only targets — IPCC/IEA/SBTi-aligned</td></tr>
+      <tr><td><span class="iso-ref">L4–L7</span></td><td class="comet-class">comet-cn:CarbonNeutralityManagementPlan</td><td class="iso-ref">9</td><td>Composed of pathway + baseline + targets + safeguards (13 mandatory elements)</td></tr>
+      <tr><td><span class="iso-ref">L4–L7</span></td><td class="comet-class">comet-cn:CarbonNeutralityClaim</td><td class="iso-ref">3.1.3</td><td>The public declaration</td></tr>
+      <tr><td><span class="iso-ref">L4–L7</span></td><td class="comet-class">comet-cn:CarbonNeutralityReport</td><td class="iso-ref">12</td><td>The 24-element public report — sub-class of <code>comet-ver:DisclosureRecord</code></td></tr>
+      <tr><td><span class="iso-ref">L4–L7</span></td><td class="comet-class">comet-cn:HierarchyAction</td><td class="iso-ref">4.4 + 5.2</td><td>Enum: reduce / enhance / offset — mandatory tag on every plan action</td></tr>
+      <tr><td><span class="iso-ref">L5 EAC</span></td><td class="comet-class">comet-cn:CreditCriterion</td><td class="iso-ref">11.2</td><td>Real · Additional · Measurable · Permanent · Certified</td></tr>
+      <tr><td><span class="iso-ref">L5 EAC</span></td><td class="comet-class">comet-cn:CreditingProgrammeCriterion</td><td class="iso-ref">11.3</td><td>Nine programme-level criteria</td></tr>
+      <tr><td><span class="iso-ref">L5 EAC</span></td><td class="comet-class">comet-cn:CreditType</td><td class="iso-ref">3.3.2 N2</td><td>Avoidance / Reduction / Removal — drives whether usable after residual</td></tr>
+      <tr><td><span class="iso-ref">L5 EAC</span></td><td class="comet-class">comet-cn:OffsettingEvent</td><td class="iso-ref">3.3.1 + 11</td><td>Sub-class of <code>comet-eac:RetirementEvent</code> with vintage + 12-month constraints</td></tr>
+      <tr><td><span class="iso-ref">L5 EAC</span></td><td class="comet-class">comet-cn:CorrespondingAdjustment</td><td class="iso-ref">11.1 N</td><td>Article 6.4 disclosure (§12 t)</td></tr>
+      <tr><td><span class="iso-ref">L6 Ver</span></td><td class="comet-class">comet-cn:RemovalReversal</td><td class="iso-ref">10.2</td><td>Re-class as emission in the reporting period of reversal</td></tr>
+      <tr><td><span class="iso-ref">L6 Ver</span></td><td class="comet-class">comet-cn:VerificationOpinion</td><td class="iso-ref">12 w</td><td>Bridges to ISO 14064-3</td></tr>
+      <tr><td><span class="iso-ref">L7 / B.3</span></td><td class="comet-class">comet-cn:FinancedEmissionsAccount</td><td class="iso-ref">Annex B.3</td><td>Financial-institution-specific component aligned to PCAF methodology</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- 05 — STACK VIEW -->
+<section class="section-block" id="stack">
+  <div class="section-label">Section 05 — Stack view</div>
+  <div class="section-title">Where the new classes live</div>
+  <div class="section-bluf">The extension threads through five of COMET's seven layers. The <code>CarbonNeutralityManagementPlan</code> is intentionally cross-cutting — it composes objects from L4 through L7, mirroring how the standard itself is structured.</div>
+
+  <div class="stack">
+    <div class="stack-layer" style="background:#0f0f0f;">
+      <div class="stack-num" style="background:var(--accent-r);">L7</div>
+      <div class="stack-content">
+        <div class="stack-name" style="color:#f5f4f0;">Market Signal — pricing residual-only credits</div>
+        <div class="stack-desc" style="color:#aaa;">Hierarchy-aware premia; AvoidanceCredit ≠ RemovalCredit ≠ ReductionCredit. The L7 market can finally price the difference because credits carry their type, vintage, and corresponding-adjustment status.</div>
+        <div class="stack-nodes">
+          <span class="stack-node" style="border-color:var(--accent-r);color:var(--accent-r);">CreditType</span>
+          <span class="stack-node" style="border-color:var(--accent-r);color:var(--accent-r);">RemovalCredit (residual-only)</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="stack-layer" style="background:#1a1a1a;">
+      <div class="stack-num" style="background:var(--accent-g);">L6</div>
+      <div class="stack-content">
+        <div class="stack-name" style="color:#f5f4f0;">Verification &amp; Assurance</div>
+        <div class="stack-desc" style="color:#aaa;">Independent verification opinion is mandatory in the report (§12 w). Reversals must be re-classed as emissions in the period of reversal (§10.2).</div>
+        <div class="stack-nodes">
+          <span class="stack-node" style="border-color:var(--accent-g);color:var(--accent-g);">VerificationOpinion</span>
+          <span class="stack-node" style="border-color:var(--accent-g);color:var(--accent-g);">RemovalReversal</span>
+          <span class="stack-node" style="border-color:var(--accent-g);color:var(--accent-g);">CorrespondingAdjustment</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="stack-layer" style="background:#252521;">
+      <div class="stack-num" style="background:var(--accent-b);">L5</div>
+      <div class="stack-content">
+        <div class="stack-name" style="color:#f5f4f0;">Environmental Attribute Certificate</div>
+        <div class="stack-desc" style="color:#aaa;">Five mandatory credit criteria + nine programme-level criteria. Vintage end ≤5y before claim period; retirement ≤12 months after period end. SHACL constraints enforce both.</div>
+        <div class="stack-nodes">
+          <span class="stack-node" style="border-color:var(--accent-b);color:var(--accent-b);">CreditCriterion</span>
+          <span class="stack-node" style="border-color:var(--accent-b);color:var(--accent-b);">CreditingProgrammeCriterion</span>
+          <span class="stack-node" style="border-color:var(--accent-b);color:var(--accent-b);">OffsettingEvent</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="stack-layer" style="background:#fafaf6;">
+      <div class="stack-num" style="background:var(--accent-gold);">L4</div>
+      <div class="stack-content">
+        <div class="stack-name">Product / Organization Carbon Footprint</div>
+        <div class="stack-desc">Baseline · BasePeriod · ReportingPeriod give the footprint time-bounded comparison semantics. Unabated and Residual emissions are typed sub-classes of GHG emission.</div>
+        <div class="stack-nodes">
+          <span class="stack-node" style="border-color:var(--accent-gold);color:var(--accent-gold);">Baseline</span>
+          <span class="stack-node" style="border-color:var(--accent-gold);color:var(--accent-gold);">UnabatedGHGEmission</span>
+          <span class="stack-node" style="border-color:var(--accent-gold);color:var(--accent-gold);">ResidualGHGEmission</span>
+          <span class="stack-node" style="border-color:var(--accent-gold);color:var(--accent-gold);">GHGEmissionReduction</span>
+          <span class="stack-node" style="border-color:var(--accent-gold);color:var(--accent-gold);">GHGRemovalEnhancement</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="stack-layer" style="background:#f0eee9;">
+      <div class="stack-num" style="background:var(--accent-teal);">L1</div>
+      <div class="stack-content">
+        <div class="stack-name">Core Identity</div>
+        <div class="stack-desc">Subject (Organization ∪ Product) and Entity (the body making the claim) become first-class — distinct because a parent company can claim neutrality for one of its products, not for itself.</div>
+        <div class="stack-nodes">
+          <span class="stack-node" style="border-color:var(--accent-teal);color:var(--accent-teal);">Subject</span>
+          <span class="stack-node" style="border-color:var(--accent-teal);color:var(--accent-teal);">Entity</span>
+          <span class="stack-node" style="border-color:var(--accent-teal);color:var(--accent-teal);">FinancialInstitution</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <p style="font-size: 12px; color: var(--ink-3); margin-top: 18px; text-align: center; max-width: 800px; margin-left: auto; margin-right: auto;">
+    Cross-cutting (L4 → L7): <code>CarbonNeutralityCommitment</code> · <code>CarbonNeutralityPathway</code> · <code>CarbonNeutralityManagementPlan</code> · <code>CarbonNeutralityClaim</code> · <code>CarbonNeutralityReport</code> · <code>HierarchyAction</code>.
+  </p>
+</section>
+
+<!-- 06 — STAKEHOLDERS -->
+<section class="section-block" id="stakeholders">
+  <div class="section-label">Section 06 — Stakeholder benefits</div>
+  <div class="section-title">What ISO 14068 in COMET means to each role</div>
+  <div class="section-bluf">The same machine-readable carbon-neutrality artefacts serve different audiences differently. The benefit profile below is the basis for stakeholder conversations once an organization adopts the extension.</div>
+
+  <div class="stake-grid">
+    <div class="stake-card">
+      <div class="stake-role">Industrial buyers &amp; product owners</div>
+      <div class="stake-title">Defends premium pricing under regulatory pressure</div>
+      <div class="stake-body">
+        <ul>
+          <li>Every premium product carries a structured <code>CarbonNeutralityReport</code> referenced from the PCF — auditors, customers and regulators see the full chain in one query.</li>
+          <li>Hierarchy discipline is enforced by tagging — finance can refuse plans that purchase offsets before exhausting reductions.</li>
+          <li>Baseline, base period, reporting period become typed versioned artefacts instead of cells in one person's spreadsheet.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="stake-card">
+      <div class="stake-role">Financial institutions</div>
+      <div class="stake-title">Annex B.3 + PCAF in one payload</div>
+      <div class="stake-body">
+        <ul>
+          <li>Direct integration of financed emissions via <code>FinancedEmissionsAccount</code> — same JSON-LD supports ISO 14068 and a PCAF disclosure.</li>
+          <li>Prudential value: ECB / PRA / FSB increasingly require evidence that net-zero pledges have hierarchy and pathway substance.</li>
+          <li>Verified residual-only credits priced via <code>RemovalCredit</code> carry different risk than <code>AvoidanceCredit</code> — L7 Market layer can price the difference.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="stake-card">
+      <div class="stake-role">Carbon verifiers (BV / SGS / DNV / TÜV)</div>
+      <div class="stake-title">Verification scope becomes machine-readable</div>
+      <div class="stake-body">
+        <ul>
+          <li>Ingest the <code>CarbonNeutralityManagementPlan</code> directly; check each clause against ISO 14068 mandatory elements.</li>
+          <li><code>RemovalReversal</code>, <code>CorrespondingAdjustment</code>, <code>OffsettingEvent</code> with vintage + retirement dates are first-class objects — re-issuing reasonable assurance year over year becomes diff-on-graph.</li>
+          <li><code>VerificationOpinion</code> is a sub-class of <code>comet-ver:AuditClaim</code>, so existing verification workflows extend cleanly.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="stake-card">
+      <div class="stake-role">Regulators (DG ENV · CMA · FTC)</div>
+      <div class="stake-title">Greenwash enforcement asset</div>
+      <div class="stake-body">
+        <ul>
+          <li>EU Green Claims Directive substantiation: COMET + ISO 14068 produces a canonical JSON-LD per claim — easier to subpoena, easier to compare across firms, easier to prosecute when missing.</li>
+          <li>Hierarchy compliance is queryable: a SPARQL query answers <em>"did this entity offset before exhausting in-boundary reductions?"</em> without reading any prose.</li>
+          <li>Cross-border consistency reduces forum shopping between Brussels, London and Washington.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="stake-card">
+      <div class="stake-role">LCA practitioners</div>
+      <div class="stake-title">PCF outputs become claim-ready</div>
+      <div class="stake-body">
+        <ul>
+          <li>Practitioners already produce ISO 14067 PCFs — the extension wraps the existing result in <code>Baseline</code>, <code>BasePeriod</code>, <code>ReportingPeriod</code> so no parallel methodology is needed.</li>
+          <li>Sectoral pathway alignment encoded directly: <code>CarbonNeutralityPathway</code> carries the science-based pathway reference (IPCC / IEA / SBTi / ACT).</li>
+          <li>SimaPro, openLCA, GaBi, ecoinvent users gain a clean export target instead of bespoke claim-spreadsheets.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="stake-card">
+      <div class="stake-role">Carbon-market platforms &amp; registries</div>
+      <div class="stake-title">Programme-level conformance becomes declarative</div>
+      <div class="stake-body">
+        <ul>
+          <li><code>CreditingProgrammeCriterion</code> enumerates the nine §11.3 requirements. Verra, Gold Standard, ART TREES, CAR can publish a one-time <code>owl:sameAs</code> mapping to declare conformance and inherit access to ISO 14068 buyers.</li>
+          <li>Vintage and retirement enforcement: datatype properties make timing rules computable — a registry can refuse a retirement that violates them.</li>
+          <li>Differentiated pricing: removal-based residual-only credits carry visible premium signals in the L7 layer.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="stake-card">
+      <div class="stake-role">Investors &amp; analysts</div>
+      <div class="stake-title">Cuts through claim noise</div>
+      <div class="stake-body">
+        <ul>
+          <li>Distinguishes a claim with hierarchy + pathway + verification from one without, in machine-readable form. Ratings can be derived rather than asserted.</li>
+          <li>Pathway-aware exposure: portfolio models can integrate <code>targetYearResidualOnly</code> directly — exclude or weight names whose pathway slips beyond 2050 without narrative interpretation.</li>
+          <li>Transition-debt issuance can reference structured pathway targets in the bond covenant instead of prose milestones.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="stake-card">
+      <div class="stake-role">Top management of the entity</div>
+      <div class="stake-title">Accountability with controlled risk</div>
+      <div class="stake-body">
+        <ul>
+          <li>ISO 14068 §4.10 puts accountability for the claim with top management. The extension provides the mechanism to evidence that accountability — not just assert it.</li>
+          <li>Continual-improvement obligation (§5.2): the SPARQL query "did the use of offsetting decrease vs prior reporting period?" is a one-line audit.</li>
+          <li>Litigation defence: a structured, verified record of hierarchy compliance reduces exposure to misleading-conduct actions.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 07 — FORBIDDEN -->
+<section class="section-block" id="forbidden">
+  <div class="section-label">Section 07 — Compliance edge</div>
+  <div class="section-title">What ISO 14068 forbids — and how the extension catches it</div>
+  <div class="section-bluf">The standard's value lies as much in what it rules out as in what it requires. Each forbidden practice below maps to a SHACL constraint or SPARQL-detectable pattern in the extension.</div>
+
+  <table class="forbidden-table">
+    <thead>
+      <tr>
+        <th style="width: 50%;">Forbidden practice</th>
+        <th style="width: 50%;">How the extension catches it</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>Offsetting before reducing in-boundary</td><td>Every action carries <code>comet-cn:hierarchyStep</code>; SPARQL surfaces plans where step 3 precedes steps 1–2</td></tr>
+      <tr><td>Using credits whose vintage ended &gt;5 y before claim period</td><td><code>vintageEndYear ≥ reportingPeriodStart − 5y</code> is a SHACL constraint</td></tr>
+      <tr><td>Retiring credits more than 12 months after period end</td><td><code>retirementDate ≤ reportingPeriodEnd + 12 months</code> is a SHACL constraint</td></tr>
+      <tr><td>Double counting between entity and host country (Article 6)</td><td><code>correspondingAdjustmentApplied</code> boolean must be present and disclosed</td></tr>
+      <tr><td>Forward-flow credits (ex-ante) used for a current claim</td><td><code>isExPostCredit = true</code> is required</td></tr>
+      <tr><td>Quietly dropping a reversed removal</td><td><code>RemovalReversal</code> must be re-classed as emission in the period of reversal</td></tr>
+      <tr><td>Using only avoidance credits to offset residual emissions</td><td>When <code>ResidualGHGEmission &gt; 0</code>, accompanying credits must be <code>RemovalCredit</code> (per §11.1)</td></tr>
+      <tr><td>Claiming neutrality with no top-management commitment artefact</td><td><code>CarbonNeutralityClaim</code> requires a linked <code>CarbonNeutralityCommitment</code> (cardinality ≥ 1)</td></tr>
+      <tr><td>Publishing without a verification opinion</td><td><code>CarbonNeutralityReport</code> requires a linked <code>VerificationOpinion</code> (§12 w)</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- 08 — CHECKLIST -->
+<section class="section-block" id="checklist">
+  <div class="section-label">Section 08 — Adoption</div>
+  <div class="section-title">Implementation checklist for adopters</div>
+  <div class="section-bluf">Step-by-step path from a working COMET dataset to a published ISO 14068-conformant claim. Each step produces a concrete object in the graph; each object is verifiable independently.</div>
+
+  <div class="checklist">
+    <ol>
+      <li><strong>Stand up Entity and Subject.</strong> Create <code>comet-cn:Entity</code> and the <code>comet-cn:Subject</code> it claims for; bind a <code>Boundary</code> per ISO 14064-1 (orgs) or ISO 14067 (products).</li>
+      <li><strong>Set time semantics.</strong> Define <code>BasePeriod</code>, compute <code>Baseline</code> (reuse <code>comet-pcf:PCFResult</code>), set <code>ReportingPeriod</code>.</li>
+      <li><strong>Build the pathway.</strong> Construct <code>CarbonNeutralityPathway</code> with <code>targetYearResidualOnly</code> and short/long-term targets aligned to a science-based pathway (IPCC / IEA / SBTi / ACT).</li>
+      <li><strong>Compose the management plan.</strong> Compose <code>CarbonNeutralityManagementPlan</code> covering all 13 mandatory elements of §9.1; tag every action with <code>comet-cn:hierarchyStep</code>.</li>
+      <li><strong>Execute hierarchy in order.</strong> Reduce, then enhance removals; quantify each as <code>GHGEmissionReduction</code> / <code>GHGRemovalEnhancement</code> against the <code>Baseline</code>.</li>
+      <li><strong>Determine residual.</strong> Compute remaining <code>ResidualGHGEmission</code> / <code>UnabatedGHGEmission</code>; size the offsetting volume.</li>
+      <li><strong>Source compliant credits.</strong> Assert each meets the five <code>CreditCriterion</code>. Encode <code>vintageEndYear</code>, <code>correspondingAdjustmentApplied</code>, <code>isExPostCredit</code>. Retire as <code>OffsettingEvent</code> ≤12 months after reporting-period end.</li>
+      <li><strong>Commission verification.</strong> Obtain <code>VerificationOpinion</code> (ISO 14064-3 methodology). Publish <code>CarbonNeutralityReport</code> covering all 24 elements of §12.</li>
+      <li><strong>Re-evaluate annually.</strong> Re-run the plan against new data; reclassify any <code>RemovalReversal</code> as emission in the reporting period of reversal.</li>
+    </ol>
+  </div>
+</section>
+
+<!-- 09 — RELATED -->
+<section class="section-block" id="related">
+  <div class="section-label">Section 09 — Go deeper</div>
+  <div class="section-title">Related documentation</div>
+
+  <div class="related-grid">
+    <a class="related-card" href="ontology.html">
+      <div class="related-card-label">Reference Specification</div>
+      <div class="related-card-title">Ontology Specification →</div>
+      <div class="related-card-body">Twenty visualizations covering architecture, stakeholders, maturity, namespace, data flow, governance, trust chain, transport layer, and economics.</div>
+    </a>
+    <a class="related-card" href="materials.html">
+      <div class="related-card-label">Video &amp; Deck</div>
+      <div class="related-card-title">A Shared Carbon Language →</div>
+      <div class="related-card-body">Six-minute explainer paired with the v0.1 Carbon Protocol stakeholder deck — the conceptual framing that makes ISO 14068 fit on top.</div>
+    </a>
+    <a class="related-card" href="https://github.com/nickgogerty/comet-ontology/tree/main/ext/iso14068" target="_blank" rel="noopener noreferrer">
+      <div class="related-card-label">Source · Turtle + Markdown</div>
+      <div class="related-card-title">ext/iso14068 →</div>
+      <div class="related-card-body">The OWL ontology in Turtle (24 classes, 11 principles, 15 properties, 18 equivalence bridges) and the full stakeholder benefits report. Pull-request-ready.</div>
+    </a>
+    <a class="related-card" href="data-exchange.html">
+      <div class="related-card-label">Technical Specification</div>
+      <div class="related-card-title">Data Exchange &amp; Transport →</div>
+      <div class="related-card-body">Field-by-field mappings for PACT v3, EU CBAM, and CAD Trust — the layer ISO 14068 reports flow through.</div>
+    </a>
+    <a class="related-card" href="glossary.html">
+      <div class="related-card-label">Reference Dictionary</div>
+      <div class="related-card-title">Glossary &amp; Data Dictionary →</div>
+      <div class="related-card-body">Complete class, property, and variable reference for all seven COMET layers plus CAD Trust v2.0.2.</div>
+    </a>
+    <a class="related-card" href="stakeholder-benefits.html">
+      <div class="related-card-label">Quantified Use Cases</div>
+      <div class="related-card-title">Stakeholder Benefits →</div>
+      <div class="related-card-body">Fifty quantified use cases with Sankey diagrams and an interactive use-case builder.</div>
+    </a>
+  </div>
+</section>
+
+</div><!-- /page -->
+
+<!-- FOOTER -->
+<footer>
+  <div>COMET — Carbon Ontology for Markets, Emissions &amp; Trade · ISO 14068-1 Extension v0.1.0 · CC BY 4.0 + Apache 2.0</div>
+  <div><a href="https://github.com/nickgogerty/comet-ontology" target="_blank" rel="noopener noreferrer">github.com/nickgogerty/comet-ontology</a> · A <a href="https://carbonfinancelab.com" target="_blank" rel="noopener noreferrer">Carbon Finance Lab</a> research initiative · <a href="mailto:ng@carbonsig.com">ng@carbonsig.com</a></div>
+</footer>
+
+</body>
+</html>

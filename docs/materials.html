@@ -1,0 +1,737 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>COMET — Materials · Video & Carbon Protocol Deck</title>
+<meta name="description" content="The COMET explainer video and the v0.1 Carbon Protocol stakeholder deck — with slide-by-slide summaries linking each visual to the ontology layers, namespace, and governance model.">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500;600&display=swap');
+
+  :root {
+    --ink: #0f0f0f;
+    --ink-2: #2a2a2a;
+    --ink-3: #555;
+    --rule: #d0cfc9;
+    --rule-light: #e8e7e3;
+    --bg: #f5f4f0;
+    --bg-card: #ffffff;
+    --accent-r: #c8360a;
+    --accent-g: #1a6b3c;
+    --accent-b: #1a3a6b;
+    --accent-gold: #9a7c2f;
+    --accent-teal: #1a5f6b;
+    --mono: 'DM Mono', monospace;
+    --display: 'Playfair Display', serif;
+    --body: 'DM Sans', sans-serif;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--body);
+    font-size: 13px;
+    line-height: 1.55;
+  }
+
+  a { color: var(--accent-r); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+
+  /* ── HEADER ── */
+  .masthead {
+    background: var(--ink);
+    color: #f5f4f0;
+    padding: 48px 64px 40px;
+    border-bottom: 3px solid var(--accent-r);
+  }
+  .masthead-eyebrow {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    color: #999;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+  }
+  .masthead h1 {
+    font-family: var(--display);
+    font-size: 52px;
+    font-weight: 900;
+    letter-spacing: -0.02em;
+    line-height: 1.0;
+    margin-bottom: 6px;
+  }
+  .masthead h1 span { color: var(--accent-r); }
+  .masthead-subtitle {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: #aaa;
+    letter-spacing: 0.08em;
+    margin-bottom: 24px;
+  }
+  .masthead-desc {
+    font-size: 14px;
+    color: #ccc;
+    max-width: 760px;
+    line-height: 1.6;
+  }
+  .masthead-meta {
+    display: flex;
+    gap: 32px;
+    margin-top: 24px;
+    padding-top: 24px;
+    border-top: 1px solid #333;
+    flex-wrap: wrap;
+  }
+  .meta-item { display: flex; flex-direction: column; gap: 4px; }
+  .meta-label { font-family: var(--mono); font-size: 9px; letter-spacing: 0.15em; color: #777; text-transform: uppercase; }
+  .meta-val { font-family: var(--mono); font-size: 12px; color: #f0f0f0; }
+
+  /* ── NAV ── */
+  .toc-nav {
+    background: var(--bg-card);
+    border-bottom: 1px solid var(--rule);
+    padding: 14px 64px;
+    display: flex;
+    gap: 22px;
+    flex-wrap: wrap;
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.08em;
+  }
+  .toc-link {
+    color: var(--ink-3);
+    text-transform: uppercase;
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    padding-bottom: 2px;
+    transition: color 0.15s, border-color 0.15s;
+  }
+  .toc-link:hover { color: var(--accent-r); border-color: var(--accent-r); text-decoration: none; }
+
+  /* ── LAYOUT ── */
+  .page { max-width: 1400px; margin: 0 auto; padding: 0 64px; }
+
+  .section-block {
+    padding: 56px 0 40px;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .section-label {
+    font-family: var(--mono);
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent-r);
+    margin-bottom: 6px;
+  }
+  .section-title {
+    font-family: var(--display);
+    font-size: 30px;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 8px;
+    line-height: 1.1;
+  }
+  .section-bluf {
+    font-size: 13.5px;
+    color: var(--ink-3);
+    max-width: 820px;
+    margin-bottom: 28px;
+    border-left: 2px solid var(--rule);
+    padding-left: 14px;
+  }
+
+  /* ── VIDEO ── */
+  .video-wrap {
+    background: #000;
+    border: 1px solid var(--rule);
+    max-width: 1080px;
+    margin: 0 auto 24px;
+  }
+  .video-wrap video { width: 100%; display: block; }
+
+  .video-meta {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 24px;
+    max-width: 1080px;
+    margin: 0 auto;
+  }
+  @media (max-width: 820px) { .video-meta { grid-template-columns: 1fr; } }
+
+  .video-summary {
+    background: var(--bg-card);
+    border: 1px solid var(--rule);
+    padding: 22px 26px;
+  }
+  .video-summary h3 {
+    font-family: var(--display);
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+  .video-summary p {
+    font-size: 13px;
+    color: var(--ink-3);
+    margin-bottom: 10px;
+  }
+
+  .video-actions {
+    background: var(--ink);
+    color: #f5f4f0;
+    padding: 22px 26px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .video-actions h4 {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: #aaa;
+    margin-bottom: 8px;
+  }
+  .video-actions a {
+    color: #f5f4f0;
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.06em;
+    border-bottom: 1px solid #444;
+    padding-bottom: 3px;
+  }
+  .video-actions a:hover { color: var(--accent-r); border-color: var(--accent-r); text-decoration: none; }
+
+  /* ── DECK HERO ── */
+  .deck-hero {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 28px;
+    align-items: stretch;
+  }
+  @media (max-width: 900px) { .deck-hero { grid-template-columns: 1fr; } }
+
+  .deck-hero-text {
+    background: var(--bg-card);
+    border: 1px solid var(--rule);
+    padding: 28px 32px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .deck-hero-text h3 {
+    font-family: var(--display);
+    font-size: 22px;
+    font-weight: 700;
+    line-height: 1.15;
+    margin-bottom: 12px;
+  }
+  .deck-hero-text p {
+    font-size: 13.5px;
+    color: var(--ink-3);
+    margin-bottom: 16px;
+  }
+  .download-btn {
+    display: inline-block;
+    align-self: flex-start;
+    background: var(--accent-r);
+    color: #fff !important;
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 12px 22px;
+    text-decoration: none;
+    transition: background 0.15s;
+  }
+  .download-btn:hover { background: #a52d08; text-decoration: none; }
+
+  .deck-hero-thumb {
+    background: var(--bg-card);
+    border: 1px solid var(--rule);
+    padding: 0;
+    overflow: hidden;
+  }
+  .deck-hero-thumb img { width: 100%; display: block; }
+
+  /* ── SLIDE GRID ── */
+  .slide-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 18px;
+  }
+  @media (max-width: 900px) { .slide-grid { grid-template-columns: 1fr; } }
+
+  .slide-card {
+    background: var(--bg-card);
+    border: 1px solid var(--rule);
+    padding: 0;
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: 0;
+    overflow: hidden;
+  }
+  @media (max-width: 700px) { .slide-card { grid-template-columns: 1fr; } }
+
+  .slide-card-thumb {
+    background: #1a1a1a;
+    display: block;
+  }
+  .slide-card-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .slide-card-body {
+    padding: 18px 22px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .slide-card-num {
+    font-family: var(--mono);
+    font-size: 9px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--accent-r);
+  }
+  .slide-card-title {
+    font-family: var(--display);
+    font-size: 15px;
+    font-weight: 700;
+    line-height: 1.2;
+    color: var(--ink);
+  }
+  .slide-card-desc {
+    font-size: 12px;
+    color: var(--ink-3);
+    line-height: 1.55;
+  }
+  .slide-card-tags { margin-top: 4px; }
+  .tag {
+    display: inline-block;
+    font-family: var(--mono);
+    font-size: 9px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 2px 7px;
+    border: 1px solid var(--rule);
+    color: var(--ink-3);
+    margin: 2px 2px 2px 0;
+  }
+  .tag.r { border-color: var(--accent-r); color: var(--accent-r); }
+  .tag.g { border-color: var(--accent-g); color: var(--accent-g); }
+  .tag.b { border-color: var(--accent-b); color: var(--accent-b); }
+  .tag.gold { border-color: var(--accent-gold); color: var(--accent-gold); }
+
+  /* ── RELATED ── */
+  .related-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+  }
+  @media (max-width: 900px) { .related-grid { grid-template-columns: 1fr; } }
+  .related-card {
+    background: var(--bg-card);
+    border: 1px solid var(--rule);
+    padding: 20px 22px;
+    display: block;
+    color: inherit;
+    text-decoration: none;
+    transition: border-color 0.15s;
+  }
+  .related-card:hover { border-color: var(--accent-r); text-decoration: none; }
+  .related-card-label {
+    font-family: var(--mono);
+    font-size: 9px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--ink-3);
+    margin-bottom: 8px;
+  }
+  .related-card-title {
+    font-family: var(--display);
+    font-size: 17px;
+    font-weight: 700;
+    margin-bottom: 6px;
+    color: var(--ink);
+  }
+  .related-card-body { font-size: 12px; color: var(--ink-3); line-height: 1.55; }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--ink);
+    color: #aaa;
+    padding: 32px 64px;
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.08em;
+    line-height: 1.8;
+  }
+  footer a { color: #ccc; }
+  footer a:hover { color: var(--accent-r); }
+</style>
+</head>
+<body>
+
+<!-- MASTHEAD -->
+<header class="masthead">
+  <div class="masthead-eyebrow">Materials · Video &amp; Carbon Protocol Deck</div>
+  <h1>COMET<span>.</span></h1>
+  <div class="masthead-subtitle">A Shared Carbon Language — Explainer Video &amp; v0.1 Public Draft Deck</div>
+  <p class="masthead-desc">An at-a-glance walkthrough of the COMET protocol — why product-level carbon variance now drives financial outcomes, how the seven-layer semantic stack works, and the regulatory forcing functions on the 2025–2028 roadmap. Use the video as an introduction; use the deck and the slide summaries below to drill into each layer, namespace, and governance mechanism.</p>
+  <div class="masthead-meta">
+    <div class="meta-item"><span class="meta-label">Video</span><span class="meta-val">~6 min · MP4 · 33 MB</span></div>
+    <div class="meta-item"><span class="meta-label">Deck</span><span class="meta-val">14 slides · PPTX · 15 MB</span></div>
+    <div class="meta-item"><span class="meta-label">License</span><span class="meta-val">CC BY 4.0 + Apache 2.0</span></div>
+    <div class="meta-item"><span class="meta-label">Status</span><span class="meta-val">Public Draft · RFC Open</span></div>
+    <div class="meta-item"><span class="meta-label">Repository</span><span class="meta-val">github.com/nickgogerty/comet-ontology</span></div>
+  </div>
+</header>
+
+<!-- NAV -->
+<nav class="toc-nav">
+  <a class="toc-link" href="index.html">← Home</a>
+  <a class="toc-link" href="#video">Video</a>
+  <a class="toc-link" href="#deck">Deck Overview</a>
+  <a class="toc-link" href="#slides">Slide Summaries</a>
+  <a class="toc-link" href="#related">Related Docs</a>
+  <a class="toc-link" href="ontology.html">Ontology Spec →</a>
+</nav>
+
+<div class="page">
+
+<!-- ═══════════════════════════════════════════
+     VIDEO
+═══════════════════════════════════════════ -->
+<section class="section-block" id="video">
+  <div class="section-label">Section 01 — Explainer Video</div>
+  <div class="section-title">COMET: A Shared Carbon Language</div>
+  <div class="section-bluf">A short narrated walkthrough of the protocol, paired with the v0.1 Carbon Protocol deck below. Covers the market problem (untranslatable data siloes), the seven-layer architecture, standards interoperability, and the adoption flywheel.</div>
+
+  <div class="video-wrap">
+    <video controls preload="metadata" poster="assets/slides/slide-01.jpg">
+      <source src="COMET_Shared_Carbon_Language.mp4" type="video/mp4">
+      Your browser does not support embedded video. <a href="COMET_Shared_Carbon_Language.mp4">Download the MP4</a> to view.
+    </video>
+  </div>
+
+  <div class="video-meta">
+    <div class="video-summary">
+      <h3>What the video covers</h3>
+      <p><strong>The market problem.</strong> Every company measures carbon differently, every platform stores it differently, every regulator demands it differently. Without a shared vocabulary, carbon data is siloed, incomparable, and untradeable.</p>
+      <p><strong>The COMET answer.</strong> A neutral, openly-governed JSON-LD ontology — the TCP/IP for carbon data — that wraps existing standards (ISO 14067, PACT v3, EU CBAM, GHG Protocol, IRA 45V) via <code>owl:equivalentClass</code> mappings rather than replacing them.</p>
+      <p><strong>Where it goes.</strong> A seven-layer stack from raw activity data to market-priced carbon premiums, with unbroken provenance from physical meter to regulatory tariff. Pair with the slide summaries below to drill into each layer.</p>
+    </div>
+    <div class="video-actions">
+      <h4>Actions</h4>
+      <a href="COMET_Shared_Carbon_Language.mp4" download>↓ Download video (MP4, 33 MB)</a>
+      <a href="COMET_Carbon_Protocol.pptx" download>↓ Download deck (PPTX, 15 MB)</a>
+      <a href="ontology.html">→ Ontology specification</a>
+      <a href="visual-guide.html">→ Visual guide (20 figures)</a>
+      <a href="getting-started.md">→ Getting started</a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     DECK OVERVIEW
+═══════════════════════════════════════════ -->
+<section class="section-block" id="deck">
+  <div class="section-label">Section 02 — Carbon Protocol Deck</div>
+  <div class="section-title">The Semantic Protocol for Carbon Data — v0.1 Public Draft</div>
+  <div class="section-bluf">A 14-slide narrative built in NotebookLM that traces the path from market variance, through the seven-layer architecture, into compliance hooks (CBAM, IRA 45V, CSRD, EN 15804) and the community governance model. Designed for board, investor, regulator, and partner conversations.</div>
+
+  <div class="deck-hero">
+    <div class="deck-hero-text">
+      <h3>14 slides · From carbon variance to community governance</h3>
+      <p>The deck opens on the financial reality — products below benchmark carbon intensity earn premiums, products above face CBAM tariffs and supply-chain discounts — and then walks the underlying digital infrastructure that makes this variance machine-readable and tradeable.</p>
+      <p>Each slide below links to the part of the ontology, namespace, or governance structure it depicts. Slide thumbnails are rendered at 100 dpi for fast loading; the original PPTX is the canonical source.</p>
+      <a class="download-btn" href="COMET_Carbon_Protocol.pptx" download>↓ Download deck (PPTX, 15 MB)</a>
+    </div>
+    <div class="deck-hero-thumb">
+      <img src="assets/slides/slide-01.jpg" alt="Slide 01 — The Semantic Protocol for Carbon Data, COMET v0.1 Public Draft title slide.">
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     SLIDE-BY-SLIDE SUMMARIES
+═══════════════════════════════════════════ -->
+<section class="section-block" id="slides">
+  <div class="section-label">Section 03 — Slide-by-slide</div>
+  <div class="section-title">Fourteen visualizations, fourteen arguments</div>
+  <div class="section-bluf">Each card distills one slide into a single paragraph and lists the COMET classes or namespaces it touches. Read top-to-bottom for the full narrative arc, or jump to the slide that maps to your role.</div>
+
+  <div class="slide-grid">
+
+    <!-- SLIDE 01 -->
+    <article class="slide-card">
+      <div class="slide-card-thumb"><img src="assets/slides/slide-01.jpg" alt="Title slide showing The Semantic Protocol for Carbon Data."></div>
+      <div class="slide-card-body">
+        <div class="slide-card-num">Slide 01 · Title</div>
+        <div class="slide-card-title">The Semantic Protocol for Carbon Data</div>
+        <div class="slide-card-desc">Opens the deck under the v0.1 Public Draft banner. Establishes the namespace, license, and governance posture before any technical content lands.</div>
+        <div class="slide-card-tags">
+          <span class="tag">comet.carbon/v1/</span>
+          <span class="tag gold">CC BY 4.0 + Apache 2.0</span>
+          <span class="tag r">RFC Open</span>
+        </div>
+      </div>
+    </article>
+
+    <!-- SLIDE 02 -->
+    <article class="slide-card">
+      <div class="slide-card-thumb"><img src="assets/slides/slide-02.jpg" alt="Variance spectrum chart showing carbon premium and discount zones."></div>
+      <div class="slide-card-body">
+        <div class="slide-card-num">Slide 02 · Why this matters</div>
+        <div class="slide-card-title">Carbon variance now dictates financial outcomes</div>
+        <div class="slide-card-desc">Products with lower-than-benchmark intensity earn premiums (green H₂ +$2–4/kg, low-carbon EAF steel +$40–80/t); products above face CBAM-style tariffs of ~€50–90/t. COMET is the digital infrastructure that makes that variance machine-readable.</div>
+        <div class="slide-card-tags">
+          <span class="tag g">comet-mkt:CarbonPremium</span>
+          <span class="tag r">comet-mkt:CBMADiscount</span>
+        </div>
+      </div>
+    </article>
+
+    <!-- SLIDE 03 -->
+    <article class="slide-card">
+      <div class="slide-card-thumb"><img src="assets/slides/slide-03.jpg" alt="Diagram of proprietary data siloes converging through JSON-LD context injection into a structured semantic grid."></div>
+      <div class="slide-card-body">
+        <div class="slide-card-num">Slide 03 · The bottleneck</div>
+        <div class="slide-card-title">Untranslatable data siloes</div>
+        <div class="slide-card-desc">Every company, platform, and regulator stores carbon data differently. COMET injects a JSON-LD <code>@context</code> that maps proprietary CSV / PDF / API payloads into a shared semantic grid — without replacing existing systems. The TCP/IP for carbon data.</div>
+        <div class="slide-card-tags">
+          <span class="tag">JSON-LD @context</span>
+          <span class="tag b">Semantic grid</span>
+        </div>
+      </div>
+    </article>
+
+    <!-- SLIDE 04 -->
+    <article class="slide-card">
+      <div class="slide-card-thumb"><img src="assets/slides/slide-04.jpg" alt="Stacked diagram of the seven COMET layers from L1 Core Identity to L7 Market Signal."></div>
+      <div class="slide-card-body">
+        <div class="slide-card-num">Slide 04 · Architecture</div>
+        <div class="slide-card-title">A seven-layer semantic stack from measurement to market</div>
+        <div class="slide-card-desc">L1 Core Identity → L2 Emission Factor &amp; LCI → L3 Supply Chain &amp; Activity → L4 Product Carbon Footprint (ISO 14067) → L5 Environmental Attribute Certificate → L6 Verification &amp; Assurance → L7 Market Signal. Each layer is independently versionable; upper layers depend on lower.</div>
+        <div class="slide-card-tags">
+          <span class="tag">comet:Organization</span>
+          <span class="tag">comet:Material</span>
+          <span class="tag r">CarbonPremium</span>
+        </div>
+      </div>
+    </article>
+
+    <!-- SLIDE 05 -->
+    <article class="slide-card">
+      <div class="slide-card-thumb"><img src="assets/slides/slide-05.jpg" alt="Standards interoperability table mapping ISO, CBAM, PACT, GHG Protocol, and IRA 45V to COMET layers."></div>
+      <div class="slide-card-body">
+        <div class="slide-card-num">Slide 05 · Standards map</div>
+        <div class="slide-card-title">Interoperability across every major global standard</div>
+        <div class="slide-card-desc">ISO 14067:2018, EU CBAM (Reg. 2023/956), WBCSD PACT v3.0, GHG Protocol Product, and IRA 45V all map onto specific COMET layers. COMET imports rather than redefines — every external concept is wrapped via <code>owl:equivalentClass</code> to guarantee fidelity.</div>
+        <div class="slide-card-tags">
+          <span class="tag b">ISO 14067</span>
+          <span class="tag r">EU CBAM</span>
+          <span class="tag g">PACT v3</span>
+          <span class="tag gold">IRA 45V</span>
+        </div>
+      </div>
+    </article>
+
+    <!-- SLIDE 06 -->
+    <article class="slide-card">
+      <div class="slide-card-thumb"><img src="assets/slides/slide-06.jpg" alt="Pipeline diagram showing primary activity data flowing through CaRMA exchange, the COMET mapper, into JSON-LD payloads consumed by verifier API, EAC registry, and market pricing."></div>
+      <div class="slide-card-body">
+        <div class="slide-card-num">Slide 06 · Data transport</div>
+        <div class="slide-card-title">The semantic backbone of PACT v3</div>
+        <div class="slide-card-desc">Upstream primary data → CaRMA bilateral feed → COMET Mapper (<code>POST /footprints</code> with <code>@context</code> injection) → JSON-LD semantic graph → fanned out to Verifier API, EAC Registry, and Market Pricing endpoints. Machine-interpretable meaning is unlocked at the mapper.</div>
+        <div class="slide-card-tags">
+          <span class="tag">comet-ver:attestation</span>
+          <span class="tag">comet-eac:certificate</span>
+          <span class="tag r">comet-mkt:premium</span>
+        </div>
+      </div>
+    </article>
+
+    <!-- SLIDE 07 -->
+    <article class="slide-card">
+      <div class="slide-card-thumb"><img src="assets/slides/slide-07.jpg" alt="Five-step provenance timeline from activity data to price adjustment."></div>
+      <div class="slide-card-body">
+        <div class="slide-card-num">Slide 07 · Provenance</div>
+        <div class="slide-card-title">Unbroken provenance from physical meter to market signal</div>
+        <div class="slide-card-desc">Five typed steps with named classes: Activity Data (meter / invoice) → PCF Computation (ISO 14067) → CADTrust Record (signed hash) → 3rd-Party Audit (BV / SGS) → Price Adjustment (CBAM). The provenance chain is itself part of the ontology, not metadata.</div>
+        <div class="slide-card-tags">
+          <span class="tag">comet:ActivityData</span>
+          <span class="tag">comet-pcf:PCFResult</span>
+          <span class="tag b">comet-ver:CADTrust</span>
+          <span class="tag r">comet-mkt:PriceSignal</span>
+        </div>
+      </div>
+    </article>
+
+    <!-- SLIDE 08 -->
+    <article class="slide-card">
+      <div class="slide-card-thumb"><img src="assets/slides/slide-08.jpg" alt="Pentagonal radar chart of five data quality dimensions."></div>
+      <div class="slide-card-body">
+        <div class="slide-card-num">Slide 08 · Data quality</div>
+        <div class="slide-card-title">Machine-readable quality scoring for automated trust</div>
+        <div class="slide-card-desc">COMET encodes the PACT v3 Data Quality Indicator as typed classes with ordinal properties across five axes: Coverage, Geography, Temporality, Technology, and Reliability. Downstream systems can algorithmically evaluate the strength of a carbon claim.</div>
+        <div class="slide-card-tags">
+          <span class="tag g">comet-sc:coverageDQI</span>
+          <span class="tag g">comet-sc:geographyDQI</span>
+          <span class="tag g">comet-sc:temporalityDQI</span>
+          <span class="tag g">comet-sc:technologyDQI</span>
+          <span class="tag g">comet-sc:reliabilityDQI</span>
+        </div>
+      </div>
+    </article>
+
+    <!-- SLIDE 09 -->
+    <article class="slide-card">
+      <div class="slide-card-thumb"><img src="assets/slides/slide-09.jpg" alt="Maturity matrix showing dimensions of emission factor, system boundary, verification, and EAC linkage progressing from L1 Spend Proxy to L5 Market-Traded."></div>
+      <div class="slide-card-body">
+        <div class="slide-card-num">Slide 09 · Maturity</div>
+        <div class="slide-card-title">Progressive adoption without system replacement</div>
+        <div class="slide-card-desc">A 4×5 maturity matrix lets organizations enter at L1 (EEIO spend factors, self-declared, no EAC) and climb toward L5 (EAC-adjusted, continuous digital audit, tokenized on-chain) without ripping out existing tools. Adoption is incremental by design.</div>
+        <div class="slide-card-tags">
+          <span class="tag">L1 Spend Proxy</span>
+          <span class="tag g">L3 Site Primary</span>
+          <span class="tag b">L5 Market-Traded</span>
+        </div>
+      </div>
+    </article>
+
+    <!-- SLIDE 10 -->
+    <article class="slide-card">
+      <div class="slide-card-thumb"><img src="assets/slides/slide-10.jpg" alt="Compliance hooks panel listing CBAM, IRA 45V, CSRD, and EN 15804."></div>
+      <div class="slide-card-body">
+        <div class="slide-card-num">Slide 10 · Regulatory hooks</div>
+        <div class="slide-card-title">Direct hooks into mandatory compliance architectures</div>
+        <div class="slide-card-desc">COMET eliminates custom compliance coding. EU CBAM (2026), IRA 45V Hydrogen Tax Credit, EU CSRD / ESRS E1, and EN 15804 (Construction EPDs) are each mapped to typed classes — importers generate the required XML or JSON directly from COMET instances.</div>
+        <div class="slide-card-tags">
+          <span class="tag r">comet-mkt:CBMADeclaration</span>
+          <span class="tag gold">comet-ext:HydrogenCI</span>
+          <span class="tag b">comet-sc:Scope3Cat1</span>
+          <span class="tag g">comet-pcf:EPDDeclaration</span>
+        </div>
+      </div>
+    </article>
+
+    <!-- SLIDE 11 -->
+    <article class="slide-card">
+      <div class="slide-card-thumb"><img src="assets/slides/slide-11.jpg" alt="Concentric governance diagram with Steering Committee at center, surrounded by Technical Steering Committee and Domain Working Groups."></div>
+      <div class="slide-card-body">
+        <div class="slide-card-num">Slide 11 · Governance</div>
+        <div class="slide-card-title">Community-governed, version-controlled, strictly neutral</div>
+        <div class="slide-card-desc">Three concentric bodies: a 9-seat Steering Committee (supermajority voting, ISO / WBCSD relationships), a Technical Steering Committee running a bi-weekly RFC process for sector extensions (Steel, Hydrogen, Cement) targeting <code>ext:</code> namespaces, and Domain Working Groups owning core L1–L4 PR merge authority.</div>
+        <div class="slide-card-tags">
+          <span class="tag b">Steering Committee</span>
+          <span class="tag g">TSC</span>
+          <span class="tag gold">DWGs</span>
+        </div>
+      </div>
+    </article>
+
+    <!-- SLIDE 12 -->
+    <article class="slide-card">
+      <div class="slide-card-thumb"><img src="assets/slides/slide-12.jpg" alt="Six-step adoption flywheel with arrows connecting more implementers, richer EF coverage, better PCF quality, regulatory trust, EAC liquidity, and stronger price signals."></div>
+      <div class="slide-card-body">
+        <div class="slide-card-num">Slide 12 · Flywheel</div>
+        <div class="slide-card-title">The compounding value of a shared vocabulary</div>
+        <div class="slide-card-desc">A six-step network effect: more implementers → richer emission factor coverage → better PCF quality → regulatory trust → EAC liquidity → stronger price signals → more implementers. Each new adopter strengthens the underlying knowledge graph for every other adopter.</div>
+        <div class="slide-card-tags">
+          <span class="tag">Network effects</span>
+          <span class="tag r">Algorithmic pricing</span>
+        </div>
+      </div>
+    </article>
+
+    <!-- SLIDE 13 -->
+    <article class="slide-card">
+      <div class="slide-card-thumb"><img src="assets/slides/slide-13.jpg" alt="Roadmap timeline from Q1 2025 v0.1 to 2028 v3.0 vision."></div>
+      <div class="slide-card-body">
+        <div class="slide-card-num">Slide 13 · Roadmap</div>
+        <div class="slide-card-title">Synchronized to global regulatory forcing functions</div>
+        <div class="slide-card-desc">Q1 2025 v0.1 Public Draft (active) → Q3 2025 v0.2 EAC Layer + CADTrust → <strong>Q1 2026 v1.0 Stable</strong> anchored to EU CBAM full enforcement and IRA 45V → Q3 2026 v1.1 Scope 3 Cat 1 + EN 15804 multi-impact → Q1 2027 v2.0 Nature-based, tokenized EAC on-chain → 2028 v3.0 real-time IoT PCFs and AI-agent SPARQL.</div>
+        <div class="slide-card-tags">
+          <span class="tag">v0.1 Active</span>
+          <span class="tag gold">v1.0 Q1 2026</span>
+          <span class="tag b">v3.0 2028</span>
+        </div>
+      </div>
+    </article>
+
+    <!-- SLIDE 14 -->
+    <article class="slide-card">
+      <div class="slide-card-thumb"><img src="assets/slides/slide-14.jpg" alt="Three-column adoption playbook covering convert, validate, and partner."></div>
+      <div class="slide-card-body">
+        <div class="slide-card-num">Slide 14 · Call to action</div>
+        <div class="slide-card-title">Build the carbon data infrastructure the world needs</div>
+        <div class="slide-card-desc">The protocol is live. Convert: four format converters move CSV / PACT JSON / CBAM XML into COMET JSON-LD. Validate: <code>python comet_cli.py validate my-pcf.json</code>. Partner along three paths — Industry pilots CBAM, Platforms integrate as a data-exchange layer, Verifiers issue machine-readable claims.</div>
+        <div class="slide-card-tags">
+          <span class="tag r">npm install @comet/ontology</span>
+          <span class="tag">comet_cli.py</span>
+        </div>
+      </div>
+    </article>
+
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     RELATED
+═══════════════════════════════════════════ -->
+<section class="section-block" id="related">
+  <div class="section-label">Section 04 — Go deeper</div>
+  <div class="section-title">Related documentation</div>
+  <div class="section-bluf">The deck and video are the front door. The pages below are the canonical sources for the ontology classes, layer architecture, and stakeholder use cases referenced in every slide.</div>
+
+  <div class="related-grid">
+    <a class="related-card" href="ontology.html">
+      <div class="related-card-label">Reference Specification</div>
+      <div class="related-card-title">Ontology Specification →</div>
+      <div class="related-card-body">Twenty visualizations covering architecture, stakeholders, maturity, namespace, data flow, governance, trust chain, transport layer, and economics.</div>
+    </a>
+    <a class="related-card" href="visual-guide.html">
+      <div class="related-card-label">Visual Reference</div>
+      <div class="related-card-title">Visual Guide →</div>
+      <div class="related-card-body">Twenty MECE figures expanding the deck visuals — seven-layer stack, standards heatmap, PACT / CBAM / CAD Trust mappings, data quality radar, contribution workflow.</div>
+    </a>
+    <a class="related-card" href="stakeholder-benefits.html">
+      <div class="related-card-label">Quantified Use Cases</div>
+      <div class="related-card-title">Stakeholder Benefits →</div>
+      <div class="related-card-body">Fifty quantified use cases across ten stakeholder groups, with Sankey diagrams and an interactive use-case builder that maps your data onto COMET layers.</div>
+    </a>
+    <a class="related-card" href="data-exchange.html">
+      <div class="related-card-label">Technical Specification</div>
+      <div class="related-card-title">Data Exchange &amp; Transport Layer →</div>
+      <div class="related-card-body">Field-by-field mappings for PACT v3, EU CBAM, and CAD Trust with working code examples in JSON-LD, XML, XSD, JSON Schema, and OWL Turtle.</div>
+    </a>
+    <a class="related-card" href="glossary.html">
+      <div class="related-card-label">Reference Dictionary</div>
+      <div class="related-card-title">Glossary &amp; Data Dictionary →</div>
+      <div class="related-card-body">Complete class, property, and variable reference for all seven COMET layers plus CAD Trust v2.0.2. Interactive search with layer filters and A–Z jump bar.</div>
+    </a>
+    <a class="related-card" href="playground.html">
+      <div class="related-card-label">Interactive Tool</div>
+      <div class="related-card-title">Data Playground →</div>
+      <div class="related-card-body">Paste or upload CSV, PACT v3, CBAM XML, or CAD Trust data and instantly convert to COMET JSON-LD. Validate, preview, and download — no install required.</div>
+    </a>
+  </div>
+</section>
+
+</div><!-- /page -->
+
+<!-- FOOTER -->
+<footer>
+  <div>COMET — Carbon Ontology for Markets, Emissions &amp; Trade · Public Draft v0.1 · CC BY 4.0 + Apache 2.0</div>
+  <div><a href="https://github.com/nickgogerty/comet-ontology" target="_blank" rel="noopener noreferrer">github.com/nickgogerty/comet-ontology</a> · A <a href="https://carbonfinancelab.com" target="_blank" rel="noopener noreferrer">Carbon Finance Lab</a> research initiative · <a href="mailto:ng@carbonsig.com">ng@carbonsig.com</a></div>
+</footer>
+
+</body>
+</html>

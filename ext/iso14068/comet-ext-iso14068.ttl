@@ -1,0 +1,547 @@
+@prefix rdf:     <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+@prefix skos:    <http://www.w3.org/2004/02/skos/core#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix prov:    <http://www.w3.org/ns/prov#> .
+@prefix qudt:    <http://qudt.org/schema/qudt/> .
+
+@prefix comet:     <https://comet.carbon/v1/core#> .
+@prefix comet-pcf: <https://comet.carbon/v1/pcf#> .
+@prefix comet-eac: <https://comet.carbon/v1/eac#> .
+@prefix comet-ver: <https://comet.carbon/v1/ver#> .
+@prefix comet-mkt: <https://comet.carbon/v1/market#> .
+@prefix comet-sc:  <https://comet.carbon/v1/supplychain#> .
+@prefix comet-ef:  <https://comet.carbon/v1/emfactor#> .
+@prefix comet-cn:  <https://comet.carbon/ext/iso14068#> .
+
+# External terminology stubs (placeholders for the canonical IRIs that resolve
+# inside the corresponding ISO standards). Mappings are still semantically
+# meaningful; if and when ISO publishes resolvable IRIs we substitute these.
+@prefix iso14068: <https://www.iso.org/standard/14068-1#> .
+@prefix iso14064: <https://www.iso.org/standard/14064-1#> .
+@prefix iso14067: <https://www.iso.org/standard/14067#> .
+
+# =============================================================================
+# COMET Extension Module: ISO 14068-1 Carbon Neutrality
+# =============================================================================
+# Module:      comet-ext:iso14068
+# Version:     0.1.0
+# Status:      RFC Open
+# Layer scope: L1 (Core) · L4 (PCF) · L5 (EAC) · L6 (Verification) · L7 (Market)
+# Standard:    ISO 14068-1:2023 — Climate change management —
+#              Transition to net zero — Part 1: Carbon neutrality
+# Normative refs (per ISO 14068-1 §2): ISO 14064-1, ISO 14067, ISO 14064-2,
+#              ISO 14064-3, IPCC GWP values
+# License:     CC BY 4.0 + Apache 2.0
+# Maintainer:  Carbon-Neutrality-WG (Domain Working Group)
+# =============================================================================
+
+<https://comet.carbon/ext/iso14068>
+    a owl:Ontology ;
+    owl:versionIRI <https://comet.carbon/ext/iso14068/0.1.0> ;
+    owl:imports <https://comet.carbon/v1/core> ,
+                <https://comet.carbon/v1/pcf> ,
+                <https://comet.carbon/v1/eac> ,
+                <https://comet.carbon/v1/ver> ,
+                <https://comet.carbon/v1/market> ,
+                <https://comet.carbon/v1/supplychain> ;
+    dcterms:title "COMET ISO 14068-1 Carbon Neutrality Extension"@en ;
+    dcterms:description "Maps ISO 14068-1:2023 (Carbon Neutrality) onto the COMET seven-layer stack. Adds typed classes for the carbon neutrality management plan, pathway, claim, report, baseline, residual emissions, hierarchy of actions, and the criteria carbon credits and crediting programmes must satisfy. Aligns ISO 14068 terminology with the corresponding ISO 14064-1, ISO 14067 and PACT v3 concepts already in COMET via owl:equivalentClass triples."@en ;
+    dcterms:creator "Carbon-Neutrality-WG / ISO 14068 Domain Working Group" ;
+    dcterms:issued "2026-04-30"^^xsd:date ;
+    dcterms:license <https://creativecommons.org/licenses/by/4.0/> ;
+    dcterms:language "en" ;
+    rdfs:seeAlso <https://www.iso.org/standard/43279.html> ,
+                 <https://www.iso.org/standard/66453.html> ,
+                 <https://www.iso.org/standard/71206.html> .
+
+# =============================================================================
+# SECTION A — EQUIVALENCE / ALIGNMENT (MERGE)
+# =============================================================================
+# Concepts that already exist in COMET. We assert owl:equivalentClass /
+# owl:equivalentProperty so reasoners can move freely between the two
+# vocabularies. No new class is created; we only certify the mapping.
+# =============================================================================
+
+# A.1 — Carbon footprint (ISO 14068 §3.2.4) ↔ COMET PCF result
+comet-pcf:PCFResult
+    owl:equivalentClass iso14068:CarbonFootprint ;
+    skos:closeMatch iso14067:CarbonFootprintOfAProduct ;
+    rdfs:comment "ISO 14068-1 §3.2.4 'carbon footprint' is, for a product subject, the same quantity as ISO 14067 CFP and therefore as comet-pcf:PCFResult. For an organization subject ISO 14068 defers to ISO 14064-1; the same comet-pcf:PCFResult class is used with a different boundary type (see comet-cn:OrganizationBoundary)."@en .
+
+# A.2 — Direct GHG emission (ISO 14068 §3.2.5) ↔ Scope 1
+comet-pcf:Scope1Emission
+    owl:equivalentClass iso14068:DirectGHGEmission ;
+    rdfs:comment "ISO 14068-1 §3.2.5 'direct GHG emission' is identical in scope to GHG Protocol Scope 1 already represented in comet-pcf."@en .
+
+# A.3 — Indirect GHG emission (ISO 14068 §3.2.6) ↔ Scope 2 + Scope 3
+comet-pcf:IndirectGHGEmission
+    owl:equivalentClass iso14068:IndirectGHGEmission ;
+    rdfs:comment "ISO 14068-1 §3.2.6 'indirect GHG emission' covers both Scope 2 and Scope 3 in GHG Protocol terminology. Use comet-pcf:Scope2Emission or comet-pcf:Scope3Emission to disambiguate when location- vs market-based or category granularity is required."@en .
+
+# A.4 — GHG removal (ISO 14068 §3.2.7) ↔ COMET removal
+comet-pcf:GHGRemoval
+    owl:equivalentClass iso14068:GHGRemoval ;
+    rdfs:comment "ISO 14068-1 §3.2.7 'GHG removal' (withdrawal of GHG by a sink) matches the existing comet-pcf:GHGRemoval representing reforestation, soil sequestration, BECCS, DAC + storage."@en .
+
+# A.5 — Boundary <organization> (ISO 14068 §3.2.16) ↔ COMET organizational boundary
+comet:OrganizationalBoundary
+    owl:equivalentClass iso14068:OrganizationBoundary .
+
+# A.6 — Boundary <product> / system boundary (ISO 14068 §3.2.17) ↔ COMET system boundary
+comet-pcf:SystemBoundary
+    owl:equivalentClass iso14068:SystemBoundary ;
+    skos:closeMatch iso14067:SystemBoundary .
+
+# A.7 — GWP (§3.2.11), CO2e (§3.2.12) — already aligned via ISO 14064-1 import
+comet-pcf:GlobalWarmingPotential
+    owl:equivalentClass iso14068:GlobalWarmingPotential .
+
+comet-pcf:CO2Equivalent
+    owl:equivalentClass iso14068:CarbonDioxideEquivalent .
+
+# A.8 — GHG source / sink (§3.2.9, §3.2.10)
+comet-sc:GHGSource    owl:equivalentClass iso14068:GHGSource .
+comet-sc:GHGSink      owl:equivalentClass iso14068:GHGSink .
+
+# A.9 — Carbon credit (ISO 14068 §3.3.2) ↔ COMET EAC retirement-eligible credit
+comet-eac:CarbonCredit
+    owl:equivalentClass iso14068:CarbonCredit ;
+    rdfs:comment "ISO 14068-1 §3.3.2 defines a carbon credit as a tradeable certificate representing 1 tCO2e from emission reductions or removal enhancements. This corresponds to comet-eac:CarbonCredit; the additional ISO 14068 criteria (real, additional, measurable, permanent, certified) are encoded as a comet-cn:CreditCriterion validation overlay (Section B)."@en .
+
+# A.10 — Carbon crediting programme (ISO 14068 §3.3.4) ↔ COMET registry/programme
+comet-eac:CreditingProgramme
+    owl:equivalentClass iso14068:CarbonCreditingProgramme .
+
+# A.11 — Public registry (ISO 14068 §3.3.5)
+comet-eac:PublicRegistry
+    owl:equivalentClass iso14068:PublicRegistry .
+
+# A.12 — Organization (§3.4.3) ↔ comet:Organization
+comet:Organization
+    owl:equivalentClass iso14068:Organization .
+
+# A.13 — Product (§3.4.4) ↔ comet:Material / Product
+comet:Product
+    owl:equivalentClass iso14068:Product ;
+    skos:closeMatch iso14067:Product .
+
+# A.14 — Stakeholder (§3.4.5) ↔ comet:Stakeholder
+comet:Stakeholder
+    owl:equivalentClass iso14068:Stakeholder .
+
+# A.15 — Value chain (§3.4.7) ↔ comet-sc:ValueChain
+comet-sc:ValueChain
+    owl:equivalentClass iso14068:ValueChain .
+
+# A.16 — Top management (§3.4.6) ↔ comet:TopManagement
+comet:TopManagement
+    owl:equivalentClass iso14068:TopManagement .
+
+
+# =============================================================================
+# SECTION B — NEW CLASSES (EXPAND)
+# =============================================================================
+# Concepts ISO 14068 introduces that do not exist in COMET v0.2 and are needed
+# to represent a carbon neutrality claim, plan, pathway, baseline and report.
+# All live in the comet-cn: namespace.
+# =============================================================================
+
+# -----------------------------------------------------------------------------
+# B.1 — Subject and Entity (L1 Core refinements)
+# -----------------------------------------------------------------------------
+
+comet-cn:Subject
+    a owl:Class ;
+    rdfs:label "Subject of a Carbon Neutrality Claim"@en ;
+    rdfs:comment "ISO 14068-1 §3.4.2. The organization OR product for which carbon neutrality is being achieved and demonstrated. The subject is the unit at which the carbon footprint is computed, GHG reductions are tracked, and the claim is published."@en ;
+    owl:unionOf ( comet:Organization comet:Product ) ;
+    rdfs:isDefinedBy <https://comet.carbon/ext/iso14068> ;
+    dcterms:source "ISO 14068-1:2023, §3.4.2" ;
+    skos:example "An entire company, a single facility, a product line, a one-off event, an investment portfolio." .
+
+comet-cn:Entity
+    a owl:Class ;
+    rdfs:subClassOf comet:Organization ;
+    rdfs:label "Entity Seeking Carbon Neutrality"@en ;
+    rdfs:comment "ISO 14068-1 §3.4.1. The organization that is seeking to achieve and demonstrate carbon neutrality FOR a Subject. Entity and Subject can be identical (a company claiming neutrality for itself) or different (a company claiming neutrality for one of its products)."@en ;
+    rdfs:isDefinedBy <https://comet.carbon/ext/iso14068> ;
+    dcterms:source "ISO 14068-1:2023, §3.4.1" .
+
+comet-cn:FinancialInstitution
+    a owl:Class ;
+    rdfs:subClassOf comet-cn:Entity ;
+    rdfs:label "Financial Institution"@en ;
+    rdfs:comment "ISO 14068-1 §3.4.3.1 + Annex B.3. A regulated entity engaged in financial intermediation. Financial institutions face additional ISO 14068-1 requirements covering investment portfolio emissions and financed emissions (see comet-cn:FinancedEmissionsAccount below)."@en ;
+    rdfs:isDefinedBy <https://comet.carbon/ext/iso14068> ;
+    dcterms:source "ISO 14068-1:2023, §3.4.3.1" .
+
+# -----------------------------------------------------------------------------
+# B.2 — Time-period semantics (L4 PCF refinements)
+# -----------------------------------------------------------------------------
+
+comet-cn:ReportingPeriod
+    a owl:Class ;
+    rdfs:label "Reporting Period"@en ;
+    rdfs:comment "ISO 14068-1 §3.1.6. The specific historical period selected for the determination of carbon neutrality. Typically one year for organizations; can be shorter (recurring events) or longer (forest / agricultural systems)."@en ;
+    rdfs:isDefinedBy <https://comet.carbon/ext/iso14068> ;
+    dcterms:source "ISO 14068-1:2023, §3.1.6" .
+
+comet-cn:BasePeriod
+    a owl:Class ;
+    rdfs:label "Base Period"@en ;
+    rdfs:comment "ISO 14068-1 §3.2.14. The historical period against which subsequent reporting periods are compared."@en ;
+    rdfs:isDefinedBy <https://comet.carbon/ext/iso14068> ;
+    dcterms:source "ISO 14068-1:2023, §3.2.14" .
+
+comet-cn:Baseline
+    a owl:Class ;
+    rdfs:subClassOf comet-pcf:PCFResult ;
+    rdfs:label "Carbon Neutrality Baseline"@en ;
+    rdfs:comment "ISO 14068-1 §3.2.13. The quantified GHG emissions and/or GHG removals of a Subject for the Base Period. Used to compute reductions and removal enhancements."@en ;
+    rdfs:isDefinedBy <https://comet.carbon/ext/iso14068> ;
+    dcterms:source "ISO 14068-1:2023, §3.2.13" .
+
+# -----------------------------------------------------------------------------
+# B.3 — Emissions classified by ISO 14068 status
+# -----------------------------------------------------------------------------
+
+comet-cn:UnabatedGHGEmission
+    a owl:Class ;
+    rdfs:subClassOf comet-pcf:GHGEmission ;
+    rdfs:label "Unabated GHG Emission"@en ;
+    rdfs:comment "ISO 14068-1 §3.1.4. GHG emission of the Subject remaining after activities resulting in GHG emission reductions within the boundary of the Subject. Includes but is not limited to residual emissions."@en ;
+    rdfs:isDefinedBy <https://comet.carbon/ext/iso14068> ;
+    dcterms:source "ISO 14068-1:2023, §3.1.4" .
+
+comet-cn:ResidualGHGEmission
+    a owl:Class ;
+    rdfs:subClassOf comet-cn:UnabatedGHGEmission ;
+    rdfs:label "Residual GHG Emission"@en ;
+    rdfs:comment "ISO 14068-1 §3.1.5. The unabated GHG emission remaining after implementing ALL technically and economically feasible reductions. The target year by which only residual emissions remain is the long-term anchor of the carbon neutrality pathway (commonly 2050)."@en ;
+    rdfs:isDefinedBy <https://comet.carbon/ext/iso14068> ;
+    dcterms:source "ISO 14068-1:2023, §3.1.5" .
+
+comet-cn:GHGEmissionReduction
+    a owl:Class ;
+    rdfs:label "GHG Emission Reduction"@en ;
+    rdfs:comment "ISO 14068-1 §3.2.3. Decrease in GHG emissions quantified between two points in time or relative to a baseline. Distinct from offsetting; only counts when the reduction occurs WITHIN the boundary of the Subject."@en ;
+    rdfs:isDefinedBy <https://comet.carbon/ext/iso14068> ;
+    dcterms:source "ISO 14068-1:2023, §3.2.3" .
+
+comet-cn:GHGRemovalEnhancement
+    a owl:Class ;
+    rdfs:label "GHG Removal Enhancement"@en ;
+    rdfs:comment "ISO 14068-1 §3.2.8. Quantified increase in GHG removals between two points in time or relative to a baseline. Reversals in subsequent reporting periods MUST be re-classed as emissions in the period of reversal (§10.2)."@en ;
+    rdfs:isDefinedBy <https://comet.carbon/ext/iso14068> ;
+    dcterms:source "ISO 14068-1:2023, §3.2.8 + §10.2" .
+
+# -----------------------------------------------------------------------------
+# B.4 — Commitment, plan, pathway, claim, report
+# -----------------------------------------------------------------------------
+
+comet-cn:CarbonNeutralityCommitment
+    a owl:Class ;
+    rdfs:label "Carbon Neutrality Commitment"@en ;
+    rdfs:comment "ISO 14068-1 §6. A documented top-management commitment that establishes scope, governance, resourcing and continual-improvement obligations for the Subject. Required precondition for any carbon neutrality claim."@en ;
+    rdfs:isDefinedBy <https://comet.carbon/ext/iso14068> ;
+    dcterms:source "ISO 14068-1:2023, §6" .
+
+comet-cn:CarbonNeutralityPathway
+    a owl:Class ;
+    rdfs:label "Carbon Neutrality Pathway"@en ;
+    rdfs:comment "ISO 14068-1 §5.3. Trajectory describing the entity's ambition to minimize the carbon footprint of the Subject. MUST include short-term targets (typically 5–10 years), long-term targets (typically ≥20 years) and a target year by which only residual GHG emissions will remain. Should be aligned to a science-based pathway (IPCC, IEA, ACT, SBTi)."@en ;
+    rdfs:isDefinedBy <https://comet.carbon/ext/iso14068> ;
+    dcterms:source "ISO 14068-1:2023, §5.3 + Annex A" .
+
+comet-cn:CarbonNeutralityManagementPlan
+    a owl:Class ;
+    rdfs:label "Carbon Neutrality Management Plan"@en ;
+    rdfs:comment "ISO 14068-1 §9. The structured artefact containing: top-management statement, subject + boundary description, timescale, base period and target year, baseline, methodology, pathway with targets, planned reductions and removal enhancements, intended carbon credit quantities, monitoring indicators, and adverse-impact safeguards."@en ;
+    rdfs:isDefinedBy <https://comet.carbon/ext/iso14068> ;
+    dcterms:source "ISO 14068-1:2023, §9" .
+
+comet-cn:CarbonNeutralityClaim
+    a owl:Class ;
+    rdfs:label "Carbon Neutrality Claim"@en ;
+    rdfs:comment "ISO 14068-1 §3.1.3. A public declaration made by an Entity regarding the carbon neutrality of the Subject. The claim is only valid if all preceding conditions (commitment, plan, quantification, reductions, then offsetting in hierarchy order, and a verification opinion) are documented."@en ;
+    rdfs:isDefinedBy <https://comet.carbon/ext/iso14068> ;
+    dcterms:source "ISO 14068-1:2023, §3.1.3" .
+
+comet-cn:CarbonNeutralityReport
+    a owl:Class ;
+    rdfs:subClassOf comet-ver:DisclosureRecord ;
+    rdfs:label "Carbon Neutrality Report"@en ;
+    rdfs:comment "ISO 14068-1 §12. The publicly available report covering each reporting period. MUST contain 24 prescribed elements (§12 a–x) including subject + boundary, pathway position, baseline, footprint components, reductions narrative, credit details with serial numbers, corresponding-adjustment disclosure, and the verification opinion. Distinct from a PCF study report (ISO 14067) or a corporate GHG inventory report (ISO 14064-1) although both can be referenced inputs."@en ;
+    rdfs:isDefinedBy <https://comet.carbon/ext/iso14068> ;
+    dcterms:source "ISO 14068-1:2023, §12" .
+
+# -----------------------------------------------------------------------------
+# B.5 — Hierarchy of actions (mitigation hierarchy)
+# -----------------------------------------------------------------------------
+
+comet-cn:HierarchyAction
+    a owl:Class ;
+    rdfs:label "Carbon Neutrality Hierarchy Action"@en ;
+    rdfs:comment "ISO 14068-1 §4.4 + §5.2. Enum of the mandatory order of preference: (1) reduce within boundary, (2) enhance removals within boundary, (3) offset. Every entry in the management plan MUST tag itself with one of these to enable hierarchy auditing."@en ;
+    rdfs:isDefinedBy <https://comet.carbon/ext/iso14068> .
+
+comet-cn:Reduce_Inside_Boundary  a comet-cn:HierarchyAction, owl:NamedIndividual ;
+    rdfs:label "Reduce inside boundary"@en ;
+    skos:notation "1" .
+
+comet-cn:Enhance_Removal_Inside_Boundary  a comet-cn:HierarchyAction, owl:NamedIndividual ;
+    rdfs:label "Enhance removal inside boundary"@en ;
+    skos:notation "2" .
+
+comet-cn:Offset_Outside_Boundary  a comet-cn:HierarchyAction, owl:NamedIndividual ;
+    rdfs:label "Offset outside boundary"@en ;
+    skos:notation "3" .
+
+# -----------------------------------------------------------------------------
+# B.6 — Credit and crediting-programme criteria (L5 EAC overlay)
+# -----------------------------------------------------------------------------
+
+comet-cn:CreditCriterion
+    a owl:Class ;
+    rdfs:label "Carbon Credit Criterion"@en ;
+    rdfs:comment "ISO 14068-1 §11.2. The five mandatory criteria a carbon credit MUST satisfy to be eligible for a neutrality claim: REAL, ADDITIONAL, MEASURABLE, PERMANENT, CERTIFIED."@en ;
+    rdfs:isDefinedBy <https://comet.carbon/ext/iso14068> .
+
+comet-cn:Real         a comet-cn:CreditCriterion, owl:NamedIndividual ; rdfs:label "Real"@en .
+comet-cn:Additional   a comet-cn:CreditCriterion, owl:NamedIndividual ; rdfs:label "Additional"@en .
+comet-cn:Measurable   a comet-cn:CreditCriterion, owl:NamedIndividual ; rdfs:label "Measurable"@en .
+comet-cn:Permanent    a comet-cn:CreditCriterion, owl:NamedIndividual ; rdfs:label "Permanent"@en .
+comet-cn:Certified    a comet-cn:CreditCriterion, owl:NamedIndividual ; rdfs:label "Certified"@en .
+
+comet-cn:CreditingProgrammeCriterion
+    a owl:Class ;
+    rdfs:label "Carbon Crediting Programme Criterion"@en ;
+    rdfs:comment "ISO 14068-1 §11.3. Programme-level requirements including transparency, safeguards, SDG identification, governance, stakeholder consultation, independent verification, public registry with serial numbers + retirement, double-counting prevention and leakage minimization."@en ;
+    rdfs:isDefinedBy <https://comet.carbon/ext/iso14068> .
+
+comet-cn:CreditType
+    a owl:Class ;
+    rdfs:label "Carbon Credit Type"@en ;
+    rdfs:comment "ISO 14068-1 §3.3.2 Note 2. Tradeable carbon credits are partitioned by mitigation modality."@en ;
+    rdfs:isDefinedBy <https://comet.carbon/ext/iso14068> .
+
+comet-cn:AvoidanceCredit  a comet-cn:CreditType, owl:NamedIndividual ; rdfs:label "Avoidance credit"@en .
+comet-cn:ReductionCredit  a comet-cn:CreditType, owl:NamedIndividual ; rdfs:label "Reduction credit"@en .
+comet-cn:RemovalCredit    a comet-cn:CreditType, owl:NamedIndividual ; rdfs:label "Removal credit"@en .
+
+# -----------------------------------------------------------------------------
+# B.7 — Offsetting and double-counting (L6 Verification overlay)
+# -----------------------------------------------------------------------------
+
+comet-cn:OffsettingEvent
+    a owl:Class ;
+    rdfs:subClassOf comet-eac:RetirementEvent ;
+    rdfs:label "Offsetting Event"@en ;
+    rdfs:comment "ISO 14068-1 §3.3.1. Counterbalancing of the carbon footprint by retiring carbon credits that satisfy comet-cn:CreditCriterion. The retirement MUST happen in a public registry no later than 12 months after the end of the reporting period (§11.2)."@en ;
+    rdfs:isDefinedBy <https://comet.carbon/ext/iso14068> ;
+    dcterms:source "ISO 14068-1:2023, §3.3.1 + §11" .
+
+comet-cn:CorrespondingAdjustment
+    a owl:Class ;
+    rdfs:label "Corresponding Adjustment"@en ;
+    rdfs:comment "ISO 14068-1 §11.1 NOTE referencing Paris Agreement Article 6.4. Mechanism preventing double counting between private entities and host-country NDCs. Required disclosure in the carbon neutrality report (§12 t)."@en ;
+    rdfs:isDefinedBy <https://comet.carbon/ext/iso14068> .
+
+comet-cn:RemovalReversal
+    a owl:Class ;
+    rdfs:label "GHG Removal Reversal"@en ;
+    rdfs:comment "ISO 14068-1 §10.2. A previously claimed in-boundary removal that has been lost (e.g. forest fire releasing sequestered carbon). MUST be re-classed as a GHG emission in the reporting period in which the reversal occurred."@en ;
+    rdfs:isDefinedBy <https://comet.carbon/ext/iso14068> ;
+    dcterms:source "ISO 14068-1:2023, §10.2" .
+
+comet-cn:VerificationOpinion
+    a owl:Class ;
+    rdfs:subClassOf comet-ver:AuditClaim ;
+    rdfs:label "Carbon Neutrality Verification Opinion"@en ;
+    rdfs:comment "ISO 14068-1 §12 w. Independent verification statement that MUST appear in the carbon neutrality report. Bridges to ISO 14064-3 verification methodology."@en ;
+    rdfs:isDefinedBy <https://comet.carbon/ext/iso14068> ;
+    dcterms:source "ISO 14068-1:2023, §12 w (verification opinion)" .
+
+# -----------------------------------------------------------------------------
+# B.8 — Financial institution accounting (Annex B.3)
+# -----------------------------------------------------------------------------
+
+comet-cn:FinancedEmissionsAccount
+    a owl:Class ;
+    rdfs:label "Financed Emissions Account"@en ;
+    rdfs:comment "ISO 14068-1 Annex B.3. The portion of an investee's carbon footprint attributable to a financial institution's exposure (lending, equity, debt, insurance underwriting). Required boundary component when a financial-institution Entity claims neutrality for an investment Subject. Aligns with PCAF financed-emissions methodology."@en ;
+    rdfs:isDefinedBy <https://comet.carbon/ext/iso14068> ;
+    dcterms:source "ISO 14068-1:2023, Annex B.3" .
+
+# =============================================================================
+# SECTION C — OBJECT AND DATA PROPERTIES
+# =============================================================================
+
+# C.1 — Subject / entity / boundary linkage
+comet-cn:hasSubject
+    a owl:ObjectProperty ;
+    rdfs:domain comet-cn:Entity ;
+    rdfs:range comet-cn:Subject ;
+    rdfs:label "has subject"@en ;
+    rdfs:isDefinedBy <https://comet.carbon/ext/iso14068> .
+
+comet-cn:hasBoundary
+    a owl:ObjectProperty ;
+    rdfs:domain comet-cn:Subject ;
+    rdfs:label "has boundary"@en ;
+    rdfs:isDefinedBy <https://comet.carbon/ext/iso14068> .
+
+# C.2 — Plan composition
+comet-cn:hasCommitment
+    a owl:ObjectProperty ;
+    rdfs:domain comet-cn:CarbonNeutralityManagementPlan ;
+    rdfs:range comet-cn:CarbonNeutralityCommitment ;
+    rdfs:label "has commitment"@en ;
+    rdfs:isDefinedBy <https://comet.carbon/ext/iso14068> .
+
+comet-cn:hasPathway
+    a owl:ObjectProperty ;
+    rdfs:domain comet-cn:CarbonNeutralityManagementPlan ;
+    rdfs:range comet-cn:CarbonNeutralityPathway ;
+    rdfs:label "has pathway"@en ;
+    rdfs:isDefinedBy <https://comet.carbon/ext/iso14068> .
+
+comet-cn:hasBaseline
+    a owl:ObjectProperty ;
+    rdfs:domain comet-cn:CarbonNeutralityManagementPlan ;
+    rdfs:range comet-cn:Baseline ;
+    rdfs:label "has baseline"@en ;
+    rdfs:isDefinedBy <https://comet.carbon/ext/iso14068> .
+
+comet-cn:hasReportingPeriod
+    a owl:ObjectProperty ;
+    rdfs:range comet-cn:ReportingPeriod ;
+    rdfs:label "has reporting period"@en ;
+    rdfs:isDefinedBy <https://comet.carbon/ext/iso14068> .
+
+# C.3 — Hierarchy and credit linkage
+comet-cn:hierarchyStep
+    a owl:ObjectProperty ;
+    rdfs:range comet-cn:HierarchyAction ;
+    rdfs:label "hierarchy step"@en ;
+    rdfs:isDefinedBy <https://comet.carbon/ext/iso14068> .
+
+comet-cn:meetsCriterion
+    a owl:ObjectProperty ;
+    rdfs:domain comet-eac:CarbonCredit ;
+    rdfs:range comet-cn:CreditCriterion ;
+    rdfs:label "meets criterion"@en ;
+    rdfs:isDefinedBy <https://comet.carbon/ext/iso14068> .
+
+comet-cn:hasCreditType
+    a owl:ObjectProperty ;
+    rdfs:domain comet-eac:CarbonCredit ;
+    rdfs:range comet-cn:CreditType ;
+    rdfs:label "credit type"@en ;
+    rdfs:isDefinedBy <https://comet.carbon/ext/iso14068> .
+
+# C.4 — Reporting linkage
+comet-cn:hasClaim
+    a owl:ObjectProperty ;
+    rdfs:domain comet-cn:Entity ;
+    rdfs:range comet-cn:CarbonNeutralityClaim ;
+    rdfs:label "publishes claim"@en ;
+    rdfs:isDefinedBy <https://comet.carbon/ext/iso14068> .
+
+comet-cn:hasReport
+    a owl:ObjectProperty ;
+    rdfs:domain comet-cn:CarbonNeutralityClaim ;
+    rdfs:range comet-cn:CarbonNeutralityReport ;
+    rdfs:label "supported by report"@en ;
+    rdfs:isDefinedBy <https://comet.carbon/ext/iso14068> .
+
+comet-cn:hasVerificationOpinion
+    a owl:ObjectProperty ;
+    rdfs:domain comet-cn:CarbonNeutralityReport ;
+    rdfs:range comet-cn:VerificationOpinion ;
+    rdfs:label "verified by"@en ;
+    rdfs:isDefinedBy <https://comet.carbon/ext/iso14068> .
+
+# C.5 — Data properties
+comet-cn:targetYearResidualOnly
+    a owl:DatatypeProperty ;
+    rdfs:domain comet-cn:CarbonNeutralityPathway ;
+    rdfs:range xsd:gYear ;
+    rdfs:label "target year — residual only"@en ;
+    rdfs:comment "Year by which only residual GHG emissions are expected to remain. Commonly 2050 per IPCC long-term targets (§5.3 NOTE 1)."@en ;
+    rdfs:isDefinedBy <https://comet.carbon/ext/iso14068> .
+
+comet-cn:vintageEndYear
+    a owl:DatatypeProperty ;
+    rdfs:domain comet-eac:CarbonCredit ;
+    rdfs:range xsd:gYear ;
+    rdfs:label "vintage end year"@en ;
+    rdfs:comment "End of the credit vintage. ISO 14068 §11.2 requires the vintage end to be ≤5 years before the start of the period for which carbon neutrality is claimed."@en ;
+    rdfs:isDefinedBy <https://comet.carbon/ext/iso14068> .
+
+comet-cn:retirementDate
+    a owl:DatatypeProperty ;
+    rdfs:domain comet-cn:OffsettingEvent ;
+    rdfs:range xsd:date ;
+    rdfs:label "retirement date"@en ;
+    rdfs:comment "ISO 14068 §11.2 — retirement MUST occur ≤12 months after end of reporting period."@en ;
+    rdfs:isDefinedBy <https://comet.carbon/ext/iso14068> .
+
+comet-cn:correspondingAdjustmentApplied
+    a owl:DatatypeProperty ;
+    rdfs:domain comet-eac:CarbonCredit ;
+    rdfs:range xsd:boolean ;
+    rdfs:label "corresponding adjustment applied"@en ;
+    rdfs:comment "Required disclosure (§12 t) of whether the credit has had an Article 6.4 corresponding adjustment applied."@en ;
+    rdfs:isDefinedBy <https://comet.carbon/ext/iso14068> .
+
+comet-cn:isExPostCredit
+    a owl:DatatypeProperty ;
+    rdfs:domain comet-eac:CarbonCredit ;
+    rdfs:range xsd:boolean ;
+    rdfs:label "is ex-post credit"@en ;
+    rdfs:comment "ISO 14068 §11.2 — only credits representing reductions/removals that have ALREADY occurred (ex-post) may be used for a carbon neutrality claim."@en ;
+    rdfs:isDefinedBy <https://comet.carbon/ext/iso14068> .
+
+comet-cn:reportingPeriodStart
+    a owl:DatatypeProperty ;
+    rdfs:domain comet-cn:ReportingPeriod ;
+    rdfs:range xsd:date ;
+    rdfs:label "reporting period start"@en ;
+    rdfs:isDefinedBy <https://comet.carbon/ext/iso14068> .
+
+comet-cn:reportingPeriodEnd
+    a owl:DatatypeProperty ;
+    rdfs:domain comet-cn:ReportingPeriod ;
+    rdfs:range xsd:date ;
+    rdfs:label "reporting period end"@en ;
+    rdfs:isDefinedBy <https://comet.carbon/ext/iso14068> .
+
+# =============================================================================
+# SECTION D — PRINCIPLES (informative class for traceability)
+# =============================================================================
+# ISO 14068 Clause 4 enumerates 11 principles. These are not OWL classes per se
+# but skos:Concepts so claims and management plans can declare conformance.
+# =============================================================================
+
+comet-cn:Principle
+    a owl:Class ;
+    rdfs:subClassOf skos:Concept ;
+    rdfs:label "ISO 14068-1 Principle"@en ;
+    rdfs:isDefinedBy <https://comet.carbon/ext/iso14068> .
+
+comet-cn:P_Transparency        a comet-cn:Principle ; skos:notation "4.2"  ; rdfs:label "Transparency"@en .
+comet-cn:P_Conservativeness    a comet-cn:Principle ; skos:notation "4.3"  ; rdfs:label "Conservativeness"@en .
+comet-cn:P_HierarchyApproach   a comet-cn:Principle ; skos:notation "4.4"  ; rdfs:label "Hierarchy approach"@en .
+comet-cn:P_SupportingTransition a comet-cn:Principle ; skos:notation "4.5" ; rdfs:label "Supporting transition"@en .
+comet-cn:P_Ambition            a comet-cn:Principle ; skos:notation "4.6"  ; rdfs:label "Ambition"@en .
+comet-cn:P_Urgency             a comet-cn:Principle ; skos:notation "4.7"  ; rdfs:label "Urgency"@en .
+comet-cn:P_ScienceBased        a comet-cn:Principle ; skos:notation "4.8"  ; rdfs:label "Science-based approach"@en .
+comet-cn:P_AvoidAdverseImpacts a comet-cn:Principle ; skos:notation "4.9"  ; rdfs:label "Avoiding adverse impacts"@en .
+comet-cn:P_Accountability      a comet-cn:Principle ; skos:notation "4.10" ; rdfs:label "Accountability"@en .
+comet-cn:P_ValueChainLifecycle a comet-cn:Principle ; skos:notation "4.11" ; rdfs:label "Value chain and life cycle approach"@en .
+
+# End of file.

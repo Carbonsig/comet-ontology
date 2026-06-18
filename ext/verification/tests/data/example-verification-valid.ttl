@@ -1,0 +1,26 @@
+@prefix comet-ver: <https://comet.carbon/v1/ver#> .
+@prefix comet-sc:  <https://comet.carbon/v1/supplychain#> .
+@prefix comet-mkt: <https://comet.carbon/v1/market#> .
+@prefix ex:        <https://example.org/> .
+
+# Conformant verification engagement instance.
+
+ex:opinion1 a comet-ver:VerificationOpinion ;
+    comet-ver:opinionValue "qualified" .
+
+ex:materiality1 a comet-ver:MaterialityThreshold ;
+    comet-ver:thresholdValue 0.05 .
+
+ex:car1 a comet-ver:CorrectiveActionRequest ;
+    comet-ver:severity "major" ;
+    comet-ver:status "open" ;
+    comet-ver:dueDate "2026-09-30"^^<http://www.w3.org/2001/XMLSchema#date> .
+
+ex:accred1 a comet-ver:AccreditationBody ;
+    comet-ver:accreditationNumber "DAkkS-D-VS-12345-01-00" .
+
+ex:scope3 a comet-sc:Scope3Emissions ;
+    comet-sc:category 11 .
+
+ex:tier1 a comet-mkt:CleanHydrogenCreditTier ;
+    comet-mkt:creditValue 3.0 .

@@ -1118,6 +1118,56 @@
               <td class="td-align">PACT: dqi.completenessDQR</td>
               <td class="td-datatype">Decimal (1&ndash;3)</td>
             </tr>
+            <!-- ── v0.3.0 aggregate inventory totals (corporate GHG / disclosure coverage) ── -->
+            <tr>
+              <td class="td-class">comet-sc:Scope1Emissions</td>
+              <td class="td-type">Class</td>
+              <td>Aggregate Scope 1 direct emissions for the reporting entity (tCO2e)</td>
+              <td class="td-align">GHG Protocol: scope 1; ESRS E1-6; ISSB S2; ISO 14064-1</td>
+              <td class="td-datatype">Decimal</td>
+            </tr>
+            <tr>
+              <td class="td-class">comet-sc:Scope2Emissions</td>
+              <td class="td-type">Class</td>
+              <td>Aggregate Scope 2 indirect energy emissions, location-based and market-based (tCO2e)</td>
+              <td class="td-align">GHG Protocol: scope 2; ESRS E1-6; ISSB S2; ISO 14064-1</td>
+              <td class="td-datatype">Decimal</td>
+            </tr>
+            <tr>
+              <td class="td-class">comet-sc:Scope3Emissions</td>
+              <td class="td-type">Class</td>
+              <td>Aggregate Scope 3 value-chain emissions, reportable by category 1&ndash;15 (tCO2e)</td>
+              <td class="td-align">GHG Protocol Scope 3; ESRS E1-6; ISSB S2; SBTi</td>
+              <td class="td-datatype">Decimal</td>
+            </tr>
+            <tr>
+              <td>comet-sc:Scope3Emissions.category</td>
+              <td class="td-type">Property</td>
+              <td>GHG Protocol Scope 3 category number (1&ndash;15)</td>
+              <td class="td-align">GHG Protocol Scope 3</td>
+              <td class="td-datatype">Integer (1&ndash;15)</td>
+            </tr>
+            <tr>
+              <td class="td-class">comet-sc:BaseYearEmissions</td>
+              <td class="td-type">Class</td>
+              <td>Base-year inventory used for target-setting and recalculation</td>
+              <td class="td-align">SBTi; GHG Protocol; ISO 14064-1</td>
+              <td class="td-datatype">Decimal</td>
+            </tr>
+            <tr>
+              <td class="td-class">comet-sc:EmissionIntensity</td>
+              <td class="td-type">Class</td>
+              <td>Normalised emission intensity metric (tCO2e per unit output or revenue)</td>
+              <td class="td-align">SBTi; EU CBAM; GHG Protocol</td>
+              <td class="td-datatype">Decimal</td>
+            </tr>
+            <tr>
+              <td class="td-class">comet-sc:RecalculationTrigger</td>
+              <td class="td-type">Class</td>
+              <td>Criteria and result of a base-year recalculation event (structural change, methodology change)</td>
+              <td class="td-align">GHG Protocol; SBTi; ISO 14064-1</td>
+              <td class="td-datatype em-dash">&mdash;</td>
+            </tr>
           </tbody>
         </table>
       </div>
@@ -1302,6 +1352,28 @@
               <td class="td-type">Class</td>
               <td>EN 15804 Environmental Product Declaration</td>
               <td class="td-align">EN 15804+A2; EPD programs</td>
+              <td class="td-datatype em-dash">&mdash;</td>
+            </tr>
+            <!-- ── v0.3.0 product-level intensity & uncertainty (45V / CBAM / SAF coverage) ── -->
+            <tr>
+              <td class="td-class">comet-pcf:CarbonIntensity</td>
+              <td class="td-type">Class</td>
+              <td>Product-level lifecycle carbon intensity (kgCO2e per kg or MJ of product)</td>
+              <td class="td-align">IRA 45V (4.5 kgCO2e/kgH2 tiers); EU CBAM; CORSIA SAF (CORSIA Eligible Fuels)</td>
+              <td class="td-datatype">Decimal</td>
+            </tr>
+            <tr>
+              <td>comet-pcf:CarbonIntensity.functionalBasis</td>
+              <td class="td-type">Property</td>
+              <td>Functional basis for the intensity (per kg, per MJ, per unit product)</td>
+              <td class="td-align em-dash">&mdash;</td>
+              <td class="td-datatype">Enum</td>
+            </tr>
+            <tr>
+              <td class="td-class">comet-pcf:UncertaintyAssessment</td>
+              <td class="td-type">Class</td>
+              <td>Quantified uncertainty range on the PCF or GHG result</td>
+              <td class="td-align">ISO 14067 Sec 6.4.4; ISO 14064-1; EU ETS MRV</td>
               <td class="td-datatype em-dash">&mdash;</td>
             </tr>
           </tbody>
@@ -1490,6 +1562,21 @@
               <td class="td-align">CAD Trust: aef_t4_holdings table</td>
               <td class="td-datatype em-dash">&mdash;</td>
             </tr>
+            <!-- ── v0.3.0 CORSIA eligible unit (aviation offsetting coverage) ── -->
+            <tr>
+              <td class="td-class">comet-eac:CORSIAEligibleUnit</td>
+              <td class="td-type">Class</td>
+              <td>Emission unit designated CORSIA-eligible by the ICAO Technical Advisory Body</td>
+              <td class="td-align">ICAO CORSIA (EUC criteria); CAD Trust: unit table</td>
+              <td class="td-datatype em-dash">&mdash;</td>
+            </tr>
+            <tr>
+              <td>comet-eac:CORSIAEligibleUnit.eligiblePeriod</td>
+              <td class="td-type">Property</td>
+              <td>CORSIA phase / vintage eligibility window for the unit</td>
+              <td class="td-align">ICAO CORSIA</td>
+              <td class="td-datatype">String</td>
+            </tr>
           </tbody>
         </table>
       </div>
@@ -1620,6 +1707,105 @@
               <td class="td-align">CAD Trust: ratingValue</td>
               <td class="td-datatype">String</td>
             </tr>
+            <!-- ── v0.3.0 verification-process extension (carbon verification market coverage) ── -->
+            <tr>
+              <td class="td-class">comet-ver:VerificationOpinion</td>
+              <td class="td-type">Class</td>
+              <td>Formal opinion type issued in the verification statement: unqualified, qualified, adverse, or disclaimer</td>
+              <td class="td-align">ISO 14064-3: opinion; ISAE 3410: conclusion; ISO 14068: verification opinion</td>
+              <td class="td-datatype">Enum</td>
+            </tr>
+            <tr>
+              <td class="td-class">comet-ver:MaterialityThreshold</td>
+              <td class="td-type">Class</td>
+              <td>Materiality threshold (typically 5%) applied to determine whether misstatements are material</td>
+              <td class="td-align">ISO 14064-3: materiality; ISAE 3410: materiality; EU ETS MRV</td>
+              <td class="td-datatype">Decimal</td>
+            </tr>
+            <tr>
+              <td class="td-class">comet-ver:FindingsLog</td>
+              <td class="td-type">Class</td>
+              <td>Register of all verification findings (corrected, uncorrected, observations)</td>
+              <td class="td-align">ISO 14064-3; ISAE 3410; VCS; Gold Standard</td>
+              <td class="td-datatype em-dash">&mdash;</td>
+            </tr>
+            <tr>
+              <td class="td-class">comet-ver:CorrectiveActionRequest</td>
+              <td class="td-type">Class</td>
+              <td>Corrective Action Request raised against a finding, with severity and lifecycle status</td>
+              <td class="td-align">VCS; Gold Standard; ISO 14064-3</td>
+              <td class="td-datatype em-dash">&mdash;</td>
+            </tr>
+            <tr>
+              <td>comet-ver:CorrectiveActionRequest.severity</td>
+              <td class="td-type">Property</td>
+              <td>Severity of the request (major / minor / observation)</td>
+              <td class="td-align">ISO 14064-3</td>
+              <td class="td-datatype">Enum</td>
+            </tr>
+            <tr>
+              <td>comet-ver:CorrectiveActionRequest.status</td>
+              <td class="td-type">Property</td>
+              <td>Lifecycle status (open / responded / closed)</td>
+              <td class="td-align em-dash">&mdash;</td>
+              <td class="td-datatype">Enum</td>
+            </tr>
+            <tr>
+              <td>comet-ver:CorrectiveActionRequest.dueDate</td>
+              <td class="td-type">Property</td>
+              <td>Date by which the corrective action is due</td>
+              <td class="td-align em-dash">&mdash;</td>
+              <td class="td-datatype">Date</td>
+            </tr>
+            <tr>
+              <td class="td-class">comet-ver:OpportunityForImprovement</td>
+              <td class="td-type">Class</td>
+              <td>Opportunity for improvement / observation logged during verification (non-binding)</td>
+              <td class="td-align">ISO 14064-3; ISAE 3410</td>
+              <td class="td-datatype em-dash">&mdash;</td>
+            </tr>
+            <tr>
+              <td class="td-class">comet-ver:AccreditationBody</td>
+              <td class="td-type">Class</td>
+              <td>Accreditation body (e.g. DAkkS, UKAS, ANAB) under which the verifier is accredited</td>
+              <td class="td-align">ISO 14065; EU ETS MRV; EU CBAM</td>
+              <td class="td-datatype em-dash">&mdash;</td>
+            </tr>
+            <tr>
+              <td>comet-ver:AccreditationBody.accreditationNumber</td>
+              <td class="td-type">Property</td>
+              <td>Accreditation registration number of the verifier</td>
+              <td class="td-align">ISO 14065</td>
+              <td class="td-datatype">String</td>
+            </tr>
+            <tr>
+              <td class="td-class">comet-ver:VerificationMethodology</td>
+              <td class="td-type">Class</td>
+              <td>Sampling strategy, analytical procedures and evidence-gathering plan for the engagement</td>
+              <td class="td-align">ISO 14064-3; ISAE 3410</td>
+              <td class="td-datatype em-dash">&mdash;</td>
+            </tr>
+            <tr>
+              <td class="td-class">comet-ver:SiteVisitRecord</td>
+              <td class="td-type">Class</td>
+              <td>Physical or virtual site-visit documentation supporting the verification</td>
+              <td class="td-align">EU CBAM; ISO 14064-3; VCS</td>
+              <td class="td-datatype em-dash">&mdash;</td>
+            </tr>
+            <tr>
+              <td class="td-class">comet-ver:IndependenceDeclaration</td>
+              <td class="td-type">Class</td>
+              <td>Verifier independence and conflict-of-interest statement</td>
+              <td class="td-align">ISAE 3410; ISO 14065</td>
+              <td class="td-datatype em-dash">&mdash;</td>
+            </tr>
+            <tr>
+              <td class="td-class">comet-ver:DataSubstitutionRule</td>
+              <td class="td-type">Class</td>
+              <td>Default or substitute data methodology applied when primary data is unavailable</td>
+              <td class="td-align">EU ETS MRV; IRA 45V; EU CBAM</td>
+              <td class="td-datatype em-dash">&mdash;</td>
+            </tr>
           </tbody>
         </table>
       </div>
@@ -1700,6 +1886,21 @@
               <td>Reference benchmark for comparison</td>
               <td class="td-align">CBAM Art. 31</td>
               <td class="td-datatype em-dash">&mdash;</td>
+            </tr>
+            <!-- ── v0.3.0 clean hydrogen credit tier (IRA 45V coverage) ── -->
+            <tr>
+              <td class="td-class">comet-mkt:CleanHydrogenCreditTier</td>
+              <td class="td-type">Class</td>
+              <td>IRA 45V production tax credit tier ($0.60&ndash;$3.00/kg H2) keyed to lifecycle carbon intensity. (Local name avoids a leading digit so it remains a valid CURIE/NCName; alt-label "45V Credit Tier".)</td>
+              <td class="td-align">IRA 45V (26 USC 45V); 45VH2-GREET</td>
+              <td class="td-datatype">Enum</td>
+            </tr>
+            <tr>
+              <td>comet-mkt:CleanHydrogenCreditTier.creditValue</td>
+              <td class="td-type">Property</td>
+              <td>Credit value in USD per kg of qualified clean hydrogen</td>
+              <td class="td-align">IRA 45V</td>
+              <td class="td-datatype">USD/kgH2</td>
             </tr>
           </tbody>
         </table>

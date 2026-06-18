@@ -1,0 +1,26 @@
+@prefix comet-ver: <https://comet.carbon/v1/ver#> .
+@prefix comet-sc:  <https://comet.carbon/v1/supplychain#> .
+@prefix comet-mkt: <https://comet.carbon/v1/market#> .
+@prefix ex:        <https://example.org/> .
+
+# Non-conformant instance — every node violates its shape. Expect 5 results:
+#  - opinion value not in enum
+#  - materiality threshold out of [0,1]
+#  - CAR missing required severity + bad status
+#  - Scope3 category out of 1-15
+#  - 45V credit value above 3.00 cap
+
+ex:badOpinion a comet-ver:VerificationOpinion ;
+    comet-ver:opinionValue "mostly-fine" .
+
+ex:badMateriality a comet-ver:MaterialityThreshold ;
+    comet-ver:thresholdValue 5 .
+
+ex:badCar a comet-ver:CorrectiveActionRequest ;
+    comet-ver:status "pending" .
+
+ex:badScope3 a comet-sc:Scope3Emissions ;
+    comet-sc:category 17 .
+
+ex:badTier a comet-mkt:CleanHydrogenCreditTier ;
+    comet-mkt:creditValue 9.99 .

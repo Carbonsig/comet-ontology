@@ -4,6 +4,66 @@ All notable changes to COMET (Carbon Ontology for Materials and Emissions Tracki
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Unreleased]
+
+## [0.3.0] - 2026-06-17
+
+### Added
+
+**Carbon Verification Market Coverage** (`ext/verification/`, `docs/glossary.html`)
+- 20 new core terms extending the seven-layer stack to fully represent verification engagements under the Global Carbon Verification Market taxonomy (EU ETS, CSRD/ESRS E1, ISSB S2, ISO 14064-3, ISAE 3410, ISO 14067, EPD/EN 15804, PAS 2050, VCS, Gold Standard, SBTi, EU CBAM, CORSIA, IRA 45V, Article 6, California SB 253/261):
+  - **L6 Verification** (`comet-ver:`): `VerificationOpinion`, `MaterialityThreshold`, `FindingsLog`, `CorrectiveActionRequest` (+ `severity`/`status`/`dueDate`), `OpportunityForImprovement`, `AccreditationBody` (+ `accreditationNumber`), `VerificationMethodology`, `SiteVisitRecord`, `IndependenceDeclaration`, `DataSubstitutionRule` — closing the gap where L6 was required by 100% of standards yet was the thinnest layer
+  - **L3 Supply Chain** (`comet-sc:`): aggregate inventory totals `Scope1Emissions`, `Scope2Emissions` (location- + market-based), `Scope3Emissions` (+ `category` 1-15), `BaseYearEmissions`, `EmissionIntensity`, `RecalculationTrigger`
+  - **L4 PCF** (`comet-pcf:`): `CarbonIntensity` (+ `functionalBasis`), `UncertaintyAssessment`
+  - **L5 EAC** (`comet-eac:`): `CORSIAEligibleUnit` (+ `eligiblePeriod`)
+  - **L7 Market** (`comet-mkt:`): `CleanHydrogenCreditTier` (+ `creditValue`) — IRA 45V tiers; local name avoids a leading digit to remain a valid CURIE/NCName, alt-label "45V Credit Tier"
+- New extension module `ext/verification/comet-ext-verification.ttl` giving the 20 terms first-class OWL identity, plus `comet-ext-verification-shapes.ttl` SHACL shapes validated with pyshacl (valid instance Conforms: True; invalid instance fails on enum/range/cardinality constraints) — test data under `ext/verification/tests/data/`
+- 51 new standards-alignment crosswalk rows registering ISO 14064-3, ISO 14065, ISAE 3410/3000, ISSB S2, EU ETS MRV, IRA 45V, ICAO CORSIA, SBTi, EN 15804+A2, Verra VCS and GHG Protocol Scope 3 as formally aligned standards. Crosswalks without a citable external identifier carry an empty `target_iri` (coverage registered without fabricating IRIs)
+- Extended `tools/schemas/comet-core.schema.json` `Verification` definition with `opinionType`, `materialityThreshold`, `accreditationBody`/`accreditationNumber`, `independenceDeclared`, `siteVisitPerformed` and a structured `findings` array
+
+**New converters** (`tools/converters/`)
+- `ghgprotocol_to_comet.py` (full) — GHG Protocol / ESRS E1 corporate inventory (JSON or CSV) to COMET, populating the new Scope 1/2/3, base-year and intensity aggregates; invalid Scope 3 categories are dropped with a warning
+- `h45v_to_comet.py` (full) — IRA 45V clean-hydrogen attestation to COMET, implementing the four statutory 26 USC 45V(b) credit tiers keyed to 45VH2-GREET lifecycle carbon intensity, with credit-value and estimated-credit computation
+- `epd_to_comet.py`, `corsia_to_comet.py`, `verra_to_comet.py` (scaffolds) — public API, CLI and COMET skeleton in place with a working JSON path and a marked TODO for full EN 15804 ILCD-XML / ICAO CORSIA registry / Verra-Gold Standard registry mapping
+- All five wired into `tools/comet_cli.py` (`comet convert --from ghg-protocol|esrs|45v|epd|corsia|verra|gold-standard`); round-trip test suite `tools/converters/tests/test_v030_converters.py` (23 checks, all passing)
+
+### Changed
+- `tools/scripts/build-ontology-map.py` now resolves bare standard names (not just `prefix: term` chunks) in the glossary alignment column, so coverage registers for standards without per-term external identifiers
+- Ontology term count rises from 113 to 141 core terms (904 to 937 total incl. incorporated CAD Trust); alignment crosswalks rise from 242 to 293
+
+### Added
+
+**Schema Map, Interactive Ontology & Value Lookup** (`docs/schema-map.html`)
+- New single-source-of-truth extractor `tools/scripts/build-ontology-map.py` that reads **every** place a COMET term is defined — the seven-layer core vocabulary tables in `docs/glossary.html`, the OWL/SHACL extension modules (`comet-rs`, `comet-cn`), the incorporated CAD Trust v2.0.2 Data Dictionary (`docs/CAD-Trust-Data-Dictionary-v2.0.2.xlsx`), the three JSON Schemas, `comet-context.jsonld` and the alignment crosswalks — and normalises them into one 904-term table plus a node/edge graph
+- New interactive page `docs/schema-map.html` with four views: (1) an interactive Cytoscape force-directed **ontology graph** (456 relational nodes, 267 edges incl. synthesised `partOf` property→class links) with namespace legend toggles, layout switching, search-to-isolate and per-node info cards; (2) a layered **schema map** of the COMET seven-layer stack + CAD Trust band with clickable term chips; (3) a sortable, searchable, filterable **value lookup** of all 904 terms (109 classes, 114 properties, 649 CAD Trust fields/picklist values, 32 individuals); (4) a sortable **alignments** crosswalk of 242 standards mappings (ISO 14068/14067, EU CBAM, EU ESRS, GHG Protocol, WBCSD PACT, UN SDG, CAD Trust, schema.org, QUDT, W3C PROV)
+- New generated artifacts: `docs/comet-ontology-values.xlsx` (5-sheet workbook — Summary, Terms, Namespaces, Alignments, Schema Fields, with frozen panes + autofilter for in-Excel sorting), `docs/ontology-data.json` and `docs/ontology-data.js` (consolidated graph payload; the `.js` wrapper lets the page run from `file://`)
+- The build canonicalises the two divergent `comet-rs` base IRIs so alignment edges connect to their defined term nodes, synthesises stub nodes for referenced-but-upstream COMET core terms and external standard targets, and keeps the flat 649-row CAD Trust dictionary in the table/XLSX (out of the relational graph) so the graph stays readable across the full stack
+- Index page (`docs/index.html`) links to the new Schema Map
+- `tools/requirements.txt` adds `rdflib` and `openpyxl`
+
+**ISO 14068-1:2023 Carbon Neutrality Extension** (`comet-ext:iso14068`, prefix `comet-cn:`)
+- New extension module aligning ISO 14068-1:2023 *Climate change management — Transition to net zero — Part 1: Carbon neutrality* with the COMET seven-layer stack
+- 18 `owl:equivalentClass` bridges from ISO 14068 terms to existing COMET classes (carbon footprint, direct/indirect emissions, GHG removals, sources, sinks, GWP, CO2e, organizational + system boundaries, carbon credits, crediting programmes, registries, organization, product, stakeholder, top management, value chain)
+- 24 new classes covering concepts COMET did not yet encode: `Subject`, `Entity`, `FinancialInstitution`, `Baseline`, `BasePeriod`, `ReportingPeriod`, `UnabatedGHGEmission`, `ResidualGHGEmission`, `GHGEmissionReduction`, `GHGRemovalEnhancement`, `CarbonNeutralityCommitment`, `CarbonNeutralityPathway`, `CarbonNeutralityManagementPlan`, `CarbonNeutralityClaim`, `CarbonNeutralityReport`, `HierarchyAction`, `CreditCriterion`, `CreditingProgrammeCriterion`, `CreditType`, `OffsettingEvent`, `CorrespondingAdjustment`, `RemovalReversal`, `VerificationOpinion`, `FinancedEmissionsAccount`
+- 11 named-individual principles representing ISO 14068 Clause 4 (Transparency, Conservativeness, Hierarchy approach, Supporting transition, Ambition, Urgency, Science-based approach, Avoiding adverse impacts, Accountability, Value chain and life cycle approach)
+- 15 object + datatype properties wiring the new classes together (`hasSubject`, `hasBoundary`, `hasCommitment`, `hasPathway`, `hasBaseline`, `hierarchyStep`, `meetsCriterion`, `targetYearResidualOnly`, `vintageEndYear`, `retirementDate`, `correspondingAdjustmentApplied`, `isExPostCredit`, `reportingPeriodStart`, `reportingPeriodEnd`, others)
+- New extension files: `ext/iso14068/comet-ext-iso14068.ttl` (OWL ontology in Turtle), `ext/iso14068/README.md` (stakeholder summary report with merge map, expansion map, and benefits by stakeholder type)
+- New documentation page: `docs/iso14068.html` — visual presentation of merge / expansion / stakeholder benefits / forbidden practices / adoption checklist
+- JSON-LD context updated (`comet-context.jsonld`) with the new `comet-cn:` namespace and key terms
+- Index page (`docs/index.html`) and ontology specification (`docs/ontology.html`) link to the new ISO 14068 extension
+
+### Changed
+- Top navigation on `docs/ontology.html` now exposes the ISO 14068 extension and the Materials hub
+
+## [0.2.1] - 2026-04-27
+
+### Added
+
+**COMET Materials hub** (`docs/materials.html`)
+- New page pairing the *A Shared Carbon Language* explainer video (~6 min, MP4, 33 MB) with the v0.1 Carbon Protocol stakeholder deck (14 slides, PPTX, 15 MB)
+- Slide-by-slide summaries linking each visualization to the COMET layers, namespaces, and governance model it depicts
+- Banner + TOC link on `docs/ontology.html` and three-card row on `docs/index.html` make the materials discoverable from the home page and the spec
+
 ## [0.2.0] - 2026-03-30
 
 ### Added

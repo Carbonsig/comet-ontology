@@ -1,0 +1,104 @@
+@prefix sh:        <http://www.w3.org/ns/shacl#> .
+@prefix rdf:       <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs:      <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:       <http://www.w3.org/2001/XMLSchema#> .
+@prefix comet-ver: <https://comet.carbon/v1/ver#> .
+@prefix comet-sc:  <https://comet.carbon/v1/supplychain#> .
+@prefix comet-pcf: <https://comet.carbon/v1/pcf#> .
+@prefix comet-eac: <https://comet.carbon/v1/eac#> .
+@prefix comet-mkt: <https://comet.carbon/v1/market#> .
+
+# =============================================================================
+# COMET v0.3.0 — Carbon Verification Market Coverage — SHACL Validation Shapes
+# =============================================================================
+# Companion to comet-ext-verification.ttl
+# Run with: pyshacl -s comet-ext-verification-shapes.ttl -d your-data.ttl
+# =============================================================================
+
+# ─── L6 VERIFICATION ─────────────────────────────────────────────────────
+
+comet-ver:VerificationOpinionShape
+    a sh:NodeShape ;
+    sh:targetClass comet-ver:VerificationOpinion ;
+    sh:property [
+        sh:path comet-ver:opinionValue ;
+        sh:datatype xsd:string ;
+        sh:in ( "unqualified" "qualified" "adverse" "disclaimer" ) ;
+        sh:maxCount 1 ;
+        sh:message "VerificationOpinion.opinionValue must be one of: unqualified, qualified, adverse, disclaimer."
+    ] .
+
+comet-ver:MaterialityThresholdShape
+    a sh:NodeShape ;
+    sh:targetClass comet-ver:MaterialityThreshold ;
+    sh:property [
+        sh:path comet-ver:thresholdValue ;
+        sh:datatype xsd:decimal ;
+        sh:minInclusive 0 ;
+        sh:maxInclusive 1 ;
+        sh:maxCount 1 ;
+        sh:message "MaterialityThreshold.thresholdValue must be a decimal fraction between 0 and 1 (e.g. 0.05)."
+    ] .
+
+comet-ver:CorrectiveActionRequestShape
+    a sh:NodeShape ;
+    sh:targetClass comet-ver:CorrectiveActionRequest ;
+    sh:property [
+        sh:path comet-ver:severity ;
+        sh:datatype xsd:string ;
+        sh:in ( "major" "minor" "observation" ) ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:message "CorrectiveActionRequest.severity is required and must be major, minor or observation."
+    ] ;
+    sh:property [
+        sh:path comet-ver:status ;
+        sh:datatype xsd:string ;
+        sh:in ( "open" "responded" "closed" ) ;
+        sh:maxCount 1 ;
+        sh:message "CorrectiveActionRequest.status must be open, responded or closed."
+    ] ;
+    sh:property [
+        sh:path comet-ver:dueDate ;
+        sh:datatype xsd:date ;
+        sh:maxCount 1 ;
+        sh:message "CorrectiveActionRequest.dueDate must be an xsd:date."
+    ] .
+
+comet-ver:AccreditationBodyShape
+    a sh:NodeShape ;
+    sh:targetClass comet-ver:AccreditationBody ;
+    sh:property [
+        sh:path comet-ver:accreditationNumber ;
+        sh:datatype xsd:string ;
+        sh:maxCount 1 ;
+        sh:message "AccreditationBody.accreditationNumber must be a single string."
+    ] .
+
+# ─── L3 SUPPLY CHAIN — AGGREGATE TOTALS ──────────────────────────────────
+
+comet-sc:Scope3EmissionsShape
+    a sh:NodeShape ;
+    sh:targetClass comet-sc:Scope3Emissions ;
+    sh:property [
+        sh:path comet-sc:category ;
+        sh:datatype xsd:integer ;
+        sh:minInclusive 1 ;
+        sh:maxInclusive 15 ;
+        sh:maxCount 1 ;
+        sh:message "Scope3Emissions.category must be a GHG Protocol category number 1-15."
+    ] .
+
+# ─── L7 MARKET — IRA 45V ─────────────────────────────────────────────────
+
+comet-mkt:CleanHydrogenCreditTierShape
+    a sh:NodeShape ;
+    sh:targetClass comet-mkt:CleanHydrogenCreditTier ;
+    sh:property [
+        sh:path comet-mkt:creditValue ;
+        sh:datatype xsd:decimal ;
+        sh:minInclusive 0 ;
+        sh:maxInclusive 3.0 ;
+        sh:maxCount 1 ;
+        sh:message "CleanHydrogenCreditTier.creditValue must be 0-3.00 USD/kgH2 per IRA 45V."
+    ] .

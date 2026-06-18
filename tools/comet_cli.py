@@ -47,7 +47,9 @@ CONVERTERS_DIR = TOOLS_DIR / "converters"
 VALIDATORS_DIR = TOOLS_DIR / "validators"
 
 # ── Supported formats ───────────────────────────────────────────────────
-INGEST_FORMATS = ["csv", "pact", "cbam-xml", "cad-trust"]
+INGEST_FORMATS = ["csv", "pact", "cbam-xml", "cad-trust",
+                  "ghg-protocol", "esrs", "45v", "epd", "corsia",
+                  "verra", "gold-standard"]
 EXPORT_FORMATS = ["pact", "cbam-xml", "csv"]
 TEMPLATE_TYPES = ["pcf", "eac", "scope3"]
 
@@ -116,6 +118,14 @@ def cmd_convert(args: argparse.Namespace) -> int:
         "pact": "pact_to_comet",
         "cbam-xml": "cbam_to_comet",
         "cad-trust": "cad_trust_to_comet",
+        # v0.3.0 carbon-verification-market converters
+        "ghg-protocol": "ghgprotocol_to_comet",
+        "esrs": "ghgprotocol_to_comet",
+        "45v": "h45v_to_comet",
+        "epd": "epd_to_comet",
+        "corsia": "corsia_to_comet",
+        "verra": "verra_to_comet",
+        "gold-standard": "verra_to_comet",
     }
 
     module_name = converter_map.get(from_fmt)

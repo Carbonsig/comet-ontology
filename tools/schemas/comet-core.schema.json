@@ -241,6 +241,65 @@
           "type": "string",
           "description": "Verification standard used (e.g., ISO 14064-3, ISAE 3410)."
         },
+        "opinionType": {
+          "type": "string",
+          "description": "comet-ver:VerificationOpinion — formal opinion issued in the verification statement.",
+          "enum": ["unqualified", "qualified", "adverse", "disclaimer"]
+        },
+        "materialityThreshold": {
+          "type": "number",
+          "description": "comet-ver:MaterialityThreshold — materiality threshold applied (fraction, e.g. 0.05 for 5%).",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "accreditationBody": {
+          "type": "string",
+          "description": "comet-ver:AccreditationBody — accreditation body the verifier operates under (e.g. DAkkS, UKAS, ANAB)."
+        },
+        "accreditationNumber": {
+          "type": "string",
+          "description": "comet-ver:AccreditationBody.accreditationNumber — verifier accreditation registration number."
+        },
+        "independenceDeclared": {
+          "type": "boolean",
+          "description": "comet-ver:IndependenceDeclaration — verifier independence / conflict-of-interest declared."
+        },
+        "siteVisitPerformed": {
+          "type": "boolean",
+          "description": "comet-ver:SiteVisitRecord — whether a physical or virtual site visit was performed."
+        },
+        "findings": {
+          "type": "array",
+          "description": "comet-ver:FindingsLog — register of verification findings and corrective action requests.",
+          "items": {
+            "type": "object",
+            "properties": {
+              "findingType": {
+                "type": "string",
+                "enum": ["correctiveActionRequest", "opportunityForImprovement", "observation"]
+              },
+              "severity": {
+                "type": "string",
+                "description": "comet-ver:CorrectiveActionRequest.severity",
+                "enum": ["major", "minor", "observation"]
+              },
+              "status": {
+                "type": "string",
+                "description": "comet-ver:CorrectiveActionRequest.status",
+                "enum": ["open", "responded", "closed"]
+              },
+              "dueDate": {
+                "type": "string",
+                "format": "date",
+                "description": "comet-ver:CorrectiveActionRequest.dueDate"
+              },
+              "description": {
+                "type": "string"
+              }
+            },
+            "additionalProperties": false
+          }
+        },
         "@type": {
           "type": "string"
         }

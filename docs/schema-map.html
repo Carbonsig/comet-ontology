@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>COMET — Schema Map, Interactive Ontology & Value Lookup</title>
+<meta name="description" content="Interactive visual map, layered schema diagram and sortable value lookup for the COMET carbon ontology — every class, property, namespace and standards alignment.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/cytoscape/3.30.2/cytoscape.min.js"></script>
+<style>
+  :root {
+    --ink: #0f0f0f; --ink-2: #2a2a2a; --ink-3: #555;
+    --rule: #d0cfc9; --rule-light: #e8e7e3;
+    --bg: #f5f4f0; --bg-card: #ffffff;
+    --accent-r: #c8360a; --accent-g: #1a6b3c; --accent-b: #1a3a6b;
+    --accent-gold: #9a7c2f; --accent-teal: #1a5f6b;
+    --mono: 'DM Mono', monospace; --display: 'Playfair Display', serif; --body: 'DM Sans', sans-serif;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { background: var(--bg); color: var(--ink); font-family: var(--body); font-size: 13px; line-height: 1.55; }
+  a { color: var(--accent-b); }
+
+  /* ── MASTHEAD ── */
+  .masthead { background: var(--ink); color: #f5f4f0; padding: 40px 56px 32px; border-bottom: 3px solid var(--accent-r); }
+  .masthead-eyebrow { font-family: var(--mono); font-size: 10px; letter-spacing: 0.18em; color: #999; text-transform: uppercase; margin-bottom: 14px; }
+  .masthead-eyebrow a { color: #bbb; text-decoration: none; }
+  .masthead-eyebrow a:hover { color: #fff; }
+  .masthead h1 { font-family: var(--display); font-size: 44px; font-weight: 900; letter-spacing: -0.02em; line-height: 1.0; margin-bottom: 8px; }
+  .masthead .sub { font-size: 14px; color: #c9c7c0; max-width: 760px; }
+
+  /* ── STATS BAR ── */
+  .statsbar { display: flex; flex-wrap: wrap; gap: 0; background: var(--bg-card); border-bottom: 1px solid var(--rule); }
+  .stat { padding: 16px 28px; border-right: 1px solid var(--rule-light); }
+  .stat .num { font-family: var(--display); font-size: 30px; font-weight: 700; line-height: 1; color: var(--accent-r); }
+  .stat .lbl { font-family: var(--mono); font-size: 9.5px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-3); margin-top: 5px; }
+  .statsbar .dl { margin-left: auto; display: flex; align-items: center; padding: 12px 28px; }
+  .btn { font-family: var(--mono); font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase; color: #fff; background: var(--accent-g); padding: 11px 20px; text-decoration: none; border: none; cursor: pointer; transition: background .18s; display: inline-block; }
+  .btn:hover { background: #134f2c; }
+  .btn.alt { background: var(--ink); }
+  .btn.alt:hover { background: #333; }
+
+  /* ── TABS ── */
+  .tabs { display: flex; gap: 0; background: var(--ink); padding: 0 56px; border-bottom: 1px solid #333; position: sticky; top: 0; z-index: 30; }
+  .tab { font-family: var(--mono); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: #999; background: none; border: none; border-bottom: 3px solid transparent; padding: 16px 22px; cursor: pointer; transition: color .15s, border-color .15s; }
+  .tab:hover { color: #ddd; }
+  .tab.active { color: #fff; border-bottom-color: var(--accent-r); }
+
+  .panel { display: none; }
+  .panel.active { display: block; }
+  .wrap { padding: 28px 56px 64px; }
+
+  /* ── CONTROLS ── */
+  .controls { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; margin-bottom: 18px; }
+  .search { flex: 1; min-width: 240px; padding: 11px 14px; font-family: var(--body); font-size: 13px; border: 1px solid var(--rule); background: var(--bg-card); }
+  .search:focus { outline: none; border-color: var(--accent-r); }
+  select, .chip-toggle { font-family: var(--mono); font-size: 11px; padding: 10px 12px; border: 1px solid var(--rule); background: var(--bg-card); color: var(--ink-2); cursor: pointer; }
+  .legend { display: flex; flex-wrap: wrap; gap: 6px 14px; margin: 4px 0 16px; }
+  .lg { display: inline-flex; align-items: center; gap: 6px; font-family: var(--mono); font-size: 10.5px; color: var(--ink-3); cursor: pointer; user-select: none; padding: 3px 6px; border: 1px solid transparent; }
+  .lg.off { opacity: .35; text-decoration: line-through; }
+  .lg:hover { border-color: var(--rule); }
+  .lg .dot { width: 11px; height: 11px; border-radius: 50%; flex: none; }
+
+  /* ── GRAPH ── */
+  #cy { width: 100%; height: 640px; background: var(--bg-card); border: 1px solid var(--rule); }
+  .graph-hint { font-family: var(--mono); font-size: 10px; color: var(--ink-3); margin-top: 8px; letter-spacing: .04em; }
+  #nodeInfo { position: relative; }
+  .info-card { background: var(--bg-card); border: 1px solid var(--rule); border-left: 4px solid var(--accent-r); padding: 16px 18px; margin-top: 14px; display: none; }
+  .info-card.show { display: block; }
+  .info-card .curie { font-family: var(--mono); font-size: 12px; color: var(--accent-r); font-weight: 500; }
+  .info-card h3 { font-family: var(--display); font-size: 20px; font-weight: 700; margin: 2px 0 6px; }
+  .info-card .meta { font-family: var(--mono); font-size: 10.5px; color: var(--ink-3); text-transform: uppercase; letter-spacing: .08em; margin-bottom: 8px; }
+  .info-card p { font-size: 12.5px; color: var(--ink-2); max-width: 720px; }
+  .info-card .rels { margin-top: 10px; font-size: 11.5px; }
+  .info-card .rels b { font-family: var(--mono); font-size: 10px; letter-spacing: .06em; text-transform: uppercase; color: var(--ink-3); }
+  .pill { display: inline-block; font-family: var(--mono); font-size: 10px; padding: 2px 7px; margin: 2px 3px 2px 0; background: var(--rule-light); color: var(--ink-2); }
+
+  /* ── SCHEMA LAYER MAP ── */
+  .stack { display: flex; flex-direction: column; gap: 10px; }
+  .layer-row { display: grid; grid-template-columns: 200px 1fr; gap: 14px; align-items: stretch; }
+  .layer-tag { display: flex; flex-direction: column; justify-content: center; padding: 14px 16px; color: #fff; }
+  .layer-tag .lname { font-family: var(--display); font-size: 17px; font-weight: 700; line-height: 1.1; }
+  .layer-tag .lcode { font-family: var(--mono); font-size: 10px; letter-spacing: .1em; opacity: .85; margin-top: 3px; }
+  .layer-tag .lcount { font-family: var(--mono); font-size: 10px; margin-top: 6px; opacity: .85; }
+  .layer-terms { background: var(--bg-card); border: 1px solid var(--rule); padding: 12px 14px; display: flex; flex-wrap: wrap; gap: 5px; align-content: flex-start; }
+  .term-chip { font-family: var(--mono); font-size: 10.5px; padding: 4px 9px; background: var(--bg); border: 1px solid var(--rule-light); cursor: pointer; transition: background .12s, border-color .12s; }
+  .term-chip:hover { background: #fff; border-color: var(--accent-r); }
+  .term-chip.cls { border-left: 3px solid currentColor; }
+  .term-chip .k { opacity: .5; font-size: 9px; }
+  .layer-empty { font-family: var(--mono); font-size: 10.5px; color: var(--ink-3); font-style: italic; }
+  .ext-note { font-family: var(--mono); font-size: 10px; color: var(--ink-3); margin-top: 4px; }
+
+  /* ── TABLE ── */
+  .tablewrap { background: var(--bg-card); border: 1px solid var(--rule); overflow-x: auto; }
+  table { width: 100%; border-collapse: collapse; font-size: 12px; }
+  thead th { position: sticky; top: 49px; background: var(--ink); color: #f5f4f0; font-family: var(--mono); font-size: 10px; letter-spacing: .06em; text-transform: uppercase; text-align: left; padding: 11px 12px; cursor: pointer; white-space: nowrap; user-select: none; }
+  thead th:hover { background: #2a2a2a; }
+  thead th .ar { opacity: .4; font-size: 9px; }
+  thead th.sorted .ar { opacity: 1; color: var(--accent-r); }
+  tbody td { padding: 9px 12px; border-bottom: 1px solid var(--rule-light); vertical-align: top; }
+  tbody tr:hover { background: #faf9f6; }
+  .c-curie { font-family: var(--mono); font-weight: 500; color: var(--accent-r); white-space: nowrap; }
+  .c-kind { font-family: var(--mono); font-size: 10px; padding: 2px 7px; background: var(--rule-light); white-space: nowrap; }
+  .c-ns { font-family: var(--mono); font-size: 10.5px; color: var(--ink-3); }
+  .c-def { color: var(--ink-2); max-width: 520px; }
+  .rowcount { font-family: var(--mono); font-size: 10.5px; color: var(--ink-3); padding: 10px 2px; letter-spacing: .04em; }
+
+  footer { background: var(--ink); color: #9a9890; padding: 28px 56px; font-family: var(--mono); font-size: 10.5px; letter-spacing: .04em; border-top: 3px solid var(--accent-r); }
+  footer a { color: #c9c7c0; }
+
+  @media (max-width: 820px) {
+    .masthead, .wrap, .tabs, footer { padding-left: 22px; padding-right: 22px; }
+    .masthead h1 { font-size: 32px; }
+    .layer-row { grid-template-columns: 1fr; }
+    .stat { padding: 12px 18px; }
+  }
+</style>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="masthead-eyebrow"><a href="index.html">← COMET</a> &nbsp;·&nbsp; Carbon Ontology for Markets, Emissions &amp; Trade &nbsp;·&nbsp; Schema Map</div>
+  <h1>The COMET Ontology, Mapped</h1>
+  <p class="sub">Every class, property, individual and standards alignment in one place — explore it as an interactive graph, read it as a layered schema, sort and search the full value lookup, or download the complete spreadsheet.</p>
+</header>
+
+<div class="statsbar" id="statsbar"></div>
+
+<nav class="tabs" id="tabs">
+  <button class="tab active" data-panel="graph">Interactive Map</button>
+  <button class="tab" data-panel="schema">Schema Map</button>
+  <button class="tab" data-panel="lookup">Value Lookup</button>
+  <button class="tab" data-panel="align">Alignments</button>
+</nav>
+
+<!-- ══ INTERACTIVE GRAPH ══ -->
+<section class="panel active" id="panel-graph">
+  <div class="wrap">
+    <div class="controls">
+      <input class="search" id="graphSearch" placeholder="Find a term, then it highlights and centres in the graph…" autocomplete="off">
+      <select id="graphLayout">
+        <option value="cose">Layout · Organic (force)</option>
+        <option value="concentric">Layout · Concentric by namespace</option>
+        <option value="breadthfirst">Layout · Hierarchy</option>
+        <option value="grid">Layout · Grid</option>
+      </select>
+      <button class="chip-toggle" id="fit">Reset view</button>
+    </div>
+    <div class="legend" id="graphLegend"></div>
+    <div id="cy"></div>
+    <div class="graph-hint">Drag nodes · scroll to zoom · click a node to inspect and isolate its neighbourhood · click empty space to clear · toggle namespaces in the legend. The graph shows the relational COMET ontology (7 core layers + 2 extensions + standards alignments); the 649 flat CAD Trust dictionary fields live in the <b>Value Lookup</b> tab and the XLSX.</div>
+    <div id="nodeInfo"><div class="info-card" id="infoCard"></div></div>
+  </div>
+</section>
+
+<!-- ══ SCHEMA LAYER MAP ══ -->
+<section class="panel" id="panel-schema">
+  <div class="wrap">
+    <div class="controls">
+      <input class="search" id="schemaSearch" placeholder="Filter terms across all layers…" autocomplete="off">
+      <select id="schemaKind">
+        <option value="">All kinds</option>
+        <option value="Class">Classes only</option>
+        <option value="ObjectProperty">Object properties</option>
+        <option value="DatatypeProperty">Datatype properties</option>
+        <option value="Individual">Individuals</option>
+      </select>
+    </div>
+    <div class="stack" id="stack"></div>
+    <p class="ext-note">Layers shown in greyed type (Core, Emission Factor, Supply Chain, Market, Verification) are referenced by the extension modules but their base vocabularies ship in the COMET core distribution rather than this repository — counts reflect terms defined here.</p>
+  </div>
+</section>
+
+<!-- ══ SORTABLE LOOKUP ══ -->
+<section class="panel" id="panel-lookup">
+  <div class="wrap">
+    <div class="controls">
+      <input class="search" id="tableSearch" placeholder="Search CURIE, label, definition, namespace…  (press /)" autocomplete="off">
+      <select id="tableKind"><option value="">All kinds</option></select>
+      <select id="tableNs"><option value="">All namespaces</option></select>
+    </div>
+    <div class="tablewrap">
+      <table id="termTable">
+        <thead><tr id="thead"></tr></thead>
+        <tbody id="tbody"></tbody>
+      </table>
+    </div>
+    <div class="rowcount" id="rowcount"></div>
+  </div>
+</section>
+
+<!-- ══ ALIGNMENTS ══ -->
+<section class="panel" id="panel-align">
+  <div class="wrap">
+    <div class="controls">
+      <input class="search" id="alignSearch" placeholder="Search alignments — COMET term, standard, relation, note…" autocomplete="off">
+      <select id="alignStd"><option value="">All standards</option></select>
+      <select id="alignRel"><option value="">All relations</option></select>
+    </div>
+    <div class="tablewrap">
+      <table id="alignTable">
+        <thead><tr id="aThead"></tr></thead>
+        <tbody id="aTbody"></tbody>
+      </table>
+    </div>
+    <div class="rowcount" id="aRowcount"></div>
+  </div>
+</section>
+
+<footer>
+  COMET Ontology · Schema Map generated from comet-context.jsonld, the COMET JSON Schemas and the OWL/SHACL extension modules ·
+  <a href="https://github.com/nickgogerty/comet-ontology" target="_blank" rel="noopener">github.com/nickgogerty/comet-ontology</a> ·
+  A <a href="https://carbonfinancelab.com" target="_blank" rel="noopener">Carbon Finance Lab</a> research initiative.
+</footer>
+
+<script src="ontology-data.js"></script>
+<script>
+(function () {
+  "use strict";
+  const D = window.COMET_ONTOLOGY;
+  if (!D) { document.body.insertAdjacentHTML('beforeend',
+    '<p style="padding:40px;font-family:monospace;color:#c8360a">ontology-data.js not found — run tools/scripts/build-ontology-map.py first.</p>'); return; }
+
+  const $ = (s, r=document) => r.querySelector(s);
+  const $$ = (s, r=document) => Array.from(r.querySelectorAll(s));
+  const esc = s => String(s==null?'':s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+
+  /* ── STATS BAR ── */
+  const st = D.stats;
+  $('#statsbar').innerHTML = [
+    ['Terms', st.terms], ['Classes', st.classes], ['Properties', st.properties],
+    ['CAD fields', st.fields], ['Namespaces', st.namespaces],
+    ['Alignments', st.alignments], ['Schema fields', st.schema_fields]
+  ].map(([l,n]) => `<div class="stat"><div class="num">${n}</div><div class="lbl">${l}</div></div>`).join('')
+  + `<div class="dl">
+       <a class="btn" href="comet-ontology-values.xlsx" download>⬇ Download XLSX (all values)</a>
+       &nbsp;&nbsp;
+       <a class="btn alt" href="ontology-data.json" download>JSON</a>
+     </div>`;
+
+  /* ── TABS ── */
+  $$('.tab').forEach(t => t.addEventListener('click', () => {
+    $$('.tab').forEach(x => x.classList.remove('active'));
+    $$('.panel').forEach(x => x.classList.remove('active'));
+    t.classList.add('active');
+    $('#panel-' + t.dataset.panel).classList.add('active');
+    if (t.dataset.panel === 'graph' && window._cy) window._cy.resize();
+  }));
+
+  /* ════════════════════ INTERACTIVE GRAPH ════════════════════ */
+  const g = D.graph;
+  const graphNsNames = new Set(g.nodes.filter(n => n.kind !== 'External').map(n => n.namespace));
+  const nsList = D.namespaces.filter(n => graphNsNames.has(n.name));
+  const extColors = {}; // collect external/reference colours from nodes
+  g.nodes.forEach(n => { if (n.kind === 'External') extColors[n.namespace] = n.color; });
+
+  const offNs = new Set(); // namespaces toggled off
+  let cy = null;
+
+  function cyElements() {
+    const keepNode = n => !offNs.has(n.namespace);
+    const nodes = g.nodes.filter(keepNode).map(n => ({
+      data: { id: n.id, label: n.label, curie: n.curie, kind: n.kind, ns: n.namespace,
+              layer: n.layer, color: n.color, def: n.definition, defined: n.defined },
+    }));
+    const present = new Set(nodes.map(n => n.data.id));
+    const edges = g.edges.filter(e => present.has(e.from) && present.has(e.to)).map((e,i) => ({
+      data: { id: 'e'+i, source: e.from, target: e.to, rel: e.rel },
+    }));
+    return { nodes, edges };
+  }
+
+  const relStyle = { subClassOf:'#0f0f0f', range:'#888', partOf:'#b9b6ad', equivalentClass:'#c8360a',
+    exactMatch:'#c8360a', closeMatch:'#9a7c2f', relatedMatch:'#1a5f6b', related:'#1a5f6b',
+    mapsTo:'#1a5f6b', broadMatch:'#7a2f6b', narrowMatch:'#7a2f6b' };
+
+  function initCy() {
+    const el = cyElements();
+    cy = cytoscape({
+      container: $('#cy'),
+      elements: [...el.nodes, ...el.edges],
+      wheelSensitivity: 0.25,
+      style: [
+        { selector: 'node', style: {
+            'background-color': 'data(color)', 'label': 'data(label)',
+            'font-family': 'DM Mono, monospace', 'font-size': 7,
+            'color': '#2a2a2a', 'text-wrap': 'wrap', 'text-max-width': 70,
+            'text-valign': 'bottom', 'text-margin-y': 2,
+            'width': 14, 'height': 14, 'border-width': 0 } },
+        { selector: 'node[kind = "Class"]', style: { 'width': 22, 'height': 22, 'shape': 'round-rectangle' } },
+        { selector: 'node[?defined]', style: { 'border-width': 0 } },
+        { selector: 'node[!defined]', style: { 'background-opacity': 0.45, 'border-width': 1, 'border-style': 'dashed', 'border-color': 'data(color)' } },
+        { selector: 'edge', style: {
+            'width': 1, 'line-color': e => relStyle[e.data('rel')] || '#bbb',
+            'target-arrow-color': e => relStyle[e.data('rel')] || '#bbb',
+            'target-arrow-shape': 'triangle', 'arrow-scale': 0.6,
+            'curve-style': 'bezier', 'opacity': 0.45 } },
+        { selector: '.faded', style: { 'opacity': 0.08, 'text-opacity': 0 } },
+        { selector: '.hi', style: { 'opacity': 1, 'text-opacity': 1, 'border-width': 3, 'border-color': '#0f0f0f', 'z-index': 99 } },
+        { selector: 'edge.hi', style: { 'width': 2, 'opacity': 0.95, 'border-width': 0 } },
+      ],
+      layout: layoutOpts('cose'),
+    });
+    window._cy = cy;
+    cy.on('tap', 'node', evt => selectNode(evt.target));
+    cy.on('tap', evt => { if (evt.target === cy) clearSel(); });
+  }
+
+  function layoutOpts(name) {
+    if (name === 'cose') return { name:'cose', animate:false, nodeRepulsion:9000, idealEdgeLength:70, nestingFactor:0.8, gravity:0.25, numIter:1000, componentSpacing:90, padding:30 };
+    if (name === 'concentric') return { name:'concentric', concentric: n => n.data('kind')==='Class'?3:(n.data('defined')?2:1), levelWidth:()=>1, minNodeSpacing:18, padding:30 };
+    if (name === 'breadthfirst') return { name:'breadthfirst', directed:true, spacingFactor:1.1, padding:30 };
+    return { name:'grid', padding:30 };
+  }
+
+  function selectNode(node) {
+    const hood = node.closedNeighborhood();
+    cy.elements().addClass('faded').removeClass('hi');
+    hood.removeClass('faded').addClass('hi');
+    cy.animate({ center: { eles: node }, zoom: Math.max(cy.zoom(), 1.1) }, { duration: 250 });
+    showInfo(node.data());
+  }
+  function clearSel() { if(cy){cy.elements().removeClass('faded hi');} $('#infoCard').classList.remove('show'); }
+
+  function showInfo(d) {
+    const out = g.edges.filter(e => e.from === d.id);
+    const inc = g.edges.filter(e => e.to === d.id);
+    const byId = id => (g.nodes.find(n => n.id === id) || {}).curie || id;
+    const relHtml = (arr, dir) => arr.map(e =>
+      `<span class="pill">${esc(e.rel)} ${dir==='out'?'→':'←'} ${esc(dir==='out'?byId(e.to):byId(e.from))}</span>`).join('');
+    const c = $('#infoCard');
+    c.innerHTML =
+      `<div class="curie">${esc(d.curie)}</div>
+       <h3>${esc(d.label)}</h3>
+       <div class="meta">${esc(d.kind)} · ${esc(d.ns)} · ${esc(d.layer)}${d.defined?'':' · referenced (defined upstream)'}</div>
+       ${d.def ? `<p>${esc(d.def)}</p>` : ''}
+       ${out.length ? `<div class="rels"><b>Outgoing</b><br>${relHtml(out,'out')}</div>` : ''}
+       ${inc.length ? `<div class="rels"><b>Incoming</b><br>${relHtml(inc,'in')}</div>` : ''}`;
+    c.classList.add('show');
+  }
+
+  // legend (namespaces + external groups)
+  function buildLegend() {
+    const groups = [...nsList.map(n => ({ name: n.name, color: n.color })),
+      ...Object.entries(extColors).map(([name,color]) => ({ name, color }))];
+    $('#graphLegend').innerHTML = groups.map(gr =>
+      `<span class="lg" data-ns="${esc(gr.name)}"><span class="dot" style="background:${gr.color}"></span>${esc(gr.name)}</span>`).join('');
+    $$('#graphLegend .lg').forEach(lg => lg.addEventListener('click', () => {
+      const ns = lg.dataset.ns;
+      if (offNs.has(ns)) { offNs.delete(ns); lg.classList.remove('off'); }
+      else { offNs.add(ns); lg.classList.add('off'); }
+      rebuildCy();
+    }));
+  }
+  function rebuildCy() {
+    const el = cyElements();
+    cy.json({ elements: [...el.nodes, ...el.edges] });
+    cy.layout(layoutOpts($('#graphLayout').value)).run();
+  }
+
+  $('#graphLayout').addEventListener('change', () => cy.layout(layoutOpts($('#graphLayout').value)).run());
+  $('#fit').addEventListener('click', () => { clearSel(); cy.fit(undefined, 30); });
+  $('#graphSearch').addEventListener('input', e => {
+    const q = e.target.value.toLowerCase().trim();
+    if (!q) { clearSel(); return; }
+    const m = cy.nodes().filter(n => (n.data('curie')+' '+n.data('label')).toLowerCase().includes(q));
+    if (m.length) selectNode(m[0]);
+  });
+
+  /* ════════════════════ SCHEMA LAYER MAP ════════════════════ */
+  // Order layers by the seven-layer stack, extensions last.
+  const layerOrder = ['L1 · Core','L2 · Emission Factor','L3 · Supply Chain','L4 · PCF',
+    'L5 · EAC','L6 · Verification','L7 · Market','Extension','CAD Trust (incorporated)'];
+  const CHIP_CAP = 150;
+  const nsByLayer = {};
+  D.namespaces.forEach(n => { (nsByLayer[n.layer] = nsByLayer[n.layer] || []).push(n); });
+
+  function renderStack(filter, kind) {
+    const f = (filter||'').toLowerCase();
+    const rows = layerOrder.map(layer => {
+      const nss = nsByLayer[layer] || [];
+      const color = (nss[0]||{}).color || '#888';
+      const code = nss.map(n => n.prefix).join(' · ');
+      const count = nss.reduce((a,n)=>a+n.term_count,0);
+      let terms = D.terms.filter(t => t.layer === layer);
+      if (kind) terms = terms.filter(t => t.kind === kind);
+      if (f) terms = terms.filter(t => (t.curie+' '+t.label+' '+(t.definition||'')).toLowerCase().includes(f));
+      terms.sort((a,b)=> (a.kind===b.kind? a.local.localeCompare(b.local) : (a.kind==='Class'?-1:1)));
+      const dim = count === 0;
+      const total = terms.length;
+      const shown = terms.slice(0, CHIP_CAP);
+      const more = total - shown.length;
+      const chips = total ? (shown.map(t =>
+        `<span class="term-chip ${t.kind==='Class'?'cls':''}" style="color:${color}" data-iri="${esc(t.iri)}" title="${esc(t.definition||'')}">${esc(t.local)} <span class="k">${t.kind==='Class'?'C':t.kind==='Individual'?'i':t.kind==='Field'?'f':t.kind==='PicklistValue'?'•':'p'}</span></span>`
+        ).join('') + (more>0?`<span class="layer-empty">+${more} more — see Value Lookup</span>`:''))
+        : `<span class="layer-empty">${dim?'Defined in COMET core distribution':'No matches'}</span>`;
+      return `<div class="layer-row">
+        <div class="layer-tag" style="background:${color}${dim?';opacity:.55':''}">
+          <div class="lname">${esc(nss.map(n=>n.name)[0]||layer)}</div>
+          <div class="lcode">${esc(code)}</div>
+          <div class="lcount">${count} term${count===1?'':'s'} here</div>
+        </div>
+        <div class="layer-terms">${chips}</div>
+      </div>`;
+    }).join('');
+    $('#stack').innerHTML = rows;
+    $$('#stack .term-chip').forEach(ch => ch.addEventListener('click', () => jumpToTerm(ch.dataset.iri)));
+  }
+  $('#schemaSearch').addEventListener('input', e => renderStack(e.target.value, $('#schemaKind').value));
+  $('#schemaKind').addEventListener('change', e => renderStack($('#schemaSearch').value, e.target.value));
+
+  function jumpToTerm(iri) {
+    const t = D.terms.find(x => x.iri === iri); if (!t) return;
+    $$('.tab').find = null;
+    $$('.tab').forEach(x => x.classList.toggle('active', x.dataset.panel==='lookup'));
+    $$('.panel').forEach(x => x.classList.toggle('active', x.id==='panel-lookup'));
+    $('#tableSearch').value = t.curie; applyTable();
+  }
+
+  /* ════════════════════ SORTABLE LOOKUP ════════════════════ */
+  const COLS = [
+    { k:'curie', label:'CURIE', cls:'c-curie' },
+    { k:'label', label:'Label' },
+    { k:'kind', label:'Kind', cls:'c-kind', wrap:v=>`<span class="c-kind">${esc(v)}</span>` },
+    { k:'namespace', label:'Namespace', cls:'c-ns' },
+    { k:'layer', label:'Layer', cls:'c-ns' },
+    { k:'datatype', label:'Type' },
+    { k:'definition', label:'Definition', cls:'c-def' },
+  ];
+  let sortKey = 'curie', sortDir = 1;
+  const kinds = [...new Set(D.terms.map(t=>t.kind))].sort();
+  const namespaces = [...new Set(D.terms.map(t=>t.namespace))].sort();
+  kinds.forEach(k => $('#tableKind').insertAdjacentHTML('beforeend', `<option>${esc(k)}</option>`));
+  namespaces.forEach(n => $('#tableNs').insertAdjacentHTML('beforeend', `<option>${esc(n)}</option>`));
+
+  $('#thead').innerHTML = COLS.map(c =>
+    `<th data-k="${c.k}">${c.label} <span class="ar">▲▼</span></th>`).join('');
+  $$('#thead th').forEach(th => th.addEventListener('click', () => {
+    const k = th.dataset.k;
+    if (sortKey === k) sortDir *= -1; else { sortKey = k; sortDir = 1; }
+    applyTable();
+  }));
+
+  function applyTable() {
+    const q = $('#tableSearch').value.toLowerCase().trim();
+    const fk = $('#tableKind').value, fn = $('#tableNs').value;
+    let rows = D.terms.filter(t => {
+      if (fk && t.kind !== fk) return false;
+      if (fn && t.namespace !== fn) return false;
+      if (q) return (t.curie+' '+t.label+' '+(t.definition||'')+' '+t.namespace+' '+(t.datatype||'')).toLowerCase().includes(q);
+      return true;
+    });
+    rows.sort((a,b) => {
+      const av=(a[sortKey]||'').toString().toLowerCase(), bv=(b[sortKey]||'').toString().toLowerCase();
+      return av<bv?-1*sortDir:av>bv?1*sortDir:0;
+    });
+    $('#tbody').innerHTML = rows.map(t => '<tr>' + COLS.map(c => {
+      const v = t[c.k];
+      if (c.wrap) return `<td>${c.wrap(v)}</td>`;
+      return `<td class="${c.cls||''}">${esc(v)}</td>`;
+    }).join('') + '</tr>').join('');
+    $$('#thead th').forEach(th => th.classList.toggle('sorted', th.dataset.k===sortKey));
+    $('#rowcount').textContent = `${rows.length} of ${D.terms.length} terms` + (q||fk||fn?' (filtered)':'');
+  }
+  $('#tableSearch').addEventListener('input', applyTable);
+  $('#tableKind').addEventListener('change', applyTable);
+  $('#tableNs').addEventListener('change', applyTable);
+
+  /* ════════════════════ ALIGNMENTS ════════════════════ */
+  const ACOLS = [
+    {k:'comet_curie',label:'COMET Term',cls:'c-curie'},
+    {k:'relation',label:'Relation',cls:'c-kind',wrap:v=>`<span class="c-kind">${esc(v)}</span>`},
+    {k:'target_standard',label:'Standard',cls:'c-ns'},
+    {k:'target_term',label:'Target Term'},
+    {k:'note',label:'Note',cls:'c-def'},
+  ];
+  let aSortKey='comet_curie', aSortDir=1;
+  const stds=[...new Set(D.alignments.map(a=>a.target_standard))].sort();
+  const rels=[...new Set(D.alignments.map(a=>a.relation))].sort();
+  stds.forEach(s=>$('#alignStd').insertAdjacentHTML('beforeend',`<option>${esc(s)}</option>`));
+  rels.forEach(r=>$('#alignRel').insertAdjacentHTML('beforeend',`<option>${esc(r)}</option>`));
+  $('#aThead').innerHTML = ACOLS.map(c=>`<th data-k="${c.k}">${c.label} <span class="ar">▲▼</span></th>`).join('');
+  $$('#aThead th').forEach(th=>th.addEventListener('click',()=>{
+    const k=th.dataset.k; if(aSortKey===k)aSortDir*=-1; else{aSortKey=k;aSortDir=1;} applyAlign();
+  }));
+  function applyAlign(){
+    const q=$('#alignSearch').value.toLowerCase().trim();
+    const fs=$('#alignStd').value, fr=$('#alignRel').value;
+    let rows=D.alignments.filter(a=>{
+      if(fs&&a.target_standard!==fs)return false;
+      if(fr&&a.relation!==fr)return false;
+      if(q)return (a.comet_curie+' '+a.target_standard+' '+a.target_term+' '+a.relation+' '+(a.note||'')).toLowerCase().includes(q);
+      return true;
+    });
+    rows.sort((a,b)=>{const av=(a[aSortKey]||'').toLowerCase(),bv=(b[aSortKey]||'').toLowerCase();return av<bv?-1*aSortDir:av>bv?1*aSortDir:0;});
+    $('#aTbody').innerHTML=rows.map(a=>'<tr>'+ACOLS.map(c=>{
+      const v=a[c.k]; return c.wrap?`<td>${c.wrap(v)}</td>`:`<td class="${c.cls||''}">${esc(v)}</td>`;
+    }).join('')+'</tr>').join('');
+    $$('#aThead th').forEach(th=>th.classList.toggle('sorted',th.dataset.k===aSortKey));
+    $('#aRowcount').textContent=`${rows.length} of ${D.alignments.length} alignments`+(q||fs||fr?' (filtered)':'');
+  }
+  $('#alignSearch').addEventListener('input',applyAlign);
+  $('#alignStd').addEventListener('change',applyAlign);
+  $('#alignRel').addEventListener('change',applyAlign);
+
+  // keyboard: '/' focuses active panel's search
+  document.addEventListener('keydown', e => {
+    if (e.key === '/' && !/INPUT|SELECT|TEXTAREA/.test(document.activeElement.tagName)) {
+      e.preventDefault();
+      const p = $('.panel.active');
+      const inp = p && p.querySelector('.search'); if (inp) inp.focus();
+    }
+  });
+
+  /* ── INIT ── */
+  buildLegend();
+  initCy();
+  renderStack('', '');
+  applyTable();
+  applyAlign();
+
+  // Deep-link: #graph | #schema | #lookup | #align opens that tab.
+  function openHashTab() {
+    const h = (location.hash || '').replace('#', '');
+    const tab = h && $(`.tab[data-panel="${h}"]`);
+    if (tab) tab.click();
+  }
+  window.addEventListener('hashchange', openHashTab);
+  openHashTab();
+})();
+</script>
+</body>
+</html>
