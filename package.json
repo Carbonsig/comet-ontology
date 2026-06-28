@@ -1,0 +1,15 @@
+{
+  "name": "@carbonsig/comet-carbonsig",
+  "version": "0.1.0",
+  "description": "Shared source of truth for CarbonSig's COMET extensions and CURIE registry.",
+  "type": "module",
+  "private": true,
+  "exports": {
+    "./registry": "./registry/comet-curies.json",
+    "./namespaces": "./registry/namespaces.json",
+    "./validate": "./tools/validate-curies.ts"
+  },
+  "scripts": {
+    "test": "bun test test/validate.test.ts"
+  }
+}
