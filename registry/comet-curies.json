@@ -12,8 +12,8 @@
     "comet-rs": "https://comet.carbon/ext/responsiblesteel#",
     "comet-cn": "https://comet.carbon/ext/iso14068#",
     "comet-pcr": "https://comet.carbon/ext/pcr#",
-    "comet-pj": "https://comet.carbon/ext/pcr-japan#",
-    "csig": "https://api.carbonsig.com/schemas/verifier-export/v4#"
+    "csig": "https://api.carbonsig.com/schemas/verifier-export/v4#",
+    "comet-pj": "https://comet.carbon/ext/pcr-japan#"
   },
   "counts": {
     "comet_published": 288,

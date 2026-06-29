@@ -29,13 +29,23 @@ def main() -> int:
 
     allow = load_registry(reg_path)
     check("registry non-trivial (>200 CURIEs)", len(allow) > 200)
+    # total must equal the sum of all known parts (published + all *_pending lists)
+    pending_total = sum(
+        v for k, v in reg["counts"].items()
+        if k.endswith("_pending") and isinstance(v, int)
+    )
     check("counts internally consistent",
-          reg["counts"]["total"] == reg["counts"]["comet_published"] + reg["counts"]["comet_pcr_pending"])
+          reg["counts"]["total"] == reg["counts"]["comet_published"] + pending_total)
 
     # Every pending comet-pcr CURIE must actually be defined in the TTL.
     ttl = (ROOT / "extensions" / "comet-pcr.ttl").read_text()
     for curie in reg["comet_pcr_pending"]:
         check(f"comet-pcr term defined in TTL: {curie}", f"{curie} " in ttl or f"{curie}\n" in ttl)
+
+    # Every pending comet-pj CURIE must be defined in the ext/pcr-japan TTL.
+    pj_ttl = (ROOT / "ext" / "pcr-japan" / "comet-ext-pcr-japan.ttl").read_text()
+    for curie in reg.get("comet_pj_pending", []):
+        check(f"comet-pj term defined in TTL: {curie}", f"{curie} " in pj_ttl or f"{curie}\n" in pj_ttl)
 
     # Keystone + headline terms present.
     for must in ["comet-pcr:PCRDocument", "comet-pcr:governedByPCR",

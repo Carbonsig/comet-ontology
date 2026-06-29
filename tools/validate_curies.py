@@ -25,7 +25,12 @@ DEFAULT_REGISTRY = Path(__file__).resolve().parent.parent / "registry" / "comet-
 def load_registry(path: Path | None = None) -> set[str]:
     p = path or DEFAULT_REGISTRY
     data = json.loads(Path(p).read_text())
-    return set(data["comet_published"]) | set(data["comet_pcr_pending"])
+    # Include all extension pending lists (comet_pcr_pending, comet_pj_pending, etc.)
+    allow: set[str] = set(data["comet_published"]) | set(data["comet_pcr_pending"])
+    for key, val in data.items():
+        if key.endswith("_pending") and isinstance(val, list):
+            allow.update(val)
+    return allow
 
 
 def class_base(curie: str) -> str:

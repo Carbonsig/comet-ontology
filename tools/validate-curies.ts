@@ -13,11 +13,20 @@
 export interface CometRegistry {
   comet_published: string[];
   comet_pcr_pending: string[];
+  comet_pj_pending?: string[];
   namespaces: Record<string, string>;
+  [key: string]: unknown;  // allow future *_pending extension lists
 }
 
 export function registrySet(registry: CometRegistry): Set<string> {
-  return new Set([...registry.comet_published, ...registry.comet_pcr_pending]);
+  const all = [...registry.comet_published, ...registry.comet_pcr_pending];
+  // Include any additional *_pending extension lists (e.g. comet_pj_pending)
+  for (const [key, val] of Object.entries(registry)) {
+    if (key.endsWith("_pending") && Array.isArray(val)) {
+      all.push(...(val as string[]));
+    }
+  }
+  return new Set(all);
 }
 
 /** comet-pcf:FunctionalUnit.referenceFlow -> comet-pcf:FunctionalUnit */

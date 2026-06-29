@@ -17,7 +17,8 @@ describe("TS CURIE validator", () => {
 
   test("known-good CURIEs validate", () => {
     const r = validateCuries(
-      ["comet:Process", "comet-pcf:FunctionalUnit", "comet-pcr:PCRDocument", "comet-pcr:governedByPCR"],
+      ["comet:Process", "comet-pcf:FunctionalUnit", "comet-pcr:PCRDocument", "comet-pcr:governedByPCR",
+       "comet-pj:SuMPOPCRDocument", "comet-pj:EcoLeafDeclaration"],
       allow,
     );
     expect(r.invalid).toEqual([]);
