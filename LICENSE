@@ -1,0 +1,11 @@
+comet-carbonsig — dual license
+
+Ontology content (extensions/, registry/) is licensed CC BY 4.0.
+Code (tools/, test/) is licensed Apache License 2.0.
+
+This matches the licensing of the COMET ontology
+(https://nickgogerty.github.io/comet-ontology/) so that the comet-pcr extension
+can be upstreamed into Carbonsig/comet-ontology without a license barrier.
+
+CC BY 4.0:   https://creativecommons.org/licenses/by/4.0/
+Apache 2.0:  https://www.apache.org/licenses/LICENSE-2.0

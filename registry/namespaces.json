@@ -1,0 +1,20 @@
+{
+  "description": "Canonical prefix -> IRI map shared by all CarbonSig repos that reference COMET. Single source of truth: edit here, never in consumers.",
+  "comet_core": {
+    "comet": "https://comet.carbon/v1/core#",
+    "comet-ef": "https://comet.carbon/v1/emfactor#",
+    "comet-sc": "https://comet.carbon/v1/supplychain#",
+    "comet-pcf": "https://comet.carbon/v1/pcf#",
+    "comet-eac": "https://comet.carbon/v1/eac#",
+    "comet-ver": "https://comet.carbon/v1/ver#",
+    "comet-mkt": "https://comet.carbon/v1/market#"
+  },
+  "comet_extensions": {
+    "comet-rs": "https://comet.carbon/ext/responsiblesteel#",
+    "comet-cn": "https://comet.carbon/ext/iso14068#",
+    "comet-pcr": "https://comet.carbon/ext/pcr#"
+  },
+  "carbonsig": {
+    "csig": "https://api.carbonsig.com/schemas/verifier-export/v4#"
+  }
+}
