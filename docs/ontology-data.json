@@ -74,6 +74,14 @@
       "term_count": 55
     },
     {
+      "prefix": "comet-pj",
+      "name": "PCR Japan / SuMPO EcoLeaf (ext)",
+      "layer": "Extension",
+      "color": "#c8720a",
+      "graph_default": true,
+      "term_count": 9
+    },
+    {
       "prefix": "cadtrust",
       "name": "CAD Trust Data Dictionary",
       "layer": "CAD Trust (incorporated)",
@@ -13890,6 +13898,214 @@
       "languages": []
     },
     {
+      "iri": "https://comet.carbon/ext/pcr-japan#EcoLeafDeclaration",
+      "curie": "comet-pj:EcoLeafDeclaration",
+      "prefix": "comet-pj",
+      "local": "EcoLeafDeclaration",
+      "kind": "Class",
+      "namespace": "PCR Japan / SuMPO EcoLeaf (ext)",
+      "layer": "Extension",
+      "source": "ttl",
+      "label": "EcoLeaf EPD Declaration",
+      "definition": "SuMPOエコリーフラベルプログラムの下で発行されるEPD。",
+      "subClassOf": [
+        "Certification"
+      ],
+      "domain": [],
+      "range": [],
+      "languages": [
+        "en",
+        "ja"
+      ],
+      "datatype": ""
+    },
+    {
+      "iri": "https://comet.carbon/ext/pcr-japan#ISO21930PCR",
+      "curie": "comet-pj:ISO21930PCR",
+      "prefix": "comet-pj",
+      "local": "ISO21930PCR",
+      "kind": "Class",
+      "namespace": "PCR Japan / SuMPO EcoLeaf (ext)",
+      "layer": "Extension",
+      "source": "ttl",
+      "label": "ISO 21930 PCR",
+      "definition": "ISO 21930に正式準拠したSuMPO PCR。",
+      "subClassOf": [
+        "SuMPOPCRDocument"
+      ],
+      "domain": [],
+      "range": [],
+      "languages": [
+        "en",
+        "ja"
+      ],
+      "datatype": ""
+    },
+    {
+      "iri": "https://comet.carbon/ext/pcr-japan#LegacyEcoLeafPCR",
+      "curie": "comet-pj:LegacyEcoLeafPCR",
+      "prefix": "comet-pj",
+      "local": "LegacyEcoLeafPCR",
+      "kind": "Class",
+      "namespace": "PCR Japan / SuMPO EcoLeaf (ext)",
+      "layer": "Extension",
+      "source": "ttl",
+      "label": "Legacy EcoLeaf PCR (PA-NNNNNN format)",
+      "definition": "PA-NNNNNN-XX-NN形式の旧登録番号を使用するSuMPO PCR（2024年以前）。",
+      "subClassOf": [
+        "SuMPOPCRDocument"
+      ],
+      "domain": [],
+      "range": [],
+      "languages": [
+        "en",
+        "ja"
+      ],
+      "datatype": ""
+    },
+    {
+      "iri": "https://comet.carbon/ext/pcr-japan#SuMPOPCRDocument",
+      "curie": "comet-pj:SuMPOPCRDocument",
+      "prefix": "comet-pj",
+      "local": "SuMPOPCRDocument",
+      "kind": "Class",
+      "namespace": "PCR Japan / SuMPO EcoLeaf (ext)",
+      "layer": "Extension",
+      "source": "ttl",
+      "label": "SuMPO PCR Document",
+      "definition": "SuMPO環境ラベルプログラムが発行するPCR文書。ISO 21930またはEN 15804に準拠。",
+      "subClassOf": [
+        "PCRDocument"
+      ],
+      "domain": [],
+      "range": [],
+      "languages": [
+        "en",
+        "ja"
+      ],
+      "datatype": ""
+    },
+    {
+      "iri": "https://comet.carbon/ext/pcr-japan#pcrOverviewJa",
+      "curie": "comet-pj:pcrOverviewJa",
+      "prefix": "comet-pj",
+      "local": "pcrOverviewJa",
+      "kind": "DatatypeProperty",
+      "namespace": "PCR Japan / SuMPO EcoLeaf (ext)",
+      "layer": "Extension",
+      "source": "ttl",
+      "label": "PCR scope overview (Japanese)",
+      "definition": "The scope description paragraph from the PCR document in Japanese, as published by SuMPO. Preserved verbatim as evidence.",
+      "subClassOf": [],
+      "domain": [
+        "SuMPOPCRDocument"
+      ],
+      "range": [
+        "langString"
+      ],
+      "languages": [
+        "en",
+        "ja"
+      ],
+      "datatype": ""
+    },
+    {
+      "iri": "https://comet.carbon/ext/pcr-japan#pcrRegistrationNumber",
+      "curie": "comet-pj:pcrRegistrationNumber",
+      "prefix": "comet-pj",
+      "local": "pcrRegistrationNumber",
+      "kind": "DatatypeProperty",
+      "namespace": "PCR Japan / SuMPO EcoLeaf (ext)",
+      "layer": "Extension",
+      "source": "ttl",
+      "label": "SuMPO PCR registration number",
+      "definition": "The official SuMPO PCR registration number. Two formats exist: legacy PA-NNNNNN-XX-NN and new PA-SuMPO-PCR-NNNNN-N-N-N.",
+      "subClassOf": [],
+      "domain": [
+        "SuMPOPCRDocument"
+      ],
+      "range": [
+        "string"
+      ],
+      "languages": [
+        "en",
+        "ja"
+      ],
+      "datatype": ""
+    },
+    {
+      "iri": "https://comet.carbon/ext/pcr-japan#validityPeriodJa",
+      "curie": "comet-pj:validityPeriodJa",
+      "prefix": "comet-pj",
+      "local": "validityPeriodJa",
+      "kind": "DatatypeProperty",
+      "namespace": "PCR Japan / SuMPO EcoLeaf (ext)",
+      "layer": "Extension",
+      "source": "ttl",
+      "label": "Validity period (Japanese)",
+      "definition": "The validity period as stated in the Japanese-language PCR document.",
+      "subClassOf": [],
+      "domain": [
+        "SuMPOPCRDocument"
+      ],
+      "range": [
+        "langString"
+      ],
+      "languages": [
+        "en",
+        "ja"
+      ],
+      "datatype": ""
+    },
+    {
+      "iri": "https://comet.carbon/ext/pcr-japan#japanesePCRField",
+      "curie": "comet-pj:japanesePCRField",
+      "prefix": "comet-pj",
+      "local": "japanesePCRField",
+      "kind": "ObjectProperty",
+      "namespace": "PCR Japan / SuMPO EcoLeaf (ext)",
+      "layer": "Extension",
+      "source": "ttl",
+      "label": "Japanese PCR product field",
+      "definition": "Links a SuMPO PCR to its product field classification in the JapanesePCRField SKOS scheme.",
+      "subClassOf": [],
+      "domain": [
+        "SuMPOPCRDocument"
+      ],
+      "range": [
+        "JapanesePCRField"
+      ],
+      "languages": [
+        "en",
+        "ja"
+      ],
+      "datatype": ""
+    },
+    {
+      "iri": "https://comet.carbon/ext/pcr-japan#workingGroupMember",
+      "curie": "comet-pj:workingGroupMember",
+      "prefix": "comet-pj",
+      "local": "workingGroupMember",
+      "kind": "ObjectProperty",
+      "namespace": "PCR Japan / SuMPO EcoLeaf (ext)",
+      "layer": "Extension",
+      "source": "ttl",
+      "label": "PCR working group member",
+      "definition": "An organisation that participated in the PCR working group that developed this PCR document.",
+      "subClassOf": [],
+      "domain": [
+        "SuMPOPCRDocument"
+      ],
+      "range": [
+        "Organization"
+      ],
+      "languages": [
+        "en",
+        "ja"
+      ],
+      "datatype": ""
+    },
+    {
       "iri": "https://comet.carbon/ext/responsiblesteel#AmbitionGapAnalysis",
       "curie": "comet-rs:AmbitionGapAnalysis",
       "prefix": "comet-rs",
@@ -18866,6 +19082,114 @@
         "defined": true
       },
       {
+        "id": "https://comet.carbon/ext/pcr-japan#EcoLeafDeclaration",
+        "label": "EcoLeaf EPD Declaration",
+        "curie": "comet-pj:EcoLeafDeclaration",
+        "kind": "Class",
+        "prefix": "comet-pj",
+        "namespace": "PCR Japan / SuMPO EcoLeaf (ext)",
+        "layer": "Extension",
+        "color": "#c8720a",
+        "definition": "SuMPOエコリーフラベルプログラムの下で発行されるEPD。",
+        "defined": true
+      },
+      {
+        "id": "https://comet.carbon/ext/pcr-japan#ISO21930PCR",
+        "label": "ISO 21930 PCR",
+        "curie": "comet-pj:ISO21930PCR",
+        "kind": "Class",
+        "prefix": "comet-pj",
+        "namespace": "PCR Japan / SuMPO EcoLeaf (ext)",
+        "layer": "Extension",
+        "color": "#c8720a",
+        "definition": "ISO 21930に正式準拠したSuMPO PCR。",
+        "defined": true
+      },
+      {
+        "id": "https://comet.carbon/ext/pcr-japan#LegacyEcoLeafPCR",
+        "label": "Legacy EcoLeaf PCR (PA-NNNNNN format)",
+        "curie": "comet-pj:LegacyEcoLeafPCR",
+        "kind": "Class",
+        "prefix": "comet-pj",
+        "namespace": "PCR Japan / SuMPO EcoLeaf (ext)",
+        "layer": "Extension",
+        "color": "#c8720a",
+        "definition": "PA-NNNNNN-XX-NN形式の旧登録番号を使用するSuMPO PCR（2024年以前）。",
+        "defined": true
+      },
+      {
+        "id": "https://comet.carbon/ext/pcr-japan#SuMPOPCRDocument",
+        "label": "SuMPO PCR Document",
+        "curie": "comet-pj:SuMPOPCRDocument",
+        "kind": "Class",
+        "prefix": "comet-pj",
+        "namespace": "PCR Japan / SuMPO EcoLeaf (ext)",
+        "layer": "Extension",
+        "color": "#c8720a",
+        "definition": "SuMPO環境ラベルプログラムが発行するPCR文書。ISO 21930またはEN 15804に準拠。",
+        "defined": true
+      },
+      {
+        "id": "https://comet.carbon/ext/pcr-japan#pcrOverviewJa",
+        "label": "PCR scope overview (Japanese)",
+        "curie": "comet-pj:pcrOverviewJa",
+        "kind": "DatatypeProperty",
+        "prefix": "comet-pj",
+        "namespace": "PCR Japan / SuMPO EcoLeaf (ext)",
+        "layer": "Extension",
+        "color": "#c8720a",
+        "definition": "The scope description paragraph from the PCR document in Japanese, as published by SuMPO. Preserved verbatim as evidence.",
+        "defined": true
+      },
+      {
+        "id": "https://comet.carbon/ext/pcr-japan#pcrRegistrationNumber",
+        "label": "SuMPO PCR registration number",
+        "curie": "comet-pj:pcrRegistrationNumber",
+        "kind": "DatatypeProperty",
+        "prefix": "comet-pj",
+        "namespace": "PCR Japan / SuMPO EcoLeaf (ext)",
+        "layer": "Extension",
+        "color": "#c8720a",
+        "definition": "The official SuMPO PCR registration number. Two formats exist: legacy PA-NNNNNN-XX-NN and new PA-SuMPO-PCR-NNNNN-N-N-N.",
+        "defined": true
+      },
+      {
+        "id": "https://comet.carbon/ext/pcr-japan#validityPeriodJa",
+        "label": "Validity period (Japanese)",
+        "curie": "comet-pj:validityPeriodJa",
+        "kind": "DatatypeProperty",
+        "prefix": "comet-pj",
+        "namespace": "PCR Japan / SuMPO EcoLeaf (ext)",
+        "layer": "Extension",
+        "color": "#c8720a",
+        "definition": "The validity period as stated in the Japanese-language PCR document.",
+        "defined": true
+      },
+      {
+        "id": "https://comet.carbon/ext/pcr-japan#japanesePCRField",
+        "label": "Japanese PCR product field",
+        "curie": "comet-pj:japanesePCRField",
+        "kind": "ObjectProperty",
+        "prefix": "comet-pj",
+        "namespace": "PCR Japan / SuMPO EcoLeaf (ext)",
+        "layer": "Extension",
+        "color": "#c8720a",
+        "definition": "Links a SuMPO PCR to its product field classification in the JapanesePCRField SKOS scheme.",
+        "defined": true
+      },
+      {
+        "id": "https://comet.carbon/ext/pcr-japan#workingGroupMember",
+        "label": "PCR working group member",
+        "curie": "comet-pj:workingGroupMember",
+        "kind": "ObjectProperty",
+        "prefix": "comet-pj",
+        "namespace": "PCR Japan / SuMPO EcoLeaf (ext)",
+        "layer": "Extension",
+        "color": "#c8720a",
+        "definition": "An organisation that participated in the PCR working group that developed this PCR document.",
+        "defined": true
+      },
+      {
         "id": "https://comet.carbon/ext/responsiblesteel#AmbitionGapAnalysis",
         "label": "Ambition Gap Analysis",
         "curie": "comet-rs:AmbitionGapAnalysis",
@@ -20546,21 +20870,45 @@
         "defined": true
       },
       {
-        "id": "https://comet.carbon/v1/supplychain#SupplyChainLink",
-        "label": "SupplyChainLink",
-        "curie": "comet-sc:SupplyChainLink",
+        "id": "https://comet.carbon/v1/core#Organization",
+        "label": "Organization",
+        "curie": "comet:Organization",
         "kind": "Reference",
-        "prefix": "comet-sc",
-        "namespace": "Supply Chain",
-        "layer": "L3 · Supply Chain",
-        "color": "#6b4a1a",
+        "prefix": "comet",
+        "namespace": "Core",
+        "layer": "L1 · Core",
+        "color": "#1a3a6b",
         "definition": "",
         "defined": false
       },
       {
-        "id": "https://comet.carbon/v1/ver#AuditTrail",
-        "label": "AuditTrail",
-        "curie": "comet-ver:AuditTrail",
+        "id": "https://comet.carbon/v1/core#Process",
+        "label": "Process",
+        "curie": "comet:Process",
+        "kind": "Reference",
+        "prefix": "comet",
+        "namespace": "Core",
+        "layer": "L1 · Core",
+        "color": "#1a3a6b",
+        "definition": "",
+        "defined": false
+      },
+      {
+        "id": "https://comet.carbon/v1/core#Site",
+        "label": "Site",
+        "curie": "comet:Site",
+        "kind": "Reference",
+        "prefix": "comet",
+        "namespace": "Core",
+        "layer": "L1 · Core",
+        "color": "#1a3a6b",
+        "definition": "",
+        "defined": false
+      },
+      {
+        "id": "https://comet.carbon/v1/ver#DisclosureRecord",
+        "label": "DisclosureRecord",
+        "curie": "comet-ver:DisclosureRecord",
         "kind": "Reference",
         "prefix": "comet-ver",
         "namespace": "Verification",
@@ -20582,50 +20930,14 @@
         "defined": false
       },
       {
-        "id": "https://comet.carbon/v1/core#Site",
-        "label": "Site",
-        "curie": "comet:Site",
+        "id": "https://comet.carbon/v1/eac#Certification",
+        "label": "Certification",
+        "curie": "comet-eac:Certification",
         "kind": "Reference",
-        "prefix": "comet",
-        "namespace": "Core",
-        "layer": "L1 · Core",
-        "color": "#1a3a6b",
-        "definition": "",
-        "defined": false
-      },
-      {
-        "id": "https://comet.carbon/v1/core#Organization",
-        "label": "Organization",
-        "curie": "comet:Organization",
-        "kind": "Reference",
-        "prefix": "comet",
-        "namespace": "Core",
-        "layer": "L1 · Core",
-        "color": "#1a3a6b",
-        "definition": "",
-        "defined": false
-      },
-      {
-        "id": "https://comet.carbon/v1/pcf#PCFResult",
-        "label": "PCFResult",
-        "curie": "comet-pcf:PCFResult",
-        "kind": "Reference",
-        "prefix": "comet-pcf",
-        "namespace": "Product Carbon Footprint",
-        "layer": "L4 · PCF",
-        "color": "#1a6b3c",
-        "definition": "",
-        "defined": false
-      },
-      {
-        "id": "https://comet.carbon/v1/ver#DisclosureRecord",
-        "label": "DisclosureRecord",
-        "curie": "comet-ver:DisclosureRecord",
-        "kind": "Reference",
-        "prefix": "comet-ver",
-        "namespace": "Verification",
-        "layer": "L6 · Verification",
-        "color": "#1a5f6b",
+        "prefix": "comet-eac",
+        "namespace": "Environmental Attribute Certificate",
+        "layer": "L5 · EAC",
+        "color": "#9a7c2f",
         "definition": "",
         "defined": false
       },
@@ -20642,21 +20954,9 @@
         "defined": false
       },
       {
-        "id": "https://comet.carbon/v1/eac#MaterialStewardCert",
-        "label": "MaterialStewardCert",
-        "curie": "comet-eac:MaterialStewardCert",
-        "kind": "Reference",
-        "prefix": "comet-eac",
-        "namespace": "Environmental Attribute Certificate",
-        "layer": "L5 · EAC",
-        "color": "#9a7c2f",
-        "definition": "",
-        "defined": false
-      },
-      {
-        "id": "https://comet.carbon/v1/core#Process",
-        "label": "Process",
-        "curie": "comet:Process",
+        "id": "https://comet.carbon/v1/core#Material",
+        "label": "Material",
+        "curie": "comet:Material",
         "kind": "Reference",
         "prefix": "comet",
         "namespace": "Core",
@@ -20666,9 +20966,57 @@
         "defined": false
       },
       {
-        "id": "https://comet.carbon/v1/pcf#GHGEmission",
-        "label": "GHGEmission",
-        "curie": "comet-pcf:GHGEmission",
+        "id": "https://comet.carbon/v1/ver#AuditTrail",
+        "label": "AuditTrail",
+        "curie": "comet-ver:AuditTrail",
+        "kind": "Reference",
+        "prefix": "comet-ver",
+        "namespace": "Verification",
+        "layer": "L6 · Verification",
+        "color": "#1a5f6b",
+        "definition": "",
+        "defined": false
+      },
+      {
+        "id": "https://comet.carbon/v1/supplychain#SupplyChainLink",
+        "label": "SupplyChainLink",
+        "curie": "comet-sc:SupplyChainLink",
+        "kind": "Reference",
+        "prefix": "comet-sc",
+        "namespace": "Supply Chain",
+        "layer": "L3 · Supply Chain",
+        "color": "#6b4a1a",
+        "definition": "",
+        "defined": false
+      },
+      {
+        "id": "https://comet.carbon/ext/pcr-japan#JapanesePCRField",
+        "label": "JapanesePCRField",
+        "curie": "comet-pj:JapanesePCRField",
+        "kind": "Reference",
+        "prefix": "comet-pj",
+        "namespace": "PCR Japan / SuMPO EcoLeaf (ext)",
+        "layer": "Extension",
+        "color": "#c8720a",
+        "definition": "",
+        "defined": false
+      },
+      {
+        "id": "https://comet.carbon/v1/pcf#PCRDocument",
+        "label": "PCRDocument",
+        "curie": "comet-pcf:PCRDocument",
+        "kind": "Reference",
+        "prefix": "comet-pcf",
+        "namespace": "Product Carbon Footprint",
+        "layer": "L4 · PCF",
+        "color": "#1a6b3c",
+        "definition": "",
+        "defined": false
+      },
+      {
+        "id": "https://comet.carbon/v1/pcf#PCFResult",
+        "label": "PCFResult",
+        "curie": "comet-pcf:PCFResult",
         "kind": "Reference",
         "prefix": "comet-pcf",
         "namespace": "Product Carbon Footprint",
@@ -20702,14 +21050,26 @@
         "defined": false
       },
       {
-        "id": "https://comet.carbon/v1/core#Material",
-        "label": "Material",
-        "curie": "comet:Material",
+        "id": "https://comet.carbon/v1/eac#MaterialStewardCert",
+        "label": "MaterialStewardCert",
+        "curie": "comet-eac:MaterialStewardCert",
         "kind": "Reference",
-        "prefix": "comet",
-        "namespace": "Core",
-        "layer": "L1 · Core",
-        "color": "#1a3a6b",
+        "prefix": "comet-eac",
+        "namespace": "Environmental Attribute Certificate",
+        "layer": "L5 · EAC",
+        "color": "#9a7c2f",
+        "definition": "",
+        "defined": false
+      },
+      {
+        "id": "https://comet.carbon/v1/pcf#GHGEmission",
+        "label": "GHGEmission",
+        "curie": "comet-pcf:GHGEmission",
+        "kind": "Reference",
+        "prefix": "comet-pcf",
+        "namespace": "Product Carbon Footprint",
+        "layer": "L4 · PCF",
+        "color": "#1a6b3c",
         "definition": "",
         "defined": false
       },
@@ -21146,6 +21506,306 @@
         "defined": false
       },
       {
+        "id": "https://api.carbonsig.com/schemas/verifier-export/v4#SystemMetadata.systemBoundary",
+        "label": "SystemMetadata.systemBoundary",
+        "curie": "csig:SystemMetadata.systemBoundary",
+        "kind": "External",
+        "prefix": "csig",
+        "namespace": "CarbonSig Verifier Export v4",
+        "layer": "External Standard",
+        "color": "#0a7c5a",
+        "definition": "",
+        "defined": false
+      },
+      {
+        "id": "https://comet.carbon/v1/core#TimePeriod.startDate",
+        "label": "TimePeriod.startDate",
+        "curie": "comet:TimePeriod.startDate",
+        "kind": "Reference",
+        "prefix": "comet",
+        "namespace": "Core",
+        "layer": "L1 · Core",
+        "color": "#1a3a6b",
+        "definition": "",
+        "defined": false
+      },
+      {
+        "id": "https://api.carbonsig.com/schemas/verifier-export/v4#SystemMetadata.startDate",
+        "label": "SystemMetadata.startDate",
+        "curie": "csig:SystemMetadata.startDate",
+        "kind": "External",
+        "prefix": "csig",
+        "namespace": "CarbonSig Verifier Export v4",
+        "layer": "External Standard",
+        "color": "#0a7c5a",
+        "definition": "",
+        "defined": false
+      },
+      {
+        "id": "https://comet.carbon/v1/core#TimePeriod.endDate",
+        "label": "TimePeriod.endDate",
+        "curie": "comet:TimePeriod.endDate",
+        "kind": "Reference",
+        "prefix": "comet",
+        "namespace": "Core",
+        "layer": "L1 · Core",
+        "color": "#1a3a6b",
+        "definition": "",
+        "defined": false
+      },
+      {
+        "id": "https://api.carbonsig.com/schemas/verifier-export/v4#SystemMetadata.endDate",
+        "label": "SystemMetadata.endDate",
+        "curie": "csig:SystemMetadata.endDate",
+        "kind": "External",
+        "prefix": "csig",
+        "namespace": "CarbonSig Verifier Export v4",
+        "layer": "External Standard",
+        "color": "#0a7c5a",
+        "definition": "",
+        "defined": false
+      },
+      {
+        "id": "https://comet.carbon/v1/core#Site.siteId",
+        "label": "Site.siteId",
+        "curie": "comet:Site.siteId",
+        "kind": "Reference",
+        "prefix": "comet",
+        "namespace": "Core",
+        "layer": "L1 · Core",
+        "color": "#1a3a6b",
+        "definition": "",
+        "defined": false
+      },
+      {
+        "id": "https://api.carbonsig.com/schemas/verifier-export/v4#SystemMetadata.siteId",
+        "label": "SystemMetadata.siteId",
+        "curie": "csig:SystemMetadata.siteId",
+        "kind": "External",
+        "prefix": "csig",
+        "namespace": "CarbonSig Verifier Export v4",
+        "layer": "External Standard",
+        "color": "#0a7c5a",
+        "definition": "",
+        "defined": false
+      },
+      {
+        "id": "https://api.carbonsig.com/schemas/verifier-export/v4#Process",
+        "label": "Process",
+        "curie": "csig:Process",
+        "kind": "External",
+        "prefix": "csig",
+        "namespace": "CarbonSig Verifier Export v4",
+        "layer": "External Standard",
+        "color": "#0a7c5a",
+        "definition": "",
+        "defined": false
+      },
+      {
+        "id": "https://comet.carbon/v1/supplychain#ActivityDataRecord",
+        "label": "ActivityDataRecord",
+        "curie": "comet-sc:ActivityDataRecord",
+        "kind": "Reference",
+        "prefix": "comet-sc",
+        "namespace": "Supply Chain",
+        "layer": "L3 · Supply Chain",
+        "color": "#6b4a1a",
+        "definition": "",
+        "defined": false
+      },
+      {
+        "id": "https://api.carbonsig.com/schemas/verifier-export/v4#ActivityData",
+        "label": "ActivityData",
+        "curie": "csig:ActivityData",
+        "kind": "External",
+        "prefix": "csig",
+        "namespace": "CarbonSig Verifier Export v4",
+        "layer": "External Standard",
+        "color": "#0a7c5a",
+        "definition": "",
+        "defined": false
+      },
+      {
+        "id": "https://comet.carbon/v1/supplychain#Scope1Emissions",
+        "label": "Scope1Emissions",
+        "curie": "comet-sc:Scope1Emissions",
+        "kind": "Reference",
+        "prefix": "comet-sc",
+        "namespace": "Supply Chain",
+        "layer": "L3 · Supply Chain",
+        "color": "#6b4a1a",
+        "definition": "",
+        "defined": false
+      },
+      {
+        "id": "https://api.carbonsig.com/schemas/verifier-export/v4#GHGDetails.scopeBreakdown.scope1",
+        "label": "GHGDetails.scopeBreakdown.scope1",
+        "curie": "csig:GHGDetails.scopeBreakdown.scope1",
+        "kind": "External",
+        "prefix": "csig",
+        "namespace": "CarbonSig Verifier Export v4",
+        "layer": "External Standard",
+        "color": "#0a7c5a",
+        "definition": "",
+        "defined": false
+      },
+      {
+        "id": "https://comet.carbon/v1/supplychain#Scope2Emissions",
+        "label": "Scope2Emissions",
+        "curie": "comet-sc:Scope2Emissions",
+        "kind": "Reference",
+        "prefix": "comet-sc",
+        "namespace": "Supply Chain",
+        "layer": "L3 · Supply Chain",
+        "color": "#6b4a1a",
+        "definition": "",
+        "defined": false
+      },
+      {
+        "id": "https://api.carbonsig.com/schemas/verifier-export/v4#GHGDetails.scopeBreakdown.scope2",
+        "label": "GHGDetails.scopeBreakdown.scope2",
+        "curie": "csig:GHGDetails.scopeBreakdown.scope2",
+        "kind": "External",
+        "prefix": "csig",
+        "namespace": "CarbonSig Verifier Export v4",
+        "layer": "External Standard",
+        "color": "#0a7c5a",
+        "definition": "",
+        "defined": false
+      },
+      {
+        "id": "https://comet.carbon/v1/supplychain#Scope3Emissions",
+        "label": "Scope3Emissions",
+        "curie": "comet-sc:Scope3Emissions",
+        "kind": "Reference",
+        "prefix": "comet-sc",
+        "namespace": "Supply Chain",
+        "layer": "L3 · Supply Chain",
+        "color": "#6b4a1a",
+        "definition": "",
+        "defined": false
+      },
+      {
+        "id": "https://api.carbonsig.com/schemas/verifier-export/v4#GHGDetails.scopeBreakdown.scope3",
+        "label": "GHGDetails.scopeBreakdown.scope3",
+        "curie": "csig:GHGDetails.scopeBreakdown.scope3",
+        "kind": "External",
+        "prefix": "csig",
+        "namespace": "CarbonSig Verifier Export v4",
+        "layer": "External Standard",
+        "color": "#0a7c5a",
+        "definition": "",
+        "defined": false
+      },
+      {
+        "id": "https://comet.carbon/v1/emfactor#EmissionFactor",
+        "label": "EmissionFactor",
+        "curie": "comet-ef:EmissionFactor",
+        "kind": "Reference",
+        "prefix": "comet-ef",
+        "namespace": "Emission Factor",
+        "layer": "L2 · Emission Factor",
+        "color": "#3c1a6b",
+        "definition": "",
+        "defined": false
+      },
+      {
+        "id": "https://api.carbonsig.com/schemas/verifier-export/v4#GHGDetails.emissionFactor",
+        "label": "GHGDetails.emissionFactor",
+        "curie": "csig:GHGDetails.emissionFactor",
+        "kind": "External",
+        "prefix": "csig",
+        "namespace": "CarbonSig Verifier Export v4",
+        "layer": "External Standard",
+        "color": "#0a7c5a",
+        "definition": "",
+        "defined": false
+      },
+      {
+        "id": "https://api.carbonsig.com/schemas/verifier-export/v4#EmissionFactor",
+        "label": "EmissionFactor",
+        "curie": "csig:EmissionFactor",
+        "kind": "External",
+        "prefix": "csig",
+        "namespace": "CarbonSig Verifier Export v4",
+        "layer": "External Standard",
+        "color": "#0a7c5a",
+        "definition": "",
+        "defined": false
+      },
+      {
+        "id": "https://comet.carbon/v1/emfactor#EmissionFactor.efGeography",
+        "label": "EmissionFactor.efGeography",
+        "curie": "comet-ef:EmissionFactor.efGeography",
+        "kind": "Reference",
+        "prefix": "comet-ef",
+        "namespace": "Emission Factor",
+        "layer": "L2 · Emission Factor",
+        "color": "#3c1a6b",
+        "definition": "",
+        "defined": false
+      },
+      {
+        "id": "https://api.carbonsig.com/schemas/verifier-export/v4#EmissionFactor.geography",
+        "label": "EmissionFactor.geography",
+        "curie": "csig:EmissionFactor.geography",
+        "kind": "External",
+        "prefix": "csig",
+        "namespace": "CarbonSig Verifier Export v4",
+        "layer": "External Standard",
+        "color": "#0a7c5a",
+        "definition": "",
+        "defined": false
+      },
+      {
+        "id": "https://comet.carbon/v1/emfactor#EmissionFactor.efValue",
+        "label": "EmissionFactor.efValue",
+        "curie": "comet-ef:EmissionFactor.efValue",
+        "kind": "Reference",
+        "prefix": "comet-ef",
+        "namespace": "Emission Factor",
+        "layer": "L2 · Emission Factor",
+        "color": "#3c1a6b",
+        "definition": "",
+        "defined": false
+      },
+      {
+        "id": "https://api.carbonsig.com/schemas/verifier-export/v4#EmissionFactor.valuePerUnit",
+        "label": "EmissionFactor.valuePerUnit",
+        "curie": "csig:EmissionFactor.valuePerUnit",
+        "kind": "External",
+        "prefix": "csig",
+        "namespace": "CarbonSig Verifier Export v4",
+        "layer": "External Standard",
+        "color": "#0a7c5a",
+        "definition": "",
+        "defined": false
+      },
+      {
+        "id": "https://comet.carbon/v1/emfactor#EmissionFactor.efUnit",
+        "label": "EmissionFactor.efUnit",
+        "curie": "comet-ef:EmissionFactor.efUnit",
+        "kind": "Reference",
+        "prefix": "comet-ef",
+        "namespace": "Emission Factor",
+        "layer": "L2 · Emission Factor",
+        "color": "#3c1a6b",
+        "definition": "",
+        "defined": false
+      },
+      {
+        "id": "https://api.carbonsig.com/schemas/verifier-export/v4#EmissionFactor.referenceUnit",
+        "label": "EmissionFactor.referenceUnit",
+        "curie": "csig:EmissionFactor.referenceUnit",
+        "kind": "External",
+        "prefix": "csig",
+        "namespace": "CarbonSig Verifier Export v4",
+        "layer": "External Standard",
+        "color": "#0a7c5a",
+        "definition": "",
+        "defined": false
+      },
+      {
         "id": "https://comet.carbon/ext/responsiblesteel#Scope1Emissions",
         "label": "Scope1Emissions",
         "curie": "comet-rs:Scope1Emissions",
@@ -21370,6 +22030,510 @@
         "namespace": "ISO 14067",
         "layer": "External Standard",
         "color": "#777",
+        "definition": "",
+        "defined": false
+      },
+      {
+        "id": "https://comet.carbon/v1/pcf#StandardRef",
+        "label": "StandardRef",
+        "curie": "comet-pcf:StandardRef",
+        "kind": "Reference",
+        "prefix": "comet-pcf",
+        "namespace": "Product Carbon Footprint",
+        "layer": "L4 · PCF",
+        "color": "#1a6b3c",
+        "definition": "",
+        "defined": false
+      },
+      {
+        "id": "https://api.carbonsig.com/schemas/verifier-export/v4#SystemMetadata.declaration",
+        "label": "SystemMetadata.declaration",
+        "curie": "csig:SystemMetadata.declaration",
+        "kind": "External",
+        "prefix": "csig",
+        "namespace": "CarbonSig Verifier Export v4",
+        "layer": "External Standard",
+        "color": "#0a7c5a",
+        "definition": "",
+        "defined": false
+      },
+      {
+        "id": "https://comet.carbon/v1/pcf#AllocationMethod",
+        "label": "AllocationMethod",
+        "curie": "comet-pcf:AllocationMethod",
+        "kind": "Reference",
+        "prefix": "comet-pcf",
+        "namespace": "Product Carbon Footprint",
+        "layer": "L4 · PCF",
+        "color": "#1a6b3c",
+        "definition": "",
+        "defined": false
+      },
+      {
+        "id": "https://api.carbonsig.com/schemas/verifier-export/v4#SystemMetadata.allocationRules",
+        "label": "SystemMetadata.allocationRules",
+        "curie": "csig:SystemMetadata.allocationRules",
+        "kind": "External",
+        "prefix": "csig",
+        "namespace": "CarbonSig Verifier Export v4",
+        "layer": "External Standard",
+        "color": "#0a7c5a",
+        "definition": "",
+        "defined": false
+      },
+      {
+        "id": "https://api.carbonsig.com/schemas/verifier-export/v4#SystemMetadata.calculationMethodology",
+        "label": "SystemMetadata.calculationMethodology",
+        "curie": "csig:SystemMetadata.calculationMethodology",
+        "kind": "External",
+        "prefix": "csig",
+        "namespace": "CarbonSig Verifier Export v4",
+        "layer": "External Standard",
+        "color": "#0a7c5a",
+        "definition": "",
+        "defined": false
+      },
+      {
+        "id": "https://comet.carbon/v1/pcf#EmbeddedEmissions",
+        "label": "EmbeddedEmissions",
+        "curie": "comet-pcf:EmbeddedEmissions",
+        "kind": "Reference",
+        "prefix": "comet-pcf",
+        "namespace": "Product Carbon Footprint",
+        "layer": "L4 · PCF",
+        "color": "#1a6b3c",
+        "definition": "",
+        "defined": false
+      },
+      {
+        "id": "https://api.carbonsig.com/schemas/verifier-export/v4#Process.totals.embodiedEmissions",
+        "label": "Process.totals.embodiedEmissions",
+        "curie": "csig:Process.totals.embodiedEmissions",
+        "kind": "External",
+        "prefix": "csig",
+        "namespace": "CarbonSig Verifier Export v4",
+        "layer": "External Standard",
+        "color": "#0a7c5a",
+        "definition": "",
+        "defined": false
+      },
+      {
+        "id": "https://api.carbonsig.com/schemas/verifier-export/v4#Flow.type.PurchasedInput",
+        "label": "Flow.type.PurchasedInput",
+        "curie": "csig:Flow.type.PurchasedInput",
+        "kind": "External",
+        "prefix": "csig",
+        "namespace": "CarbonSig Verifier Export v4",
+        "layer": "External Standard",
+        "color": "#0a7c5a",
+        "definition": "",
+        "defined": false
+      },
+      {
+        "id": "https://api.carbonsig.com/schemas/verifier-export/v4#Flow.type.ProcessWaste",
+        "label": "Flow.type.ProcessWaste",
+        "curie": "csig:Flow.type.ProcessWaste",
+        "kind": "External",
+        "prefix": "csig",
+        "namespace": "CarbonSig Verifier Export v4",
+        "layer": "External Standard",
+        "color": "#0a7c5a",
+        "definition": "",
+        "defined": false
+      },
+      {
+        "id": "https://api.carbonsig.com/schemas/verifier-export/v4#Flow.type.WIPFlow",
+        "label": "Flow.type.WIPFlow",
+        "curie": "csig:Flow.type.WIPFlow",
+        "kind": "External",
+        "prefix": "csig",
+        "namespace": "CarbonSig Verifier Export v4",
+        "layer": "External Standard",
+        "color": "#0a7c5a",
+        "definition": "",
+        "defined": false
+      },
+      {
+        "id": "https://api.carbonsig.com/schemas/verifier-export/v4#Flow.type.IntermediateInput",
+        "label": "Flow.type.IntermediateInput",
+        "curie": "csig:Flow.type.IntermediateInput",
+        "kind": "External",
+        "prefix": "csig",
+        "namespace": "CarbonSig Verifier Export v4",
+        "layer": "External Standard",
+        "color": "#0a7c5a",
+        "definition": "",
+        "defined": false
+      },
+      {
+        "id": "https://api.carbonsig.com/schemas/verifier-export/v4#Flow.type.IntermediateOutput",
+        "label": "Flow.type.IntermediateOutput",
+        "curie": "csig:Flow.type.IntermediateOutput",
+        "kind": "External",
+        "prefix": "csig",
+        "namespace": "CarbonSig Verifier Export v4",
+        "layer": "External Standard",
+        "color": "#0a7c5a",
+        "definition": "",
+        "defined": false
+      },
+      {
+        "id": "https://api.carbonsig.com/schemas/verifier-export/v4#Flow.category.Material",
+        "label": "Flow.category.Material",
+        "curie": "csig:Flow.category.Material",
+        "kind": "External",
+        "prefix": "csig",
+        "namespace": "CarbonSig Verifier Export v4",
+        "layer": "External Standard",
+        "color": "#0a7c5a",
+        "definition": "",
+        "defined": false
+      },
+      {
+        "id": "https://api.carbonsig.com/schemas/verifier-export/v4#Flow.category.Energy",
+        "label": "Flow.category.Energy",
+        "curie": "csig:Flow.category.Energy",
+        "kind": "External",
+        "prefix": "csig",
+        "namespace": "CarbonSig Verifier Export v4",
+        "layer": "External Standard",
+        "color": "#0a7c5a",
+        "definition": "",
+        "defined": false
+      },
+      {
+        "id": "https://comet.carbon/v1/supplychain#TransportEvent",
+        "label": "TransportEvent",
+        "curie": "comet-sc:TransportEvent",
+        "kind": "Reference",
+        "prefix": "comet-sc",
+        "namespace": "Supply Chain",
+        "layer": "L3 · Supply Chain",
+        "color": "#6b4a1a",
+        "definition": "",
+        "defined": false
+      },
+      {
+        "id": "https://api.carbonsig.com/schemas/verifier-export/v4#Flow.category.Transport",
+        "label": "Flow.category.Transport",
+        "curie": "csig:Flow.category.Transport",
+        "kind": "External",
+        "prefix": "csig",
+        "namespace": "CarbonSig Verifier Export v4",
+        "layer": "External Standard",
+        "color": "#0a7c5a",
+        "definition": "",
+        "defined": false
+      },
+      {
+        "id": "https://api.carbonsig.com/schemas/verifier-export/v4#Flow.category.DirectEmission",
+        "label": "Flow.category.DirectEmission",
+        "curie": "csig:Flow.category.DirectEmission",
+        "kind": "External",
+        "prefix": "csig",
+        "namespace": "CarbonSig Verifier Export v4",
+        "layer": "External Standard",
+        "color": "#0a7c5a",
+        "definition": "",
+        "defined": false
+      },
+      {
+        "id": "https://comet.carbon/v1/ver#AssuranceLevel",
+        "label": "AssuranceLevel",
+        "curie": "comet-ver:AssuranceLevel",
+        "kind": "Reference",
+        "prefix": "comet-ver",
+        "namespace": "Verification",
+        "layer": "L6 · Verification",
+        "color": "#1a5f6b",
+        "definition": "",
+        "defined": false
+      },
+      {
+        "id": "https://api.carbonsig.com/schemas/verifier-export/v4#Flow.verificationStatus",
+        "label": "Flow.verificationStatus",
+        "curie": "csig:Flow.verificationStatus",
+        "kind": "External",
+        "prefix": "csig",
+        "namespace": "CarbonSig Verifier Export v4",
+        "layer": "External Standard",
+        "color": "#0a7c5a",
+        "definition": "",
+        "defined": false
+      },
+      {
+        "id": "https://comet.carbon/v1/core#UnitOfMeasure",
+        "label": "UnitOfMeasure",
+        "curie": "comet:UnitOfMeasure",
+        "kind": "Reference",
+        "prefix": "comet",
+        "namespace": "Core",
+        "layer": "L1 · Core",
+        "color": "#1a3a6b",
+        "definition": "",
+        "defined": false
+      },
+      {
+        "id": "https://api.carbonsig.com/schemas/verifier-export/v4#ActivityData.unit",
+        "label": "ActivityData.unit",
+        "curie": "csig:ActivityData.unit",
+        "kind": "External",
+        "prefix": "csig",
+        "namespace": "CarbonSig Verifier Export v4",
+        "layer": "External Standard",
+        "color": "#0a7c5a",
+        "definition": "",
+        "defined": false
+      },
+      {
+        "id": "https://comet.carbon/v1/supplychain#DataQualityIndicator",
+        "label": "DataQualityIndicator",
+        "curie": "comet-sc:DataQualityIndicator",
+        "kind": "Reference",
+        "prefix": "comet-sc",
+        "namespace": "Supply Chain",
+        "layer": "L3 · Supply Chain",
+        "color": "#6b4a1a",
+        "definition": "",
+        "defined": false
+      },
+      {
+        "id": "https://api.carbonsig.com/schemas/verifier-export/v4#ActivityData.dataQuality",
+        "label": "ActivityData.dataQuality",
+        "curie": "csig:ActivityData.dataQuality",
+        "kind": "External",
+        "prefix": "csig",
+        "namespace": "CarbonSig Verifier Export v4",
+        "layer": "External Standard",
+        "color": "#0a7c5a",
+        "definition": "",
+        "defined": false
+      },
+      {
+        "id": "https://comet.carbon/v1/pcf#UncertaintyAssessment",
+        "label": "UncertaintyAssessment",
+        "curie": "comet-pcf:UncertaintyAssessment",
+        "kind": "Reference",
+        "prefix": "comet-pcf",
+        "namespace": "Product Carbon Footprint",
+        "layer": "L4 · PCF",
+        "color": "#1a6b3c",
+        "definition": "",
+        "defined": false
+      },
+      {
+        "id": "https://api.carbonsig.com/schemas/verifier-export/v4#ActivityData.uncertainty",
+        "label": "ActivityData.uncertainty",
+        "curie": "csig:ActivityData.uncertainty",
+        "kind": "External",
+        "prefix": "csig",
+        "namespace": "CarbonSig Verifier Export v4",
+        "layer": "External Standard",
+        "color": "#0a7c5a",
+        "definition": "",
+        "defined": false
+      },
+      {
+        "id": "https://api.carbonsig.com/schemas/verifier-export/v4#GHGDetails.embodiedEmissions",
+        "label": "GHGDetails.embodiedEmissions",
+        "curie": "csig:GHGDetails.embodiedEmissions",
+        "kind": "External",
+        "prefix": "csig",
+        "namespace": "CarbonSig Verifier Export v4",
+        "layer": "External Standard",
+        "color": "#0a7c5a",
+        "definition": "",
+        "defined": false
+      },
+      {
+        "id": "https://comet.carbon/v1/supplychain#EmissionIntensity",
+        "label": "EmissionIntensity",
+        "curie": "comet-sc:EmissionIntensity",
+        "kind": "Reference",
+        "prefix": "comet-sc",
+        "namespace": "Supply Chain",
+        "layer": "L3 · Supply Chain",
+        "color": "#6b4a1a",
+        "definition": "",
+        "defined": false
+      },
+      {
+        "id": "https://api.carbonsig.com/schemas/verifier-export/v4#GHGDetails.intensity",
+        "label": "GHGDetails.intensity",
+        "curie": "csig:GHGDetails.intensity",
+        "kind": "External",
+        "prefix": "csig",
+        "namespace": "CarbonSig Verifier Export v4",
+        "layer": "External Standard",
+        "color": "#0a7c5a",
+        "definition": "",
+        "defined": false
+      },
+      {
+        "id": "https://comet.carbon/v1/emfactor#EmissionFactor.efSource",
+        "label": "EmissionFactor.efSource",
+        "curie": "comet-ef:EmissionFactor.efSource",
+        "kind": "Reference",
+        "prefix": "comet-ef",
+        "namespace": "Emission Factor",
+        "layer": "L2 · Emission Factor",
+        "color": "#3c1a6b",
+        "definition": "",
+        "defined": false
+      },
+      {
+        "id": "https://api.carbonsig.com/schemas/verifier-export/v4#EmissionFactor.publisher",
+        "label": "EmissionFactor.publisher",
+        "curie": "csig:EmissionFactor.publisher",
+        "kind": "External",
+        "prefix": "csig",
+        "namespace": "CarbonSig Verifier Export v4",
+        "layer": "External Standard",
+        "color": "#0a7c5a",
+        "definition": "",
+        "defined": false
+      },
+      {
+        "id": "https://comet.carbon/v1/pcf#EPDDeclaration",
+        "label": "EPDDeclaration",
+        "curie": "comet-pcf:EPDDeclaration",
+        "kind": "Reference",
+        "prefix": "comet-pcf",
+        "namespace": "Product Carbon Footprint",
+        "layer": "L4 · PCF",
+        "color": "#1a6b3c",
+        "definition": "",
+        "defined": false
+      },
+      {
+        "id": "https://api.carbonsig.com/schemas/verifier-export/v4#Declaration",
+        "label": "Declaration",
+        "curie": "csig:Declaration",
+        "kind": "External",
+        "prefix": "csig",
+        "namespace": "CarbonSig Verifier Export v4",
+        "layer": "External Standard",
+        "color": "#0a7c5a",
+        "definition": "",
+        "defined": false
+      },
+      {
+        "id": "https://comet.carbon/v1/pcf#ProductCarbonFootprint",
+        "label": "ProductCarbonFootprint",
+        "curie": "comet-pcf:ProductCarbonFootprint",
+        "kind": "Reference",
+        "prefix": "comet-pcf",
+        "namespace": "Product Carbon Footprint",
+        "layer": "L4 · PCF",
+        "color": "#1a6b3c",
+        "definition": "",
+        "defined": false
+      },
+      {
+        "id": "https://api.carbonsig.com/schemas/verifier-export/v4#DeclaredProduct",
+        "label": "DeclaredProduct",
+        "curie": "csig:DeclaredProduct",
+        "kind": "External",
+        "prefix": "csig",
+        "namespace": "CarbonSig Verifier Export v4",
+        "layer": "External Standard",
+        "color": "#0a7c5a",
+        "definition": "",
+        "defined": false
+      },
+      {
+        "id": "https://api.carbonsig.com/schemas/verifier-export/v4#DeclaredProduct.title",
+        "label": "DeclaredProduct.title",
+        "curie": "csig:DeclaredProduct.title",
+        "kind": "External",
+        "prefix": "csig",
+        "namespace": "CarbonSig Verifier Export v4",
+        "layer": "External Standard",
+        "color": "#0a7c5a",
+        "definition": "",
+        "defined": false
+      },
+      {
+        "id": "https://comet.carbon/v1/pcf#CarbonIntensity",
+        "label": "CarbonIntensity",
+        "curie": "comet-pcf:CarbonIntensity",
+        "kind": "Reference",
+        "prefix": "comet-pcf",
+        "namespace": "Product Carbon Footprint",
+        "layer": "L4 · PCF",
+        "color": "#1a6b3c",
+        "definition": "",
+        "defined": false
+      },
+      {
+        "id": "https://api.carbonsig.com/schemas/verifier-export/v4#DeclaredProduct.ghgIntensity",
+        "label": "DeclaredProduct.ghgIntensity",
+        "curie": "csig:DeclaredProduct.ghgIntensity",
+        "kind": "External",
+        "prefix": "csig",
+        "namespace": "CarbonSig Verifier Export v4",
+        "layer": "External Standard",
+        "color": "#0a7c5a",
+        "definition": "",
+        "defined": false
+      },
+      {
+        "id": "https://comet.carbon/v1/pcf#ProductCarbonFootprint.totalGWP",
+        "label": "ProductCarbonFootprint.totalGWP",
+        "curie": "comet-pcf:ProductCarbonFootprint.totalGWP",
+        "kind": "Reference",
+        "prefix": "comet-pcf",
+        "namespace": "Product Carbon Footprint",
+        "layer": "L4 · PCF",
+        "color": "#1a6b3c",
+        "definition": "",
+        "defined": false
+      },
+      {
+        "id": "https://api.carbonsig.com/schemas/verifier-export/v4#DeclaredProduct.embodiedEmissions",
+        "label": "DeclaredProduct.embodiedEmissions",
+        "curie": "csig:DeclaredProduct.embodiedEmissions",
+        "kind": "External",
+        "prefix": "csig",
+        "namespace": "CarbonSig Verifier Export v4",
+        "layer": "External Standard",
+        "color": "#0a7c5a",
+        "definition": "",
+        "defined": false
+      },
+      {
+        "id": "https://api.carbonsig.com/schemas/verifier-export/v4#DeclaredProduct.credits",
+        "label": "DeclaredProduct.credits",
+        "curie": "csig:DeclaredProduct.credits",
+        "kind": "External",
+        "prefix": "csig",
+        "namespace": "CarbonSig Verifier Export v4",
+        "layer": "External Standard",
+        "color": "#0a7c5a",
+        "definition": "",
+        "defined": false
+      },
+      {
+        "id": "https://comet.carbon/v1/pcf#FunctionalUnit",
+        "label": "FunctionalUnit",
+        "curie": "comet-pcf:FunctionalUnit",
+        "kind": "Reference",
+        "prefix": "comet-pcf",
+        "namespace": "Product Carbon Footprint",
+        "layer": "L4 · PCF",
+        "color": "#1a6b3c",
+        "definition": "",
+        "defined": false
+      },
+      {
+        "id": "https://api.carbonsig.com/schemas/verifier-export/v4#DeclaredProduct.unit",
+        "label": "DeclaredProduct.unit",
+        "curie": "csig:DeclaredProduct.unit",
+        "kind": "External",
+        "prefix": "csig",
+        "namespace": "CarbonSig Verifier Export v4",
+        "layer": "External Standard",
+        "color": "#0a7c5a",
         "definition": "",
         "defined": false
       },
@@ -21974,6 +23138,402 @@
         "defined": false
       },
       {
+        "id": "https://comet.carbon/v1/pcf#ProductCarbonFootprint.pcfId",
+        "label": "ProductCarbonFootprint.pcfId",
+        "curie": "comet-pcf:ProductCarbonFootprint.pcfId",
+        "kind": "Reference",
+        "prefix": "comet-pcf",
+        "namespace": "Product Carbon Footprint",
+        "layer": "L4 · PCF",
+        "color": "#1a6b3c",
+        "definition": "",
+        "defined": false
+      },
+      {
+        "id": "https://api.carbonsig.com/schemas/verifier-export/v4#System.systemId",
+        "label": "System.systemId",
+        "curie": "csig:System.systemId",
+        "kind": "External",
+        "prefix": "csig",
+        "namespace": "CarbonSig Verifier Export v4",
+        "layer": "External Standard",
+        "color": "#0a7c5a",
+        "definition": "",
+        "defined": false
+      },
+      {
+        "id": "https://api.carbonsig.com/schemas/verifier-export/v4#System.role",
+        "label": "System.role",
+        "curie": "csig:System.role",
+        "kind": "External",
+        "prefix": "csig",
+        "namespace": "CarbonSig Verifier Export v4",
+        "layer": "External Standard",
+        "color": "#0a7c5a",
+        "definition": "",
+        "defined": false
+      },
+      {
+        "id": "https://api.carbonsig.com/schemas/verifier-export/v4#System.depth",
+        "label": "System.depth",
+        "curie": "csig:System.depth",
+        "kind": "External",
+        "prefix": "csig",
+        "namespace": "CarbonSig Verifier Export v4",
+        "layer": "External Standard",
+        "color": "#0a7c5a",
+        "definition": "",
+        "defined": false
+      },
+      {
+        "id": "https://api.carbonsig.com/schemas/verifier-export/v4#SystemMetadata.title",
+        "label": "SystemMetadata.title",
+        "curie": "csig:SystemMetadata.title",
+        "kind": "External",
+        "prefix": "csig",
+        "namespace": "CarbonSig Verifier Export v4",
+        "layer": "External Standard",
+        "color": "#0a7c5a",
+        "definition": "",
+        "defined": false
+      },
+      {
+        "id": "https://api.carbonsig.com/schemas/verifier-export/v4#SystemMetadata.cutOffRules",
+        "label": "SystemMetadata.cutOffRules",
+        "curie": "csig:SystemMetadata.cutOffRules",
+        "kind": "External",
+        "prefix": "csig",
+        "namespace": "CarbonSig Verifier Export v4",
+        "layer": "External Standard",
+        "color": "#0a7c5a",
+        "definition": "",
+        "defined": false
+      },
+      {
+        "id": "https://api.carbonsig.com/schemas/verifier-export/v4#Process.processId",
+        "label": "Process.processId",
+        "curie": "csig:Process.processId",
+        "kind": "External",
+        "prefix": "csig",
+        "namespace": "CarbonSig Verifier Export v4",
+        "layer": "External Standard",
+        "color": "#0a7c5a",
+        "definition": "",
+        "defined": false
+      },
+      {
+        "id": "https://api.carbonsig.com/schemas/verifier-export/v4#Process.title",
+        "label": "Process.title",
+        "curie": "csig:Process.title",
+        "kind": "External",
+        "prefix": "csig",
+        "namespace": "CarbonSig Verifier Export v4",
+        "layer": "External Standard",
+        "color": "#0a7c5a",
+        "definition": "",
+        "defined": false
+      },
+      {
+        "id": "https://api.carbonsig.com/schemas/verifier-export/v4#Flow.category.Service",
+        "label": "Flow.category.Service",
+        "curie": "csig:Flow.category.Service",
+        "kind": "External",
+        "prefix": "csig",
+        "namespace": "CarbonSig Verifier Export v4",
+        "layer": "External Standard",
+        "color": "#0a7c5a",
+        "definition": "",
+        "defined": false
+      },
+      {
+        "id": "https://api.carbonsig.com/schemas/verifier-export/v4#Flow.category.ByproductWaste",
+        "label": "Flow.category.ByproductWaste",
+        "curie": "csig:Flow.category.ByproductWaste",
+        "kind": "External",
+        "prefix": "csig",
+        "namespace": "CarbonSig Verifier Export v4",
+        "layer": "External Standard",
+        "color": "#0a7c5a",
+        "definition": "",
+        "defined": false
+      },
+      {
+        "id": "https://api.carbonsig.com/schemas/verifier-export/v4#Flow.from",
+        "label": "Flow.from",
+        "curie": "csig:Flow.from",
+        "kind": "External",
+        "prefix": "csig",
+        "namespace": "CarbonSig Verifier Export v4",
+        "layer": "External Standard",
+        "color": "#0a7c5a",
+        "definition": "",
+        "defined": false
+      },
+      {
+        "id": "https://api.carbonsig.com/schemas/verifier-export/v4#Flow.to",
+        "label": "Flow.to",
+        "curie": "csig:Flow.to",
+        "kind": "External",
+        "prefix": "csig",
+        "namespace": "CarbonSig Verifier Export v4",
+        "layer": "External Standard",
+        "color": "#0a7c5a",
+        "definition": "",
+        "defined": false
+      },
+      {
+        "id": "https://api.carbonsig.com/schemas/verifier-export/v4#Flow.destinations",
+        "label": "Flow.destinations",
+        "curie": "csig:Flow.destinations",
+        "kind": "External",
+        "prefix": "csig",
+        "namespace": "CarbonSig Verifier Export v4",
+        "layer": "External Standard",
+        "color": "#0a7c5a",
+        "definition": "",
+        "defined": false
+      },
+      {
+        "id": "https://api.carbonsig.com/schemas/verifier-export/v4#ActivityData.quantity",
+        "label": "ActivityData.quantity",
+        "curie": "csig:ActivityData.quantity",
+        "kind": "External",
+        "prefix": "csig",
+        "namespace": "CarbonSig Verifier Export v4",
+        "layer": "External Standard",
+        "color": "#0a7c5a",
+        "definition": "",
+        "defined": false
+      },
+      {
+        "id": "https://comet.carbon/v1/emfactor#DataProvenance",
+        "label": "DataProvenance",
+        "curie": "comet-ef:DataProvenance",
+        "kind": "Reference",
+        "prefix": "comet-ef",
+        "namespace": "Emission Factor",
+        "layer": "L2 · Emission Factor",
+        "color": "#3c1a6b",
+        "definition": "",
+        "defined": false
+      },
+      {
+        "id": "https://api.carbonsig.com/schemas/verifier-export/v4#ActivityData.sourceId",
+        "label": "ActivityData.sourceId",
+        "curie": "csig:ActivityData.sourceId",
+        "kind": "External",
+        "prefix": "csig",
+        "namespace": "CarbonSig Verifier Export v4",
+        "layer": "External Standard",
+        "color": "#0a7c5a",
+        "definition": "",
+        "defined": false
+      },
+      {
+        "id": "https://api.carbonsig.com/schemas/verifier-export/v4#GHGDetails.allocationFactor",
+        "label": "GHGDetails.allocationFactor",
+        "curie": "csig:GHGDetails.allocationFactor",
+        "kind": "External",
+        "prefix": "csig",
+        "namespace": "CarbonSig Verifier Export v4",
+        "layer": "External Standard",
+        "color": "#0a7c5a",
+        "definition": "",
+        "defined": false
+      },
+      {
+        "id": "https://api.carbonsig.com/schemas/verifier-export/v4#GHGDetails.conversionRatio",
+        "label": "GHGDetails.conversionRatio",
+        "curie": "csig:GHGDetails.conversionRatio",
+        "kind": "External",
+        "prefix": "csig",
+        "namespace": "CarbonSig Verifier Export v4",
+        "layer": "External Standard",
+        "color": "#0a7c5a",
+        "definition": "",
+        "defined": false
+      },
+      {
+        "id": "https://api.carbonsig.com/schemas/verifier-export/v4#GHGDetails.emissionSource",
+        "label": "GHGDetails.emissionSource",
+        "curie": "csig:GHGDetails.emissionSource",
+        "kind": "External",
+        "prefix": "csig",
+        "namespace": "CarbonSig Verifier Export v4",
+        "layer": "External Standard",
+        "color": "#0a7c5a",
+        "definition": "",
+        "defined": false
+      },
+      {
+        "id": "https://api.carbonsig.com/schemas/verifier-export/v4#GHGDetails.calculationSource",
+        "label": "GHGDetails.calculationSource",
+        "curie": "csig:GHGDetails.calculationSource",
+        "kind": "External",
+        "prefix": "csig",
+        "namespace": "CarbonSig Verifier Export v4",
+        "layer": "External Standard",
+        "color": "#0a7c5a",
+        "definition": "",
+        "defined": false
+      },
+      {
+        "id": "https://api.carbonsig.com/schemas/verifier-export/v4#EmissionFactor.title",
+        "label": "EmissionFactor.title",
+        "curie": "csig:EmissionFactor.title",
+        "kind": "External",
+        "prefix": "csig",
+        "namespace": "CarbonSig Verifier Export v4",
+        "layer": "External Standard",
+        "color": "#0a7c5a",
+        "definition": "",
+        "defined": false
+      },
+      {
+        "id": "https://api.carbonsig.com/schemas/verifier-export/v4#Declaration.products",
+        "label": "Declaration.products",
+        "curie": "csig:Declaration.products",
+        "kind": "External",
+        "prefix": "csig",
+        "namespace": "CarbonSig Verifier Export v4",
+        "layer": "External Standard",
+        "color": "#0a7c5a",
+        "definition": "",
+        "defined": false
+      },
+      {
+        "id": "https://api.carbonsig.com/schemas/verifier-export/v4#Declaration.systemHotspot",
+        "label": "Declaration.systemHotspot",
+        "curie": "csig:Declaration.systemHotspot",
+        "kind": "External",
+        "prefix": "csig",
+        "namespace": "CarbonSig Verifier Export v4",
+        "layer": "External Standard",
+        "color": "#0a7c5a",
+        "definition": "",
+        "defined": false
+      },
+      {
+        "id": "https://api.carbonsig.com/schemas/verifier-export/v4#DeclaredProduct.sources",
+        "label": "DeclaredProduct.sources",
+        "curie": "csig:DeclaredProduct.sources",
+        "kind": "External",
+        "prefix": "csig",
+        "namespace": "CarbonSig Verifier Export v4",
+        "layer": "External Standard",
+        "color": "#0a7c5a",
+        "definition": "",
+        "defined": false
+      },
+      {
+        "id": "https://comet.carbon/v1/pcf#BiogenicCarbon",
+        "label": "BiogenicCarbon",
+        "curie": "comet-pcf:BiogenicCarbon",
+        "kind": "Reference",
+        "prefix": "comet-pcf",
+        "namespace": "Product Carbon Footprint",
+        "layer": "L4 · PCF",
+        "color": "#1a6b3c",
+        "definition": "",
+        "defined": false
+      },
+      {
+        "id": "https://api.carbonsig.com/schemas/verifier-export/v4#DeclaredProduct.sinks",
+        "label": "DeclaredProduct.sinks",
+        "curie": "csig:DeclaredProduct.sinks",
+        "kind": "External",
+        "prefix": "csig",
+        "namespace": "CarbonSig Verifier Export v4",
+        "layer": "External Standard",
+        "color": "#0a7c5a",
+        "definition": "",
+        "defined": false
+      },
+      {
+        "id": "https://api.carbonsig.com/schemas/verifier-export/v4#DeclaredProduct.quantity",
+        "label": "DeclaredProduct.quantity",
+        "curie": "csig:DeclaredProduct.quantity",
+        "kind": "External",
+        "prefix": "csig",
+        "namespace": "CarbonSig Verifier Export v4",
+        "layer": "External Standard",
+        "color": "#0a7c5a",
+        "definition": "",
+        "defined": false
+      },
+      {
+        "id": "https://api.carbonsig.com/schemas/verifier-export/v4#DeclaredProduct.hotspotContributions",
+        "label": "DeclaredProduct.hotspotContributions",
+        "curie": "csig:DeclaredProduct.hotspotContributions",
+        "kind": "External",
+        "prefix": "csig",
+        "namespace": "CarbonSig Verifier Export v4",
+        "layer": "External Standard",
+        "color": "#0a7c5a",
+        "definition": "",
+        "defined": false
+      },
+      {
+        "id": "https://api.carbonsig.com/schemas/verifier-export/v4#HotspotEntry",
+        "label": "HotspotEntry",
+        "curie": "csig:HotspotEntry",
+        "kind": "External",
+        "prefix": "csig",
+        "namespace": "CarbonSig Verifier Export v4",
+        "layer": "External Standard",
+        "color": "#0a7c5a",
+        "definition": "",
+        "defined": false
+      },
+      {
+        "id": "https://api.carbonsig.com/schemas/verifier-export/v4#HotspotEntry.contributor",
+        "label": "HotspotEntry.contributor",
+        "curie": "csig:HotspotEntry.contributor",
+        "kind": "External",
+        "prefix": "csig",
+        "namespace": "CarbonSig Verifier Export v4",
+        "layer": "External Standard",
+        "color": "#0a7c5a",
+        "definition": "",
+        "defined": false
+      },
+      {
+        "id": "https://api.carbonsig.com/schemas/verifier-export/v4#HotspotEntry.process",
+        "label": "HotspotEntry.process",
+        "curie": "csig:HotspotEntry.process",
+        "kind": "External",
+        "prefix": "csig",
+        "namespace": "CarbonSig Verifier Export v4",
+        "layer": "External Standard",
+        "color": "#0a7c5a",
+        "definition": "",
+        "defined": false
+      },
+      {
+        "id": "https://api.carbonsig.com/schemas/verifier-export/v4#HotspotEntry.value",
+        "label": "HotspotEntry.value",
+        "curie": "csig:HotspotEntry.value",
+        "kind": "External",
+        "prefix": "csig",
+        "namespace": "CarbonSig Verifier Export v4",
+        "layer": "External Standard",
+        "color": "#0a7c5a",
+        "definition": "",
+        "defined": false
+      },
+      {
+        "id": "https://api.carbonsig.com/schemas/verifier-export/v4#SystemRef.systemId",
+        "label": "SystemRef.systemId",
+        "curie": "csig:SystemRef.systemId",
+        "kind": "External",
+        "prefix": "csig",
+        "namespace": "CarbonSig Verifier Export v4",
+        "layer": "External Standard",
+        "color": "#0a7c5a",
+        "definition": "",
+        "defined": false
+      },
+      {
         "id": "https://ontology.materialintelligence.ai/cbam/EmbeddedEmissionsIntensity",
         "label": "EmbeddedEmissionsIntensity",
         "curie": "cbam:EmbeddedEmissionsIntensity",
@@ -22330,6 +23890,42 @@
         "namespace": "WBCSD PACT",
         "layer": "External Standard",
         "color": "#9a7c2f",
+        "definition": "",
+        "defined": false
+      },
+      {
+        "id": "https://api.carbonsig.com/schemas/verifier-export/v4#System",
+        "label": "System",
+        "curie": "csig:System",
+        "kind": "External",
+        "prefix": "csig",
+        "namespace": "CarbonSig Verifier Export v4",
+        "layer": "External Standard",
+        "color": "#0a7c5a",
+        "definition": "",
+        "defined": false
+      },
+      {
+        "id": "https://api.carbonsig.com/schemas/verifier-export/v4#Flow",
+        "label": "Flow",
+        "curie": "csig:Flow",
+        "kind": "External",
+        "prefix": "csig",
+        "namespace": "CarbonSig Verifier Export v4",
+        "layer": "External Standard",
+        "color": "#0a7c5a",
+        "definition": "",
+        "defined": false
+      },
+      {
+        "id": "https://api.carbonsig.com/schemas/verifier-export/v4#GHGDetails",
+        "label": "GHGDetails",
+        "curie": "csig:GHGDetails",
+        "kind": "External",
+        "prefix": "csig",
+        "namespace": "CarbonSig Verifier Export v4",
+        "layer": "External Standard",
+        "color": "#0a7c5a",
         "definition": "",
         "defined": false
       },
@@ -22960,33 +24556,13 @@
     ],
     "edges": [
       {
-        "from": "https://comet.carbon/ext/responsiblesteel#claimDPLContext",
-        "to": "https://comet.carbon/ext/responsiblesteel#DecarbProgressLevel",
-        "rel": "range"
-      },
-      {
-        "from": "https://comet.carbon/ext/responsiblesteel#auditedSite",
-        "to": "https://comet.carbon/ext/responsiblesteel#CertifiedSite",
-        "rel": "range"
-      },
-      {
-        "from": "https://comet.carbon/ext/iso14068#hasPathway",
-        "to": "https://comet.carbon/ext/iso14068#CarbonNeutralityPathway",
-        "rel": "range"
-      },
-      {
-        "from": "https://comet.carbon/ext/responsiblesteel#SupplierESGRisk",
-        "to": "https://comet.carbon/v1/supplychain#SupplyChainLink",
+        "from": "https://comet.carbon/ext/iso14068#Entity",
+        "to": "https://comet.carbon/v1/core#Organization",
         "rel": "subClassOf"
       },
       {
-        "from": "https://comet.carbon/ext/responsiblesteel#CertificationAudit",
-        "to": "https://comet.carbon/v1/ver#AuditTrail",
-        "rel": "subClassOf"
-      },
-      {
-        "from": "https://comet.carbon/ext/responsiblesteel#GreenSteelPremium",
-        "to": "https://comet.carbon/v1/market#CarbonPremium",
+        "from": "https://comet.carbon/ext/pcr-japan#ISO21930PCR",
+        "to": "https://comet.carbon/ext/pcr-japan#SuMPOPCRDocument",
         "rel": "subClassOf"
       },
       {
@@ -22995,23 +24571,138 @@
         "rel": "range"
       },
       {
-        "from": "https://comet.carbon/ext/responsiblesteel#CertifiedSite",
-        "to": "https://comet.carbon/v1/core#Site",
-        "rel": "subClassOf"
-      },
-      {
-        "from": "https://comet.carbon/ext/iso14068#hasReportingPeriod",
-        "to": "https://comet.carbon/ext/iso14068#ReportingPeriod",
-        "rel": "range"
-      },
-      {
         "from": "https://comet.carbon/ext/iso14068#hasSubject",
         "to": "https://comet.carbon/ext/iso14068#Subject",
         "rel": "range"
       },
       {
-        "from": "https://comet.carbon/ext/responsiblesteel#CorporateOwner",
-        "to": "https://comet.carbon/v1/core#Organization",
+        "from": "https://comet.carbon/ext/iso14068#hasCreditType",
+        "to": "https://comet.carbon/ext/iso14068#CreditType",
+        "rel": "range"
+      },
+      {
+        "from": "https://comet.carbon/ext/responsiblesteel#SteelProductionRoute",
+        "to": "https://comet.carbon/v1/core#Process",
+        "rel": "subClassOf"
+      },
+      {
+        "from": "https://comet.carbon/ext/responsiblesteel#CertifiedSite",
+        "to": "https://comet.carbon/v1/core#Site",
+        "rel": "subClassOf"
+      },
+      {
+        "from": "https://comet.carbon/ext/responsiblesteel#ScrapCategory",
+        "to": "https://comet.carbon/ext/responsiblesteel#RSInputMaterial",
+        "rel": "subClassOf"
+      },
+      {
+        "from": "https://comet.carbon/ext/iso14068#CarbonNeutralityReport",
+        "to": "https://comet.carbon/v1/ver#DisclosureRecord",
+        "rel": "subClassOf"
+      },
+      {
+        "from": "https://comet.carbon/ext/responsiblesteel#ProgressLevelPricing",
+        "to": "https://comet.carbon/v1/market#CarbonPremium",
+        "rel": "subClassOf"
+      },
+      {
+        "from": "https://comet.carbon/ext/responsiblesteel#hasNonConformity",
+        "to": "https://comet.carbon/ext/responsiblesteel#NonConformity",
+        "rel": "range"
+      },
+      {
+        "from": "https://comet.carbon/ext/pcr-japan#EcoLeafDeclaration",
+        "to": "https://comet.carbon/v1/eac#Certification",
+        "rel": "subClassOf"
+      },
+      {
+        "from": "https://comet.carbon/ext/responsiblesteel#CrudeSteelIntensity",
+        "to": "https://comet.carbon/v1/pcf#LCIAResult",
+        "rel": "subClassOf"
+      },
+      {
+        "from": "https://comet.carbon/ext/responsiblesteel#SteelCertification",
+        "to": "https://comet.carbon/ext/responsiblesteel#CoreSiteCertification",
+        "rel": "subClassOf"
+      },
+      {
+        "from": "https://comet.carbon/ext/responsiblesteel#RSInputMaterial",
+        "to": "https://comet.carbon/v1/core#Material",
+        "rel": "subClassOf"
+      },
+      {
+        "from": "https://comet.carbon/ext/iso14068#hasReport",
+        "to": "https://comet.carbon/ext/iso14068#CarbonNeutralityReport",
+        "rel": "range"
+      },
+      {
+        "from": "https://comet.carbon/ext/responsiblesteel#auditedSite",
+        "to": "https://comet.carbon/ext/responsiblesteel#CertifiedSite",
+        "rel": "range"
+      },
+      {
+        "from": "https://comet.carbon/ext/iso14068#meetsCriterion",
+        "to": "https://comet.carbon/ext/iso14068#CreditCriterion",
+        "rel": "range"
+      },
+      {
+        "from": "https://comet.carbon/ext/responsiblesteel#hasDPL",
+        "to": "https://comet.carbon/ext/responsiblesteel#DecarbProgressLevel",
+        "rel": "range"
+      },
+      {
+        "from": "https://comet.carbon/ext/responsiblesteel#CertificationAudit",
+        "to": "https://comet.carbon/v1/ver#AuditTrail",
+        "rel": "subClassOf"
+      },
+      {
+        "from": "https://comet.carbon/ext/iso14068#hasVerificationOpinion",
+        "to": "https://comet.carbon/ext/iso14068#VerificationOpinion",
+        "rel": "range"
+      },
+      {
+        "from": "https://comet.carbon/ext/responsiblesteel#SupplierESGRisk",
+        "to": "https://comet.carbon/v1/supplychain#SupplyChainLink",
+        "rel": "subClassOf"
+      },
+      {
+        "from": "https://comet.carbon/ext/responsiblesteel#GreenSteelPremium",
+        "to": "https://comet.carbon/v1/market#CarbonPremium",
+        "rel": "subClassOf"
+      },
+      {
+        "from": "https://comet.carbon/ext/iso14068#hasClaim",
+        "to": "https://comet.carbon/ext/iso14068#CarbonNeutralityClaim",
+        "rel": "range"
+      },
+      {
+        "from": "https://comet.carbon/ext/pcr-japan#japanesePCRField",
+        "to": "https://comet.carbon/ext/pcr-japan#JapanesePCRField",
+        "rel": "range"
+      },
+      {
+        "from": "https://comet.carbon/ext/pcr-japan#SuMPOPCRDocument",
+        "to": "https://comet.carbon/v1/pcf#PCRDocument",
+        "rel": "subClassOf"
+      },
+      {
+        "from": "https://comet.carbon/ext/iso14068#hasPathway",
+        "to": "https://comet.carbon/ext/iso14068#CarbonNeutralityPathway",
+        "rel": "range"
+      },
+      {
+        "from": "https://comet.carbon/ext/responsiblesteel#claimDPLContext",
+        "to": "https://comet.carbon/ext/responsiblesteel#DecarbProgressLevel",
+        "rel": "range"
+      },
+      {
+        "from": "https://comet.carbon/ext/responsiblesteel#principleAssessed",
+        "to": "https://comet.carbon/ext/responsiblesteel#RSPrinciple",
+        "rel": "range"
+      },
+      {
+        "from": "https://comet.carbon/ext/iso14068#FinancialInstitution",
+        "to": "https://comet.carbon/ext/iso14068#Entity",
         "rel": "subClassOf"
       },
       {
@@ -23025,53 +24716,8 @@
         "rel": "range"
       },
       {
-        "from": "https://comet.carbon/ext/responsiblesteel#transfersTo",
-        "to": "https://comet.carbon/v1/core#Organization",
-        "rel": "range"
-      },
-      {
-        "from": "https://comet.carbon/ext/iso14068#hierarchyStep",
-        "to": "https://comet.carbon/ext/iso14068#HierarchyAction",
-        "rel": "range"
-      },
-      {
-        "from": "https://comet.carbon/ext/iso14068#hasClaim",
-        "to": "https://comet.carbon/ext/iso14068#CarbonNeutralityClaim",
-        "rel": "range"
-      },
-      {
-        "from": "https://comet.carbon/ext/iso14068#Entity",
-        "to": "https://comet.carbon/v1/core#Organization",
-        "rel": "subClassOf"
-      },
-      {
-        "from": "https://comet.carbon/ext/responsiblesteel#hasDPL",
-        "to": "https://comet.carbon/ext/responsiblesteel#DecarbProgressLevel",
-        "rel": "range"
-      },
-      {
-        "from": "https://comet.carbon/ext/iso14068#CarbonNeutralityReport",
-        "to": "https://comet.carbon/v1/ver#DisclosureRecord",
-        "rel": "subClassOf"
-      },
-      {
-        "from": "https://comet.carbon/ext/responsiblesteel#hasSPL",
-        "to": "https://comet.carbon/ext/responsiblesteel#SourcingProgressLevel",
-        "rel": "range"
-      },
-      {
-        "from": "https://comet.carbon/ext/responsiblesteel#CrudeSteelIntensity",
-        "to": "https://comet.carbon/v1/pcf#LCIAResult",
-        "rel": "subClassOf"
-      },
-      {
-        "from": "https://comet.carbon/ext/iso14068#hasCommitment",
-        "to": "https://comet.carbon/ext/iso14068#CarbonNeutralityCommitment",
-        "rel": "range"
-      },
-      {
-        "from": "https://comet.carbon/ext/responsiblesteel#ProgressLevelPricing",
-        "to": "https://comet.carbon/v1/market#CarbonPremium",
+        "from": "https://comet.carbon/ext/iso14068#ResidualGHGEmission",
+        "to": "https://comet.carbon/ext/iso14068#UnabatedGHGEmission",
         "rel": "subClassOf"
       },
       {
@@ -23080,33 +24726,23 @@
         "rel": "range"
       },
       {
-        "from": "https://comet.carbon/ext/iso14068#FinancialInstitution",
-        "to": "https://comet.carbon/ext/iso14068#Entity",
-        "rel": "subClassOf"
-      },
-      {
-        "from": "https://comet.carbon/ext/iso14068#hasCreditType",
-        "to": "https://comet.carbon/ext/iso14068#CreditType",
+        "from": "https://comet.carbon/ext/responsiblesteel#hasSPL",
+        "to": "https://comet.carbon/ext/responsiblesteel#SourcingProgressLevel",
         "rel": "range"
       },
       {
-        "from": "https://comet.carbon/ext/responsiblesteel#CoreSiteCertification",
-        "to": "https://comet.carbon/v1/eac#MaterialStewardCert",
+        "from": "https://comet.carbon/ext/iso14068#hierarchyStep",
+        "to": "https://comet.carbon/ext/iso14068#HierarchyAction",
+        "rel": "range"
+      },
+      {
+        "from": "https://comet.carbon/ext/iso14068#OffsettingEvent",
+        "to": "https://comet.carbon/v1/eac#RetirementEvent",
         "rel": "subClassOf"
       },
       {
-        "from": "https://comet.carbon/ext/responsiblesteel#SteelProductionRoute",
-        "to": "https://comet.carbon/v1/core#Process",
-        "rel": "subClassOf"
-      },
-      {
-        "from": "https://comet.carbon/ext/responsiblesteel#transfersFrom",
+        "from": "https://comet.carbon/ext/responsiblesteel#CorporateOwner",
         "to": "https://comet.carbon/v1/core#Organization",
-        "rel": "range"
-      },
-      {
-        "from": "https://comet.carbon/ext/iso14068#ResidualGHGEmission",
-        "to": "https://comet.carbon/ext/iso14068#UnabatedGHGEmission",
         "rel": "subClassOf"
       },
       {
@@ -23115,19 +24751,34 @@
         "rel": "range"
       },
       {
-        "from": "https://comet.carbon/ext/iso14068#hasReport",
-        "to": "https://comet.carbon/ext/iso14068#CarbonNeutralityReport",
-        "rel": "range"
-      },
-      {
-        "from": "https://comet.carbon/ext/responsiblesteel#principleAssessed",
-        "to": "https://comet.carbon/ext/responsiblesteel#RSPrinciple",
-        "rel": "range"
-      },
-      {
-        "from": "https://comet.carbon/ext/responsiblesteel#ScrapCategory",
-        "to": "https://comet.carbon/ext/responsiblesteel#RSInputMaterial",
+        "from": "https://comet.carbon/ext/iso14068#VerificationOpinion",
+        "to": "https://comet.carbon/v1/ver#AuditClaim",
         "rel": "subClassOf"
+      },
+      {
+        "from": "https://comet.carbon/ext/responsiblesteel#transfersTo",
+        "to": "https://comet.carbon/v1/core#Organization",
+        "rel": "range"
+      },
+      {
+        "from": "https://comet.carbon/ext/iso14068#hasReportingPeriod",
+        "to": "https://comet.carbon/ext/iso14068#ReportingPeriod",
+        "rel": "range"
+      },
+      {
+        "from": "https://comet.carbon/ext/responsiblesteel#CoreSiteCertification",
+        "to": "https://comet.carbon/v1/eac#MaterialStewardCert",
+        "rel": "subClassOf"
+      },
+      {
+        "from": "https://comet.carbon/ext/pcr-japan#LegacyEcoLeafPCR",
+        "to": "https://comet.carbon/ext/pcr-japan#SuMPOPCRDocument",
+        "rel": "subClassOf"
+      },
+      {
+        "from": "https://comet.carbon/ext/responsiblesteel#transfersFrom",
+        "to": "https://comet.carbon/v1/core#Organization",
+        "rel": "range"
       },
       {
         "from": "https://comet.carbon/ext/iso14068#UnabatedGHGEmission",
@@ -23135,44 +24786,14 @@
         "rel": "subClassOf"
       },
       {
-        "from": "https://comet.carbon/ext/iso14068#OffsettingEvent",
-        "to": "https://comet.carbon/v1/eac#RetirementEvent",
-        "rel": "subClassOf"
+        "from": "https://comet.carbon/ext/iso14068#hasCommitment",
+        "to": "https://comet.carbon/ext/iso14068#CarbonNeutralityCommitment",
+        "rel": "range"
       },
       {
         "from": "https://comet.carbon/ext/responsiblesteel#RSSupplierTier",
         "to": "https://comet.carbon/v1/supplychain#SupplyChainLink",
         "rel": "subClassOf"
-      },
-      {
-        "from": "https://comet.carbon/ext/iso14068#VerificationOpinion",
-        "to": "https://comet.carbon/v1/ver#AuditClaim",
-        "rel": "subClassOf"
-      },
-      {
-        "from": "https://comet.carbon/ext/iso14068#meetsCriterion",
-        "to": "https://comet.carbon/ext/iso14068#CreditCriterion",
-        "rel": "range"
-      },
-      {
-        "from": "https://comet.carbon/ext/iso14068#hasVerificationOpinion",
-        "to": "https://comet.carbon/ext/iso14068#VerificationOpinion",
-        "rel": "range"
-      },
-      {
-        "from": "https://comet.carbon/ext/responsiblesteel#RSInputMaterial",
-        "to": "https://comet.carbon/v1/core#Material",
-        "rel": "subClassOf"
-      },
-      {
-        "from": "https://comet.carbon/ext/responsiblesteel#SteelCertification",
-        "to": "https://comet.carbon/ext/responsiblesteel#CoreSiteCertification",
-        "rel": "subClassOf"
-      },
-      {
-        "from": "https://comet.carbon/ext/responsiblesteel#hasNonConformity",
-        "to": "https://comet.carbon/ext/responsiblesteel#NonConformity",
-        "rel": "range"
       },
       {
         "from": "https://comet.carbon/v1/pcf#PCFResult",
@@ -23270,6 +24891,76 @@
         "rel": "equivalentClass"
       },
       {
+        "from": "https://comet.carbon/v1/pcf#SystemBoundary",
+        "to": "https://api.carbonsig.com/schemas/verifier-export/v4#SystemMetadata.systemBoundary",
+        "rel": "exactMatch"
+      },
+      {
+        "from": "https://comet.carbon/v1/core#TimePeriod.startDate",
+        "to": "https://api.carbonsig.com/schemas/verifier-export/v4#SystemMetadata.startDate",
+        "rel": "exactMatch"
+      },
+      {
+        "from": "https://comet.carbon/v1/core#TimePeriod.endDate",
+        "to": "https://api.carbonsig.com/schemas/verifier-export/v4#SystemMetadata.endDate",
+        "rel": "exactMatch"
+      },
+      {
+        "from": "https://comet.carbon/v1/core#Site.siteId",
+        "to": "https://api.carbonsig.com/schemas/verifier-export/v4#SystemMetadata.siteId",
+        "rel": "exactMatch"
+      },
+      {
+        "from": "https://comet.carbon/v1/core#Process",
+        "to": "https://api.carbonsig.com/schemas/verifier-export/v4#Process",
+        "rel": "exactMatch"
+      },
+      {
+        "from": "https://comet.carbon/v1/supplychain#ActivityDataRecord",
+        "to": "https://api.carbonsig.com/schemas/verifier-export/v4#ActivityData",
+        "rel": "exactMatch"
+      },
+      {
+        "from": "https://comet.carbon/v1/supplychain#Scope1Emissions",
+        "to": "https://api.carbonsig.com/schemas/verifier-export/v4#GHGDetails.scopeBreakdown.scope1",
+        "rel": "exactMatch"
+      },
+      {
+        "from": "https://comet.carbon/v1/supplychain#Scope2Emissions",
+        "to": "https://api.carbonsig.com/schemas/verifier-export/v4#GHGDetails.scopeBreakdown.scope2",
+        "rel": "exactMatch"
+      },
+      {
+        "from": "https://comet.carbon/v1/supplychain#Scope3Emissions",
+        "to": "https://api.carbonsig.com/schemas/verifier-export/v4#GHGDetails.scopeBreakdown.scope3",
+        "rel": "exactMatch"
+      },
+      {
+        "from": "https://comet.carbon/v1/emfactor#EmissionFactor",
+        "to": "https://api.carbonsig.com/schemas/verifier-export/v4#GHGDetails.emissionFactor",
+        "rel": "exactMatch"
+      },
+      {
+        "from": "https://comet.carbon/v1/emfactor#EmissionFactor",
+        "to": "https://api.carbonsig.com/schemas/verifier-export/v4#EmissionFactor",
+        "rel": "exactMatch"
+      },
+      {
+        "from": "https://comet.carbon/v1/emfactor#EmissionFactor.efGeography",
+        "to": "https://api.carbonsig.com/schemas/verifier-export/v4#EmissionFactor.geography",
+        "rel": "exactMatch"
+      },
+      {
+        "from": "https://comet.carbon/v1/emfactor#EmissionFactor.efValue",
+        "to": "https://api.carbonsig.com/schemas/verifier-export/v4#EmissionFactor.valuePerUnit",
+        "rel": "exactMatch"
+      },
+      {
+        "from": "https://comet.carbon/v1/emfactor#EmissionFactor.efUnit",
+        "to": "https://api.carbonsig.com/schemas/verifier-export/v4#EmissionFactor.referenceUnit",
+        "rel": "exactMatch"
+      },
+      {
         "from": "https://comet.carbon/ext/responsiblesteel#Scope1Emissions",
         "to": "https://ghgprotocol.org/scope/Scope1",
         "rel": "exactMatch"
@@ -23322,6 +25013,141 @@
       {
         "from": "https://comet.carbon/v1/core#Product",
         "to": "https://www.iso.org/standard/14067#Product",
+        "rel": "closeMatch"
+      },
+      {
+        "from": "https://comet.carbon/v1/pcf#StandardRef",
+        "to": "https://api.carbonsig.com/schemas/verifier-export/v4#SystemMetadata.declaration",
+        "rel": "closeMatch"
+      },
+      {
+        "from": "https://comet.carbon/v1/pcf#AllocationMethod",
+        "to": "https://api.carbonsig.com/schemas/verifier-export/v4#SystemMetadata.allocationRules",
+        "rel": "closeMatch"
+      },
+      {
+        "from": "https://comet.carbon/v1/pcf#StandardRef",
+        "to": "https://api.carbonsig.com/schemas/verifier-export/v4#SystemMetadata.calculationMethodology",
+        "rel": "closeMatch"
+      },
+      {
+        "from": "https://comet.carbon/v1/pcf#EmbeddedEmissions",
+        "to": "https://api.carbonsig.com/schemas/verifier-export/v4#Process.totals.embodiedEmissions",
+        "rel": "closeMatch"
+      },
+      {
+        "from": "https://comet.carbon/v1/supplychain#ActivityDataRecord",
+        "to": "https://api.carbonsig.com/schemas/verifier-export/v4#Flow.type.PurchasedInput",
+        "rel": "closeMatch"
+      },
+      {
+        "from": "https://comet.carbon/v1/supplychain#Scope1Emissions",
+        "to": "https://api.carbonsig.com/schemas/verifier-export/v4#Flow.type.ProcessWaste",
+        "rel": "closeMatch"
+      },
+      {
+        "from": "https://comet.carbon/v1/supplychain#SupplyChainLink",
+        "to": "https://api.carbonsig.com/schemas/verifier-export/v4#Flow.type.WIPFlow",
+        "rel": "closeMatch"
+      },
+      {
+        "from": "https://comet.carbon/v1/supplychain#SupplyChainLink",
+        "to": "https://api.carbonsig.com/schemas/verifier-export/v4#Flow.type.IntermediateInput",
+        "rel": "closeMatch"
+      },
+      {
+        "from": "https://comet.carbon/v1/supplychain#SupplyChainLink",
+        "to": "https://api.carbonsig.com/schemas/verifier-export/v4#Flow.type.IntermediateOutput",
+        "rel": "closeMatch"
+      },
+      {
+        "from": "https://comet.carbon/v1/core#Material",
+        "to": "https://api.carbonsig.com/schemas/verifier-export/v4#Flow.category.Material",
+        "rel": "closeMatch"
+      },
+      {
+        "from": "https://comet.carbon/v1/supplychain#Scope2Emissions",
+        "to": "https://api.carbonsig.com/schemas/verifier-export/v4#Flow.category.Energy",
+        "rel": "closeMatch"
+      },
+      {
+        "from": "https://comet.carbon/v1/supplychain#TransportEvent",
+        "to": "https://api.carbonsig.com/schemas/verifier-export/v4#Flow.category.Transport",
+        "rel": "closeMatch"
+      },
+      {
+        "from": "https://comet.carbon/v1/supplychain#Scope1Emissions",
+        "to": "https://api.carbonsig.com/schemas/verifier-export/v4#Flow.category.DirectEmission",
+        "rel": "closeMatch"
+      },
+      {
+        "from": "https://comet.carbon/v1/ver#AssuranceLevel",
+        "to": "https://api.carbonsig.com/schemas/verifier-export/v4#Flow.verificationStatus",
+        "rel": "closeMatch"
+      },
+      {
+        "from": "https://comet.carbon/v1/core#UnitOfMeasure",
+        "to": "https://api.carbonsig.com/schemas/verifier-export/v4#ActivityData.unit",
+        "rel": "closeMatch"
+      },
+      {
+        "from": "https://comet.carbon/v1/supplychain#DataQualityIndicator",
+        "to": "https://api.carbonsig.com/schemas/verifier-export/v4#ActivityData.dataQuality",
+        "rel": "closeMatch"
+      },
+      {
+        "from": "https://comet.carbon/v1/pcf#UncertaintyAssessment",
+        "to": "https://api.carbonsig.com/schemas/verifier-export/v4#ActivityData.uncertainty",
+        "rel": "closeMatch"
+      },
+      {
+        "from": "https://comet.carbon/v1/pcf#EmbeddedEmissions",
+        "to": "https://api.carbonsig.com/schemas/verifier-export/v4#GHGDetails.embodiedEmissions",
+        "rel": "closeMatch"
+      },
+      {
+        "from": "https://comet.carbon/v1/supplychain#EmissionIntensity",
+        "to": "https://api.carbonsig.com/schemas/verifier-export/v4#GHGDetails.intensity",
+        "rel": "closeMatch"
+      },
+      {
+        "from": "https://comet.carbon/v1/emfactor#EmissionFactor.efSource",
+        "to": "https://api.carbonsig.com/schemas/verifier-export/v4#EmissionFactor.publisher",
+        "rel": "closeMatch"
+      },
+      {
+        "from": "https://comet.carbon/v1/pcf#EPDDeclaration",
+        "to": "https://api.carbonsig.com/schemas/verifier-export/v4#Declaration",
+        "rel": "closeMatch"
+      },
+      {
+        "from": "https://comet.carbon/v1/pcf#ProductCarbonFootprint",
+        "to": "https://api.carbonsig.com/schemas/verifier-export/v4#DeclaredProduct",
+        "rel": "closeMatch"
+      },
+      {
+        "from": "https://comet.carbon/v1/core#Material",
+        "to": "https://api.carbonsig.com/schemas/verifier-export/v4#DeclaredProduct.title",
+        "rel": "closeMatch"
+      },
+      {
+        "from": "https://comet.carbon/v1/pcf#CarbonIntensity",
+        "to": "https://api.carbonsig.com/schemas/verifier-export/v4#DeclaredProduct.ghgIntensity",
+        "rel": "closeMatch"
+      },
+      {
+        "from": "https://comet.carbon/v1/pcf#ProductCarbonFootprint.totalGWP",
+        "to": "https://api.carbonsig.com/schemas/verifier-export/v4#DeclaredProduct.embodiedEmissions",
+        "rel": "closeMatch"
+      },
+      {
+        "from": "https://comet.carbon/ext/iso14068#OffsettingEvent",
+        "to": "https://api.carbonsig.com/schemas/verifier-export/v4#DeclaredProduct.credits",
+        "rel": "closeMatch"
+      },
+      {
+        "from": "https://comet.carbon/v1/pcf#FunctionalUnit",
+        "to": "https://api.carbonsig.com/schemas/verifier-export/v4#DeclaredProduct.unit",
         "rel": "closeMatch"
       },
       {
@@ -23535,6 +25361,156 @@
         "rel": "relatedMatch"
       },
       {
+        "from": "https://comet.carbon/v1/pcf#ProductCarbonFootprint.pcfId",
+        "to": "https://api.carbonsig.com/schemas/verifier-export/v4#System.systemId",
+        "rel": "relatedMatch"
+      },
+      {
+        "from": "https://comet.carbon/v1/supplychain#SupplyChainLink",
+        "to": "https://api.carbonsig.com/schemas/verifier-export/v4#System.role",
+        "rel": "relatedMatch"
+      },
+      {
+        "from": "https://comet.carbon/v1/supplychain#SupplyChainLink",
+        "to": "https://api.carbonsig.com/schemas/verifier-export/v4#System.depth",
+        "rel": "relatedMatch"
+      },
+      {
+        "from": "https://comet.carbon/v1/pcf#ProductCarbonFootprint",
+        "to": "https://api.carbonsig.com/schemas/verifier-export/v4#SystemMetadata.title",
+        "rel": "relatedMatch"
+      },
+      {
+        "from": "https://comet.carbon/v1/pcf#SystemBoundary",
+        "to": "https://api.carbonsig.com/schemas/verifier-export/v4#SystemMetadata.cutOffRules",
+        "rel": "relatedMatch"
+      },
+      {
+        "from": "https://comet.carbon/v1/core#Process",
+        "to": "https://api.carbonsig.com/schemas/verifier-export/v4#Process.processId",
+        "rel": "relatedMatch"
+      },
+      {
+        "from": "https://comet.carbon/v1/core#Process",
+        "to": "https://api.carbonsig.com/schemas/verifier-export/v4#Process.title",
+        "rel": "relatedMatch"
+      },
+      {
+        "from": "https://comet.carbon/v1/supplychain#ActivityDataRecord",
+        "to": "https://api.carbonsig.com/schemas/verifier-export/v4#Flow.category.Service",
+        "rel": "relatedMatch"
+      },
+      {
+        "from": "https://comet.carbon/v1/supplychain#Scope3Emissions",
+        "to": "https://api.carbonsig.com/schemas/verifier-export/v4#Flow.category.ByproductWaste",
+        "rel": "relatedMatch"
+      },
+      {
+        "from": "https://comet.carbon/v1/supplychain#SupplyChainLink",
+        "to": "https://api.carbonsig.com/schemas/verifier-export/v4#Flow.from",
+        "rel": "relatedMatch"
+      },
+      {
+        "from": "https://comet.carbon/v1/supplychain#SupplyChainLink",
+        "to": "https://api.carbonsig.com/schemas/verifier-export/v4#Flow.to",
+        "rel": "relatedMatch"
+      },
+      {
+        "from": "https://comet.carbon/v1/supplychain#SupplyChainLink",
+        "to": "https://api.carbonsig.com/schemas/verifier-export/v4#Flow.destinations",
+        "rel": "relatedMatch"
+      },
+      {
+        "from": "https://comet.carbon/v1/supplychain#ActivityDataRecord",
+        "to": "https://api.carbonsig.com/schemas/verifier-export/v4#ActivityData.quantity",
+        "rel": "relatedMatch"
+      },
+      {
+        "from": "https://comet.carbon/v1/emfactor#DataProvenance",
+        "to": "https://api.carbonsig.com/schemas/verifier-export/v4#ActivityData.sourceId",
+        "rel": "relatedMatch"
+      },
+      {
+        "from": "https://comet.carbon/v1/pcf#AllocationMethod",
+        "to": "https://api.carbonsig.com/schemas/verifier-export/v4#GHGDetails.allocationFactor",
+        "rel": "relatedMatch"
+      },
+      {
+        "from": "https://comet.carbon/v1/core#UnitOfMeasure",
+        "to": "https://api.carbonsig.com/schemas/verifier-export/v4#GHGDetails.conversionRatio",
+        "rel": "relatedMatch"
+      },
+      {
+        "from": "https://comet.carbon/v1/supplychain#Scope1Emissions",
+        "to": "https://api.carbonsig.com/schemas/verifier-export/v4#GHGDetails.emissionSource",
+        "rel": "relatedMatch"
+      },
+      {
+        "from": "https://comet.carbon/v1/supplychain#DataQualityIndicator",
+        "to": "https://api.carbonsig.com/schemas/verifier-export/v4#GHGDetails.calculationSource",
+        "rel": "relatedMatch"
+      },
+      {
+        "from": "https://comet.carbon/v1/emfactor#EmissionFactor",
+        "to": "https://api.carbonsig.com/schemas/verifier-export/v4#EmissionFactor.title",
+        "rel": "relatedMatch"
+      },
+      {
+        "from": "https://comet.carbon/v1/pcf#ProductCarbonFootprint",
+        "to": "https://api.carbonsig.com/schemas/verifier-export/v4#Declaration.products",
+        "rel": "relatedMatch"
+      },
+      {
+        "from": "https://comet.carbon/v1/pcf#LCIAResult",
+        "to": "https://api.carbonsig.com/schemas/verifier-export/v4#Declaration.systemHotspot",
+        "rel": "relatedMatch"
+      },
+      {
+        "from": "https://comet.carbon/v1/pcf#EmbeddedEmissions",
+        "to": "https://api.carbonsig.com/schemas/verifier-export/v4#DeclaredProduct.sources",
+        "rel": "relatedMatch"
+      },
+      {
+        "from": "https://comet.carbon/v1/pcf#BiogenicCarbon",
+        "to": "https://api.carbonsig.com/schemas/verifier-export/v4#DeclaredProduct.sinks",
+        "rel": "relatedMatch"
+      },
+      {
+        "from": "https://comet.carbon/v1/pcf#FunctionalUnit",
+        "to": "https://api.carbonsig.com/schemas/verifier-export/v4#DeclaredProduct.quantity",
+        "rel": "relatedMatch"
+      },
+      {
+        "from": "https://comet.carbon/v1/pcf#LCIAResult",
+        "to": "https://api.carbonsig.com/schemas/verifier-export/v4#DeclaredProduct.hotspotContributions",
+        "rel": "relatedMatch"
+      },
+      {
+        "from": "https://comet.carbon/v1/pcf#LCIAResult",
+        "to": "https://api.carbonsig.com/schemas/verifier-export/v4#HotspotEntry",
+        "rel": "relatedMatch"
+      },
+      {
+        "from": "https://comet.carbon/v1/core#Material",
+        "to": "https://api.carbonsig.com/schemas/verifier-export/v4#HotspotEntry.contributor",
+        "rel": "relatedMatch"
+      },
+      {
+        "from": "https://comet.carbon/v1/core#Process",
+        "to": "https://api.carbonsig.com/schemas/verifier-export/v4#HotspotEntry.process",
+        "rel": "relatedMatch"
+      },
+      {
+        "from": "https://comet.carbon/v1/pcf#LCIAResult",
+        "to": "https://api.carbonsig.com/schemas/verifier-export/v4#HotspotEntry.value",
+        "rel": "relatedMatch"
+      },
+      {
+        "from": "https://comet.carbon/v1/supplychain#SupplyChainLink",
+        "to": "https://api.carbonsig.com/schemas/verifier-export/v4#SystemRef.systemId",
+        "rel": "relatedMatch"
+      },
+      {
         "from": "https://comet.carbon/ext/responsiblesteel#CrudeSteelIntensity",
         "to": "https://ontology.materialintelligence.ai/cbam/EmbeddedEmissionsIntensity",
         "rel": "relatedMatch"
@@ -23743,6 +25719,21 @@
         "from": "https://comet.carbon/ext/responsiblesteel#annualCrudeSteelProduction",
         "to": "https://wbcsd.org/spec/pact/pathfinder/v3/declarationYear",
         "rel": "relatedMatch"
+      },
+      {
+        "from": "https://comet.carbon/v1/pcf#SystemBoundary",
+        "to": "https://api.carbonsig.com/schemas/verifier-export/v4#System",
+        "rel": "broadMatch"
+      },
+      {
+        "from": "https://comet.carbon/v1/supplychain#ActivityDataRecord",
+        "to": "https://api.carbonsig.com/schemas/verifier-export/v4#Flow",
+        "rel": "broadMatch"
+      },
+      {
+        "from": "https://comet.carbon/v1/pcf#EmbeddedEmissions",
+        "to": "https://api.carbonsig.com/schemas/verifier-export/v4#GHGDetails",
+        "rel": "broadMatch"
       },
       {
         "from": "https://comet.carbon/ext/responsiblesteel#kgCO2eqPerTonne",
@@ -24338,6 +26329,16 @@
   },
   "alignments": [
     {
+      "comet_curie": "comet-cn:OffsettingEvent",
+      "comet_local": "OffsettingEvent",
+      "relation": "closeMatch",
+      "target_standard": "CarbonSig Verifier Export v4",
+      "target_prefix": "csig",
+      "target_term": "DeclaredProduct.credits",
+      "target_iri": "https://api.carbonsig.com/schemas/verifier-export/v4#DeclaredProduct.credits",
+      "note": "ISO 14068-1 §3.3.1. Counterbalancing of the carbon footprint by retiring carbon credits that satisfy comet-cn:CreditCriterion. The retirement MUST happen in a public registry no later than 12 months after the end of the reporting period (§11.2)."
+    },
+    {
       "comet_curie": "comet-eac:Article6Authorization",
       "comet_local": "Article6Authorization",
       "relation": "mapsTo",
@@ -24588,6 +26589,36 @@
       "note": ""
     },
     {
+      "comet_curie": "comet-ef:DataProvenance",
+      "comet_local": "DataProvenance",
+      "relation": "relatedMatch",
+      "target_standard": "CarbonSig Verifier Export v4",
+      "target_prefix": "csig",
+      "target_term": "ActivityData.sourceId",
+      "target_iri": "https://api.carbonsig.com/schemas/verifier-export/v4#ActivityData.sourceId",
+      "note": "[certainty: Medium] Reference to the originating record/metering system."
+    },
+    {
+      "comet_curie": "comet-ef:EmissionFactor",
+      "comet_local": "EmissionFactor",
+      "relation": "exactMatch",
+      "target_standard": "CarbonSig Verifier Export v4",
+      "target_prefix": "csig",
+      "target_term": "GHGDetails.emissionFactor",
+      "target_iri": "https://api.carbonsig.com/schemas/verifier-export/v4#GHGDetails.emissionFactor",
+      "note": "[certainty: High] Inlined emission factor."
+    },
+    {
+      "comet_curie": "comet-ef:EmissionFactor",
+      "comet_local": "EmissionFactor",
+      "relation": "exactMatch",
+      "target_standard": "CarbonSig Verifier Export v4",
+      "target_prefix": "csig",
+      "target_term": "EmissionFactor",
+      "target_iri": "https://api.carbonsig.com/schemas/verifier-export/v4#EmissionFactor",
+      "note": "[certainty: High] Emission factor from the reference library."
+    },
+    {
       "comet_curie": "comet-ef:EmissionFactor",
       "comet_local": "EmissionFactor",
       "relation": "mapsTo",
@@ -24598,6 +26629,46 @@
       "note": ""
     },
     {
+      "comet_curie": "comet-ef:EmissionFactor",
+      "comet_local": "EmissionFactor",
+      "relation": "relatedMatch",
+      "target_standard": "CarbonSig Verifier Export v4",
+      "target_prefix": "csig",
+      "target_term": "EmissionFactor.title",
+      "target_iri": "https://api.carbonsig.com/schemas/verifier-export/v4#EmissionFactor.title",
+      "note": "[certainty: Medium] EF name; serialise as rdfs:label."
+    },
+    {
+      "comet_curie": "comet-ef:EmissionFactor.efGeography",
+      "comet_local": "EmissionFactor.efGeography",
+      "relation": "exactMatch",
+      "target_standard": "CarbonSig Verifier Export v4",
+      "target_prefix": "csig",
+      "target_term": "EmissionFactor.geography",
+      "target_iri": "https://api.carbonsig.com/schemas/verifier-export/v4#EmissionFactor.geography",
+      "note": "[certainty: High] Geographic scope of the factor."
+    },
+    {
+      "comet_curie": "comet-ef:EmissionFactor.efSource",
+      "comet_local": "EmissionFactor.efSource",
+      "relation": "closeMatch",
+      "target_standard": "CarbonSig Verifier Export v4",
+      "target_prefix": "csig",
+      "target_term": "EmissionFactor.publisher",
+      "target_iri": "https://api.carbonsig.com/schemas/verifier-export/v4#EmissionFactor.publisher",
+      "note": "[certainty: High] Publisher/source (IEA, ecoinvent, EPA …)."
+    },
+    {
+      "comet_curie": "comet-ef:EmissionFactor.efUnit",
+      "comet_local": "EmissionFactor.efUnit",
+      "relation": "exactMatch",
+      "target_standard": "CarbonSig Verifier Export v4",
+      "target_prefix": "csig",
+      "target_term": "EmissionFactor.referenceUnit",
+      "target_iri": "https://api.carbonsig.com/schemas/verifier-export/v4#EmissionFactor.referenceUnit",
+      "note": "[certainty: High] Unit the factor is expressed per."
+    },
+    {
       "comet_curie": "comet-ef:EmissionFactor.efUnit",
       "comet_local": "EmissionFactor.efUnit",
       "relation": "mapsTo",
@@ -24606,6 +26677,16 @@
       "target_term": "",
       "target_iri": "",
       "note": ""
+    },
+    {
+      "comet_curie": "comet-ef:EmissionFactor.efValue",
+      "comet_local": "EmissionFactor.efValue",
+      "relation": "exactMatch",
+      "target_standard": "CarbonSig Verifier Export v4",
+      "target_prefix": "csig",
+      "target_term": "EmissionFactor.valuePerUnit",
+      "target_iri": "https://api.carbonsig.com/schemas/verifier-export/v4#EmissionFactor.valuePerUnit",
+      "note": "[certainty: High] kg CO2e per reference unit. For DirectEmission flows this is the GWP100 factor → comet-ef:GWP100Value.gwpValue."
     },
     {
       "comet_curie": "comet-ef:GWP100Value.ipccAR",
@@ -24650,12 +26731,32 @@
     {
       "comet_curie": "comet-pcf:AllocationMethod",
       "comet_local": "AllocationMethod",
+      "relation": "closeMatch",
+      "target_standard": "CarbonSig Verifier Export v4",
+      "target_prefix": "csig",
+      "target_term": "SystemMetadata.allocationRules",
+      "target_iri": "https://api.carbonsig.com/schemas/verifier-export/v4#SystemMetadata.allocationRules",
+      "note": "[certainty: High] How shared burdens are allocated across co-products."
+    },
+    {
+      "comet_curie": "comet-pcf:AllocationMethod",
+      "comet_local": "AllocationMethod",
       "relation": "mapsTo",
       "target_standard": "WBCSD PACT",
       "target_prefix": "pact",
       "target_term": "allocationRulesDescription",
       "target_iri": "",
       "note": ""
+    },
+    {
+      "comet_curie": "comet-pcf:AllocationMethod",
+      "comet_local": "AllocationMethod",
+      "relation": "relatedMatch",
+      "target_standard": "CarbonSig Verifier Export v4",
+      "target_prefix": "csig",
+      "target_term": "GHGDetails.allocationFactor",
+      "target_iri": "https://api.carbonsig.com/schemas/verifier-export/v4#GHGDetails.allocationFactor",
+      "note": "[certainty: Medium] Fraction of a process's emissions allocated to an output. The factor produced by an AllocationMethod."
     },
     {
       "comet_curie": "comet-pcf:BiogenicCarbon",
@@ -24666,6 +26767,16 @@
       "target_term": "biogenic fields",
       "target_iri": "",
       "note": ""
+    },
+    {
+      "comet_curie": "comet-pcf:BiogenicCarbon",
+      "comet_local": "BiogenicCarbon",
+      "relation": "relatedMatch",
+      "target_standard": "CarbonSig Verifier Export v4",
+      "target_prefix": "csig",
+      "target_term": "DeclaredProduct.sinks",
+      "target_iri": "https://api.carbonsig.com/schemas/verifier-export/v4#DeclaredProduct.sinks",
+      "note": "[certainty: Medium] Carbon sinks/uptake. Alt: comet-cn:GHGRemovalEnhancement (ISO 14068 removals)."
     },
     {
       "comet_curie": "comet-pcf:BiogenicCarbon.biogenicCarbonContent",
@@ -24708,6 +26819,26 @@
       "note": ""
     },
     {
+      "comet_curie": "comet-pcf:CarbonIntensity",
+      "comet_local": "CarbonIntensity",
+      "relation": "closeMatch",
+      "target_standard": "CarbonSig Verifier Export v4",
+      "target_prefix": "csig",
+      "target_term": "DeclaredProduct.ghgIntensity",
+      "target_iri": "https://api.carbonsig.com/schemas/verifier-export/v4#DeclaredProduct.ghgIntensity",
+      "note": "[certainty: High] kg CO2e per declared unit."
+    },
+    {
+      "comet_curie": "comet-pcf:EPDDeclaration",
+      "comet_local": "EPDDeclaration",
+      "relation": "closeMatch",
+      "target_standard": "CarbonSig Verifier Export v4",
+      "target_prefix": "csig",
+      "target_term": "Declaration",
+      "target_iri": "https://api.carbonsig.com/schemas/verifier-export/v4#Declaration",
+      "note": "[certainty: Medium] Declared results view over the graph; an EPD/PCF-style declaration."
+    },
+    {
       "comet_curie": "comet-pcf:EPDDeclaration",
       "comet_local": "EPDDeclaration",
       "relation": "mapsTo",
@@ -24718,6 +26849,56 @@
       "note": ""
     },
     {
+      "comet_curie": "comet-pcf:EmbeddedEmissions",
+      "comet_local": "EmbeddedEmissions",
+      "relation": "broadMatch",
+      "target_standard": "CarbonSig Verifier Export v4",
+      "target_prefix": "csig",
+      "target_term": "GHGDetails",
+      "target_iri": "https://api.carbonsig.com/schemas/verifier-export/v4#GHGDetails",
+      "note": "[certainty: Medium] All GHG attributes of a flow. The extension point for environmental impact."
+    },
+    {
+      "comet_curie": "comet-pcf:EmbeddedEmissions",
+      "comet_local": "EmbeddedEmissions",
+      "relation": "closeMatch",
+      "target_standard": "CarbonSig Verifier Export v4",
+      "target_prefix": "csig",
+      "target_term": "Process.totals.embodiedEmissions",
+      "target_iri": "https://api.carbonsig.com/schemas/verifier-export/v4#Process.totals.embodiedEmissions",
+      "note": "[certainty: High] Pre-computed total kg CO2e across scopes for the process."
+    },
+    {
+      "comet_curie": "comet-pcf:EmbeddedEmissions",
+      "comet_local": "EmbeddedEmissions",
+      "relation": "closeMatch",
+      "target_standard": "CarbonSig Verifier Export v4",
+      "target_prefix": "csig",
+      "target_term": "GHGDetails.embodiedEmissions",
+      "target_iri": "https://api.carbonsig.com/schemas/verifier-export/v4#GHGDetails.embodiedEmissions",
+      "note": "[certainty: High] Total kg CO2e attributed to the flow, all gases and scopes."
+    },
+    {
+      "comet_curie": "comet-pcf:EmbeddedEmissions",
+      "comet_local": "EmbeddedEmissions",
+      "relation": "relatedMatch",
+      "target_standard": "CarbonSig Verifier Export v4",
+      "target_prefix": "csig",
+      "target_term": "DeclaredProduct.sources",
+      "target_iri": "https://api.carbonsig.com/schemas/verifier-export/v4#DeclaredProduct.sources",
+      "note": "[certainty: Medium] Gross emission sources total for the product."
+    },
+    {
+      "comet_curie": "comet-pcf:FunctionalUnit",
+      "comet_local": "FunctionalUnit",
+      "relation": "closeMatch",
+      "target_standard": "CarbonSig Verifier Export v4",
+      "target_prefix": "csig",
+      "target_term": "DeclaredProduct.unit",
+      "target_iri": "https://api.carbonsig.com/schemas/verifier-export/v4#DeclaredProduct.unit",
+      "note": "[certainty: High] Declared unit = functional unit basis."
+    },
+    {
       "comet_curie": "comet-pcf:FunctionalUnit",
       "comet_local": "FunctionalUnit",
       "relation": "mapsTo",
@@ -24726,6 +26907,16 @@
       "target_term": "declaredUnit + unitaryProductAmount",
       "target_iri": "",
       "note": ""
+    },
+    {
+      "comet_curie": "comet-pcf:FunctionalUnit",
+      "comet_local": "FunctionalUnit",
+      "relation": "relatedMatch",
+      "target_standard": "CarbonSig Verifier Export v4",
+      "target_prefix": "csig",
+      "target_term": "DeclaredProduct.quantity",
+      "target_iri": "https://api.carbonsig.com/schemas/verifier-export/v4#DeclaredProduct.quantity",
+      "note": "[certainty: Medium] Declared quantity; the basis of the functional unit."
     },
     {
       "comet_curie": "comet-pcf:GHGRemoval",
@@ -24756,6 +26947,46 @@
       "target_term": "IndirectGHGEmission",
       "target_iri": "https://www.iso.org/standard/14068-1#IndirectGHGEmission",
       "note": "ISO 14068-1 §3.2.6 'indirect GHG emission' covers both Scope 2 and Scope 3 in GHG Protocol terminology. Use comet-pcf:Scope2Emission or comet-pcf:Scope3Emission to disambiguate when location- vs market-based or category granularity is required."
+    },
+    {
+      "comet_curie": "comet-pcf:LCIAResult",
+      "comet_local": "LCIAResult",
+      "relation": "relatedMatch",
+      "target_standard": "CarbonSig Verifier Export v4",
+      "target_prefix": "csig",
+      "target_term": "Declaration.systemHotspot",
+      "target_iri": "https://api.carbonsig.com/schemas/verifier-export/v4#Declaration.systemHotspot",
+      "note": "[certainty: Medium] System-level contributor breakdown (hotspots)."
+    },
+    {
+      "comet_curie": "comet-pcf:LCIAResult",
+      "comet_local": "LCIAResult",
+      "relation": "relatedMatch",
+      "target_standard": "CarbonSig Verifier Export v4",
+      "target_prefix": "csig",
+      "target_term": "DeclaredProduct.hotspotContributions",
+      "target_iri": "https://api.carbonsig.com/schemas/verifier-export/v4#DeclaredProduct.hotspotContributions",
+      "note": "[certainty: Medium] Per-product contributor values (sparse)."
+    },
+    {
+      "comet_curie": "comet-pcf:LCIAResult",
+      "comet_local": "LCIAResult",
+      "relation": "relatedMatch",
+      "target_standard": "CarbonSig Verifier Export v4",
+      "target_prefix": "csig",
+      "target_term": "HotspotEntry",
+      "target_iri": "https://api.carbonsig.com/schemas/verifier-export/v4#HotspotEntry",
+      "note": "[certainty: Medium] One contributor row in the hotspot analysis."
+    },
+    {
+      "comet_curie": "comet-pcf:LCIAResult",
+      "comet_local": "LCIAResult",
+      "relation": "relatedMatch",
+      "target_standard": "CarbonSig Verifier Export v4",
+      "target_prefix": "csig",
+      "target_term": "HotspotEntry.value",
+      "target_iri": "https://api.carbonsig.com/schemas/verifier-export/v4#HotspotEntry.value",
+      "note": "[certainty: Medium] kg CO2e contribution."
     },
     {
       "comet_curie": "comet-pcf:PCFResult",
@@ -24798,6 +27029,36 @@
       "note": ""
     },
     {
+      "comet_curie": "comet-pcf:ProductCarbonFootprint",
+      "comet_local": "ProductCarbonFootprint",
+      "relation": "closeMatch",
+      "target_standard": "CarbonSig Verifier Export v4",
+      "target_prefix": "csig",
+      "target_term": "DeclaredProduct",
+      "target_iri": "https://api.carbonsig.com/schemas/verifier-export/v4#DeclaredProduct",
+      "note": "[certainty: High] One declared output product = one product carbon footprint."
+    },
+    {
+      "comet_curie": "comet-pcf:ProductCarbonFootprint",
+      "comet_local": "ProductCarbonFootprint",
+      "relation": "relatedMatch",
+      "target_standard": "CarbonSig Verifier Export v4",
+      "target_prefix": "csig",
+      "target_term": "SystemMetadata.title",
+      "target_iri": "https://api.carbonsig.com/schemas/verifier-export/v4#SystemMetadata.title",
+      "note": "[certainty: Low] Study title. Serialise as rdfs:label/skos:prefLabel on the PCF study."
+    },
+    {
+      "comet_curie": "comet-pcf:ProductCarbonFootprint",
+      "comet_local": "ProductCarbonFootprint",
+      "relation": "relatedMatch",
+      "target_standard": "CarbonSig Verifier Export v4",
+      "target_prefix": "csig",
+      "target_term": "Declaration.products",
+      "target_iri": "https://api.carbonsig.com/schemas/verifier-export/v4#Declaration.products",
+      "note": "[certainty: Medium] Each declared product yields one PCF column."
+    },
+    {
       "comet_curie": "comet-pcf:ProductCarbonFootprint.exemptedPercent",
       "comet_local": "ProductCarbonFootprint.exemptedPercent",
       "relation": "mapsTo",
@@ -24828,6 +27089,26 @@
       "note": ""
     },
     {
+      "comet_curie": "comet-pcf:ProductCarbonFootprint.pcfId",
+      "comet_local": "ProductCarbonFootprint.pcfId",
+      "relation": "relatedMatch",
+      "target_standard": "CarbonSig Verifier Export v4",
+      "target_prefix": "csig",
+      "target_term": "System.systemId",
+      "target_iri": "https://api.carbonsig.com/schemas/verifier-export/v4#System.systemId",
+      "note": "[certainty: Low] System identifier; loosely the study/PCF id. Primarily graph-wiring."
+    },
+    {
+      "comet_curie": "comet-pcf:ProductCarbonFootprint.totalGWP",
+      "comet_local": "ProductCarbonFootprint.totalGWP",
+      "relation": "closeMatch",
+      "target_standard": "CarbonSig Verifier Export v4",
+      "target_prefix": "csig",
+      "target_term": "DeclaredProduct.embodiedEmissions",
+      "target_iri": "https://api.carbonsig.com/schemas/verifier-export/v4#DeclaredProduct.embodiedEmissions",
+      "note": "[certainty: High] Absolute kg CO2e for the product. Alt: comet-pcf:EmbeddedEmissions."
+    },
+    {
       "comet_curie": "comet-pcf:ProductCarbonFootprint.totalGWP",
       "comet_local": "ProductCarbonFootprint.totalGWP",
       "relation": "mapsTo",
@@ -24850,12 +27131,42 @@
     {
       "comet_curie": "comet-pcf:StandardRef",
       "comet_local": "StandardRef",
+      "relation": "closeMatch",
+      "target_standard": "CarbonSig Verifier Export v4",
+      "target_prefix": "csig",
+      "target_term": "SystemMetadata.declaration",
+      "target_iri": "https://api.carbonsig.com/schemas/verifier-export/v4#SystemMetadata.declaration",
+      "note": "[certainty: Medium] Free-text declaration of the standard/scope (e.g. 'ISO 14067, cradle-to-gate')."
+    },
+    {
+      "comet_curie": "comet-pcf:StandardRef",
+      "comet_local": "StandardRef",
+      "relation": "closeMatch",
+      "target_standard": "CarbonSig Verifier Export v4",
+      "target_prefix": "csig",
+      "target_term": "SystemMetadata.calculationMethodology",
+      "target_iri": "https://api.carbonsig.com/schemas/verifier-export/v4#SystemMetadata.calculationMethodology",
+      "note": "[certainty: High] Calculation standard/methodology (GHG Protocol, PEF, …). Alt: comet-pcf:PCRReference."
+    },
+    {
+      "comet_curie": "comet-pcf:StandardRef",
+      "comet_local": "StandardRef",
       "relation": "mapsTo",
       "target_standard": "WBCSD PACT",
       "target_prefix": "pact",
       "target_term": "crossSectoralStandardsUsed",
       "target_iri": "",
       "note": ""
+    },
+    {
+      "comet_curie": "comet-pcf:SystemBoundary",
+      "comet_local": "SystemBoundary",
+      "relation": "broadMatch",
+      "target_standard": "CarbonSig Verifier Export v4",
+      "target_prefix": "csig",
+      "target_term": "System",
+      "target_iri": "https://api.carbonsig.com/schemas/verifier-export/v4#System",
+      "note": "[certainty: Medium] A System is the boundary within which processes and flows produce one or more product PCFs. COMET splits this into SystemBoundary + the resulting ProductCarbonFootprint(s)."
     },
     {
       "comet_curie": "comet-pcf:SystemBoundary",
@@ -24880,12 +27191,42 @@
     {
       "comet_curie": "comet-pcf:SystemBoundary",
       "comet_local": "SystemBoundary",
+      "relation": "exactMatch",
+      "target_standard": "CarbonSig Verifier Export v4",
+      "target_prefix": "csig",
+      "target_term": "SystemMetadata.systemBoundary",
+      "target_iri": "https://api.carbonsig.com/schemas/verifier-export/v4#SystemMetadata.systemBoundary",
+      "note": "[certainty: High] e.g. 'Cradle to Gate'. Direct correspondence."
+    },
+    {
+      "comet_curie": "comet-pcf:SystemBoundary",
+      "comet_local": "SystemBoundary",
       "relation": "mapsTo",
       "target_standard": "WBCSD PACT",
       "target_prefix": "pact",
       "target_term": "boundaryProcessesDescription",
       "target_iri": "",
       "note": ""
+    },
+    {
+      "comet_curie": "comet-pcf:SystemBoundary",
+      "comet_local": "SystemBoundary",
+      "relation": "relatedMatch",
+      "target_standard": "CarbonSig Verifier Export v4",
+      "target_prefix": "csig",
+      "target_term": "SystemMetadata.cutOffRules",
+      "target_iri": "https://api.carbonsig.com/schemas/verifier-export/v4#SystemMetadata.cutOffRules",
+      "note": "[certainty: Medium] Cut-off criteria are a component of the boundary definition."
+    },
+    {
+      "comet_curie": "comet-pcf:UncertaintyAssessment",
+      "comet_local": "UncertaintyAssessment",
+      "relation": "closeMatch",
+      "target_standard": "CarbonSig Verifier Export v4",
+      "target_prefix": "csig",
+      "target_term": "ActivityData.uncertainty",
+      "target_iri": "https://api.carbonsig.com/schemas/verifier-export/v4#ActivityData.uncertainty",
+      "note": "[certainty: Medium] ±% uncertainty (reserved)."
     },
     {
       "comet_curie": "comet-pcf:UncertaintyAssessment",
@@ -26340,12 +28681,62 @@
     {
       "comet_curie": "comet-sc:ActivityDataRecord",
       "comet_local": "ActivityDataRecord",
+      "relation": "broadMatch",
+      "target_standard": "CarbonSig Verifier Export v4",
+      "target_prefix": "csig",
+      "target_term": "Flow",
+      "target_iri": "https://api.carbonsig.com/schemas/verifier-export/v4#Flow",
+      "note": "[certainty: Medium] A directed exchange in the process graph. Subtype (type/category) selects a more specific COMET class."
+    },
+    {
+      "comet_curie": "comet-sc:ActivityDataRecord",
+      "comet_local": "ActivityDataRecord",
+      "relation": "closeMatch",
+      "target_standard": "CarbonSig Verifier Export v4",
+      "target_prefix": "csig",
+      "target_term": "Flow.type.PurchasedInput",
+      "target_iri": "https://api.carbonsig.com/schemas/verifier-export/v4#Flow.type.PurchasedInput",
+      "note": "[certainty: High] Purchased input from the external market; a quantified activity-data record with an emission factor."
+    },
+    {
+      "comet_curie": "comet-sc:ActivityDataRecord",
+      "comet_local": "ActivityDataRecord",
+      "relation": "exactMatch",
+      "target_standard": "CarbonSig Verifier Export v4",
+      "target_prefix": "csig",
+      "target_term": "ActivityData",
+      "target_iri": "https://api.carbonsig.com/schemas/verifier-export/v4#ActivityData",
+      "note": "[certainty: High] The physical activity quantity with provenance and quality."
+    },
+    {
+      "comet_curie": "comet-sc:ActivityDataRecord",
+      "comet_local": "ActivityDataRecord",
       "relation": "mapsTo",
       "target_standard": "CAD Trust",
       "target_prefix": "cad trust",
       "target_term": "estimation table",
       "target_iri": "",
       "note": ""
+    },
+    {
+      "comet_curie": "comet-sc:ActivityDataRecord",
+      "comet_local": "ActivityDataRecord",
+      "relation": "relatedMatch",
+      "target_standard": "CarbonSig Verifier Export v4",
+      "target_prefix": "csig",
+      "target_term": "Flow.category.Service",
+      "target_iri": "https://api.carbonsig.com/schemas/verifier-export/v4#Flow.category.Service",
+      "note": "[certainty: Medium] Purchased service (incl. contracted waste disposal)."
+    },
+    {
+      "comet_curie": "comet-sc:ActivityDataRecord",
+      "comet_local": "ActivityDataRecord",
+      "relation": "relatedMatch",
+      "target_standard": "CarbonSig Verifier Export v4",
+      "target_prefix": "csig",
+      "target_term": "ActivityData.quantity",
+      "target_iri": "https://api.carbonsig.com/schemas/verifier-export/v4#ActivityData.quantity",
+      "note": "[certainty: Medium] Recorded physical quantity (paired with unit)."
     },
     {
       "comet_curie": "comet-sc:BaseYearEmissions",
@@ -26370,12 +28761,32 @@
     {
       "comet_curie": "comet-sc:DataQualityIndicator",
       "comet_local": "DataQualityIndicator",
+      "relation": "closeMatch",
+      "target_standard": "CarbonSig Verifier Export v4",
+      "target_prefix": "csig",
+      "target_term": "ActivityData.dataQuality",
+      "target_iri": "https://api.carbonsig.com/schemas/verifier-export/v4#ActivityData.dataQuality",
+      "note": "[certainty: High] Measured/Calculated/Estimated/Default → pedigree. COMET carries 5 DQI dimensions."
+    },
+    {
+      "comet_curie": "comet-sc:DataQualityIndicator",
+      "comet_local": "DataQualityIndicator",
       "relation": "mapsTo",
       "target_standard": "WBCSD PACT",
       "target_prefix": "pact",
       "target_term": "dqi object",
       "target_iri": "",
       "note": ""
+    },
+    {
+      "comet_curie": "comet-sc:DataQualityIndicator",
+      "comet_local": "DataQualityIndicator",
+      "relation": "relatedMatch",
+      "target_standard": "CarbonSig Verifier Export v4",
+      "target_prefix": "csig",
+      "target_term": "GHGDetails.calculationSource",
+      "target_iri": "https://api.carbonsig.com/schemas/verifier-export/v4#GHGDetails.calculationSource",
+      "note": "[certainty: Medium] Measured vs Calculated for waste quantities; overlaps activityData.dataQuality."
     },
     {
       "comet_curie": "comet-sc:DataQualityIndicator.coverageDQI",
@@ -26426,6 +28837,16 @@
       "target_term": "dqi.temporalDQR",
       "target_iri": "",
       "note": ""
+    },
+    {
+      "comet_curie": "comet-sc:EmissionIntensity",
+      "comet_local": "EmissionIntensity",
+      "relation": "closeMatch",
+      "target_standard": "CarbonSig Verifier Export v4",
+      "target_prefix": "csig",
+      "target_term": "GHGDetails.intensity",
+      "target_iri": "https://api.carbonsig.com/schemas/verifier-export/v4#GHGDetails.intensity",
+      "note": "[certainty: High] kg CO2e per unit of activity quantity."
     },
     {
       "comet_curie": "comet-sc:EmissionIntensity",
@@ -26500,6 +28921,36 @@
     {
       "comet_curie": "comet-sc:Scope1Emissions",
       "comet_local": "Scope1Emissions",
+      "relation": "closeMatch",
+      "target_standard": "CarbonSig Verifier Export v4",
+      "target_prefix": "csig",
+      "target_term": "Flow.type.ProcessWaste",
+      "target_iri": "https://api.carbonsig.com/schemas/verifier-export/v4#Flow.type.ProcessWaste",
+      "note": "[certainty: Medium] Release to environment. DirectEmission → Scope 1; ByproductWaste → Scope 3 (cat 5). See category rows."
+    },
+    {
+      "comet_curie": "comet-sc:Scope1Emissions",
+      "comet_local": "Scope1Emissions",
+      "relation": "closeMatch",
+      "target_standard": "CarbonSig Verifier Export v4",
+      "target_prefix": "csig",
+      "target_term": "Flow.category.DirectEmission",
+      "target_iri": "https://api.carbonsig.com/schemas/verifier-export/v4#Flow.category.DirectEmission",
+      "note": "[certainty: High] Gaseous GHG released directly to atmosphere; GWP-weighted."
+    },
+    {
+      "comet_curie": "comet-sc:Scope1Emissions",
+      "comet_local": "Scope1Emissions",
+      "relation": "exactMatch",
+      "target_standard": "CarbonSig Verifier Export v4",
+      "target_prefix": "csig",
+      "target_term": "GHGDetails.scopeBreakdown.scope1",
+      "target_iri": "https://api.carbonsig.com/schemas/verifier-export/v4#GHGDetails.scopeBreakdown.scope1",
+      "note": "[certainty: High] Direct emissions, kg CO2e."
+    },
+    {
+      "comet_curie": "comet-sc:Scope1Emissions",
+      "comet_local": "Scope1Emissions",
       "relation": "mapsTo",
       "target_standard": "GHG Protocol",
       "target_prefix": "ghg protocol",
@@ -26526,6 +28977,36 @@
       "target_term": "",
       "target_iri": "",
       "note": ""
+    },
+    {
+      "comet_curie": "comet-sc:Scope1Emissions",
+      "comet_local": "Scope1Emissions",
+      "relation": "relatedMatch",
+      "target_standard": "CarbonSig Verifier Export v4",
+      "target_prefix": "csig",
+      "target_term": "GHGDetails.emissionSource",
+      "target_iri": "https://api.carbonsig.com/schemas/verifier-export/v4#GHGDetails.emissionSource",
+      "note": "[certainty: Medium] Source category for waste flows (Stationary/Mobile Combustion, Fugitive, Waste Treatment)."
+    },
+    {
+      "comet_curie": "comet-sc:Scope2Emissions",
+      "comet_local": "Scope2Emissions",
+      "relation": "closeMatch",
+      "target_standard": "CarbonSig Verifier Export v4",
+      "target_prefix": "csig",
+      "target_term": "Flow.category.Energy",
+      "target_iri": "https://api.carbonsig.com/schemas/verifier-export/v4#Flow.category.Energy",
+      "note": "[certainty: Medium] Purchased electricity/steam/heat/cooling → Scope 2 when purchased."
+    },
+    {
+      "comet_curie": "comet-sc:Scope2Emissions",
+      "comet_local": "Scope2Emissions",
+      "relation": "exactMatch",
+      "target_standard": "CarbonSig Verifier Export v4",
+      "target_prefix": "csig",
+      "target_term": "GHGDetails.scopeBreakdown.scope2",
+      "target_iri": "https://api.carbonsig.com/schemas/verifier-export/v4#GHGDetails.scopeBreakdown.scope2",
+      "note": "[certainty: High] Indirect emissions from purchased energy, kg CO2e."
     },
     {
       "comet_curie": "comet-sc:Scope2Emissions",
@@ -26556,6 +29037,16 @@
       "target_term": "",
       "target_iri": "",
       "note": ""
+    },
+    {
+      "comet_curie": "comet-sc:Scope3Emissions",
+      "comet_local": "Scope3Emissions",
+      "relation": "exactMatch",
+      "target_standard": "CarbonSig Verifier Export v4",
+      "target_prefix": "csig",
+      "target_term": "GHGDetails.scopeBreakdown.scope3",
+      "target_iri": "https://api.carbonsig.com/schemas/verifier-export/v4#GHGDetails.scopeBreakdown.scope3",
+      "note": "[certainty: High] All other indirect emissions, kg CO2e."
     },
     {
       "comet_curie": "comet-sc:Scope3Emissions",
@@ -26598,6 +29089,16 @@
       "note": ""
     },
     {
+      "comet_curie": "comet-sc:Scope3Emissions",
+      "comet_local": "Scope3Emissions",
+      "relation": "relatedMatch",
+      "target_standard": "CarbonSig Verifier Export v4",
+      "target_prefix": "csig",
+      "target_term": "Flow.category.ByproductWaste",
+      "target_iri": "https://api.carbonsig.com/schemas/verifier-export/v4#Flow.category.ByproductWaste",
+      "note": "[certainty: Medium] Physical waste to external disposal → Scope 3 category 5."
+    },
+    {
       "comet_curie": "comet-sc:Scope3Emissions.category",
       "comet_local": "Scope3Emissions.category",
       "relation": "mapsTo",
@@ -26610,12 +29111,112 @@
     {
       "comet_curie": "comet-sc:SupplyChainLink",
       "comet_local": "SupplyChainLink",
+      "relation": "closeMatch",
+      "target_standard": "CarbonSig Verifier Export v4",
+      "target_prefix": "csig",
+      "target_term": "Flow.type.WIPFlow",
+      "target_iri": "https://api.carbonsig.com/schemas/verifier-export/v4#Flow.type.WIPFlow",
+      "note": "[certainty: Medium] Work-in-process exchange between two processes inside the same system."
+    },
+    {
+      "comet_curie": "comet-sc:SupplyChainLink",
+      "comet_local": "SupplyChainLink",
+      "relation": "closeMatch",
+      "target_standard": "CarbonSig Verifier Export v4",
+      "target_prefix": "csig",
+      "target_term": "Flow.type.IntermediateInput",
+      "target_iri": "https://api.carbonsig.com/schemas/verifier-export/v4#Flow.type.IntermediateInput",
+      "note": "[certainty: Medium] Exchange entering this system from a linked upstream system."
+    },
+    {
+      "comet_curie": "comet-sc:SupplyChainLink",
+      "comet_local": "SupplyChainLink",
+      "relation": "closeMatch",
+      "target_standard": "CarbonSig Verifier Export v4",
+      "target_prefix": "csig",
+      "target_term": "Flow.type.IntermediateOutput",
+      "target_iri": "https://api.carbonsig.com/schemas/verifier-export/v4#Flow.type.IntermediateOutput",
+      "note": "[certainty: Medium] Exchange leaving this system to a downstream system or declared product sink."
+    },
+    {
+      "comet_curie": "comet-sc:SupplyChainLink",
+      "comet_local": "SupplyChainLink",
       "relation": "mapsTo",
       "target_standard": "WBCSD PACT",
       "target_prefix": "pact",
       "target_term": "companyIds",
       "target_iri": "",
       "note": ""
+    },
+    {
+      "comet_curie": "comet-sc:SupplyChainLink",
+      "comet_local": "SupplyChainLink",
+      "relation": "relatedMatch",
+      "target_standard": "CarbonSig Verifier Export v4",
+      "target_prefix": "csig",
+      "target_term": "System.role",
+      "target_iri": "https://api.carbonsig.com/schemas/verifier-export/v4#System.role",
+      "note": "[certainty: Low] primary | upstream — encodes the supply-chain position of the system relative to the one under review."
+    },
+    {
+      "comet_curie": "comet-sc:SupplyChainLink",
+      "comet_local": "SupplyChainLink",
+      "relation": "relatedMatch",
+      "target_standard": "CarbonSig Verifier Export v4",
+      "target_prefix": "csig",
+      "target_term": "System.depth",
+      "target_iri": "https://api.carbonsig.com/schemas/verifier-export/v4#System.depth",
+      "note": "[certainty: Low] Tier distance from the primary system; supply-chain link depth."
+    },
+    {
+      "comet_curie": "comet-sc:SupplyChainLink",
+      "comet_local": "SupplyChainLink",
+      "relation": "relatedMatch",
+      "target_standard": "CarbonSig Verifier Export v4",
+      "target_prefix": "csig",
+      "target_term": "Flow.from",
+      "target_iri": "https://api.carbonsig.com/schemas/verifier-export/v4#Flow.from",
+      "note": "[certainty: Medium] Source node of the edge (process / linked system / boundary)."
+    },
+    {
+      "comet_curie": "comet-sc:SupplyChainLink",
+      "comet_local": "SupplyChainLink",
+      "relation": "relatedMatch",
+      "target_standard": "CarbonSig Verifier Export v4",
+      "target_prefix": "csig",
+      "target_term": "Flow.to",
+      "target_iri": "https://api.carbonsig.com/schemas/verifier-export/v4#Flow.to",
+      "note": "[certainty: Medium] Destination node of the edge."
+    },
+    {
+      "comet_curie": "comet-sc:SupplyChainLink",
+      "comet_local": "SupplyChainLink",
+      "relation": "relatedMatch",
+      "target_standard": "CarbonSig Verifier Export v4",
+      "target_prefix": "csig",
+      "target_term": "Flow.destinations",
+      "target_iri": "https://api.carbonsig.com/schemas/verifier-export/v4#Flow.destinations",
+      "note": "[certainty: Low] Split-edge legs when one flow serves multiple receivers."
+    },
+    {
+      "comet_curie": "comet-sc:SupplyChainLink",
+      "comet_local": "SupplyChainLink",
+      "relation": "relatedMatch",
+      "target_standard": "CarbonSig Verifier Export v4",
+      "target_prefix": "csig",
+      "target_term": "SystemRef.systemId",
+      "target_iri": "https://api.carbonsig.com/schemas/verifier-export/v4#SystemRef.systemId",
+      "note": "[certainty: Medium] Cross-system linkage (the linked system)."
+    },
+    {
+      "comet_curie": "comet-sc:TransportEvent",
+      "comet_local": "TransportEvent",
+      "relation": "closeMatch",
+      "target_standard": "CarbonSig Verifier Export v4",
+      "target_prefix": "csig",
+      "target_term": "Flow.category.Transport",
+      "target_iri": "https://api.carbonsig.com/schemas/verifier-export/v4#Flow.category.Transport",
+      "note": "[certainty: High] Freight/logistics activity."
     },
     {
       "comet_curie": "comet-sc:ValueChain",
@@ -26656,6 +29257,16 @@
       "target_term": "",
       "target_iri": "",
       "note": ""
+    },
+    {
+      "comet_curie": "comet-ver:AssuranceLevel",
+      "comet_local": "AssuranceLevel",
+      "relation": "closeMatch",
+      "target_standard": "CarbonSig Verifier Export v4",
+      "target_prefix": "csig",
+      "target_term": "Flow.verificationStatus",
+      "target_iri": "https://api.carbonsig.com/schemas/verifier-export/v4#Flow.verificationStatus",
+      "note": "[certainty: Medium] 'Self Attested' / 'Third Party Verified' on intermediate flows → assurance level. Alt: comet-ver:VerificationClaim."
     },
     {
       "comet_curie": "comet-ver:AssuranceLevel",
@@ -27030,12 +29641,42 @@
     {
       "comet_curie": "comet:Material",
       "comet_local": "Material",
+      "relation": "closeMatch",
+      "target_standard": "CarbonSig Verifier Export v4",
+      "target_prefix": "csig",
+      "target_term": "Flow.category.Material",
+      "target_iri": "https://api.carbonsig.com/schemas/verifier-export/v4#Flow.category.Material",
+      "note": "[certainty: High] Raw or processed material."
+    },
+    {
+      "comet_curie": "comet:Material",
+      "comet_local": "Material",
+      "relation": "closeMatch",
+      "target_standard": "CarbonSig Verifier Export v4",
+      "target_prefix": "csig",
+      "target_term": "DeclaredProduct.title",
+      "target_iri": "https://api.carbonsig.com/schemas/verifier-export/v4#DeclaredProduct.title",
+      "note": "[certainty: Medium] The product itself ≈ a Material; title serialises as rdfs:label."
+    },
+    {
+      "comet_curie": "comet:Material",
+      "comet_local": "Material",
       "relation": "mapsTo",
       "target_standard": "WBCSD PACT",
       "target_prefix": "pact",
       "target_term": "productDescription",
       "target_iri": "",
       "note": ""
+    },
+    {
+      "comet_curie": "comet:Material",
+      "comet_local": "Material",
+      "relation": "relatedMatch",
+      "target_standard": "CarbonSig Verifier Export v4",
+      "target_prefix": "csig",
+      "target_term": "HotspotEntry.contributor",
+      "target_iri": "https://api.carbonsig.com/schemas/verifier-export/v4#HotspotEntry.contributor",
+      "note": "[certainty: Low] The contributing input/material/emission."
     },
     {
       "comet_curie": "comet:Material.cpcCode",
@@ -27118,6 +29759,46 @@
       "note": ""
     },
     {
+      "comet_curie": "comet:Process",
+      "comet_local": "Process",
+      "relation": "exactMatch",
+      "target_standard": "CarbonSig Verifier Export v4",
+      "target_prefix": "csig",
+      "target_term": "Process",
+      "target_iri": "https://api.carbonsig.com/schemas/verifier-export/v4#Process",
+      "note": "[certainty: High] A unit process node."
+    },
+    {
+      "comet_curie": "comet:Process",
+      "comet_local": "Process",
+      "relation": "relatedMatch",
+      "target_standard": "CarbonSig Verifier Export v4",
+      "target_prefix": "csig",
+      "target_term": "Process.processId",
+      "target_iri": "https://api.carbonsig.com/schemas/verifier-export/v4#Process.processId",
+      "note": "[certainty: Medium] Node identifier. COMET identifies a Process by IRI rather than a dedicated id property."
+    },
+    {
+      "comet_curie": "comet:Process",
+      "comet_local": "Process",
+      "relation": "relatedMatch",
+      "target_standard": "CarbonSig Verifier Export v4",
+      "target_prefix": "csig",
+      "target_term": "Process.title",
+      "target_iri": "https://api.carbonsig.com/schemas/verifier-export/v4#Process.title",
+      "note": "[certainty: Medium] Process label; serialise as rdfs:label."
+    },
+    {
+      "comet_curie": "comet:Process",
+      "comet_local": "Process",
+      "relation": "relatedMatch",
+      "target_standard": "CarbonSig Verifier Export v4",
+      "target_prefix": "csig",
+      "target_term": "HotspotEntry.process",
+      "target_iri": "https://api.carbonsig.com/schemas/verifier-export/v4#HotspotEntry.process",
+      "note": "[certainty: Medium] The process the contribution arises in."
+    },
+    {
       "comet_curie": "comet:Process.processType",
       "comet_local": "Process.processType",
       "relation": "mapsTo",
@@ -27180,6 +29861,16 @@
     {
       "comet_curie": "comet:Site.siteId",
       "comet_local": "Site.siteId",
+      "relation": "exactMatch",
+      "target_standard": "CarbonSig Verifier Export v4",
+      "target_prefix": "csig",
+      "target_term": "SystemMetadata.siteId",
+      "target_iri": "https://api.carbonsig.com/schemas/verifier-export/v4#SystemMetadata.siteId",
+      "note": "[certainty: High] Production site identifier."
+    },
+    {
+      "comet_curie": "comet:Site.siteId",
+      "comet_local": "Site.siteId",
       "relation": "mapsTo",
       "target_standard": "EU CBAM",
       "target_prefix": "cbam",
@@ -27230,12 +29921,32 @@
     {
       "comet_curie": "comet:TimePeriod.endDate",
       "comet_local": "TimePeriod.endDate",
+      "relation": "exactMatch",
+      "target_standard": "CarbonSig Verifier Export v4",
+      "target_prefix": "csig",
+      "target_term": "SystemMetadata.endDate",
+      "target_iri": "https://api.carbonsig.com/schemas/verifier-export/v4#SystemMetadata.endDate",
+      "note": "[certainty: High] Data collection period end."
+    },
+    {
+      "comet_curie": "comet:TimePeriod.endDate",
+      "comet_local": "TimePeriod.endDate",
       "relation": "mapsTo",
       "target_standard": "WBCSD PACT",
       "target_prefix": "pact",
       "target_term": "referencePeriodEnd",
       "target_iri": "",
       "note": ""
+    },
+    {
+      "comet_curie": "comet:TimePeriod.startDate",
+      "comet_local": "TimePeriod.startDate",
+      "relation": "exactMatch",
+      "target_standard": "CarbonSig Verifier Export v4",
+      "target_prefix": "csig",
+      "target_term": "SystemMetadata.startDate",
+      "target_iri": "https://api.carbonsig.com/schemas/verifier-export/v4#SystemMetadata.startDate",
+      "note": "[certainty: High] Data collection period start."
     },
     {
       "comet_curie": "comet:TimePeriod.startDate",
@@ -27260,12 +29971,32 @@
     {
       "comet_curie": "comet:UnitOfMeasure",
       "comet_local": "UnitOfMeasure",
+      "relation": "closeMatch",
+      "target_standard": "CarbonSig Verifier Export v4",
+      "target_prefix": "csig",
+      "target_term": "ActivityData.unit",
+      "target_iri": "https://api.carbonsig.com/schemas/verifier-export/v4#ActivityData.unit",
+      "note": "[certainty: High] Activity-data unit; align to QUDT units via comet:UnitOfMeasure."
+    },
+    {
+      "comet_curie": "comet:UnitOfMeasure",
+      "comet_local": "UnitOfMeasure",
       "relation": "mapsTo",
       "target_standard": "QUDT",
       "target_prefix": "qudt",
       "target_term": "Unit",
       "target_iri": "",
       "note": ""
+    },
+    {
+      "comet_curie": "comet:UnitOfMeasure",
+      "comet_local": "UnitOfMeasure",
+      "relation": "relatedMatch",
+      "target_standard": "CarbonSig Verifier Export v4",
+      "target_prefix": "csig",
+      "target_term": "GHGDetails.conversionRatio",
+      "target_iri": "https://api.carbonsig.com/schemas/verifier-export/v4#GHGDetails.conversionRatio",
+      "note": "[certainty: Low] Unit-conversion multiplier (activity unit → EF reference unit). No dedicated COMET term."
     }
   ],
   "schema_fields": [
@@ -28071,14 +30802,14 @@
     }
   ],
   "stats": {
-    "terms": 937,
-    "classes": 129,
-    "properties": 127,
+    "terms": 946,
+    "classes": 133,
+    "properties": 132,
     "fields": 649,
-    "alignments": 293,
+    "alignments": 367,
     "schema_fields": 80,
-    "namespaces": 11,
-    "graph_nodes": 489,
-    "graph_edges": 275
+    "namespaces": 12,
+    "graph_nodes": 604,
+    "graph_edges": 354
   }
 }
