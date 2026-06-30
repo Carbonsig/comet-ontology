@@ -82,6 +82,14 @@
       "term_count": 9
     },
     {
+      "prefix": "comet-pcr",
+      "name": "PCR Method / CarbonSig (ext)",
+      "layer": "Extension",
+      "color": "#0a7c5a",
+      "graph_default": true,
+      "term_count": 0
+    },
+    {
       "prefix": "cadtrust",
       "name": "CAD Trust Data Dictionary",
       "layer": "CAD Trust (incorporated)",
@@ -20870,78 +20878,6 @@
         "defined": true
       },
       {
-        "id": "https://comet.carbon/v1/core#Organization",
-        "label": "Organization",
-        "curie": "comet:Organization",
-        "kind": "Reference",
-        "prefix": "comet",
-        "namespace": "Core",
-        "layer": "L1 · Core",
-        "color": "#1a3a6b",
-        "definition": "",
-        "defined": false
-      },
-      {
-        "id": "https://comet.carbon/v1/core#Process",
-        "label": "Process",
-        "curie": "comet:Process",
-        "kind": "Reference",
-        "prefix": "comet",
-        "namespace": "Core",
-        "layer": "L1 · Core",
-        "color": "#1a3a6b",
-        "definition": "",
-        "defined": false
-      },
-      {
-        "id": "https://comet.carbon/v1/core#Site",
-        "label": "Site",
-        "curie": "comet:Site",
-        "kind": "Reference",
-        "prefix": "comet",
-        "namespace": "Core",
-        "layer": "L1 · Core",
-        "color": "#1a3a6b",
-        "definition": "",
-        "defined": false
-      },
-      {
-        "id": "https://comet.carbon/v1/ver#DisclosureRecord",
-        "label": "DisclosureRecord",
-        "curie": "comet-ver:DisclosureRecord",
-        "kind": "Reference",
-        "prefix": "comet-ver",
-        "namespace": "Verification",
-        "layer": "L6 · Verification",
-        "color": "#1a5f6b",
-        "definition": "",
-        "defined": false
-      },
-      {
-        "id": "https://comet.carbon/v1/market#CarbonPremium",
-        "label": "CarbonPremium",
-        "curie": "comet-mkt:CarbonPremium",
-        "kind": "Reference",
-        "prefix": "comet-mkt",
-        "namespace": "Market",
-        "layer": "L7 · Market",
-        "color": "#7a2f6b",
-        "definition": "",
-        "defined": false
-      },
-      {
-        "id": "https://comet.carbon/v1/eac#Certification",
-        "label": "Certification",
-        "curie": "comet-eac:Certification",
-        "kind": "Reference",
-        "prefix": "comet-eac",
-        "namespace": "Environmental Attribute Certificate",
-        "layer": "L5 · EAC",
-        "color": "#9a7c2f",
-        "definition": "",
-        "defined": false
-      },
-      {
         "id": "https://comet.carbon/v1/pcf#LCIAResult",
         "label": "LCIAResult",
         "curie": "comet-pcf:LCIAResult",
@@ -20966,14 +20902,26 @@
         "defined": false
       },
       {
-        "id": "https://comet.carbon/v1/ver#AuditTrail",
-        "label": "AuditTrail",
-        "curie": "comet-ver:AuditTrail",
+        "id": "https://comet.carbon/v1/core#Site",
+        "label": "Site",
+        "curie": "comet:Site",
         "kind": "Reference",
-        "prefix": "comet-ver",
-        "namespace": "Verification",
-        "layer": "L6 · Verification",
-        "color": "#1a5f6b",
+        "prefix": "comet",
+        "namespace": "Core",
+        "layer": "L1 · Core",
+        "color": "#1a3a6b",
+        "definition": "",
+        "defined": false
+      },
+      {
+        "id": "https://comet.carbon/v1/market#CarbonPremium",
+        "label": "CarbonPremium",
+        "curie": "comet-mkt:CarbonPremium",
+        "kind": "Reference",
+        "prefix": "comet-mkt",
+        "namespace": "Market",
+        "layer": "L7 · Market",
+        "color": "#7a2f6b",
         "definition": "",
         "defined": false
       },
@@ -20990,50 +20938,14 @@
         "defined": false
       },
       {
-        "id": "https://comet.carbon/ext/pcr-japan#JapanesePCRField",
-        "label": "JapanesePCRField",
-        "curie": "comet-pj:JapanesePCRField",
+        "id": "https://comet.carbon/v1/core#Process",
+        "label": "Process",
+        "curie": "comet:Process",
         "kind": "Reference",
-        "prefix": "comet-pj",
-        "namespace": "PCR Japan / SuMPO EcoLeaf (ext)",
-        "layer": "Extension",
-        "color": "#c8720a",
-        "definition": "",
-        "defined": false
-      },
-      {
-        "id": "https://comet.carbon/v1/pcf#PCRDocument",
-        "label": "PCRDocument",
-        "curie": "comet-pcf:PCRDocument",
-        "kind": "Reference",
-        "prefix": "comet-pcf",
-        "namespace": "Product Carbon Footprint",
-        "layer": "L4 · PCF",
-        "color": "#1a6b3c",
-        "definition": "",
-        "defined": false
-      },
-      {
-        "id": "https://comet.carbon/v1/pcf#PCFResult",
-        "label": "PCFResult",
-        "curie": "comet-pcf:PCFResult",
-        "kind": "Reference",
-        "prefix": "comet-pcf",
-        "namespace": "Product Carbon Footprint",
-        "layer": "L4 · PCF",
-        "color": "#1a6b3c",
-        "definition": "",
-        "defined": false
-      },
-      {
-        "id": "https://comet.carbon/v1/eac#RetirementEvent",
-        "label": "RetirementEvent",
-        "curie": "comet-eac:RetirementEvent",
-        "kind": "Reference",
-        "prefix": "comet-eac",
-        "namespace": "Environmental Attribute Certificate",
-        "layer": "L5 · EAC",
-        "color": "#9a7c2f",
+        "prefix": "comet",
+        "namespace": "Core",
+        "layer": "L1 · Core",
+        "color": "#1a3a6b",
         "definition": "",
         "defined": false
       },
@@ -21050,14 +20962,74 @@
         "defined": false
       },
       {
-        "id": "https://comet.carbon/v1/eac#MaterialStewardCert",
-        "label": "MaterialStewardCert",
-        "curie": "comet-eac:MaterialStewardCert",
+        "id": "https://comet.carbon/v1/core#Organization",
+        "label": "Organization",
+        "curie": "comet:Organization",
+        "kind": "Reference",
+        "prefix": "comet",
+        "namespace": "Core",
+        "layer": "L1 · Core",
+        "color": "#1a3a6b",
+        "definition": "",
+        "defined": false
+      },
+      {
+        "id": "https://comet.carbon/v1/eac#Certification",
+        "label": "Certification",
+        "curie": "comet-eac:Certification",
         "kind": "Reference",
         "prefix": "comet-eac",
         "namespace": "Environmental Attribute Certificate",
         "layer": "L5 · EAC",
         "color": "#9a7c2f",
+        "definition": "",
+        "defined": false
+      },
+      {
+        "id": "https://comet.carbon/v1/ver#AuditTrail",
+        "label": "AuditTrail",
+        "curie": "comet-ver:AuditTrail",
+        "kind": "Reference",
+        "prefix": "comet-ver",
+        "namespace": "Verification",
+        "layer": "L6 · Verification",
+        "color": "#1a5f6b",
+        "definition": "",
+        "defined": false
+      },
+      {
+        "id": "https://comet.carbon/v1/eac#RetirementEvent",
+        "label": "RetirementEvent",
+        "curie": "comet-eac:RetirementEvent",
+        "kind": "Reference",
+        "prefix": "comet-eac",
+        "namespace": "Environmental Attribute Certificate",
+        "layer": "L5 · EAC",
+        "color": "#9a7c2f",
+        "definition": "",
+        "defined": false
+      },
+      {
+        "id": "https://comet.carbon/v1/ver#DisclosureRecord",
+        "label": "DisclosureRecord",
+        "curie": "comet-ver:DisclosureRecord",
+        "kind": "Reference",
+        "prefix": "comet-ver",
+        "namespace": "Verification",
+        "layer": "L6 · Verification",
+        "color": "#1a5f6b",
+        "definition": "",
+        "defined": false
+      },
+      {
+        "id": "https://comet.carbon/v1/pcf#PCFResult",
+        "label": "PCFResult",
+        "curie": "comet-pcf:PCFResult",
+        "kind": "Reference",
+        "prefix": "comet-pcf",
+        "namespace": "Product Carbon Footprint",
+        "layer": "L4 · PCF",
+        "color": "#1a6b3c",
         "definition": "",
         "defined": false
       },
@@ -21070,6 +21042,42 @@
         "namespace": "Product Carbon Footprint",
         "layer": "L4 · PCF",
         "color": "#1a6b3c",
+        "definition": "",
+        "defined": false
+      },
+      {
+        "id": "https://comet.carbon/v1/pcf#PCRDocument",
+        "label": "PCRDocument",
+        "curie": "comet-pcf:PCRDocument",
+        "kind": "Reference",
+        "prefix": "comet-pcf",
+        "namespace": "Product Carbon Footprint",
+        "layer": "L4 · PCF",
+        "color": "#1a6b3c",
+        "definition": "",
+        "defined": false
+      },
+      {
+        "id": "https://comet.carbon/ext/pcr-japan#JapanesePCRField",
+        "label": "JapanesePCRField",
+        "curie": "comet-pj:JapanesePCRField",
+        "kind": "Reference",
+        "prefix": "comet-pj",
+        "namespace": "PCR Japan / SuMPO EcoLeaf (ext)",
+        "layer": "Extension",
+        "color": "#c8720a",
+        "definition": "",
+        "defined": false
+      },
+      {
+        "id": "https://comet.carbon/v1/eac#MaterialStewardCert",
+        "label": "MaterialStewardCert",
+        "curie": "comet-eac:MaterialStewardCert",
+        "kind": "Reference",
+        "prefix": "comet-eac",
+        "namespace": "Environmental Attribute Certificate",
+        "layer": "L5 · EAC",
+        "color": "#9a7c2f",
         "definition": "",
         "defined": false
       },
@@ -24556,33 +24564,28 @@
     ],
     "edges": [
       {
-        "from": "https://comet.carbon/ext/iso14068#Entity",
-        "to": "https://comet.carbon/v1/core#Organization",
+        "from": "https://comet.carbon/ext/iso14068#hasVerificationOpinion",
+        "to": "https://comet.carbon/ext/iso14068#VerificationOpinion",
+        "rel": "range"
+      },
+      {
+        "from": "https://comet.carbon/ext/responsiblesteel#CrudeSteelIntensity",
+        "to": "https://comet.carbon/v1/pcf#LCIAResult",
         "rel": "subClassOf"
       },
       {
-        "from": "https://comet.carbon/ext/pcr-japan#ISO21930PCR",
+        "from": "https://comet.carbon/ext/pcr-japan#LegacyEcoLeafPCR",
         "to": "https://comet.carbon/ext/pcr-japan#SuMPOPCRDocument",
         "rel": "subClassOf"
       },
       {
-        "from": "https://comet.carbon/ext/responsiblesteel#applicableDPL",
-        "to": "https://comet.carbon/ext/responsiblesteel#DecarbProgressLevel",
+        "from": "https://comet.carbon/ext/iso14068#hasReportingPeriod",
+        "to": "https://comet.carbon/ext/iso14068#ReportingPeriod",
         "rel": "range"
       },
       {
-        "from": "https://comet.carbon/ext/iso14068#hasSubject",
-        "to": "https://comet.carbon/ext/iso14068#Subject",
-        "rel": "range"
-      },
-      {
-        "from": "https://comet.carbon/ext/iso14068#hasCreditType",
-        "to": "https://comet.carbon/ext/iso14068#CreditType",
-        "rel": "range"
-      },
-      {
-        "from": "https://comet.carbon/ext/responsiblesteel#SteelProductionRoute",
-        "to": "https://comet.carbon/v1/core#Process",
+        "from": "https://comet.carbon/ext/responsiblesteel#RSInputMaterial",
+        "to": "https://comet.carbon/v1/core#Material",
         "rel": "subClassOf"
       },
       {
@@ -24591,82 +24594,12 @@
         "rel": "subClassOf"
       },
       {
-        "from": "https://comet.carbon/ext/responsiblesteel#ScrapCategory",
-        "to": "https://comet.carbon/ext/responsiblesteel#RSInputMaterial",
-        "rel": "subClassOf"
-      },
-      {
-        "from": "https://comet.carbon/ext/iso14068#CarbonNeutralityReport",
-        "to": "https://comet.carbon/v1/ver#DisclosureRecord",
-        "rel": "subClassOf"
+        "from": "https://comet.carbon/ext/responsiblesteel#hasSPL",
+        "to": "https://comet.carbon/ext/responsiblesteel#SourcingProgressLevel",
+        "rel": "range"
       },
       {
         "from": "https://comet.carbon/ext/responsiblesteel#ProgressLevelPricing",
-        "to": "https://comet.carbon/v1/market#CarbonPremium",
-        "rel": "subClassOf"
-      },
-      {
-        "from": "https://comet.carbon/ext/responsiblesteel#hasNonConformity",
-        "to": "https://comet.carbon/ext/responsiblesteel#NonConformity",
-        "rel": "range"
-      },
-      {
-        "from": "https://comet.carbon/ext/pcr-japan#EcoLeafDeclaration",
-        "to": "https://comet.carbon/v1/eac#Certification",
-        "rel": "subClassOf"
-      },
-      {
-        "from": "https://comet.carbon/ext/responsiblesteel#CrudeSteelIntensity",
-        "to": "https://comet.carbon/v1/pcf#LCIAResult",
-        "rel": "subClassOf"
-      },
-      {
-        "from": "https://comet.carbon/ext/responsiblesteel#SteelCertification",
-        "to": "https://comet.carbon/ext/responsiblesteel#CoreSiteCertification",
-        "rel": "subClassOf"
-      },
-      {
-        "from": "https://comet.carbon/ext/responsiblesteel#RSInputMaterial",
-        "to": "https://comet.carbon/v1/core#Material",
-        "rel": "subClassOf"
-      },
-      {
-        "from": "https://comet.carbon/ext/iso14068#hasReport",
-        "to": "https://comet.carbon/ext/iso14068#CarbonNeutralityReport",
-        "rel": "range"
-      },
-      {
-        "from": "https://comet.carbon/ext/responsiblesteel#auditedSite",
-        "to": "https://comet.carbon/ext/responsiblesteel#CertifiedSite",
-        "rel": "range"
-      },
-      {
-        "from": "https://comet.carbon/ext/iso14068#meetsCriterion",
-        "to": "https://comet.carbon/ext/iso14068#CreditCriterion",
-        "rel": "range"
-      },
-      {
-        "from": "https://comet.carbon/ext/responsiblesteel#hasDPL",
-        "to": "https://comet.carbon/ext/responsiblesteel#DecarbProgressLevel",
-        "rel": "range"
-      },
-      {
-        "from": "https://comet.carbon/ext/responsiblesteel#CertificationAudit",
-        "to": "https://comet.carbon/v1/ver#AuditTrail",
-        "rel": "subClassOf"
-      },
-      {
-        "from": "https://comet.carbon/ext/iso14068#hasVerificationOpinion",
-        "to": "https://comet.carbon/ext/iso14068#VerificationOpinion",
-        "rel": "range"
-      },
-      {
-        "from": "https://comet.carbon/ext/responsiblesteel#SupplierESGRisk",
-        "to": "https://comet.carbon/v1/supplychain#SupplyChainLink",
-        "rel": "subClassOf"
-      },
-      {
-        "from": "https://comet.carbon/ext/responsiblesteel#GreenSteelPremium",
         "to": "https://comet.carbon/v1/market#CarbonPremium",
         "rel": "subClassOf"
       },
@@ -24676,18 +24609,53 @@
         "rel": "range"
       },
       {
-        "from": "https://comet.carbon/ext/pcr-japan#japanesePCRField",
-        "to": "https://comet.carbon/ext/pcr-japan#JapanesePCRField",
-        "rel": "range"
-      },
-      {
-        "from": "https://comet.carbon/ext/pcr-japan#SuMPOPCRDocument",
-        "to": "https://comet.carbon/v1/pcf#PCRDocument",
+        "from": "https://comet.carbon/ext/responsiblesteel#RSSupplierTier",
+        "to": "https://comet.carbon/v1/supplychain#SupplyChainLink",
         "rel": "subClassOf"
       },
       {
-        "from": "https://comet.carbon/ext/iso14068#hasPathway",
-        "to": "https://comet.carbon/ext/iso14068#CarbonNeutralityPathway",
+        "from": "https://comet.carbon/ext/iso14068#hasReport",
+        "to": "https://comet.carbon/ext/iso14068#CarbonNeutralityReport",
+        "rel": "range"
+      },
+      {
+        "from": "https://comet.carbon/ext/responsiblesteel#SteelProductionRoute",
+        "to": "https://comet.carbon/v1/core#Process",
+        "rel": "subClassOf"
+      },
+      {
+        "from": "https://comet.carbon/ext/iso14068#VerificationOpinion",
+        "to": "https://comet.carbon/v1/ver#AuditClaim",
+        "rel": "subClassOf"
+      },
+      {
+        "from": "https://comet.carbon/ext/responsiblesteel#SteelCertification",
+        "to": "https://comet.carbon/ext/responsiblesteel#CoreSiteCertification",
+        "rel": "subClassOf"
+      },
+      {
+        "from": "https://comet.carbon/ext/iso14068#hasBaseline",
+        "to": "https://comet.carbon/ext/iso14068#Baseline",
+        "rel": "range"
+      },
+      {
+        "from": "https://comet.carbon/ext/responsiblesteel#principleAssessed",
+        "to": "https://comet.carbon/ext/responsiblesteel#RSPrinciple",
+        "rel": "range"
+      },
+      {
+        "from": "https://comet.carbon/ext/responsiblesteel#SupplierESGRisk",
+        "to": "https://comet.carbon/v1/supplychain#SupplyChainLink",
+        "rel": "subClassOf"
+      },
+      {
+        "from": "https://comet.carbon/ext/responsiblesteel#ScrapCategory",
+        "to": "https://comet.carbon/ext/responsiblesteel#RSInputMaterial",
+        "rel": "subClassOf"
+      },
+      {
+        "from": "https://comet.carbon/ext/responsiblesteel#traceableTo",
+        "to": "https://comet.carbon/ext/responsiblesteel#SteelCertification",
         "rel": "range"
       },
       {
@@ -24696,8 +24664,93 @@
         "rel": "range"
       },
       {
-        "from": "https://comet.carbon/ext/responsiblesteel#principleAssessed",
-        "to": "https://comet.carbon/ext/responsiblesteel#RSPrinciple",
+        "from": "https://comet.carbon/ext/iso14068#hasSubject",
+        "to": "https://comet.carbon/ext/iso14068#Subject",
+        "rel": "range"
+      },
+      {
+        "from": "https://comet.carbon/ext/responsiblesteel#GreenSteelPremium",
+        "to": "https://comet.carbon/v1/market#CarbonPremium",
+        "rel": "subClassOf"
+      },
+      {
+        "from": "https://comet.carbon/ext/iso14068#hasPathway",
+        "to": "https://comet.carbon/ext/iso14068#CarbonNeutralityPathway",
+        "rel": "range"
+      },
+      {
+        "from": "https://comet.carbon/ext/responsiblesteel#CorporateOwner",
+        "to": "https://comet.carbon/v1/core#Organization",
+        "rel": "subClassOf"
+      },
+      {
+        "from": "https://comet.carbon/ext/pcr-japan#EcoLeafDeclaration",
+        "to": "https://comet.carbon/v1/eac#Certification",
+        "rel": "subClassOf"
+      },
+      {
+        "from": "https://comet.carbon/ext/responsiblesteel#CertificationAudit",
+        "to": "https://comet.carbon/v1/ver#AuditTrail",
+        "rel": "subClassOf"
+      },
+      {
+        "from": "https://comet.carbon/ext/iso14068#OffsettingEvent",
+        "to": "https://comet.carbon/v1/eac#RetirementEvent",
+        "rel": "subClassOf"
+      },
+      {
+        "from": "https://comet.carbon/ext/responsiblesteel#transfersFrom",
+        "to": "https://comet.carbon/v1/core#Organization",
+        "rel": "range"
+      },
+      {
+        "from": "https://comet.carbon/ext/responsiblesteel#auditedSite",
+        "to": "https://comet.carbon/ext/responsiblesteel#CertifiedSite",
+        "rel": "range"
+      },
+      {
+        "from": "https://comet.carbon/ext/responsiblesteel#hasDPL",
+        "to": "https://comet.carbon/ext/responsiblesteel#DecarbProgressLevel",
+        "rel": "range"
+      },
+      {
+        "from": "https://comet.carbon/ext/iso14068#ResidualGHGEmission",
+        "to": "https://comet.carbon/ext/iso14068#UnabatedGHGEmission",
+        "rel": "subClassOf"
+      },
+      {
+        "from": "https://comet.carbon/ext/iso14068#CarbonNeutralityReport",
+        "to": "https://comet.carbon/v1/ver#DisclosureRecord",
+        "rel": "subClassOf"
+      },
+      {
+        "from": "https://comet.carbon/ext/responsiblesteel#hasNonConformity",
+        "to": "https://comet.carbon/ext/responsiblesteel#NonConformity",
+        "rel": "range"
+      },
+      {
+        "from": "https://comet.carbon/ext/iso14068#meetsCriterion",
+        "to": "https://comet.carbon/ext/iso14068#CreditCriterion",
+        "rel": "range"
+      },
+      {
+        "from": "https://comet.carbon/ext/responsiblesteel#transfersTo",
+        "to": "https://comet.carbon/v1/core#Organization",
+        "rel": "range"
+      },
+      {
+        "from": "https://comet.carbon/ext/iso14068#hasCommitment",
+        "to": "https://comet.carbon/ext/iso14068#CarbonNeutralityCommitment",
+        "rel": "range"
+      },
+      {
+        "from": "https://comet.carbon/ext/pcr-japan#ISO21930PCR",
+        "to": "https://comet.carbon/ext/pcr-japan#SuMPOPCRDocument",
+        "rel": "subClassOf"
+      },
+      {
+        "from": "https://comet.carbon/ext/responsiblesteel#applicableDPL",
+        "to": "https://comet.carbon/ext/responsiblesteel#DecarbProgressLevel",
         "rel": "range"
       },
       {
@@ -24711,13 +24764,18 @@
         "rel": "subClassOf"
       },
       {
-        "from": "https://comet.carbon/ext/iso14068#hasBaseline",
-        "to": "https://comet.carbon/ext/iso14068#Baseline",
-        "rel": "range"
+        "from": "https://comet.carbon/ext/iso14068#UnabatedGHGEmission",
+        "to": "https://comet.carbon/v1/pcf#GHGEmission",
+        "rel": "subClassOf"
       },
       {
-        "from": "https://comet.carbon/ext/iso14068#ResidualGHGEmission",
-        "to": "https://comet.carbon/ext/iso14068#UnabatedGHGEmission",
+        "from": "https://comet.carbon/ext/pcr-japan#SuMPOPCRDocument",
+        "to": "https://comet.carbon/v1/pcf#PCRDocument",
+        "rel": "subClassOf"
+      },
+      {
+        "from": "https://comet.carbon/ext/iso14068#Entity",
+        "to": "https://comet.carbon/v1/core#Organization",
         "rel": "subClassOf"
       },
       {
@@ -24726,8 +24784,8 @@
         "rel": "range"
       },
       {
-        "from": "https://comet.carbon/ext/responsiblesteel#hasSPL",
-        "to": "https://comet.carbon/ext/responsiblesteel#SourcingProgressLevel",
+        "from": "https://comet.carbon/ext/pcr-japan#japanesePCRField",
+        "to": "https://comet.carbon/ext/pcr-japan#JapanesePCRField",
         "rel": "range"
       },
       {
@@ -24736,63 +24794,13 @@
         "rel": "range"
       },
       {
-        "from": "https://comet.carbon/ext/iso14068#OffsettingEvent",
-        "to": "https://comet.carbon/v1/eac#RetirementEvent",
-        "rel": "subClassOf"
-      },
-      {
-        "from": "https://comet.carbon/ext/responsiblesteel#CorporateOwner",
-        "to": "https://comet.carbon/v1/core#Organization",
-        "rel": "subClassOf"
-      },
-      {
-        "from": "https://comet.carbon/ext/responsiblesteel#traceableTo",
-        "to": "https://comet.carbon/ext/responsiblesteel#SteelCertification",
-        "rel": "range"
-      },
-      {
-        "from": "https://comet.carbon/ext/iso14068#VerificationOpinion",
-        "to": "https://comet.carbon/v1/ver#AuditClaim",
-        "rel": "subClassOf"
-      },
-      {
-        "from": "https://comet.carbon/ext/responsiblesteel#transfersTo",
-        "to": "https://comet.carbon/v1/core#Organization",
-        "rel": "range"
-      },
-      {
-        "from": "https://comet.carbon/ext/iso14068#hasReportingPeriod",
-        "to": "https://comet.carbon/ext/iso14068#ReportingPeriod",
+        "from": "https://comet.carbon/ext/iso14068#hasCreditType",
+        "to": "https://comet.carbon/ext/iso14068#CreditType",
         "rel": "range"
       },
       {
         "from": "https://comet.carbon/ext/responsiblesteel#CoreSiteCertification",
         "to": "https://comet.carbon/v1/eac#MaterialStewardCert",
-        "rel": "subClassOf"
-      },
-      {
-        "from": "https://comet.carbon/ext/pcr-japan#LegacyEcoLeafPCR",
-        "to": "https://comet.carbon/ext/pcr-japan#SuMPOPCRDocument",
-        "rel": "subClassOf"
-      },
-      {
-        "from": "https://comet.carbon/ext/responsiblesteel#transfersFrom",
-        "to": "https://comet.carbon/v1/core#Organization",
-        "rel": "range"
-      },
-      {
-        "from": "https://comet.carbon/ext/iso14068#UnabatedGHGEmission",
-        "to": "https://comet.carbon/v1/pcf#GHGEmission",
-        "rel": "subClassOf"
-      },
-      {
-        "from": "https://comet.carbon/ext/iso14068#hasCommitment",
-        "to": "https://comet.carbon/ext/iso14068#CarbonNeutralityCommitment",
-        "rel": "range"
-      },
-      {
-        "from": "https://comet.carbon/ext/responsiblesteel#RSSupplierTier",
-        "to": "https://comet.carbon/v1/supplychain#SupplyChainLink",
         "rel": "subClassOf"
       },
       {
@@ -30808,7 +30816,7 @@
     "fields": 649,
     "alignments": 367,
     "schema_fields": 80,
-    "namespaces": 12,
+    "namespaces": 13,
     "graph_nodes": 604,
     "graph_edges": 354
   }
