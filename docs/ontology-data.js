@@ -91,6 +91,14 @@ window.COMET_ONTOLOGY = {
       "term_count": 17
     },
     {
+      "prefix": "comet-asi",
+      "name": "Aluminium Stewardship (ASI, ext)",
+      "layer": "Extension",
+      "color": "#8a8f2f",
+      "graph_default": true,
+      "term_count": 38
+    },
+    {
       "prefix": "cadtrust",
       "name": "CAD Trust Data Dictionary",
       "layer": "CAD Trust (incorporated)",
@@ -11465,6 +11473,818 @@ window.COMET_ONTOLOGY = {
       "languages": []
     },
     {
+      "iri": "https://comet.carbon/ext/aluminium-asi#AluminiumProductionRoute",
+      "curie": "comet-asi:AluminiumProductionRoute",
+      "prefix": "comet-asi",
+      "local": "AluminiumProductionRoute",
+      "kind": "Class",
+      "namespace": "Aluminium Stewardship (ASI, ext)",
+      "layer": "Extension",
+      "source": "ttl",
+      "label": "Aluminium Production Route",
+      "definition": "The primary production pathway at an ASI site. Determines applicable emission factors, default GHG values, and which Criterion 5.2 smelter threshold applies.",
+      "subClassOf": [
+        "Process"
+      ],
+      "domain": [],
+      "range": [],
+      "languages": [
+        "en"
+      ],
+      "datatype": ""
+    },
+    {
+      "iri": "https://comet.carbon/ext/aluminium-asi#ASICertification",
+      "curie": "comet-asi:ASICertification",
+      "prefix": "comet-asi",
+      "local": "ASICertification",
+      "kind": "Class",
+      "namespace": "Aluminium Stewardship (ASI, ext)",
+      "layer": "Extension",
+      "source": "ttl",
+      "label": "ASI Certification",
+      "definition": "An issued ASI certificate (Performance Standard or Chain of Custody) for a site or entity, recording its number, standard, certification level, accredited auditing firm, and validity window.",
+      "subClassOf": [
+        "ValidationRecord"
+      ],
+      "domain": [],
+      "range": [],
+      "languages": [
+        "en"
+      ],
+      "datatype": ""
+    },
+    {
+      "iri": "https://comet.carbon/ext/aluminium-asi#ASICertifiedEntity",
+      "curie": "comet-asi:ASICertifiedEntity",
+      "prefix": "comet-asi",
+      "local": "ASICertifiedEntity",
+      "kind": "Class",
+      "namespace": "Aluminium Stewardship (ASI, ext)",
+      "layer": "Extension",
+      "source": "ttl",
+      "label": "ASI Certified Entity",
+      "definition": "The legal entity holding an ASI certificate, responsible for entity-level GHG disclosure (Cr 5.1) and chain-of-custody claims (CoC V2).",
+      "subClassOf": [
+        "Organization"
+      ],
+      "domain": [],
+      "range": [],
+      "languages": [
+        "en"
+      ],
+      "datatype": ""
+    },
+    {
+      "iri": "https://comet.carbon/ext/aluminium-asi#ASICertifiedSite",
+      "curie": "comet-asi:ASICertifiedSite",
+      "prefix": "comet-asi",
+      "local": "ASICertifiedSite",
+      "kind": "Class",
+      "namespace": "Aluminium Stewardship (ASI, ext)",
+      "layer": "Extension",
+      "source": "ttl",
+      "label": "ASI Certified Site",
+      "definition": "A bauxite mine, alumina refinery, aluminium smelter, casthouse, or downstream facility that holds or is seeking ASI certification (Performance Standard and/or Chain of Custody). Inherits all comet:Site identity properties.",
+      "subClassOf": [
+        "Site"
+      ],
+      "domain": [],
+      "range": [],
+      "languages": [
+        "en"
+      ],
+      "datatype": ""
+    },
+    {
+      "iri": "https://comet.carbon/ext/aluminium-asi#CoCClaim",
+      "curie": "comet-asi:CoCClaim",
+      "prefix": "comet-asi",
+      "local": "CoCClaim",
+      "kind": "Class",
+      "namespace": "Aluminium Stewardship (ASI, ext)",
+      "layer": "Extension",
+      "source": "ttl",
+      "label": "ASI CoC Material Claim",
+      "definition": "A claim that a quantity of product is ASI Aluminium / ASI CoC Material, carried on sales and delivery documents. Analogous to comet-rs:CoCClaim for steel.",
+      "subClassOf": [],
+      "domain": [],
+      "range": [],
+      "languages": [
+        "en"
+      ],
+      "datatype": ""
+    },
+    {
+      "iri": "https://comet.carbon/ext/aluminium-asi#CoCModel",
+      "curie": "comet-asi:CoCModel",
+      "prefix": "comet-asi",
+      "local": "CoCModel",
+      "kind": "Class",
+      "namespace": "Aluminium Stewardship (ASI, ext)",
+      "layer": "Extension",
+      "source": "ttl",
+      "label": "ASI Chain-of-Custody Model",
+      "definition": "The accounting model an ASI site uses to pass certified material through the supply chain. ASI CoC V2 permits mass balance, physical segregation, and controlled blending.",
+      "subClassOf": [],
+      "domain": [],
+      "range": [],
+      "languages": [
+        "en"
+      ],
+      "datatype": ""
+    },
+    {
+      "iri": "https://comet.carbon/ext/aluminium-asi#CoCTransferEvent",
+      "curie": "comet-asi:CoCTransferEvent",
+      "prefix": "comet-asi",
+      "local": "CoCTransferEvent",
+      "kind": "Class",
+      "namespace": "Aluminium Stewardship (ASI, ext)",
+      "layer": "Extension",
+      "source": "ttl",
+      "label": "CoC Transfer Event",
+      "definition": "A provenance event recording the transfer of ASI CoC material between certified entities, retaining the upstream claim and quantity. Analogous to comet-rs:CoCTransferEvent.",
+      "subClassOf": [],
+      "domain": [],
+      "range": [],
+      "languages": [
+        "en"
+      ],
+      "datatype": ""
+    },
+    {
+      "iri": "https://comet.carbon/ext/aluminium-asi#GHGPathway",
+      "curie": "comet-asi:GHGPathway",
+      "prefix": "comet-asi",
+      "local": "GHGPathway",
+      "kind": "Class",
+      "namespace": "Aluminium Stewardship (ASI, ext)",
+      "layer": "Extension",
+      "source": "ttl",
+      "label": "GHG Decarbonisation Pathway",
+      "definition": "An entity- or site-level greenhouse-gas decarbonisation trajectory declared under ASI Criterion 5.2, expressed as a baseline-year intensity and a forward emissions slope toward a target year.",
+      "subClassOf": [],
+      "domain": [],
+      "range": [],
+      "languages": [
+        "en"
+      ],
+      "datatype": ""
+    },
+    {
+      "iri": "https://comet.carbon/ext/aluminium-asi#MassBalanceAccount",
+      "curie": "comet-asi:MassBalanceAccount",
+      "prefix": "comet-asi",
+      "local": "MassBalanceAccount",
+      "kind": "Class",
+      "namespace": "Aluminium Stewardship (ASI, ext)",
+      "layer": "Extension",
+      "source": "ttl",
+      "label": "Mass-Balance Account",
+      "definition": "The input/output ledger that reconciles certified material entering and leaving a site over an accounting period under the mass-balance CoC model. Tracks the certified input share that backs outgoing CoC claims.",
+      "subClassOf": [],
+      "domain": [],
+      "range": [],
+      "languages": [
+        "en"
+      ],
+      "datatype": ""
+    },
+    {
+      "iri": "https://comet.carbon/ext/aluminium-asi#PFCAnodeEffect",
+      "curie": "comet-asi:PFCAnodeEffect",
+      "prefix": "comet-asi",
+      "local": "PFCAnodeEffect",
+      "kind": "Class",
+      "namespace": "Aluminium Stewardship (ASI, ext)",
+      "layer": "Extension",
+      "source": "ttl",
+      "label": "PFC Anode-Effect Emissions",
+      "definition": "Perfluorocarbon (CF4 and C2F6) emissions released during anode effects in the Hall-Héroult electrolysis process. Aluminium-specific Scope 1 process emissions with very high GWP100 (CF4 ≈ 7 380; C2F6 ≈ 12 400, IPCC AR6). Quantified via the slope/overvoltage method per IAI / ASI guidance.",
+      "subClassOf": [
+        "Scope1Emissions"
+      ],
+      "domain": [],
+      "range": [],
+      "languages": [
+        "en"
+      ],
+      "datatype": ""
+    },
+    {
+      "iri": "https://comet.carbon/ext/aluminium-asi#SectoralSlope",
+      "curie": "comet-asi:SectoralSlope",
+      "prefix": "comet-asi",
+      "local": "SectoralSlope",
+      "kind": "Class",
+      "namespace": "Aluminium Stewardship (ASI, ext)",
+      "layer": "Extension",
+      "source": "ttl",
+      "label": "Sectoral Decarbonisation Slope",
+      "definition": "A sector-wide 1.5°C-aligned decarbonisation slope (e.g. the IAI / IEA aluminium pathway) used as the benchmark against which an entity's GHGPathway is compared.",
+      "subClassOf": [
+        "GHGPathway"
+      ],
+      "domain": [],
+      "range": [],
+      "languages": [
+        "en"
+      ],
+      "datatype": ""
+    },
+    {
+      "iri": "https://comet.carbon/ext/aluminium-asi#SmelterThreshold",
+      "curie": "comet-asi:SmelterThreshold",
+      "prefix": "comet-asi",
+      "local": "SmelterThreshold",
+      "kind": "Class",
+      "namespace": "Aluminium Stewardship (ASI, ext)",
+      "layer": "Extension",
+      "source": "ttl",
+      "label": "Smelter GHG Threshold",
+      "definition": "An ASI Criterion 5.2 smelter emissions threshold against which a primary aluminium site's GHG intensity is assessed for conformance. Encodes the threshold value and the conformance outcome.",
+      "subClassOf": [],
+      "domain": [],
+      "range": [],
+      "languages": [
+        "en"
+      ],
+      "datatype": ""
+    },
+    {
+      "iri": "https://comet.carbon/ext/aluminium-asi#anodeEffectMinutesPerCellDay",
+      "curie": "comet-asi:anodeEffectMinutesPerCellDay",
+      "prefix": "comet-asi",
+      "local": "anodeEffectMinutesPerCellDay",
+      "kind": "DatatypeProperty",
+      "namespace": "Aluminium Stewardship (ASI, ext)",
+      "layer": "Extension",
+      "source": "ttl",
+      "label": "anode-effect minutes per cell-day",
+      "definition": "Anode-effect frequency × duration, the activity driver for the PFC slope method (minutes per cell-day).",
+      "subClassOf": [],
+      "domain": [
+        "PFCAnodeEffect"
+      ],
+      "range": [
+        "decimal"
+      ],
+      "languages": [
+        "en"
+      ],
+      "datatype": ""
+    },
+    {
+      "iri": "https://comet.carbon/ext/aluminium-asi#asiCertificateNumber",
+      "curie": "comet-asi:asiCertificateNumber",
+      "prefix": "comet-asi",
+      "local": "asiCertificateNumber",
+      "kind": "DatatypeProperty",
+      "namespace": "Aluminium Stewardship (ASI, ext)",
+      "layer": "Extension",
+      "source": "ttl",
+      "label": "ASI certificate number",
+      "definition": "The certificate identifier issued by ASI (e.g. \"409\").",
+      "subClassOf": [],
+      "domain": [],
+      "range": [
+        "string"
+      ],
+      "languages": [
+        "en"
+      ],
+      "datatype": ""
+    },
+    {
+      "iri": "https://comet.carbon/ext/aluminium-asi#asiCertificationLevel",
+      "curie": "comet-asi:asiCertificationLevel",
+      "prefix": "comet-asi",
+      "local": "asiCertificationLevel",
+      "kind": "DatatypeProperty",
+      "namespace": "Aluminium Stewardship (ASI, ext)",
+      "layer": "Extension",
+      "source": "ttl",
+      "label": "ASI certification level",
+      "definition": "ASI certification level, e.g. \"FULL\" or \"PROVISIONAL\".",
+      "subClassOf": [],
+      "domain": [
+        "ASICertification"
+      ],
+      "range": [
+        "string"
+      ],
+      "languages": [
+        "en"
+      ],
+      "datatype": ""
+    },
+    {
+      "iri": "https://comet.carbon/ext/aluminium-asi#asiStandard",
+      "curie": "comet-asi:asiStandard",
+      "prefix": "comet-asi",
+      "local": "asiStandard",
+      "kind": "DatatypeProperty",
+      "namespace": "Aluminium Stewardship (ASI, ext)",
+      "layer": "Extension",
+      "source": "ttl",
+      "label": "ASI standard",
+      "definition": "The ASI standard audited against, e.g. \"Performance Standard V3\" or \"Chain of Custody V2 (2022)\".",
+      "subClassOf": [],
+      "domain": [
+        "ASICertification"
+      ],
+      "range": [
+        "string"
+      ],
+      "languages": [
+        "en"
+      ],
+      "datatype": ""
+    },
+    {
+      "iri": "https://comet.carbon/ext/aluminium-asi#c2f6Emissions",
+      "curie": "comet-asi:c2f6Emissions",
+      "prefix": "comet-asi",
+      "local": "c2f6Emissions",
+      "kind": "DatatypeProperty",
+      "namespace": "Aluminium Stewardship (ASI, ext)",
+      "layer": "Extension",
+      "source": "ttl",
+      "label": "C2F6 emissions (t C2F6)",
+      "definition": "Hexafluoroethane (C2F6) mass emitted from anode effects, in tonnes. Convert to CO2e with GWP100 ≈ 12 400 (IPCC AR6).",
+      "subClassOf": [],
+      "domain": [
+        "PFCAnodeEffect"
+      ],
+      "range": [
+        "decimal"
+      ],
+      "languages": [
+        "en"
+      ],
+      "datatype": ""
+    },
+    {
+      "iri": "https://comet.carbon/ext/aluminium-asi#certifiedInputShare",
+      "curie": "comet-asi:certifiedInputShare",
+      "prefix": "comet-asi",
+      "local": "certifiedInputShare",
+      "kind": "DatatypeProperty",
+      "namespace": "Aluminium Stewardship (ASI, ext)",
+      "layer": "Extension",
+      "source": "ttl",
+      "label": "certified input share (%)",
+      "definition": "Proportion (0–100) of input material in the accounting period that is ASI-certified, bounding the volume of outgoing CoC claims.",
+      "subClassOf": [],
+      "domain": [
+        "MassBalanceAccount"
+      ],
+      "range": [
+        "decimal"
+      ],
+      "languages": [
+        "en"
+      ],
+      "datatype": ""
+    },
+    {
+      "iri": "https://comet.carbon/ext/aluminium-asi#certValidFrom",
+      "curie": "comet-asi:certValidFrom",
+      "prefix": "comet-asi",
+      "local": "certValidFrom",
+      "kind": "DatatypeProperty",
+      "namespace": "Aluminium Stewardship (ASI, ext)",
+      "layer": "Extension",
+      "source": "ttl",
+      "label": "certificate valid from",
+      "definition": null,
+      "subClassOf": [],
+      "domain": [
+        "ASICertification"
+      ],
+      "range": [
+        "date"
+      ],
+      "languages": [
+        "en"
+      ],
+      "datatype": ""
+    },
+    {
+      "iri": "https://comet.carbon/ext/aluminium-asi#certValidUntil",
+      "curie": "comet-asi:certValidUntil",
+      "prefix": "comet-asi",
+      "local": "certValidUntil",
+      "kind": "DatatypeProperty",
+      "namespace": "Aluminium Stewardship (ASI, ext)",
+      "layer": "Extension",
+      "source": "ttl",
+      "label": "certificate valid until",
+      "definition": null,
+      "subClassOf": [],
+      "domain": [
+        "ASICertification"
+      ],
+      "range": [
+        "date"
+      ],
+      "languages": [
+        "en"
+      ],
+      "datatype": ""
+    },
+    {
+      "iri": "https://comet.carbon/ext/aluminium-asi#cf4Emissions",
+      "curie": "comet-asi:cf4Emissions",
+      "prefix": "comet-asi",
+      "local": "cf4Emissions",
+      "kind": "DatatypeProperty",
+      "namespace": "Aluminium Stewardship (ASI, ext)",
+      "layer": "Extension",
+      "source": "ttl",
+      "label": "CF4 emissions (t CF4)",
+      "definition": "Tetrafluoromethane (CF4) mass emitted from anode effects, in tonnes. Convert to CO2e with GWP100 ≈ 7 380 (IPCC AR6).",
+      "subClassOf": [],
+      "domain": [
+        "PFCAnodeEffect"
+      ],
+      "range": [
+        "decimal"
+      ],
+      "languages": [
+        "en"
+      ],
+      "datatype": ""
+    },
+    {
+      "iri": "https://comet.carbon/ext/aluminium-asi#claimedQuantity",
+      "curie": "comet-asi:claimedQuantity",
+      "prefix": "comet-asi",
+      "local": "claimedQuantity",
+      "kind": "DatatypeProperty",
+      "namespace": "Aluminium Stewardship (ASI, ext)",
+      "layer": "Extension",
+      "source": "ttl",
+      "label": "claimed quantity (t)",
+      "definition": null,
+      "subClassOf": [],
+      "domain": [
+        "CoCClaim"
+      ],
+      "range": [
+        "decimal"
+      ],
+      "languages": [
+        "en"
+      ],
+      "datatype": ""
+    },
+    {
+      "iri": "https://comet.carbon/ext/aluminium-asi#pathwayBaselineYear",
+      "curie": "comet-asi:pathwayBaselineYear",
+      "prefix": "comet-asi",
+      "local": "pathwayBaselineYear",
+      "kind": "DatatypeProperty",
+      "namespace": "Aluminium Stewardship (ASI, ext)",
+      "layer": "Extension",
+      "source": "ttl",
+      "label": "pathway baseline year",
+      "definition": null,
+      "subClassOf": [],
+      "domain": [
+        "GHGPathway"
+      ],
+      "range": [
+        "gYear"
+      ],
+      "languages": [
+        "en"
+      ],
+      "datatype": ""
+    },
+    {
+      "iri": "https://comet.carbon/ext/aluminium-asi#pathwaySlope",
+      "curie": "comet-asi:pathwaySlope",
+      "prefix": "comet-asi",
+      "local": "pathwaySlope",
+      "kind": "DatatypeProperty",
+      "namespace": "Aluminium Stewardship (ASI, ext)",
+      "layer": "Extension",
+      "source": "ttl",
+      "label": "pathway slope (tCO2e/t per year)",
+      "definition": "Annual decarbonisation rate of the declared pathway, in tCO2e per tonne of product per year.",
+      "subClassOf": [],
+      "domain": [
+        "GHGPathway"
+      ],
+      "range": [
+        "decimal"
+      ],
+      "languages": [
+        "en"
+      ],
+      "datatype": ""
+    },
+    {
+      "iri": "https://comet.carbon/ext/aluminium-asi#pathwayTargetYear",
+      "curie": "comet-asi:pathwayTargetYear",
+      "prefix": "comet-asi",
+      "local": "pathwayTargetYear",
+      "kind": "DatatypeProperty",
+      "namespace": "Aluminium Stewardship (ASI, ext)",
+      "layer": "Extension",
+      "source": "ttl",
+      "label": "pathway target year",
+      "definition": null,
+      "subClassOf": [],
+      "domain": [
+        "GHGPathway"
+      ],
+      "range": [
+        "gYear"
+      ],
+      "languages": [
+        "en"
+      ],
+      "datatype": ""
+    },
+    {
+      "iri": "https://comet.carbon/ext/aluminium-asi#thresholdConformant",
+      "curie": "comet-asi:thresholdConformant",
+      "prefix": "comet-asi",
+      "local": "thresholdConformant",
+      "kind": "DatatypeProperty",
+      "namespace": "Aluminium Stewardship (ASI, ext)",
+      "layer": "Extension",
+      "source": "ttl",
+      "label": "threshold conformant",
+      "definition": "True if the site's assessed GHG intensity is at or below the applicable Cr 5.2 smelter threshold.",
+      "subClassOf": [],
+      "domain": [
+        "SmelterThreshold"
+      ],
+      "range": [
+        "boolean"
+      ],
+      "languages": [
+        "en"
+      ],
+      "datatype": ""
+    },
+    {
+      "iri": "https://comet.carbon/ext/aluminium-asi#thresholdValue",
+      "curie": "comet-asi:thresholdValue",
+      "prefix": "comet-asi",
+      "local": "thresholdValue",
+      "kind": "DatatypeProperty",
+      "namespace": "Aluminium Stewardship (ASI, ext)",
+      "layer": "Extension",
+      "source": "ttl",
+      "label": "threshold value (tCO2e/t Al)",
+      "definition": null,
+      "subClassOf": [],
+      "domain": [
+        "SmelterThreshold"
+      ],
+      "range": [
+        "decimal"
+      ],
+      "languages": [
+        "en"
+      ],
+      "datatype": ""
+    },
+    {
+      "iri": "https://comet.carbon/ext/aluminium-asi#transferDate",
+      "curie": "comet-asi:transferDate",
+      "prefix": "comet-asi",
+      "local": "transferDate",
+      "kind": "DatatypeProperty",
+      "namespace": "Aluminium Stewardship (ASI, ext)",
+      "layer": "Extension",
+      "source": "ttl",
+      "label": "transfer date",
+      "definition": null,
+      "subClassOf": [],
+      "domain": [
+        "CoCTransferEvent"
+      ],
+      "range": [
+        "date"
+      ],
+      "languages": [
+        "en"
+      ],
+      "datatype": ""
+    },
+    {
+      "iri": "https://comet.carbon/ext/aluminium-asi#transferQuantity",
+      "curie": "comet-asi:transferQuantity",
+      "prefix": "comet-asi",
+      "local": "transferQuantity",
+      "kind": "DatatypeProperty",
+      "namespace": "Aluminium Stewardship (ASI, ext)",
+      "layer": "Extension",
+      "source": "ttl",
+      "label": "transfer quantity (t)",
+      "definition": null,
+      "subClassOf": [],
+      "domain": [
+        "CoCTransferEvent"
+      ],
+      "range": [
+        "decimal"
+      ],
+      "languages": [
+        "en"
+      ],
+      "datatype": ""
+    },
+    {
+      "iri": "https://comet.carbon/ext/aluminium-asi#CasthouseRemelt",
+      "curie": "comet-asi:CasthouseRemelt",
+      "prefix": "comet-asi",
+      "local": "CasthouseRemelt",
+      "kind": "Individual",
+      "namespace": "Aluminium Stewardship (ASI, ext)",
+      "layer": "Extension",
+      "source": "ttl",
+      "label": "Casthouse remelt / semi-fabrication",
+      "definition": null,
+      "subClassOf": [],
+      "domain": [],
+      "range": [],
+      "languages": [
+        "en"
+      ],
+      "datatype": ""
+    },
+    {
+      "iri": "https://comet.carbon/ext/aluminium-asi#ControlledBlendingModel",
+      "curie": "comet-asi:ControlledBlendingModel",
+      "prefix": "comet-asi",
+      "local": "ControlledBlendingModel",
+      "kind": "Individual",
+      "namespace": "Aluminium Stewardship (ASI, ext)",
+      "layer": "Extension",
+      "source": "ttl",
+      "label": "Controlled blending",
+      "definition": null,
+      "subClassOf": [],
+      "domain": [],
+      "range": [],
+      "languages": [
+        "en"
+      ],
+      "datatype": ""
+    },
+    {
+      "iri": "https://comet.carbon/ext/aluminium-asi#MassBalanceModel",
+      "curie": "comet-asi:MassBalanceModel",
+      "prefix": "comet-asi",
+      "local": "MassBalanceModel",
+      "kind": "Individual",
+      "namespace": "Aluminium Stewardship (ASI, ext)",
+      "layer": "Extension",
+      "source": "ttl",
+      "label": "Mass balance",
+      "definition": null,
+      "subClassOf": [],
+      "domain": [],
+      "range": [],
+      "languages": [
+        "en"
+      ],
+      "datatype": ""
+    },
+    {
+      "iri": "https://comet.carbon/ext/aluminium-asi#PrimaryElectrolytic",
+      "curie": "comet-asi:PrimaryElectrolytic",
+      "prefix": "comet-asi",
+      "local": "PrimaryElectrolytic",
+      "kind": "Individual",
+      "namespace": "Aluminium Stewardship (ASI, ext)",
+      "layer": "Extension",
+      "source": "ttl",
+      "label": "Primary aluminium (electrolytic, Hall-Héroult)",
+      "definition": "Primary (electrolytic) aluminium maps to CN 7601 (unwrought aluminium). e.g. 76011000 unalloyed.",
+      "subClassOf": [],
+      "domain": [],
+      "range": [],
+      "languages": [
+        "en"
+      ],
+      "datatype": ""
+    },
+    {
+      "iri": "https://comet.carbon/ext/aluminium-asi#RecycledSecondary",
+      "curie": "comet-asi:RecycledSecondary",
+      "prefix": "comet-asi",
+      "local": "RecycledSecondary",
+      "kind": "Individual",
+      "namespace": "Aluminium Stewardship (ASI, ext)",
+      "layer": "Extension",
+      "source": "ttl",
+      "label": "Recycled / secondary aluminium",
+      "definition": "Recycled / secondary aluminium aligns with CN 7602 (aluminium waste and scrap) feedstock, output reported under 7601.",
+      "subClassOf": [],
+      "domain": [],
+      "range": [],
+      "languages": [
+        "en"
+      ],
+      "datatype": ""
+    },
+    {
+      "iri": "https://comet.carbon/ext/aluminium-asi#SegregationModel",
+      "curie": "comet-asi:SegregationModel",
+      "prefix": "comet-asi",
+      "local": "SegregationModel",
+      "kind": "Individual",
+      "namespace": "Aluminium Stewardship (ASI, ext)",
+      "layer": "Extension",
+      "source": "ttl",
+      "label": "Physical segregation",
+      "definition": null,
+      "subClassOf": [],
+      "domain": [],
+      "range": [],
+      "languages": [
+        "en"
+      ],
+      "datatype": ""
+    },
+    {
+      "iri": "https://comet.carbon/ext/aluminium-asi#auditingFirm",
+      "curie": "comet-asi:auditingFirm",
+      "prefix": "comet-asi",
+      "local": "auditingFirm",
+      "kind": "ObjectProperty",
+      "namespace": "Aluminium Stewardship (ASI, ext)",
+      "layer": "Extension",
+      "source": "ttl",
+      "label": "auditing firm",
+      "definition": "The ASI-accredited auditing firm that issued the certification (reuses comet-ver:QualifiedVerifier).",
+      "subClassOf": [],
+      "domain": [
+        "ASICertification"
+      ],
+      "range": [
+        "QualifiedVerifier"
+      ],
+      "languages": [
+        "en"
+      ],
+      "datatype": ""
+    },
+    {
+      "iri": "https://comet.carbon/ext/aluminium-asi#certifiedSite",
+      "curie": "comet-asi:certifiedSite",
+      "prefix": "comet-asi",
+      "local": "certifiedSite",
+      "kind": "ObjectProperty",
+      "namespace": "Aluminium Stewardship (ASI, ext)",
+      "layer": "Extension",
+      "source": "ttl",
+      "label": "certified site",
+      "definition": null,
+      "subClassOf": [],
+      "domain": [
+        "ASICertification"
+      ],
+      "range": [
+        "ASICertifiedSite"
+      ],
+      "languages": [
+        "en"
+      ],
+      "datatype": ""
+    },
+    {
+      "iri": "https://comet.carbon/ext/aluminium-asi#cocModel",
+      "curie": "comet-asi:cocModel",
+      "prefix": "comet-asi",
+      "local": "cocModel",
+      "kind": "ObjectProperty",
+      "namespace": "Aluminium Stewardship (ASI, ext)",
+      "layer": "Extension",
+      "source": "ttl",
+      "label": "CoC model",
+      "definition": "The chain-of-custody model under which this claim is made.",
+      "subClassOf": [],
+      "domain": [
+        "CoCClaim"
+      ],
+      "range": [
+        "CoCModel"
+      ],
+      "languages": [
+        "en"
+      ],
+      "datatype": ""
+    },
+    {
       "iri": "https://comet.carbon/ext/iso14068#Baseline",
       "curie": "comet-cn:Baseline",
       "prefix": "comet-cn",
@@ -17902,6 +18722,462 @@ window.COMET_ONTOLOGY = {
         "defined": true
       },
       {
+        "id": "https://comet.carbon/ext/aluminium-asi#AluminiumProductionRoute",
+        "label": "Aluminium Production Route",
+        "curie": "comet-asi:AluminiumProductionRoute",
+        "kind": "Class",
+        "prefix": "comet-asi",
+        "namespace": "Aluminium Stewardship (ASI, ext)",
+        "layer": "Extension",
+        "color": "#8a8f2f",
+        "definition": "The primary production pathway at an ASI site. Determines applicable emission factors, default GHG values, and which Criterion 5.2 smelter threshold applies.",
+        "defined": true
+      },
+      {
+        "id": "https://comet.carbon/ext/aluminium-asi#ASICertification",
+        "label": "ASI Certification",
+        "curie": "comet-asi:ASICertification",
+        "kind": "Class",
+        "prefix": "comet-asi",
+        "namespace": "Aluminium Stewardship (ASI, ext)",
+        "layer": "Extension",
+        "color": "#8a8f2f",
+        "definition": "An issued ASI certificate (Performance Standard or Chain of Custody) for a site or entity, recording its number, standard, certification level, accredited auditing firm, and validity window.",
+        "defined": true
+      },
+      {
+        "id": "https://comet.carbon/ext/aluminium-asi#ASICertifiedEntity",
+        "label": "ASI Certified Entity",
+        "curie": "comet-asi:ASICertifiedEntity",
+        "kind": "Class",
+        "prefix": "comet-asi",
+        "namespace": "Aluminium Stewardship (ASI, ext)",
+        "layer": "Extension",
+        "color": "#8a8f2f",
+        "definition": "The legal entity holding an ASI certificate, responsible for entity-level GHG disclosure (Cr 5.1) and chain-of-custody claims (CoC V2).",
+        "defined": true
+      },
+      {
+        "id": "https://comet.carbon/ext/aluminium-asi#ASICertifiedSite",
+        "label": "ASI Certified Site",
+        "curie": "comet-asi:ASICertifiedSite",
+        "kind": "Class",
+        "prefix": "comet-asi",
+        "namespace": "Aluminium Stewardship (ASI, ext)",
+        "layer": "Extension",
+        "color": "#8a8f2f",
+        "definition": "A bauxite mine, alumina refinery, aluminium smelter, casthouse, or downstream facility that holds or is seeking ASI certification (Performance Standard and/or Chain of Custody). Inherits all comet:Site identity properties.",
+        "defined": true
+      },
+      {
+        "id": "https://comet.carbon/ext/aluminium-asi#CoCClaim",
+        "label": "ASI CoC Material Claim",
+        "curie": "comet-asi:CoCClaim",
+        "kind": "Class",
+        "prefix": "comet-asi",
+        "namespace": "Aluminium Stewardship (ASI, ext)",
+        "layer": "Extension",
+        "color": "#8a8f2f",
+        "definition": "A claim that a quantity of product is ASI Aluminium / ASI CoC Material, carried on sales and delivery documents. Analogous to comet-rs:CoCClaim for steel.",
+        "defined": true
+      },
+      {
+        "id": "https://comet.carbon/ext/aluminium-asi#CoCModel",
+        "label": "ASI Chain-of-Custody Model",
+        "curie": "comet-asi:CoCModel",
+        "kind": "Class",
+        "prefix": "comet-asi",
+        "namespace": "Aluminium Stewardship (ASI, ext)",
+        "layer": "Extension",
+        "color": "#8a8f2f",
+        "definition": "The accounting model an ASI site uses to pass certified material through the supply chain. ASI CoC V2 permits mass balance, physical segregation, and controlled blending.",
+        "defined": true
+      },
+      {
+        "id": "https://comet.carbon/ext/aluminium-asi#CoCTransferEvent",
+        "label": "CoC Transfer Event",
+        "curie": "comet-asi:CoCTransferEvent",
+        "kind": "Class",
+        "prefix": "comet-asi",
+        "namespace": "Aluminium Stewardship (ASI, ext)",
+        "layer": "Extension",
+        "color": "#8a8f2f",
+        "definition": "A provenance event recording the transfer of ASI CoC material between certified entities, retaining the upstream claim and quantity. Analogous to comet-rs:CoCTransferEvent.",
+        "defined": true
+      },
+      {
+        "id": "https://comet.carbon/ext/aluminium-asi#GHGPathway",
+        "label": "GHG Decarbonisation Pathway",
+        "curie": "comet-asi:GHGPathway",
+        "kind": "Class",
+        "prefix": "comet-asi",
+        "namespace": "Aluminium Stewardship (ASI, ext)",
+        "layer": "Extension",
+        "color": "#8a8f2f",
+        "definition": "An entity- or site-level greenhouse-gas decarbonisation trajectory declared under ASI Criterion 5.2, expressed as a baseline-year intensity and a forward emissions slope toward a target year.",
+        "defined": true
+      },
+      {
+        "id": "https://comet.carbon/ext/aluminium-asi#MassBalanceAccount",
+        "label": "Mass-Balance Account",
+        "curie": "comet-asi:MassBalanceAccount",
+        "kind": "Class",
+        "prefix": "comet-asi",
+        "namespace": "Aluminium Stewardship (ASI, ext)",
+        "layer": "Extension",
+        "color": "#8a8f2f",
+        "definition": "The input/output ledger that reconciles certified material entering and leaving a site over an accounting period under the mass-balance CoC model. Tracks the certified input share that backs outgoing CoC claims.",
+        "defined": true
+      },
+      {
+        "id": "https://comet.carbon/ext/aluminium-asi#PFCAnodeEffect",
+        "label": "PFC Anode-Effect Emissions",
+        "curie": "comet-asi:PFCAnodeEffect",
+        "kind": "Class",
+        "prefix": "comet-asi",
+        "namespace": "Aluminium Stewardship (ASI, ext)",
+        "layer": "Extension",
+        "color": "#8a8f2f",
+        "definition": "Perfluorocarbon (CF4 and C2F6) emissions released during anode effects in the Hall-Héroult electrolysis process. Aluminium-specific Scope 1 process emissions with very high GWP100 (CF4 ≈ 7 380; C2F6 ≈ 12 400, IPCC AR6). Quantified via the slope/overvoltage method per IAI / ASI guidance.",
+        "defined": true
+      },
+      {
+        "id": "https://comet.carbon/ext/aluminium-asi#SectoralSlope",
+        "label": "Sectoral Decarbonisation Slope",
+        "curie": "comet-asi:SectoralSlope",
+        "kind": "Class",
+        "prefix": "comet-asi",
+        "namespace": "Aluminium Stewardship (ASI, ext)",
+        "layer": "Extension",
+        "color": "#8a8f2f",
+        "definition": "A sector-wide 1.5°C-aligned decarbonisation slope (e.g. the IAI / IEA aluminium pathway) used as the benchmark against which an entity's GHGPathway is compared.",
+        "defined": true
+      },
+      {
+        "id": "https://comet.carbon/ext/aluminium-asi#SmelterThreshold",
+        "label": "Smelter GHG Threshold",
+        "curie": "comet-asi:SmelterThreshold",
+        "kind": "Class",
+        "prefix": "comet-asi",
+        "namespace": "Aluminium Stewardship (ASI, ext)",
+        "layer": "Extension",
+        "color": "#8a8f2f",
+        "definition": "An ASI Criterion 5.2 smelter emissions threshold against which a primary aluminium site's GHG intensity is assessed for conformance. Encodes the threshold value and the conformance outcome.",
+        "defined": true
+      },
+      {
+        "id": "https://comet.carbon/ext/aluminium-asi#anodeEffectMinutesPerCellDay",
+        "label": "anode-effect minutes per cell-day",
+        "curie": "comet-asi:anodeEffectMinutesPerCellDay",
+        "kind": "DatatypeProperty",
+        "prefix": "comet-asi",
+        "namespace": "Aluminium Stewardship (ASI, ext)",
+        "layer": "Extension",
+        "color": "#8a8f2f",
+        "definition": "Anode-effect frequency × duration, the activity driver for the PFC slope method (minutes per cell-day).",
+        "defined": true
+      },
+      {
+        "id": "https://comet.carbon/ext/aluminium-asi#asiCertificateNumber",
+        "label": "ASI certificate number",
+        "curie": "comet-asi:asiCertificateNumber",
+        "kind": "DatatypeProperty",
+        "prefix": "comet-asi",
+        "namespace": "Aluminium Stewardship (ASI, ext)",
+        "layer": "Extension",
+        "color": "#8a8f2f",
+        "definition": "The certificate identifier issued by ASI (e.g. \"409\").",
+        "defined": true
+      },
+      {
+        "id": "https://comet.carbon/ext/aluminium-asi#asiCertificationLevel",
+        "label": "ASI certification level",
+        "curie": "comet-asi:asiCertificationLevel",
+        "kind": "DatatypeProperty",
+        "prefix": "comet-asi",
+        "namespace": "Aluminium Stewardship (ASI, ext)",
+        "layer": "Extension",
+        "color": "#8a8f2f",
+        "definition": "ASI certification level, e.g. \"FULL\" or \"PROVISIONAL\".",
+        "defined": true
+      },
+      {
+        "id": "https://comet.carbon/ext/aluminium-asi#asiStandard",
+        "label": "ASI standard",
+        "curie": "comet-asi:asiStandard",
+        "kind": "DatatypeProperty",
+        "prefix": "comet-asi",
+        "namespace": "Aluminium Stewardship (ASI, ext)",
+        "layer": "Extension",
+        "color": "#8a8f2f",
+        "definition": "The ASI standard audited against, e.g. \"Performance Standard V3\" or \"Chain of Custody V2 (2022)\".",
+        "defined": true
+      },
+      {
+        "id": "https://comet.carbon/ext/aluminium-asi#c2f6Emissions",
+        "label": "C2F6 emissions (t C2F6)",
+        "curie": "comet-asi:c2f6Emissions",
+        "kind": "DatatypeProperty",
+        "prefix": "comet-asi",
+        "namespace": "Aluminium Stewardship (ASI, ext)",
+        "layer": "Extension",
+        "color": "#8a8f2f",
+        "definition": "Hexafluoroethane (C2F6) mass emitted from anode effects, in tonnes. Convert to CO2e with GWP100 ≈ 12 400 (IPCC AR6).",
+        "defined": true
+      },
+      {
+        "id": "https://comet.carbon/ext/aluminium-asi#certifiedInputShare",
+        "label": "certified input share (%)",
+        "curie": "comet-asi:certifiedInputShare",
+        "kind": "DatatypeProperty",
+        "prefix": "comet-asi",
+        "namespace": "Aluminium Stewardship (ASI, ext)",
+        "layer": "Extension",
+        "color": "#8a8f2f",
+        "definition": "Proportion (0–100) of input material in the accounting period that is ASI-certified, bounding the volume of outgoing CoC claims.",
+        "defined": true
+      },
+      {
+        "id": "https://comet.carbon/ext/aluminium-asi#certValidFrom",
+        "label": "certificate valid from",
+        "curie": "comet-asi:certValidFrom",
+        "kind": "DatatypeProperty",
+        "prefix": "comet-asi",
+        "namespace": "Aluminium Stewardship (ASI, ext)",
+        "layer": "Extension",
+        "color": "#8a8f2f",
+        "definition": "",
+        "defined": true
+      },
+      {
+        "id": "https://comet.carbon/ext/aluminium-asi#certValidUntil",
+        "label": "certificate valid until",
+        "curie": "comet-asi:certValidUntil",
+        "kind": "DatatypeProperty",
+        "prefix": "comet-asi",
+        "namespace": "Aluminium Stewardship (ASI, ext)",
+        "layer": "Extension",
+        "color": "#8a8f2f",
+        "definition": "",
+        "defined": true
+      },
+      {
+        "id": "https://comet.carbon/ext/aluminium-asi#cf4Emissions",
+        "label": "CF4 emissions (t CF4)",
+        "curie": "comet-asi:cf4Emissions",
+        "kind": "DatatypeProperty",
+        "prefix": "comet-asi",
+        "namespace": "Aluminium Stewardship (ASI, ext)",
+        "layer": "Extension",
+        "color": "#8a8f2f",
+        "definition": "Tetrafluoromethane (CF4) mass emitted from anode effects, in tonnes. Convert to CO2e with GWP100 ≈ 7 380 (IPCC AR6).",
+        "defined": true
+      },
+      {
+        "id": "https://comet.carbon/ext/aluminium-asi#claimedQuantity",
+        "label": "claimed quantity (t)",
+        "curie": "comet-asi:claimedQuantity",
+        "kind": "DatatypeProperty",
+        "prefix": "comet-asi",
+        "namespace": "Aluminium Stewardship (ASI, ext)",
+        "layer": "Extension",
+        "color": "#8a8f2f",
+        "definition": "",
+        "defined": true
+      },
+      {
+        "id": "https://comet.carbon/ext/aluminium-asi#pathwayBaselineYear",
+        "label": "pathway baseline year",
+        "curie": "comet-asi:pathwayBaselineYear",
+        "kind": "DatatypeProperty",
+        "prefix": "comet-asi",
+        "namespace": "Aluminium Stewardship (ASI, ext)",
+        "layer": "Extension",
+        "color": "#8a8f2f",
+        "definition": "",
+        "defined": true
+      },
+      {
+        "id": "https://comet.carbon/ext/aluminium-asi#pathwaySlope",
+        "label": "pathway slope (tCO2e/t per year)",
+        "curie": "comet-asi:pathwaySlope",
+        "kind": "DatatypeProperty",
+        "prefix": "comet-asi",
+        "namespace": "Aluminium Stewardship (ASI, ext)",
+        "layer": "Extension",
+        "color": "#8a8f2f",
+        "definition": "Annual decarbonisation rate of the declared pathway, in tCO2e per tonne of product per year.",
+        "defined": true
+      },
+      {
+        "id": "https://comet.carbon/ext/aluminium-asi#pathwayTargetYear",
+        "label": "pathway target year",
+        "curie": "comet-asi:pathwayTargetYear",
+        "kind": "DatatypeProperty",
+        "prefix": "comet-asi",
+        "namespace": "Aluminium Stewardship (ASI, ext)",
+        "layer": "Extension",
+        "color": "#8a8f2f",
+        "definition": "",
+        "defined": true
+      },
+      {
+        "id": "https://comet.carbon/ext/aluminium-asi#thresholdConformant",
+        "label": "threshold conformant",
+        "curie": "comet-asi:thresholdConformant",
+        "kind": "DatatypeProperty",
+        "prefix": "comet-asi",
+        "namespace": "Aluminium Stewardship (ASI, ext)",
+        "layer": "Extension",
+        "color": "#8a8f2f",
+        "definition": "True if the site's assessed GHG intensity is at or below the applicable Cr 5.2 smelter threshold.",
+        "defined": true
+      },
+      {
+        "id": "https://comet.carbon/ext/aluminium-asi#thresholdValue",
+        "label": "threshold value (tCO2e/t Al)",
+        "curie": "comet-asi:thresholdValue",
+        "kind": "DatatypeProperty",
+        "prefix": "comet-asi",
+        "namespace": "Aluminium Stewardship (ASI, ext)",
+        "layer": "Extension",
+        "color": "#8a8f2f",
+        "definition": "",
+        "defined": true
+      },
+      {
+        "id": "https://comet.carbon/ext/aluminium-asi#transferDate",
+        "label": "transfer date",
+        "curie": "comet-asi:transferDate",
+        "kind": "DatatypeProperty",
+        "prefix": "comet-asi",
+        "namespace": "Aluminium Stewardship (ASI, ext)",
+        "layer": "Extension",
+        "color": "#8a8f2f",
+        "definition": "",
+        "defined": true
+      },
+      {
+        "id": "https://comet.carbon/ext/aluminium-asi#transferQuantity",
+        "label": "transfer quantity (t)",
+        "curie": "comet-asi:transferQuantity",
+        "kind": "DatatypeProperty",
+        "prefix": "comet-asi",
+        "namespace": "Aluminium Stewardship (ASI, ext)",
+        "layer": "Extension",
+        "color": "#8a8f2f",
+        "definition": "",
+        "defined": true
+      },
+      {
+        "id": "https://comet.carbon/ext/aluminium-asi#CasthouseRemelt",
+        "label": "Casthouse remelt / semi-fabrication",
+        "curie": "comet-asi:CasthouseRemelt",
+        "kind": "Individual",
+        "prefix": "comet-asi",
+        "namespace": "Aluminium Stewardship (ASI, ext)",
+        "layer": "Extension",
+        "color": "#8a8f2f",
+        "definition": "",
+        "defined": true
+      },
+      {
+        "id": "https://comet.carbon/ext/aluminium-asi#ControlledBlendingModel",
+        "label": "Controlled blending",
+        "curie": "comet-asi:ControlledBlendingModel",
+        "kind": "Individual",
+        "prefix": "comet-asi",
+        "namespace": "Aluminium Stewardship (ASI, ext)",
+        "layer": "Extension",
+        "color": "#8a8f2f",
+        "definition": "",
+        "defined": true
+      },
+      {
+        "id": "https://comet.carbon/ext/aluminium-asi#MassBalanceModel",
+        "label": "Mass balance",
+        "curie": "comet-asi:MassBalanceModel",
+        "kind": "Individual",
+        "prefix": "comet-asi",
+        "namespace": "Aluminium Stewardship (ASI, ext)",
+        "layer": "Extension",
+        "color": "#8a8f2f",
+        "definition": "",
+        "defined": true
+      },
+      {
+        "id": "https://comet.carbon/ext/aluminium-asi#PrimaryElectrolytic",
+        "label": "Primary aluminium (electrolytic, Hall-Héroult)",
+        "curie": "comet-asi:PrimaryElectrolytic",
+        "kind": "Individual",
+        "prefix": "comet-asi",
+        "namespace": "Aluminium Stewardship (ASI, ext)",
+        "layer": "Extension",
+        "color": "#8a8f2f",
+        "definition": "Primary (electrolytic) aluminium maps to CN 7601 (unwrought aluminium). e.g. 76011000 unalloyed.",
+        "defined": true
+      },
+      {
+        "id": "https://comet.carbon/ext/aluminium-asi#RecycledSecondary",
+        "label": "Recycled / secondary aluminium",
+        "curie": "comet-asi:RecycledSecondary",
+        "kind": "Individual",
+        "prefix": "comet-asi",
+        "namespace": "Aluminium Stewardship (ASI, ext)",
+        "layer": "Extension",
+        "color": "#8a8f2f",
+        "definition": "Recycled / secondary aluminium aligns with CN 7602 (aluminium waste and scrap) feedstock, output reported under 7601.",
+        "defined": true
+      },
+      {
+        "id": "https://comet.carbon/ext/aluminium-asi#SegregationModel",
+        "label": "Physical segregation",
+        "curie": "comet-asi:SegregationModel",
+        "kind": "Individual",
+        "prefix": "comet-asi",
+        "namespace": "Aluminium Stewardship (ASI, ext)",
+        "layer": "Extension",
+        "color": "#8a8f2f",
+        "definition": "",
+        "defined": true
+      },
+      {
+        "id": "https://comet.carbon/ext/aluminium-asi#auditingFirm",
+        "label": "auditing firm",
+        "curie": "comet-asi:auditingFirm",
+        "kind": "ObjectProperty",
+        "prefix": "comet-asi",
+        "namespace": "Aluminium Stewardship (ASI, ext)",
+        "layer": "Extension",
+        "color": "#8a8f2f",
+        "definition": "The ASI-accredited auditing firm that issued the certification (reuses comet-ver:QualifiedVerifier).",
+        "defined": true
+      },
+      {
+        "id": "https://comet.carbon/ext/aluminium-asi#certifiedSite",
+        "label": "certified site",
+        "curie": "comet-asi:certifiedSite",
+        "kind": "ObjectProperty",
+        "prefix": "comet-asi",
+        "namespace": "Aluminium Stewardship (ASI, ext)",
+        "layer": "Extension",
+        "color": "#8a8f2f",
+        "definition": "",
+        "defined": true
+      },
+      {
+        "id": "https://comet.carbon/ext/aluminium-asi#cocModel",
+        "label": "CoC model",
+        "curie": "comet-asi:cocModel",
+        "kind": "ObjectProperty",
+        "prefix": "comet-asi",
+        "namespace": "Aluminium Stewardship (ASI, ext)",
+        "layer": "Extension",
+        "color": "#8a8f2f",
+        "definition": "The chain-of-custody model under which this claim is made.",
+        "defined": true
+      },
+      {
         "id": "https://comet.carbon/ext/iso14068#Baseline",
         "label": "Carbon Neutrality Baseline",
         "curie": "comet-cn:Baseline",
@@ -21442,14 +22718,26 @@ window.COMET_ONTOLOGY = {
         "defined": true
       },
       {
-        "id": "https://comet.carbon/v1/market#CarbonPremium",
-        "label": "CarbonPremium",
-        "curie": "comet-mkt:CarbonPremium",
+        "id": "https://comet.carbon/v1/supplychain#SupplyChainLink",
+        "label": "SupplyChainLink",
+        "curie": "comet-sc:SupplyChainLink",
         "kind": "Reference",
-        "prefix": "comet-mkt",
-        "namespace": "Market",
-        "layer": "L7 · Market",
-        "color": "#7a2f6b",
+        "prefix": "comet-sc",
+        "namespace": "Supply Chain",
+        "layer": "L3 · Supply Chain",
+        "color": "#6b4a1a",
+        "definition": "",
+        "defined": false
+      },
+      {
+        "id": "https://comet.carbon/ext/pcr-japan#JapanesePCRField",
+        "label": "JapanesePCRField",
+        "curie": "comet-pj:JapanesePCRField",
+        "kind": "Reference",
+        "prefix": "comet-pj",
+        "namespace": "PCR Japan / SuMPO EcoLeaf (ext)",
+        "layer": "Extension",
+        "color": "#c8720a",
         "definition": "",
         "defined": false
       },
@@ -21457,66 +22745,6 @@ window.COMET_ONTOLOGY = {
         "id": "https://comet.carbon/v1/core#Organization",
         "label": "Organization",
         "curie": "comet:Organization",
-        "kind": "Reference",
-        "prefix": "comet",
-        "namespace": "Core",
-        "layer": "L1 · Core",
-        "color": "#1a3a6b",
-        "definition": "",
-        "defined": false
-      },
-      {
-        "id": "https://comet.carbon/v1/pcf#PCRDocument",
-        "label": "PCRDocument",
-        "curie": "comet-pcf:PCRDocument",
-        "kind": "Reference",
-        "prefix": "comet-pcf",
-        "namespace": "Product Carbon Footprint",
-        "layer": "L4 · PCF",
-        "color": "#1a6b3c",
-        "definition": "",
-        "defined": false
-      },
-      {
-        "id": "https://comet.carbon/v1/pcf#PCFResult",
-        "label": "PCFResult",
-        "curie": "comet-pcf:PCFResult",
-        "kind": "Reference",
-        "prefix": "comet-pcf",
-        "namespace": "Product Carbon Footprint",
-        "layer": "L4 · PCF",
-        "color": "#1a6b3c",
-        "definition": "",
-        "defined": false
-      },
-      {
-        "id": "https://comet.carbon/v1/ver#DisclosureRecord",
-        "label": "DisclosureRecord",
-        "curie": "comet-ver:DisclosureRecord",
-        "kind": "Reference",
-        "prefix": "comet-ver",
-        "namespace": "Verification",
-        "layer": "L6 · Verification",
-        "color": "#1a5f6b",
-        "definition": "",
-        "defined": false
-      },
-      {
-        "id": "https://comet.carbon/v1/eac#MaterialStewardCert",
-        "label": "MaterialStewardCert",
-        "curie": "comet-eac:MaterialStewardCert",
-        "kind": "Reference",
-        "prefix": "comet-eac",
-        "namespace": "Environmental Attribute Certificate",
-        "layer": "L5 · EAC",
-        "color": "#9a7c2f",
-        "definition": "",
-        "defined": false
-      },
-      {
-        "id": "https://comet.carbon/v1/core#Site",
-        "label": "Site",
-        "curie": "comet:Site",
         "kind": "Reference",
         "prefix": "comet",
         "namespace": "Core",
@@ -21538,50 +22766,50 @@ window.COMET_ONTOLOGY = {
         "defined": false
       },
       {
-        "id": "https://comet.carbon/v1/ver#AuditClaim",
-        "label": "AuditClaim",
-        "curie": "comet-ver:AuditClaim",
+        "id": "https://comet.carbon/v1/core#Site",
+        "label": "Site",
+        "curie": "comet:Site",
         "kind": "Reference",
-        "prefix": "comet-ver",
-        "namespace": "Verification",
-        "layer": "L6 · Verification",
-        "color": "#1a5f6b",
+        "prefix": "comet",
+        "namespace": "Core",
+        "layer": "L1 · Core",
+        "color": "#1a3a6b",
         "definition": "",
         "defined": false
       },
       {
-        "id": "https://comet.carbon/ext/pcr-japan#JapanesePCRField",
-        "label": "JapanesePCRField",
-        "curie": "comet-pj:JapanesePCRField",
+        "id": "https://comet.carbon/v1/eac#MaterialStewardCert",
+        "label": "MaterialStewardCert",
+        "curie": "comet-eac:MaterialStewardCert",
         "kind": "Reference",
-        "prefix": "comet-pj",
-        "namespace": "PCR Japan / SuMPO EcoLeaf (ext)",
-        "layer": "Extension",
-        "color": "#c8720a",
+        "prefix": "comet-eac",
+        "namespace": "Environmental Attribute Certificate",
+        "layer": "L5 · EAC",
+        "color": "#9a7c2f",
         "definition": "",
         "defined": false
       },
       {
-        "id": "https://comet.carbon/v1/supplychain#SupplyChainLink",
-        "label": "SupplyChainLink",
-        "curie": "comet-sc:SupplyChainLink",
+        "id": "https://comet.carbon/v1/eac#Certification",
+        "label": "Certification",
+        "curie": "comet-eac:Certification",
         "kind": "Reference",
-        "prefix": "comet-sc",
-        "namespace": "Supply Chain",
-        "layer": "L3 · Supply Chain",
-        "color": "#6b4a1a",
+        "prefix": "comet-eac",
+        "namespace": "Environmental Attribute Certificate",
+        "layer": "L5 · EAC",
+        "color": "#9a7c2f",
         "definition": "",
         "defined": false
       },
       {
-        "id": "https://comet.carbon/v1/ver#AuditTrail",
-        "label": "AuditTrail",
-        "curie": "comet-ver:AuditTrail",
+        "id": "https://comet.carbon/v1/pcf#PCRDocument",
+        "label": "PCRDocument",
+        "curie": "comet-pcf:PCRDocument",
         "kind": "Reference",
-        "prefix": "comet-ver",
-        "namespace": "Verification",
-        "layer": "L6 · Verification",
-        "color": "#1a5f6b",
+        "prefix": "comet-pcf",
+        "namespace": "Product Carbon Footprint",
+        "layer": "L4 · PCF",
+        "color": "#1a6b3c",
         "definition": "",
         "defined": false
       },
@@ -21610,6 +22838,42 @@ window.COMET_ONTOLOGY = {
         "defined": false
       },
       {
+        "id": "https://comet.carbon/v1/ver#QualifiedVerifier",
+        "label": "QualifiedVerifier",
+        "curie": "comet-ver:QualifiedVerifier",
+        "kind": "Reference",
+        "prefix": "comet-ver",
+        "namespace": "Verification",
+        "layer": "L6 · Verification",
+        "color": "#1a5f6b",
+        "definition": "",
+        "defined": false
+      },
+      {
+        "id": "https://comet.carbon/v1/ver#AuditTrail",
+        "label": "AuditTrail",
+        "curie": "comet-ver:AuditTrail",
+        "kind": "Reference",
+        "prefix": "comet-ver",
+        "namespace": "Verification",
+        "layer": "L6 · Verification",
+        "color": "#1a5f6b",
+        "definition": "",
+        "defined": false
+      },
+      {
+        "id": "https://comet.carbon/v1/ver#DisclosureRecord",
+        "label": "DisclosureRecord",
+        "curie": "comet-ver:DisclosureRecord",
+        "kind": "Reference",
+        "prefix": "comet-ver",
+        "namespace": "Verification",
+        "layer": "L6 · Verification",
+        "color": "#1a5f6b",
+        "definition": "",
+        "defined": false
+      },
+      {
         "id": "https://comet.carbon/v1/eac#RetirementEvent",
         "label": "RetirementEvent",
         "curie": "comet-eac:RetirementEvent",
@@ -21622,14 +22886,38 @@ window.COMET_ONTOLOGY = {
         "defined": false
       },
       {
-        "id": "https://comet.carbon/v1/eac#Certification",
-        "label": "Certification",
-        "curie": "comet-eac:Certification",
+        "id": "https://comet.carbon/v1/ver#ValidationRecord",
+        "label": "ValidationRecord",
+        "curie": "comet-ver:ValidationRecord",
         "kind": "Reference",
-        "prefix": "comet-eac",
-        "namespace": "Environmental Attribute Certificate",
-        "layer": "L5 · EAC",
-        "color": "#9a7c2f",
+        "prefix": "comet-ver",
+        "namespace": "Verification",
+        "layer": "L6 · Verification",
+        "color": "#1a5f6b",
+        "definition": "",
+        "defined": false
+      },
+      {
+        "id": "https://comet.carbon/v1/supplychain#Scope1Emissions",
+        "label": "Scope1Emissions",
+        "curie": "comet-sc:Scope1Emissions",
+        "kind": "Reference",
+        "prefix": "comet-sc",
+        "namespace": "Supply Chain",
+        "layer": "L3 · Supply Chain",
+        "color": "#6b4a1a",
+        "definition": "",
+        "defined": false
+      },
+      {
+        "id": "https://comet.carbon/v1/pcf#PCFResult",
+        "label": "PCFResult",
+        "curie": "comet-pcf:PCFResult",
+        "kind": "Reference",
+        "prefix": "comet-pcf",
+        "namespace": "Product Carbon Footprint",
+        "layer": "L4 · PCF",
+        "color": "#1a6b3c",
         "definition": "",
         "defined": false
       },
@@ -21642,6 +22930,30 @@ window.COMET_ONTOLOGY = {
         "namespace": "Product Carbon Footprint",
         "layer": "L4 · PCF",
         "color": "#1a6b3c",
+        "definition": "",
+        "defined": false
+      },
+      {
+        "id": "https://comet.carbon/v1/ver#AuditClaim",
+        "label": "AuditClaim",
+        "curie": "comet-ver:AuditClaim",
+        "kind": "Reference",
+        "prefix": "comet-ver",
+        "namespace": "Verification",
+        "layer": "L6 · Verification",
+        "color": "#1a5f6b",
+        "definition": "",
+        "defined": false
+      },
+      {
+        "id": "https://comet.carbon/v1/market#CarbonPremium",
+        "label": "CarbonPremium",
+        "curie": "comet-mkt:CarbonPremium",
+        "kind": "Reference",
+        "prefix": "comet-mkt",
+        "namespace": "Market",
+        "layer": "L7 · Market",
+        "color": "#7a2f6b",
         "definition": "",
         "defined": false
       },
@@ -22198,18 +23510,6 @@ window.COMET_ONTOLOGY = {
         "defined": false
       },
       {
-        "id": "https://comet.carbon/v1/supplychain#Scope1Emissions",
-        "label": "Scope1Emissions",
-        "curie": "comet-sc:Scope1Emissions",
-        "kind": "Reference",
-        "prefix": "comet-sc",
-        "namespace": "Supply Chain",
-        "layer": "L3 · Supply Chain",
-        "color": "#6b4a1a",
-        "definition": "",
-        "defined": false
-      },
-      {
         "id": "https://api.carbonsig.com/schemas/verifier-export/v4#GHGDetails.scopeBreakdown.scope1",
         "label": "GHGDetails.scopeBreakdown.scope1",
         "curie": "csig:GHGDetails.scopeBreakdown.scope1",
@@ -22618,6 +23918,54 @@ window.COMET_ONTOLOGY = {
         "defined": false
       },
       {
+        "id": "https://comet.carbon/v1/pcf#EmbeddedEmissions",
+        "label": "EmbeddedEmissions",
+        "curie": "comet-pcf:EmbeddedEmissions",
+        "kind": "Reference",
+        "prefix": "comet-pcf",
+        "namespace": "Product Carbon Footprint",
+        "layer": "L4 · PCF",
+        "color": "#1a6b3c",
+        "definition": "",
+        "defined": false
+      },
+      {
+        "id": "https://ontology.materialintelligence.ai/cbam/SpecificEmbeddedEmissions",
+        "label": "SpecificEmbeddedEmissions",
+        "curie": "cbam:SpecificEmbeddedEmissions",
+        "kind": "External",
+        "prefix": "cbam",
+        "namespace": "EU CBAM",
+        "layer": "External Standard",
+        "color": "#0a4ea0",
+        "definition": "",
+        "defined": false
+      },
+      {
+        "id": "https://comet.carbon/v1/supplychain#PrimaryDataShare",
+        "label": "PrimaryDataShare",
+        "curie": "comet-sc:PrimaryDataShare",
+        "kind": "Reference",
+        "prefix": "comet-sc",
+        "namespace": "Supply Chain",
+        "layer": "L3 · Supply Chain",
+        "color": "#6b4a1a",
+        "definition": "",
+        "defined": false
+      },
+      {
+        "id": "https://ontology.materialintelligence.ai/cbam/ActualEmbeddedEmissionsFlag",
+        "label": "ActualEmbeddedEmissionsFlag",
+        "curie": "cbam:ActualEmbeddedEmissionsFlag",
+        "kind": "External",
+        "prefix": "cbam",
+        "namespace": "EU CBAM",
+        "layer": "External Standard",
+        "color": "#0a4ea0",
+        "definition": "",
+        "defined": false
+      },
+      {
         "id": "https://comet.carbon/v1/pcf#StandardRef",
         "label": "StandardRef",
         "curie": "comet-pcf:StandardRef",
@@ -22674,18 +24022,6 @@ window.COMET_ONTOLOGY = {
         "namespace": "CarbonSig Verifier Export v4",
         "layer": "External Standard",
         "color": "#0a7c5a",
-        "definition": "",
-        "defined": false
-      },
-      {
-        "id": "https://comet.carbon/v1/pcf#EmbeddedEmissions",
-        "label": "EmbeddedEmissions",
-        "curie": "comet-pcf:EmbeddedEmissions",
-        "kind": "Reference",
-        "prefix": "comet-pcf",
-        "namespace": "Product Carbon Footprint",
-        "layer": "L4 · PCF",
-        "color": "#1a6b3c",
         "definition": "",
         "defined": false
       },
@@ -23118,18 +24454,6 @@ window.COMET_ONTOLOGY = {
         "namespace": "CarbonSig Verifier Export v4",
         "layer": "External Standard",
         "color": "#0a7c5a",
-        "definition": "",
-        "defined": false
-      },
-      {
-        "id": "https://ontology.materialintelligence.ai/cbam/SpecificEmbeddedEmissions",
-        "label": "SpecificEmbeddedEmissions",
-        "curie": "cbam:SpecificEmbeddedEmissions",
-        "kind": "External",
-        "prefix": "cbam",
-        "namespace": "EU CBAM",
-        "layer": "External Standard",
-        "color": "#0a4ea0",
         "definition": "",
         "defined": false
       },
@@ -24478,6 +25802,18 @@ window.COMET_ONTOLOGY = {
         "defined": false
       },
       {
+        "id": "https://ontology.materialintelligence.ai/cbam/DirectEmissions",
+        "label": "DirectEmissions",
+        "curie": "cbam:DirectEmissions",
+        "kind": "External",
+        "prefix": "cbam",
+        "namespace": "EU CBAM",
+        "layer": "External Standard",
+        "color": "#0a4ea0",
+        "definition": "",
+        "defined": false
+      },
+      {
         "id": "https://api.carbonsig.com/schemas/verifier-export/v4#System",
         "label": "System",
         "curie": "csig:System",
@@ -24534,6 +25870,30 @@ window.COMET_ONTOLOGY = {
         "namespace": "GHG Protocol",
         "layer": "External Standard",
         "color": "#1a6b3c",
+        "definition": "",
+        "defined": false
+      },
+      {
+        "id": "https://ontology.materialintelligence.ai/cbam/CN7601",
+        "label": "CN7601",
+        "curie": "cbam:CN7601",
+        "kind": "External",
+        "prefix": "cbam",
+        "namespace": "EU CBAM",
+        "layer": "External Standard",
+        "color": "#0a4ea0",
+        "definition": "",
+        "defined": false
+      },
+      {
+        "id": "https://ontology.materialintelligence.ai/cbam/CN7602",
+        "label": "CN7602",
+        "curie": "cbam:CN7602",
+        "kind": "External",
+        "prefix": "cbam",
+        "namespace": "EU CBAM",
+        "layer": "External Standard",
+        "color": "#0a4ea0",
         "definition": "",
         "defined": false
       },
@@ -25140,18 +26500,13 @@ window.COMET_ONTOLOGY = {
     ],
     "edges": [
       {
-        "from": "https://comet.carbon/ext/responsiblesteel#GreenSteelPremium",
-        "to": "https://comet.carbon/v1/market#CarbonPremium",
+        "from": "https://comet.carbon/ext/responsiblesteel#RSSupplierTier",
+        "to": "https://comet.carbon/v1/supplychain#SupplyChainLink",
         "rel": "subClassOf"
       },
       {
-        "from": "https://comet.carbon/ext/iso14068#ResidualGHGEmission",
-        "to": "https://comet.carbon/ext/iso14068#UnabatedGHGEmission",
-        "rel": "subClassOf"
-      },
-      {
-        "from": "https://comet.carbon/ext/pcr#supersedes",
-        "to": "https://comet.carbon/ext/pcr#PCRDocument",
+        "from": "https://comet.carbon/ext/pcr-japan#japanesePCRField",
+        "to": "https://comet.carbon/ext/pcr-japan#JapanesePCRField",
         "rel": "range"
       },
       {
@@ -25160,58 +26515,13 @@ window.COMET_ONTOLOGY = {
         "rel": "range"
       },
       {
-        "from": "https://comet.carbon/ext/iso14068#hasReportingPeriod",
-        "to": "https://comet.carbon/ext/iso14068#ReportingPeriod",
-        "rel": "range"
-      },
-      {
-        "from": "https://comet.carbon/ext/responsiblesteel#CorporateOwner",
-        "to": "https://comet.carbon/v1/core#Organization",
-        "rel": "subClassOf"
-      },
-      {
-        "from": "https://comet.carbon/ext/responsiblesteel#principleAssessed",
-        "to": "https://comet.carbon/ext/responsiblesteel#RSPrinciple",
-        "rel": "range"
-      },
-      {
-        "from": "https://comet.carbon/ext/pcr-japan#SuMPOPCRDocument",
-        "to": "https://comet.carbon/v1/pcf#PCRDocument",
-        "rel": "subClassOf"
-      },
-      {
-        "from": "https://comet.carbon/ext/pcr-japan#LegacyEcoLeafPCR",
-        "to": "https://comet.carbon/ext/pcr-japan#SuMPOPCRDocument",
-        "rel": "subClassOf"
-      },
-      {
-        "from": "https://comet.carbon/ext/iso14068#Baseline",
-        "to": "https://comet.carbon/v1/pcf#PCFResult",
-        "rel": "subClassOf"
-      },
-      {
-        "from": "https://comet.carbon/ext/responsiblesteel#hasDPL",
+        "from": "https://comet.carbon/ext/responsiblesteel#applicableDPL",
         "to": "https://comet.carbon/ext/responsiblesteel#DecarbProgressLevel",
         "rel": "range"
       },
       {
-        "from": "https://comet.carbon/ext/iso14068#FinancialInstitution",
-        "to": "https://comet.carbon/ext/iso14068#Entity",
-        "rel": "subClassOf"
-      },
-      {
-        "from": "https://comet.carbon/ext/iso14068#hasCommitment",
-        "to": "https://comet.carbon/ext/iso14068#CarbonNeutralityCommitment",
-        "rel": "range"
-      },
-      {
-        "from": "https://comet.carbon/ext/iso14068#CarbonNeutralityReport",
-        "to": "https://comet.carbon/v1/ver#DisclosureRecord",
-        "rel": "subClassOf"
-      },
-      {
-        "from": "https://comet.carbon/ext/responsiblesteel#CoreSiteCertification",
-        "to": "https://comet.carbon/v1/eac#MaterialStewardCert",
+        "from": "https://comet.carbon/ext/responsiblesteel#RSInputMaterial",
+        "to": "https://comet.carbon/v1/core#Material",
         "rel": "subClassOf"
       },
       {
@@ -25220,104 +26530,19 @@ window.COMET_ONTOLOGY = {
         "rel": "subClassOf"
       },
       {
-        "from": "https://comet.carbon/ext/iso14068#hasVerificationOpinion",
-        "to": "https://comet.carbon/ext/iso14068#VerificationOpinion",
-        "rel": "range"
-      },
-      {
-        "from": "https://comet.carbon/ext/responsiblesteel#applicableDPL",
-        "to": "https://comet.carbon/ext/responsiblesteel#DecarbProgressLevel",
-        "rel": "range"
-      },
-      {
-        "from": "https://comet.carbon/ext/responsiblesteel#auditedSite",
-        "to": "https://comet.carbon/ext/responsiblesteel#CertifiedSite",
-        "rel": "range"
-      },
-      {
-        "from": "https://comet.carbon/ext/responsiblesteel#CertifiedSite",
+        "from": "https://comet.carbon/ext/aluminium-asi#ASICertifiedSite",
         "to": "https://comet.carbon/v1/core#Site",
         "rel": "subClassOf"
       },
       {
-        "from": "https://comet.carbon/ext/responsiblesteel#RSInputMaterial",
-        "to": "https://comet.carbon/v1/core#Material",
-        "rel": "subClassOf"
-      },
-      {
-        "from": "https://comet.carbon/ext/responsiblesteel#ProgressLevelPricing",
-        "to": "https://comet.carbon/v1/market#CarbonPremium",
-        "rel": "subClassOf"
-      },
-      {
-        "from": "https://comet.carbon/ext/iso14068#VerificationOpinion",
-        "to": "https://comet.carbon/v1/ver#AuditClaim",
-        "rel": "subClassOf"
-      },
-      {
-        "from": "https://comet.carbon/ext/iso14068#hasBaseline",
-        "to": "https://comet.carbon/ext/iso14068#Baseline",
-        "rel": "range"
-      },
-      {
-        "from": "https://comet.carbon/ext/pcr-japan#japanesePCRField",
-        "to": "https://comet.carbon/ext/pcr-japan#JapanesePCRField",
-        "rel": "range"
-      },
-      {
-        "from": "https://comet.carbon/ext/responsiblesteel#claimDPLContext",
-        "to": "https://comet.carbon/ext/responsiblesteel#DecarbProgressLevel",
-        "rel": "range"
-      },
-      {
-        "from": "https://comet.carbon/ext/iso14068#hasReport",
-        "to": "https://comet.carbon/ext/iso14068#CarbonNeutralityReport",
-        "rel": "range"
-      },
-      {
-        "from": "https://comet.carbon/ext/responsiblesteel#RSSupplierTier",
-        "to": "https://comet.carbon/v1/supplychain#SupplyChainLink",
-        "rel": "subClassOf"
-      },
-      {
-        "from": "https://comet.carbon/ext/responsiblesteel#CertificationAudit",
-        "to": "https://comet.carbon/v1/ver#AuditTrail",
-        "rel": "subClassOf"
-      },
-      {
-        "from": "https://comet.carbon/ext/responsiblesteel#transfersFrom",
+        "from": "https://comet.carbon/ext/aluminium-asi#ASICertifiedEntity",
         "to": "https://comet.carbon/v1/core#Organization",
-        "rel": "range"
-      },
-      {
-        "from": "https://comet.carbon/ext/iso14068#meetsCriterion",
-        "to": "https://comet.carbon/ext/iso14068#CreditCriterion",
-        "rel": "range"
-      },
-      {
-        "from": "https://comet.carbon/ext/responsiblesteel#SteelCertification",
-        "to": "https://comet.carbon/ext/responsiblesteel#CoreSiteCertification",
         "rel": "subClassOf"
       },
       {
-        "from": "https://comet.carbon/ext/responsiblesteel#SteelProductionRoute",
-        "to": "https://comet.carbon/v1/core#Process",
+        "from": "https://comet.carbon/ext/responsiblesteel#CoreSiteCertification",
+        "to": "https://comet.carbon/v1/eac#MaterialStewardCert",
         "rel": "subClassOf"
-      },
-      {
-        "from": "https://comet.carbon/ext/responsiblesteel#SupplierESGRisk",
-        "to": "https://comet.carbon/v1/supplychain#SupplyChainLink",
-        "rel": "subClassOf"
-      },
-      {
-        "from": "https://comet.carbon/ext/iso14068#hasCreditType",
-        "to": "https://comet.carbon/ext/iso14068#CreditType",
-        "rel": "range"
-      },
-      {
-        "from": "https://comet.carbon/ext/responsiblesteel#hasSPL",
-        "to": "https://comet.carbon/ext/responsiblesteel#SourcingProgressLevel",
-        "rel": "range"
       },
       {
         "from": "https://comet.carbon/ext/iso14068#hasPathway",
@@ -25325,43 +26550,8 @@ window.COMET_ONTOLOGY = {
         "rel": "range"
       },
       {
-        "from": "https://comet.carbon/ext/iso14068#hierarchyStep",
-        "to": "https://comet.carbon/ext/iso14068#HierarchyAction",
-        "rel": "range"
-      },
-      {
-        "from": "https://comet.carbon/ext/responsiblesteel#reviewsAudit",
-        "to": "https://comet.carbon/ext/responsiblesteel#CertificationAudit",
-        "rel": "range"
-      },
-      {
-        "from": "https://comet.carbon/ext/responsiblesteel#CrudeSteelIntensity",
-        "to": "https://comet.carbon/v1/pcf#LCIAResult",
-        "rel": "subClassOf"
-      },
-      {
-        "from": "https://comet.carbon/ext/iso14068#OffsettingEvent",
-        "to": "https://comet.carbon/v1/eac#RetirementEvent",
-        "rel": "subClassOf"
-      },
-      {
-        "from": "https://comet.carbon/ext/iso14068#hasSubject",
-        "to": "https://comet.carbon/ext/iso14068#Subject",
-        "rel": "range"
-      },
-      {
-        "from": "https://comet.carbon/ext/iso14068#Entity",
-        "to": "https://comet.carbon/v1/core#Organization",
-        "rel": "subClassOf"
-      },
-      {
-        "from": "https://comet.carbon/ext/responsiblesteel#traceableTo",
-        "to": "https://comet.carbon/ext/responsiblesteel#SteelCertification",
-        "rel": "range"
-      },
-      {
-        "from": "https://comet.carbon/ext/responsiblesteel#hasNonConformity",
-        "to": "https://comet.carbon/ext/responsiblesteel#NonConformity",
+        "from": "https://comet.carbon/ext/responsiblesteel#hasDPL",
+        "to": "https://comet.carbon/ext/responsiblesteel#DecarbProgressLevel",
         "rel": "range"
       },
       {
@@ -25370,18 +26560,113 @@ window.COMET_ONTOLOGY = {
         "rel": "subClassOf"
       },
       {
-        "from": "https://comet.carbon/ext/pcr#governedByPCR",
+        "from": "https://comet.carbon/ext/pcr#supersedes",
         "to": "https://comet.carbon/ext/pcr#PCRDocument",
         "rel": "range"
       },
       {
-        "from": "https://comet.carbon/ext/iso14068#hasClaim",
-        "to": "https://comet.carbon/ext/iso14068#CarbonNeutralityClaim",
+        "from": "https://comet.carbon/ext/iso14068#Entity",
+        "to": "https://comet.carbon/v1/core#Organization",
+        "rel": "subClassOf"
+      },
+      {
+        "from": "https://comet.carbon/ext/pcr-japan#SuMPOPCRDocument",
+        "to": "https://comet.carbon/v1/pcf#PCRDocument",
+        "rel": "subClassOf"
+      },
+      {
+        "from": "https://comet.carbon/ext/aluminium-asi#AluminiumProductionRoute",
+        "to": "https://comet.carbon/v1/core#Process",
+        "rel": "subClassOf"
+      },
+      {
+        "from": "https://comet.carbon/ext/responsiblesteel#CrudeSteelIntensity",
+        "to": "https://comet.carbon/v1/pcf#LCIAResult",
+        "rel": "subClassOf"
+      },
+      {
+        "from": "https://comet.carbon/ext/responsiblesteel#reviewsAudit",
+        "to": "https://comet.carbon/ext/responsiblesteel#CertificationAudit",
         "rel": "range"
       },
       {
-        "from": "https://comet.carbon/ext/iso14068#UnabatedGHGEmission",
-        "to": "https://comet.carbon/v1/pcf#GHGEmission",
+        "from": "https://comet.carbon/ext/iso14068#hasCommitment",
+        "to": "https://comet.carbon/ext/iso14068#CarbonNeutralityCommitment",
+        "rel": "range"
+      },
+      {
+        "from": "https://comet.carbon/ext/aluminium-asi#SectoralSlope",
+        "to": "https://comet.carbon/ext/aluminium-asi#GHGPathway",
+        "rel": "subClassOf"
+      },
+      {
+        "from": "https://comet.carbon/ext/responsiblesteel#principleAssessed",
+        "to": "https://comet.carbon/ext/responsiblesteel#RSPrinciple",
+        "rel": "range"
+      },
+      {
+        "from": "https://comet.carbon/ext/iso14068#hasReport",
+        "to": "https://comet.carbon/ext/iso14068#CarbonNeutralityReport",
+        "rel": "range"
+      },
+      {
+        "from": "https://comet.carbon/ext/iso14068#meetsCriterion",
+        "to": "https://comet.carbon/ext/iso14068#CreditCriterion",
+        "rel": "range"
+      },
+      {
+        "from": "https://comet.carbon/ext/responsiblesteel#auditedSite",
+        "to": "https://comet.carbon/ext/responsiblesteel#CertifiedSite",
+        "rel": "range"
+      },
+      {
+        "from": "https://comet.carbon/ext/aluminium-asi#auditingFirm",
+        "to": "https://comet.carbon/v1/ver#QualifiedVerifier",
+        "rel": "range"
+      },
+      {
+        "from": "https://comet.carbon/ext/responsiblesteel#CertificationAudit",
+        "to": "https://comet.carbon/v1/ver#AuditTrail",
+        "rel": "subClassOf"
+      },
+      {
+        "from": "https://comet.carbon/ext/iso14068#hasSubject",
+        "to": "https://comet.carbon/ext/iso14068#Subject",
+        "rel": "range"
+      },
+      {
+        "from": "https://comet.carbon/ext/responsiblesteel#SteelCertification",
+        "to": "https://comet.carbon/ext/responsiblesteel#CoreSiteCertification",
+        "rel": "subClassOf"
+      },
+      {
+        "from": "https://comet.carbon/ext/pcr-japan#LegacyEcoLeafPCR",
+        "to": "https://comet.carbon/ext/pcr-japan#SuMPOPCRDocument",
+        "rel": "subClassOf"
+      },
+      {
+        "from": "https://comet.carbon/ext/iso14068#CarbonNeutralityReport",
+        "to": "https://comet.carbon/v1/ver#DisclosureRecord",
+        "rel": "subClassOf"
+      },
+      {
+        "from": "https://comet.carbon/ext/responsiblesteel#claimDPLContext",
+        "to": "https://comet.carbon/ext/responsiblesteel#DecarbProgressLevel",
+        "rel": "range"
+      },
+      {
+        "from": "https://comet.carbon/ext/iso14068#hasVerificationOpinion",
+        "to": "https://comet.carbon/ext/iso14068#VerificationOpinion",
+        "rel": "range"
+      },
+      {
+        "from": "https://comet.carbon/ext/responsiblesteel#hasNonConformity",
+        "to": "https://comet.carbon/ext/responsiblesteel#NonConformity",
+        "rel": "range"
+      },
+      {
+        "from": "https://comet.carbon/ext/iso14068#OffsettingEvent",
+        "to": "https://comet.carbon/v1/eac#RetirementEvent",
         "rel": "subClassOf"
       },
       {
@@ -25390,9 +26675,129 @@ window.COMET_ONTOLOGY = {
         "rel": "subClassOf"
       },
       {
+        "from": "https://comet.carbon/ext/responsiblesteel#traceableTo",
+        "to": "https://comet.carbon/ext/responsiblesteel#SteelCertification",
+        "rel": "range"
+      },
+      {
+        "from": "https://comet.carbon/ext/responsiblesteel#transfersFrom",
+        "to": "https://comet.carbon/v1/core#Organization",
+        "rel": "range"
+      },
+      {
+        "from": "https://comet.carbon/ext/pcr#governedByPCR",
+        "to": "https://comet.carbon/ext/pcr#PCRDocument",
+        "rel": "range"
+      },
+      {
+        "from": "https://comet.carbon/ext/iso14068#hasBaseline",
+        "to": "https://comet.carbon/ext/iso14068#Baseline",
+        "rel": "range"
+      },
+      {
         "from": "https://comet.carbon/ext/pcr#program",
         "to": "https://comet.carbon/ext/pcr#PCRProgramOperator",
         "rel": "range"
+      },
+      {
+        "from": "https://comet.carbon/ext/iso14068#FinancialInstitution",
+        "to": "https://comet.carbon/ext/iso14068#Entity",
+        "rel": "subClassOf"
+      },
+      {
+        "from": "https://comet.carbon/ext/aluminium-asi#ASICertification",
+        "to": "https://comet.carbon/v1/ver#ValidationRecord",
+        "rel": "subClassOf"
+      },
+      {
+        "from": "https://comet.carbon/ext/responsiblesteel#CorporateOwner",
+        "to": "https://comet.carbon/v1/core#Organization",
+        "rel": "subClassOf"
+      },
+      {
+        "from": "https://comet.carbon/ext/iso14068#ResidualGHGEmission",
+        "to": "https://comet.carbon/ext/iso14068#UnabatedGHGEmission",
+        "rel": "subClassOf"
+      },
+      {
+        "from": "https://comet.carbon/ext/aluminium-asi#PFCAnodeEffect",
+        "to": "https://comet.carbon/v1/supplychain#Scope1Emissions",
+        "rel": "subClassOf"
+      },
+      {
+        "from": "https://comet.carbon/ext/responsiblesteel#SteelProductionRoute",
+        "to": "https://comet.carbon/v1/core#Process",
+        "rel": "subClassOf"
+      },
+      {
+        "from": "https://comet.carbon/ext/iso14068#hasCreditType",
+        "to": "https://comet.carbon/ext/iso14068#CreditType",
+        "rel": "range"
+      },
+      {
+        "from": "https://comet.carbon/ext/aluminium-asi#certifiedSite",
+        "to": "https://comet.carbon/ext/aluminium-asi#ASICertifiedSite",
+        "rel": "range"
+      },
+      {
+        "from": "https://comet.carbon/ext/iso14068#hasReportingPeriod",
+        "to": "https://comet.carbon/ext/iso14068#ReportingPeriod",
+        "rel": "range"
+      },
+      {
+        "from": "https://comet.carbon/ext/iso14068#Baseline",
+        "to": "https://comet.carbon/v1/pcf#PCFResult",
+        "rel": "subClassOf"
+      },
+      {
+        "from": "https://comet.carbon/ext/responsiblesteel#hasSPL",
+        "to": "https://comet.carbon/ext/responsiblesteel#SourcingProgressLevel",
+        "rel": "range"
+      },
+      {
+        "from": "https://comet.carbon/ext/aluminium-asi#cocModel",
+        "to": "https://comet.carbon/ext/aluminium-asi#CoCModel",
+        "rel": "range"
+      },
+      {
+        "from": "https://comet.carbon/ext/iso14068#UnabatedGHGEmission",
+        "to": "https://comet.carbon/v1/pcf#GHGEmission",
+        "rel": "subClassOf"
+      },
+      {
+        "from": "https://comet.carbon/ext/iso14068#hierarchyStep",
+        "to": "https://comet.carbon/ext/iso14068#HierarchyAction",
+        "rel": "range"
+      },
+      {
+        "from": "https://comet.carbon/ext/iso14068#VerificationOpinion",
+        "to": "https://comet.carbon/v1/ver#AuditClaim",
+        "rel": "subClassOf"
+      },
+      {
+        "from": "https://comet.carbon/ext/responsiblesteel#GreenSteelPremium",
+        "to": "https://comet.carbon/v1/market#CarbonPremium",
+        "rel": "subClassOf"
+      },
+      {
+        "from": "https://comet.carbon/ext/responsiblesteel#CertifiedSite",
+        "to": "https://comet.carbon/v1/core#Site",
+        "rel": "subClassOf"
+      },
+      {
+        "from": "https://comet.carbon/ext/responsiblesteel#ProgressLevelPricing",
+        "to": "https://comet.carbon/v1/market#CarbonPremium",
+        "rel": "subClassOf"
+      },
+      {
+        "from": "https://comet.carbon/ext/iso14068#hasClaim",
+        "to": "https://comet.carbon/ext/iso14068#CarbonNeutralityClaim",
+        "rel": "range"
+      },
+      {
+        "from": "https://comet.carbon/ext/responsiblesteel#SupplierESGRisk",
+        "to": "https://comet.carbon/v1/supplychain#SupplyChainLink",
+        "rel": "subClassOf"
       },
       {
         "from": "https://comet.carbon/v1/pcf#PCFResult",
@@ -25620,6 +27025,26 @@ window.COMET_ONTOLOGY = {
         "rel": "closeMatch"
       },
       {
+        "from": "https://comet.carbon/v1/pcf#EmbeddedEmissions",
+        "to": "https://ontology.materialintelligence.ai/cbam/SpecificEmbeddedEmissions",
+        "rel": "closeMatch"
+      },
+      {
+        "from": "https://comet.carbon/ext/responsiblesteel#CrudeSteelIntensity",
+        "to": "https://ontology.materialintelligence.ai/cbam/SpecificEmbeddedEmissions",
+        "rel": "closeMatch"
+      },
+      {
+        "from": "https://comet.carbon/ext/responsiblesteel#ghgIntensityValue",
+        "to": "https://ontology.materialintelligence.ai/cbam/SpecificEmbeddedEmissions",
+        "rel": "closeMatch"
+      },
+      {
+        "from": "https://comet.carbon/v1/supplychain#PrimaryDataShare",
+        "to": "https://ontology.materialintelligence.ai/cbam/ActualEmbeddedEmissionsFlag",
+        "rel": "closeMatch"
+      },
+      {
         "from": "https://comet.carbon/v1/pcf#StandardRef",
         "to": "https://api.carbonsig.com/schemas/verifier-export/v4#SystemMetadata.declaration",
         "rel": "closeMatch"
@@ -25752,16 +27177,6 @@ window.COMET_ONTOLOGY = {
       {
         "from": "https://comet.carbon/v1/pcf#FunctionalUnit",
         "to": "https://api.carbonsig.com/schemas/verifier-export/v4#DeclaredProduct.unit",
-        "rel": "closeMatch"
-      },
-      {
-        "from": "https://comet.carbon/ext/responsiblesteel#CrudeSteelIntensity",
-        "to": "https://ontology.materialintelligence.ai/cbam/SpecificEmbeddedEmissions",
-        "rel": "closeMatch"
-      },
-      {
-        "from": "https://comet.carbon/ext/responsiblesteel#ghgIntensityValue",
-        "to": "https://ontology.materialintelligence.ai/cbam/SpecificEmbeddedEmissions",
         "rel": "closeMatch"
       },
       {
@@ -26345,6 +27760,11 @@ window.COMET_ONTOLOGY = {
         "rel": "relatedMatch"
       },
       {
+        "from": "https://comet.carbon/ext/aluminium-asi#PFCAnodeEffect",
+        "to": "https://ontology.materialintelligence.ai/cbam/DirectEmissions",
+        "rel": "broadMatch"
+      },
+      {
         "from": "https://comet.carbon/v1/pcf#SystemBoundary",
         "to": "https://api.carbonsig.com/schemas/verifier-export/v4#System",
         "rel": "broadMatch"
@@ -26368,6 +27788,16 @@ window.COMET_ONTOLOGY = {
         "from": "https://comet.carbon/ext/responsiblesteel#ghgIntensityValue",
         "to": "https://ghgprotocol.org/scope/EmissionsQuantity",
         "rel": "broadMatch"
+      },
+      {
+        "from": "https://comet.carbon/ext/aluminium-asi#PrimaryElectrolytic",
+        "to": "https://ontology.materialintelligence.ai/cbam/CN7601",
+        "rel": "related"
+      },
+      {
+        "from": "https://comet.carbon/ext/aluminium-asi#RecycledSecondary",
+        "to": "https://ontology.materialintelligence.ai/cbam/CN7602",
+        "rel": "related"
       },
       {
         "from": "https://comet.carbon/ext/responsiblesteel#BF_BOF",
@@ -26953,6 +28383,36 @@ window.COMET_ONTOLOGY = {
   },
   "alignments": [
     {
+      "comet_curie": "comet-asi:PFCAnodeEffect",
+      "comet_local": "PFCAnodeEffect",
+      "relation": "broadMatch",
+      "target_standard": "EU CBAM",
+      "target_prefix": "cbam",
+      "target_term": "DirectEmissions",
+      "target_iri": "https://ontology.materialintelligence.ai/cbam/DirectEmissions",
+      "note": "No native CBAM term — this alignment makes the aggregation explicit so PFCs are not dropped."
+    },
+    {
+      "comet_curie": "comet-asi:PrimaryElectrolytic",
+      "comet_local": "PrimaryElectrolytic",
+      "relation": "related",
+      "target_standard": "EU CBAM",
+      "target_prefix": "cbam",
+      "target_term": "CN7601",
+      "target_iri": "https://ontology.materialintelligence.ai/cbam/CN7601",
+      "note": "Primary (electrolytic) aluminium maps to CN 7601 (unwrought aluminium). e.g. 76011000 unalloyed."
+    },
+    {
+      "comet_curie": "comet-asi:RecycledSecondary",
+      "comet_local": "RecycledSecondary",
+      "relation": "related",
+      "target_standard": "EU CBAM",
+      "target_prefix": "cbam",
+      "target_term": "CN7602",
+      "target_iri": "https://ontology.materialintelligence.ai/cbam/CN7602",
+      "note": "Recycled / secondary aluminium aligns with CN 7602 (aluminium waste and scrap) feedstock, output reported under 7601."
+    },
+    {
       "comet_curie": "comet-cn:OffsettingEvent",
       "comet_local": "OffsettingEvent",
       "relation": "closeMatch",
@@ -27480,7 +28940,17 @@ window.COMET_ONTOLOGY = {
       "target_prefix": "csig",
       "target_term": "GHGDetails",
       "target_iri": "https://api.carbonsig.com/schemas/verifier-export/v4#GHGDetails",
-      "note": "[certainty: Medium] All GHG attributes of a flow. The extension point for environmental impact."
+      "note": "ASI entity-level GHG intensity (Cr 5.1) maps to CBAM specific embedded emissions for the aluminium installation."
+    },
+    {
+      "comet_curie": "comet-pcf:EmbeddedEmissions",
+      "comet_local": "EmbeddedEmissions",
+      "relation": "closeMatch",
+      "target_standard": "EU CBAM",
+      "target_prefix": "cbam",
+      "target_term": "SpecificEmbeddedEmissions",
+      "target_iri": "https://ontology.materialintelligence.ai/cbam/SpecificEmbeddedEmissions",
+      "note": "ASI entity-level GHG intensity (Cr 5.1) maps to CBAM specific embedded emissions for the aluminium installation."
     },
     {
       "comet_curie": "comet-pcf:EmbeddedEmissions",
@@ -27490,7 +28960,7 @@ window.COMET_ONTOLOGY = {
       "target_prefix": "csig",
       "target_term": "Process.totals.embodiedEmissions",
       "target_iri": "https://api.carbonsig.com/schemas/verifier-export/v4#Process.totals.embodiedEmissions",
-      "note": "[certainty: High] Pre-computed total kg CO2e across scopes for the process."
+      "note": "ASI entity-level GHG intensity (Cr 5.1) maps to CBAM specific embedded emissions for the aluminium installation."
     },
     {
       "comet_curie": "comet-pcf:EmbeddedEmissions",
@@ -27500,7 +28970,7 @@ window.COMET_ONTOLOGY = {
       "target_prefix": "csig",
       "target_term": "GHGDetails.embodiedEmissions",
       "target_iri": "https://api.carbonsig.com/schemas/verifier-export/v4#GHGDetails.embodiedEmissions",
-      "note": "[certainty: High] Total kg CO2e attributed to the flow, all gases and scopes."
+      "note": "ASI entity-level GHG intensity (Cr 5.1) maps to CBAM specific embedded emissions for the aluminium installation."
     },
     {
       "comet_curie": "comet-pcf:EmbeddedEmissions",
@@ -27510,7 +28980,7 @@ window.COMET_ONTOLOGY = {
       "target_prefix": "csig",
       "target_term": "DeclaredProduct.sources",
       "target_iri": "https://api.carbonsig.com/schemas/verifier-export/v4#DeclaredProduct.sources",
-      "note": "[certainty: Medium] Gross emission sources total for the product."
+      "note": "ASI entity-level GHG intensity (Cr 5.1) maps to CBAM specific embedded emissions for the aluminium installation."
     },
     {
       "comet_curie": "comet-pcf:FunctionalUnit",
@@ -29565,6 +31035,16 @@ window.COMET_ONTOLOGY = {
     {
       "comet_curie": "comet-sc:PrimaryDataShare",
       "comet_local": "PrimaryDataShare",
+      "relation": "closeMatch",
+      "target_standard": "EU CBAM",
+      "target_prefix": "cbam",
+      "target_term": "ActualEmbeddedEmissionsFlag",
+      "target_iri": "https://ontology.materialintelligence.ai/cbam/ActualEmbeddedEmissionsFlag",
+      "note": "A high ASI primary-data share lets the importer use actual (not default) embedded emissions in the CBAM declaration."
+    },
+    {
+      "comet_curie": "comet-sc:PrimaryDataShare",
+      "comet_local": "PrimaryDataShare",
       "relation": "mapsTo",
       "target_standard": "WBCSD PACT",
       "target_prefix": "pact",
@@ -31476,14 +32956,14 @@ window.COMET_ONTOLOGY = {
     }
   ],
   "stats": {
-    "terms": 963,
-    "classes": 141,
-    "properties": 141,
+    "terms": 1001,
+    "classes": 153,
+    "properties": 161,
     "fields": 649,
-    "alignments": 372,
+    "alignments": 377,
     "schema_fields": 80,
-    "namespaces": 13,
-    "graph_nodes": 622,
-    "graph_edges": 362
+    "namespaces": 14,
+    "graph_nodes": 667,
+    "graph_edges": 376
   }
 };
