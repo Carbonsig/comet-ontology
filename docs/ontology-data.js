@@ -88,7 +88,7 @@ window.COMET_ONTOLOGY = {
       "layer": "Extension",
       "color": "#0a7c5a",
       "graph_default": true,
-      "term_count": 0
+      "term_count": 17
     },
     {
       "prefix": "cadtrust",
@@ -13907,6 +13907,365 @@ window.COMET_ONTOLOGY = {
       "languages": []
     },
     {
+      "iri": "https://comet.carbon/ext/pcr#CircularFootprintFormula",
+      "curie": "comet-pcr:CircularFootprintFormula",
+      "prefix": "comet-pcr",
+      "local": "CircularFootprintFormula",
+      "kind": "Class",
+      "namespace": "PCR Method / CarbonSig (ext)",
+      "layer": "Extension",
+      "source": "ttl",
+      "label": "Circular Footprint Formula",
+      "definition": "The EU PEF Circular Footprint Formula (CFF) governing allocation of recycled content, recycling, and energy recovery.",
+      "subClassOf": [],
+      "domain": [],
+      "range": [],
+      "languages": [
+        "en"
+      ],
+      "datatype": ""
+    },
+    {
+      "iri": "https://comet.carbon/ext/pcr#ContentDeclaration",
+      "curie": "comet-pcr:ContentDeclaration",
+      "prefix": "comet-pcr",
+      "local": "ContentDeclaration",
+      "kind": "Class",
+      "namespace": "PCR Method / CarbonSig (ext)",
+      "layer": "Extension",
+      "source": "ttl",
+      "label": "Content Declaration",
+      "definition": "A declaration of product material content, including substances of very high concern (SVHC) under REACH.",
+      "subClassOf": [],
+      "domain": [],
+      "range": [],
+      "languages": [
+        "en"
+      ],
+      "datatype": ""
+    },
+    {
+      "iri": "https://comet.carbon/ext/pcr#CutOffRule",
+      "curie": "comet-pcr:CutOffRule",
+      "prefix": "comet-pcr",
+      "local": "CutOffRule",
+      "kind": "Class",
+      "namespace": "PCR Method / CarbonSig (ext)",
+      "layer": "Extension",
+      "source": "ttl",
+      "label": "Cut-off Rule",
+      "definition": "A criterion (mass, energy, or environmental-significance threshold) below which inputs or outputs may be excluded from the inventory.",
+      "subClassOf": [],
+      "domain": [],
+      "range": [],
+      "languages": [
+        "en"
+      ],
+      "datatype": ""
+    },
+    {
+      "iri": "https://comet.carbon/ext/pcr#DeclaredModule",
+      "curie": "comet-pcr:DeclaredModule",
+      "prefix": "comet-pcr",
+      "local": "DeclaredModule",
+      "kind": "Class",
+      "namespace": "PCR Method / CarbonSig (ext)",
+      "layer": "Extension",
+      "source": "ttl",
+      "label": "Declared Life-cycle Module",
+      "definition": "An EN 15804 life-cycle stage module (A1–A3, A4, A5, B1–B7, C1–C4, D) declared within the system boundary.",
+      "subClassOf": [],
+      "domain": [],
+      "range": [],
+      "languages": [
+        "en"
+      ],
+      "datatype": ""
+    },
+    {
+      "iri": "https://comet.carbon/ext/pcr#EFImpactCategory",
+      "curie": "comet-pcr:EFImpactCategory",
+      "prefix": "comet-pcr",
+      "local": "EFImpactCategory",
+      "kind": "Class",
+      "namespace": "PCR Method / CarbonSig (ext)",
+      "layer": "Extension",
+      "source": "ttl",
+      "label": "Environmental Footprint Impact Category",
+      "definition": "One of the 16 EU Environmental Footprint impact categories required by a PEFCR LCIA.",
+      "subClassOf": [],
+      "domain": [],
+      "range": [],
+      "languages": [
+        "en"
+      ],
+      "datatype": ""
+    },
+    {
+      "iri": "https://comet.carbon/ext/pcr#PCRDocument",
+      "curie": "comet-pcr:PCRDocument",
+      "prefix": "comet-pcr",
+      "local": "PCRDocument",
+      "kind": "Class",
+      "namespace": "PCR Method / CarbonSig (ext)",
+      "layer": "Extension",
+      "source": "ttl",
+      "label": "PCR Document",
+      "definition": "A published, versioned Product Category Rules document: the set of normative method requirements for declaring the environmental performance of a product category.",
+      "subClassOf": [],
+      "domain": [],
+      "range": [],
+      "languages": [
+        "en"
+      ],
+      "datatype": ""
+    },
+    {
+      "iri": "https://comet.carbon/ext/pcr#PCRProgramOperator",
+      "curie": "comet-pcr:PCRProgramOperator",
+      "prefix": "comet-pcr",
+      "local": "PCRProgramOperator",
+      "kind": "Class",
+      "namespace": "PCR Method / CarbonSig (ext)",
+      "layer": "Extension",
+      "source": "ttl",
+      "label": "PCR Programme Operator",
+      "definition": "The organisation that operates a PCR programme and publishes PCR documents (e.g. EPD International / EnvironDec, EPD Norge, IBU, the European Commission for PEFCRs).",
+      "subClassOf": [
+        "Organization"
+      ],
+      "domain": [],
+      "range": [],
+      "languages": [
+        "en"
+      ],
+      "datatype": ""
+    },
+    {
+      "iri": "https://comet.carbon/ext/pcr#ReferenceServiceLife",
+      "curie": "comet-pcr:ReferenceServiceLife",
+      "prefix": "comet-pcr",
+      "local": "ReferenceServiceLife",
+      "kind": "Class",
+      "namespace": "PCR Method / CarbonSig (ext)",
+      "layer": "Extension",
+      "source": "ttl",
+      "label": "Reference Service Life",
+      "definition": "The reference service life (RSL) of a product, used to scenario-scale use-stage modules.",
+      "subClassOf": [],
+      "domain": [],
+      "range": [],
+      "languages": [
+        "en"
+      ],
+      "datatype": ""
+    },
+    {
+      "iri": "https://comet.carbon/ext/pcr#pcrNumber",
+      "curie": "comet-pcr:pcrNumber",
+      "prefix": "comet-pcr",
+      "local": "pcrNumber",
+      "kind": "DatatypeProperty",
+      "namespace": "PCR Method / CarbonSig (ext)",
+      "layer": "Extension",
+      "source": "ttl",
+      "label": "PCR number",
+      "definition": "The programme operator's identifier for the PCR (e.g. 'PCR 2019:14', 'NPCR 020').",
+      "subClassOf": [],
+      "domain": [
+        "PCRDocument"
+      ],
+      "range": [
+        "string"
+      ],
+      "languages": [
+        "en"
+      ],
+      "datatype": ""
+    },
+    {
+      "iri": "https://comet.carbon/ext/pcr#scopeCPC",
+      "curie": "comet-pcr:scopeCPC",
+      "prefix": "comet-pcr",
+      "local": "scopeCPC",
+      "kind": "DatatypeProperty",
+      "namespace": "PCR Method / CarbonSig (ext)",
+      "layer": "Extension",
+      "source": "ttl",
+      "label": "CPC scope code",
+      "definition": "UN CPC product-classification code(s) delimiting the PCR's product-category scope.",
+      "subClassOf": [],
+      "domain": [
+        "PCRDocument"
+      ],
+      "range": [
+        "string"
+      ],
+      "languages": [
+        "en"
+      ],
+      "datatype": ""
+    },
+    {
+      "iri": "https://comet.carbon/ext/pcr#validFrom",
+      "curie": "comet-pcr:validFrom",
+      "prefix": "comet-pcr",
+      "local": "validFrom",
+      "kind": "DatatypeProperty",
+      "namespace": "PCR Method / CarbonSig (ext)",
+      "layer": "Extension",
+      "source": "ttl",
+      "label": "valid from",
+      "definition": "Date from which this PCR version is valid.",
+      "subClassOf": [],
+      "domain": [
+        "PCRDocument"
+      ],
+      "range": [
+        "date"
+      ],
+      "languages": [
+        "en"
+      ],
+      "datatype": ""
+    },
+    {
+      "iri": "https://comet.carbon/ext/pcr#validUntil",
+      "curie": "comet-pcr:validUntil",
+      "prefix": "comet-pcr",
+      "local": "validUntil",
+      "kind": "DatatypeProperty",
+      "namespace": "PCR Method / CarbonSig (ext)",
+      "layer": "Extension",
+      "source": "ttl",
+      "label": "valid until",
+      "definition": "Date on which this PCR version expires.",
+      "subClassOf": [],
+      "domain": [
+        "PCRDocument"
+      ],
+      "range": [
+        "date"
+      ],
+      "languages": [
+        "en"
+      ],
+      "datatype": ""
+    },
+    {
+      "iri": "https://comet.carbon/ext/pcr#version",
+      "curie": "comet-pcr:version",
+      "prefix": "comet-pcr",
+      "local": "version",
+      "kind": "DatatypeProperty",
+      "namespace": "PCR Method / CarbonSig (ext)",
+      "layer": "Extension",
+      "source": "ttl",
+      "label": "version",
+      "definition": "The version designator of the PCR document.",
+      "subClassOf": [],
+      "domain": [
+        "PCRDocument"
+      ],
+      "range": [
+        "string"
+      ],
+      "languages": [
+        "en"
+      ],
+      "datatype": ""
+    },
+    {
+      "iri": "https://comet.carbon/ext/pcr#governedByPCR",
+      "curie": "comet-pcr:governedByPCR",
+      "prefix": "comet-pcr",
+      "local": "governedByPCR",
+      "kind": "ObjectProperty",
+      "namespace": "PCR Method / CarbonSig (ext)",
+      "layer": "Extension",
+      "source": "ttl",
+      "label": "governed by PCR",
+      "definition": "The PCR document whose method requirements govern this product carbon footprint.",
+      "subClassOf": [],
+      "domain": [
+        "ProductCarbonFootprint"
+      ],
+      "range": [
+        "PCRDocument"
+      ],
+      "languages": [
+        "en"
+      ],
+      "datatype": ""
+    },
+    {
+      "iri": "https://comet.carbon/ext/pcr#program",
+      "curie": "comet-pcr:program",
+      "prefix": "comet-pcr",
+      "local": "program",
+      "kind": "ObjectProperty",
+      "namespace": "PCR Method / CarbonSig (ext)",
+      "layer": "Extension",
+      "source": "ttl",
+      "label": "programme",
+      "definition": "The programme operator under which this PCR document is published.",
+      "subClassOf": [],
+      "domain": [
+        "PCRDocument"
+      ],
+      "range": [
+        "PCRProgramOperator"
+      ],
+      "languages": [
+        "en"
+      ],
+      "datatype": ""
+    },
+    {
+      "iri": "https://comet.carbon/ext/pcr#referenceFlow",
+      "curie": "comet-pcr:referenceFlow",
+      "prefix": "comet-pcr",
+      "local": "referenceFlow",
+      "kind": "ObjectProperty",
+      "namespace": "PCR Method / CarbonSig (ext)",
+      "layer": "Extension",
+      "source": "ttl",
+      "label": "reference flow",
+      "definition": "The reference flow — the quantified product output that realises the functional/declared unit.",
+      "subClassOf": [],
+      "domain": [
+        "FunctionalUnit"
+      ],
+      "range": [],
+      "languages": [
+        "en"
+      ],
+      "datatype": ""
+    },
+    {
+      "iri": "https://comet.carbon/ext/pcr#supersedes",
+      "curie": "comet-pcr:supersedes",
+      "prefix": "comet-pcr",
+      "local": "supersedes",
+      "kind": "ObjectProperty",
+      "namespace": "PCR Method / CarbonSig (ext)",
+      "layer": "Extension",
+      "source": "ttl",
+      "label": "supersedes",
+      "definition": "An earlier PCR document, sub-PCR, or c-PCR that this document supersedes or builds on.",
+      "subClassOf": [],
+      "domain": [
+        "PCRDocument"
+      ],
+      "range": [
+        "PCRDocument"
+      ],
+      "languages": [
+        "en"
+      ],
+      "datatype": ""
+    },
+    {
       "iri": "https://comet.carbon/ext/pcr-japan#EcoLeafDeclaration",
       "curie": "comet-pj:EcoLeafDeclaration",
       "prefix": "comet-pj",
@@ -19091,6 +19450,210 @@ window.COMET_ONTOLOGY = {
         "defined": true
       },
       {
+        "id": "https://comet.carbon/ext/pcr#CircularFootprintFormula",
+        "label": "Circular Footprint Formula",
+        "curie": "comet-pcr:CircularFootprintFormula",
+        "kind": "Class",
+        "prefix": "comet-pcr",
+        "namespace": "PCR Method / CarbonSig (ext)",
+        "layer": "Extension",
+        "color": "#0a7c5a",
+        "definition": "The EU PEF Circular Footprint Formula (CFF) governing allocation of recycled content, recycling, and energy recovery.",
+        "defined": true
+      },
+      {
+        "id": "https://comet.carbon/ext/pcr#ContentDeclaration",
+        "label": "Content Declaration",
+        "curie": "comet-pcr:ContentDeclaration",
+        "kind": "Class",
+        "prefix": "comet-pcr",
+        "namespace": "PCR Method / CarbonSig (ext)",
+        "layer": "Extension",
+        "color": "#0a7c5a",
+        "definition": "A declaration of product material content, including substances of very high concern (SVHC) under REACH.",
+        "defined": true
+      },
+      {
+        "id": "https://comet.carbon/ext/pcr#CutOffRule",
+        "label": "Cut-off Rule",
+        "curie": "comet-pcr:CutOffRule",
+        "kind": "Class",
+        "prefix": "comet-pcr",
+        "namespace": "PCR Method / CarbonSig (ext)",
+        "layer": "Extension",
+        "color": "#0a7c5a",
+        "definition": "A criterion (mass, energy, or environmental-significance threshold) below which inputs or outputs may be excluded from the inventory.",
+        "defined": true
+      },
+      {
+        "id": "https://comet.carbon/ext/pcr#DeclaredModule",
+        "label": "Declared Life-cycle Module",
+        "curie": "comet-pcr:DeclaredModule",
+        "kind": "Class",
+        "prefix": "comet-pcr",
+        "namespace": "PCR Method / CarbonSig (ext)",
+        "layer": "Extension",
+        "color": "#0a7c5a",
+        "definition": "An EN 15804 life-cycle stage module (A1–A3, A4, A5, B1–B7, C1–C4, D) declared within the system boundary.",
+        "defined": true
+      },
+      {
+        "id": "https://comet.carbon/ext/pcr#EFImpactCategory",
+        "label": "Environmental Footprint Impact Category",
+        "curie": "comet-pcr:EFImpactCategory",
+        "kind": "Class",
+        "prefix": "comet-pcr",
+        "namespace": "PCR Method / CarbonSig (ext)",
+        "layer": "Extension",
+        "color": "#0a7c5a",
+        "definition": "One of the 16 EU Environmental Footprint impact categories required by a PEFCR LCIA.",
+        "defined": true
+      },
+      {
+        "id": "https://comet.carbon/ext/pcr#PCRDocument",
+        "label": "PCR Document",
+        "curie": "comet-pcr:PCRDocument",
+        "kind": "Class",
+        "prefix": "comet-pcr",
+        "namespace": "PCR Method / CarbonSig (ext)",
+        "layer": "Extension",
+        "color": "#0a7c5a",
+        "definition": "A published, versioned Product Category Rules document: the set of normative method requirements for declaring the environmental performance of a product category.",
+        "defined": true
+      },
+      {
+        "id": "https://comet.carbon/ext/pcr#PCRProgramOperator",
+        "label": "PCR Programme Operator",
+        "curie": "comet-pcr:PCRProgramOperator",
+        "kind": "Class",
+        "prefix": "comet-pcr",
+        "namespace": "PCR Method / CarbonSig (ext)",
+        "layer": "Extension",
+        "color": "#0a7c5a",
+        "definition": "The organisation that operates a PCR programme and publishes PCR documents (e.g. EPD International / EnvironDec, EPD Norge, IBU, the European Commission for PEFCRs).",
+        "defined": true
+      },
+      {
+        "id": "https://comet.carbon/ext/pcr#ReferenceServiceLife",
+        "label": "Reference Service Life",
+        "curie": "comet-pcr:ReferenceServiceLife",
+        "kind": "Class",
+        "prefix": "comet-pcr",
+        "namespace": "PCR Method / CarbonSig (ext)",
+        "layer": "Extension",
+        "color": "#0a7c5a",
+        "definition": "The reference service life (RSL) of a product, used to scenario-scale use-stage modules.",
+        "defined": true
+      },
+      {
+        "id": "https://comet.carbon/ext/pcr#pcrNumber",
+        "label": "PCR number",
+        "curie": "comet-pcr:pcrNumber",
+        "kind": "DatatypeProperty",
+        "prefix": "comet-pcr",
+        "namespace": "PCR Method / CarbonSig (ext)",
+        "layer": "Extension",
+        "color": "#0a7c5a",
+        "definition": "The programme operator's identifier for the PCR (e.g. 'PCR 2019:14', 'NPCR 020').",
+        "defined": true
+      },
+      {
+        "id": "https://comet.carbon/ext/pcr#scopeCPC",
+        "label": "CPC scope code",
+        "curie": "comet-pcr:scopeCPC",
+        "kind": "DatatypeProperty",
+        "prefix": "comet-pcr",
+        "namespace": "PCR Method / CarbonSig (ext)",
+        "layer": "Extension",
+        "color": "#0a7c5a",
+        "definition": "UN CPC product-classification code(s) delimiting the PCR's product-category scope.",
+        "defined": true
+      },
+      {
+        "id": "https://comet.carbon/ext/pcr#validFrom",
+        "label": "valid from",
+        "curie": "comet-pcr:validFrom",
+        "kind": "DatatypeProperty",
+        "prefix": "comet-pcr",
+        "namespace": "PCR Method / CarbonSig (ext)",
+        "layer": "Extension",
+        "color": "#0a7c5a",
+        "definition": "Date from which this PCR version is valid.",
+        "defined": true
+      },
+      {
+        "id": "https://comet.carbon/ext/pcr#validUntil",
+        "label": "valid until",
+        "curie": "comet-pcr:validUntil",
+        "kind": "DatatypeProperty",
+        "prefix": "comet-pcr",
+        "namespace": "PCR Method / CarbonSig (ext)",
+        "layer": "Extension",
+        "color": "#0a7c5a",
+        "definition": "Date on which this PCR version expires.",
+        "defined": true
+      },
+      {
+        "id": "https://comet.carbon/ext/pcr#version",
+        "label": "version",
+        "curie": "comet-pcr:version",
+        "kind": "DatatypeProperty",
+        "prefix": "comet-pcr",
+        "namespace": "PCR Method / CarbonSig (ext)",
+        "layer": "Extension",
+        "color": "#0a7c5a",
+        "definition": "The version designator of the PCR document.",
+        "defined": true
+      },
+      {
+        "id": "https://comet.carbon/ext/pcr#governedByPCR",
+        "label": "governed by PCR",
+        "curie": "comet-pcr:governedByPCR",
+        "kind": "ObjectProperty",
+        "prefix": "comet-pcr",
+        "namespace": "PCR Method / CarbonSig (ext)",
+        "layer": "Extension",
+        "color": "#0a7c5a",
+        "definition": "The PCR document whose method requirements govern this product carbon footprint.",
+        "defined": true
+      },
+      {
+        "id": "https://comet.carbon/ext/pcr#program",
+        "label": "programme",
+        "curie": "comet-pcr:program",
+        "kind": "ObjectProperty",
+        "prefix": "comet-pcr",
+        "namespace": "PCR Method / CarbonSig (ext)",
+        "layer": "Extension",
+        "color": "#0a7c5a",
+        "definition": "The programme operator under which this PCR document is published.",
+        "defined": true
+      },
+      {
+        "id": "https://comet.carbon/ext/pcr#referenceFlow",
+        "label": "reference flow",
+        "curie": "comet-pcr:referenceFlow",
+        "kind": "ObjectProperty",
+        "prefix": "comet-pcr",
+        "namespace": "PCR Method / CarbonSig (ext)",
+        "layer": "Extension",
+        "color": "#0a7c5a",
+        "definition": "The reference flow — the quantified product output that realises the functional/declared unit.",
+        "defined": true
+      },
+      {
+        "id": "https://comet.carbon/ext/pcr#supersedes",
+        "label": "supersedes",
+        "curie": "comet-pcr:supersedes",
+        "kind": "ObjectProperty",
+        "prefix": "comet-pcr",
+        "namespace": "PCR Method / CarbonSig (ext)",
+        "layer": "Extension",
+        "color": "#0a7c5a",
+        "definition": "An earlier PCR document, sub-PCR, or c-PCR that this document supersedes or builds on.",
+        "defined": true
+      },
+      {
         "id": "https://comet.carbon/ext/pcr-japan#EcoLeafDeclaration",
         "label": "EcoLeaf EPD Declaration",
         "curie": "comet-pj:EcoLeafDeclaration",
@@ -20879,9 +21442,33 @@ window.COMET_ONTOLOGY = {
         "defined": true
       },
       {
-        "id": "https://comet.carbon/v1/pcf#LCIAResult",
-        "label": "LCIAResult",
-        "curie": "comet-pcf:LCIAResult",
+        "id": "https://comet.carbon/v1/market#CarbonPremium",
+        "label": "CarbonPremium",
+        "curie": "comet-mkt:CarbonPremium",
+        "kind": "Reference",
+        "prefix": "comet-mkt",
+        "namespace": "Market",
+        "layer": "L7 · Market",
+        "color": "#7a2f6b",
+        "definition": "",
+        "defined": false
+      },
+      {
+        "id": "https://comet.carbon/v1/core#Organization",
+        "label": "Organization",
+        "curie": "comet:Organization",
+        "kind": "Reference",
+        "prefix": "comet",
+        "namespace": "Core",
+        "layer": "L1 · Core",
+        "color": "#1a3a6b",
+        "definition": "",
+        "defined": false
+      },
+      {
+        "id": "https://comet.carbon/v1/pcf#PCRDocument",
+        "label": "PCRDocument",
+        "curie": "comet-pcf:PCRDocument",
         "kind": "Reference",
         "prefix": "comet-pcf",
         "namespace": "Product Carbon Footprint",
@@ -20891,14 +21478,38 @@ window.COMET_ONTOLOGY = {
         "defined": false
       },
       {
-        "id": "https://comet.carbon/v1/core#Material",
-        "label": "Material",
-        "curie": "comet:Material",
+        "id": "https://comet.carbon/v1/pcf#PCFResult",
+        "label": "PCFResult",
+        "curie": "comet-pcf:PCFResult",
         "kind": "Reference",
-        "prefix": "comet",
-        "namespace": "Core",
-        "layer": "L1 · Core",
-        "color": "#1a3a6b",
+        "prefix": "comet-pcf",
+        "namespace": "Product Carbon Footprint",
+        "layer": "L4 · PCF",
+        "color": "#1a6b3c",
+        "definition": "",
+        "defined": false
+      },
+      {
+        "id": "https://comet.carbon/v1/ver#DisclosureRecord",
+        "label": "DisclosureRecord",
+        "curie": "comet-ver:DisclosureRecord",
+        "kind": "Reference",
+        "prefix": "comet-ver",
+        "namespace": "Verification",
+        "layer": "L6 · Verification",
+        "color": "#1a5f6b",
+        "definition": "",
+        "defined": false
+      },
+      {
+        "id": "https://comet.carbon/v1/eac#MaterialStewardCert",
+        "label": "MaterialStewardCert",
+        "curie": "comet-eac:MaterialStewardCert",
+        "kind": "Reference",
+        "prefix": "comet-eac",
+        "namespace": "Environmental Attribute Certificate",
+        "layer": "L5 · EAC",
+        "color": "#9a7c2f",
         "definition": "",
         "defined": false
       },
@@ -20915,33 +21526,9 @@ window.COMET_ONTOLOGY = {
         "defined": false
       },
       {
-        "id": "https://comet.carbon/v1/market#CarbonPremium",
-        "label": "CarbonPremium",
-        "curie": "comet-mkt:CarbonPremium",
-        "kind": "Reference",
-        "prefix": "comet-mkt",
-        "namespace": "Market",
-        "layer": "L7 · Market",
-        "color": "#7a2f6b",
-        "definition": "",
-        "defined": false
-      },
-      {
-        "id": "https://comet.carbon/v1/supplychain#SupplyChainLink",
-        "label": "SupplyChainLink",
-        "curie": "comet-sc:SupplyChainLink",
-        "kind": "Reference",
-        "prefix": "comet-sc",
-        "namespace": "Supply Chain",
-        "layer": "L3 · Supply Chain",
-        "color": "#6b4a1a",
-        "definition": "",
-        "defined": false
-      },
-      {
-        "id": "https://comet.carbon/v1/core#Process",
-        "label": "Process",
-        "curie": "comet:Process",
+        "id": "https://comet.carbon/v1/core#Material",
+        "label": "Material",
+        "curie": "comet:Material",
         "kind": "Reference",
         "prefix": "comet",
         "namespace": "Core",
@@ -20963,26 +21550,26 @@ window.COMET_ONTOLOGY = {
         "defined": false
       },
       {
-        "id": "https://comet.carbon/v1/core#Organization",
-        "label": "Organization",
-        "curie": "comet:Organization",
+        "id": "https://comet.carbon/ext/pcr-japan#JapanesePCRField",
+        "label": "JapanesePCRField",
+        "curie": "comet-pj:JapanesePCRField",
         "kind": "Reference",
-        "prefix": "comet",
-        "namespace": "Core",
-        "layer": "L1 · Core",
-        "color": "#1a3a6b",
+        "prefix": "comet-pj",
+        "namespace": "PCR Japan / SuMPO EcoLeaf (ext)",
+        "layer": "Extension",
+        "color": "#c8720a",
         "definition": "",
         "defined": false
       },
       {
-        "id": "https://comet.carbon/v1/eac#Certification",
-        "label": "Certification",
-        "curie": "comet-eac:Certification",
+        "id": "https://comet.carbon/v1/supplychain#SupplyChainLink",
+        "label": "SupplyChainLink",
+        "curie": "comet-sc:SupplyChainLink",
         "kind": "Reference",
-        "prefix": "comet-eac",
-        "namespace": "Environmental Attribute Certificate",
-        "layer": "L5 · EAC",
-        "color": "#9a7c2f",
+        "prefix": "comet-sc",
+        "namespace": "Supply Chain",
+        "layer": "L3 · Supply Chain",
+        "color": "#6b4a1a",
         "definition": "",
         "defined": false
       },
@@ -20999,6 +21586,30 @@ window.COMET_ONTOLOGY = {
         "defined": false
       },
       {
+        "id": "https://comet.carbon/v1/core#Process",
+        "label": "Process",
+        "curie": "comet:Process",
+        "kind": "Reference",
+        "prefix": "comet",
+        "namespace": "Core",
+        "layer": "L1 · Core",
+        "color": "#1a3a6b",
+        "definition": "",
+        "defined": false
+      },
+      {
+        "id": "https://comet.carbon/v1/pcf#LCIAResult",
+        "label": "LCIAResult",
+        "curie": "comet-pcf:LCIAResult",
+        "kind": "Reference",
+        "prefix": "comet-pcf",
+        "namespace": "Product Carbon Footprint",
+        "layer": "L4 · PCF",
+        "color": "#1a6b3c",
+        "definition": "",
+        "defined": false
+      },
+      {
         "id": "https://comet.carbon/v1/eac#RetirementEvent",
         "label": "RetirementEvent",
         "curie": "comet-eac:RetirementEvent",
@@ -21011,26 +21622,14 @@ window.COMET_ONTOLOGY = {
         "defined": false
       },
       {
-        "id": "https://comet.carbon/v1/ver#DisclosureRecord",
-        "label": "DisclosureRecord",
-        "curie": "comet-ver:DisclosureRecord",
+        "id": "https://comet.carbon/v1/eac#Certification",
+        "label": "Certification",
+        "curie": "comet-eac:Certification",
         "kind": "Reference",
-        "prefix": "comet-ver",
-        "namespace": "Verification",
-        "layer": "L6 · Verification",
-        "color": "#1a5f6b",
-        "definition": "",
-        "defined": false
-      },
-      {
-        "id": "https://comet.carbon/v1/pcf#PCFResult",
-        "label": "PCFResult",
-        "curie": "comet-pcf:PCFResult",
-        "kind": "Reference",
-        "prefix": "comet-pcf",
-        "namespace": "Product Carbon Footprint",
-        "layer": "L4 · PCF",
-        "color": "#1a6b3c",
+        "prefix": "comet-eac",
+        "namespace": "Environmental Attribute Certificate",
+        "layer": "L5 · EAC",
+        "color": "#9a7c2f",
         "definition": "",
         "defined": false
       },
@@ -21043,42 +21642,6 @@ window.COMET_ONTOLOGY = {
         "namespace": "Product Carbon Footprint",
         "layer": "L4 · PCF",
         "color": "#1a6b3c",
-        "definition": "",
-        "defined": false
-      },
-      {
-        "id": "https://comet.carbon/v1/pcf#PCRDocument",
-        "label": "PCRDocument",
-        "curie": "comet-pcf:PCRDocument",
-        "kind": "Reference",
-        "prefix": "comet-pcf",
-        "namespace": "Product Carbon Footprint",
-        "layer": "L4 · PCF",
-        "color": "#1a6b3c",
-        "definition": "",
-        "defined": false
-      },
-      {
-        "id": "https://comet.carbon/ext/pcr-japan#JapanesePCRField",
-        "label": "JapanesePCRField",
-        "curie": "comet-pj:JapanesePCRField",
-        "kind": "Reference",
-        "prefix": "comet-pj",
-        "namespace": "PCR Japan / SuMPO EcoLeaf (ext)",
-        "layer": "Extension",
-        "color": "#c8720a",
-        "definition": "",
-        "defined": false
-      },
-      {
-        "id": "https://comet.carbon/v1/eac#MaterialStewardCert",
-        "label": "MaterialStewardCert",
-        "curie": "comet-eac:MaterialStewardCert",
-        "kind": "Reference",
-        "prefix": "comet-eac",
-        "namespace": "Environmental Attribute Certificate",
-        "layer": "L5 · EAC",
-        "color": "#9a7c2f",
         "definition": "",
         "defined": false
       },
@@ -22002,6 +22565,18 @@ window.COMET_ONTOLOGY = {
         "prefix": "ghgp",
         "namespace": "GHG Protocol",
         "layer": "External Standard",
+        "color": "#1a6b3c",
+        "definition": "",
+        "defined": false
+      },
+      {
+        "id": "https://comet.carbon/v1/pcf#PCRReference",
+        "label": "PCRReference",
+        "curie": "comet-pcf:PCRReference",
+        "kind": "Reference",
+        "prefix": "comet-pcf",
+        "namespace": "Product Carbon Footprint",
+        "layer": "L4 · PCF",
         "color": "#1a6b3c",
         "definition": "",
         "defined": false
@@ -24565,154 +25140,9 @@ window.COMET_ONTOLOGY = {
     ],
     "edges": [
       {
-        "from": "https://comet.carbon/ext/iso14068#hasVerificationOpinion",
-        "to": "https://comet.carbon/ext/iso14068#VerificationOpinion",
-        "rel": "range"
-      },
-      {
-        "from": "https://comet.carbon/ext/responsiblesteel#CrudeSteelIntensity",
-        "to": "https://comet.carbon/v1/pcf#LCIAResult",
-        "rel": "subClassOf"
-      },
-      {
-        "from": "https://comet.carbon/ext/pcr-japan#LegacyEcoLeafPCR",
-        "to": "https://comet.carbon/ext/pcr-japan#SuMPOPCRDocument",
-        "rel": "subClassOf"
-      },
-      {
-        "from": "https://comet.carbon/ext/iso14068#hasReportingPeriod",
-        "to": "https://comet.carbon/ext/iso14068#ReportingPeriod",
-        "rel": "range"
-      },
-      {
-        "from": "https://comet.carbon/ext/responsiblesteel#RSInputMaterial",
-        "to": "https://comet.carbon/v1/core#Material",
-        "rel": "subClassOf"
-      },
-      {
-        "from": "https://comet.carbon/ext/responsiblesteel#CertifiedSite",
-        "to": "https://comet.carbon/v1/core#Site",
-        "rel": "subClassOf"
-      },
-      {
-        "from": "https://comet.carbon/ext/responsiblesteel#hasSPL",
-        "to": "https://comet.carbon/ext/responsiblesteel#SourcingProgressLevel",
-        "rel": "range"
-      },
-      {
-        "from": "https://comet.carbon/ext/responsiblesteel#ProgressLevelPricing",
-        "to": "https://comet.carbon/v1/market#CarbonPremium",
-        "rel": "subClassOf"
-      },
-      {
-        "from": "https://comet.carbon/ext/iso14068#hasClaim",
-        "to": "https://comet.carbon/ext/iso14068#CarbonNeutralityClaim",
-        "rel": "range"
-      },
-      {
-        "from": "https://comet.carbon/ext/responsiblesteel#RSSupplierTier",
-        "to": "https://comet.carbon/v1/supplychain#SupplyChainLink",
-        "rel": "subClassOf"
-      },
-      {
-        "from": "https://comet.carbon/ext/iso14068#hasReport",
-        "to": "https://comet.carbon/ext/iso14068#CarbonNeutralityReport",
-        "rel": "range"
-      },
-      {
-        "from": "https://comet.carbon/ext/responsiblesteel#SteelProductionRoute",
-        "to": "https://comet.carbon/v1/core#Process",
-        "rel": "subClassOf"
-      },
-      {
-        "from": "https://comet.carbon/ext/iso14068#VerificationOpinion",
-        "to": "https://comet.carbon/v1/ver#AuditClaim",
-        "rel": "subClassOf"
-      },
-      {
-        "from": "https://comet.carbon/ext/responsiblesteel#SteelCertification",
-        "to": "https://comet.carbon/ext/responsiblesteel#CoreSiteCertification",
-        "rel": "subClassOf"
-      },
-      {
-        "from": "https://comet.carbon/ext/iso14068#hasBaseline",
-        "to": "https://comet.carbon/ext/iso14068#Baseline",
-        "rel": "range"
-      },
-      {
-        "from": "https://comet.carbon/ext/responsiblesteel#principleAssessed",
-        "to": "https://comet.carbon/ext/responsiblesteel#RSPrinciple",
-        "rel": "range"
-      },
-      {
-        "from": "https://comet.carbon/ext/responsiblesteel#SupplierESGRisk",
-        "to": "https://comet.carbon/v1/supplychain#SupplyChainLink",
-        "rel": "subClassOf"
-      },
-      {
-        "from": "https://comet.carbon/ext/responsiblesteel#ScrapCategory",
-        "to": "https://comet.carbon/ext/responsiblesteel#RSInputMaterial",
-        "rel": "subClassOf"
-      },
-      {
-        "from": "https://comet.carbon/ext/responsiblesteel#traceableTo",
-        "to": "https://comet.carbon/ext/responsiblesteel#SteelCertification",
-        "rel": "range"
-      },
-      {
-        "from": "https://comet.carbon/ext/responsiblesteel#claimDPLContext",
-        "to": "https://comet.carbon/ext/responsiblesteel#DecarbProgressLevel",
-        "rel": "range"
-      },
-      {
-        "from": "https://comet.carbon/ext/iso14068#hasSubject",
-        "to": "https://comet.carbon/ext/iso14068#Subject",
-        "rel": "range"
-      },
-      {
         "from": "https://comet.carbon/ext/responsiblesteel#GreenSteelPremium",
         "to": "https://comet.carbon/v1/market#CarbonPremium",
         "rel": "subClassOf"
-      },
-      {
-        "from": "https://comet.carbon/ext/iso14068#hasPathway",
-        "to": "https://comet.carbon/ext/iso14068#CarbonNeutralityPathway",
-        "rel": "range"
-      },
-      {
-        "from": "https://comet.carbon/ext/responsiblesteel#CorporateOwner",
-        "to": "https://comet.carbon/v1/core#Organization",
-        "rel": "subClassOf"
-      },
-      {
-        "from": "https://comet.carbon/ext/pcr-japan#EcoLeafDeclaration",
-        "to": "https://comet.carbon/v1/eac#Certification",
-        "rel": "subClassOf"
-      },
-      {
-        "from": "https://comet.carbon/ext/responsiblesteel#CertificationAudit",
-        "to": "https://comet.carbon/v1/ver#AuditTrail",
-        "rel": "subClassOf"
-      },
-      {
-        "from": "https://comet.carbon/ext/iso14068#OffsettingEvent",
-        "to": "https://comet.carbon/v1/eac#RetirementEvent",
-        "rel": "subClassOf"
-      },
-      {
-        "from": "https://comet.carbon/ext/responsiblesteel#transfersFrom",
-        "to": "https://comet.carbon/v1/core#Organization",
-        "rel": "range"
-      },
-      {
-        "from": "https://comet.carbon/ext/responsiblesteel#auditedSite",
-        "to": "https://comet.carbon/ext/responsiblesteel#CertifiedSite",
-        "rel": "range"
-      },
-      {
-        "from": "https://comet.carbon/ext/responsiblesteel#hasDPL",
-        "to": "https://comet.carbon/ext/responsiblesteel#DecarbProgressLevel",
-        "rel": "range"
       },
       {
         "from": "https://comet.carbon/ext/iso14068#ResidualGHGEmission",
@@ -24720,18 +25150,8 @@ window.COMET_ONTOLOGY = {
         "rel": "subClassOf"
       },
       {
-        "from": "https://comet.carbon/ext/iso14068#CarbonNeutralityReport",
-        "to": "https://comet.carbon/v1/ver#DisclosureRecord",
-        "rel": "subClassOf"
-      },
-      {
-        "from": "https://comet.carbon/ext/responsiblesteel#hasNonConformity",
-        "to": "https://comet.carbon/ext/responsiblesteel#NonConformity",
-        "rel": "range"
-      },
-      {
-        "from": "https://comet.carbon/ext/iso14068#meetsCriterion",
-        "to": "https://comet.carbon/ext/iso14068#CreditCriterion",
+        "from": "https://comet.carbon/ext/pcr#supersedes",
+        "to": "https://comet.carbon/ext/pcr#PCRDocument",
         "rel": "range"
       },
       {
@@ -24740,17 +25160,37 @@ window.COMET_ONTOLOGY = {
         "rel": "range"
       },
       {
-        "from": "https://comet.carbon/ext/iso14068#hasCommitment",
-        "to": "https://comet.carbon/ext/iso14068#CarbonNeutralityCommitment",
+        "from": "https://comet.carbon/ext/iso14068#hasReportingPeriod",
+        "to": "https://comet.carbon/ext/iso14068#ReportingPeriod",
         "rel": "range"
       },
       {
-        "from": "https://comet.carbon/ext/pcr-japan#ISO21930PCR",
+        "from": "https://comet.carbon/ext/responsiblesteel#CorporateOwner",
+        "to": "https://comet.carbon/v1/core#Organization",
+        "rel": "subClassOf"
+      },
+      {
+        "from": "https://comet.carbon/ext/responsiblesteel#principleAssessed",
+        "to": "https://comet.carbon/ext/responsiblesteel#RSPrinciple",
+        "rel": "range"
+      },
+      {
+        "from": "https://comet.carbon/ext/pcr-japan#SuMPOPCRDocument",
+        "to": "https://comet.carbon/v1/pcf#PCRDocument",
+        "rel": "subClassOf"
+      },
+      {
+        "from": "https://comet.carbon/ext/pcr-japan#LegacyEcoLeafPCR",
         "to": "https://comet.carbon/ext/pcr-japan#SuMPOPCRDocument",
         "rel": "subClassOf"
       },
       {
-        "from": "https://comet.carbon/ext/responsiblesteel#applicableDPL",
+        "from": "https://comet.carbon/ext/iso14068#Baseline",
+        "to": "https://comet.carbon/v1/pcf#PCFResult",
+        "rel": "subClassOf"
+      },
+      {
+        "from": "https://comet.carbon/ext/responsiblesteel#hasDPL",
         "to": "https://comet.carbon/ext/responsiblesteel#DecarbProgressLevel",
         "rel": "range"
       },
@@ -24760,28 +25200,63 @@ window.COMET_ONTOLOGY = {
         "rel": "subClassOf"
       },
       {
-        "from": "https://comet.carbon/ext/iso14068#Baseline",
-        "to": "https://comet.carbon/v1/pcf#PCFResult",
+        "from": "https://comet.carbon/ext/iso14068#hasCommitment",
+        "to": "https://comet.carbon/ext/iso14068#CarbonNeutralityCommitment",
+        "rel": "range"
+      },
+      {
+        "from": "https://comet.carbon/ext/iso14068#CarbonNeutralityReport",
+        "to": "https://comet.carbon/v1/ver#DisclosureRecord",
         "rel": "subClassOf"
       },
       {
-        "from": "https://comet.carbon/ext/iso14068#UnabatedGHGEmission",
-        "to": "https://comet.carbon/v1/pcf#GHGEmission",
+        "from": "https://comet.carbon/ext/responsiblesteel#CoreSiteCertification",
+        "to": "https://comet.carbon/v1/eac#MaterialStewardCert",
         "rel": "subClassOf"
       },
       {
-        "from": "https://comet.carbon/ext/pcr-japan#SuMPOPCRDocument",
-        "to": "https://comet.carbon/v1/pcf#PCRDocument",
+        "from": "https://comet.carbon/ext/pcr-japan#ISO21930PCR",
+        "to": "https://comet.carbon/ext/pcr-japan#SuMPOPCRDocument",
         "rel": "subClassOf"
       },
       {
-        "from": "https://comet.carbon/ext/iso14068#Entity",
-        "to": "https://comet.carbon/v1/core#Organization",
+        "from": "https://comet.carbon/ext/iso14068#hasVerificationOpinion",
+        "to": "https://comet.carbon/ext/iso14068#VerificationOpinion",
+        "rel": "range"
+      },
+      {
+        "from": "https://comet.carbon/ext/responsiblesteel#applicableDPL",
+        "to": "https://comet.carbon/ext/responsiblesteel#DecarbProgressLevel",
+        "rel": "range"
+      },
+      {
+        "from": "https://comet.carbon/ext/responsiblesteel#auditedSite",
+        "to": "https://comet.carbon/ext/responsiblesteel#CertifiedSite",
+        "rel": "range"
+      },
+      {
+        "from": "https://comet.carbon/ext/responsiblesteel#CertifiedSite",
+        "to": "https://comet.carbon/v1/core#Site",
         "rel": "subClassOf"
       },
       {
-        "from": "https://comet.carbon/ext/responsiblesteel#reviewsAudit",
-        "to": "https://comet.carbon/ext/responsiblesteel#CertificationAudit",
+        "from": "https://comet.carbon/ext/responsiblesteel#RSInputMaterial",
+        "to": "https://comet.carbon/v1/core#Material",
+        "rel": "subClassOf"
+      },
+      {
+        "from": "https://comet.carbon/ext/responsiblesteel#ProgressLevelPricing",
+        "to": "https://comet.carbon/v1/market#CarbonPremium",
+        "rel": "subClassOf"
+      },
+      {
+        "from": "https://comet.carbon/ext/iso14068#VerificationOpinion",
+        "to": "https://comet.carbon/v1/ver#AuditClaim",
+        "rel": "subClassOf"
+      },
+      {
+        "from": "https://comet.carbon/ext/iso14068#hasBaseline",
+        "to": "https://comet.carbon/ext/iso14068#Baseline",
         "rel": "range"
       },
       {
@@ -24790,9 +25265,49 @@ window.COMET_ONTOLOGY = {
         "rel": "range"
       },
       {
-        "from": "https://comet.carbon/ext/iso14068#hierarchyStep",
-        "to": "https://comet.carbon/ext/iso14068#HierarchyAction",
+        "from": "https://comet.carbon/ext/responsiblesteel#claimDPLContext",
+        "to": "https://comet.carbon/ext/responsiblesteel#DecarbProgressLevel",
         "rel": "range"
+      },
+      {
+        "from": "https://comet.carbon/ext/iso14068#hasReport",
+        "to": "https://comet.carbon/ext/iso14068#CarbonNeutralityReport",
+        "rel": "range"
+      },
+      {
+        "from": "https://comet.carbon/ext/responsiblesteel#RSSupplierTier",
+        "to": "https://comet.carbon/v1/supplychain#SupplyChainLink",
+        "rel": "subClassOf"
+      },
+      {
+        "from": "https://comet.carbon/ext/responsiblesteel#CertificationAudit",
+        "to": "https://comet.carbon/v1/ver#AuditTrail",
+        "rel": "subClassOf"
+      },
+      {
+        "from": "https://comet.carbon/ext/responsiblesteel#transfersFrom",
+        "to": "https://comet.carbon/v1/core#Organization",
+        "rel": "range"
+      },
+      {
+        "from": "https://comet.carbon/ext/iso14068#meetsCriterion",
+        "to": "https://comet.carbon/ext/iso14068#CreditCriterion",
+        "rel": "range"
+      },
+      {
+        "from": "https://comet.carbon/ext/responsiblesteel#SteelCertification",
+        "to": "https://comet.carbon/ext/responsiblesteel#CoreSiteCertification",
+        "rel": "subClassOf"
+      },
+      {
+        "from": "https://comet.carbon/ext/responsiblesteel#SteelProductionRoute",
+        "to": "https://comet.carbon/v1/core#Process",
+        "rel": "subClassOf"
+      },
+      {
+        "from": "https://comet.carbon/ext/responsiblesteel#SupplierESGRisk",
+        "to": "https://comet.carbon/v1/supplychain#SupplyChainLink",
+        "rel": "subClassOf"
       },
       {
         "from": "https://comet.carbon/ext/iso14068#hasCreditType",
@@ -24800,9 +25315,84 @@ window.COMET_ONTOLOGY = {
         "rel": "range"
       },
       {
-        "from": "https://comet.carbon/ext/responsiblesteel#CoreSiteCertification",
-        "to": "https://comet.carbon/v1/eac#MaterialStewardCert",
+        "from": "https://comet.carbon/ext/responsiblesteel#hasSPL",
+        "to": "https://comet.carbon/ext/responsiblesteel#SourcingProgressLevel",
+        "rel": "range"
+      },
+      {
+        "from": "https://comet.carbon/ext/iso14068#hasPathway",
+        "to": "https://comet.carbon/ext/iso14068#CarbonNeutralityPathway",
+        "rel": "range"
+      },
+      {
+        "from": "https://comet.carbon/ext/iso14068#hierarchyStep",
+        "to": "https://comet.carbon/ext/iso14068#HierarchyAction",
+        "rel": "range"
+      },
+      {
+        "from": "https://comet.carbon/ext/responsiblesteel#reviewsAudit",
+        "to": "https://comet.carbon/ext/responsiblesteel#CertificationAudit",
+        "rel": "range"
+      },
+      {
+        "from": "https://comet.carbon/ext/responsiblesteel#CrudeSteelIntensity",
+        "to": "https://comet.carbon/v1/pcf#LCIAResult",
         "rel": "subClassOf"
+      },
+      {
+        "from": "https://comet.carbon/ext/iso14068#OffsettingEvent",
+        "to": "https://comet.carbon/v1/eac#RetirementEvent",
+        "rel": "subClassOf"
+      },
+      {
+        "from": "https://comet.carbon/ext/iso14068#hasSubject",
+        "to": "https://comet.carbon/ext/iso14068#Subject",
+        "rel": "range"
+      },
+      {
+        "from": "https://comet.carbon/ext/iso14068#Entity",
+        "to": "https://comet.carbon/v1/core#Organization",
+        "rel": "subClassOf"
+      },
+      {
+        "from": "https://comet.carbon/ext/responsiblesteel#traceableTo",
+        "to": "https://comet.carbon/ext/responsiblesteel#SteelCertification",
+        "rel": "range"
+      },
+      {
+        "from": "https://comet.carbon/ext/responsiblesteel#hasNonConformity",
+        "to": "https://comet.carbon/ext/responsiblesteel#NonConformity",
+        "rel": "range"
+      },
+      {
+        "from": "https://comet.carbon/ext/pcr-japan#EcoLeafDeclaration",
+        "to": "https://comet.carbon/v1/eac#Certification",
+        "rel": "subClassOf"
+      },
+      {
+        "from": "https://comet.carbon/ext/pcr#governedByPCR",
+        "to": "https://comet.carbon/ext/pcr#PCRDocument",
+        "rel": "range"
+      },
+      {
+        "from": "https://comet.carbon/ext/iso14068#hasClaim",
+        "to": "https://comet.carbon/ext/iso14068#CarbonNeutralityClaim",
+        "rel": "range"
+      },
+      {
+        "from": "https://comet.carbon/ext/iso14068#UnabatedGHGEmission",
+        "to": "https://comet.carbon/v1/pcf#GHGEmission",
+        "rel": "subClassOf"
+      },
+      {
+        "from": "https://comet.carbon/ext/responsiblesteel#ScrapCategory",
+        "to": "https://comet.carbon/ext/responsiblesteel#RSInputMaterial",
+        "rel": "subClassOf"
+      },
+      {
+        "from": "https://comet.carbon/ext/pcr#program",
+        "to": "https://comet.carbon/ext/pcr#PCRProgramOperator",
+        "rel": "range"
       },
       {
         "from": "https://comet.carbon/v1/pcf#PCFResult",
@@ -25008,6 +25598,11 @@ window.COMET_ONTOLOGY = {
         "from": "https://comet.carbon/ext/responsiblesteel#Scope3DownstreamEmissions",
         "to": "https://ghgprotocol.org/scope/Scope3_Downstream",
         "rel": "exactMatch"
+      },
+      {
+        "from": "https://comet.carbon/ext/pcr#PCRDocument",
+        "to": "https://comet.carbon/v1/pcf#PCRReference",
+        "rel": "closeMatch"
       },
       {
         "from": "https://comet.carbon/v1/pcf#PCFResult",
@@ -25303,6 +25898,26 @@ window.COMET_ONTOLOGY = {
         "from": "https://comet.carbon/ext/responsiblesteel#Scope3DownstreamEmissions",
         "to": "https://wbcsd.org/spec/pact/pathfinder/v3/pcfDownstream",
         "rel": "closeMatch"
+      },
+      {
+        "from": "https://comet.carbon/ext/pcr#CutOffRule",
+        "to": "https://comet.carbon/v1/pcf#SystemBoundary",
+        "rel": "relatedMatch"
+      },
+      {
+        "from": "https://comet.carbon/ext/pcr#DeclaredModule",
+        "to": "https://comet.carbon/v1/pcf#SystemBoundary",
+        "rel": "relatedMatch"
+      },
+      {
+        "from": "https://comet.carbon/ext/pcr#CircularFootprintFormula",
+        "to": "https://comet.carbon/v1/pcf#AllocationMethod",
+        "rel": "relatedMatch"
+      },
+      {
+        "from": "https://comet.carbon/ext/pcr#EFImpactCategory",
+        "to": "https://comet.carbon/v1/pcf#LCIAResult",
+        "rel": "relatedMatch"
       },
       {
         "from": "https://comet.carbon/ext/responsiblesteel#P01_CorporateLeadership",
@@ -27246,6 +27861,56 @@ window.COMET_ONTOLOGY = {
       "target_term": "",
       "target_iri": "",
       "note": ""
+    },
+    {
+      "comet_curie": "comet-pcr:CircularFootprintFormula",
+      "comet_local": "CircularFootprintFormula",
+      "relation": "relatedMatch",
+      "target_standard": "comet-pcf",
+      "target_prefix": "comet-pcf",
+      "target_term": "AllocationMethod",
+      "target_iri": "https://comet.carbon/v1/pcf#AllocationMethod",
+      "note": ""
+    },
+    {
+      "comet_curie": "comet-pcr:CutOffRule",
+      "comet_local": "CutOffRule",
+      "relation": "relatedMatch",
+      "target_standard": "comet-pcf",
+      "target_prefix": "comet-pcf",
+      "target_term": "SystemBoundary",
+      "target_iri": "https://comet.carbon/v1/pcf#SystemBoundary",
+      "note": ""
+    },
+    {
+      "comet_curie": "comet-pcr:DeclaredModule",
+      "comet_local": "DeclaredModule",
+      "relation": "relatedMatch",
+      "target_standard": "comet-pcf",
+      "target_prefix": "comet-pcf",
+      "target_term": "SystemBoundary",
+      "target_iri": "https://comet.carbon/v1/pcf#SystemBoundary",
+      "note": ""
+    },
+    {
+      "comet_curie": "comet-pcr:EFImpactCategory",
+      "comet_local": "EFImpactCategory",
+      "relation": "relatedMatch",
+      "target_standard": "comet-pcf",
+      "target_prefix": "comet-pcf",
+      "target_term": "LCIAResult",
+      "target_iri": "https://comet.carbon/v1/pcf#LCIAResult",
+      "note": ""
+    },
+    {
+      "comet_curie": "comet-pcr:PCRDocument",
+      "comet_local": "PCRDocument",
+      "relation": "closeMatch",
+      "target_standard": "comet-pcf",
+      "target_prefix": "comet-pcf",
+      "target_term": "PCRReference",
+      "target_iri": "https://comet.carbon/v1/pcf#PCRReference",
+      "note": "Reifies the single comet-pcf:PCRReference stub into a structured, versioned entity."
     },
     {
       "comet_curie": "comet-rs:AnnualEmissionsReport",
@@ -30811,14 +31476,14 @@ window.COMET_ONTOLOGY = {
     }
   ],
   "stats": {
-    "terms": 946,
-    "classes": 133,
-    "properties": 132,
+    "terms": 963,
+    "classes": 141,
+    "properties": 141,
     "fields": 649,
-    "alignments": 367,
+    "alignments": 372,
     "schema_fields": 80,
     "namespaces": 13,
-    "graph_nodes": 604,
-    "graph_edges": 354
+    "graph_nodes": 622,
+    "graph_edges": 362
   }
 };

@@ -1,6 +1,6 @@
-# PUBLISHED COPY for the COMET microsite. Canonical source of truth:
+# PUBLISHED into the COMET term graph. Canonical source of truth:
 #   CarbonSigProductHub/comet-carbonsig  extensions/comet-pcr.ttl  (the COMET gold master)
-# Status: PENDING upstream (evidence-gated). Not yet in the published COMET term graph.
+# Ingested by tools/scripts/build-ontology-map.py into docs/ontology-data.json.
 #
 @prefix comet-pcr: <https://comet.carbon/ext/pcr#> .
 @prefix comet:      <https://comet.carbon/v1/core#> .
