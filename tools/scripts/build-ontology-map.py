@@ -58,6 +58,7 @@ NS_BASES: dict[str, str] = {
     "comet-pj": "https://comet.carbon/ext/pcr-japan#",
     "comet-pcr": "https://comet.carbon/ext/pcr#",
     "comet-asi": "https://comet.carbon/ext/aluminium-asi#",
+    "comet-tfs": "https://comet.carbon/ext/tfs-pcf#",
     # The RS extension TTLs also use this alternate base in alignments.
     "comet-rs-alt": "https://ontology.materialintelligence.ai/comet/responsiblesteel/",
 }
@@ -76,6 +77,7 @@ NS_META: dict[str, dict[str, str]] = {
     "comet-pj": {"name": "PCR Japan / SuMPO EcoLeaf (ext)", "layer": "Extension", "color": "#c8720a"},
     "comet-pcr": {"name": "PCR Method / CarbonSig (ext)", "layer": "Extension", "color": "#0a7c5a"},
     "comet-asi": {"name": "Aluminium Stewardship (ASI, ext)", "layer": "Extension", "color": "#8a8f2f"},
+    "comet-tfs": {"name": "TfS PCF Data Model (ext)", "layer": "Extension", "color": "#0a8c5a"},
     "cadtrust": {"name": "CAD Trust Data Dictionary", "layer": "CAD Trust (incorporated)", "color": "#5a5a5a", "graph_default": False},
     "cadpick": {"name": "CAD Trust Picklist Values", "layer": "CAD Trust (incorporated)", "color": "#8a8a8a", "graph_default": False},
 }
