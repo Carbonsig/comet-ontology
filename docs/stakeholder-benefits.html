@@ -1138,6 +1138,7 @@
           </div>
         </div>
         <button class="build-btn" id="build-btn" onclick="buildMapping()" disabled>Build my mapping &rarr;</button>
+        <p class="build-hint" id="build-hint" style="font-size:0.8rem;color:var(--text-muted);margin-top:0.6rem;">To build your mapping, select at least one data type in Step 1 and choose a use case above.</p>
       </div>
 
       <!-- STEP 3 -->
@@ -1549,8 +1550,28 @@ function updateSelectionCount() {
   document.getElementById("selected-layers-count").textContent = layers.size;
 
   // Update build button state
+  updateBuildBtn();
+}
+
+// Enable the Build button only when Step 1 (data) and Step 2 (use case) are both
+// done, and show a hint saying exactly what's still missing.
+function updateBuildBtn() {
+  const checked = document.querySelectorAll("#ingestor-domains input[type=checkbox]:checked");
   const ucSel = document.getElementById("usecase-select");
-  document.getElementById("build-btn").disabled = !(checked.length > 0 && ucSel.value);
+  const hasData = checked.length > 0;
+  const hasUseCase = !!(ucSel && ucSel.value !== "");
+  document.getElementById("build-btn").disabled = !(hasData && hasUseCase);
+  const hint = document.getElementById("build-hint");
+  if (!hint) return;
+  if (hasData && hasUseCase) {
+    hint.style.display = "none";
+  } else {
+    const need = [];
+    if (!hasData) need.push("select at least one data type in Step 1");
+    if (!hasUseCase) need.push("choose a use case above");
+    hint.textContent = "To build your mapping, " + need.join(" and ") + ".";
+    hint.style.display = "";
+  }
 }
 
 // ─── STEP 2: Stakeholder / Use Case Selects ─────────────────────────────
@@ -1584,10 +1605,8 @@ function populateUseCases() {
     ucSel.appendChild(opt);
   });
   ucSel.disabled = false;
-  ucSel.onchange = () => {
-    const checked = document.querySelectorAll("#ingestor-domains input[type=checkbox]:checked");
-    document.getElementById("build-btn").disabled = !(checked.length > 0 && ucSel.value !== "");
-  };
+  ucSel.onchange = updateBuildBtn;
+  updateBuildBtn();
 }
 
 // ─── STEP 3: BUILD MAPPING ───────────────────────────────────────────────
