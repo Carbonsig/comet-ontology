@@ -1,0 +1,153 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1010" font-family="'DM Sans', 'Helvetica Neue', Arial, sans-serif" role="img" aria-label="COMET is the shared language at the heart of carbon data interoperability. Four standards domains — Product and Footprint, Regulation and Disclosure, Verification and Assurance, and Markets and Credits — feed into the COMET graph, which every stakeholder group reads. Each standard shows its number of term-level crosswalks into COMET.">
+<rect width="1600" height="1010" fill="#f5f4f0"/>
+<text x="800.0" y="50" text-anchor="middle" font-family="'DM Mono', 'SFMono-Regular', Menlo, monospace" font-size="13" letter-spacing="3" fill="#7a7a74">COMET &#183; CARBON ONTOLOGY FOR MARKETS, EMISSIONS &amp; TRADE</text>
+<text x="800.0" y="93" text-anchor="middle" font-family="'Playfair Display', Georgia, serif" font-size="33" font-weight="700" fill="#1c1c1a">One shared language at the heart of carbon data</text>
+<text x="800.0" y="122" text-anchor="middle" font-family="'DM Mono', 'SFMono-Regular', Menlo, monospace" font-size="12.5" fill="#7a7a74">372 term-level crosswalks &#183; 19 external standards &#183; 963 terms &#183; pill number = crosswalks into COMET</text>
+<rect x="36" y="150" width="340" height="46" rx="8" fill="#2563eb"/>
+<text x="206.0" y="171" text-anchor="middle" font-family="'DM Sans', 'Helvetica Neue', Arial, sans-serif" font-size="18" font-weight="700" fill="#ffffff">Product &amp; Footprint</text>
+<text x="206.0" y="188" text-anchor="middle" font-family="'DM Mono', 'SFMono-Regular', Menlo, monospace" font-size="10.5" fill="#ffffff" opacity="0.85" letter-spacing="1">WHAT A PRODUCT EMITS</text>
+<rect x="111.0" y="201.0" width="190.0" height="34.0" rx="8" fill="#ffffff"/>
+<rect x="111.0" y="201.0" width="5" height="34.0" fill="#2563eb"/>
+<text x="126.0" y="218.0" dominant-baseline="central" font-family="'DM Sans', 'Helvetica Neue', Arial, sans-serif" font-size="13.5" font-weight="600" fill="#2563eb">WBCSD PACT v3</text>
+<text x="288.0" y="218.0" text-anchor="end" dominant-baseline="central" font-family="'DM Mono', 'SFMono-Regular', Menlo, monospace" font-size="11.5" fill="#7a7a74">55</text>
+<rect x="111.0" y="247.0" width="190.0" height="34.0" rx="8" fill="#ffffff"/>
+<rect x="111.0" y="247.0" width="5" height="34.0" fill="#2563eb"/>
+<text x="126.0" y="264.0" dominant-baseline="central" font-family="'DM Sans', 'Helvetica Neue', Arial, sans-serif" font-size="13.5" font-weight="600" fill="#2563eb">GHG Protocol</text>
+<text x="288.0" y="264.0" text-anchor="end" dominant-baseline="central" font-family="'DM Mono', 'SFMono-Regular', Menlo, monospace" font-size="11.5" fill="#7a7a74">51</text>
+<rect x="111.0" y="293.0" width="190.0" height="34.0" rx="8" fill="#ffffff"/>
+<rect x="111.0" y="293.0" width="5" height="34.0" fill="#2563eb"/>
+<text x="126.0" y="310.0" dominant-baseline="central" font-family="'DM Sans', 'Helvetica Neue', Arial, sans-serif" font-size="13.5" font-weight="600" fill="#2563eb">ISO 14067</text>
+<text x="288.0" y="310.0" text-anchor="end" dominant-baseline="central" font-family="'DM Mono', 'SFMono-Regular', Menlo, monospace" font-size="11.5" fill="#7a7a74">3</text>
+<rect x="111.0" y="339.0" width="190.0" height="34.0" rx="8" fill="#ffffff"/>
+<rect x="111.0" y="339.0" width="5" height="34.0" fill="#2563eb"/>
+<text x="126.0" y="356.0" dominant-baseline="central" font-family="'DM Sans', 'Helvetica Neue', Arial, sans-serif" font-size="13.5" font-weight="600" fill="#2563eb">GHG Protocol · Sc.3</text>
+<text x="288.0" y="356.0" text-anchor="end" dominant-baseline="central" font-family="'DM Mono', 'SFMono-Regular', Menlo, monospace" font-size="11.5" fill="#7a7a74">2</text>
+<rect x="111.0" y="385.0" width="190.0" height="34.0" rx="8" fill="#ffffff"/>
+<rect x="111.0" y="385.0" width="5" height="34.0" fill="#2563eb"/>
+<text x="126.0" y="402.0" dominant-baseline="central" font-family="'DM Sans', 'Helvetica Neue', Arial, sans-serif" font-size="13.5" font-weight="600" fill="#2563eb">EN 15804  ·  EPD</text>
+<text x="288.0" y="402.0" text-anchor="end" dominant-baseline="central" font-family="'DM Mono', 'SFMono-Regular', Menlo, monospace" font-size="11.5" fill="#7a7a74">1</text>
+<rect x="36" y="560" width="340" height="46" rx="8" fill="#059669"/>
+<text x="206.0" y="581" text-anchor="middle" font-family="'DM Sans', 'Helvetica Neue', Arial, sans-serif" font-size="18" font-weight="700" fill="#ffffff">Verification &amp; Assurance</text>
+<text x="206.0" y="598" text-anchor="middle" font-family="'DM Mono', 'SFMono-Regular', Menlo, monospace" font-size="10.5" fill="#ffffff" opacity="0.85" letter-spacing="1">WHO CHECKED IT</text>
+<rect x="111.0" y="611.0" width="190.0" height="34.0" rx="8" fill="#ffffff"/>
+<rect x="111.0" y="611.0" width="5" height="34.0" fill="#059669"/>
+<text x="126.0" y="628.0" dominant-baseline="central" font-family="'DM Sans', 'Helvetica Neue', Arial, sans-serif" font-size="13.5" font-weight="600" fill="#059669">CarbonSig Verifier</text>
+<text x="288.0" y="628.0" text-anchor="end" dominant-baseline="central" font-family="'DM Mono', 'SFMono-Regular', Menlo, monospace" font-size="11.5" fill="#7a7a74">74</text>
+<rect x="111.0" y="657.0" width="190.0" height="34.0" rx="8" fill="#ffffff"/>
+<rect x="111.0" y="657.0" width="5" height="34.0" fill="#059669"/>
+<text x="126.0" y="674.0" dominant-baseline="central" font-family="'DM Sans', 'Helvetica Neue', Arial, sans-serif" font-size="13.5" font-weight="600" fill="#059669">ISO 14064-3</text>
+<text x="288.0" y="674.0" text-anchor="end" dominant-baseline="central" font-family="'DM Mono', 'SFMono-Regular', Menlo, monospace" font-size="11.5" fill="#7a7a74">8</text>
+<rect x="111.0" y="703.0" width="190.0" height="34.0" rx="8" fill="#ffffff"/>
+<rect x="111.0" y="703.0" width="5" height="34.0" fill="#059669"/>
+<text x="126.0" y="720.0" dominant-baseline="central" font-family="'DM Sans', 'Helvetica Neue', Arial, sans-serif" font-size="13.5" font-weight="600" fill="#059669">ISAE 3410</text>
+<text x="288.0" y="720.0" text-anchor="end" dominant-baseline="central" font-family="'DM Mono', 'SFMono-Regular', Menlo, monospace" font-size="11.5" fill="#7a7a74">6</text>
+<rect x="111.0" y="749.0" width="190.0" height="34.0" rx="8" fill="#ffffff"/>
+<rect x="111.0" y="749.0" width="5" height="34.0" fill="#059669"/>
+<text x="126.0" y="766.0" dominant-baseline="central" font-family="'DM Sans', 'Helvetica Neue', Arial, sans-serif" font-size="13.5" font-weight="600" fill="#059669">ISO 14065</text>
+<text x="288.0" y="766.0" text-anchor="end" dominant-baseline="central" font-family="'DM Mono', 'SFMono-Regular', Menlo, monospace" font-size="11.5" fill="#7a7a74">3</text>
+<rect x="1224" y="150" width="340" height="46" rx="8" fill="#7c3aed"/>
+<text x="1394.0" y="171" text-anchor="middle" font-family="'DM Sans', 'Helvetica Neue', Arial, sans-serif" font-size="18" font-weight="700" fill="#ffffff">Regulation &amp; Disclosure</text>
+<text x="1394.0" y="188" text-anchor="middle" font-family="'DM Mono', 'SFMono-Regular', Menlo, monospace" font-size="10.5" fill="#ffffff" opacity="0.85" letter-spacing="1">WHAT MUST BE REPORTED</text>
+<rect x="1299.0" y="201.0" width="190.0" height="34.0" rx="8" fill="#ffffff"/>
+<rect x="1299.0" y="201.0" width="5" height="34.0" fill="#7c3aed"/>
+<text x="1314.0" y="218.0" dominant-baseline="central" font-family="'DM Sans', 'Helvetica Neue', Arial, sans-serif" font-size="13.5" font-weight="600" fill="#7c3aed">CSRD / ESRS E1</text>
+<text x="1476.0" y="218.0" text-anchor="end" dominant-baseline="central" font-family="'DM Mono', 'SFMono-Regular', Menlo, monospace" font-size="11.5" fill="#7a7a74">56</text>
+<rect x="1299.0" y="247.0" width="190.0" height="34.0" rx="8" fill="#ffffff"/>
+<rect x="1299.0" y="247.0" width="5" height="34.0" fill="#7c3aed"/>
+<text x="1314.0" y="264.0" dominant-baseline="central" font-family="'DM Sans', 'Helvetica Neue', Arial, sans-serif" font-size="13.5" font-weight="600" fill="#7c3aed">ISO 14068-1</text>
+<text x="1476.0" y="264.0" text-anchor="end" dominant-baseline="central" font-family="'DM Mono', 'SFMono-Regular', Menlo, monospace" font-size="11.5" fill="#7a7a74">19</text>
+<rect x="1299.0" y="293.0" width="190.0" height="34.0" rx="8" fill="#ffffff"/>
+<rect x="1299.0" y="293.0" width="5" height="34.0" fill="#7c3aed"/>
+<text x="1314.0" y="310.0" dominant-baseline="central" font-family="'DM Sans', 'Helvetica Neue', Arial, sans-serif" font-size="13.5" font-weight="600" fill="#7c3aed">EU CBAM</text>
+<text x="1476.0" y="310.0" text-anchor="end" dominant-baseline="central" font-family="'DM Mono', 'SFMono-Regular', Menlo, monospace" font-size="11.5" fill="#7a7a74">15</text>
+<rect x="1299.0" y="339.0" width="190.0" height="34.0" rx="8" fill="#ffffff"/>
+<rect x="1299.0" y="339.0" width="5" height="34.0" fill="#7c3aed"/>
+<text x="1314.0" y="356.0" dominant-baseline="central" font-family="'DM Sans', 'Helvetica Neue', Arial, sans-serif" font-size="13.5" font-weight="600" fill="#7c3aed">EU ETS MRV</text>
+<text x="1476.0" y="356.0" text-anchor="end" dominant-baseline="central" font-family="'DM Mono', 'SFMono-Regular', Menlo, monospace" font-size="11.5" fill="#7a7a74">4</text>
+<rect x="1299.0" y="385.0" width="190.0" height="34.0" rx="8" fill="#ffffff"/>
+<rect x="1299.0" y="385.0" width="5" height="34.0" fill="#7c3aed"/>
+<text x="1314.0" y="402.0" dominant-baseline="central" font-family="'DM Sans', 'Helvetica Neue', Arial, sans-serif" font-size="13.5" font-weight="600" fill="#7c3aed">SBTi</text>
+<text x="1476.0" y="402.0" text-anchor="end" dominant-baseline="central" font-family="'DM Mono', 'SFMono-Regular', Menlo, monospace" font-size="11.5" fill="#7a7a74">4</text>
+<rect x="1224" y="560" width="340" height="46" rx="8" fill="#d97706"/>
+<text x="1394.0" y="581" text-anchor="middle" font-family="'DM Sans', 'Helvetica Neue', Arial, sans-serif" font-size="18" font-weight="700" fill="#ffffff">Markets &amp; Credits</text>
+<text x="1394.0" y="598" text-anchor="middle" font-family="'DM Mono', 'SFMono-Regular', Menlo, monospace" font-size="10.5" fill="#ffffff" opacity="0.85" letter-spacing="1">WHAT IT IS WORTH</text>
+<rect x="1299.0" y="611.0" width="190.0" height="34.0" rx="8" fill="#ffffff"/>
+<rect x="1299.0" y="611.0" width="5" height="34.0" fill="#d97706"/>
+<text x="1314.0" y="628.0" dominant-baseline="central" font-family="'DM Sans', 'Helvetica Neue', Arial, sans-serif" font-size="13.5" font-weight="600" fill="#d97706">CAD Trust registry</text>
+<text x="1476.0" y="628.0" text-anchor="end" dominant-baseline="central" font-family="'DM Mono', 'SFMono-Regular', Menlo, monospace" font-size="11.5" fill="#7a7a74">37</text>
+<rect x="1299.0" y="657.0" width="190.0" height="34.0" rx="8" fill="#ffffff"/>
+<rect x="1299.0" y="657.0" width="5" height="34.0" fill="#d97706"/>
+<text x="1314.0" y="674.0" dominant-baseline="central" font-family="'DM Sans', 'Helvetica Neue', Arial, sans-serif" font-size="13.5" font-weight="600" fill="#d97706">Verra VCS</text>
+<text x="1476.0" y="674.0" text-anchor="end" dominant-baseline="central" font-family="'DM Mono', 'SFMono-Regular', Menlo, monospace" font-size="11.5" fill="#7a7a74">3</text>
+<rect x="1299.0" y="703.0" width="190.0" height="34.0" rx="8" fill="#ffffff"/>
+<rect x="1299.0" y="703.0" width="5" height="34.0" fill="#d97706"/>
+<text x="1314.0" y="720.0" dominant-baseline="central" font-family="'DM Sans', 'Helvetica Neue', Arial, sans-serif" font-size="13.5" font-weight="600" fill="#d97706">ICAO CORSIA</text>
+<text x="1476.0" y="720.0" text-anchor="end" dominant-baseline="central" font-family="'DM Mono', 'SFMono-Regular', Menlo, monospace" font-size="11.5" fill="#7a7a74">2</text>
+<line x1="301.0" y1="218.0" x2="327.0" y2="218.0" stroke="#2563eb" stroke-width="2.2" opacity="0.7"/>
+<path d="M 327.0,218.0 C 470.0,218.0 501.8,446.2 644.8,446.2" fill="none" stroke="#2563eb" stroke-width="2.2" opacity="0.7"/>
+<line x1="301.0" y1="264.0" x2="327.0" y2="264.0" stroke="#2563eb" stroke-width="2.2" opacity="0.7"/>
+<path d="M 327.0,264.0 C 470.0,264.0 501.8,471.4 644.8,471.4" fill="none" stroke="#2563eb" stroke-width="2.2" opacity="0.7"/>
+<line x1="301.0" y1="310.0" x2="327.0" y2="310.0" stroke="#2563eb" stroke-width="2.2" opacity="0.7"/>
+<path d="M 327.0,310.0 C 470.0,310.0 501.8,496.6 644.8,496.6" fill="none" stroke="#2563eb" stroke-width="2.2" opacity="0.7"/>
+<line x1="301.0" y1="356.0" x2="327.0" y2="356.0" stroke="#2563eb" stroke-width="2.2" opacity="0.7"/>
+<path d="M 327.0,356.0 C 470.0,356.0 501.8,521.7 644.8,521.7" fill="none" stroke="#2563eb" stroke-width="2.2" opacity="0.7"/>
+<line x1="301.0" y1="402.0" x2="327.0" y2="402.0" stroke="#2563eb" stroke-width="2.2" opacity="0.7"/>
+<path d="M 327.0,402.0 C 470.0,402.0 501.8,546.9 644.8,546.9" fill="none" stroke="#2563eb" stroke-width="2.2" opacity="0.7"/>
+<text x="485.9" y="296.0" text-anchor="middle" font-family="'DM Sans', 'Helvetica Neue', Arial, sans-serif" font-size="13.5" font-style="italic" fill="#2563eb">ingests &amp; normalises</text>
+<line x1="301.0" y1="628.0" x2="327.0" y2="628.0" stroke="#059669" stroke-width="2.2" opacity="0.7"/>
+<path d="M 327.0,628.0 C 475.4,628.0 508.4,582.9 656.8,582.9" fill="none" stroke="#059669" stroke-width="2.2" opacity="0.7"/>
+<line x1="301.0" y1="674.0" x2="327.0" y2="674.0" stroke="#059669" stroke-width="2.2" opacity="0.7"/>
+<path d="M 327.0,674.0 C 475.4,674.0 508.4,616.4 656.8,616.4" fill="none" stroke="#059669" stroke-width="2.2" opacity="0.7"/>
+<line x1="301.0" y1="720.0" x2="327.0" y2="720.0" stroke="#059669" stroke-width="2.2" opacity="0.7"/>
+<path d="M 327.0,720.0 C 475.4,720.0 508.4,650.0 656.8,650.0" fill="none" stroke="#059669" stroke-width="2.2" opacity="0.7"/>
+<line x1="301.0" y1="766.0" x2="327.0" y2="766.0" stroke="#059669" stroke-width="2.2" opacity="0.7"/>
+<path d="M 327.0,766.0 C 475.4,766.0 508.4,683.5 656.8,683.5" fill="none" stroke="#059669" stroke-width="2.2" opacity="0.7"/>
+<text x="491.9" y="713.0" text-anchor="middle" font-family="'DM Sans', 'Helvetica Neue', Arial, sans-serif" font-size="13.5" font-style="italic" fill="#059669">carries audited claims</text>
+<line x1="1299.0" y1="218.0" x2="1273.0" y2="218.0" stroke="#7c3aed" stroke-width="2.2" opacity="0.7"/>
+<path d="M 1273.0,218.0 C 1130.0,218.0 1098.2,446.2 955.2,446.2" fill="none" stroke="#7c3aed" stroke-width="2.2" opacity="0.7"/>
+<line x1="1299.0" y1="264.0" x2="1273.0" y2="264.0" stroke="#7c3aed" stroke-width="2.2" opacity="0.7"/>
+<path d="M 1273.0,264.0 C 1130.0,264.0 1098.2,471.4 955.2,471.4" fill="none" stroke="#7c3aed" stroke-width="2.2" opacity="0.7"/>
+<line x1="1299.0" y1="310.0" x2="1273.0" y2="310.0" stroke="#7c3aed" stroke-width="2.2" opacity="0.7"/>
+<path d="M 1273.0,310.0 C 1130.0,310.0 1098.2,496.6 955.2,496.6" fill="none" stroke="#7c3aed" stroke-width="2.2" opacity="0.7"/>
+<line x1="1299.0" y1="356.0" x2="1273.0" y2="356.0" stroke="#7c3aed" stroke-width="2.2" opacity="0.7"/>
+<path d="M 1273.0,356.0 C 1130.0,356.0 1098.2,521.7 955.2,521.7" fill="none" stroke="#7c3aed" stroke-width="2.2" opacity="0.7"/>
+<line x1="1299.0" y1="402.0" x2="1273.0" y2="402.0" stroke="#7c3aed" stroke-width="2.2" opacity="0.7"/>
+<path d="M 1273.0,402.0 C 1130.0,402.0 1098.2,546.9 955.2,546.9" fill="none" stroke="#7c3aed" stroke-width="2.2" opacity="0.7"/>
+<text x="1114.1" y="296.0" text-anchor="middle" font-family="'DM Sans', 'Helvetica Neue', Arial, sans-serif" font-size="13.5" font-style="italic" fill="#7c3aed">emits compliance</text>
+<line x1="1299.0" y1="628.0" x2="1273.0" y2="628.0" stroke="#d97706" stroke-width="2.2" opacity="0.7"/>
+<path d="M 1273.0,628.0 C 1124.6,628.0 1091.6,582.9 943.2,582.9" fill="none" stroke="#d97706" stroke-width="2.2" opacity="0.7"/>
+<line x1="1299.0" y1="674.0" x2="1273.0" y2="674.0" stroke="#d97706" stroke-width="2.2" opacity="0.7"/>
+<path d="M 1273.0,674.0 C 1124.6,674.0 1091.6,633.2 943.2,633.2" fill="none" stroke="#d97706" stroke-width="2.2" opacity="0.7"/>
+<line x1="1299.0" y1="720.0" x2="1273.0" y2="720.0" stroke="#d97706" stroke-width="2.2" opacity="0.7"/>
+<path d="M 1273.0,720.0 C 1124.6,720.0 1091.6,683.5 943.2,683.5" fill="none" stroke="#d97706" stroke-width="2.2" opacity="0.7"/>
+<text x="1108.1" y="690.0" text-anchor="middle" font-family="'DM Sans', 'Helvetica Neue', Arial, sans-serif" font-size="13.5" font-style="italic" fill="#d97706">prices the signal</text>
+<ellipse cx="800" cy="711.5" rx="150" ry="26" fill="#c8360a" opacity="0.10"/>
+<path d="M 800.0,435.5 C 800.0,424.9 782.2,382.2 711.2,382.2 C 604.8,382.2 604.8,506.5 604.8,506.5 C 604.8,595.2 693.5,648.5 800.0,719.5 C 906.5,648.5 995.2,595.2 995.2,506.5 C 995.2,506.5 995.2,382.2 888.8,382.2 C 817.8,382.2 800.0,424.9 800.0,435.5 Z" fill="#c8360a"/>
+<text x="800" y="526.9" text-anchor="middle" font-family="'Playfair Display', Georgia, serif" font-size="62" font-weight="700" fill="#ffffff" letter-spacing="1">COMET</text>
+<text x="800" y="564.9" text-anchor="middle" font-family="'DM Sans', 'Helvetica Neue', Arial, sans-serif" font-size="16" font-weight="500" fill="#ffe6dc" letter-spacing="0.5">Shared Carbon Language</text>
+<line x1="730" y1="582.9" x2="870" y2="582.9" stroke="#ffffff" stroke-opacity="0.35" stroke-width="1"/>
+<text x="800" y="604.9" text-anchor="middle" font-family="'DM Mono', 'SFMono-Regular', Menlo, monospace" font-size="12.5" fill="#ffd9cc" letter-spacing="0.5">7-layer interoperable graph</text>
+<text x="800" y="626.9" text-anchor="middle" font-family="'DM Mono', 'SFMono-Regular', Menlo, monospace" font-size="11" fill="#ffc7b5" letter-spacing="0.5">L1 identity &#8594; L7 market signals</text>
+<line x1="60" y1="887" x2="1540" y2="887" stroke="#d8d7d0" stroke-width="1"/>
+<text x="800.0" y="911" text-anchor="middle" font-family="'Playfair Display', Georgia, serif" font-size="18" font-style="italic" font-weight="600" fill="#1c1c1a">One graph &#8212; read &amp; written by every stakeholder</text>
+<rect x="81.3" y="930.0" width="139.6" height="30" rx="15" fill="none" stroke="#c8360a" stroke-width="1.4"/>
+<text x="151.1" y="945.0" text-anchor="middle" dominant-baseline="central" font-family="'DM Sans', 'Helvetica Neue', Arial, sans-serif" font-size="13" font-weight="500" fill="#a52a06">Steel &amp; Metals</text>
+<rect x="232.9" y="930.0" width="147.0" height="30" rx="15" fill="none" stroke="#c8360a" stroke-width="1.4"/>
+<text x="306.4" y="945.0" text-anchor="middle" dominant-baseline="central" font-family="'DM Sans', 'Helvetica Neue', Arial, sans-serif" font-size="13" font-weight="500" fill="#a52a06">Automotive OEMs</text>
+<rect x="391.9" y="930.0" width="124.8" height="30" rx="15" fill="none" stroke="#c8360a" stroke-width="1.4"/>
+<text x="454.3" y="945.0" text-anchor="middle" dominant-baseline="central" font-family="'DM Sans', 'Helvetica Neue', Arial, sans-serif" font-size="13" font-weight="500" fill="#a52a06">Construction</text>
+<rect x="528.7" y="930.0" width="176.6" height="30" rx="15" fill="none" stroke="#c8360a" stroke-width="1.4"/>
+<text x="617.0" y="945.0" text-anchor="middle" dominant-baseline="central" font-family="'DM Sans', 'Helvetica Neue', Arial, sans-serif" font-size="13" font-weight="500" fill="#a52a06">Finance &amp; Investors</text>
+<rect x="717.3" y="930.0" width="110.0" height="30" rx="15" fill="none" stroke="#c8360a" stroke-width="1.4"/>
+<text x="772.3" y="945.0" text-anchor="middle" dominant-baseline="central" font-family="'DM Sans', 'Helvetica Neue', Arial, sans-serif" font-size="13" font-weight="500" fill="#a52a06">Regulators</text>
+<rect x="839.3" y="930.0" width="147.0" height="30" rx="15" fill="none" stroke="#c8360a" stroke-width="1.4"/>
+<text x="912.8" y="945.0" text-anchor="middle" dominant-baseline="central" font-family="'DM Sans', 'Helvetica Neue', Arial, sans-serif" font-size="13" font-weight="500" fill="#a52a06">LCA Consultants</text>
+<rect x="998.3" y="930.0" width="102.6" height="30" rx="15" fill="none" stroke="#c8360a" stroke-width="1.4"/>
+<text x="1049.6" y="945.0" text-anchor="middle" dominant-baseline="central" font-family="'DM Sans', 'Helvetica Neue', Arial, sans-serif" font-size="13" font-weight="500" fill="#a52a06">Logistics</text>
+<rect x="1112.9" y="930.0" width="139.6" height="30" rx="15" fill="none" stroke="#c8360a" stroke-width="1.4"/>
+<text x="1182.7" y="945.0" text-anchor="middle" dominant-baseline="central" font-family="'DM Sans', 'Helvetica Neue', Arial, sans-serif" font-size="13" font-weight="500" fill="#a52a06">Carbon Markets</text>
+<rect x="1264.5" y="930.0" width="102.6" height="30" rx="15" fill="none" stroke="#c8360a" stroke-width="1.4"/>
+<text x="1315.8" y="945.0" text-anchor="middle" dominant-baseline="central" font-family="'DM Sans', 'Helvetica Neue', Arial, sans-serif" font-size="13" font-weight="500" fill="#a52a06">Verifiers</text>
+<rect x="1379.1" y="930.0" width="139.6" height="30" rx="15" fill="none" stroke="#c8360a" stroke-width="1.4"/>
+<text x="1448.9" y="945.0" text-anchor="middle" dominant-baseline="central" font-family="'DM Sans', 'Helvetica Neue', Arial, sans-serif" font-size="13" font-weight="500" fill="#a52a06">Data Platforms</text>
+</svg>

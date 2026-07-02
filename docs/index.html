@@ -696,6 +696,8 @@
       border: 0;
     }
   </style>
+  <link rel="stylesheet" href="assets/glossary-tooltips.css">
+  <script defer src="assets/glossary-tooltips.js"></script>
 </head>
 <body>
 
@@ -733,17 +735,17 @@
       </p>
 
       <div class="num-strip" role="list" aria-label="Ontology by the numbers">
-        <div class="num-cell" role="listitem"><div class="n">937</div><div class="l">Terms</div></div>
-        <div class="num-cell" role="listitem"><div class="n">129</div><div class="l">Classes</div></div>
-        <div class="num-cell" role="listitem"><div class="n">127</div><div class="l">Properties</div></div>
+        <div class="num-cell" role="listitem"><div class="n">1001</div><div class="l">Terms</div></div>
+        <div class="num-cell" role="listitem"><div class="n">153</div><div class="l">Classes</div></div>
+        <div class="num-cell" role="listitem"><div class="n">161</div><div class="l">Properties</div></div>
         <div class="num-cell" role="listitem"><div class="n">7</div><div class="l">Layers</div></div>
-        <div class="num-cell" role="listitem"><div class="n">293</div><div class="l">Standards Maps</div></div>
+        <div class="num-cell" role="listitem"><div class="n">377</div><div class="l">Standards Maps</div></div>
         <div class="num-cell" role="listitem"><div class="n">649</div><div class="l">CAD Trust Fields</div></div>
       </div>
 
       <div class="explore-cta">
         <a class="btn-primary" href="schema-map.html">Explore the Interactive Schema Map &rarr;</a>
-        <a class="btn-ghost" href="schema-map.html#lookup">Search &amp; sort all 937 terms</a>
+        <a class="btn-ghost" href="schema-map.html#lookup">Search &amp; sort all 1001 terms</a>
         <a class="btn-ghost" href="comet-ontology-values.xlsx" download>&#8595; Download everything (Excel&nbsp;.xlsx)</a>
       </div>
     </div>
@@ -770,6 +772,14 @@
       <p class="section-label">What COMET Does</p>
       <h2 class="section-title">One ontology. Every standard. Every sector.</h2>
       <hr class="section-rule" aria-hidden="true">
+
+      <figure style="margin:0 0 3rem;">
+        <img src="assets/comet-at-the-heart.svg" alt="COMET sits at the heart of carbon data interoperability. Four standards domains feed the single COMET graph — Product &amp; Footprint (what a product emits), Regulation &amp; Disclosure (what must be reported), Verification &amp; Assurance (who checked it), and Markets &amp; Credits (what it is worth). Each standard is labelled with its number of term-level crosswalks into COMET, and every stakeholder group reads the same graph." style="width:100%;height:auto;display:block;background:#f5f4f0;border:1px solid var(--border);">
+        <figcaption style="font-family:'DM Mono',monospace;font-size:0.7rem;letter-spacing:0.06em;color:var(--text-muted);margin-top:0.75rem;text-align:center;">
+          The standards that produce carbon data all speak different dialects. COMET is the shared language between them &mdash; and the single graph every stakeholder reads. Standards and crosswalk counts are generated live from the published alignments.
+        </figcaption>
+      </figure>
+
       <div class="cards-3" role="list">
         <div class="feature-card" role="listitem">
           <span class="feature-card-number">01</span>
@@ -982,7 +992,7 @@
         <a href="schema-map.html" class="doc-card" aria-label="COMET Schema Map — interactive ontology graph, layered schema, sortable value lookup and XLSX download" style="border-color: var(--accent); border-width: 2px;">
           <p class="doc-card-type">Interactive Visualisation &mdash; Graph, Lookup &amp; XLSX</p>
           <h3 class="doc-card-title">Schema Map &amp; Value Explorer</h3>
-          <p class="doc-card-body">Explore every class, property and individual as an interactive force graph, read the layered seven-layer schema, sort and search the full value lookup, browse 293 standards alignments &mdash; or download the complete spreadsheet of all values.</p>
+          <p class="doc-card-body">Explore every class, property and individual as an interactive force graph, read the layered seven-layer schema, sort and search the full value lookup, browse 377 standards alignments &mdash; or download the complete spreadsheet of all values.</p>
           <span class="doc-card-action" aria-hidden="true">Open the schema map</span>
         </a>
 
@@ -1029,6 +1039,34 @@
           <h3 class="doc-card-title">Carbon Neutrality (ISO 14068)</h3>
           <p class="doc-card-body">How ISO 14068-1:2023 maps onto the seven-layer stack. Eighteen <code style="font-family:'DM Mono',monospace;font-size:0.8em;background:#f0ede8;padding:0.1em 0.35em;">owl:equivalentClass</code> bridges to existing COMET, twenty-four new classes for Plan / Pathway / Claim / Report, and stakeholder benefits for industry, finance, verifiers, and regulators.</p>
           <span class="doc-card-action" aria-hidden="true">Read merge map &amp; benefits</span>
+        </a>
+
+        <a href="https://github.com/nickgogerty/comet-ontology/tree/main/ext/pcr-japan" class="doc-card" aria-label="PCR Japan SuMPO EcoLeaf extension" style="border-color: var(--accent); border-width: 2px;" target="_blank">
+          <p class="doc-card-type">New &mdash; PCR Japan Extension &middot; <code style="font-family:'DM Mono',monospace;font-size:0.8em;background:#f0ede8;padding:0.1em 0.35em;">comet-pj:</code></p>
+          <h3 class="doc-card-title">PCR Japan / SuMPO EcoLeaf</h3>
+          <p class="doc-card-body">Bilingual (Japanese/English) extension for the SuMPO EPD Japan program. 76 PCRs harvested from ecoleaf-label.jp, 85 requirements extracted, 9 new classes including <code style="font-family:'DM Mono',monospace;font-size:0.8em;background:#f0ede8;padding:0.1em 0.35em;">SuMPOPCRDocument</code>, a 13-concept SKOS product field taxonomy, SHACL shapes, and full <span lang="ja">日本語</span> labels for all COMET core terms. Data source: <a href="https://nickgogerty.github.io/pcrbase" style="color:inherit;text-decoration:underline;">PCRbase</a>.</p>
+          <span class="doc-card-action" aria-hidden="true">View extension on GitHub ↗</span>
+        </a>
+
+        <a href="https://github.com/nickgogerty/comet-ontology/tree/main/ext/carbonsig" class="doc-card" aria-label="CarbonSig PCR method extension comet-pcr" style="border-color: var(--accent); border-width: 2px;" target="_blank">
+          <p class="doc-card-type">New &mdash; CarbonSig PCR Extension &middot; <code style="font-family:'DM Mono',monospace;font-size:0.8em;background:#f0ede8;padding:0.1em 0.35em;">comet-pcr:</code></p>
+          <h3 class="doc-card-title">Product Category Rules (comet-pcr)</h3>
+          <p class="doc-card-body">PCR method vocabulary extending L4 (PCF): a structured, versioned <code style="font-family:'DM Mono',monospace;font-size:0.8em;background:#f0ede8;padding:0.1em 0.35em;">PCRDocument</code> reifying the <code style="font-family:'DM Mono',monospace;font-size:0.8em;background:#f0ede8;padding:0.1em 0.35em;">PCRReference</code> stub, the keystone <code style="font-family:'DM Mono',monospace;font-size:0.8em;background:#f0ede8;padding:0.1em 0.35em;">governedByPCR</code> link, plus CutOffRule, DeclaredModule, ReferenceServiceLife, and PEF terms. <strong>Now published</strong> in the COMET term graph (17 terms). Source: <a href="https://nickgogerty.github.io/pcrbase" style="color:inherit;text-decoration:underline;">PCRbase</a>.</p>
+          <span class="doc-card-action" aria-hidden="true">View extension on GitHub ↗</span>
+        </a>
+
+        <a href="https://github.com/nickgogerty/comet-ontology/blob/main/ext/carbonsig/alignments/comet-verifierexport-alignment.ttl" class="doc-card" aria-label="CarbonSig Verifier Export v4 alignment" style="border-color: var(--accent); border-width: 2px;" target="_blank">
+          <p class="doc-card-type">New &mdash; Standards Alignment &middot; <code style="font-family:'DM Mono',monospace;font-size:0.8em;background:#f0ede8;padding:0.1em 0.35em;">csig:</code></p>
+          <h3 class="doc-card-title">CarbonSig Verifier Export v4</h3>
+          <p class="doc-card-body">74 SKOS crosswalks mapping the CarbonSig Verifier Hub export contract (v4) onto COMET — emission factors (L2), supply-chain flows &amp; scope 1/2/3 (L3), PCF declarations (L4), and verification status (L6) — each tagged High / Medium / Low certainty. Now part of the 377 standards-alignment crosswalks.</p>
+          <span class="doc-card-action" aria-hidden="true">View alignment on GitHub ↗</span>
+        </a>
+
+        <a href="https://github.com/nickgogerty/comet-ontology/tree/main/ext/aluminium-asi" class="doc-card" aria-label="Aluminium Stewardship Initiative ASI extension" style="border-color: var(--accent); border-width: 2px;" target="_blank">
+          <p class="doc-card-type">New &mdash; ASI Aluminium Extension &middot; <code style="font-family:'DM Mono',monospace;font-size:0.8em;background:#f0ede8;padding:0.1em 0.35em;">comet-asi:</code></p>
+          <h3 class="doc-card-title">Aluminium Stewardship (ASI)</h3>
+          <p class="doc-card-body">Maps the aluminium-specific variables of the ASI Performance Standard V3 (Principle 5 — GHG) and Chain of Custody Standard V2 onto COMET: <code style="font-family:'DM Mono',monospace;font-size:0.8em;background:#f0ede8;padding:0.1em 0.35em;">ASICertification</code>, <code style="font-family:'DM Mono',monospace;font-size:0.8em;background:#f0ede8;padding:0.1em 0.35em;">CoCClaim</code>, production route &amp; anode-effect metrics. 38 terms typing only the gaps — Scope 1/2/3, site and verifier identity are reused. Includes a CBAM alignment and SHACL shapes.</p>
+          <span class="doc-card-action" aria-hidden="true">View extension on GitHub ↗</span>
         </a>
 
         <a href="materials.html" class="doc-card" aria-label="Materials page with explainer video and Carbon Protocol deck" style="border-color: var(--accent); border-width: 2px;">

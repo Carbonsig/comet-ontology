@@ -1,0 +1,184 @@
+# PUBLISHED into the COMET term graph. Canonical source of truth:
+#   CarbonSigProductHub/comet-carbonsig  extensions/comet-pcr.ttl  (the COMET gold master)
+# Ingested by tools/scripts/build-ontology-map.py into docs/ontology-data.json.
+#
+@prefix comet-pcr: <https://comet.carbon/ext/pcr#> .
+@prefix comet:      <https://comet.carbon/v1/core#> .
+@prefix comet-pcf:  <https://comet.carbon/v1/pcf#> .
+@prefix comet-ef:   <https://comet.carbon/v1/emfactor#> .
+@prefix owl:    <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs:   <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos:   <http://www.w3.org/2004/02/skos/core#> .
+@prefix xsd:    <http://www.w3.org/2001/XMLSchema#> .
+@prefix dcterms:<http://purl.org/dc/terms/> .
+@prefix schema: <https://schema.org/> .
+
+#################################################################
+# COMET PCR extension (comet-pcr)
+#
+# A COMET extension namespace for Product Category Rules (PCR) method
+# requirements — the normative rules that govern how a Product Carbon Footprint
+# is calculated. Follows the COMET extension pattern (cf. comet-rs, comet-cn):
+# new terms live in their own namespace and link to COMET core/PCF via SKOS.
+#
+# Single source of truth for both CarbonSigProductHub/pcrbase (which proposes
+# these terms from harvested PCRs) and CarbonSigProductHub/verifier-export
+# (which references them). Intended to upstream into Carbonsig/comet-ontology
+# as evidence-gated PRs.
+#################################################################
+
+<https://comet.carbon/ext/pcr>
+    a owl:Ontology ;
+    dcterms:title "COMET Product Category Rules (PCR) Extension"@en ;
+    dcterms:description "Method-requirement vocabulary for Product Category Rules: the PCR document, its programme operator, declared life-cycle modules, cut-off and allocation rules, and the link from a footprint to its governing PCR. Extends COMET L4 (PCF)."@en ;
+    owl:versionInfo "0.1.0" ;
+    dcterms:source "ISO 14025", "EN 15804+A2", "EU PEF method", "ISO 14067" .
+
+#################################################################
+# Programme operator
+#################################################################
+
+comet-pcr:PCRProgramOperator
+    a owl:Class ;
+    rdfs:subClassOf schema:Organization ;
+    rdfs:label "PCR Programme Operator"@en ;
+    skos:definition "The organisation that operates a PCR programme and publishes PCR documents (e.g. EPD International / EnvironDec, EPD Norge, IBU, the European Commission for PEFCRs)."@en ;
+    dcterms:source "ISO 14025 §3.5 (programme operator)" .
+
+#################################################################
+# The PCR document — reifies COMET's PCRReference stub
+#################################################################
+
+comet-pcr:PCRDocument
+    a owl:Class ;
+    rdfs:label "PCR Document"@en ;
+    skos:definition "A published, versioned Product Category Rules document: the set of normative method requirements for declaring the environmental performance of a product category."@en ;
+    rdfs:comment "Reifies the single comet-pcf:PCRReference stub into a structured, versioned entity."@en ;
+    skos:closeMatch comet-pcf:PCRReference ;
+    dcterms:source "ISO 14025 §6.7; EN 15804 §5" .
+
+comet-pcr:program
+    a owl:ObjectProperty ;
+    rdfs:domain comet-pcr:PCRDocument ;
+    rdfs:range comet-pcr:PCRProgramOperator ;
+    rdfs:label "programme"@en ;
+    skos:definition "The programme operator under which this PCR document is published."@en .
+
+comet-pcr:pcrNumber
+    a owl:DatatypeProperty ;
+    rdfs:domain comet-pcr:PCRDocument ;
+    rdfs:range xsd:string ;
+    rdfs:label "PCR number"@en ;
+    skos:definition "The programme operator's identifier for the PCR (e.g. 'PCR 2019:14', 'NPCR 020')."@en .
+
+comet-pcr:version
+    a owl:DatatypeProperty ;
+    rdfs:domain comet-pcr:PCRDocument ;
+    rdfs:range xsd:string ;
+    rdfs:label "version"@en ;
+    skos:definition "The version designator of the PCR document."@en .
+
+comet-pcr:validFrom
+    a owl:DatatypeProperty ;
+    rdfs:domain comet-pcr:PCRDocument ;
+    rdfs:range xsd:date ;
+    rdfs:label "valid from"@en ;
+    skos:definition "Date from which this PCR version is valid."@en .
+
+comet-pcr:validUntil
+    a owl:DatatypeProperty ;
+    rdfs:domain comet-pcr:PCRDocument ;
+    rdfs:range xsd:date ;
+    rdfs:label "valid until"@en ;
+    skos:definition "Date on which this PCR version expires."@en .
+
+comet-pcr:scopeCPC
+    a owl:DatatypeProperty ;
+    rdfs:domain comet-pcr:PCRDocument ;
+    rdfs:range xsd:string ;
+    rdfs:label "CPC scope code"@en ;
+    skos:definition "UN CPC product-classification code(s) delimiting the PCR's product-category scope."@en .
+
+comet-pcr:supersedes
+    a owl:ObjectProperty ;
+    rdfs:domain comet-pcr:PCRDocument ;
+    rdfs:range comet-pcr:PCRDocument ;
+    rdfs:label "supersedes"@en ;
+    skos:definition "An earlier PCR document, sub-PCR, or c-PCR that this document supersedes or builds on."@en .
+
+#################################################################
+# Keystone: link a footprint to its governing PCR
+#################################################################
+
+comet-pcr:governedByPCR
+    a owl:ObjectProperty ;
+    rdfs:domain comet-pcf:ProductCarbonFootprint ;
+    rdfs:range comet-pcr:PCRDocument ;
+    rdfs:label "governed by PCR"@en ;
+    skos:definition "The PCR document whose method requirements govern this product carbon footprint."@en ;
+    rdfs:comment "Keystone of the PCR extension: makes a footprint's methodological provenance explicit and machine-checkable."@en .
+
+#################################################################
+# Method-requirement classes (SHACL-constraint targets)
+#################################################################
+
+comet-pcr:CutOffRule
+    a owl:Class ;
+    rdfs:label "Cut-off Rule"@en ;
+    skos:definition "A criterion (mass, energy, or environmental-significance threshold) below which inputs or outputs may be excluded from the inventory."@en ;
+    skos:relatedMatch comet-pcf:SystemBoundary ;
+    dcterms:source "ISO 14044 §4.3.3; EN 15804 §6.3.5" .
+
+comet-pcr:DeclaredModule
+    a owl:Class ;
+    rdfs:label "Declared Life-cycle Module"@en ;
+    skos:definition "An EN 15804 life-cycle stage module (A1–A3, A4, A5, B1–B7, C1–C4, D) declared within the system boundary."@en ;
+    skos:relatedMatch comet-pcf:SystemBoundary ;
+    dcterms:source "EN 15804+A2 §5.2 (modularity)" .
+
+comet-pcr:moduleScheme
+    a skos:ConceptScheme ;
+    rdfs:label "EN 15804 module scheme"@en ;
+    skos:definition "The enumeration of EN 15804 life-cycle modules."@en .
+
+comet-pcr:A1A3 a skos:Concept ; skos:inScheme comet-pcr:moduleScheme ;
+    skos:prefLabel "A1–A3 (product stage)"@en .
+comet-pcr:D a skos:Concept ; skos:inScheme comet-pcr:moduleScheme ;
+    skos:prefLabel "D (benefits and loads beyond the system boundary)"@en .
+
+comet-pcr:ReferenceServiceLife
+    a owl:Class ;
+    rdfs:label "Reference Service Life"@en ;
+    skos:definition "The reference service life (RSL) of a product, used to scenario-scale use-stage modules."@en ;
+    dcterms:source "EN 15804+A2 §6.3.3; ISO 15686" .
+
+comet-pcr:ContentDeclaration
+    a owl:Class ;
+    rdfs:label "Content Declaration"@en ;
+    skos:definition "A declaration of product material content, including substances of very high concern (SVHC) under REACH."@en ;
+    dcterms:source "EN 15804+A2 §7.4; REACH (EC) 1907/2006" .
+
+comet-pcr:referenceFlow
+    a owl:ObjectProperty ;
+    rdfs:domain comet-pcf:FunctionalUnit ;
+    rdfs:label "reference flow"@en ;
+    skos:definition "The reference flow — the quantified product output that realises the functional/declared unit."@en ;
+    dcterms:source "ISO 14044 §4.2.3.3" .
+
+#################################################################
+# PEF method sub-vocabulary (EU Product Environmental Footprint)
+#################################################################
+
+comet-pcr:CircularFootprintFormula
+    a owl:Class ;
+    rdfs:label "Circular Footprint Formula"@en ;
+    skos:definition "The EU PEF Circular Footprint Formula (CFF) governing allocation of recycled content, recycling, and energy recovery."@en ;
+    skos:relatedMatch comet-pcf:AllocationMethod ;
+    dcterms:source "EU PEF method (Annex II, CFF)" .
+
+comet-pcr:EFImpactCategory
+    a owl:Class ;
+    rdfs:label "Environmental Footprint Impact Category"@en ;
+    skos:definition "One of the 16 EU Environmental Footprint impact categories required by a PEFCR LCIA."@en ;
+    skos:relatedMatch comet-pcf:LCIAResult ;
+    dcterms:source "EU PEF method (16 EF impact categories)" .

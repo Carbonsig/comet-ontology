@@ -6,6 +6,15 @@ and market-pricing signals into a single interoperable knowledge graph. COMET
 provides a shared language so carbon data can move between platforms, suppliers,
 regulators, and markets without translation loss.
 
+![COMET is the shared language at the heart of carbon data interoperability — four standards domains (Product & Footprint, Regulation & Disclosure, Verification & Assurance, Markets & Credits) feed the COMET graph, which every stakeholder group reads. Each standard is labelled with its number of term-level crosswalks into COMET.](docs/assets/comet-at-the-heart.svg)
+
+*The standards that produce carbon data all speak different dialects. COMET is
+the shared language between them — and the single graph every stakeholder reads.
+Cluster membership and the crosswalk counts are generated from
+[`docs/ontology-data.json`](docs/ontology-data.json) by
+[`tools/scripts/generate-at-the-heart.py`](tools/scripts/generate-at-the-heart.py),
+so the graphic stays in sync with the published alignments.*
+
 ## The Problem
 
 Carbon data exists across platforms, suppliers, and regulators — but none speaks

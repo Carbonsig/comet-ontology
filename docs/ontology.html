@@ -463,6 +463,8 @@
     margin: 0 2px;
   }
 </style>
+  <link rel="stylesheet" href="assets/glossary-tooltips.css">
+  <script defer src="assets/glossary-tooltips.js"></script>
 </head>
 <body>
 
@@ -843,6 +845,7 @@
 
 <span class="ns-prefix">@prefix comet-ext:</span>  <span class="ns-uri">&lt;https://comet.carbon/ext/{org}#&gt;</span>
 <span class="ns-prefix">@prefix comet-beta:</span> <span class="ns-uri">&lt;https://comet.carbon/beta#&gt;</span>
+<span class="ns-prefix">@prefix comet-pj:</span>   <span class="ns-uri">&lt;https://comet.carbon/ext/pcr-japan#&gt;</span>  <span class="ns-comment"># PCR Japan / SuMPO EcoLeaf (v0.1)</span>
       </div>
     </div>
     <div>
@@ -1061,6 +1064,22 @@
           <td>I-RECCertificate, GenerationUnit, RetirementClaim</td>
           <td><span class="tag g">Voluntary</span></td>
           <td>Global (non-European)</td>
+        </tr>
+        <tr>
+          <td><strong>CarbonSig Verifier Export v4</strong></td>
+          <td>CarbonSig</td>
+          <td><span class="tag">L2 EF</span> <span class="tag">L3 SC</span> <span class="tag b">L4 PCF</span> <span class="tag">L6 Ver</span></td>
+          <td>EmissionFactor, ActivityDataRecord, Scope1/2/3Emissions, ProductCarbonFootprint, AssuranceLevel</td>
+          <td><span class="tag g">Platform export</span></td>
+          <td>Global</td>
+        </tr>
+        <tr>
+          <td><strong>ASI Performance Standard V3 / CoC V2</strong></td>
+          <td>Aluminium Stewardship Initiative</td>
+          <td><span class="tag">L1 Core</span> <span class="tag">L3 SC</span> <span class="tag b">L4 PCF</span> <span class="tag">L6 Ver</span></td>
+          <td>ASICertification, ASICertifiedSite, CoCClaim, AluminiumProductionRoute</td>
+          <td><span class="tag g">Voluntary</span></td>
+          <td>Global</td>
         </tr>
       </tbody>
     </table>
@@ -1841,6 +1860,27 @@
       <div class="card-title">comet-ext:{org}</div>
       <div class="card-body">Steel-WG, Hydrogen-WG, Cement-WG, Aluminium-WG extensions. Sector-specific subclasses and properties under org namespaces.</div>
       <div style="margin-top:8px;font-family:var(--mono);font-size:9px;color:#aaa;">PR-contributed · DWG governed</div>
+    </div>
+    <div class="card" style="border-color:#c8720a;">
+      <div class="card-accent" style="background:#c8720a;"></div>
+      <div class="card-label">New Extension · v0.1</div>
+      <div class="card-title" style="font-size:13px;">comet-pj: PCR Japan</div>
+      <div class="card-body">SuMPO EcoLeaf extension: <code style="font-family:monospace;font-size:0.85em;">SuMPOPCRDocument</code>, <code style="font-family:monospace;font-size:0.85em;">EcoLeafDeclaration</code>, 13-concept SKOS product field taxonomy. Full <span lang="ja">日本語</span> labels for all COMET core terms. 76 PCRs from ecoleaf-label.jp via PCRbase.</div>
+      <div style="margin-top:8px;font-family:var(--mono);font-size:9px;color:#aaa;">PCRbase WG · RFC Open · <a href="https://github.com/nickgogerty/comet-ontology/tree/main/ext/pcr-japan" style="color:#c8720a;" target="_blank">ext/pcr-japan ↗</a></div>
+    </div>
+    <div class="card" style="border-color:#c8720a;">
+      <div class="card-accent" style="background:#c8720a;"></div>
+      <div class="card-label">New Extension · v0.1 · Published</div>
+      <div class="card-title" style="font-size:13px;">comet-pcr: PCR Method</div>
+      <div class="card-body">Product Category Rules method vocabulary extending L4: <code style="font-family:monospace;font-size:0.85em;">PCRDocument</code> (reifies the <code style="font-family:monospace;font-size:0.85em;">PCRReference</code> stub), the keystone <code style="font-family:monospace;font-size:0.85em;">governedByPCR</code> link, plus <code style="font-family:monospace;font-size:0.85em;">CutOffRule</code>, <code style="font-family:monospace;font-size:0.85em;">DeclaredModule</code>, <code style="font-family:monospace;font-size:0.85em;">ReferenceServiceLife</code> and PEF terms. 17 terms now in the published COMET graph. Source: PCRbase &amp; the verifier-export contract.</div>
+      <div style="margin-top:8px;font-family:var(--mono);font-size:9px;color:#aaa;">PCRbase WG · RFC Open · <a href="https://github.com/nickgogerty/comet-ontology/tree/main/ext/carbonsig" style="color:#c8720a;" target="_blank">ext/carbonsig ↗</a></div>
+    </div>
+    <div class="card" style="border-color:#8a8f2f;">
+      <div class="card-accent" style="background:#8a8f2f;"></div>
+      <div class="card-label">New Extension · v0.1 · Published</div>
+      <div class="card-title" style="font-size:13px;">comet-asi: Aluminium Stewardship</div>
+      <div class="card-body">ASI Performance Standard V3 (Principle 5 — GHG) + Chain of Custody Standard V2: <code style="font-family:monospace;font-size:0.85em;">ASICertification</code>, <code style="font-family:monospace;font-size:0.85em;">ASICertifiedSite</code>, <code style="font-family:monospace;font-size:0.85em;">CoCClaim</code>, <code style="font-family:monospace;font-size:0.85em;">AluminiumProductionRoute</code>, anode-effect &amp; production metrics. 38 terms typing only the aluminium-specific gaps — Scope 1/2/3, embedded emissions, site &amp; verifier identity reused. CBAM alignment + SHACL shapes.</div>
+      <div style="margin-top:8px;font-family:var(--mono);font-size:9px;color:#aaa;">RFC Open · <a href="https://github.com/nickgogerty/comet-ontology/tree/main/ext/aluminium-asi" style="color:#8a8f2f;" target="_blank">ext/aluminium-asi ↗</a></div>
     </div>
   </div>
 </section>

@@ -5,6 +5,7 @@
     "comet":     "https://comet.carbon/v1/core#",
     "comet-rs":  "https://comet.carbon/ext/responsiblesteel#",
     "comet-cn":  "https://comet.carbon/ext/iso14068#",
+    "comet-pj":  "https://comet.carbon/ext/pcr-japan#",
     "comet-pcf": "https://comet.carbon/v1/pcf#",
     "comet-eac": "https://comet.carbon/v1/eac#",
     "comet-ver": "https://comet.carbon/v1/ver#",

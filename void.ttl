@@ -41,11 +41,11 @@
   void:vocabulary <http://www.w3.org/ns/shacl#> ;
   void:vocabulary <http://www.w3.org/2004/02/skos/core#> ;
   
-  # Dataset Statistics
+  # Dataset Statistics (updated 2026-06-29: includes pcr-japan extension)
   void:classPartition [
     rdf:type void:Dataset ;
     void:class owl:Class ;
-    void:entities 250 ;
+    void:entities 133 ;
   ] ;
   
   void:propertyPartition [
@@ -57,11 +57,11 @@
   void:propertyPartition [
     rdf:type void:Dataset ;
     void:property owl:DatatypeProperty ;
-    void:entities 120 ;
+    void:entities 132 ;
   ] ;
   
-  # Total Triples (estimated)
-  void:triples 2500 ;
+  # Total Triples (estimated — includes all ext/ modules)
+  void:triples 3500 ;
   
   # SPARQL Endpoint
   void:sparqlEndpoint <https://sparql.comet.carbon/> ;
